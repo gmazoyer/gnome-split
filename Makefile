@@ -11,12 +11,12 @@ endif
 
 -include .config
 
-all: .config dirs compile translation gsplit
+all: .config dirs compile translation gnome-split
 
 .config: src/org/gnome/split/config/Constants.java
 	/bin/echo
 	/bin/echo "You need to run ./configure to check prerequisites"
-	/bin/echo "and setup preferences before you can build gSplit."
+	/bin/echo "and setup preferences before you can build GNOME Split."
 	( if [ ! -x configure ] ; then chmod +x configure ; /bin/echo "I just made it executable for you." ; fi )
 	/bin/echo
 	exit 1
@@ -24,7 +24,7 @@ all: .config dirs compile translation gsplit
 CLASSPATH=$(JAVA_GNOME_JAR):$(DBUS_JAVA_JAR):$(DEBUG_DISABLE_JAR):$(DEBUG_ENABLE_JAR):$(HEXDUMP_JAR):$(UNIX_SOCKET)
 
 SOURCES_DIST=$(shell find src/ -name '*.java')
-TRANSLATIONS=$(shell find po/  -name '*.po' | sed -e 's/po\/\(.*\)\.po/share\/locale\/\1\/LC_MESSAGES\/gsplit\.mo/g')
+TRANSLATIONS=$(shell find po/  -name '*.po' | sed -e 's/po\/\(.*\)\.po/share\/locale\/\1\/LC_MESSAGES\/gnome-split\.mo/g')
 
 dirs: tmp/classes tmp/stamp tmp/i18n
 
@@ -64,7 +64,7 @@ share/locale/%/LC_MESSAGES/gnome-split.mo: po/%.po
 	@/bin/echo -e "MSGFMT\t$@"
 	msgfmt -o $@ $<
 
-gsplit: tmp/launcher/gnome-split-local
+gnome-split: tmp/launcher/gnome-split-local
 	@/bin/echo -e "CP\t$@"
 	cp -f $< $@
 	chmod +x $@
@@ -96,20 +96,20 @@ $(DESTDIR)$(PREFIX)/share/applications:
 	@/bin/echo -e "MKDIR\t$@/"
 	-mkdir -p $@
 
-$(DESTDIR)$(PREFIX)/bin/gsplit: \
+$(DESTDIR)$(PREFIX)/bin/gnome-split: \
 		$(DESTDIR)$(PREFIX)/bin \
 		tmp/launcher/gnome-split-install
 	@/bin/echo -e "INSTALL\t$@"
 	cp -f tmp/launcher/gnome-split-install $@
 	chmod +x $@
 
-$(DESTDIR)$(PREFIX)/share/applications/gsplit.desktop: \
+$(DESTDIR)$(PREFIX)/share/applications/gnome-split.desktop: \
 		$(DESTDIR)$(PREFIX)/share/applications \
 		tmp/launcher/gnome-split.desktop
 	@/bin/echo -e "INSTALL\t$@"
-	cp -f tmp/launcher/gsplit.desktop $@
+	cp -f tmp/launcher/gnome-split.desktop $@
 
-tmp/gsplit.jar: tmp/stamp/compile
+tmp/gnome-split.jar: tmp/stamp/compile
 	@/bin/echo -e "$(JAR_CMD)\t$@"
 	$(JAR) -cf tmp/gnome-split.jar -C tmp/classes .
 
@@ -131,17 +131,17 @@ tmp/stamp/install-pixmaps: \
 
 tmp/stamp/install-translations: \
 		$(DESTDIR)$(PREFIX)/share/locale \
-		share/locale/*/LC_MESSAGES/gsplit.mo
+		share/locale/*/LC_MESSAGES/gnome-split.mo
 	@/bin/echo -e "INSTALL\t$(DESTDIR)$(PREFIX)/share/locale/*/LC_MESSAGES/gnome-split.mo"
 	cp -af share/locale/* $(DESTDIR)$(PREFIX)/share/locale
 	touch $@
 
-$(DESTDIR)$(JARDIR)/gsplit-$(VERSION).jar: \
+$(DESTDIR)$(JARDIR)/gnome-split-$(VERSION).jar: \
 		$(DESTDIR)$(JARDIR) \
 		tmp/gnome-split.jar
 	@/bin/echo -e "INSTALL\t$@"
 	cp -f tmp/gnome-split.jar $@
-	@/bin/echo -e "SYMLINK\t$(@D)/gsplit.jar -> gnome-split-$(VERSION).jar"
+	@/bin/echo -e "SYMLINK\t$(@D)/gnome-split.jar -> gnome-split-$(VERSION).jar"
 	cd $(@D) && rm -f gnome-split.jar && ln -s gnome-split-$(VERSION).jar gnome-split.jar
 
 # --------------------------------------------------------------------

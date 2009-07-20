@@ -1438,15 +1438,15 @@ output "ok\n";
 # --------------------------------------------------------------------
 
 # We need to support specifying an alternative location for the installed
-# gsplit.jar file. For now it is hard coded as follows:
+# gnome-split.jar file. For now it is hard coded as follows:
 
-my $JAVAGNOME_JAR = join(":", @java_gnome_jar);
-my $DBUSJAVA_JAR  = join(":", @dbus_java_jar);
-my $DEBUGDIS_JAR  = join(":", @debug_disable_jar);
-my $DEBUGENA_JAR  = join(":", @debug_enable_jar);
-my $HEXDUMP_JAR   = join(":", @hexdump_jar);
-my $UNIXSOCK_JAR  = join(":", @unix_jar);
-my $GSPLIT_JAR    = "$prefix/share/java/gnome-split-$version.jar";
+my $JAVAGNOME_JAR   = join(":", @java_gnome_jar);
+my $DBUSJAVA_JAR    = join(":", @dbus_java_jar);
+my $DEBUGDIS_JAR    = join(":", @debug_disable_jar);
+my $DEBUGENA_JAR    = join(":", @debug_enable_jar);
+my $HEXDUMP_JAR     = join(":", @hexdump_jar);
+my $UNIXSOCK_JAR    = join(":", @unix_jar);
+my $GNOME_SPLIT_JAR = "$prefix/share/java/gnome-split-$version.jar";
 
 output "Write launcher files:";
 
@@ -1461,7 +1461,7 @@ print LAUNCHER join (" ",
 	"$JAVA",
 	"-Djava.library.path=$libdir",
 	"-classpath tmp/classes:$JAVAGNOME_JAR:$DBUSJAVA_JAR:$DEBUGDIS_JAR:$DEBUGENA_JAR:$HEXDUMP_JAR:$UNIXSOCK_JAR",
-	"gsplit.GSplit",
+	"org.gnome.split.GnomeSplit",
 	"\$*") . "\n";
 
 close LAUNCHER;
@@ -1478,8 +1478,8 @@ print LAUNCHER join (" ",
 	"exec",
 	"$JAVA",
 	"-Djava.library.path=$libdir",
-	"-classpath $GSPLIT_JAR:$JAVAGNOME_JAR:$DBUSJAVA_JAR:$DEBUGDIS_JAR:$DEBUGENA_JAR:$HEXDUMP_JAR:$UNIXSOCK_JAR",
-	"gsplit.GSplit",
+	"-classpath $GNOME_SPLIT_JAR:$JAVAGNOME_JAR:$DBUSJAVA_JAR:$DEBUGDIS_JAR:$DEBUGENA_JAR:$HEXDUMP_JAR:$UNIXSOCK_JAR",
+	"org.gnome.split.GnomeSplit",
 	"\$*") . "\n";
 
 close LAUNCHER;
