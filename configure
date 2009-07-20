@@ -1401,7 +1401,7 @@ print CONFIG "JARDIR=$jardir\n";
 
 my $version;
 
-open SOURCE, "src/gsplit/core/config/Constants.java";
+open SOURCE, "src/org/gnome/split/config/Constants.java";
 while (<SOURCE>) {
 	chomp;
 	if (/.* PROGRAM_VERSION = \"([\d\.\-rcdev]+)\";/) {

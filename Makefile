@@ -13,7 +13,7 @@ endif
 
 all: .config dirs compile translation gsplit
 
-.config: src/gsplit/core/config/Constants.java
+.config: src/org/gnome/split/config/Constants.java
 	/bin/echo
 	/bin/echo "You need to run ./configure to check prerequisites"
 	/bin/echo "and setup preferences before you can build gSplit."
