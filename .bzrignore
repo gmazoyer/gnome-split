@@ -1,0 +1,8 @@
+.config
+.libdir
+.classpath
+.project
+tmp
+gnome-split-*.tar.bz2
+share/locale
+gnome-split

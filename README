@@ -1,0 +1,68 @@
+                             README
+
+-----------------------------------------------------------------
+ 1. Compiling and running
+-----------------------------------------------------------------
+For the impatient:
+
+	$ ./configure
+	$ make
+
+-----------------------------------------------------------------
+ 2. Installing
+-----------------------------------------------------------------
+Really, that's your Linux distribution's job, but if you insist:
+
+	# make install
+
+will bludgeon its way into the proper places on the system. If you need to set
+the prefix to something else, use the configure script. You can likewise
+specify a temporary build directory to compose the installation image, perhaps:
+
+	$ ./configure --prefix=/usr
+
+-----------------------------------------------------------------
+ 3. Prerequisites
+-----------------------------------------------------------------
+
+GNOME Split is written in Java and uses uses:
+
+* **java-gnome**  
+  Bindings around the GTK and GNOME user interface libraries,  
+  <http://java-gnome.sourceforge.net>  
+  You'll need a version `>= 4.0.11`
+
+* **dbus-java**
+  Bindings around the DBus interface library and its dependencies,
+  <http://dbus.freedesktop.org/doc/dbus-java/>
+  You'll need a version `>= 2.5.1`
+
+-----------------------------------------------------------------
+ 4. License
+-----------------------------------------------------------------
+The GNOME Split program is released under the terms of the GNU
+GPLv3. Please read the LICENSE file for more informations
+
+-----------------------------------------------------------------
+ 5. What is GNOME Split?
+-----------------------------------------------------------------
+GNOME Split is a program made written in Java and using a GTK+
+graphical interface. It allows you to split a file in more little
+parts in order to be able to store it easily. You can also
+assemble the parts later and check the file integrity using hash
+to be able.
+
+-----------------------------------------------------------------
+ 6. Why do you write GNOME Split?
+-----------------------------------------------------------------
+I use Ubuntu for a while now and to split files, I have to use
+the "split" command. I thought that it will be nice to have
+a GTK+ program to split files more easily for everybody.
+
+-----------------------------------------------------------------
+ 7. Contact
+-----------------------------------------------------------------
+If you have any bugs, errors, improvements, patchs, ideas, you
+can contact me on my email address <respawneral@gmail.com>.
+GNOME Split developement website at http://www.respawner.fr/loggerhead/
+GNOME Split in Launchpad https://launchpad.net/gnome-split/
