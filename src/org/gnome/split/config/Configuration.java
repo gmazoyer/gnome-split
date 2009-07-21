@@ -34,7 +34,7 @@ import java.util.Properties;
  * 
  * @author Guillaume Mazoyer
  */
-public class Configuration
+public final class Configuration
 {
     /**
      * Static instance of this class.
