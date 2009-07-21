@@ -29,7 +29,7 @@ import org.gnome.gdk.Pixbuf;
  * 
  * @author Guillaume Mazoyer
  */
-public class Constants
+public final class Constants
 {
     /**
      * Name of the program.
