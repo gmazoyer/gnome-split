@@ -37,11 +37,6 @@ import java.util.Properties;
 public final class Configuration
 {
     /**
-     * Static instance of this class.
-     */
-    private static Configuration instance;
-
-    /**
      * Configuration file.
      */
     private File configuration;
@@ -49,52 +44,52 @@ public final class Configuration
     /**
      * Size of the read/write buffer.
      */
-    public static int BUFFER_SIZE;
+    public int BUFFER_SIZE;
 
     /**
      * Name of the hash file.
      */
-    public static String HASH_FILENAME;
+    public String HASH_FILENAME;
 
     /**
      * Hash algorithm to use.
      */
-    public static String HASH_ALGORITHM;
+    public String HASH_ALGORITHM;
 
     /**
      * Size of the file suffix.
      */
-    public static int SUFFIX_SIZE;
+    public int SUFFIX_SIZE;
 
     /**
      * Automatically choose file suffix size.
      */
-    public static boolean AUTO_SUFFIX_SIZE;
+    public boolean AUTO_SUFFIX_SIZE;
 
     /**
      * Write a file containing the file hash.
      */
-    public static boolean SAVE_FILE_HASH;
+    public boolean SAVE_FILE_HASH;
 
     /**
      * Delete the parts file after the assembly.
      */
-    public static boolean DELETE_PARTS;
+    public boolean DELETE_PARTS;
 
     /**
      * Disable computer hibernation.
      */
-    public static boolean NO_HIBERNATION;
+    public boolean NO_HIBERNATION;
 
     /**
      * Use notification system.
      */
-    public static boolean USE_NOTIFICATION;
+    public boolean USE_NOTIFICATION;
 
     /**
      * Show icon in the notification zone.
      */
-    public static boolean SHOW_TRAY_ICON;
+    public boolean SHOW_TRAY_ICON;
 
     /**
      * Private constructor can't instantiate Configuration in other class.<br>
@@ -103,7 +98,7 @@ public final class Configuration
      * @throws IOException
      *             if an exception occurs while creating the file.
      */
-    private Configuration() throws IOException {
+    public Configuration() throws IOException {
         configuration = new File(Constants.CONFIG_FILE);
 
         // File not found
@@ -212,22 +207,6 @@ public final class Configuration
                 }
             } catch (IOException e) {
                 e.printStackTrace();
-            }
-        }
-    }
-
-    /**
-     * This method is used to get the static instance of Preferences class.
-     * 
-     * @return instance the static instance.
-     */
-    public static void newInstance() {
-        if (instance == null) {
-            try {
-                instance = new Configuration();
-            } catch (IOException e) {
-                e.printStackTrace();
-                System.exit(1);
             }
         }
     }

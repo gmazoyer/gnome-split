@@ -25,7 +25,6 @@ import org.gnome.gtk.SeparatorMenuItem;
 import org.gnome.gtk.StatusIcon;
 import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
@@ -71,7 +70,7 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
 
         // Set up visibility and icon tooltip
         this.setTooltip("GNOME Split - " + _("version") + " " + Constants.PROGRAM_VERSION);
-        this.setVisible(Configuration.SHOW_TRAY_ICON);
+        this.setVisible(app.getConfig().SHOW_TRAY_ICON);
 
         // Connect interaction signals
         this.connect((StatusIcon.Activate) this);

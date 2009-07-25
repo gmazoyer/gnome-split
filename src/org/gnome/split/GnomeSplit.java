@@ -20,6 +20,7 @@
  */
 package org.gnome.split;
 
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -32,6 +33,7 @@ import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.utils.UncaughtExceptionLogger;
+import org.gnome.unique.Application;
 
 /**
  * This class contains the GNOME Split application entry point.
@@ -40,6 +42,16 @@ import org.gnome.split.utils.UncaughtExceptionLogger;
  */
 public final class GnomeSplit
 {
+    /**
+     * Used to check that only one instance of this application is running.
+     */
+    private Application application = null;
+
+    /**
+     * Configuration for the application.
+     */
+    private Configuration config = null;
+
     /**
      * Application actions manager.
      */
@@ -63,8 +75,20 @@ public final class GnomeSplit
         // Load GTK
         Gtk.init(args);
 
+        // Initialize unique application check
+        application = new Application("org.gnome.GnomeSplit", null);
+
+        // Already running, quit this application
+        if (application.isRunning())
+            System.exit(1);
+
         // Load constants and preferences
-        Configuration.newInstance();
+        try {
+            config = new Configuration();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
 
         // Load logo and program name
         Glib.setProgramName(Constants.PROGRAM_NAME);
@@ -74,7 +98,7 @@ public final class GnomeSplit
         Internationalization.init("gnome-split", "share/locale/");
 
         // Load libnotify
-        if (Configuration.USE_NOTIFICATION)
+        if (config.USE_NOTIFICATION)
             Notify.init(Constants.PROGRAM_NAME);
 
         // Load actions manager
@@ -86,6 +110,15 @@ public final class GnomeSplit
 
         // Start GTK main loop (blocker method)
         Gtk.main();
+    }
+
+    /**
+     * Return the configuration object of the app.
+     * 
+     * @return the configuration object.
+     */
+    public Configuration getConfig() {
+        return config;
     }
 
     /**

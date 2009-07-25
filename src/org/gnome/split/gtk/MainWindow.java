@@ -28,7 +28,6 @@ import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.config.Configuration;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
@@ -51,7 +50,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Create the notification zone icon
         this.trayIcon = new TrayIcon(app);
-        this.trayIcon.setVisible(Configuration.SHOW_TRAY_ICON);
+        this.trayIcon.setVisible(app.getConfig().SHOW_TRAY_ICON);
 
         // Create classic about dialog
         this.about = new AboutSoftDialog();
