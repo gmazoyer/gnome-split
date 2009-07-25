@@ -55,9 +55,10 @@ public class AboutSoftDialog extends AboutDialog implements Window.DeleteEvent, 
         this.setVersion(Constants.PROGRAM_VERSION);
         this.setLogo(Constants.PROGRAM_LOGO);
         this.setComments(_("Split and assemble your files easily."));
-        this.setCopyright("Copyright \u00A9 2008 - 2009 " + _("the gSplit project"));
-        this.setWebsite("https://launchpad.net/gsplit");
+        this.setCopyright("Copyright \u00A9 2008-2009 " + _("the GNOME Split project"));
+        this.setWebsite("http://www.respawner.fr/gnome-split");
 
+        // Program authors
         this.setAuthors(new String[] {
                 _(developer),
                 "  Guillaume Mazoyer <respawneral@gmail.com>\n",
@@ -67,15 +68,22 @@ public class AboutSoftDialog extends AboutDialog implements Window.DeleteEvent, 
                 "  J\u00E9r\u00F4me <eclipse.magick@gmail.com>"
         });
 
+        // Program documenters
         this.setDocumenters(new String[] {
             "Guillaume Mazoyer <respawneral@gmail.com>"
         });
 
+        // Program artists
         this.setArtists(new String[] {
             "Skatershi"
         });
 
+        // Program translators
         this.setTranslatorCredits(_("translator-credits"));
+
+        // Program license
+        this.setLicense(_("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3, as published by the Free Software Foundation.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranties of MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."));
+        this.setWrapLicense(true);
 
         // When cross button is clicked
         this.connect((Window.DeleteEvent) this);

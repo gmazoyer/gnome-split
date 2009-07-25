@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: GNOME Split\n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Guillaume Mazoyer <respawneral@gmail.com>\n"
+"Language-Team: Guillaume Mazoyer <respawneral@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-SourceCharset: utf-8\n"
+
+#: src/org/gnome/split/gtk/MainWindow.java:75
+msgid "_File"
+msgstr "_Fichier"
+
+#: src/org/gnome/split/gtk/MainWindow.java:83
+msgid "_Edit"
+msgstr "É_dition"
+
+#: src/org/gnome/split/gtk/MainWindow.java:91
+msgid "_Help"
+msgstr "_Aide"
+
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:42
+msgid "Head developer:"
+msgstr "Développeur principal :"
+
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:44
+msgid "Packager:"
+msgstr "Packageur :"
+
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:46
+msgid "Retired packager:"
+msgstr "Packageur retraité :"
+
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:57
+msgid "Split and assemble your files easily."
+msgstr "Découpez et assemblez vos fichiers."
+
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:58
+msgid "the GNOME Split project"
+msgstr "le projet GNOME Split"
+
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:82
+msgid "translator-credits"
+msgstr "Guillaume Mazoyer <respawneral@gmail.com>"
+
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:85
+msgid ""
+"This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3, as published by the Free Software Foundation.\n"
+"\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranties of MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n"
+"\n"
+"You should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/InfoDialog.java:47
+msgid "Information"
+msgstr "Information"
+
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:47
+msgid "Error!"
+msgstr "Erreur !"
+
+#: src/org/gnome/split/gtk/dialog/QuestionDialog.java:48
+msgid "Question"
+msgstr "Question"
+
+#: src/org/gnome/split/gtk/widget/TrayIcon.java:73
+msgid "version"
+msgstr "version"
+
+#: src/org/gnome/split/dbus/DbusInhibit.java:67
+msgid "GNOME Split activity"
+msgstr "Activité de GNOME Split"
+

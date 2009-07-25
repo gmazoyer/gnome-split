@@ -64,7 +64,7 @@ public class DbusInhibit
                     "/org/freedesktop/PowerManagement/Inhibit", Inhibit.class);
 
             // Inhibit hibernation and get inhibit cookie
-            cookie = inhibit.Inhibit(Constants.PROGRAM_NAME, _("gSplit activity"));
+            cookie = inhibit.Inhibit(Constants.PROGRAM_NAME, _("GNOME Split activity"));
         } catch (DBusException e) {
             e.printStackTrace();
         }
