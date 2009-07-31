@@ -23,6 +23,11 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
+/**
+ * Action to open the GTK+ Preferences dialog.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public final class PreferencesAction extends Action
 {
     public PreferencesAction(final GnomeSplit app) {

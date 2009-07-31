@@ -1,5 +1,5 @@
 /*
- * QuitAction.java
+ * NewAction.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -24,18 +24,18 @@ import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
 /**
- * Action to quit the program.
+ * Action to add a split/assembly/check to the current actions list.
  * 
  * @author Guillaume Mazoyer
  */
-public final class QuitAction extends Action
+public final class NewAction extends Action
 {
-    public QuitAction(final GnomeSplit app) {
-        super(app, Stock.QUIT);
+    public NewAction(final GnomeSplit app) {
+        super(app, Stock.NEW);
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().quit();
+
     }
 }

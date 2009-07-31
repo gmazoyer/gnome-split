@@ -25,6 +25,11 @@ import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
+/**
+ * Abstract class to define a action triggered by a GTK+ widget.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public abstract class Action
 {
     private GnomeSplit app;
@@ -81,6 +86,11 @@ public abstract class Action
         return app;
     }
 
+    /**
+     * Event generated when the associated action is triggered.
+     * 
+     * @author Guillaume Mazoyer
+     */
     public class ActionEvent
     {
         private MenuItem item;

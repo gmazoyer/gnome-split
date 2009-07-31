@@ -23,6 +23,11 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
+/**
+ * Action to open the program help.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public final class HelpAction extends Action
 {
     public HelpAction(final GnomeSplit app) {

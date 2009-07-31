@@ -32,6 +32,7 @@ public class ActionManager
     public ActionManager(final GnomeSplit app) {
         actions = new HashMap<ActionId, Action>();
 
+        actions.put(ActionId.MENU_NEW, new NewAction(app));
         actions.put(ActionId.MENU_EXIT, new QuitAction(app));
         actions.put(ActionId.MENU_PREFERENCES, new PreferencesAction(app));
         actions.put(ActionId.MENU_HELP, new HelpAction(app));
@@ -46,6 +47,6 @@ public class ActionManager
 
     public enum ActionId
     {
-        MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TRAY_EXIT, TRAY_ABOUT;
+        MENU_NEW, MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TRAY_EXIT, TRAY_ABOUT;
     }
 }

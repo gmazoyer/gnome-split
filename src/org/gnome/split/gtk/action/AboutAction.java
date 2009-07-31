@@ -23,6 +23,11 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
+/**
+ * Action to popup the classic GTK+ About dialog.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public final class AboutAction extends Action
 {
     public AboutAction(final GnomeSplit app) {

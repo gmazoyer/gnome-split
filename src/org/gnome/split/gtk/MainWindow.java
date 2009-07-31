@@ -24,6 +24,9 @@ import org.gnome.gdk.Event;
 import org.gnome.gtk.Menu;
 import org.gnome.gtk.MenuBar;
 import org.gnome.gtk.MenuItem;
+import org.gnome.gtk.PolicyType;
+import org.gnome.gtk.ScrolledWindow;
+import org.gnome.gtk.SeparatorMenuItem;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
@@ -31,6 +34,7 @@ import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
+import org.gnome.split.gtk.widget.MainList;
 import org.gnome.split.gtk.widget.TrayIcon;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -62,6 +66,12 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Add the menu bar
         mainContainer.packStart(this.createMenu());
 
+        // Add the main widgets (action list)
+        mainContainer.add(this.createMainTreeView());
+
+        // Connect delete event handler
+        this.connect((Window.DeleteEvent) this);
+
         // Show everything
         this.showAll();
     }
@@ -75,6 +85,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu fileMenu = new Menu();
 
         fileItem.setSubmenu(fileMenu);
+        fileMenu.append(actions.getAction(ActionId.MENU_NEW).createMenuItem());
+        fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_EXIT).createMenuItem());
         menubar.append(fileItem);
 
@@ -95,6 +107,17 @@ public class MainWindow extends Window implements Window.DeleteEvent
         menubar.append(helpItem);
 
         return menubar;
+    }
+
+    private ScrolledWindow createMainTreeView() {
+        final ScrolledWindow scroll = new ScrolledWindow();
+        final MainList treeview = new MainList();
+
+        treeview.setSizeRequest(457, 275);
+        scroll.setPolicy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
+        scroll.add(treeview);
+
+        return scroll;
     }
 
     public AboutSoftDialog getAboutDialog() {
