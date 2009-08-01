@@ -20,6 +20,11 @@
  */
 package org.gnome.split.gtk.widget;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import org.gnome.gtk.CellRendererPixbuf;
 import org.gnome.gtk.CellRendererProgress;
 import org.gnome.gtk.CellRendererText;
@@ -49,8 +54,15 @@ public class MainList extends TreeView
 
     private final ListStore model;
 
+    private final List<TreeIter> rows;
+
+    private final Map<String, TreeIter> actions;
+
     public MainList() {
         super();
+
+        rows = new ArrayList<TreeIter>();
+        actions = new HashMap<String, TreeIter>();
 
         model = new ListStore(new DataColumn[] {
                 type = new DataColumnStock(),
@@ -91,8 +103,7 @@ public class MainList extends TreeView
         vertical.setTitle(_("Time"));
         textRenderer = new CellRendererText(vertical);
         textRenderer.setText(time);
-        
-        this.addTestAction();
+
         this.addTestAction();
     }
 
@@ -100,13 +111,40 @@ public class MainList extends TreeView
     public ListStore getModel() {
         return model;
     }
-    
+
     public void addTestAction() {
-        final TreeIter row = model.appendRow();
-        model.setValue(row, type, Stock.PASTE);
-        model.setValue(row, file, "Test file");
-        model.setValue(row, state, Stock.MEDIA_PAUSE);
-        model.setValue(row, progress, 45);
-        model.setValue(row, time, "Test time");
+        TreeIter row = null;
+        for (int i = 0; i < 3; i++) {
+            row = model.appendRow();
+
+            switch (i) {
+            case 0:
+                model.setValue(row, type, Stock.PASTE);
+                model.setValue(row, file, "Test file 1");
+                model.setValue(row, state, Stock.MEDIA_PAUSE);
+                model.setValue(row, progress, 25);
+                model.setValue(row, time, "Test time 1");
+                actions.put("Test file 1 ", row);
+                break;
+            case 1:
+                model.setValue(row, type, Stock.CUT);
+                model.setValue(row, file, "Test file 2");
+                model.setValue(row, state, Stock.MEDIA_PLAY);
+                model.setValue(row, progress, 67);
+                model.setValue(row, time, "Test time 2");
+                actions.put("Test file 2 ", row);
+                break;
+            case 2:
+                model.setValue(row, type, Stock.FIND);
+                model.setValue(row, file, "Test file 3");
+                model.setValue(row, state, Stock.CANCEL);
+                model.setValue(row, progress, 100);
+                model.setValue(row, time, "Test time 3");
+                actions.put("Test file 3 ", row);
+                break;
+            }
+
+            rows.add(row);
+        }
     }
 }

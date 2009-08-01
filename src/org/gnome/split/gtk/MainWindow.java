@@ -27,6 +27,8 @@ import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.PolicyType;
 import org.gnome.gtk.ScrolledWindow;
 import org.gnome.gtk.SeparatorMenuItem;
+import org.gnome.gtk.SeparatorToolItem;
+import org.gnome.gtk.Toolbar;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
@@ -46,6 +48,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private TrayIcon trayIcon;
 
     private AboutSoftDialog about;
+    
+    private MainList mainView;
 
     public MainWindow(final GnomeSplit app) {
         super();
@@ -65,6 +69,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Add the menu bar
         mainContainer.packStart(this.createMenu());
+
+        // Add the tool bar
+        mainContainer.add(this.createToolbar());
 
         // Add the main widgets (action list)
         mainContainer.add(this.createMainTreeView());
@@ -109,19 +116,37 @@ public class MainWindow extends Window implements Window.DeleteEvent
         return menubar;
     }
 
+    private Toolbar createToolbar() {
+        final Toolbar toolbar = new Toolbar();
+        final ActionManager actions = app.getActionManager();
+
+        toolbar.insert(actions.getAction(ActionId.TOOL_NEW).createToolItem(), 0);
+        toolbar.insert(actions.getAction(ActionId.TOOL_START).createToolItem(), 1);
+        toolbar.insert(actions.getAction(ActionId.TOOL_PAUSE).createToolItem(), 2);
+        toolbar.insert(actions.getAction(ActionId.TOOL_REMOVE).createToolItem(), 3);
+        toolbar.insert(new SeparatorToolItem(), 4);
+        toolbar.insert(actions.getAction(ActionId.TOOL_PROPERTIES).createToolItem(), 5);
+
+        return toolbar;
+    }
+
     private ScrolledWindow createMainTreeView() {
         final ScrolledWindow scroll = new ScrolledWindow();
-        final MainList treeview = new MainList();
+        mainView = new MainList();
 
-        treeview.setSizeRequest(457, 275);
+        mainView.setSizeRequest(457, 275);
         scroll.setPolicy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-        scroll.add(treeview);
+        scroll.add(mainView);
 
         return scroll;
     }
 
     public AboutSoftDialog getAboutDialog() {
         return about;
+    }
+    
+    public MainList getMainTreeView() {
+        return mainView;
     }
 
     @Override

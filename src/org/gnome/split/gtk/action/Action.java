@@ -23,6 +23,9 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.ImageMenuItem;
 import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.Stock;
+import org.gnome.gtk.ToolButton;
+import org.gnome.gtk.ToolItem;
+import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
 
 /**
@@ -45,6 +48,10 @@ public abstract class Action
         this.label = label;
         this.tooltip = tooltip;
         this.stock = stock;
+    }
+    
+    public Action(GnomeSplit app, Stock stock, String label) {
+        this(app, label, null, stock);
     }
 
     public Action(GnomeSplit app, Stock stock) {
@@ -82,6 +89,34 @@ public abstract class Action
         return item;
     }
 
+    public ToolItem createToolItem() {
+        // Cannot build a tool button without stock item
+        if (stock == null)
+            throw new NullPointerException(
+                    "It is not possible to create a GtkToolButton without any GtkStock item.");
+
+        // Create a tool item with a Stock
+        ToolItem item = new ToolButton(stock);
+
+        // Set a label to the item
+        if (label != null)
+            ((ToolButton) item).setLabel(label);
+
+        // Set menu item tooltip
+        if (tooltip != null)
+            item.setTooltipText(tooltip);
+
+        ((ToolButton) item).connect(new ToolButton.Clicked() {
+            @Override
+            public void onClicked(ToolButton source) {
+                ActionEvent event = new ActionEvent(source);
+                actionPerformed(event);
+            }
+        });
+
+        return item;
+    }
+
     protected GnomeSplit getApplication() {
         return app;
     }
@@ -93,13 +128,13 @@ public abstract class Action
      */
     public class ActionEvent
     {
-        private MenuItem item;
+        private Widget item;
 
-        public ActionEvent(MenuItem item) {
+        public ActionEvent(Widget item) {
             this.item = item;
         }
 
-        public MenuItem getMenuItem() {
+        public Widget getWidget() {
             return item;
         }
     }

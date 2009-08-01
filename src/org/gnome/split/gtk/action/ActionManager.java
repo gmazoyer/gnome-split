@@ -37,6 +37,11 @@ public class ActionManager
         actions.put(ActionId.MENU_PREFERENCES, new PreferencesAction(app));
         actions.put(ActionId.MENU_HELP, new HelpAction(app));
         actions.put(ActionId.MENU_ABOUT, new AboutAction(app));
+        actions.put(ActionId.TOOL_NEW, new NewAction(app));
+        actions.put(ActionId.TOOL_START, new StartAction(app));
+        actions.put(ActionId.TOOL_PAUSE, new PauseAction(app));
+        actions.put(ActionId.TOOL_REMOVE, new RemoveAction(app));
+        actions.put(ActionId.TOOL_PROPERTIES, new PropertiesAction(app));
         actions.put(ActionId.TRAY_EXIT, new QuitAction(app));
         actions.put(ActionId.TRAY_ABOUT, new AboutAction(app));
     }
@@ -47,6 +52,6 @@ public class ActionManager
 
     public enum ActionId
     {
-        MENU_NEW, MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TRAY_EXIT, TRAY_ABOUT;
+        MENU_NEW, MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_NEW, TOOL_START, TOOL_PAUSE, TOOL_REMOVE, TOOL_PROPERTIES, TRAY_EXIT, TRAY_ABOUT;
     }
 }

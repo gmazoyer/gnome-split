@@ -12,17 +12,25 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/MainWindow.java:75
+#: src/org/gnome/split/gtk/MainWindow.java:89
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:83
+#: src/org/gnome/split/gtk/MainWindow.java:99
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:91
+#: src/org/gnome/split/gtk/MainWindow.java:107
 msgid "_Help"
 msgstr "_Aide"
+
+#: src/org/gnome/split/gtk/action/PauseAction.java:36
+msgid "Suspend"
+msgstr "Suspendre"
+
+#: src/org/gnome/split/gtk/action/StartAction.java:36
+msgid "Start"
+msgstr "Démarrer"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:42
 msgid "Head developer:"
@@ -74,9 +82,29 @@ msgstr "Erreur !"
 msgid "Question"
 msgstr "Question"
 
-#: src/org/gnome/split/gtk/widget/TrayIcon.java:73
+#: src/org/gnome/split/gtk/widget/TrayIcon.java:72
 msgid "version"
 msgstr "version"
+
+#: src/org/gnome/split/gtk/widget/MainList.java:83
+msgid "Type"
+msgstr "Type"
+
+#: src/org/gnome/split/gtk/widget/MainList.java:88
+msgid "File"
+msgstr "Fichier"
+
+#: src/org/gnome/split/gtk/widget/MainList.java:93
+msgid "State"
+msgstr "État"
+
+#: src/org/gnome/split/gtk/widget/MainList.java:98
+msgid "Progress"
+msgstr "Progression"
+
+#: src/org/gnome/split/gtk/widget/MainList.java:103
+msgid "Time"
+msgstr "Temps"
 
 #: src/org/gnome/split/dbus/DbusInhibit.java:67
 msgid "GNOME Split activity"

@@ -95,8 +95,8 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
     @Override
     public void onActivate(StatusIcon source) {
         activated = !activated;
-
         Window window = app.getMainWindow();
+
         if (activated)
             window.hide();
         else
