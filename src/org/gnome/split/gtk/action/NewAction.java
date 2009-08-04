@@ -20,8 +20,12 @@
  */
 package org.gnome.split.gtk.action;
 
+import org.gnome.gtk.Dialog;
+import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.gtk.dialog.ChoiceDialog;
+import org.gnome.split.gtk.dialog.SplitDialog;
 
 /**
  * Action to add a split/assembly/check to the current actions list.
@@ -36,6 +40,34 @@ public final class NewAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
+        final ChoiceDialog dialog = new ChoiceDialog(this.getApplication());
+        final ResponseType response = dialog.run();
+        
+        final Dialog action;
+        final ResponseType end;
+        
+        if (response == ResponseType.OK) {
+            switch (dialog.getTextComboBox().getActive()) {
+            case 0: // Go split
+                action = new SplitDialog(this.getApplication());
+                end = action.run();
+                action.hide();
+                break;
+            case 1: // Go assemble
+                action = null;
+                end = action.run();
+                action.hide();
+                break;
+            case 2: // Go check
+                action = null;
+                end = action.run();
+                action.hide();
+                break;
+            default: // WTF?
+                break;
+            }
 
+        }
+        dialog.hide();
     }
 }

@@ -12,15 +12,15 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/MainWindow.java:89
+#: src/org/gnome/split/gtk/MainWindow.java:91
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:99
+#: src/org/gnome/split/gtk/MainWindow.java:101
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:107
+#: src/org/gnome/split/gtk/MainWindow.java:109
 msgid "_Help"
 msgstr "_Aide"
 
@@ -73,6 +73,74 @@ msgstr ""
 #: src/org/gnome/split/gtk/dialog/InfoDialog.java:47
 msgid "Information"
 msgstr "Information"
+
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:49
+msgid "Action choice"
+msgstr "Choix d'une action"
+
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:53
+msgid "Split"
+msgstr "Découpage"
+
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:54
+msgid "Assembly"
+msgstr "Assemblage"
+
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:55
+msgid "Check"
+msgstr "Vérification"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:73
+msgid "New split"
+msgstr "Nouveau découpage"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:86
+msgid "File to split"
+msgstr "À découper"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:90
+msgid "Splitted file size"
+msgstr "Taille des fichiers"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:94
+msgid "Name pattern"
+msgstr "Modèle du nom"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:110
+msgid "Choose a file."
+msgstr "Choisissez un fichier."
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:135
+msgid "octet"
+msgstr "octet"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:136
+msgid "kibioctet (Kio)"
+msgstr "kibioctet (Kio)"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:137
+msgid "mebioctet (Mio)"
+msgstr "mébioctet (Mio)"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:138
+msgid "gibioctet (Gio)"
+msgstr "gibioctet (Gio)"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:139
+msgid "parts"
+msgstr "parties"
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:144
+msgid "Choose a folder."
+msgstr "Choisissez un dossier."
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:174
+msgid "Uncompleted fields."
+msgstr "Champs incomplets."
+
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:175
+msgid "Check that all fields are completed."
+msgstr "Vérifiez que tous les champs ont été complétés."
 
 #: src/org/gnome/split/gtk/dialog/ErrorDialog.java:47
 msgid "Error!"

@@ -40,6 +40,8 @@ public final class RemoveAction extends Action
     public void actionPerformed(ActionEvent event) {
         final MainList view = this.getApplication().getMainWindow().getMainTreeView();
         final TreeIter selected = view.getSelection().getSelected();
-        view.getModel().removeRow(selected);
+
+        if (selected != null)
+            view.getModel().removeRow(selected);
     }
 }
