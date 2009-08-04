@@ -24,6 +24,8 @@ import org.gnome.gtk.Dialog;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.gtk.dialog.AssemblyDialog;
+import org.gnome.split.gtk.dialog.CheckDialog;
 import org.gnome.split.gtk.dialog.ChoiceDialog;
 import org.gnome.split.gtk.dialog.SplitDialog;
 
@@ -40,30 +42,29 @@ public final class NewAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
+        final GnomeSplit app = this.getApplication();
         final ChoiceDialog dialog = new ChoiceDialog(this.getApplication());
         final ResponseType response = dialog.run();
-        
+
         final Dialog action;
         final ResponseType end;
-        
+
         if (response == ResponseType.OK) {
             switch (dialog.getTextComboBox().getActive()) {
             case 0: // Go split
-                action = new SplitDialog(this.getApplication());
+                action = new SplitDialog(app);
                 end = action.run();
                 action.hide();
                 break;
             case 1: // Go assemble
-                action = null;
+                action = new AssemblyDialog(app);
                 end = action.run();
                 action.hide();
                 break;
             case 2: // Go check
-                action = null;
+                action = new CheckDialog(app);
                 end = action.run();
                 action.hide();
-                break;
-            default: // WTF?
                 break;
             }
 

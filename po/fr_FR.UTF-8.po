@@ -70,6 +70,10 @@ msgstr ""
 "\n"
 "Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce program.  Sinon, reportez-vous à <http://www.gnu.org/licenses/>."
 
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:43
+msgid "New assembly"
+msgstr "Nouvel assemblage"
+
 #: src/org/gnome/split/gtk/dialog/InfoDialog.java:47
 msgid "Information"
 msgstr "Information"
@@ -149,6 +153,10 @@ msgstr "Erreur !"
 #: src/org/gnome/split/gtk/dialog/QuestionDialog.java:48
 msgid "Question"
 msgstr "Question"
+
+#: src/org/gnome/split/gtk/dialog/CheckDialog.java:43
+msgid "New check"
+msgstr "Nouvelle vérification"
 
 #: src/org/gnome/split/gtk/widget/TrayIcon.java:72
 msgid "version"
