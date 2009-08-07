@@ -82,12 +82,12 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
      */
     private void createIconMenu() {
         final ActionManager actions = app.getActionManager();
-        SeparatorMenuItem separator = null;
         menu = new Menu();
 
-        separator = new SeparatorMenuItem();
-        menu.append(separator);
-
+        menu.append(new SeparatorMenuItem());
+        menu.append(actions.getAction(ActionId.TRAY_START_ALL).createMenuItem());
+        menu.append(actions.getAction(ActionId.TRAY_PAUSE_ALL).createMenuItem());
+        menu.append(new SeparatorMenuItem());
         menu.append(actions.getAction(ActionId.TRAY_ABOUT).createMenuItem());
         menu.append(actions.getAction(ActionId.TRAY_EXIT).createMenuItem());
     }
