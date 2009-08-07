@@ -129,7 +129,7 @@ public class MainList extends TreeView
             case 1:
                 model.setValue(row, type, Stock.CUT);
                 model.setValue(row, file, "Test file 2");
-                model.setValue(row, state, Stock.MEDIA_PLAY);
+                model.setValue(row, state, Stock.REFRESH);
                 model.setValue(row, progress, 67);
                 model.setValue(row, time, "Test time 2");
                 actions.put("Test file 2 ", row);
