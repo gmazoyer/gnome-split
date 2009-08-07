@@ -72,6 +72,7 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
         // Set main window and dialog title
         super(_("New split"), app.getMainWindow(), false);
 
+        // Alignment
         final Alignment align = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
         align.setPadding(5, 5, 5, 5);
         this.add(align);
@@ -99,7 +100,7 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
         table.attach(inputEntry, 1, 2, 0, 1);
 
         // Size value chooser
-        size = new SpinButton(1.0, 4000.0, 1.0);
+        size = new SpinButton(1.0, 4096.0, 1.0);
         table.attach(size, 1, 2, 1, 2);
 
         // Pattern of the files

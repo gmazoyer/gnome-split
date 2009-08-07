@@ -33,7 +33,17 @@ public class ActionManager
         actions = new HashMap<ActionId, Action>();
 
         actions.put(ActionId.MENU_NEW, new NewAction(app));
+        actions.put(ActionId.MENU_PROPERTIES, new PropertiesAction(app));
+        actions.put(ActionId.MENU_OPEN_DIR, new OpenDirAction(app));
+        actions.put(ActionId.MENU_START, new StartAction(app));
+        actions.put(ActionId.MENU_PAUSE, new PauseAction(app));
+        actions.put(ActionId.MENU_REMOVE, new RemoveAction(app));
+        actions.put(ActionId.MENU_DELETE, new DeleteAction(app));
+        actions.put(ActionId.MENU_START_ALL, new StartAllAction(app));
+        actions.put(ActionId.MENU_PAUSE_ALL, new PauseAllAction(app));
         actions.put(ActionId.MENU_EXIT, new QuitAction(app));
+        actions.put(ActionId.MENU_SELECT_ALL, new SelectAllAction(app));
+        actions.put(ActionId.MENU_UNSELECT_ALL, new UnselectAllAction(app));
         actions.put(ActionId.MENU_PREFERENCES, new PreferencesAction(app));
         actions.put(ActionId.MENU_HELP, new HelpAction(app));
         actions.put(ActionId.MENU_ABOUT, new AboutAction(app));
@@ -52,6 +62,6 @@ public class ActionManager
 
     public enum ActionId
     {
-        MENU_NEW, MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_NEW, TOOL_START, TOOL_PAUSE, TOOL_REMOVE, TOOL_PROPERTIES, TRAY_EXIT, TRAY_ABOUT;
+        MENU_NEW, MENU_PROPERTIES, MENU_OPEN_DIR, MENU_START, MENU_PAUSE, MENU_REMOVE, MENU_DELETE, MENU_START_ALL, MENU_PAUSE_ALL, MENU_EXIT, MENU_SELECT_ALL, MENU_UNSELECT_ALL, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_NEW, TOOL_START, TOOL_PAUSE, TOOL_REMOVE, TOOL_PROPERTIES, TRAY_EXIT, TRAY_ABOUT;
     }
 }

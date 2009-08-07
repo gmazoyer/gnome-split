@@ -47,23 +47,21 @@ public final class NewAction extends Action
         final ResponseType response = dialog.run();
 
         final Dialog action;
-        final ResponseType end;
-
         if (response == ResponseType.OK) {
             switch (dialog.getTextComboBox().getActive()) {
             case 0: // Go split
                 action = new SplitDialog(app);
-                end = action.run();
+                action.run();
                 action.hide();
                 break;
             case 1: // Go assemble
                 action = new AssemblyDialog(app);
-                end = action.run();
+                action.run();
                 action.hide();
                 break;
             case 2: // Go check
                 action = new CheckDialog(app);
-                end = action.run();
+                action.run();
                 action.hide();
                 break;
             }

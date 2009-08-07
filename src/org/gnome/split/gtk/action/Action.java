@@ -20,6 +20,8 @@
  */
 package org.gnome.split.gtk.action;
 
+import org.gnome.gtk.IconSize;
+import org.gnome.gtk.Image;
 import org.gnome.gtk.ImageMenuItem;
 import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.Stock;
@@ -49,7 +51,7 @@ public abstract class Action
         this.tooltip = tooltip;
         this.stock = stock;
     }
-    
+
     public Action(GnomeSplit app, Stock stock, String label) {
         this(app, label, null, stock);
     }
@@ -67,11 +69,15 @@ public abstract class Action
     public MenuItem createMenuItem() {
         MenuItem item = null;
 
-        // Create a menu item with an image
-        if (stock != null)
+        if ((stock != null) && (label != null)) {
+            // Create a menu item with a label and an image
+            final Image image = new Image(stock, IconSize.MENU);
+            item = new ImageMenuItem(image, label);
+        } else if (stock != null)
+            // Create a menu item with an image
             item = new ImageMenuItem(stock);
-        // Create a menu item with a label
         else if (label != null)
+            // Create a menu item with a label
             item = new MenuItem(label);
 
         // Set menu item tooltip

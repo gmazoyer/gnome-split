@@ -21,10 +21,21 @@
 package org.gnome.split.gtk.dialog;
 
 import org.gnome.gdk.Event;
+import org.gnome.gtk.CellRendererText;
+import org.gnome.gtk.CellRendererToggle;
+import org.gnome.gtk.DataColumn;
+import org.gnome.gtk.DataColumnBoolean;
+import org.gnome.gtk.DataColumnString;
 import org.gnome.gtk.Dialog;
+import org.gnome.gtk.Label;
+import org.gnome.gtk.ListStore;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.TextComboBox;
+import org.gnome.gtk.TreeIter;
+import org.gnome.gtk.TreeView;
+import org.gnome.gtk.TreeViewColumn;
+import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
@@ -44,9 +55,63 @@ public class ChoiceDialog extends Dialog implements Window.DeleteEvent
 {
     private TextComboBox box;
 
+    public DataColumnBoolean active;
+
+    public DataColumnString action;
+
+    private ListStore model;
+
+    private TreeView treeview;
+
     public ChoiceDialog(final GnomeSplit app) {
         // Set main window and dialog title
         super(_("Action choice"), app.getMainWindow(), false);
+
+        // Main container
+        final VBox vbox = new VBox(false, 3);
+        this.add(vbox);
+
+        // Introduction label
+        final Label label = new Label(_("Choose an action to perform."));
+        vbox.packStart(label);
+
+        // Build a simple treeview
+        TreeViewColumn vertical = null;
+        model = new ListStore(new DataColumn[] {
+                active = new DataColumnBoolean(), action = new DataColumnString()
+        });
+        treeview = new TreeView(model);
+        treeview.setHeadersVisible(false);
+        vbox.add(treeview);
+
+        vertical = treeview.appendColumn();
+        CellRendererToggle toggle = new CellRendererToggle(vertical);
+        toggle.setActive(active);
+        toggle.setActivatable(true);
+        toggle.setRadio(true);
+
+        vertical = treeview.appendColumn();
+        CellRendererText text = new CellRendererText(vertical);
+        text.setText(action);
+
+        TreeIter row;
+        for (byte b = 0; b < 3; b++) {
+            row = model.appendRow();
+            switch (b) {
+            case 0:
+                model.setValue(row, active, true);
+                model.setValue(row, action, _("Split"));
+                break;
+            case 1:
+                model.setValue(row, active, false);
+                model.setValue(row, action, _("Assembly"));
+                break;
+            case 2:
+                model.setValue(row, active, false);
+                model.setValue(row, action, _("Check"));
+                break;
+            }
+        }
 
         // Build the text combo box
         box = new TextComboBox();
@@ -54,7 +119,7 @@ public class ChoiceDialog extends Dialog implements Window.DeleteEvent
         box.appendText(_("Assembly"));
         box.appendText(_("Check"));
         box.setActive(0);
-        this.add(box);
+        vbox.add(box);
 
         // Add buttons
         this.addButton(Stock.CANCEL, ResponseType.CANCEL);

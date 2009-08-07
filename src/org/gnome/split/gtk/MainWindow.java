@@ -48,7 +48,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private TrayIcon trayIcon;
 
     private AboutSoftDialog about;
-    
+
     private MainList mainView;
 
     public MainWindow(final GnomeSplit app) {
@@ -94,6 +94,17 @@ public class MainWindow extends Window implements Window.DeleteEvent
         fileItem.setSubmenu(fileMenu);
         fileMenu.append(actions.getAction(ActionId.MENU_NEW).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_PROPERTIES).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_OPEN_DIR).createMenuItem());
+        fileMenu.append(new SeparatorMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_START).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_PAUSE).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_REMOVE).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_DELETE).createMenuItem());
+        fileMenu.append(new SeparatorMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_START_ALL).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_PAUSE_ALL).createMenuItem());
+        fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_EXIT).createMenuItem());
         menubar.append(fileItem);
 
@@ -102,6 +113,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu editMenu = new Menu();
 
         editItem.setSubmenu(editMenu);
+        editMenu.append(actions.getAction(ActionId.MENU_SELECT_ALL).createMenuItem());
+        editMenu.append(actions.getAction(ActionId.MENU_UNSELECT_ALL).createMenuItem());
+        editMenu.append(new SeparatorMenuItem());
         editMenu.append(actions.getAction(ActionId.MENU_PREFERENCES).createMenuItem());
         menubar.append(editItem);
 
@@ -144,7 +158,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
     public AboutSoftDialog getAboutDialog() {
         return about;
     }
-    
+
     public MainList getMainTreeView() {
         return mainView;
     }

@@ -21,6 +21,7 @@
 package org.gnome.split.gtk.dialog;
 
 import org.gnome.gdk.Event;
+import org.gnome.gtk.Alignment;
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Widget;
@@ -41,6 +42,11 @@ public class AssemblyDialog extends Dialog implements DeleteEvent, Response
     public AssemblyDialog(final GnomeSplit app) {
         // Set main window and dialog title
         super(_("New assembly"), app.getMainWindow(), false);
+
+        // Alignment
+        final Alignment align = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
+        align.setPadding(5, 5, 5, 5);
+        this.add(align);
     }
 
     @Override
