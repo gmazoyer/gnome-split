@@ -21,21 +21,15 @@
 package org.gnome.split.gtk.dialog;
 
 import org.gnome.gdk.Event;
-import org.gnome.gtk.CellRendererText;
-import org.gnome.gtk.CellRendererToggle;
-import org.gnome.gtk.DataColumn;
-import org.gnome.gtk.DataColumnBoolean;
-import org.gnome.gtk.DataColumnString;
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Label;
-import org.gnome.gtk.ListStore;
+import org.gnome.gtk.RadioButton;
+import org.gnome.gtk.RadioButtonGroup;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.TextComboBox;
-import org.gnome.gtk.TreeIter;
-import org.gnome.gtk.TreeView;
-import org.gnome.gtk.TreeViewColumn;
+import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.VBox;
+import org.gnome.gtk.VButtonBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
@@ -53,15 +47,7 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public class ChoiceDialog extends Dialog implements Window.DeleteEvent
 {
-    private TextComboBox box;
-
-    public DataColumnBoolean active;
-
-    public DataColumnString action;
-
-    private ListStore model;
-
-    private TreeView treeview;
+    private byte choice;
 
     public ChoiceDialog(final GnomeSplit app) {
         // Set main window and dialog title
@@ -75,51 +61,48 @@ public class ChoiceDialog extends Dialog implements Window.DeleteEvent
         final Label label = new Label(_("Choose an action to perform."));
         vbox.packStart(label);
 
-        // Build a simple treeview
-        TreeViewColumn vertical = null;
-        model = new ListStore(new DataColumn[] {
-                active = new DataColumnBoolean(), action = new DataColumnString()
-        });
-        treeview = new TreeView(model);
-        treeview.setHeadersVisible(false);
-        vbox.add(treeview);
+        // Buttons container
+        final VButtonBox buttons = new VButtonBox();
+        vbox.add(buttons);
 
-        vertical = treeview.appendColumn();
-        CellRendererToggle toggle = new CellRendererToggle(vertical);
-        toggle.setActive(active);
-        toggle.setActivatable(true);
-        toggle.setRadio(true);
+        // Buttons group
+        final RadioButtonGroup group = new RadioButtonGroup();
 
-        vertical = treeview.appendColumn();
-        CellRendererText text = new CellRendererText(vertical);
-        text.setText(action);
-
-        TreeIter row;
-        for (byte b = 0; b < 3; b++) {
-            row = model.appendRow();
-            switch (b) {
-            case 0:
-                model.setValue(row, active, true);
-                model.setValue(row, action, _("Split"));
-                break;
-            case 1:
-                model.setValue(row, active, false);
-                model.setValue(row, action, _("Assembly"));
-                break;
-            case 2:
-                model.setValue(row, active, false);
-                model.setValue(row, action, _("Check"));
-                break;
+        // Split choice
+        final RadioButton split = new RadioButton(group, _("Split"));
+        split.setActive(true);
+        buttons.add(split);
+        split.connect(new ToggleButton.Toggled() {
+            @Override
+            public void onToggled(ToggleButton source) {
+                if (source.getActive())
+                    choice = 0;
             }
-        }
+        });
 
-        // Build the text combo box
-        box = new TextComboBox();
-        box.appendText(_("Split"));
-        box.appendText(_("Assembly"));
-        box.appendText(_("Check"));
-        box.setActive(0);
-        vbox.add(box);
+        // Assembly choice
+        final RadioButton assembly = new RadioButton(group, _("Assembly"));
+        assembly.setActive(false);
+        buttons.add(assembly);
+        assembly.connect(new ToggleButton.Toggled() {
+            @Override
+            public void onToggled(ToggleButton source) {
+                if (source.getActive())
+                    choice = 1;
+            }
+        });
+
+        // Check choice
+        final RadioButton check = new RadioButton(group, _("Check"));
+        buttons.add(check);
+        check.setActive(false);
+        check.connect(new ToggleButton.Toggled() {
+            @Override
+            public void onToggled(ToggleButton source) {
+                if (source.getActive())
+                    choice = 2;
+            }
+        });
 
         // Add buttons
         this.addButton(Stock.CANCEL, ResponseType.CANCEL);
@@ -133,12 +116,12 @@ public class ChoiceDialog extends Dialog implements Window.DeleteEvent
     }
 
     /**
-     * Get the text combo box of this dialog.
+     * Get the choice the user made.
      * 
-     * @return the text combo box object.
+     * @return the user choice.
      */
-    public TextComboBox getTextComboBox() {
-        return box;
+    public byte getChoice() {
+        return choice;
     }
 
     @Override

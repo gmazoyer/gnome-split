@@ -41,16 +41,40 @@ import org.gnome.split.gtk.widget.TrayIcon;
 
 import static org.freedesktop.bindings.Internationalization._;
 
+/**
+ * Main window of the interface. It will be used to do everything GNOME Split
+ * can thanks to the menubar, the toolbar or the treeview.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public class MainWindow extends Window implements Window.DeleteEvent
 {
+    /**
+     * Current GNOME Split instance.
+     */
     private GnomeSplit app;
 
+    /**
+     * Icon in the notification area associated to this window.
+     */
     private TrayIcon trayIcon;
 
+    /**
+     * Classic about dialog associated to this window.
+     */
     private AboutSoftDialog about;
 
+    /**
+     * Main treeview, main widget of this window.
+     */
     private MainList mainView;
 
+    /**
+     * Build the main window of GNOME Split.
+     * 
+     * @param app
+     *            the instance of GNOME Split.
+     */
     public MainWindow(final GnomeSplit app) {
         super();
 
@@ -83,6 +107,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.showAll();
     }
 
+    /**
+     * Create the menubar to use.
+     * 
+     * @return the menubar.
+     */
     private MenuBar createMenu() {
         final MenuBar menubar = new MenuBar();
         final ActionManager actions = app.getActionManager();
@@ -131,6 +160,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
         return menubar;
     }
 
+    /**
+     * Create the toolbar to use.
+     * 
+     * @return the toolbar.
+     */
     private Toolbar createToolbar() {
         final Toolbar toolbar = new Toolbar();
         final ActionManager actions = app.getActionManager();
@@ -145,6 +179,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
         return toolbar;
     }
 
+    /**
+     * Pack the main treeview into a window which allows us to scroll.
+     * 
+     * @return the scrolled window.
+     */
     private ScrolledWindow createMainTreeView() {
         final ScrolledWindow scroll = new ScrolledWindow();
         mainView = new MainList();
@@ -156,10 +195,20 @@ public class MainWindow extends Window implements Window.DeleteEvent
         return scroll;
     }
 
+    /**
+     * Get the about dialog.
+     * 
+     * @return the dialog.
+     */
     public AboutSoftDialog getAboutDialog() {
         return about;
     }
 
+    /**
+     * Get the main treeview.
+     * 
+     * @return the treeview.
+     */
     public MainList getMainTreeView() {
         return mainView;
     }

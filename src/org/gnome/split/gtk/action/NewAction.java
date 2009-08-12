@@ -48,7 +48,7 @@ public final class NewAction extends Action
 
         final Dialog action;
         if (response == ResponseType.OK) {
-            switch (dialog.getTextComboBox().getActive()) {
+            switch (dialog.getChoice()) {
             case 0: // Go split
                 action = new SplitDialog(app);
                 action.run();
