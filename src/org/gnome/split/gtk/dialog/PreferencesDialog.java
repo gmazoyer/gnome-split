@@ -43,6 +43,8 @@ import static org.freedesktop.bindings.Internationalization._;
 public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 {
     private final Configuration config;
+    
+    private GnomeSplit app;
 
     private CheckButton hibernation;
 
@@ -54,16 +56,28 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         super(_("GNOME Split Preferences"), app.getMainWindow(), true);
 
         // Get configuration
-        config = app.getConfig();
+        this.config = app.getConfig();
+        this.app = app;
 
         // Notebook to classify options
         final Notebook notebook = new Notebook();
         notebook.setTabPosition(PositionType.TOP);
         this.add(notebook);
 
-        // Choices
-        final Alignment desktopAlign = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
-        desktopAlign.setPadding(5, 5, 20, 5);
+        // Add page to the notebook
+        notebook.appendPage(this.createDesktopTab(), new Label(_("Desktop")));
+
+        // Close button (save the configuration and close)
+        this.addButton(Stock.CLOSE, ResponseType.CLOSE);
+
+        // Connect classic signals
+        this.connect((Window.DeleteEvent) this);
+        this.connect((Dialog.Response) this);
+    }
+    
+    private Alignment createDesktopTab() {
+        final Alignment desktopTab = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
+        desktopTab.setPadding(5, 5, 20, 5);
 
         // Restore hibernation status
         hibernation = new CheckButton(_("Inhibit desktop _hibernation when action is performed"));
@@ -106,22 +120,14 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Pack buttons in the box
         final VButtonBox vbox = new VButtonBox();
-        desktopAlign.add(vbox);
+        desktopTab.add(vbox);
 
         // Add every options
         vbox.add(hibernation);
         vbox.add(trayIcon);
         vbox.add(notification);
-
-        // Add page to the notebook
-        notebook.appendPage(desktopAlign, new Label(_("Desktop")));
-
-        // Close button (save the configuration and close)
-        this.addButton(Stock.CLOSE, ResponseType.CLOSE);
-
-        // Connect classic signals
-        this.connect((Window.DeleteEvent) this);
-        this.connect((Dialog.Response) this);
+        
+        return desktopTab;
     }
 
     @Override

@@ -94,25 +94,25 @@ msgstr ""
 msgid "New assembly"
 msgstr "Nouvel assemblage"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:54
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:56
 msgid "GNOME Split Preferences"
 msgstr "Préférences de GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:69
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:68
+msgid "Desktop"
+msgstr "Bureau"
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:83
 msgid "Inhibit desktop _hibernation when action is performed"
 msgstr "Empêcher la mise en veille lorsqu'une action est en cours"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:70
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:95
 msgid "Show _icon in the desktop notification area"
 msgstr "Afficher l'_icône dans la zone de notification"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:71
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:110
 msgid "Show desktop _notification"
 msgstr "Afficher les _notifications"
-
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:118
-msgid "Desktop"
-msgstr "Bureau"
 
 #: src/org/gnome/split/gtk/dialog/InfoDialog.java:47
 msgid "Information"
