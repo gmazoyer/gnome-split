@@ -45,6 +45,7 @@ public final class NewAction extends Action
         final GnomeSplit app = this.getApplication();
         final ChoiceDialog dialog = new ChoiceDialog(this.getApplication());
         final ResponseType response = dialog.run();
+        dialog.hide();
 
         final Dialog action;
         if (response == ResponseType.OK) {
@@ -67,6 +68,5 @@ public final class NewAction extends Action
             }
 
         }
-        dialog.hide();
     }
 }
