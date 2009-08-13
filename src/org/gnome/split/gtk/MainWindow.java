@@ -36,6 +36,7 @@ import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
+import org.gnome.split.gtk.dialog.PreferencesDialog;
 import org.gnome.split.gtk.widget.MainList;
 import org.gnome.split.gtk.widget.TrayIcon;
 
@@ -58,6 +59,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Icon in the notification area associated to this window.
      */
     private TrayIcon trayIcon;
+
+    /**
+     * Classic preferences dialog associated to this window.
+     */
+    private PreferencesDialog preferences;
 
     /**
      * Classic about dialog associated to this window.
@@ -83,6 +89,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Create the notification zone icon
         this.trayIcon = new TrayIcon(app);
         this.trayIcon.setVisible(app.getConfig().SHOW_TRAY_ICON);
+
+        // Create classic preferences dialog
+        this.preferences = new PreferencesDialog(app);
 
         // Create classic about dialog
         this.about = new AboutSoftDialog();
@@ -196,12 +205,30 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
+     * Get the preferences dialog.
+     * 
+     * @return the dialog.
+     */
+    public PreferencesDialog getPreferencesDialog() {
+        return preferences;
+    }
+
+    /**
      * Get the about dialog.
      * 
      * @return the dialog.
      */
     public AboutSoftDialog getAboutDialog() {
         return about;
+    }
+
+    /**
+     * Get the tray icon associated to this window.
+     * 
+     * @return the tray icon.
+     */
+    public TrayIcon getTrayIcon() {
+        return trayIcon;
     }
 
     /**

@@ -12,27 +12,27 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/MainWindow.java:91
+#: src/org/gnome/split/gtk/MainWindow.java:129
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:112
+#: src/org/gnome/split/gtk/MainWindow.java:150
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:123
+#: src/org/gnome/split/gtk/MainWindow.java:161
 msgid "_Help"
 msgstr "_Aide"
 
 #: src/org/gnome/split/gtk/action/DeleteAction.java:37
 msgid "Delete files and remove"
-msgstr "Supprimer les fichier et enlever"
+msgstr "Supprimer les fichiers et enlever"
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:36
 msgid "Suspend"
 msgstr "Suspendre"
 
-#: src/org/gnome/split/gtk/action/UnselectAllAction.java:35
+#: src/org/gnome/split/gtk/action/UnselectAllAction.java:37
 msgid "_Unselect all"
 msgstr "Tout _déselectionner"
 
@@ -94,30 +94,47 @@ msgstr ""
 msgid "New assembly"
 msgstr "Nouvel assemblage"
 
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:54
+msgid "GNOME Split Preferences"
+msgstr "Préférences de GNOME Split"
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:69
+msgid "Inhibit desktop _hibernation when action is performed"
+msgstr "Empêcher la mise en veille lorsqu'une action est en cours"
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:70
+msgid "Show _icon in the desktop notification area"
+msgstr "Afficher l'_icône dans la zone de notification"
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:71
+msgid "Show desktop _notification"
+msgstr "Afficher les _notifications"
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:118
+msgid "Desktop"
+msgstr "Bureau"
+
 #: src/org/gnome/split/gtk/dialog/InfoDialog.java:47
 msgid "Information"
 msgstr "Information"
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:68
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:54
 msgid "Action choice"
 msgstr "Choix d'une action"
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:75
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:61
 msgid "Choose an action to perform."
 msgstr "Choisissez une action à exécuter."
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:103
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:118
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:72
 msgid "Split"
 msgstr "Découpage"
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:107
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:119
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:84
 msgid "Assembly"
 msgstr "Assemblage"
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:111
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:120
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:96
 msgid "Check"
 msgstr "Vérification"
 

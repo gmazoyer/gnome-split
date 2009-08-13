@@ -56,9 +56,4 @@ public class QuestionDialog extends QuestionMessageDialog
     public boolean doRun() {
         return (this.run() == ResponseType.YES);
     }
-
-    @Override
-    public String toString() {
-        return ("GtkQuestionDialog");
-    }
 }

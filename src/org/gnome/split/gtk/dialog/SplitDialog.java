@@ -179,11 +179,11 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
             if (dialog != null) {
                 dialog.run();
                 dialog.hide();
-            }
 
-            // Rerun the parent dialog to make the user able to correct the
-            // informations
-            this.run();
+                // Rerun the parent dialog to make the user able to correct
+                // the informations
+                this.run();
+            }
         }
     }
 }

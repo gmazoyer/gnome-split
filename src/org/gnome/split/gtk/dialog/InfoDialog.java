@@ -46,9 +46,4 @@ public class InfoDialog extends InfoMessageDialog
         super(parent, title, text);
         this.setTitle(_("Information"));
     }
-
-    @Override
-    public String toString() {
-        return ("GtkInfoDialog");
-    }
 }

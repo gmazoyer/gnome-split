@@ -102,9 +102,4 @@ public class AboutSoftDialog extends AboutDialog implements Window.DeleteEvent, 
     public void onResponse(Dialog source, ResponseType response) {
         this.hide();
     }
-
-    @Override
-    public String toString() {
-        return ("GtkAboutDialog");
-    }
 }

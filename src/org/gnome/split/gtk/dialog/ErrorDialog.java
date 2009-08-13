@@ -46,9 +46,4 @@ public class ErrorDialog extends ErrorMessageDialog
         super(parent, title, text);
         this.setTitle(_("Error!"));
     }
-
-    @Override
-    public String toString() {
-        return ("GtkErrorDialog");
-    }
 }

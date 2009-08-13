@@ -20,6 +20,8 @@
  */
 package org.gnome.split.gtk.action;
 
+import org.gnome.gtk.SelectionMode;
+import org.gnome.gtk.TreeSelection;
 import org.gnome.split.GnomeSplit;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -37,6 +39,11 @@ public final class UnselectAllAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getMainTreeView().getSelection().unselectAll();
+        final TreeSelection selection = this.getApplication()
+                .getMainWindow()
+                .getMainTreeView()
+                .getSelection();
+        selection.setMode(SelectionMode.SINGLE);
+        selection.unselectAll();
     }
 }

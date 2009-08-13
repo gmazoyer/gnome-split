@@ -36,6 +36,6 @@ public final class PreferencesAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow();
+        this.getApplication().getMainWindow().getPreferencesDialog().run();
     }
 }
