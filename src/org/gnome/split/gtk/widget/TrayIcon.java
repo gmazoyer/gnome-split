@@ -84,6 +84,7 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
         final ActionManager actions = app.getActionManager();
         menu = new Menu();
 
+        menu.append(actions.getToggleAction(ActionId.TRAY_WINDOW).createCheckMenuItem());
         menu.append(new SeparatorMenuItem());
         menu.append(actions.getAction(ActionId.TRAY_START_ALL).createMenuItem());
         menu.append(actions.getAction(ActionId.TRAY_PAUSE_ALL).createMenuItem());

@@ -48,6 +48,11 @@ msgstr "Démarrer _tous"
 msgid "Start"
 msgstr "Démarrer"
 
+#: src/org/gnome/split/gtk/action/MainWindowAction.java:36
+#, fuzzy
+msgid "Main _window"
+msgstr "_Fenêtre principale"
+
 #: src/org/gnome/split/gtk/action/PauseAllAction.java:36
 msgid "_Pause all"
 msgstr "Suspe_ndre tous"

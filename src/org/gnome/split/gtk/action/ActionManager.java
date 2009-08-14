@@ -29,8 +29,11 @@ public class ActionManager
 {
     private Map<ActionId, Action> actions;
 
+    private Map<ActionId, ToggleAction> toggles;
+
     public ActionManager(final GnomeSplit app) {
         actions = new HashMap<ActionId, Action>();
+        toggles = new HashMap<ActionId, ToggleAction>();
 
         // Actions related to the menubar
         actions.put(ActionId.MENU_NEW, new NewAction(app));
@@ -57,6 +60,7 @@ public class ActionManager
         actions.put(ActionId.TOOL_PROPERTIES, new PropertiesAction(app));
 
         // Actions related to the tray icon
+        toggles.put(ActionId.TRAY_WINDOW, new MainWindowAction(app));
         actions.put(ActionId.TRAY_START_ALL, new StartAllAction(app));
         actions.put(ActionId.TRAY_PAUSE_ALL, new PauseAllAction(app));
         actions.put(ActionId.TRAY_EXIT, new QuitAction(app));
@@ -75,12 +79,23 @@ public class ActionManager
     }
 
     /**
+     * Get a toggle action using its ID.
+     * 
+     * @param id
+     *            the action ID.
+     * @return the action.
+     */
+    public ToggleAction getToggleAction(ActionId id) {
+        return toggles.get(id);
+    }
+
+    /**
      * List of all action IDs.
      * 
      * @author Guillaume Mazoyer
      */
     public enum ActionId
     {
-        MENU_NEW, MENU_PROPERTIES, MENU_OPEN_DIR, MENU_START, MENU_PAUSE, MENU_REMOVE, MENU_DELETE, MENU_START_ALL, MENU_PAUSE_ALL, MENU_EXIT, MENU_SELECT_ALL, MENU_UNSELECT_ALL, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_NEW, TOOL_START, TOOL_PAUSE, TOOL_REMOVE, TOOL_PROPERTIES, TRAY_START_ALL, TRAY_PAUSE_ALL, TRAY_EXIT, TRAY_ABOUT;
+        MENU_NEW, MENU_PROPERTIES, MENU_OPEN_DIR, MENU_START, MENU_PAUSE, MENU_REMOVE, MENU_DELETE, MENU_START_ALL, MENU_PAUSE_ALL, MENU_EXIT, MENU_SELECT_ALL, MENU_UNSELECT_ALL, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_NEW, TOOL_START, TOOL_PAUSE, TOOL_REMOVE, TOOL_PROPERTIES, TRAY_WINDOW, TRAY_START_ALL, TRAY_PAUSE_ALL, TRAY_EXIT, TRAY_ABOUT;
     }
 }
