@@ -61,11 +61,17 @@ public final class Constants
      */
     public static String CONFIG_FILE = null;
 
+    /**
+     * Path to the XML file.
+     */
+    public static String XML_FILE = null;
+
     static {
         try {
             PROGRAM_LOGO = new Pixbuf("share/pixmaps/gnome-split.png");
             CONFIG_FOLDER = System.getProperty("user.home") + "/.config/gnome-split/";
             CONFIG_FILE = CONFIG_FOLDER + "config";
+            XML_FILE = CONFIG_FOLDER + "saved";
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }

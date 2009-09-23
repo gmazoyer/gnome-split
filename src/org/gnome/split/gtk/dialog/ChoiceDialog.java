@@ -21,13 +21,13 @@
 package org.gnome.split.gtk.dialog;
 
 import org.gnome.gdk.Event;
+import org.gnome.gtk.Button;
 import org.gnome.gtk.Dialog;
+import org.gnome.gtk.IconSize;
+import org.gnome.gtk.Image;
 import org.gnome.gtk.Label;
-import org.gnome.gtk.RadioButton;
-import org.gnome.gtk.RadioButtonGroup;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.VButtonBox;
 import org.gnome.gtk.Widget;
@@ -47,8 +47,6 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public class ChoiceDialog extends Dialog implements Window.DeleteEvent
 {
-    private byte choice;
-
     public ChoiceDialog(final GnomeSplit app) {
         // Set main window and dialog title
         super(_("Action choice"), app.getMainWindow(), false);
@@ -65,48 +63,32 @@ public class ChoiceDialog extends Dialog implements Window.DeleteEvent
         final VButtonBox buttons = new VButtonBox();
         vbox.add(buttons);
 
-        // Buttons group
-        final RadioButtonGroup group = new RadioButtonGroup();
-
         // Split choice
-        final RadioButton split = new RadioButton(group, _("Split"));
-        split.setActive(true);
+        final Button split = new Button();
+        split.setLabel(_("Split"));
+        split.setImage(new Image(Stock.CUT, IconSize.BUTTON));
         buttons.add(split);
-        split.connect(new ToggleButton.Toggled() {
+        split.connect(new Button.Clicked() {
             @Override
-            public void onToggled(ToggleButton source) {
-                if (source.getActive())
-                    choice = 0;
+            public void onClicked(Button source) {
+                emitResponse(ResponseType.OK);
             }
         });
 
         // Assembly choice
-        final RadioButton assembly = new RadioButton(group, _("Assembly"));
-        assembly.setActive(false);
+        final Button assembly = new Button();
+        assembly.setLabel(_("Assembly"));
+        assembly.setImage(new Image(Stock.PASTE, IconSize.BUTTON));
         buttons.add(assembly);
-        assembly.connect(new ToggleButton.Toggled() {
+        assembly.connect(new Button.Clicked() {
             @Override
-            public void onToggled(ToggleButton source) {
-                if (source.getActive())
-                    choice = 1;
-            }
-        });
-
-        // Check choice
-        final RadioButton check = new RadioButton(group, _("Check"));
-        buttons.add(check);
-        check.setActive(false);
-        check.connect(new ToggleButton.Toggled() {
-            @Override
-            public void onToggled(ToggleButton source) {
-                if (source.getActive())
-                    choice = 2;
+            public void onClicked(Button source) {
+                emitResponse(ResponseType.APPLY);
             }
         });
 
         // Add buttons
-        this.addButton(Stock.CANCEL, ResponseType.CANCEL);
-        this.addButton(Stock.OK, ResponseType.OK);
+        this.addButton(Stock.CLOSE, ResponseType.CLOSE);
 
         // Connect delete signal
         this.connect((Window.DeleteEvent) this);
@@ -115,18 +97,9 @@ public class ChoiceDialog extends Dialog implements Window.DeleteEvent
         this.showAll();
     }
 
-    /**
-     * Get the choice the user made.
-     * 
-     * @return the user choice.
-     */
-    public byte getChoice() {
-        return choice;
-    }
-
     @Override
     public boolean onDeleteEvent(Widget source, Event event) {
-        this.emitResponse(ResponseType.CANCEL);
+        this.emitResponse(ResponseType.CLOSE);
         return false;
     }
 }

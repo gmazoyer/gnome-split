@@ -1,5 +1,5 @@
 /*
- * UnselectAllAction.java
+ * StatusChangedEvent.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,26 +18,32 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
+package org.gnome.split.io.event;
 
-import org.gnome.split.GnomeSplit;
+import java.util.EventObject;
 
-import static org.freedesktop.bindings.Internationalization._;
-
-/**
- * Action to unselect every rows of the list.
- * 
- * @author Guillaume Mazoyer
- */
-public final class UnselectAllAction extends Action
+public class StatusChangedEvent extends EventObject
 {
-    public UnselectAllAction(final GnomeSplit app) {
-        super(app, _("_Unselect all"));
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * The new status value.
+     */
+    private String status;
+
+    public StatusChangedEvent(Object source, String status) {
+        super(source);
+
+        // Set the new status value
+        this.status = status;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        // Unselect everything
-        this.getApplication().getMainWindow().getActionsList().getSelection().unselectAll();
+    /**
+     * Get the new value of the status.
+     * 
+     * @return the current status.
+     */
+    public String getStatus() {
+        return status;
     }
 }

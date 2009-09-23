@@ -25,7 +25,6 @@ import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.dialog.AssemblyDialog;
-import org.gnome.split.gtk.dialog.CheckDialog;
 import org.gnome.split.gtk.dialog.ChoiceDialog;
 import org.gnome.split.gtk.dialog.SplitDialog;
 
@@ -48,25 +47,18 @@ public final class NewAction extends Action
         dialog.hide();
 
         final Dialog action;
-        if (response == ResponseType.OK) {
-            switch (dialog.getChoice()) {
-            case 0: // Go split
-                action = new SplitDialog(app);
-                action.run();
-                action.hide();
-                break;
-            case 1: // Go assemble
-                action = new AssemblyDialog(app);
-                action.run();
-                action.hide();
-                break;
-            case 2: // Go check
-                action = new CheckDialog(app);
-                action.run();
-                action.hide();
-                break;
-            }
+        if (response == ResponseType.OK)
+            // Go to split
+            action = new SplitDialog(app);
+        else if (response == ResponseType.APPLY)
+            // Go to assembly
+            action = new AssemblyDialog(app);
+        else
+            // Just close the dialog
+            return;
 
-        }
+        // Run the new dialog
+        action.run();
+        action.hide();
     }
 }

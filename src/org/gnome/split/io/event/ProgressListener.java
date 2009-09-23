@@ -1,5 +1,5 @@
 /*
- * UnselectAllAction.java
+ * ProgressListener.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,26 +18,20 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
+package org.gnome.split.io.event;
 
-import org.gnome.split.GnomeSplit;
-
-import static org.freedesktop.bindings.Internationalization._;
+import java.util.EventListener;
 
 /**
- * Action to unselect every rows of the list.
+ * Interface that must be implemented by all widgets that want to display the
+ * progress of an action.
  * 
  * @author Guillaume Mazoyer
  */
-public final class UnselectAllAction extends Action
+public interface ProgressListener extends EventListener
 {
-    public UnselectAllAction(final GnomeSplit app) {
-        super(app, _("_Unselect all"));
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        // Unselect everything
-        this.getApplication().getMainWindow().getActionsList().getSelection().unselectAll();
-    }
+    /**
+     * Method called when the progress changes.
+     */
+    public void progressChanged(ProgressChangedEvent event);
 }

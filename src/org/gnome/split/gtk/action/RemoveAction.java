@@ -22,8 +22,12 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.TreeIter;
+import org.gnome.gtk.TreeModel;
+import org.gnome.gtk.TreeSelection;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.MainList;
+import org.gnome.split.gtk.widget.ActionsListWidget;
+import org.gnome.split.io.FileOperation;
+import org.gnome.split.io.OperationManager;
 
 /**
  * Action to remove a split/assembly/check from the actions list.
@@ -38,10 +42,25 @@ public final class RemoveAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        final MainList view = this.getApplication().getMainWindow().getMainTreeView();
-        final TreeIter selected = view.getSelection().getSelected();
+        // Get the necessary widget
+        final ActionsListWidget actions = this.getApplication().getMainWindow().getActionsList();
+        final TreeModel model = this.getApplication().getMainWindow().getActionsList().getModel();
 
-        if (selected != null)
-            view.getModel().removeRow(selected);
+        // Get the selection
+        final TreeSelection selection = actions.getSelection();
+
+        if (selection != null) {
+            // Get the selected row
+            final TreeIter selected = selection.getSelected();
+            if (selected != null) {
+                // Get the manager and the selected operation
+                final OperationManager manager = this.getApplication().getOperationManager();
+                final FileOperation operation = (FileOperation) model.getValue(selected,
+                        actions.reference);
+
+                // Remove the operation
+                manager.remove(operation);
+            }
+        }
     }
 }

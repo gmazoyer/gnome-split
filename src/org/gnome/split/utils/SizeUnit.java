@@ -1,5 +1,5 @@
 /*
- * UnselectAllAction.java
+ * SizeUnit.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,26 +18,40 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
-
-import org.gnome.split.GnomeSplit;
-
-import static org.freedesktop.bindings.Internationalization._;
+package org.gnome.split.utils;
 
 /**
- * Action to unselect every rows of the list.
+ * This defines constants to know file size a little bit comfortably.
  * 
  * @author Guillaume Mazoyer
  */
-public final class UnselectAllAction extends Action
+public final class SizeUnit
 {
-    public UnselectAllAction(final GnomeSplit app) {
-        super(app, _("_Unselect all"));
-    }
+    /**
+     * One kilobyte.
+     */
+    public static final double KB = 1024.0;
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        // Unselect everything
-        this.getApplication().getMainWindow().getActionsList().getSelection().unselectAll();
+    /**
+     * One megabyte.
+     */
+    public static final double MB = 1024.0 * 1024.0;
+
+    /**
+     * One gigabyte.
+     */
+    public static final double GB = 1024.0 * 1024.0 * 1024.0;
+
+    private static final double[] values = {
+            KB, MB, GB
+    };
+
+    /**
+     * Return all units into a array.
+     * 
+     * @return all units.
+     */
+    public static double[] values() {
+        return values;
     }
 }

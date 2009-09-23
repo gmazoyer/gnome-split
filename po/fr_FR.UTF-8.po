@@ -12,15 +12,15 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/MainWindow.java:129
+#: src/org/gnome/split/gtk/MainWindow.java:135
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:150
+#: src/org/gnome/split/gtk/MainWindow.java:156
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:161
+#: src/org/gnome/split/gtk/MainWindow.java:167
 msgid "_Help"
 msgstr "_Aide"
 
@@ -32,7 +32,7 @@ msgstr "Supprimer les fichiers et enlever"
 msgid "Suspend"
 msgstr "Suspendre"
 
-#: src/org/gnome/split/gtk/action/UnselectAllAction.java:37
+#: src/org/gnome/split/gtk/action/UnselectAllAction.java:35
 msgid "_Unselect all"
 msgstr "Tout _déselectionner"
 
@@ -49,7 +49,6 @@ msgid "Start"
 msgstr "Démarrer"
 
 #: src/org/gnome/split/gtk/action/MainWindowAction.java:36
-#, fuzzy
 msgid "Main _window"
 msgstr "_Fenêtre principale"
 
@@ -95,9 +94,44 @@ msgstr ""
 "\n"
 "Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce program.  Sinon, reportez-vous à <http://www.gnu.org/licenses/>."
 
-#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:44
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:102
 msgid "New assembly"
 msgstr "Nouvel assemblage"
+
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:117
+msgid "Assembled file"
+msgstr "Fichier assemblé"
+
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:121
+msgid "Directory"
+msgstr "Dossier"
+
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:138
+msgid "Choose a directory"
+msgstr "Choisissez un dossier."
+
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:143
+msgid "Files to assemble"
+msgstr "Fichiers à assembler"
+
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:164
+msgid "Filename"
+msgstr "Nom du fichier"
+
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:211
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:186
+msgid "Uncompleted fields."
+msgstr "Champs incomplets."
+
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:212
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:187
+msgid "Check that all fields are completed."
+msgstr "Vérifiez que tous les champs ont été complétés."
+
+#: src/org/gnome/split/gtk/dialog/AssemblyDialog.java:346
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:123
+msgid "Choose a file."
+msgstr "Choisissez un fichier."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:56
 msgid "GNOME Split Preferences"
@@ -123,77 +157,61 @@ msgstr "Afficher les _notifications"
 msgid "Information"
 msgstr "Information"
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:54
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:52
 msgid "Action choice"
 msgstr "Choix d'une action"
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:61
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:59
 msgid "Choose an action to perform."
 msgstr "Choisissez une action à exécuter."
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:72
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:68
 msgid "Split"
 msgstr "Découpage"
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:84
+#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:80
 msgid "Assembly"
 msgstr "Assemblage"
 
-#: src/org/gnome/split/gtk/dialog/ChoiceDialog.java:96
-msgid "Check"
-msgstr "Vérification"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:73
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:84
 msgid "New split"
 msgstr "Nouveau découpage"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:87
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:99
 msgid "File to split"
 msgstr "À découper"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:91
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:103
 msgid "Splitted file size"
 msgstr "Taille des fichiers"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:95
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:107
 msgid "Name pattern"
 msgstr "Modèle du nom"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:111
-msgid "Choose a file."
-msgstr "Choisissez un fichier."
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:136
-msgid "octet"
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:148
+msgid "byte"
 msgstr "octet"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:137
-msgid "kibioctet (Kio)"
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:149
+msgid "kilobyte (KB)"
 msgstr "kibioctet (Kio)"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:138
-msgid "mebioctet (Mio)"
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:150
+msgid "megabyte (MB)"
 msgstr "mébioctet (Mio)"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:139
-msgid "gibioctet (Gio)"
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:151
+msgid "gigabyte (GB)"
 msgstr "gibioctet (Gio)"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:140
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:152
 msgid "parts"
 msgstr "parties"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:145
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:157
 msgid "Choose a folder."
 msgstr "Choisissez un dossier."
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:175
-msgid "Uncompleted fields."
-msgstr "Champs incomplets."
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:176
-msgid "Check that all fields are completed."
-msgstr "Vérifiez que tous les champs ont été complétés."
 
 #: src/org/gnome/split/gtk/dialog/ErrorDialog.java:47
 msgid "Error!"
@@ -203,35 +221,67 @@ msgstr "Erreur !"
 msgid "Question"
 msgstr "Question"
 
-#: src/org/gnome/split/gtk/dialog/CheckDialog.java:44
-msgid "New check"
-msgstr "Nouvelle vérification"
-
 #: src/org/gnome/split/gtk/widget/TrayIcon.java:72
 msgid "version"
 msgstr "version"
 
-#: src/org/gnome/split/gtk/widget/MainList.java:83
-msgid "Type"
-msgstr "Type"
-
-#: src/org/gnome/split/gtk/widget/MainList.java:88
-msgid "File"
-msgstr "Fichier"
-
-#: src/org/gnome/split/gtk/widget/MainList.java:93
-msgid "State"
-msgstr "État"
-
-#: src/org/gnome/split/gtk/widget/MainList.java:98
-msgid "Progress"
-msgstr "Progression"
-
-#: src/org/gnome/split/gtk/widget/MainList.java:103
-msgid "Time"
-msgstr "Temps"
-
 #: src/org/gnome/split/dbus/DbusInhibit.java:67
 msgid "GNOME Split activity"
 msgstr "Activité de GNOME Split"
+
+#: src/org/gnome/split/io/FileOperation.java:152
+msgid "bytes"
+msgstr "octets"
+
+#: src/org/gnome/split/io/FileOperation.java:161
+msgid "KB"
+msgstr "Kio"
+
+#: src/org/gnome/split/io/FileOperation.java:167
+msgid "MB"
+msgstr "Mio"
+
+#: src/org/gnome/split/io/FileOperation.java:173
+msgid "GB"
+msgstr "Gio"
+
+#: src/org/gnome/split/io/FileOperation.java:274
+msgid "Splitting..."
+msgstr "Découpage..."
+
+#: src/org/gnome/split/io/FileOperation.java:276
+msgid "Assembling..."
+msgstr "Assemblage..."
+
+#: src/org/gnome/split/io/FileOperation.java:280
+msgid "Calculating file hash..."
+msgstr "Calcul du hachage du fichier..."
+
+#: src/org/gnome/split/io/FileOperation.java:282
+msgid "Verifying file integrity..."
+msgstr "Vérification de l'intégrité..."
+
+#: src/org/gnome/split/io/FileOperation.java:286
+msgid "Split paused."
+msgstr "Découpage en pause."
+
+#: src/org/gnome/split/io/FileOperation.java:288
+msgid "Assembly paused."
+msgstr "Assemblage en pause."
+
+#: src/org/gnome/split/io/FileOperation.java:292
+msgid "Split finished."
+msgstr "Découpage terminé."
+
+#: src/org/gnome/split/io/FileOperation.java:294
+msgid "Assembly finished."
+msgstr "Assemblage terminé."
+
+#: src/org/gnome/split/io/FileOperation.java:298
+msgid "Error during the split."
+msgstr "Erreur durant le découpage."
+
+#: src/org/gnome/split/io/FileOperation.java:300
+msgid "Error during the assembly."
+msgstr "Erreur durant l'assemblage."
 

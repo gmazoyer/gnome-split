@@ -30,7 +30,9 @@ import java.io.StringWriter;
  */
 public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler
 {
-    /** Registers this class as the default uncaught exception handler. */
+    /**
+     * Registers this class as the default uncaught exception handler.
+     */
     public UncaughtExceptionLogger() {
         Thread.setDefaultUncaughtExceptionHandler(this);
     }
@@ -41,8 +43,8 @@ public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler
      * @return a String which represents the stacktrace.
      */
     private String getStackTrace(Throwable exception) {
-        StringWriter swriter = new StringWriter();
-        PrintWriter pwriter = new PrintWriter(swriter, true);
+        final StringWriter swriter = new StringWriter();
+        final PrintWriter pwriter = new PrintWriter(swriter, true);
 
         // Get the stacktrace
         exception.printStackTrace(pwriter);
@@ -54,7 +56,7 @@ public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler
 
     @Override
     public void uncaughtException(Thread thread, Throwable exception) {
-        StringBuilder report = new StringBuilder();
+        final StringBuilder report = new StringBuilder();
 
         report.append("UncaughtException in thread: " + thread.getName() + "\n");
         report.append("    Thread ID\t\t= " + thread.getId() + "\n");

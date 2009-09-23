@@ -23,8 +23,8 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.SelectionMode;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.TreeIter;
+import org.gnome.gtk.TreeModel;
 import org.gnome.gtk.TreeSelection;
-import org.gnome.gtk.TreeView;
 import org.gnome.split.GnomeSplit;
 
 /**
@@ -40,14 +40,18 @@ public final class SelectAllAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        final TreeView treeview = this.getApplication().getMainWindow().getMainTreeView();
-        final TreeSelection selection = treeview.getSelection();
-        final TreeIter row = treeview.getModel().getIterFirst();
+        final TreeModel model = this.getApplication().getMainWindow().getActionsList().getModel();
+        final TreeIter row = model.getIterFirst();
+        final TreeSelection selection = this.getApplication()
+                .getMainWindow()
+                .getActionsList()
+                .getSelection();
 
-        // Make us be able to select more than one row
+        // Allow multiple selections
         selection.setMode(SelectionMode.MULTIPLE);
+
         do {
-            // Select row one by one
+            // Select each row
             selection.selectRow(row);
         } while (row.iterNext());
     }

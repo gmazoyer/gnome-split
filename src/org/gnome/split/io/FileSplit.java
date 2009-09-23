@@ -28,7 +28,6 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.dbus.DbusInhibit;
 
 /**
  * Action to split a file into smaller files. This class implements the
@@ -36,54 +35,28 @@ import org.gnome.split.dbus.DbusInhibit;
  * 
  * @author Guillaume Mazoyer
  */
-public class FileSplit implements Runnable
+public class FileSplit extends FileOperation
 {
-    /**
-     * The current GNOME Split instance.
-     */
-    private GnomeSplit app;
-
-    /**
-     * File to split in smaller files.
-     */
-    private File file;
-
     /**
      * Name template that each filename should use.
      */
     private String name;
 
     /**
-     * Size that each file should weight.
+     * Maximal size of a file which will be created.
      */
-    private long size;
-
-    /**
-     * Number of bytes already read and write.
-     */
-    private long done;
-
-    /**
-     * Progress of this action.
-     */
-    private double progress;
-
-    /**
-     * Inhibit object to play with computer hibernation through dbus.
-     */
-    private DbusInhibit inhibit;
+    private long maxsize;
 
     /**
      * Construct a runnable split action.
      */
     public FileSplit(final GnomeSplit app, final File file, final String name, final long size) {
-        this.app = app;
+        super(app);
+
+        this.size = file.length();
         this.file = file;
         this.name = name;
-        this.size = size;
-        this.done = 0;
-        this.progress = 0;
-        this.inhibit = new DbusInhibit();
+        this.maxsize = size;
     }
 
     /**
@@ -130,15 +103,6 @@ public class FileSplit implements Runnable
         return name.toString();
     }
 
-    /**
-     * Return the progress of the current split.
-     * 
-     * @return the progress.
-     */
-    public double getProgress() {
-        return progress;
-    }
-
     @Override
     public void run() {
         // File does not exist
@@ -155,19 +119,25 @@ public class FileSplit implements Runnable
 
         // Generate filenames and number
         final byte[] buffer = new byte[app.getConfig().BUFFER_SIZE];
-        final int filesNumber = (int) Math.ceil((float) file.length() / (float) size);
+        final int filesNumber = (int) Math.ceil((float) size / (float) maxsize);
         final File[] files = new File[filesNumber];
 
         try {
             // Open input stream
             input = new FileInputStream(file);
 
+            // Number of bytes read
+            int read = 0;
+
+            // Old value to decide to notify listeners
+            double oldProgress = 0;
+
             for (int i = 0; i < files.length; i++) {
                 // Create file object
                 final String filename = this.generateName(i, this.getSuffixSize(filesNumber), name);
                 files[i] = new File(filename);
 
-                int read = 0;
+                // Current read data
                 long current = 0;
 
                 // File already exists
@@ -175,13 +145,15 @@ public class FileSplit implements Runnable
                     return;
 
                 // Cannot create file
-                if (!files[i].createNewFile())
+                if (!files[i].createNewFile()) {
+                    this.setStatus(OperationStatus.ERROR);
                     return;
+                }
 
                 // Open output stream
                 output = new FileOutputStream(files[i]);
 
-                while (current < size) {
+                while (current < maxsize) {
                     // Read a number of bytes
                     read = input.read(buffer);
 
@@ -197,7 +169,12 @@ public class FileSplit implements Runnable
                     done += read;
 
                     // Update progress
-                    progress = done / file.length();
+                    oldProgress = progress;
+                    progress = (double) done / (double) size;
+
+                    // Force update the listeners
+                    this.fireProgressChanged(oldProgress);
+                    this.fireStatusChanged(false);
                 }
 
                 // Close output stream
@@ -207,13 +184,20 @@ public class FileSplit implements Runnable
             // Close input stream
             input.close();
 
+            // Avoid visual bug (happens sometimes)
+            done = size;
+            this.fireStatusChanged(true);
+
             // Save file hash if user wants to
             if (app.getConfig().SAVE_FILE_HASH) {
+                // Change operation status
+                this.setStatus(OperationStatus.VERIFYING);
+
                 // Find filename for hash file and create or update it if it
                 // already exists.
                 final String hash = new FileHash(app, app.getConfig().HASH_ALGORITHM).hashToString(file);
                 final int slash = name.lastIndexOf(File.separator) + 1;
-                final String filename = name.subSequence(0, slash) + app.getConfig().HASH_FILENAME;
+                final String filename = name.substring(0, slash) + app.getConfig().HASH_FILENAME;
                 final FileWriter writer = new FileWriter(filename, true);
 
                 // Write info into the hash file
@@ -223,6 +207,9 @@ public class FileSplit implements Runnable
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Set status to finished
+        this.setStatus(OperationStatus.FINISHED);
 
         // Uninhibit computer hibernation
         if (app.getConfig().NO_HIBERNATION)

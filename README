@@ -29,8 +29,8 @@ GNOME Split is written in Java and uses uses:
 
 * **java-gnome**  
   Bindings around the GTK and GNOME user interface libraries,  
-  <http://java-gnome.sourceforge.net>  
-  You'll need a version `>= 4.0.11`
+  <http://java-gnome.sourceforge.net/>  
+  You'll need a version `>= 4.0.13`
 
 * **dbus-java**
   Bindings around the DBus interface library and its dependencies,

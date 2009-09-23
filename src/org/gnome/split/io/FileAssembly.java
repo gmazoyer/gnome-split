@@ -26,7 +26,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.dbus.DbusInhibit;
 
 /**
  * Action to assembler files into a single file. This class implements the
@@ -34,71 +33,33 @@ import org.gnome.split.dbus.DbusInhibit;
  * 
  * @author Guillaume Mazoyer
  */
-public class FileAssembly implements Runnable
+public class FileAssembly extends FileOperation
 {
-    /**
-     * The current GNOME Split instance.
-     */
-    private GnomeSplit app;
-
-    /**
-     * Name of the file to create.
-     */
-    private String filename;
-
     /**
      * Names of the files to assemble.
      */
     private String[] filenames;
 
     /**
-     * Number of bytes already read and write.
-     */
-    private long done;
-
-    /**
-     * Progress of this action.
-     */
-    private double progress;
-
-    /**
-     * Inhibit object to play with computer hibernation through dbus.
-     */
-    private DbusInhibit inhibit;
-
-    /**
      * Construct a runnable assembly action.
      */
     public FileAssembly(final GnomeSplit app, final String filename, final String[] filenames) {
-        this.app = app;
-        this.filename = filename;
-        this.filenames = filenames;
-        this.done = 0;
-        this.progress = 0;
-        this.inhibit = new DbusInhibit();
-    }
+        super(app);
 
-    /**
-     * Return the progress of the current assembly.
-     * 
-     * @return the progress.
-     */
-    public double getProgress() {
-        return progress;
+        this.filenames = filenames;
+        this.file = new File(filename);
     }
 
     @Override
     public void run() {
         // Create files objects
-        final File file = new File(filename);
         final File[] files = new File[filenames.length];
 
         // Initialize progress info
         int read = 0;
-        long size = 0;
 
-        // File does not exist
-        if (!file.exists())
+        // File already exists
+        if (file.exists())
             return;
 
         // Inhibit computer hibernation
@@ -115,26 +76,44 @@ public class FileAssembly implements Runnable
             size += files[i].length();
         }
 
+        // Buffer which will contain read data
         final byte[] buffer = new byte[app.getConfig().BUFFER_SIZE];
 
         try {
-            // Open stream to read the file
+            // Create the file
+            if (!file.createNewFile())
+                return;
+
+            // Open stream to write into the file
             output = new FileOutputStream(file);
 
+            // Old value to decide to notify listeners
+            double oldProgress = 0;
+
             for (File part : files) {
-                if (!part.exists())
+                if (!part.exists()) {
+                    this.setStatus(OperationStatus.ERROR);
                     return;
+                }
 
                 // Open stream to read the file
                 input = new FileInputStream(part);
 
                 // Read it
                 while ((read = input.read(buffer)) >= 0) {
+                    // Write it
                     output.write(buffer, 0, read);
 
-                    // Update the progress info
+                    // Update current state
                     done += read;
-                    progress = size / done;
+
+                    // Update progress
+                    oldProgress = progress;
+                    progress = (double) done / (double) size;
+
+                    // Force update the listeners
+                    this.fireProgressChanged(oldProgress);
+                    this.fireStatusChanged(false);
                 }
 
                 // Close read file stream
@@ -146,6 +125,10 @@ public class FileAssembly implements Runnable
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        // Set status to finished
+        done = size;
+        this.setStatus(OperationStatus.FINISHED);
 
         // Uninhibit computer hibernation
         if (app.getConfig().NO_HIBERNATION)

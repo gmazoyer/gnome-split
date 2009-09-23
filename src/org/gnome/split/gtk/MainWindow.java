@@ -32,12 +32,13 @@ import org.gnome.gtk.Toolbar;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
+import org.gnome.gtk.WindowPosition;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
 import org.gnome.split.gtk.dialog.PreferencesDialog;
-import org.gnome.split.gtk.widget.MainList;
+import org.gnome.split.gtk.widget.ActionsListWidget;
 import org.gnome.split.gtk.widget.TrayIcon;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -71,9 +72,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private AboutSoftDialog about;
 
     /**
-     * Main treeview, main widget of this window.
+     * Widget derived from TreeView to display actions.
      */
-    private MainList mainView;
+    private ActionsListWidget actions;
 
     /**
      * Build the main window of GNOME Split.
@@ -84,7 +85,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
     public MainWindow(final GnomeSplit app) {
         super();
 
+        // Save program instance
         this.app = app;
+
+        // Place the window in the middle of the screen
+        this.setPosition(WindowPosition.CENTER);
 
         // Create the notification zone icon
         this.trayIcon = new TrayIcon(app);
@@ -107,7 +112,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
         mainContainer.add(this.createToolbar());
 
         // Add the main widgets (action list)
-        mainContainer.add(this.createMainTreeView());
+        this.actions = new ActionsListWidget(app);
+        mainContainer.add(this.packActionsList());
 
         // Connect delete event handler
         this.connect((Window.DeleteEvent) this);
@@ -189,18 +195,21 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
-     * Pack the main treeview into a window which allows us to scroll.
+     * Add the actions list into a scrollable widget.
      * 
-     * @return the scrolled window.
+     * @return the scrollable widget.
      */
-    private ScrolledWindow createMainTreeView() {
+    private ScrolledWindow packActionsList() {
+        // Create a widget to be able to scroll
         final ScrolledWindow scroll = new ScrolledWindow();
-        mainView = new MainList();
 
-        mainView.setSizeRequest(457, 275);
+        // Display scroll bars only if needed
         scroll.setPolicy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-        scroll.add(mainView);
 
+        // Pack the actions list in it
+        scroll.add(actions);
+
+        // And finally
         return scroll;
     }
 
@@ -232,12 +241,12 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
-     * Get the main treeview.
+     * Get the widget which displays actions.
      * 
-     * @return the treeview.
+     * @return the actions list widget.
      */
-    public MainList getMainTreeView() {
-        return mainView;
+    public ActionsListWidget getActionsList() {
+        return actions;
     }
 
     @Override

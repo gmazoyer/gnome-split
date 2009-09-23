@@ -32,6 +32,7 @@ import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
+import org.gnome.split.io.OperationManager;
 import org.gnome.split.utils.UncaughtExceptionLogger;
 import org.gnome.unique.Application;
 
@@ -55,7 +56,12 @@ public final class GnomeSplit
     /**
      * Application actions manager.
      */
-    private ActionManager manager = null;
+    private ActionManager actions = null;
+
+    /**
+     * Application operations manager
+     */
+    private OperationManager operations = null;
 
     /**
      * Application main window.
@@ -102,7 +108,10 @@ public final class GnomeSplit
             Notify.init(Constants.PROGRAM_NAME);
 
         // Load actions manager
-        manager = new ActionManager(this);
+        actions = new ActionManager(this);
+
+        // Load operations manager
+        operations = new OperationManager(this);
 
         // Start the user interface
         window = new MainWindow(this);
@@ -127,7 +136,16 @@ public final class GnomeSplit
      * @return the actions manager.
      */
     public ActionManager getActionManager() {
-        return manager;
+        return actions;
+    }
+
+    /**
+     * Return the operations manager of the app.
+     * 
+     * @return the operations manager.
+     */
+    public OperationManager getOperationManager() {
+        return operations;
     }
 
     /**
