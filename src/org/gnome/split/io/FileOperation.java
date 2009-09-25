@@ -97,6 +97,11 @@ public abstract class FileOperation extends Thread
     protected long timestamp;
 
     /**
+     * Is this operation finished?
+     */
+    protected boolean finished;
+
+    /**
      * Inhibit object to play with computer hibernation through dbus.
      */
     protected DbusInhibit inhibit;
@@ -122,6 +127,7 @@ public abstract class FileOperation extends Thread
         this.stop = false;
         this.status = OperationStatus.RUNNING;
         this.timestamp = System.currentTimeMillis();
+        this.finished = false;
         this.inhibit = new DbusInhibit();
         this.listeners = new EventListenerList();
         this.lastnotify = System.currentTimeMillis();
@@ -301,6 +307,15 @@ public abstract class FileOperation extends Thread
     }
 
     /**
+     * Return whether this operation is finished or not.
+     * 
+     * @return <code>true</code> if finished.
+     */
+    public boolean isFinished() {
+        return finished;
+    }
+
+    /**
      * Return a string to know the current operation status.
      * 
      * @return status.
@@ -414,6 +429,10 @@ public abstract class FileOperation extends Thread
 
         // Force the view to update the displayed status
         this.fireStatusChanged(true);
+
+        // If status equals FINISHED then make the action finished
+        if (status == OperationStatus.FINISHED)
+            finished = true;
 
         // Use notification to notify the user
         if (app.getConfig().USE_NOTIFICATION) {
