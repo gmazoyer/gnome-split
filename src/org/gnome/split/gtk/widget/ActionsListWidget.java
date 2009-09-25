@@ -29,6 +29,7 @@ import org.gnome.gtk.DataColumnPixbuf;
 import org.gnome.gtk.DataColumnReference;
 import org.gnome.gtk.DataColumnString;
 import org.gnome.gtk.ListStore;
+import org.gnome.gtk.SelectionMode;
 import org.gnome.gtk.TreeIter;
 import org.gnome.gtk.TreeView;
 import org.gnome.gtk.TreeViewColumn;
@@ -125,6 +126,9 @@ public class ActionsListWidget extends TreeView implements StatusListener, Progr
         column.setTitle("progress");
         progressRenderer = new CellRendererProgress(column);
         progressRenderer.setValue(progress);
+
+        // Allow multiple selections
+        this.getSelection().setMode(SelectionMode.MULTIPLE);
     }
 
     /**

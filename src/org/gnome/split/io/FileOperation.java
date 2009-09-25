@@ -27,6 +27,7 @@ import java.util.List;
 
 import javax.swing.event.EventListenerList;
 
+import org.gnome.notify.Notification;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.dbus.DbusInhibit;
 import org.gnome.split.io.event.ProgressChangedEvent;
@@ -58,12 +59,12 @@ public abstract class FileOperation extends Thread
     /**
      * Files on which the operation has to be performed.
      */
-    protected List<File> todoFiles;
+    protected List<File> waiting;
 
     /**
      * Files on which the operation has been performed.
      */
-    protected List<File> finishedFiles;
+    protected List<File> terminated;
 
     /**
      * Total size to reach.
@@ -113,8 +114,8 @@ public abstract class FileOperation extends Thread
     protected FileOperation(final GnomeSplit app) {
         super();
         this.app = app;
-        this.todoFiles = new ArrayList<File>();
-        this.finishedFiles = new ArrayList<File>();
+        this.waiting = new ArrayList<File>();
+        this.terminated = new ArrayList<File>();
         this.progress = 0.0;
         this.size = 0;
         this.done = 0;
@@ -179,6 +180,23 @@ public abstract class FileOperation extends Thread
     }
 
     /**
+     * Return a string representation of the current and total sizes of an
+     * operation.
+     * 
+     * @return a String.
+     */
+    private String formatProgress() {
+        final StringBuilder builder = new StringBuilder();
+        final double divider = this.getSizeDivider(size);
+
+        builder.append(this.formatSize(done, divider));
+        builder.append(" / ");
+        builder.append(this.formatSize(size, divider));
+
+        return builder.toString();
+    }
+
+    /**
      * Get the best divider for a size to make it human readable.
      * 
      * @param size
@@ -202,25 +220,75 @@ public abstract class FileOperation extends Thread
         }
     }
 
+    /**
+     * Notify all progress listeners that the progress of the operation has
+     * changed.
+     */
+    protected void fireProgressChanged() {
+        // Get all listeners
+        final ProgressListener[] list = (ProgressListener[]) listeners.getListeners(ProgressListener.class);
+
+        // Notify all listeners
+        for (ProgressListener listener : list) {
+            final ProgressChangedEvent event = new ProgressChangedEvent(this, progress);
+            listener.progressChanged(event);
+        }
+    }
+
+    /**
+     * Notify all progress listeners that the progress of the operation has
+     * changed.
+     */
+    protected void fireProgressChanged(double old) {
+        final int older = (int) (old * 100);
+        final int newer = (int) (progress * 100);
+
+        if (older < newer)
+            this.fireProgressChanged();
+    }
+
+    /**
+     * Notify all status listeners that the status of the operation has
+     * changed.
+     */
+    protected void fireStatusChanged(boolean force) {
+        final long time = System.currentTimeMillis();
+
+        // Allow update only each second
+        if (force || ((time - lastnotify) >= 1000)) {
+            // Get all listeners
+            final StatusListener[] list = (StatusListener[]) listeners.getListeners(StatusListener.class);
+
+            // Notify all listeners
+            for (StatusListener listener : list) {
+                final StatusChangedEvent event = new StatusChangedEvent(this, this.getStatusString());
+                listener.statusChanged(event);
+            }
+
+            // Refresh last notification time
+            lastnotify = time;
+        }
+    }
+
     @Override
     public abstract void run();
 
     /**
-     * Get the list of the todo files.
+     * Get the list of the waiting files.
      * 
      * @return a files list.
      */
-    public List<File> getTodoFiles() {
-        return todoFiles;
+    public List<File> getWaitingFiles() {
+        return waiting;
     }
 
     /**
-     * Get the list of the finished files.
+     * Get the list of the terminated files.
      * 
      * @return a files list.
      */
-    public List<File> getFinishedFiles() {
-        return finishedFiles;
+    public List<File> getTerminatedFiles() {
+        return terminated;
     }
 
     /**
@@ -230,23 +298,6 @@ public abstract class FileOperation extends Thread
      */
     public double getProgress() {
         return progress;
-    }
-
-    /**
-     * Return a string representation of the current and total sizes of an
-     * operation.
-     * 
-     * @return a String.
-     */
-    public String formatProgress() {
-        final StringBuilder builder = new StringBuilder();
-        final double divider = this.getSizeDivider(size);
-
-        builder.append(this.formatSize(done, divider));
-        builder.append(" / ");
-        builder.append(this.formatSize(size, divider));
-
-        return builder.toString();
     }
 
     /**
@@ -352,56 +403,6 @@ public abstract class FileOperation extends Thread
     }
 
     /**
-     * Notify all progress listeners that the progress of the operation has
-     * changed.
-     */
-    protected void fireProgressChanged() {
-        // Get all listeners
-        final ProgressListener[] list = (ProgressListener[]) listeners.getListeners(ProgressListener.class);
-
-        // Notify all listeners
-        for (ProgressListener listener : list) {
-            final ProgressChangedEvent event = new ProgressChangedEvent(this, progress);
-            listener.progressChanged(event);
-        }
-    }
-
-    /**
-     * Notify all progress listeners that the progress of the operation has
-     * changed.
-     */
-    protected void fireProgressChanged(double old) {
-        final int older = (int) (old * 100);
-        final int newer = (int) (progress * 100);
-
-        if (older < newer)
-            this.fireProgressChanged();
-    }
-
-    /**
-     * Notify all status listeners that the status of the operation has
-     * changed.
-     */
-    protected void fireStatusChanged(boolean force) {
-        final long time = System.currentTimeMillis();
-
-        // Allow update only each second
-        if (force || ((time - lastnotify) >= 1000)) {
-            // Get all listeners
-            final StatusListener[] list = (StatusListener[]) listeners.getListeners(StatusListener.class);
-
-            // Notify all listeners
-            for (StatusListener listener : list) {
-                final StatusChangedEvent event = new StatusChangedEvent(this, this.getStatusString());
-                listener.statusChanged(event);
-            }
-
-            // Refresh last notification time
-            lastnotify = time;
-        }
-    }
-
-    /**
      * Set the status of the action to another one.
      * 
      * @param status
@@ -413,6 +414,40 @@ public abstract class FileOperation extends Thread
 
         // Force the view to update the displayed status
         this.fireStatusChanged(true);
+
+        // Use notification to notify the user
+        if (app.getConfig().USE_NOTIFICATION) {
+            Notification notification = null;
+
+            if (status == OperationStatus.FINISHED) {
+                // Operation successfully done
+                if (this instanceof FileSplit)
+                    notification = new Notification(_("Split terminated."), _(
+                            "The split of {0} has been terminated succesfully.", file.getName()),
+                            "dialog-info", app.getMainWindow().getTrayIcon());
+                else
+                    notification = new Notification(_("Assembly terminated."), _(
+                            "The assembly of {0} has been terminated succesfully.", file.getName()),
+                            "dialog-info", app.getMainWindow().getTrayIcon());
+            } else if (status == OperationStatus.ERROR) {
+                // Operation with an error
+                if (this instanceof FileSplit)
+                    notification = new Notification(
+                            _("Split error."),
+                            _(
+                                    "An error has occurred during the split of {0}. Try to split this file again.",
+                                    file.getName()), "dialog-info", app.getMainWindow().getTrayIcon());
+                else
+                    notification = new Notification(
+                            _("Assembly error."),
+                            _(
+                                    "An error has occurred during  the assembly of {0}. Try to assemble the files again.",
+                                    file.getName()), "dialog-error", app.getMainWindow().getTrayIcon());
+            }
+
+            if (notification != null)
+                notification.show();
+        }
     }
 
     /**

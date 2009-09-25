@@ -20,12 +20,11 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.SelectionMode;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.TreeIter;
-import org.gnome.gtk.TreeModel;
 import org.gnome.gtk.TreeSelection;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.gtk.widget.ActionsListWidget;
 
 /**
  * Action to select every rows of the list.
@@ -40,15 +39,9 @@ public final class SelectAllAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        final TreeModel model = this.getApplication().getMainWindow().getActionsList().getModel();
-        final TreeIter row = model.getIterFirst();
-        final TreeSelection selection = this.getApplication()
-                .getMainWindow()
-                .getActionsList()
-                .getSelection();
-
-        // Allow multiple selections
-        selection.setMode(SelectionMode.MULTIPLE);
+        final ActionsListWidget widget = this.getApplication().getMainWindow().getActionsList();
+        final TreeIter row = widget.getModel().getIterFirst();
+        final TreeSelection selection = widget.getSelection();
 
         do {
             // Select each row

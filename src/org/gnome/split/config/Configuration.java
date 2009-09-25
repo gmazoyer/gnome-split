@@ -110,9 +110,40 @@ public final class Configuration
 
             // Create file and initialize preferences
             configuration.createNewFile();
-            resetPreferences();
+            this.createPreferences();
         }
         load();
+    }
+
+    /**
+     * This method is used to reset the preferences.
+     */
+    private void createPreferences() {
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter(configuration);
+            writer.write("BufferSize      = 1024\n");
+            writer.write("HashFilename    = hash.txt\n");
+            writer.write("HashAlgorithm   = MD5\n");
+            writer.write("SuffixSize      = 1\n");
+            writer.write("AutoSuffixSize  = true\n");
+            writer.write("SaveFileHash    = true\n");
+            writer.write("DeleteParts     = false\n");
+            writer.write("NoHibernation   = true\n");
+            writer.write("UseNotification = true\n");
+            writer.write("ShowTrayIcon    = false\n");
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                    load();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
@@ -139,37 +170,6 @@ public final class Configuration
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
-        }
-    }
-
-    /**
-     * This method is used to reset the preferences.
-     */
-    public void resetPreferences() {
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(configuration);
-            writer.write("BufferSize      = 1024\n");
-            writer.write("HashFilename    = hash.txt\n");
-            writer.write("HashAlgorithm   = MD5\n");
-            writer.write("SuffixSize      = 1\n");
-            writer.write("AutoSuffixSize  = true\n");
-            writer.write("SaveFileHash    = true\n");
-            writer.write("DeleteParts     = false\n");
-            writer.write("NoHibernation   = true\n");
-            writer.write("UseNotification = false\n");
-            writer.write("ShowTrayIcon    = false\n");
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                    load();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 

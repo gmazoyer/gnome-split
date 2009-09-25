@@ -58,6 +58,9 @@ public final class RemoveAction extends Action
                 final FileOperation operation = (FileOperation) model.getValue(selected,
                         actions.reference);
 
+                // Stop the operation
+                manager.stop(operation, true);
+
                 // Remove the operation
                 manager.remove(operation);
             }

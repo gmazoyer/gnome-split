@@ -22,6 +22,7 @@ package org.gnome.split.gtk.dialog;
 
 import org.gnome.gdk.Event;
 import org.gnome.gtk.Button;
+import org.gnome.gtk.ButtonBoxStyle;
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.IconSize;
 import org.gnome.gtk.Image;
@@ -61,6 +62,8 @@ public class ChoiceDialog extends Dialog implements Window.DeleteEvent
 
         // Buttons container
         final VButtonBox buttons = new VButtonBox();
+        buttons.setLayout(ButtonBoxStyle.SPREAD);
+        buttons.setSpacing(12);
         vbox.add(buttons);
 
         // Split choice

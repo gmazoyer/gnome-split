@@ -35,15 +35,17 @@ import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.gtk.Dialog.Response;
 import org.gnome.gtk.Window.DeleteEvent;
+import org.gnome.notify.Notify;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Configuration;
+import org.gnome.split.config.Constants;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 {
     private final Configuration config;
-    
+
     private GnomeSplit app;
 
     private CheckButton hibernation;
@@ -74,7 +76,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         this.connect((Window.DeleteEvent) this);
         this.connect((Dialog.Response) this);
     }
-    
+
     private Alignment createDesktopTab() {
         final Alignment desktopTab = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
         desktopTab.setPadding(5, 5, 20, 5);
@@ -115,6 +117,13 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
                 // Save preferences
                 config.USE_NOTIFICATION = notification.getActive();
                 config.savePreferences();
+
+                if (config.USE_NOTIFICATION)
+                    // Load libnotify
+                    Notify.init(Constants.PROGRAM_NAME);
+                else
+                    // Unload libnotify
+                    Notify.uninit();
             }
         });
 
@@ -126,7 +135,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         vbox.add(hibernation);
         vbox.add(trayIcon);
         vbox.add(notification);
-        
+
         return desktopTab;
     }
 
