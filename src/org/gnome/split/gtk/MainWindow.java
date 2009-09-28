@@ -21,6 +21,7 @@
 package org.gnome.split.gtk;
 
 import org.gnome.gdk.Event;
+import org.gnome.gtk.Frame;
 import org.gnome.gtk.Menu;
 import org.gnome.gtk.MenuBar;
 import org.gnome.gtk.MenuItem;
@@ -106,14 +107,14 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.add(mainContainer);
 
         // Add the menu bar
-        mainContainer.packStart(this.createMenu());
+        mainContainer.packStart(this.createMenu(), false, false, 0);
 
         // Add the tool bar
-        mainContainer.add(this.createToolbar());
+        mainContainer.packStart(this.createToolbar(), false, false, 0);
 
         // Add the main widgets (action list)
         this.actions = new ActionsListWidget(app);
-        mainContainer.add(this.packActionsList());
+        mainContainer.packStart(this.packActionsList());
 
         // Connect delete event handler
         this.connect((Window.DeleteEvent) this);
@@ -199,7 +200,10 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * 
      * @return the scrollable widget.
      */
-    private ScrolledWindow packActionsList() {
+    private Frame packActionsList() {
+        // Create a frame to display a border
+        final Frame frame = new Frame(null);
+
         // Create a widget to be able to scroll
         final ScrolledWindow scroll = new ScrolledWindow();
 
@@ -209,8 +213,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Pack the actions list in it
         scroll.add(actions);
 
+        // Pack the scroll into the frame
+        frame.add(scroll);
+
         // And finally
-        return scroll;
+        return frame;
     }
 
     /**
