@@ -25,11 +25,14 @@ import org.gnome.gtk.Alignment;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.Dialog;
+import org.gnome.gtk.Editable;
+import org.gnome.gtk.Entry;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.Notebook;
 import org.gnome.gtk.PositionType;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
+import org.gnome.gtk.Table;
 import org.gnome.gtk.VButtonBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
@@ -47,6 +50,8 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
     private final Configuration config;
 
     private GnomeSplit app;
+
+    private Entry buffer;
 
     private CheckButton hibernation;
 
@@ -66,8 +71,9 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         notebook.setTabPosition(PositionType.TOP);
         this.add(notebook);
 
-        // Add page to the notebook
-        notebook.appendPage(this.createDesktopTab(), new Label(_("Desktop")));
+        // Add pages to the notebook
+        notebook.appendPage(this.createGeneralPage(), new Label(_("General")));
+        notebook.appendPage(this.createDesktopPage(), new Label(_("Desktop")));
 
         // Close button (save the configuration and close)
         this.addButton(Stock.CLOSE, ResponseType.CLOSE);
@@ -77,9 +83,42 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         this.connect((Dialog.Response) this);
     }
 
-    private Alignment createDesktopTab() {
-        final Alignment desktopTab = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
-        desktopTab.setPadding(5, 5, 20, 5);
+    private Alignment createGeneralPage() {
+        final Alignment page = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
+        page.setPadding(5, 5, 20, 5);
+
+        final Table table = new Table(1, 2, false);
+        table.setRowSpacing(3);
+        table.setColumnSpacing(3);
+        page.add(table);
+
+        final Label bufferLabel = new Label(_("Buffer size"));
+        table.attach(bufferLabel, 0, 1, 0, 1);
+
+        buffer = new Entry(Integer.toString(config.BUFFER_SIZE));
+        table.attach(buffer, 1, 2, 0, 1);
+        buffer.connect(new Entry.Changed() {
+            @Override
+            public void onChanged(Editable source) {
+                try {
+                    // Get the size as an integer
+                    int size = Integer.parseInt(buffer.getText());
+
+                    // Update the configuration
+                    config.BUFFER_SIZE = size;
+                    config.savePreferences();
+                } catch (NumberFormatException e) {
+                    // don't save a invalid number
+                }
+            }
+        });
+
+        return page;
+    }
+
+    private Alignment createDesktopPage() {
+        final Alignment page = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
+        page.setPadding(5, 5, 20, 5);
 
         // Restore hibernation status
         hibernation = new CheckButton(_("Inhibit desktop _hibernation when action is performed"));
@@ -129,14 +168,14 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Pack buttons in the box
         final VButtonBox vbox = new VButtonBox();
-        desktopTab.add(vbox);
+        page.add(vbox);
 
         // Add every options
         vbox.add(hibernation);
         vbox.add(trayIcon);
         vbox.add(notification);
 
-        return desktopTab;
+        return page;
     }
 
     @Override

@@ -21,10 +21,9 @@
 package org.gnome.split.io;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.Arrays;
 
 import org.gnome.split.GnomeSplit;
@@ -114,8 +113,10 @@ public class FileSplit extends FileOperation
             inhibit.inhibit();
 
         // Input and output streams
-        FileInputStream input = null;
-        FileOutputStream output = null;
+        RandomAccessFile input = null;
+        RandomAccessFile output = null;
+        //FileInputStream input = null;
+        //FileOutputStream output = null;
 
         // Generate filenames and number
         final byte[] buffer = new byte[app.getConfig().BUFFER_SIZE];
@@ -124,7 +125,7 @@ public class FileSplit extends FileOperation
 
         try {
             // Open input stream
-            input = new FileInputStream(file);
+            input = new RandomAccessFile(file, "r");
 
             // Number of bytes read
             int read = 0;
@@ -151,7 +152,7 @@ public class FileSplit extends FileOperation
                 }
 
                 // Open output stream
-                output = new FileOutputStream(files[i]);
+                output = new RandomAccessFile(files[i], "rw");
 
                 while (current < maxsize) {
                     // Read a number of bytes

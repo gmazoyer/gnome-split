@@ -21,9 +21,8 @@
 package org.gnome.split.io;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
 
@@ -67,8 +66,8 @@ public class FileAssembly extends FileOperation
             inhibit.inhibit();
 
         // Input and output streams
-        FileInputStream input = null;
-        FileOutputStream output = null;
+        RandomAccessFile input = null;
+        RandomAccessFile output = null;
 
         // Calculate total size
         for (int i = 0; i < files.length; i++) {
@@ -85,7 +84,7 @@ public class FileAssembly extends FileOperation
                 return;
 
             // Open stream to write into the file
-            output = new FileOutputStream(file);
+            output = new RandomAccessFile(file, "rw");
 
             // Old value to decide to notify listeners
             double oldProgress = 0;
@@ -97,7 +96,7 @@ public class FileAssembly extends FileOperation
                 }
 
                 // Open stream to read the file
-                input = new FileInputStream(part);
+                input = new RandomAccessFile(part, "r");
 
                 // Read it
                 while ((read = input.read(buffer)) >= 0) {
