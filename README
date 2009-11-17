@@ -19,7 +19,12 @@ will bludgeon its way into the proper places on the system. If you need to set
 the prefix to something else, use the configure script. You can likewise
 specify a temporary build directory to compose the installation image, perhaps:
 
-	$ ./configure --prefix=/usr
+	$ ./configure prefix=/usr
+
+On Debian based distributions (like Ubuntu), you'll probably want to do
+something like that:
+
+	$ ./configure prefix=/usr libdir=/usr/lib/jni jardir=/usr/share/java
 
 -----------------------------------------------------------------
  3. Prerequisites
@@ -64,5 +69,5 @@ a GTK+ program to split files more easily for everybody.
 -----------------------------------------------------------------
 If you have any bugs, errors, improvements, patchs, ideas, you
 can contact me on my email address <respawneral@gmail.com>.
-GNOME Split developement website at http://www.respawner.fr/loggerhead/
+GNOME Split developement website at http://www.respawner.fr/gnome-split/
 GNOME Split in Launchpad https://launchpad.net/gnome-split/
