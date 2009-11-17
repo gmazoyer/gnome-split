@@ -121,7 +121,7 @@ sub check_prereq(\@$$@) {
 	}
 
 	if (!"$found") {
-		$str = "In order to build slashtime, you need\n".$tries;
+		$str = "In order to build GNOME Split, you need\n".$tries;
 		$str .= "\n\nwhich is part of the $item Java library.\n";
 		$str .= "On a ".ucfirst($os)." system, you should be able to get this requirement by doing:\n\n";
 		$str .= "     # ";
@@ -409,9 +409,9 @@ output "\n";
 open CONFIG, ">.config.tmp";
 print CONFIG <<HERE ;
 # This is an automatically generated Makefile fragment which is used
-# to configure slashtime for building. Do not edit (your changes will
+# to configure GNOME Split for building. Do not edit (your changes will
 # be overwritten next time ./configure is run), do not commit to
-# repository. Anyone packaging slashtime on any operating system:
+# repository. Anyone packaging GNOME Split on any operating system:
 # please do not override this file by patching it! Figure out what the
 # problem is, and let us know so we can improve the ./configure perl
 # script which generates it.
@@ -460,7 +460,7 @@ appropriate settings are for your platform.
 
 Letting us know what changes you had to make here (ie, whatever
 actions resulted in a .config that allows you to build and test
-slashtime, and run the slashtime demo) we can help others with your
+GNOME Split, and run the GNOME Split demo) we can help others with your
 operating system take advantage of this program.
 
 HERE
