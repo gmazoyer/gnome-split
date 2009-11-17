@@ -86,9 +86,6 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
 
         menu.append(actions.getToggleAction(ActionId.TRAY_WINDOW).createCheckMenuItem());
         menu.append(new SeparatorMenuItem());
-        menu.append(actions.getAction(ActionId.TRAY_START_ALL).createMenuItem());
-        menu.append(actions.getAction(ActionId.TRAY_PAUSE_ALL).createMenuItem());
-        menu.append(new SeparatorMenuItem());
         menu.append(actions.getAction(ActionId.TRAY_ABOUT).createMenuItem());
         menu.append(actions.getAction(ActionId.TRAY_EXIT).createMenuItem());
     }
@@ -98,10 +95,11 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
         activated = !activated;
         final Window window = app.getMainWindow();
 
-        if (activated)
+        if (activated) {
             window.hide();
-        else
+        } else {
             window.showAll();
+        }
     }
 
     @Override

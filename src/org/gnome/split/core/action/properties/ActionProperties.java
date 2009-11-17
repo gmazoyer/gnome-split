@@ -1,5 +1,5 @@
 /*
- * DeleteAction.java
+ * ActionProperties.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,28 +18,15 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
-
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-
-import static org.freedesktop.bindings.Internationalization._;
+package org.gnome.split.core.action.properties;
 
 /**
- * Action to remove a split and delete associated files.
+ * This is just a abstract class to define all others properties linked to
+ * actions.
  * 
  * @author Guillaume Mazoyer
  */
-public final class DeleteAction extends Action
+public abstract class ActionProperties
 {
-    public DeleteAction(final GnomeSplit app) {
-        super(app, Stock.DELETE, _("Delete files and remove"));
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getAction().cancel();
-        this.getApplication().getMainWindow().getAction().delete();
-    }
 
 }

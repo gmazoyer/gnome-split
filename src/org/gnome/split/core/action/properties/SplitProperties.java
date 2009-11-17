@@ -1,5 +1,5 @@
 /*
- * StatusChangedEvent.java
+ * SplitProperties.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,32 +18,37 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.io.event;
+package org.gnome.split.core.action.properties;
 
-import java.util.EventObject;
-
-public class StatusChangedEvent extends EventObject
+/**
+ * Properties of a file split.
+ * 
+ * @author Guillaume Mazoyer
+ */
+public class SplitProperties extends ActionProperties
 {
-    private static final long serialVersionUID = 1L;
+    /**
+     * The file to split (full path).
+     */
+    public String filename;
 
     /**
-     * The new status value.
+     * Size of the file to split.
      */
-    private String status;
-
-    public StatusChangedEvent(Object source, String status) {
-        super(source);
-
-        // Set the new status value
-        this.status = status;
-    }
+    public long size;
 
     /**
-     * Get the new value of the status.
-     * 
-     * @return the current status.
+     * The directory where the chunks will be created.
      */
-    public String getStatus() {
-        return status;
-    }
+    public String directory;
+
+    /**
+     * The pattern of the chunks names.
+     */
+    public String targetPattern;
+
+    /**
+     * The maximum size of each chunk.
+     */
+    public long chunkSize;
 }

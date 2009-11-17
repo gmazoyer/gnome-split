@@ -1,5 +1,5 @@
 /*
- * DeleteAction.java
+ * ReadEvent.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,28 +18,36 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
-
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-
-import static org.freedesktop.bindings.Internationalization._;
+package org.gnome.split.core.event;
 
 /**
- * Action to remove a split and delete associated files.
+ * Event thrown periodically when a number of bytes of the splitting file are
+ * read.
  * 
  * @author Guillaume Mazoyer
  */
-public final class DeleteAction extends Action
+public class ReadEvent extends FileEvent
 {
-    public DeleteAction(final GnomeSplit app) {
-        super(app, Stock.DELETE, _("Delete files and remove"));
+    private boolean fileRead;
+
+    private long bytesRead;
+
+    public ReadEvent(long bytesRead, boolean fileRead) {
+        this.bytesRead = bytesRead;
+        this.fileRead = fileRead;
     }
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getAction().cancel();
-        this.getApplication().getMainWindow().getAction().delete();
+    /**
+     * Return the number of bytes already read.
+     */
+    public long getBytesRead() {
+        return bytesRead;
     }
 
+    /**
+     * Return whether or not file read has finished.
+     */
+    public boolean isFileRead() {
+        return fileRead;
+    }
 }

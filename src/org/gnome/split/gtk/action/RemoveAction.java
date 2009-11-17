@@ -21,17 +21,10 @@
 package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.TreeIter;
-import org.gnome.gtk.TreeModel;
-import org.gnome.gtk.TreePath;
-import org.gnome.gtk.TreeSelection;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.ActionsListWidget;
-import org.gnome.split.io.FileOperation;
-import org.gnome.split.io.OperationManager;
 
 /**
- * Action to remove a split/assembly/check from the actions list.
+ * Action to remove a split.
  * 
  * @author Guillaume Mazoyer
  */
@@ -43,35 +36,6 @@ public final class RemoveAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        // Get the necessary widget
-        final ActionsListWidget actions = this.getApplication().getMainWindow().getActionsList();
-        final TreeModel model = this.getApplication().getMainWindow().getActionsList().getModel();
-
-        // Get the selection
-        final TreeSelection selection = actions.getSelection();
-
-        // Get all selected rows
-        final TreePath[] selected = selection.getSelectedRows();
-
-        if (selected != null) {
-            // Get the manager and the selected operation
-            final OperationManager manager = this.getApplication().getOperationManager();
-
-            TreeIter row;
-            for (TreePath path : selected) {
-                // Get one selected row
-                row = model.getIter(path);
-
-                // Get the reference to the operation
-                final FileOperation operation = (FileOperation) model.getValue(row, actions.reference);
-
-                // Stop the operation
-                if (!operation.isFinished())
-                    manager.stop(operation, true);
-
-                // Remove the operation
-                manager.remove(operation);
-            }
-        }
+        this.getApplication().getMainWindow().getAction().cancel();
     }
 }

@@ -1,5 +1,5 @@
 /*
- * StartAllAction.java
+ * DotNumberAlgorithm.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,26 +18,33 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
+package org.gnome.split.core.algorithm;
 
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
+import java.io.File;
 
-import static org.freedesktop.bindings.Internationalization._;
+import org.gnome.split.core.event.ErrorSplittingEvent;
 
 /**
- * Action to start all split/assembly/check.
+ * Algorithm to add a &quot;.&quot; and the sequence value at the end of each
+ * chunk filename.
  * 
  * @author Guillaume Mazoyer
  */
-public final class StartAllAction extends Action
+public class DotNumberAlgorithm implements NamingAlgorithm
 {
-    public StartAllAction(final GnomeSplit app) {
-        super(app, Stock.MEDIA_PLAY, _("Start _all"));
+    private String path;
+
+    public DotNumberAlgorithm(String path) {
+        this.path = new String(path + ".");
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public File getOutputFile(long sequence) {
+        return new File(path + String.valueOf(sequence));
+    }
 
+    @Override
+    public ErrorSplittingEvent init(File input, long chunks) {
+        return null;
     }
 }

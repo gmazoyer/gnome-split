@@ -36,8 +36,8 @@ import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.io.FileSplit;
-import org.gnome.split.utils.SizeUnit;
+import org.gnome.split.core.action.properties.SplitProperties;
+import org.gnome.split.core.util.SizeUnit;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -104,7 +104,7 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
         table.attach(sizeLabel, 0, 1, 1, 2);
 
         // Pattern of name label
-        final Label patternLabel = new Label(_("Name pattern"));
+        final Label patternLabel = new Label(_("Target folder"));
         table.attach(patternLabel, 0, 1, 2, 3);
 
         // Path to the file to split
@@ -127,19 +127,9 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
         inputChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
-                String filename = (source.getFilename() != null) ? source.getFilename() : "";
-                String name = "";
-
-                // A file has been choosen
-                if (!filename.isEmpty()) {
-                    // Get its name only
-                    int slash = filename.lastIndexOf(File.separator) + 1;
-                    name = filename.substring(slash, filename.length());
-                }
-
                 // Update input entry and pattern
+                String filename = (source.getFilename() != null) ? source.getFilename() : "";
                 input.setText(filename);
-                pattern.setText(name + ".part");
             }
         });
 
@@ -182,7 +172,7 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
             Dialog dialog = null;
 
             // Missing informations
-            if (input.getText().isEmpty() || pattern.getText().isEmpty())
+            if (input.getText().isEmpty())
                 dialog = new ErrorDialog(this, _("Uncompleted fields."),
                         _("Check that all fields are completed."));
 
@@ -198,11 +188,11 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
             }
 
             // Find and all values needed to start a split
-            final File file = new File(input.getText());
-            final String name = destination.getCurrentFolder() + File.separator + pattern.getText();
+            File file = new File(input.getText());
+            String name = destination.getCurrentFolder() + File.separator + pattern.getText();
 
             // Calculate size for each parts
-            final long fileSize;
+            long fileSize;
             switch (units.getActive()) {
             case 1: // Kio
             case 2: // Mio
@@ -220,17 +210,15 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
             }
 
             // Create the split action
-            final FileSplit split = new FileSplit(app, file, name, fileSize);
+            SplitProperties properties = new SplitProperties();
+            properties.filename = input.getText();
+            properties.size = file.length();
+            properties.directory = destination.getCurrentFolder();
+            properties.targetPattern = name;
+            properties.chunkSize = fileSize;
 
-            // Add listeners to update the interface
-            split.addProgressListener(app.getMainWindow().getActionsList());
-            split.addStatusListener(app.getMainWindow().getActionsList());
-
-            // Add the operation into the manager
-            app.getOperationManager().add(split);
-
-            // A thread will take care of the execution
-            app.getOperationManager().start(split);
+            // Update the view
+            app.getMainWindow().getAction().updateView(properties);
         }
     }
 }

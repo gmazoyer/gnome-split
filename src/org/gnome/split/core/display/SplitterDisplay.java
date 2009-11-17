@@ -1,5 +1,5 @@
 /*
- * DeleteAction.java
+ * SplitterDisplay.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,28 +18,24 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
-
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-
-import static org.freedesktop.bindings.Internationalization._;
+package org.gnome.split.core.display;
 
 /**
- * Action to remove a split and delete associated files.
+ * This is the interface that the splitting class will use to show its status.
  * 
  * @author Guillaume Mazoyer
  */
-public final class DeleteAction extends Action
+public interface SplitterDisplay extends ActionDisplay
 {
-    public DeleteAction(final GnomeSplit app) {
-        super(app, Stock.DELETE, _("Delete files and remove"));
-    }
+    /**
+     * This is not a showing information method, but the way the splitting
+     * class will use to say that a chunk has been created.
+     */
+    public void chunkCreated(String filename);
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getAction().cancel();
-        this.getApplication().getMainWindow().getAction().delete();
-    }
-
+    /**
+     * This is not a showing information method, but the way the splitting
+     * class will use to say that has finished its task.
+     */
+    public void splittingFinished(boolean error);
 }

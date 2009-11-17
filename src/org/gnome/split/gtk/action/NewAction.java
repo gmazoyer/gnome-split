@@ -21,15 +21,19 @@
 package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Dialog;
-import org.gnome.gtk.ResponseType;
+import org.gnome.gtk.IconSize;
+import org.gnome.gtk.Image;
+import org.gnome.gtk.ImageMenuItem;
+import org.gnome.gtk.Menu;
+import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.dialog.AssemblyDialog;
-import org.gnome.split.gtk.dialog.ChoiceDialog;
 import org.gnome.split.gtk.dialog.SplitDialog;
 
+import static org.freedesktop.bindings.Internationalization._;
+
 /**
- * Action to add a split/assembly/check to the current actions list.
+ * Action to add a split
  * 
  * @author Guillaume Mazoyer
  */
@@ -41,24 +45,26 @@ public final class NewAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        final GnomeSplit app = this.getApplication();
-        final ChoiceDialog dialog = new ChoiceDialog(this.getApplication());
-        final ResponseType response = dialog.run();
-        dialog.hide();
+        // Menu to popup
+        final Menu menu = new Menu();
 
-        final Dialog action;
-        if (response == ResponseType.OK)
-            // Go to split
-            action = new SplitDialog(app);
-        else if (response == ResponseType.APPLY)
-            // Go to assembly
-            action = new AssemblyDialog(app);
-        else
-            // Just close the dialog
-            return;
+        // Item to display a new split dialog
+        final ImageMenuItem split = new ImageMenuItem(new Image(Stock.CUT, IconSize.MENU), _("Split"));
+        split.connect(new MenuItem.Activate() {
+            @Override
+            public void onActivate(MenuItem source) {
+                // Display the dialog
+                Dialog dialog = new SplitDialog(getApplication());
+                dialog.run();
+                dialog.hide();
+            }
+        });
 
-        // Run the new dialog
-        action.run();
-        action.hide();
+        // Add the item to the menu
+        menu.append(split);
+
+        // Display everything and popup
+        menu.showAll();
+        menu.popup();
     }
 }

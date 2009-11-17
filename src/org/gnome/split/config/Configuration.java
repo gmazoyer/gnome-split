@@ -42,11 +42,6 @@ public final class Configuration
     private File configuration;
 
     /**
-     * Size of the read/write buffer.
-     */
-    public int BUFFER_SIZE;
-
-    /**
      * Name of the hash file.
      */
     public String HASH_FILENAME;
@@ -92,6 +87,11 @@ public final class Configuration
     public boolean SHOW_TRAY_ICON;
 
     /**
+     * Start the action automatically after creating it.
+     */
+    public boolean AUTO_START;
+
+    /**
      * Private constructor can't instantiate Configuration in other class.<br>
      * Check for preferences file and load it.
      * 
@@ -132,6 +132,7 @@ public final class Configuration
             writer.write("NoHibernation   = true\n");
             writer.write("UseNotification = true\n");
             writer.write("ShowTrayIcon    = false\n");
+            writer.write("AutoStart       = true\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -157,7 +158,6 @@ public final class Configuration
             preferences.load(stream);
             stream.close();
 
-            BUFFER_SIZE = Integer.parseInt(preferences.getProperty("BufferSize", "1024"));
             HASH_FILENAME = preferences.getProperty("HashFilename", "hash.txt");
             HASH_ALGORITHM = preferences.getProperty("HashAlgorithm", "MD5");
             SUFFIX_SIZE = Integer.parseInt(preferences.getProperty("SuffixSize", "1"));
@@ -167,6 +167,7 @@ public final class Configuration
             NO_HIBERNATION = Boolean.parseBoolean(preferences.getProperty("NoHibernation", "true"));
             USE_NOTIFICATION = Boolean.parseBoolean(preferences.getProperty("UseNotification", "false"));
             SHOW_TRAY_ICON = Boolean.parseBoolean(preferences.getProperty("ShowTrayIcon", "false"));
+            AUTO_START = Boolean.parseBoolean(preferences.getProperty("AutoStart", "true"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -183,11 +184,7 @@ public final class Configuration
             if ((HASH_FILENAME == null) || HASH_FILENAME.equals(""))
                 HASH_FILENAME = "hash.txt";
 
-            if (BUFFER_SIZE == 0)
-                BUFFER_SIZE = 1024;
-
             writer = new FileWriter(configuration);
-            writer.write("BufferSize      = " + BUFFER_SIZE + "\n");
             writer.write("HashFilename    = " + HASH_FILENAME + "\n");
             writer.write("HashAlgorithm   = " + HASH_ALGORITHM + "\n");
             writer.write("SuffixSize      = " + SUFFIX_SIZE + "\n");
@@ -197,6 +194,7 @@ public final class Configuration
             writer.write("NoHibernation   = " + NO_HIBERNATION + "\n");
             writer.write("UseNotification = " + USE_NOTIFICATION + "\n");
             writer.write("ShowTrayIcon    = " + SHOW_TRAY_ICON + "\n");
+            writer.write("AutoStart       = " + AUTO_START + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -21,18 +21,12 @@
 package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.TreeIter;
-import org.gnome.gtk.TreeModel;
-import org.gnome.gtk.TreePath;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.ActionsListWidget;
-import org.gnome.split.io.FileOperation;
-import org.gnome.split.io.OperationManager;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Action to suspend a split/assembly/check in the actions list.
+ * Action to suspend a split.
  * 
  * @author Guillaume Mazoyer
  */
@@ -44,21 +38,6 @@ public final class PauseAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        final OperationManager manager = this.getApplication().getOperationManager();
-        final ActionsListWidget list = this.getApplication().getMainWindow().getActionsList();
-        final TreeModel model = list.getModel();
 
-        // Temporary values
-        TreeIter row;
-        FileOperation operation;
-
-        // For all selected rows
-        for (TreePath path : list.getSelection().getSelectedRows()) {
-            row = model.getIter(path);
-            operation = (FileOperation) model.getValue(row, list.reference);
-
-            // Pause the current operation
-            manager.stop(operation, false);
-        }
     }
 }

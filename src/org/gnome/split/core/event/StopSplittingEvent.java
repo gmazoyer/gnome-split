@@ -1,5 +1,5 @@
 /*
- * ProgressChangedEvent.java
+ * StopSplittingEvent.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,38 +18,14 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.io.event;
-
-import java.util.EventObject;
+package org.gnome.split.core.event;
 
 /**
- * Class that represents a event created when an operation progress has
- * changed.
+ * Event thrown when the splitting finishes.
  * 
  * @author Guillaume Mazoyer
  */
-public class ProgressChangedEvent extends EventObject
+public class StopSplittingEvent extends FileSplitEvent
 {
-    private static final long serialVersionUID = 1L;
 
-    /**
-     * The new progress value.
-     */
-    private double progress;
-
-    public ProgressChangedEvent(Object source, double progress) {
-        super(source);
-
-        // Set the new progress value
-        this.progress = progress;
-    }
-
-    /**
-     * Get the new value of the progress.
-     * 
-     * @return the current progress.
-     */
-    public double getProgress() {
-        return progress;
-    }
 }

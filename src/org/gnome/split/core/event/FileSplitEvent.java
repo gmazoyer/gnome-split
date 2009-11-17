@@ -1,5 +1,5 @@
 /*
- * StatusListener.java
+ * FileSplitEvent.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,20 +18,15 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.io.event;
-
-import java.util.EventListener;
+package org.gnome.split.core.event;
 
 /**
- * Interface that must be implemented by all widgets that want to display the
- * status of an action.
+ * Abstract class to define the events that will be thrown by the split file
+ * code.
  * 
  * @author Guillaume Mazoyer
  */
-public interface StatusListener extends EventListener
+abstract class FileSplitEvent extends FileEvent
 {
-    /**
-     * Method called when the status changes.
-     */
-    public void statusChanged(StatusChangedEvent event);
+
 }

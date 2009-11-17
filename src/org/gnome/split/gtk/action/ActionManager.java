@@ -43,11 +43,7 @@ public class ActionManager
         actions.put(ActionId.MENU_PAUSE, new PauseAction(app));
         actions.put(ActionId.MENU_REMOVE, new RemoveAction(app));
         actions.put(ActionId.MENU_DELETE, new DeleteAction(app));
-        actions.put(ActionId.MENU_START_ALL, new StartAllAction(app));
-        actions.put(ActionId.MENU_PAUSE_ALL, new PauseAllAction(app));
         actions.put(ActionId.MENU_EXIT, new QuitAction(app));
-        actions.put(ActionId.MENU_SELECT_ALL, new SelectAllAction(app));
-        actions.put(ActionId.MENU_UNSELECT_ALL, new UnselectAllAction(app));
         actions.put(ActionId.MENU_PREFERENCES, new PreferencesAction(app));
         actions.put(ActionId.MENU_HELP, new HelpAction(app));
         actions.put(ActionId.MENU_ABOUT, new AboutAction(app));
@@ -61,8 +57,6 @@ public class ActionManager
 
         // Actions related to the tray icon
         toggles.put(ActionId.TRAY_WINDOW, new MainWindowAction(app));
-        actions.put(ActionId.TRAY_START_ALL, new StartAllAction(app));
-        actions.put(ActionId.TRAY_PAUSE_ALL, new PauseAllAction(app));
         actions.put(ActionId.TRAY_EXIT, new QuitAction(app));
         actions.put(ActionId.TRAY_ABOUT, new AboutAction(app));
     }

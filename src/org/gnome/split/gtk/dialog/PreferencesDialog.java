@@ -25,8 +25,6 @@ import org.gnome.gtk.Alignment;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.Dialog;
-import org.gnome.gtk.Editable;
-import org.gnome.gtk.Entry;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.Notebook;
 import org.gnome.gtk.PositionType;
@@ -51,7 +49,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
     private GnomeSplit app;
 
-    private Entry buffer;
+    private CheckButton autoStart;
 
     private CheckButton hibernation;
 
@@ -92,26 +90,20 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         table.setColumnSpacing(3);
         page.add(table);
 
-        final Label bufferLabel = new Label(_("Buffer size"));
-        table.attach(bufferLabel, 0, 1, 0, 1);
-
-        buffer = new Entry(Integer.toString(config.BUFFER_SIZE));
-        table.attach(buffer, 1, 2, 0, 1);
-        buffer.connect(new Entry.Changed() {
+        // Restore auto start status
+        autoStart = new CheckButton(_("Automatically start the action after creating it."));
+        autoStart.setActive(config.AUTO_START);
+        autoStart.connect(new Button.Clicked() {
             @Override
-            public void onChanged(Editable source) {
-                try {
-                    // Get the size as an integer
-                    int size = Integer.parseInt(buffer.getText());
-
-                    // Update the configuration
-                    config.BUFFER_SIZE = size;
-                    config.savePreferences();
-                } catch (NumberFormatException e) {
-                    // don't save a invalid number
-                }
+            public void onClicked(Button source) {
+                // Save preferences
+                config.AUTO_START = autoStart.getActive();
+                config.savePreferences();
             }
         });
+        
+        // Pack everything in the table
+        table.attach(autoStart, 0, 2, 0, 1);
 
         return page;
     }

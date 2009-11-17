@@ -32,7 +32,6 @@ import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
-import org.gnome.split.io.OperationManager;
 import org.gnome.split.utils.UncaughtExceptionLogger;
 import org.gnome.unique.Application;
 
@@ -59,11 +58,6 @@ public final class GnomeSplit
     private ActionManager actions = null;
 
     /**
-     * Application operations manager
-     */
-    private OperationManager operations = null;
-
-    /**
      * Application main window.
      */
     private MainWindow window = null;
@@ -85,8 +79,9 @@ public final class GnomeSplit
         application = new Application("org.gnome.GnomeSplit", null);
 
         // Already running, quit this application
-        if (application.isRunning())
+        if (application.isRunning()) {
             System.exit(1);
+        }
 
         // Load constants and preferences
         try {
@@ -104,14 +99,12 @@ public final class GnomeSplit
         Internationalization.init("gnome-split", "share/locale/");
 
         // Load libnotify
-        if (config.USE_NOTIFICATION)
+        if (config.USE_NOTIFICATION) {
             Notify.init(Constants.PROGRAM_NAME);
+        }
 
         // Load actions manager
         actions = new ActionManager(this);
-
-        // Load operations manager
-        operations = new OperationManager(this);
 
         // Start the user interface
         window = new MainWindow(this);
@@ -140,15 +133,6 @@ public final class GnomeSplit
     }
 
     /**
-     * Return the operations manager of the app.
-     * 
-     * @return the operations manager.
-     */
-    public OperationManager getOperationManager() {
-        return operations;
-    }
-
-    /**
      * Return the main window of the app.
      * 
      * @return the application main window.
@@ -162,9 +146,9 @@ public final class GnomeSplit
      */
     public void openDocumentation() {
         try {
-            Gtk.showURI(new URI("http://www.respawner.fr/projects/gnome-split/"));
+            Gtk.showURI(new URI("http://www.respawner.fr/gnome-split/"));
         } catch (URISyntaxException e) {
-            e.printStackTrace();
+            // Can be dropped, should *never* happen
         }
     }
 
@@ -174,6 +158,9 @@ public final class GnomeSplit
     public void quit() {
         // Hide the window immediately
         window.hide();
+
+        // Cancel the current action
+        window.getAction().cancel();
 
         // Quit the GTK main loop (cause the app end)
         Gtk.mainQuit();

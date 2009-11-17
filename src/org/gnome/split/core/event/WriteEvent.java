@@ -1,5 +1,5 @@
 /*
- * ProgressListener.java
+ * WriteEvent.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,20 +18,35 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.io.event;
-
-import java.util.EventListener;
+package org.gnome.split.core.event;
 
 /**
- * Interface that must be implemented by all widgets that want to display the
- * progress of an action.
+ * Event thrown periodically when a number of bytes of the chunk are wrote.
  * 
  * @author Guillaume Mazoyer
  */
-public interface ProgressListener extends EventListener
+public class WriteEvent extends FileEvent
 {
+    private boolean fileWritten;
+
+    private long bytesWritten;
+
+    public WriteEvent(long bytesWritten, boolean fileWritten) {
+        this.bytesWritten = bytesWritten;
+        this.fileWritten = fileWritten;
+    }
+
     /**
-     * Method called when the progress changes.
+     * Return the number of bytes already written.
      */
-    public void progressChanged(ProgressChangedEvent event);
+    public long getBytesWritten() {
+        return bytesWritten;
+    }
+
+    /**
+     * Return whether or not the file write has finished.
+     */
+    public boolean isFileWritten() {
+        return fileWritten;
+    }
 }

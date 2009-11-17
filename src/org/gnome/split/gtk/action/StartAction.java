@@ -26,7 +26,7 @@ import org.gnome.split.GnomeSplit;
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Action to start a split/assembly/check in the actions list.
+ * Action to start a split.
  * 
  * @author Guillaume Mazoyer
  */
@@ -38,6 +38,6 @@ public final class StartAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-
+        this.getApplication().getMainWindow().getAction().run();
     }
 }

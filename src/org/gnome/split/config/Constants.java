@@ -39,10 +39,10 @@ public final class Constants
     /**
      * Version of the program.
      */
-    public static String PROGRAM_VERSION = "1.0.0";
+    public static String PROGRAM_VERSION = "0.1";
 
     /**
-     * Logo of the program (as a Pixbuf).
+     * Logo of the program (as a {@link Pixbuf}).
      */
     public static Pixbuf PROGRAM_LOGO = null;
 
@@ -61,17 +61,11 @@ public final class Constants
      */
     public static String CONFIG_FILE = null;
 
-    /**
-     * Path to the XML file.
-     */
-    public static String XML_FILE = null;
-
     static {
         try {
             PROGRAM_LOGO = new Pixbuf("share/pixmaps/gnome-split.png");
             CONFIG_FOLDER = System.getProperty("user.home") + "/.config/gnome-split/";
             CONFIG_FILE = CONFIG_FOLDER + "config";
-            XML_FILE = CONFIG_FOLDER + "saved";
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
         }

@@ -25,8 +25,6 @@ import org.gnome.gtk.Frame;
 import org.gnome.gtk.Menu;
 import org.gnome.gtk.MenuBar;
 import org.gnome.gtk.MenuItem;
-import org.gnome.gtk.PolicyType;
-import org.gnome.gtk.ScrolledWindow;
 import org.gnome.gtk.SeparatorMenuItem;
 import org.gnome.gtk.SeparatorToolItem;
 import org.gnome.gtk.Toolbar;
@@ -39,14 +37,15 @@ import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
 import org.gnome.split.gtk.dialog.PreferencesDialog;
-import org.gnome.split.gtk.widget.ActionsListWidget;
+import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.TrayIcon;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * Main window of the interface. It will be used to do everything GNOME Split
- * can thanks to the menubar, the toolbar or the treeview.
+ * can thanks to the {@link MenuBar}, the {@link Toolbar} or the
+ * {@link ActionWidget}.
  * 
  * @author Guillaume Mazoyer
  */
@@ -73,9 +72,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private AboutSoftDialog about;
 
     /**
-     * Widget derived from TreeView to display actions.
+     * Widget derived from {@link Frame} to display actions.
      */
-    private ActionsListWidget actions;
+    private ActionWidget action;
 
     /**
      * Build the main window of GNOME Split.
@@ -113,8 +112,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
         mainContainer.packStart(this.createToolbar(), false, false, 0);
 
         // Add the main widgets (action list)
-        this.actions = new ActionsListWidget(app);
-        mainContainer.packStart(this.packActionsList());
+        this.action = new ActionWidget(app);
+        mainContainer.packStart(action);
 
         // Connect delete event handler
         this.connect((Window.DeleteEvent) this);
@@ -147,9 +146,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         fileMenu.append(actions.getAction(ActionId.MENU_REMOVE).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_DELETE).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_START_ALL).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_PAUSE_ALL).createMenuItem());
-        fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_EXIT).createMenuItem());
         menubar.append(fileItem);
 
@@ -158,9 +154,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu editMenu = new Menu();
 
         editItem.setSubmenu(editMenu);
-        editMenu.append(actions.getAction(ActionId.MENU_SELECT_ALL).createMenuItem());
-        editMenu.append(actions.getAction(ActionId.MENU_UNSELECT_ALL).createMenuItem());
-        editMenu.append(new SeparatorMenuItem());
         editMenu.append(actions.getAction(ActionId.MENU_PREFERENCES).createMenuItem());
         menubar.append(editItem);
 
@@ -196,31 +189,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
-     * Add the actions list into a scrollable widget.
-     * 
-     * @return the scrollable widget.
-     */
-    private Frame packActionsList() {
-        // Create a frame to display a border
-        final Frame frame = new Frame(null);
-
-        // Create a widget to be able to scroll
-        final ScrolledWindow scroll = new ScrolledWindow();
-
-        // Display scroll bars only if needed
-        scroll.setPolicy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
-
-        // Pack the actions list in it
-        scroll.add(actions);
-
-        // Pack the scroll into the frame
-        frame.add(scroll);
-
-        // And finally
-        return frame;
-    }
-
-    /**
      * Get the preferences dialog.
      * 
      * @return the dialog.
@@ -250,10 +218,10 @@ public class MainWindow extends Window implements Window.DeleteEvent
     /**
      * Get the widget which displays actions.
      * 
-     * @return the actions list widget.
+     * @return the action widget.
      */
-    public ActionsListWidget getActionsList() {
-        return actions;
+    public ActionWidget getAction() {
+        return action;
     }
 
     @Override

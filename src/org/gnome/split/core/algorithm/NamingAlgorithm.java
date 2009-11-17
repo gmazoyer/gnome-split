@@ -1,5 +1,5 @@
 /*
- * UnselectAllAction.java
+ * NamingAlgorithm.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,26 +18,27 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
+package org.gnome.split.core.algorithm;
 
-import org.gnome.split.GnomeSplit;
+import java.io.File;
 
-import static org.freedesktop.bindings.Internationalization._;
+import org.gnome.split.core.event.ErrorSplittingEvent;
 
 /**
- * Action to unselect every rows of the list.
+ * Interface to define the output names when splitting files.
  * 
  * @author Guillaume Mazoyer
  */
-public final class UnselectAllAction extends Action
+public interface NamingAlgorithm
 {
-    public UnselectAllAction(final GnomeSplit app) {
-        super(app, _("_Unselect all"));
-    }
+    /**
+     * Initialize the algorithm. <code>null</code> is returned if no error has
+     * occurred.
+     */
+    ErrorSplittingEvent init(File input, long chunks);
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-        // Unselect everything
-        this.getApplication().getMainWindow().getActionsList().getSelection().unselectAll();
-    }
+    /**
+     * Return the <code>File</code> for a chunk number.
+     */
+    public File getOutputFile(long sequence);
 }

@@ -1,5 +1,5 @@
 /*
- * SizeUnit.java
+ * ActionDisplay.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,40 +18,43 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.utils;
+package org.gnome.split.core.display;
 
 /**
- * This defines constants to know file size a little bit comfortably.
+ * This interface is the top-level interface to define how action will show
+ * their status.
  * 
  * @author Guillaume Mazoyer
  */
-public final class SizeUnit
+interface ActionDisplay
 {
     /**
-     * One kilobyte.
+     * Method to show some informations.
      */
-    public static final double KB = 1024.0;
+    public void showMessage(String message);
 
     /**
-     * One megabyte.
+     * Method to show an error message.
      */
-    public static final double MB = 1024.0 * 1024.0;
+    public void showError(String error);
 
     /**
-     * One gigabyte.
+     * Method to show the progress done on read (from 0.0 to 1.0).
      */
-    public static final double GB = 1024.0 * 1024.0 * 1024.0;
-
-    private static final double[] values = {
-            KB, MB, GB
-    };
+    public void setReadProgress(double progress);
 
     /**
-     * Return all units into a array.
-     * 
-     * @return all units.
+     * Method to show the progress done on writing a chunk (from 0.0 to 1.0).
      */
-    public static double[] values() {
-        return values;
-    }
+    public void setWriteProgress(double progress);
+
+    /**
+     * Method to show how many data have been read.
+     */
+    public void setReadInfos(long read, long total);
+
+    /**
+     * Method to show how many data have been written.
+     */
+    public void setWriteInfos(long written, long total);
 }

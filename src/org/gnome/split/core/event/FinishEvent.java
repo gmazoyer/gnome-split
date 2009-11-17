@@ -1,5 +1,5 @@
 /*
- * PauseAllAction.java
+ * FinishEvent.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,26 +18,15 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.action;
-
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-
-import static org.freedesktop.bindings.Internationalization._;
+package org.gnome.split.core.event;
 
 /**
- * Action to pause all split/assembly/check.
+ * Class to define an internal event used by the <code>FileRead</code> and
+ * <code>FileWrite</code> classes.
  * 
  * @author Guillaume Mazoyer
  */
-public final class PauseAllAction extends Action
+public class FinishEvent extends FileEvent
 {
-    public PauseAllAction(final GnomeSplit app) {
-        super(app, Stock.MEDIA_PAUSE, _("_Pause all"));
-    }
 
-    @Override
-    public void actionPerformed(ActionEvent event) {
-
-    }
 }

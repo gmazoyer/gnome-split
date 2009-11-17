@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.io;
+package org.gnome.split.core.action;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -36,13 +36,8 @@ import org.gnome.split.GnomeSplit;
  * 
  * @author Guillaume Mazoyer
  */
-public class FileHash
+public class FileHasher
 {
-    /**
-     * The current GNOME Split instance.
-     */
-    private GnomeSplit app;
-
     /**
      * SHA-1 algorithm.
      */
@@ -84,9 +79,8 @@ public class FileHash
      * @param algorithm
      *            the algorithm to use.
      */
-    public FileHash(final GnomeSplit app, final String algorithm) {
+    public FileHasher(final GnomeSplit app, final String algorithm) {
         try {
-            this.app = app;
             this.algorithm = MessageDigest.getInstance(algorithm);
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
@@ -102,7 +96,7 @@ public class FileHash
      */
     private byte[] hash(InputStream input) {
         final BufferedInputStream buffer = new BufferedInputStream(input);
-        final byte[] data = new byte[app.getConfig().BUFFER_SIZE];
+        final byte[] data = new byte[65536];
 
         // Reset to clean other calculation
         algorithm.reset();
@@ -186,18 +180,8 @@ public class FileHash
      * @return the hash as a String.
      */
     public String hashToString(File file) {
-        // Start progress informations
-        // this.emitStatusText(_("Calculating file hash..."));
-        // this.emitIndeterminate(true, _("Calculation of {0} hash.",
-        // file.getName()));
-
         // Calculate hash
         final String hash = this.buildHexaString(this.hash(file));
-
-        // Stop update progress informations
-        // this.emitIndeterminate(false, "");
-        // this.emitCloseProgress();
-        // this.emitStatusText(_("Ready."));
 
         return hash;
     }
