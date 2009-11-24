@@ -1,5 +1,5 @@
 /*
- * NamingAlgorithm.java
+ * Engine.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,27 +18,25 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.core.algorithm;
-
-import java.io.File;
-
-import org.gnome.split.core.event.ErrorSplittingEvent;
+package org.gnome.split.core;
 
 /**
- * Interface to define the output names when splitting files.
+ * Interface to define a way that all engines should act.
  * 
  * @author Guillaume Mazoyer
  */
-public interface NamingAlgorithm
+public interface Engine extends Runnable
 {
-    /**
-     * Initialize the algorithm. <code>null</code> is returned if no error has
-     * occurred.
-     */
-    ErrorSplittingEvent init(File input, long chunks);
+    @Override
+    public void run();
 
     /**
-     * Return the <code>File</code> for a chunk number.
+     * Pause the current action.
      */
-    public File getOutputFile(long sequence);
+    public void pause();
+
+    /**
+     * Resume the previously paused action.
+     */
+    public void resume();
 }

@@ -1,5 +1,5 @@
 /*
- * StopSplittingEvent.java
+ * DefaultEngine.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,14 +18,38 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.core.event;
+package org.gnome.split.core;
 
-/**
- * Event thrown when the splitting finishes.
- * 
- * @author Guillaume Mazoyer
- */
-public class StopSplittingEvent extends FileSplitEvent
+public abstract class DefaultEngine implements Engine
 {
+    /**
+     * Default size of a buffer.
+     */
+    protected static final int BUFFER = 65536;
 
+    /**
+     * To manage synchronization of thread.
+     */
+    protected final Object mutex = new Object();
+
+    /**
+     * To manage pause and resume actions.
+     */
+    protected boolean paused = false;
+
+    @Override
+    public abstract void run();
+
+    @Override
+    public void pause() {
+        paused = true;
+    }
+
+    @Override
+    public void resume() {
+        synchronized (mutex) {
+            paused = false;
+            mutex.notify();
+        }
+    }
 }

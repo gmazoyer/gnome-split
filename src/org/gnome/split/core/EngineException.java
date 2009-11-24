@@ -1,5 +1,5 @@
 /*
- * WriteEvent.java
+ * EngineException.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,35 +18,38 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.core.event;
+package org.gnome.split.core;
 
 /**
- * Event thrown periodically when a number of bytes of the chunk are wrote.
+ * Define a new {@link Exception} to manager exceptions thrown by
+ * {@link Engine} classes.
  * 
  * @author Guillaume Mazoyer
  */
-public class WriteEvent extends FileEvent
+public class EngineException extends Exception
 {
-    private boolean fileWritten;
+    private static final long serialVersionUID = 1L;
 
-    private long bytesWritten;
-
-    public WriteEvent(long bytesWritten, boolean fileWritten) {
-        this.bytesWritten = bytesWritten;
-        this.fileWritten = fileWritten;
+    /**
+     * Create a new exception with a <code>message</code>.
+     */
+    public EngineException(String message) {
+        super(message);
     }
 
     /**
-     * Return the number of bytes already written.
+     * Create a new exception with an <code>error</code> (a {@link Throwable}
+     * object).
      */
-    public long getBytesWritten() {
-        return bytesWritten;
+    public EngineException(Throwable error) {
+        super(error);
     }
 
     /**
-     * Return whether or not the file write has finished.
+     * Create a new exception with a <code>message</code> and an
+     * <code>error</code> (a {@link Throwable} object).
      */
-    public boolean isFileWritten() {
-        return fileWritten;
+    public EngineException(String message, Throwable error) {
+        super(message, error);
     }
 }

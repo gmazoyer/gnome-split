@@ -1,5 +1,5 @@
 /*
- * DotNumberAlgorithm.java
+ * EngineListener.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,33 +18,33 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.core.algorithm;
-
-import java.io.File;
-
-import org.gnome.split.core.event.ErrorSplittingEvent;
+package org.gnome.split.core;
 
 /**
- * Algorithm to add a &quot;.&quot; and the sequence value at the end of each
- * chunk filename.
+ * Define the way that an {@link Engine} class will notify the
+ * &quot;view&quot;.
  * 
  * @author Guillaume Mazoyer
  */
-public class DotNumberAlgorithm implements NamingAlgorithm
+public interface EngineListener
 {
-    private String path;
+    /**
+     * Used when a part has been fully read/written.
+     */
+    public void enginePartEnded(int next);
 
-    public DotNumberAlgorithm(String path) {
-        this.path = new String(path + ".");
-    }
+    /**
+     * Used when the action has finished.
+     */
+    public void engineEnded();
 
-    @Override
-    public File getOutputFile(long sequence) {
-        return new File(path + String.valueOf(sequence));
-    }
+    /**
+     * Used when an {@link EngineException error} has occurred.
+     */
+    public void engineError(EngineException exception);
 
-    @Override
-    public ErrorSplittingEvent init(File input, long chunks) {
-        return null;
-    }
+    /**
+     * Used when a read has been done.
+     */
+    public void engineDone(long read);
 }
