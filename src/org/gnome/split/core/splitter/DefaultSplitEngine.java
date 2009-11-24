@@ -91,7 +91,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      * Notify the view that an error has occurred.
      */
     protected void fireEngineError(EngineException exception) {
-    // DefaultEngineListener.getInstance().engineError(exc);
+    // DefaultEngineListener.getInstance().engineError(exception);
     }
 
     /**

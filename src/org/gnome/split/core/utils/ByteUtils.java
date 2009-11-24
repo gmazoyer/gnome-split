@@ -27,6 +27,9 @@ package org.gnome.split.core.utils;
  */
 public final class ByteUtils
 {
+    /**
+     * Convert an array of {@link Byte bytes} to a {@link Integer} value.
+     */
     public static int toInt(byte[] b) {
         int value = 0;
         int exp = 0;
@@ -37,6 +40,9 @@ public final class ByteUtils
         return value;
     }
 
+    /**
+     * Convert an {@link Integer} value to an array of {@link Byte bytes}.
+     */
     public static byte[] toBytes(int num) {
         byte[] b = new byte[4];
         int exp = 3 * 8;
@@ -47,6 +53,9 @@ public final class ByteUtils
         return b;
     }
 
+    /**
+     * Convert a {@link Long} value to an array of {@link Byte bytes}.
+     */
     public static long toLong(byte[] b) {
         long value = 0;
         int exp = 0;
@@ -57,6 +66,9 @@ public final class ByteUtils
         return value;
     }
 
+    /**
+     * Convert an array of {@link Byte bytes} to a {@link Long} value.
+     */
     public static byte[] toBytes(long num) {
         byte[] b = new byte[8];
         for (int i = 0; i < b.length; i++) {
@@ -66,6 +78,9 @@ public final class ByteUtils
         return b;
     }
 
+    /**
+     * Convert an array of {@link Byte bytes} to a {@link Boolean} value.
+     */
     public static boolean toBoolean(byte[] b) {
         return Boolean.parseBoolean(new String(b));
     }
