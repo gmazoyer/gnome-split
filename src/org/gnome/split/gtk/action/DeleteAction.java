@@ -26,20 +26,18 @@ import org.gnome.split.GnomeSplit;
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Action to remove a split and delete associated files.
+ * Action to cancel a split/merge and delete associated files.
  * 
  * @author Guillaume Mazoyer
  */
 public final class DeleteAction extends Action
 {
     public DeleteAction(final GnomeSplit app) {
-        super(app, Stock.DELETE, _("Delete files and remove"));
+        super(app, Stock.DELETE, _("Cancel and delete files"));
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getAction().cancel();
-        this.getApplication().getMainWindow().getAction().delete();
+        System.out.println(this.getClass().toString());
     }
-
 }

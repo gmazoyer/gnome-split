@@ -25,13 +25,15 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.utils.ByteUtils;
+import org.gnome.split.core.utils.MD5Hasher;
 
 public class Xtremsplit extends DefaultSplitEngine
 {
-    public Xtremsplit(File file, int parts) {
-        super(file, parts);
+    public Xtremsplit(final GnomeSplit app, File file, int parts, String destination) {
+        super(app, file, parts, destination);
     }
 
     /**
@@ -67,7 +69,7 @@ public class Xtremsplit extends DefaultSplitEngine
         }
 
         // Write if using MD5
-        access.writeBoolean(false);
+        access.writeBoolean(app.getConfig().SAVE_FILE_HASH);
 
         // Write number of files
         access.write(ByteUtils.toBytes(parts));
@@ -98,16 +100,17 @@ public class Xtremsplit extends DefaultSplitEngine
                     }
 
                     // Open the part
-                    access = new RandomAccessFile(file.getAbsolutePath().replace(file.getName(), "")
-                            + file.getName() + "." + current + ".xtm", "rw");
-
+                    access = new RandomAccessFile(destination + "." + current + ".xtm", "rw");
                     int read = 0;
 
                     if (i == 1) {
-                        // Write hearder on the first part
+                        // Write header on the first part
                         this.writeHeaders(access);
+
+                        // Update useful variables
                         read += 104;
-                        this.fireEngineDone(104);
+                        total += 104;
+                        this.fireEngineDone((double) 104 / (double) file.length());
                     }
 
                     while (read < length) {
@@ -134,11 +137,23 @@ public class Xtremsplit extends DefaultSplitEngine
 
                         // Update read and write status
                         read += buffer.length;
-                        this.fireEngineDone(buffer.length);
+                        total += buffer.length;
+                        this.fireEngineDone((double) total / (double) file.length());
+                    }
+
+                    // Should we save MD5 sum?
+                    if (app.getConfig().SAVE_FILE_HASH && (i == parts)) {
+                        // Get file MD5 sum
+                        MD5Hasher hasher = new MD5Hasher();
+                        String md5sum = hasher.hashToString(file);
+
+                        // Write it a the end of the file
+                        access.writeByte(md5sum.length());
+                        access.write(md5sum.getBytes());
                     }
 
                     // Notify the end of the part
-                    this.fireEnginePartEnded(((i + 1) > parts ? -1 : i));
+                    this.fireEnginePartEnded(((i + 1) > parts) ? -1 : i);
                 } catch (FileNotFoundException e) {
                     throw e;
                 } catch (IOException e) {

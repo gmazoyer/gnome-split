@@ -1,5 +1,5 @@
 /*
- * RemoveAction.java
+ * SelectMergeAction.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -20,22 +20,26 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
+import static org.freedesktop.bindings.Internationalization._;
+
 /**
- * Action to remove a split.
+ * Action to display the merge view.
  * 
  * @author Guillaume Mazoyer
  */
-public final class RemoveAction extends Action
+public class SelectMergeAction extends ToggleAction
 {
-    public RemoveAction(final GnomeSplit app) {
-        super(app, Stock.REMOVE);
+    public SelectMergeAction(final GnomeSplit app) {
+        super(app, _("Merge"), false);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getAction().cancel();
+    public void actionPerformed(ToggleActionEvent event, boolean active) {
+        this.setActive(!active);
+        if (!active) {
+            this.getApplication().getMainWindow().switchView();
+        }
     }
 }

@@ -26,14 +26,17 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
+import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.ByteUtils;
+import org.gnome.split.core.utils.MD5Hasher;
 
 public class Xtremsplit extends DefaultMergeEngine
 {
-    public Xtremsplit(File file) {
-        super(file);
+    public Xtremsplit(final GnomeSplit app, File file) {
+        super(app, file);
     }
 
+    @Override
     protected void loadHeaders() throws IOException, FileNotFoundException {
         RandomAccessFile access = null;
         try {
@@ -62,7 +65,7 @@ public class Xtremsplit extends DefaultMergeEngine
             // Read file length
             bytes = new byte[8];
             access.read(bytes);
-            fileLength = (int) ByteUtils.toLong(bytes);
+            fileLength = ByteUtils.toLong(bytes);
         } catch (FileNotFoundException e) {
             throw e;
         } catch (IOException e) {
@@ -109,8 +112,11 @@ public class Xtremsplit extends DefaultMergeEngine
                 if (i == 1) {
                     // Skip headers if it is the first part
                     access.skipBytes(104);
-                    this.fireEngineDone(104);
+
+                    // Update useful variables
                     read += 104;
+                    total += 104;
+                    this.fireEngineDone((double) 104 / (double) fileLength);
                 }
 
                 // Merge the file
@@ -138,15 +144,31 @@ public class Xtremsplit extends DefaultMergeEngine
 
                     // Update read and write status
                     read += buffer.length;
-                    this.fireEngineDone(buffer.length);
-                    Thread.yield();
+                    total += buffer.length;
+                    this.fireEngineDone((double) total / (double) fileLength);
                 }
 
                 // Close the part
                 access.close();
 
+                if (md5 && (i == parts)) {
+                    // Read the MD5 which was calculated during the split
+                    byte[] sum = new byte[32];
+                    access.read(sum, (int) length, 32);
+                    md5sum = new String(sum);
+
+                    // Calculate the MD5 of the new file
+                    MD5Hasher hasher = new MD5Hasher();
+                    String found = hasher.hashToString(new File(filename));
+
+                    // MD5 are different
+                    if (!md5sum.equals(found)) {
+                        // Notify the user about the error
+                    }
+                }
+
                 // Notify the end of the part
-                this.fireEnginePartEnded(((i + 1) > parts ? -1 : i));
+                this.fireEnginePartEnded(((i + 1) > parts) ? -1 : i);
             }
 
             // Notify the end of the merge

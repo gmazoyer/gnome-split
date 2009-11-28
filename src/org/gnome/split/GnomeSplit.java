@@ -30,6 +30,8 @@ import org.gnome.gtk.Gtk;
 import org.gnome.notify.Notify;
 import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
+import org.gnome.split.core.EngineListener;
+import org.gnome.split.gtk.DefaultEngineListener;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.utils.UncaughtExceptionLogger;
@@ -63,10 +65,12 @@ public final class GnomeSplit
     private MainWindow window = null;
 
     /**
+     * Engine listener to update the view.
+     */
+    private EngineListener engine = null;
+
+    /**
      * Create an instance of the application.
-     * 
-     * @param args
-     *            the command line arguments.
      */
     public GnomeSplit(String[] args) {
         // Initialize uncaught exception handler
@@ -110,14 +114,15 @@ public final class GnomeSplit
         window = new MainWindow(this);
         window.showAll();
 
+        // Load engine listener
+        engine = new DefaultEngineListener(this);
+
         // Start GTK main loop (blocker method)
         Gtk.main();
     }
 
     /**
      * Return the configuration object of the app.
-     * 
-     * @return the configuration object.
      */
     public Configuration getConfig() {
         return config;
@@ -125,8 +130,6 @@ public final class GnomeSplit
 
     /**
      * Return the actions manager of the app.
-     * 
-     * @return the actions manager.
      */
     public ActionManager getActionManager() {
         return actions;
@@ -134,11 +137,16 @@ public final class GnomeSplit
 
     /**
      * Return the main window of the app.
-     * 
-     * @return the application main window.
      */
     public MainWindow getMainWindow() {
         return window;
+    }
+
+    /**
+     * Return the engine listener of the app.
+     */
+    public EngineListener getEngineListener() {
+        return engine;
     }
 
     /**
@@ -159,9 +167,6 @@ public final class GnomeSplit
         // Hide the window immediately
         window.hide();
 
-        // Cancel the current action
-        window.getAction().cancel();
-
         // Quit the GTK main loop (cause the app end)
         Gtk.mainQuit();
 
@@ -174,9 +179,6 @@ public final class GnomeSplit
 
     /**
      * Application entry point.
-     * 
-     * @param args
-     *            the arguments given in the CLI.
      */
     public static void main(String[] args) {
         new GnomeSplit(args);

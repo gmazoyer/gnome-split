@@ -73,16 +73,18 @@ public abstract class Action
             // Create a menu item with a label and an image
             final Image image = new Image(stock, IconSize.MENU);
             item = new ImageMenuItem(image, label);
-        } else if (stock != null)
+        } else if (stock != null) {
             // Create a menu item with an image
             item = new ImageMenuItem(stock);
-        else if (label != null)
+        } else if (label != null) {
             // Create a menu item with a label
             item = new MenuItem(label);
+        }
 
         // Set menu item tooltip
-        if (tooltip != null)
+        if (tooltip != null) {
             item.setTooltipText(tooltip);
+        }
 
         item.connect(new MenuItem.Activate() {
             @Override
@@ -97,20 +99,23 @@ public abstract class Action
 
     public ToolItem createToolItem() {
         // Cannot build a tool button without stock item
-        if (stock == null)
+        if (stock == null) {
             throw new NullPointerException(
                     "It is not possible to create a GtkToolButton without any GtkStock item.");
+        }
 
         // Create a tool item with a Stock
         ToolItem item = new ToolButton(stock);
 
         // Set a label to the item
-        if (label != null)
+        if (label != null) {
             ((ToolButton) item).setLabel(label);
+        }
 
         // Set menu item tooltip
-        if (tooltip != null)
+        if (tooltip != null) {
             item.setTooltipText(tooltip);
+        }
 
         ((ToolButton) item).connect(new ToolButton.Clicked() {
             @Override

@@ -20,6 +20,8 @@
  */
 package org.gnome.split.core;
 
+import org.gnome.split.GnomeSplit;
+
 public abstract class DefaultEngine implements Engine
 {
     /**
@@ -31,11 +33,25 @@ public abstract class DefaultEngine implements Engine
      * To manage synchronization of thread.
      */
     protected final Object mutex = new Object();
+    
+    /**
+     * Total of bytes read.
+     */
+    protected long total = 0;
 
     /**
      * To manage pause and resume actions.
      */
     protected boolean paused = false;
+    
+    /**
+     * Current instance of GNOME Split.
+     */
+    protected GnomeSplit app = null;
+    
+    public DefaultEngine(final GnomeSplit app) {
+        this.app = app;
+    }
 
     @Override
     public abstract void run();

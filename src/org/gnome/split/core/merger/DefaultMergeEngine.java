@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineException;
@@ -48,7 +49,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * The total length of the file.
      */
-    protected int fileLength = -1;
+    protected long fileLength = -1;
 
     /**
      * The number of parts to merge.
@@ -69,8 +70,8 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Create a new merge {@link Engine engine} using a first
      * <code>file</code> to merge.
      */
-    public DefaultMergeEngine(File file) {
-        super();
+    public DefaultMergeEngine(final GnomeSplit app, File file) {
+        super(app);
         this.file = file;
 
         try {
@@ -90,7 +91,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
 
         if (name.endsWith(".001.xtm")) {
             // Use Xtremsplit algorithm
-            // return new Xtremsplit(file);
+            // return new Xtremsplit(null, file);
         }
 
         // Can't find the right algorithm
@@ -124,27 +125,27 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Notify the view that a part has been read.
      */
     protected void fireEnginePartEnded(int next) {
-    // DefaultEngineListener.getInstance().enginePartEnded(next);
+        app.getEngineListener().enginePartEnded(next);
     }
 
     /**
      * Notify the view that the engine has finish its work.
      */
     protected void fireEngineEnded() {
-    // DefaultEngineListener.getInstance().engineEnded();
+        app.getEngineListener().engineEnded();
     }
 
     /**
      * Notify the view that an error has occurred.
      */
     protected void fireEngineError(EngineException exception) {
-    // DefaultEngineListener.getInstance().engineError(exception);
+        app.getEngineListener().engineError(exception);
     }
 
     /**
      * Notify the view that a part of the file has been read.
      */
-    protected void fireEngineDone(long read) {
-    // DefaultEngineListener.getInstance().engineDone(read);
+    protected void fireEngineDone(double progress) {
+        app.getEngineListener().engineDone(progress);
     }
 }

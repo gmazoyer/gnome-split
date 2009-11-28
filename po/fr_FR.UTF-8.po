@@ -12,41 +12,54 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/MainWindow.java:135
+#: src/org/gnome/split/gtk/MainWindow.java:173
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:153
+#: src/org/gnome/split/gtk/MainWindow.java:191
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:161
+#: src/org/gnome/split/gtk/MainWindow.java:199
 msgid "_Help"
 msgstr "_Aide"
 
 #: src/org/gnome/split/gtk/action/DeleteAction.java:36
-msgid "Delete files and remove"
-msgstr "Supprimer les fichiers et enlever"
+msgid "Cancel and delete files"
+msgstr "Annuler et supprimer les fichiers"
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:36
 msgid "Suspend"
 msgstr "Suspendre"
 
-#: src/org/gnome/split/gtk/action/OpenDirAction.java:41
+#: src/org/gnome/split/gtk/action/OpenDirAction.java:36
 msgid "_Open folder"
 msgstr "_Ouvrir le dossier"
 
 #: src/org/gnome/split/gtk/action/NewAction.java:52
+#: src/org/gnome/split/gtk/action/SelectSplitAction.java:35
 msgid "Split"
 msgstr "Découpage"
 
-#: src/org/gnome/split/gtk/action/StartAction.java:36
+#: src/org/gnome/split/gtk/action/StartAction.java:45
 msgid "Start"
 msgstr "Démarrer"
+
+#: src/org/gnome/split/gtk/action/StartAction.java:56
+msgid "Incompleted fields."
+msgstr "Champs incomplets."
+
+#: src/org/gnome/split/gtk/action/StartAction.java:57
+msgid "You must fill all fields to start a split."
+msgstr "Vous devez remplir tous les champs avant de lancer un découpage."
 
 #: src/org/gnome/split/gtk/action/MainWindowAction.java:36
 msgid "Main _window"
 msgstr "_Fenêtre principale"
+
+#: src/org/gnome/split/gtk/action/SelectMergeAction.java:35
+msgid "Merge"
+msgstr "Assemblage"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:42
 msgid "Head developer:"
@@ -61,7 +74,7 @@ msgid "Retired packager:"
 msgstr "Packageur retraité :"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:57
-msgid "Split and assemble your files easily."
+msgid "Split and merge your files easily."
 msgstr "Découpez et assemblez vos fichiers."
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:58
@@ -86,31 +99,27 @@ msgstr ""
 "\n"
 "Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce program.  Sinon, reportez-vous à <http://www.gnu.org/licenses/>."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:61
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:59
 msgid "GNOME Split Preferences"
 msgstr "Préférences de GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:73
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:71
 msgid "General"
 msgstr "Général"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:74
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:72
 msgid "Desktop"
 msgstr "Bureau"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:94
-msgid "Automatically start the action after creating it."
-msgstr "Démarrer automatiquement l'action après l'avoir créée."
-
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:116
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:99
 msgid "Inhibit desktop _hibernation when action is performed"
 msgstr "Empêcher la mise en veille lorsqu'une action est en cours"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:128
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:111
 msgid "Show _icon in the desktop notification area"
 msgstr "Afficher l'_icône dans la zone de notification"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:143
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:126
 msgid "Show desktop _notification"
 msgstr "Afficher les _notifications"
 
@@ -118,55 +127,56 @@ msgstr "Afficher les _notifications"
 msgid "Information"
 msgstr "Information"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:84
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:82
 msgid "New split"
 msgstr "Nouveau découpage"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:99
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:97
 msgid "File to split"
 msgstr "À découper"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:103
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:101
 msgid "Splitted file size"
 msgstr "Taille des fichiers"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:107
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:105
 msgid "Target folder"
 msgstr "Dossier de destination"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:123
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:121
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:136
 msgid "Choose a file."
 msgstr "Choisissez un fichier."
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:138
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:136
 msgid "byte"
 msgstr "octet"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:139
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:137
 msgid "kilobyte (KB)"
 msgstr "kibioctet (Kio)"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:140
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:138
 msgid "megabyte (MB)"
 msgstr "mébioctet (Mio)"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:141
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:139
 msgid "gigabyte (GB)"
 msgstr "gibioctet (Gio)"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:142
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:140
 msgid "parts"
 msgstr "parties"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:147
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:145
 msgid "Choose a folder."
 msgstr "Choisissez un dossier."
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:176
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:174
 msgid "Uncompleted fields."
 msgstr "Champs incomplets."
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:177
+#: src/org/gnome/split/gtk/dialog/SplitDialog.java:175
 msgid "Check that all fields are completed."
 msgstr "Vérifiez que tous les champs ont été complétés."
 
@@ -178,57 +188,25 @@ msgstr "Erreur !"
 msgid "Question"
 msgstr "Question"
 
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:94
-msgid "Input"
-msgstr "Entrée"
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:114
+msgid "File:"
+msgstr "Fichier :"
 
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:100
-msgid "Output"
-msgstr "Sortie"
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:117
+msgid "Destination:"
+msgstr "Destination :"
 
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:106
-msgid "Chunk size"
-msgstr "Taille des parties"
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:146
+msgid "Choose a directory."
+msgstr "Choisissez un dossier."
 
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:112
-msgid "Read"
-msgstr "Lecture"
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:158
+msgid "Split in:"
+msgstr "Découper en :"
 
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:118
-msgid "Write"
-msgstr "Écriture"
-
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:142
-msgid "An error has occurred."
-msgstr "Une erreur est survenue."
-
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:144
-msgid "Splitting successful."
-msgstr "Découpage terminé avec succès."
-
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:159
-msgid "Error while splitting."
-msgstr "Erreur durant le découpage."
-
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:160
-msgid "An error has occurred while splitting the file. Please try to split it again."
-msgstr "Une erreur est survenue durant le découpage du fichier. Veuillez réessayer de le découper de nouveau."
-
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:164
-msgid "Split successful."
-msgstr "Découpage terminé avec succès."
-
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:165
-msgid "The split of the file has ended successfully."
-msgstr "Le découpage du fichier s'est terminé avec succès."
-
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:298
-msgid "maximum for each chunk."
-msgstr "maximum pour chaque partie."
-
-#: src/org/gnome/split/gtk/widget/ActionWidget.java:318
-msgid "Invalid chunk size."
-msgstr "Taille des parties invalides."
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:180
+msgid "Algorithm:"
+msgstr "Algorithme :"
 
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:63
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:73
@@ -239,101 +217,43 @@ msgstr "Prêt."
 msgid "version"
 msgstr "version"
 
+#: src/org/gnome/split/gtk/widget/SelectView.java:52
+msgid "View:"
+msgstr "Affichage :"
+
 #: src/org/gnome/split/dbus/DbusInhibit.java:67
 msgid "GNOME Split activity"
 msgstr "Activité de GNOME Split"
 
-#: src/org/gnome/split/core/Splitter.java:57
-msgid "Splitting done."
-msgstr "Découpage terminé."
-
-#: src/org/gnome/split/core/Splitter.java:91
-#, java-format
-msgid "Error splitting [{0}]."
-msgstr "Erreur de découpage [{0}]."
-
-#: src/org/gnome/split/core/Splitter.java:98
-#, java-format
-msgid "Splitting {0} [{1}] on {2} chunks."
-msgstr "Découpage de {0} [{1}] en {2} parties."
-
-#: src/org/gnome/split/core/Splitter.java:106
-#, java-format
-msgid "Creating {0} [{1}]."
-msgstr "Création de {0} [{1}]."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:122
-msgid "Cannot read the file to split."
-msgstr "Impossible de lire le fichier à découper."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:125
-msgid "The split file does not exist."
-msgstr "Le fichier à découper n'existe pas."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:128
-msgid "The file to split is a directory."
-msgstr "Le fichier à découper est un dossier."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:131
-msgid "The file to split has not been found."
-msgstr "Le fichier à découper est introuvable."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:134
-msgid "The file to split is empty."
-msgstr "Le fichier à découper est vide."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:137
-msgid "Error while reading the file to split."
-msgstr "Erreur durant la lecture du fichier à découper."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:140
-msgid "Error while wrtting a chunk file."
-msgstr "Erreur durant l'écriture d'une partie."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:143
-msgid "The file to split is smaller than expected."
-msgstr "Le fichier à découper est plus petit que prévu."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:146
-msgid "Splitting has been cancelled."
-msgstr "Le découpage a été annulé."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:149
-msgid "Internal error: there are more bytes to read than to write."
-msgstr "Erreur interne : il y a moins d'octets à lire qu'à écrire."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:152
-msgid "Internal error: there are less bytes to read than to write."
-msgstr "Erreur interne : il y a moins d'octets à lire qu'à écrire."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:155
-msgid "Internal error: thread interrupted."
-msgstr "Erreur interne : processus interrompu."
-
-#: src/org/gnome/split/core/event/ErrorSplittingEvent.java:158
-msgid "Unknown error."
-msgstr "Erreur inconnue."
-
-#: src/org/gnome/split/core/util/SizeUnit.java:99
+#: src/org/gnome/split/core/utils/SizeUnit.java:99
 msgid "bytes"
 msgstr "octets"
 
-#: src/org/gnome/split/core/util/SizeUnit.java:108
+#: src/org/gnome/split/core/utils/SizeUnit.java:108
 msgid "KB"
 msgstr "Kio"
 
-#: src/org/gnome/split/core/util/SizeUnit.java:114
+#: src/org/gnome/split/core/utils/SizeUnit.java:114
 msgid "MB"
 msgstr "Mio"
 
-#: src/org/gnome/split/core/util/SizeUnit.java:120
+#: src/org/gnome/split/core/utils/SizeUnit.java:120
 msgid "GB"
 msgstr "Gio"
 
-#~ msgid "Action choice"
-#~ msgstr "Choix d'une action"
-#~ msgid "Choose an action to perform."
-#~ msgstr "Choisissez une action à exécuter."
-#~ msgid "Assembly"
-#~ msgstr "Assemblage"
+#: src/org/gnome/split/core/utils/SizeUnit.java:140
+msgid "bytes (B)"
+msgstr "octets (o)"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:140
+msgid "kilobytes (KB)"
+msgstr "kibioctets (Kio)"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:140
+msgid "megabytes (MB)"
+msgstr "mébioctets (Mio)"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:140
+msgid "gigbaytes (GB)"
+msgstr "gibioctets (Gio)"
 

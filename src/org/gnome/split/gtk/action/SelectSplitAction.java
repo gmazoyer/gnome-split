@@ -1,5 +1,5 @@
 /*
- * PauseAction.java
+ * SelectSplitAction.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -20,24 +20,26 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Action to suspend a split/merge.
+ * Action to display the split view.
  * 
  * @author Guillaume Mazoyer
  */
-public final class PauseAction extends Action
+public final class SelectSplitAction extends ToggleAction
 {
-    public PauseAction(final GnomeSplit app) {
-        super(app, Stock.MEDIA_PAUSE, _("Suspend"));
+    public SelectSplitAction(final GnomeSplit app) {
+        super(app, _("Split"), true);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
-        this.getApplication().getEngineListener().getEngine().pause();
+    public void actionPerformed(ToggleActionEvent event, boolean active) {
+        this.setActive(!active);
+        if (!active) {
+            this.getApplication().getMainWindow().switchView();
+        }
     }
 }

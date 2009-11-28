@@ -41,7 +41,7 @@ public class ActionManager
         actions.put(ActionId.MENU_OPEN_DIR, new OpenDirAction(app));
         actions.put(ActionId.MENU_START, new StartAction(app));
         actions.put(ActionId.MENU_PAUSE, new PauseAction(app));
-        actions.put(ActionId.MENU_REMOVE, new RemoveAction(app));
+        actions.put(ActionId.MENU_CANCEL, new CancelAction(app));
         actions.put(ActionId.MENU_DELETE, new DeleteAction(app));
         actions.put(ActionId.MENU_EXIT, new QuitAction(app));
         actions.put(ActionId.MENU_PREFERENCES, new PreferencesAction(app));
@@ -52,8 +52,12 @@ public class ActionManager
         actions.put(ActionId.TOOL_NEW, new NewAction(app));
         actions.put(ActionId.TOOL_START, new StartAction(app));
         actions.put(ActionId.TOOL_PAUSE, new PauseAction(app));
-        actions.put(ActionId.TOOL_REMOVE, new RemoveAction(app));
+        actions.put(ActionId.TOOL_CANCEL, new CancelAction(app));
         actions.put(ActionId.TOOL_PROPERTIES, new PropertiesAction(app));
+
+        // Actions related to the select view widget
+        toggles.put(ActionId.SELECT_SPLIT, new SelectSplitAction(app));
+        toggles.put(ActionId.SELECT_MERGE, new SelectMergeAction(app));
 
         // Actions related to the tray icon
         toggles.put(ActionId.TRAY_WINDOW, new MainWindowAction(app));
@@ -90,6 +94,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        MENU_NEW, MENU_PROPERTIES, MENU_OPEN_DIR, MENU_START, MENU_PAUSE, MENU_REMOVE, MENU_DELETE, MENU_START_ALL, MENU_PAUSE_ALL, MENU_EXIT, MENU_SELECT_ALL, MENU_UNSELECT_ALL, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_NEW, TOOL_START, TOOL_PAUSE, TOOL_REMOVE, TOOL_PROPERTIES, TRAY_WINDOW, TRAY_START_ALL, TRAY_PAUSE_ALL, TRAY_EXIT, TRAY_ABOUT;
+        MENU_NEW, MENU_PROPERTIES, MENU_OPEN_DIR, MENU_START, MENU_PAUSE, MENU_CANCEL, MENU_DELETE, MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_NEW, TOOL_START, TOOL_PAUSE, TOOL_CANCEL, TOOL_PROPERTIES, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW, TRAY_EXIT, TRAY_ABOUT;
     }
 }

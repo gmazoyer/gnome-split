@@ -29,6 +29,16 @@ package org.gnome.split.core;
 public interface EngineListener
 {
     /**
+     * Update the current {@link Engine engine}.
+     */
+    public void setEngine(Engine engine);
+    
+    /**
+     * Get the current used {@link Engine engine}.
+     */
+    public Engine getEngine();
+
+    /**
      * Used when a part has been fully read/written.
      */
     public void enginePartEnded(int next);
@@ -46,5 +56,5 @@ public interface EngineListener
     /**
      * Used when a read has been done.
      */
-    public void engineDone(long read);
+    public void engineDone(double progress);
 }

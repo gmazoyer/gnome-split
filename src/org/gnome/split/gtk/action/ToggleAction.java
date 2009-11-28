@@ -21,6 +21,9 @@
 package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.CheckMenuItem;
+import org.gnome.gtk.RadioButton;
+import org.gnome.gtk.RadioButtonGroup;
+import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
 
@@ -57,8 +60,9 @@ public abstract class ToggleAction
         final CheckMenuItem item = new CheckMenuItem(label);
 
         // Set tooltip if there is one and active state
-        if (tooltip != null)
+        if (tooltip != null) {
             item.setTooltipText(tooltip);
+        }
         item.setActive(active);
 
         // Connect signal and event use
@@ -71,6 +75,27 @@ public abstract class ToggleAction
         });
 
         return item;
+    }
+
+    public RadioButton createRadioButton(RadioButtonGroup group) {
+        final RadioButton button = new RadioButton(group, label);
+
+        // Set tooltip if there is one and active state
+        if (tooltip != null) {
+            button.setTooltipText(tooltip);
+        }
+        button.setActive(active);
+
+        // Connect signal and event use
+        button.connect(new RadioButton.Toggled() {
+            @Override
+            public void onToggled(ToggleButton source) {
+                ToggleActionEvent event = new ToggleActionEvent(source);
+                actionPerformed(event, active);
+            }
+        });
+
+        return button;
     }
 
     protected GnomeSplit getApplication() {

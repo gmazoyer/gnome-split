@@ -24,6 +24,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineException;
@@ -46,13 +47,19 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     protected int parts = -1;
 
     /**
+     * A part of the name of the files which will be created.
+     */
+    protected String destination;
+
+    /**
      * Create a new split {@link Engine engine} using a <code>file</code> to
      * split and a number of <code>parts</code>.
      */
-    public DefaultSplitEngine(File file, int parts) {
-        super();
+    public DefaultSplitEngine(final GnomeSplit app, File file, int parts, String destination) {
+        super(app);
         this.file = file;
         this.parts = parts;
+        this.destination = destination;
     }
 
     @Override
@@ -77,27 +84,27 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      * Notify the view that a part has been written.
      */
     protected void fireEnginePartEnded(int next) {
-    // DefaultEngineListener.getInstance().enginePartEnded(next);
+        app.getEngineListener().enginePartEnded(next);
     }
 
     /**
      * Notify the view that the engine has finish its work.
      */
     protected void fireEngineEnded() {
-    // DefaultEngineListener.getInstance().engineEnded();
+        app.getEngineListener().engineEnded();
     }
 
     /**
      * Notify the view that an error has occurred.
      */
     protected void fireEngineError(EngineException exception) {
-    // DefaultEngineListener.getInstance().engineError(exception);
+        app.getEngineListener().engineError(exception);
     }
 
     /**
      * Notify the view that a part of the file has been read.
      */
-    protected void fireEngineDone(long read) {
-    // DefaultEngineListener.getInstance().engineDone(read);
+    protected void fireEngineDone(double progress) {
+        app.getEngineListener().engineDone(progress);
     }
 }

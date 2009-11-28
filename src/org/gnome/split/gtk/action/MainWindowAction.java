@@ -44,11 +44,12 @@ public final class MainWindowAction extends ToggleAction
         // Change action state
         this.setActive(!active);
 
-        if (active)
+        if (active) {
             // Hide the window
             window.hide();
-        else
+        } else {
             // Show the window
             window.showAll();
+        }
     }
 }

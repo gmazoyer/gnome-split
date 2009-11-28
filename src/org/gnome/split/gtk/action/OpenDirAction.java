@@ -20,13 +20,8 @@
  */
 package org.gnome.split.gtk.action;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-
-import org.gnome.gtk.Gtk;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.core.action.properties.SplitProperties;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -43,20 +38,6 @@ public final class OpenDirAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        // Get the current action properties.
-        SplitProperties properties = (SplitProperties) this.getApplication()
-                .getMainWindow()
-                .getAction()
-                .getActionProperties();
-
-        if (properties != null) {
-            try {
-                // Open the folder with the right program.
-                Gtk.showURI(new URI("file://" + properties.directory));
-            } catch (URISyntaxException e) {
-                // Should not be used.
-                e.printStackTrace();
-            }
-        }
+        System.out.println(this.getClass().toString());
     }
 }

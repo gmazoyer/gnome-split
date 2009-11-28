@@ -27,6 +27,8 @@ import org.gnome.gtk.MenuBar;
 import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.SeparatorMenuItem;
 import org.gnome.gtk.SeparatorToolItem;
+import org.gnome.gtk.SizeGroup;
+import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.Toolbar;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
@@ -38,6 +40,10 @@ import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
 import org.gnome.split.gtk.dialog.PreferencesDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
+import org.gnome.split.gtk.widget.MergeWidget;
+import org.gnome.split.gtk.widget.SelectView;
+import org.gnome.split.gtk.widget.SplitWidget;
+import org.gnome.split.gtk.widget.StatusWidget;
 import org.gnome.split.gtk.widget.TrayIcon;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -62,6 +68,31 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private TrayIcon trayIcon;
 
     /**
+     * Views selector.
+     */
+    private SelectView views;
+
+    /**
+     * Main container of the {@link Window}.
+     */
+    private VBox mainContainer;
+
+    /**
+     * Widget to display when the split view is selected.
+     */
+    private SplitWidget split;
+
+    /**
+     * Widget to display when the merge view is selected.
+     */
+    private MergeWidget merge;
+
+    /**
+     * Widget derived from {@link Frame} to display the status.
+     */
+    private StatusWidget status;
+
+    /**
      * Classic preferences dialog associated to this window.
      */
     private PreferencesDialog preferences;
@@ -72,15 +103,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private AboutSoftDialog about;
 
     /**
-     * Widget derived from {@link Frame} to display actions.
-     */
-    private ActionWidget action;
-
-    /**
      * Build the main window of GNOME Split.
-     * 
-     * @param app
-     *            the instance of GNOME Split.
      */
     public MainWindow(final GnomeSplit app) {
         super();
@@ -102,18 +125,35 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.about = new AboutSoftDialog();
 
         // Main container
-        final VBox mainContainer = new VBox(false, 0);
-        this.add(mainContainer);
+        this.mainContainer = new VBox(false, 0);
+        this.add(this.mainContainer);
 
         // Add the menu bar
-        mainContainer.packStart(this.createMenu(), false, false, 0);
+        this.mainContainer.packStart(this.createMenu(), false, false, 0);
 
         // Add the tool bar
-        mainContainer.packStart(this.createToolbar(), false, false, 0);
+        this.mainContainer.packStart(this.createToolbar(), false, false, 0);
 
-        // Add the main widgets (action list)
-        this.action = new ActionWidget(app);
-        mainContainer.packStart(action);
+        // Add the views selector
+        this.views = new SelectView(app);
+        this.mainContainer.packStart(views, false, false, 0);
+
+        // Create the two main widgets
+        this.split = new SplitWidget();
+        this.merge = new MergeWidget();
+
+        // Make sure they have the same size
+        final SizeGroup group = new SizeGroup(SizeGroupMode.BOTH);
+        group.add(this.split);
+        group.add(this.merge);
+
+        // Add the main widget
+        this.split.setVisible(true);
+        this.mainContainer.packStart(this.split);
+
+        // Add status widget
+        this.status = new StatusWidget();
+        this.mainContainer.packStart(this.status, false, false, 0);
 
         // Connect delete event handler
         this.connect((Window.DeleteEvent) this);
@@ -124,8 +164,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
     /**
      * Create the menubar to use.
-     * 
-     * @return the menubar.
      */
     private MenuBar createMenu() {
         final MenuBar menubar = new MenuBar();
@@ -143,7 +181,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_START).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_PAUSE).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_REMOVE).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_CANCEL).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_DELETE).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_EXIT).createMenuItem());
@@ -171,8 +209,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
     /**
      * Create the toolbar to use.
-     * 
-     * @return the toolbar.
      */
     private Toolbar createToolbar() {
         final Toolbar toolbar = new Toolbar();
@@ -181,7 +217,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         toolbar.insert(actions.getAction(ActionId.TOOL_NEW).createToolItem(), 0);
         toolbar.insert(actions.getAction(ActionId.TOOL_START).createToolItem(), 1);
         toolbar.insert(actions.getAction(ActionId.TOOL_PAUSE).createToolItem(), 2);
-        toolbar.insert(actions.getAction(ActionId.TOOL_REMOVE).createToolItem(), 3);
+        toolbar.insert(actions.getAction(ActionId.TOOL_CANCEL).createToolItem(), 3);
         toolbar.insert(new SeparatorToolItem(), 4);
         toolbar.insert(actions.getAction(ActionId.TOOL_PROPERTIES).createToolItem(), 5);
 
@@ -189,9 +225,47 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
+     * Switch between widget to display.
+     */
+    public void switchView() {
+        // First we must remove the status widget
+        mainContainer.remove(status);
+
+        if (split.isVisible()) {
+            // Remove the split widget
+            mainContainer.remove(split);
+            split.setVisible(false);
+
+            // Add the merge widget
+            mainContainer.packStart(merge);
+            merge.setVisible(true);
+        } else {
+            // Remove the merge widget
+            mainContainer.remove(merge);
+            merge.setVisible(false);
+
+            // Add the split widget
+            mainContainer.packStart(split);
+            split.setVisible(true);
+        }
+
+        // Finally we re-add the status widget
+        mainContainer.packStart(status);
+    }
+
+    /**
+     * Get the current displayed widget.
+     */
+    public ActionWidget getActionWidget() {
+        if (split.isVisible()) {
+            return split;
+        } else {
+            return merge;
+        }
+    }
+
+    /**
      * Get the preferences dialog.
-     * 
-     * @return the dialog.
      */
     public PreferencesDialog getPreferencesDialog() {
         return preferences;
@@ -199,8 +273,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
     /**
      * Get the about dialog.
-     * 
-     * @return the dialog.
      */
     public AboutSoftDialog getAboutDialog() {
         return about;
@@ -208,20 +280,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
     /**
      * Get the tray icon associated to this window.
-     * 
-     * @return the tray icon.
      */
     public TrayIcon getTrayIcon() {
         return trayIcon;
-    }
-
-    /**
-     * Get the widget which displays actions.
-     * 
-     * @return the action widget.
-     */
-    public ActionWidget getAction() {
-        return action;
     }
 
     @Override

@@ -20,13 +20,22 @@
  */
 package org.gnome.split.gtk.action;
 
+import java.io.File;
+
+import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.Engine;
+import org.gnome.split.core.splitter.Xtremsplit;
+import org.gnome.split.core.utils.Algorithm;
+import org.gnome.split.gtk.dialog.ErrorDialog;
+import org.gnome.split.gtk.widget.ActionWidget;
+import org.gnome.split.gtk.widget.SplitWidget;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Action to start a split.
+ * Action to start a split/merge.
  * 
  * @author Guillaume Mazoyer
  */
@@ -38,6 +47,39 @@ public final class StartAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getAction().run();
+        // Get current instance and current widget
+        GnomeSplit app = this.getApplication();
+        ActionWidget widget = app.getMainWindow().getActionWidget();
+
+        if (!widget.isFullyFilled()) {
+            // The user did not fill all the fields
+            Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Incompleted fields."),
+                    _("You must fill all fields to start a split."));
+            dialog.run();
+            dialog.hide();
+            return;
+        }
+
+        // A split is performed
+        if (widget instanceof SplitWidget) {
+            SplitWidget split = (SplitWidget) widget;
+            int algorithm = split.getAlgorithm();
+
+            switch (algorithm) {
+            case Algorithm.XTREMSPLIT:
+                // Get needed infos
+                File file = new File(split.getFilename());
+                int parts = (int) (file.length() / split.getMaxSize());
+                String dest = split.getDestination();
+
+                // Create the new process and start it
+                Engine run = new Xtremsplit(app, file, parts, dest);
+                app.getEngineListener().setEngine(run);
+                new Thread(run, "Split - " + file.getName()).start();
+                break;
+            default:
+                break;
+            }
+        }
     }
 }

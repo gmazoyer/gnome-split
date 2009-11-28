@@ -49,8 +49,6 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
     private GnomeSplit app;
 
-    private CheckButton autoStart;
-
     private CheckButton hibernation;
 
     private CheckButton trayIcon;
@@ -89,21 +87,6 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         table.setRowSpacing(3);
         table.setColumnSpacing(3);
         page.add(table);
-
-        // Restore auto start status
-        autoStart = new CheckButton(_("Automatically start the action after creating it."));
-        autoStart.setActive(config.AUTO_START);
-        autoStart.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button source) {
-                // Save preferences
-                config.AUTO_START = autoStart.getActive();
-                config.savePreferences();
-            }
-        });
-        
-        // Pack everything in the table
-        table.attach(autoStart, 0, 2, 0, 1);
 
         return page;
     }

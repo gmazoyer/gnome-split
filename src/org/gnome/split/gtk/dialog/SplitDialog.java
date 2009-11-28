@@ -36,8 +36,6 @@ import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.core.action.properties.SplitProperties;
-import org.gnome.split.core.util.SizeUnit;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -198,7 +196,7 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
             case 2: // Mio
             case 3: // Gio
             case 4: // Tio
-                final double multiplier = SizeUnit.values()[units.getActive() - 1];
+                final double multiplier = 0.0;//SizeUnit.values()[units.getActive() - 1];
                 fileSize = (long) (size.getValue() * multiplier);
                 break;
             case 5: // Parts
@@ -210,15 +208,15 @@ public class SplitDialog extends Dialog implements Window.DeleteEvent, Dialog.Re
             }
 
             // Create the split action
-            SplitProperties properties = new SplitProperties();
-            properties.filename = input.getText();
-            properties.size = file.length();
-            properties.directory = destination.getCurrentFolder();
-            properties.targetPattern = name;
-            properties.chunkSize = fileSize;
-
-            // Update the view
-            app.getMainWindow().getAction().updateView(properties);
+//            SplitProperties properties = new SplitProperties();
+//            properties.filename = input.getText();
+//            properties.size = file.length();
+//            properties.directory = destination.getCurrentFolder();
+//            properties.targetPattern = name;
+//            properties.chunkSize = fileSize;
+//
+//            // Update the view
+//            app.getMainWindow().getAction().updateView(properties);
         }
     }
 }

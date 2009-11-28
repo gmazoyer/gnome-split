@@ -24,7 +24,7 @@ import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
 /**
- * Action to see properties of a split/assembly/check in the actions list.
+ * Action to see properties of a split/merge.
  * 
  * @author Guillaume Mazoyer
  */
@@ -36,6 +36,6 @@ public final class PropertiesAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-
+        System.out.println(this.getClass().toString());
     }
 }

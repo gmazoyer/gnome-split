@@ -42,26 +42,6 @@ public final class Configuration
     private File configuration;
 
     /**
-     * Name of the hash file.
-     */
-    public String HASH_FILENAME;
-
-    /**
-     * Hash algorithm to use.
-     */
-    public String HASH_ALGORITHM;
-
-    /**
-     * Size of the file suffix.
-     */
-    public int SUFFIX_SIZE;
-
-    /**
-     * Automatically choose file suffix size.
-     */
-    public boolean AUTO_SUFFIX_SIZE;
-
-    /**
      * Write a file containing the file hash.
      */
     public boolean SAVE_FILE_HASH;
@@ -87,16 +67,8 @@ public final class Configuration
     public boolean SHOW_TRAY_ICON;
 
     /**
-     * Start the action automatically after creating it.
-     */
-    public boolean AUTO_START;
-
-    /**
      * Private constructor can't instantiate Configuration in other class.<br>
      * Check for preferences file and load it.
-     * 
-     * @throws IOException
-     *             if an exception occurs while creating the file.
      */
     public Configuration() throws IOException {
         configuration = new File(Constants.CONFIG_FILE);
@@ -105,14 +77,15 @@ public final class Configuration
         if (!configuration.exists()) {
             // Check if path exists and create it if necessary
             File path = new File(Constants.CONFIG_FOLDER);
-            if (!path.exists())
+            if (!path.exists()) {
                 path.mkdirs();
+            }
 
             // Create file and initialize preferences
             configuration.createNewFile();
             this.createPreferences();
         }
-        load();
+        this.load();
     }
 
     /**
@@ -122,24 +95,18 @@ public final class Configuration
         FileWriter writer = null;
         try {
             writer = new FileWriter(configuration);
-            writer.write("BufferSize      = 1024\n");
-            writer.write("HashFilename    = hash.txt\n");
-            writer.write("HashAlgorithm   = MD5\n");
-            writer.write("SuffixSize      = 1\n");
-            writer.write("AutoSuffixSize  = true\n");
             writer.write("SaveFileHash    = true\n");
             writer.write("DeleteParts     = false\n");
             writer.write("NoHibernation   = true\n");
             writer.write("UseNotification = true\n");
             writer.write("ShowTrayIcon    = false\n");
-            writer.write("AutoStart       = true\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
                 if (writer != null) {
                     writer.close();
-                    load();
+                    this.load();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -158,16 +125,11 @@ public final class Configuration
             preferences.load(stream);
             stream.close();
 
-            HASH_FILENAME = preferences.getProperty("HashFilename", "hash.txt");
-            HASH_ALGORITHM = preferences.getProperty("HashAlgorithm", "MD5");
-            SUFFIX_SIZE = Integer.parseInt(preferences.getProperty("SuffixSize", "1"));
-            AUTO_SUFFIX_SIZE = Boolean.parseBoolean(preferences.getProperty("AutoSuffixSize", "true"));
             SAVE_FILE_HASH = Boolean.parseBoolean(preferences.getProperty("SaveFileHash", "true"));
             DELETE_PARTS = Boolean.parseBoolean(preferences.getProperty("DeleteParts", "false"));
             NO_HIBERNATION = Boolean.parseBoolean(preferences.getProperty("NoHibernation", "true"));
             USE_NOTIFICATION = Boolean.parseBoolean(preferences.getProperty("UseNotification", "false"));
             SHOW_TRAY_ICON = Boolean.parseBoolean(preferences.getProperty("ShowTrayIcon", "false"));
-            AUTO_START = Boolean.parseBoolean(preferences.getProperty("AutoStart", "true"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -180,28 +142,19 @@ public final class Configuration
     public void savePreferences() {
         FileWriter writer = null;
         try {
-            // Prevent empty field
-            if ((HASH_FILENAME == null) || HASH_FILENAME.equals(""))
-                HASH_FILENAME = "hash.txt";
-
             writer = new FileWriter(configuration);
-            writer.write("HashFilename    = " + HASH_FILENAME + "\n");
-            writer.write("HashAlgorithm   = " + HASH_ALGORITHM + "\n");
-            writer.write("SuffixSize      = " + SUFFIX_SIZE + "\n");
-            writer.write("AutoSuffixSize  = " + AUTO_SUFFIX_SIZE + "\n");
             writer.write("SaveFileHash    = " + SAVE_FILE_HASH + "\n");
             writer.write("DeleteParts     = " + DELETE_PARTS + "\n");
             writer.write("NoHibernation   = " + NO_HIBERNATION + "\n");
             writer.write("UseNotification = " + USE_NOTIFICATION + "\n");
             writer.write("ShowTrayIcon    = " + SHOW_TRAY_ICON + "\n");
-            writer.write("AutoStart       = " + AUTO_START + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
                 if (writer != null) {
                     writer.close();
-                    load();
+                    this.load();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
