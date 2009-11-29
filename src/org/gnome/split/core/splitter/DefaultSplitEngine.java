@@ -39,12 +39,12 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     /**
      * The {@link File file} to split.
      */
-    protected File file = null;
+    protected File file;
 
     /**
-     * The number of parts which will be created.
+     * The maximum size of parts which will be created.
      */
-    protected int parts = -1;
+    protected long size;
 
     /**
      * A part of the name of the files which will be created.
@@ -53,12 +53,12 @@ public abstract class DefaultSplitEngine extends DefaultEngine
 
     /**
      * Create a new split {@link Engine engine} using a <code>file</code> to
-     * split and a number of <code>parts</code>.
+     * split and a maximum <code>size</code> for each chunk.
      */
-    public DefaultSplitEngine(final GnomeSplit app, File file, int parts, String destination) {
+    public DefaultSplitEngine(final GnomeSplit app, File file, long size, String destination) {
         super(app);
         this.file = file;
-        this.parts = parts;
+        this.size = size;
         this.destination = destination;
     }
 

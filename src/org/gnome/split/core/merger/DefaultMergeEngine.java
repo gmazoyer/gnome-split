@@ -39,32 +39,32 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * The first part to merge.
      */
-    protected File file = null;
+    protected File file;
 
     /**
      * The name of the file to create.
      */
-    protected String filename = null;
+    protected String filename;
 
     /**
      * The total length of the file.
      */
-    protected long fileLength = -1;
+    protected long fileLength;
 
     /**
      * The number of parts to merge.
      */
-    protected int parts = -1;
+    protected int parts;
 
     /**
      * If the merge should use an MD5 sum or not.
      */
-    protected boolean md5 = false;
+    protected boolean md5;
 
     /**
      * The MD5 sum if it used.
      */
-    protected String md5sum = null;
+    protected String md5sum;
 
     /**
      * Create a new merge {@link Engine engine} using a first

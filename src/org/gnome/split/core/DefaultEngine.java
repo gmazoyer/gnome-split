@@ -33,24 +33,26 @@ public abstract class DefaultEngine implements Engine
      * To manage synchronization of thread.
      */
     protected final Object mutex = new Object();
-    
+
     /**
      * Total of bytes read.
      */
-    protected long total = 0;
+    protected long total;
 
     /**
      * To manage pause and resume actions.
      */
-    protected boolean paused = false;
-    
+    protected boolean paused;
+
     /**
      * Current instance of GNOME Split.
      */
     protected GnomeSplit app = null;
-    
+
     public DefaultEngine(final GnomeSplit app) {
         this.app = app;
+        this.total = 0;
+        this.paused = false;
     }
 
     @Override

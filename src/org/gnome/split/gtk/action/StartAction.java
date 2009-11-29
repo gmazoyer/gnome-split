@@ -69,11 +69,11 @@ public final class StartAction extends Action
             case Algorithm.XTREMSPLIT:
                 // Get needed infos
                 File file = new File(split.getFilename());
-                int parts = (int) (file.length() / split.getMaxSize());
+                long size = split.getMaxSize();
                 String dest = split.getDestination();
 
                 // Create the new process and start it
-                Engine run = new Xtremsplit(app, file, parts, dest);
+                Engine run = new Xtremsplit(app, file, size, dest);
                 app.getEngineListener().setEngine(run);
                 new Thread(run, "Split - " + file.getName()).start();
                 break;

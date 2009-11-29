@@ -32,8 +32,11 @@ import org.gnome.split.core.utils.MD5Hasher;
 
 public class Xtremsplit extends DefaultSplitEngine
 {
-    public Xtremsplit(final GnomeSplit app, File file, int parts, String destination) {
-        super(app, file, parts, destination);
+    private int parts;
+
+    public Xtremsplit(final GnomeSplit app, File file, long size, String destination) {
+        super(app, file, size, destination);
+        parts = (int) Math.ceil((float) file.length() / (float) size);
     }
 
     /**
@@ -84,7 +87,9 @@ public class Xtremsplit extends DefaultSplitEngine
         try {
             // Open a new file
             toSplit = new RandomAccessFile(file, "r");
-            int length = (int) (file.length() / parts);
+
+            // Define the buffer size
+            byte[] buffer = new byte[BUFFER];
 
             for (int i = 1; i <= parts; i++) {
                 RandomAccessFile access = null;
@@ -106,14 +111,12 @@ public class Xtremsplit extends DefaultSplitEngine
                     if (i == 1) {
                         // Write header on the first part
                         this.writeHeaders(access);
-
-                        // Update useful variables
-                        read += 104;
-                        total += 104;
-                        this.fireEngineDone((double) 104 / (double) file.length());
+                    } else if (i == parts) {
+                        // Update size to stop the split correctly
+                        size = file.length() - total;
                     }
 
-                    while (read < length) {
+                    while (read < size) {
                         if (paused) {
                             try {
                                 // Pause the current thread
@@ -123,21 +126,13 @@ public class Xtremsplit extends DefaultSplitEngine
                             }
                         }
 
-                        // Define the buffer size
-                        byte[] buffer;
-                        if (BUFFER > (length - read)) {
-                            buffer = new byte[length - read];
-                        } else {
-                            buffer = new byte[BUFFER];
-                        }
-
                         // Read and write data
-                        toSplit.read(buffer);
-                        access.write(buffer);
+                        int length = toSplit.read(buffer);
+                        access.write(buffer, 0, length);
 
                         // Update read and write status
-                        read += buffer.length;
-                        total += buffer.length;
+                        read += length;
+                        total += length;
                         this.fireEngineDone((double) total / (double) file.length());
                     }
 
