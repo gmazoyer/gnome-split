@@ -85,7 +85,14 @@ public class DefaultEngineListener implements EngineListener
 
     @Override
     public void engineError(EngineException exception) {
+        // Update engine
+        engine = null;
 
+        // Enable user interaction (only in action widget)
+        gtk.getActionWidget().enable();
+
+        // Update the status widget
+        gtk.getStatusWidget().update(Stock.DIALOG_ERROR, exception.getMessage());
     }
 
     @Override
