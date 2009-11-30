@@ -174,15 +174,14 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu fileMenu = new Menu();
 
         fileItem.setSubmenu(fileMenu);
-        fileMenu.append(actions.getAction(ActionId.MENU_NEW).createMenuItem());
-        fileMenu.append(new SeparatorMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_PROPERTIES).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_OPEN_DIR).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_PROPERTIES).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_START).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_PAUSE).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_CANCEL).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_DELETE).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.MENU_CLEAR).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.MENU_EXIT).createMenuItem());
         menubar.append(fileItem);
@@ -214,10 +213,10 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Toolbar toolbar = new Toolbar();
         final ActionManager actions = app.getActionManager();
 
-        toolbar.insert(actions.getAction(ActionId.TOOL_NEW).createToolItem(), 0);
-        toolbar.insert(actions.getAction(ActionId.TOOL_START).createToolItem(), 1);
-        toolbar.insert(actions.getAction(ActionId.TOOL_PAUSE).createToolItem(), 2);
-        toolbar.insert(actions.getAction(ActionId.TOOL_CANCEL).createToolItem(), 3);
+        toolbar.insert(actions.getAction(ActionId.TOOL_START).createToolItem(), 0);
+        toolbar.insert(actions.getAction(ActionId.TOOL_PAUSE).createToolItem(), 1);
+        toolbar.insert(actions.getAction(ActionId.TOOL_CANCEL).createToolItem(), 2);
+        toolbar.insert(actions.getAction(ActionId.TOOL_CLEAR).createToolItem(), 3);
         toolbar.insert(new SeparatorToolItem(), 4);
         toolbar.insert(actions.getAction(ActionId.TOOL_PROPERTIES).createToolItem(), 5);
 

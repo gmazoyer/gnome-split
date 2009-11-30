@@ -1,5 +1,5 @@
 /*
- * FileUtils.java
+ * ClearAction.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,16 +18,24 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.utils;
+package org.gnome.split.gtk.action;
 
-import java.io.File;
-import java.net.FileNameMap;
-import java.net.URLConnection;
+import org.gnome.gtk.Stock;
+import org.gnome.split.GnomeSplit;
 
-public class FileUtils
+/**
+ * Action to clear the action widgets.
+ * 
+ * @author Guillaume Mazoyer
+ */
+public final class ClearAction extends Action
 {
-    public static String getMimeType(final File file) {
-        final FileNameMap map = URLConnection.getFileNameMap();
-        return map.getContentTypeFor(file.getAbsolutePath());
+    public ClearAction(final GnomeSplit app) {
+        super(app, Stock.CLEAR);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent event) {
+        this.getApplication().getMainWindow().getActionWidget().reset();
     }
 }

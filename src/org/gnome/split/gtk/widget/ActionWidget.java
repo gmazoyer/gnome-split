@@ -53,6 +53,11 @@ public interface ActionWidget
     public void enable();
 
     /**
+     * Reset the widget to its basic state.
+     */
+    public void reset();
+
+    /**
      * Update the progress which is displayed by the widget.
      */
     public void updateProgress(double progress);

@@ -72,6 +72,11 @@ public class MergeWidget extends Frame implements ActionWidget
     }
 
     @Override
+    public void reset() {
+
+    }
+
+    @Override
     public void updateProgress(double progress) {
 
     }

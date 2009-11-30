@@ -246,6 +246,16 @@ public class SplitWidget extends Frame implements ActionWidget
     }
 
     @Override
+    public void reset() {
+        fileEntry.setText("");
+        destinationEntry.setText("");
+        dirChooser.setCurrentFolder(System.getProperty("user.home"));
+        sizeButton.setValue(1);
+        sizeUnits.setActive(0);
+        algoList.setActive(0);
+    }
+
+    @Override
     public void updateProgress(double progress) {
         progressbar.setFraction(progress);
     }

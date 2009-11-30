@@ -27,8 +27,14 @@ import org.gnome.split.GnomeSplit;
 
 public class ActionManager
 {
+    /**
+     * Regular actions.
+     */
     private Map<ActionId, Action> actions;
 
+    /**
+     * Actions based on two states.
+     */
     private Map<ActionId, ToggleAction> toggles;
 
     public ActionManager(final GnomeSplit app) {
@@ -36,23 +42,23 @@ public class ActionManager
         toggles = new HashMap<ActionId, ToggleAction>();
 
         // Actions related to the menubar
-        actions.put(ActionId.MENU_NEW, new NewAction(app));
         actions.put(ActionId.MENU_PROPERTIES, new PropertiesAction(app));
         actions.put(ActionId.MENU_OPEN_DIR, new OpenDirAction(app));
         actions.put(ActionId.MENU_START, new StartAction(app));
         actions.put(ActionId.MENU_PAUSE, new PauseAction(app));
         actions.put(ActionId.MENU_CANCEL, new CancelAction(app));
         actions.put(ActionId.MENU_DELETE, new DeleteAction(app));
+        actions.put(ActionId.MENU_CLEAR, new ClearAction(app));
         actions.put(ActionId.MENU_EXIT, new QuitAction(app));
         actions.put(ActionId.MENU_PREFERENCES, new PreferencesAction(app));
         actions.put(ActionId.MENU_HELP, new HelpAction(app));
         actions.put(ActionId.MENU_ABOUT, new AboutAction(app));
 
         // Actions related to the toolbar
-        actions.put(ActionId.TOOL_NEW, new NewAction(app));
         actions.put(ActionId.TOOL_START, new StartAction(app));
         actions.put(ActionId.TOOL_PAUSE, new PauseAction(app));
         actions.put(ActionId.TOOL_CANCEL, new CancelAction(app));
+        actions.put(ActionId.TOOL_CLEAR, new ClearAction(app));
         actions.put(ActionId.TOOL_PROPERTIES, new PropertiesAction(app));
 
         // Actions related to the select view widget
@@ -67,10 +73,6 @@ public class ActionManager
 
     /**
      * Get an action using its ID.
-     * 
-     * @param id
-     *            the action ID.
-     * @return the action.
      */
     public Action getAction(ActionId id) {
         return actions.get(id);
@@ -78,10 +80,6 @@ public class ActionManager
 
     /**
      * Get a toggle action using its ID.
-     * 
-     * @param id
-     *            the action ID.
-     * @return the action.
      */
     public ToggleAction getToggleAction(ActionId id) {
         return toggles.get(id);
@@ -94,6 +92,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        MENU_NEW, MENU_PROPERTIES, MENU_OPEN_DIR, MENU_START, MENU_PAUSE, MENU_CANCEL, MENU_DELETE, MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_NEW, TOOL_START, TOOL_PAUSE, TOOL_CANCEL, TOOL_PROPERTIES, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW, TRAY_EXIT, TRAY_ABOUT;
+        MENU_OPEN_DIR, MENU_PROPERTIES, MENU_START, MENU_PAUSE, MENU_CANCEL, MENU_DELETE, MENU_CLEAR, MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_START, TOOL_PAUSE, TOOL_CANCEL, TOOL_CLEAR, TOOL_PROPERTIES, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW, TRAY_EXIT, TRAY_ABOUT;
     }
 }
