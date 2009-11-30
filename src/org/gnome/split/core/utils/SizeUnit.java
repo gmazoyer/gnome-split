@@ -62,7 +62,7 @@ public final class SizeUnit
     /**
      * Get the best divider for a size to make it readable for human being.
      */
-    public static double getSizeDivider(long size) {
+    public static double getSizeDivider(double size) {
         if (size < KB) {
             // Use bytes only
             return 0;
@@ -82,7 +82,7 @@ public final class SizeUnit
      * Format a size into a {@link String} to make it readable for human
      * being.
      */
-    public static String formatSize(long size, double divider) {
+    public static String formatSize(double size, double divider) {
         final StringBuilder builder = new StringBuilder();
         final DecimalFormat format = new DecimalFormat();
 
@@ -128,7 +128,7 @@ public final class SizeUnit
     /**
      * Format a size using the best unit for it.
      */
-    public static String formatSize(long size) {
+    public static String formatSize(double size) {
         return formatSize(size, getSizeDivider(size));
     }
 

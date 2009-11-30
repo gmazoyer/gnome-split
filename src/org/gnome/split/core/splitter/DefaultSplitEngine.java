@@ -23,6 +23,8 @@ package org.gnome.split.core.splitter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
@@ -52,6 +54,11 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     protected String destination;
 
     /**
+     * {@link List} of all chunks which had been created.
+     */
+    protected List<String> chunks;
+
+    /**
      * Create a new split {@link Engine engine} using a <code>file</code> to
      * split and a maximum <code>size</code> for each chunk.
      */
@@ -60,6 +67,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
         this.file = file;
         this.size = size;
         this.destination = destination;
+        this.chunks = new ArrayList<String>();
     }
 
     @Override
@@ -81,10 +89,10 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     public abstract void split() throws IOException, FileNotFoundException;
 
     /**
-     * Notify the view that a part has been written.
+     * Notify the view that a part has been created.
      */
-    protected void fireEnginePartEnded(int next) {
-        app.getEngineListener().enginePartEnded(next);
+    protected void fireEnginePartCreated(String filename) {
+        app.getEngineListener().enginePartCreated(filename);
     }
 
     /**
@@ -104,7 +112,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     /**
      * Notify the view that a part of the file has been read.
      */
-    protected void fireEngineDone(double progress) {
-        app.getEngineListener().engineDone(progress);
+    protected void fireEngineDone(double done, double total) {
+        app.getEngineListener().engineDone(done, total);
     }
 }

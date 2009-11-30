@@ -20,10 +20,15 @@
  */
 package org.gnome.split.gtk;
 
+import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineException;
 import org.gnome.split.core.EngineListener;
+import org.gnome.split.core.splitter.DefaultSplitEngine;
+import org.gnome.split.core.utils.SizeUnit;
+
+import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * Manage the view update of the application.
@@ -53,8 +58,13 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
-    public void engineDone(double progress) {
-        gtk.getActionWidget().updateProgress(progress);
+    public void engineDone(double done, double total) {
+        // Format the sizes to display them in the widget
+        double divider = SizeUnit.getSizeDivider(total);
+        String text = SizeUnit.formatSize(done, divider) + " / " + SizeUnit.formatSize(total, divider);
+
+        // Now update the widget
+        gtk.getActionWidget().updateProgress((done / total), text);
     }
 
     @Override
@@ -64,6 +74,13 @@ public class DefaultEngineListener implements EngineListener
 
         // Enable user interaction (only in action widget)
         gtk.getActionWidget().enable();
+
+        // Update the status widget
+        if (engine instanceof DefaultSplitEngine) {
+            gtk.getStatusWidget().update(Stock.YES, _("Split terminated."));
+        } else {
+            gtk.getStatusWidget().update(Stock.YES, _("Merge terminated."));
+        }
     }
 
     @Override
@@ -72,8 +89,13 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
-    public void enginePartEnded(int next) {
+    public void enginePartCreated(String filename) {
+        gtk.getStatusWidget().update(Stock.REFRESH, _("Writting {0}.", filename));
+    }
 
+    @Override
+    public void enginePartRead(String filename) {
+        gtk.getStatusWidget().update(Stock.REFRESH, _("Reading {0}.", filename));
     }
 
     @Override

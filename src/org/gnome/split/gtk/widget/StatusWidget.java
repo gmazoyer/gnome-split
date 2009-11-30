@@ -86,4 +86,12 @@ public class StatusWidget extends Frame
     public void updateText(String message) {
         text.setLabel(message);
     }
+
+    /**
+     * Update the displayed icon and text.
+     */
+    public void update(Stock stock, String message) {
+        this.updateImage(stock);
+        this.updateText(message);
+    }
 }

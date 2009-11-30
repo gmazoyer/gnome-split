@@ -93,6 +93,7 @@ public class Xtremsplit extends DefaultSplitEngine
 
             for (int i = 1; i <= parts; i++) {
                 RandomAccessFile access = null;
+                File chunk = null;
                 try {
                     // Get the current extension
                     String current;
@@ -105,8 +106,13 @@ public class Xtremsplit extends DefaultSplitEngine
                     }
 
                     // Open the part
-                    access = new RandomAccessFile(destination + "." + current + ".xtm", "rw");
+                    chunk = new File(destination + "." + current + ".xtm");
+                    access = new RandomAccessFile(chunk, "rw");
                     int read = 0;
+
+                    // Notify the view from a new part
+                    chunks.add(chunk.getAbsolutePath());
+                    this.fireEnginePartCreated(chunk.getName());
 
                     if (i == 1) {
                         // Write header on the first part
@@ -127,13 +133,13 @@ public class Xtremsplit extends DefaultSplitEngine
                         }
 
                         // Read and write data
-                        int length = toSplit.read(buffer);
-                        access.write(buffer, 0, length);
+                        int bufferised = toSplit.read(buffer);
+                        access.write(buffer, 0, bufferised);
 
                         // Update read and write status
-                        read += length;
-                        total += length;
-                        this.fireEngineDone((double) total / (double) file.length());
+                        read += bufferised;
+                        total += bufferised;
+                        this.fireEngineDone((double) total, (double) file.length());
                     }
 
                     // Should we save MD5 sum?
@@ -146,9 +152,6 @@ public class Xtremsplit extends DefaultSplitEngine
                         access.writeByte(md5sum.length());
                         access.write(md5sum.getBytes());
                     }
-
-                    // Notify the end of the part
-                    this.fireEnginePartEnded(((i + 1) > parts) ? -1 : i);
                 } catch (FileNotFoundException e) {
                     throw e;
                 } catch (IOException e) {

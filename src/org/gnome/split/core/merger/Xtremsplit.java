@@ -83,10 +83,13 @@ public class Xtremsplit extends DefaultMergeEngine
     public void merge() throws IOException, FileNotFoundException {
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
         FileOutputStream out = null;
+        File chunk = null;
         try {
             // Open the final file
             out = new FileOutputStream(filename);
-            this.fireEnginePartEnded(1);
+
+            // Define the buffer size
+            byte[] buffer = new byte[BUFFER];
 
             for (int i = 1; i <= parts; i++) {
                 // Get the current extension
@@ -100,9 +103,13 @@ public class Xtremsplit extends DefaultMergeEngine
                 }
 
                 // Open the current part to merge
-                RandomAccessFile access = new RandomAccessFile(part + current + ".xtm", "r");
+                chunk = new File(part + current + ".xtm");
+                RandomAccessFile access = new RandomAccessFile(chunk, "r");
                 long read = 0;
                 long length = access.length();
+
+                // Notify the view from a new part read
+                this.fireEnginePartRead(chunk.getName());
 
                 if (md5 && (i == parts)) {
                     // Skip the MD5 sum if it is the last part
@@ -112,11 +119,6 @@ public class Xtremsplit extends DefaultMergeEngine
                 if (i == 1) {
                     // Skip headers if it is the first part
                     access.skipBytes(104);
-
-                    // Update useful variables
-                    read += 104;
-                    total += 104;
-                    this.fireEngineDone((double) 104 / (double) fileLength);
                 }
 
                 // Merge the file
@@ -130,22 +132,14 @@ public class Xtremsplit extends DefaultMergeEngine
                         }
                     }
 
-                    // Define the buffer size
-                    byte[] buffer;
-                    if (BUFFER > (length - read)) {
-                        buffer = new byte[(int) (length - read)];
-                    } else {
-                        buffer = new byte[BUFFER];
-                    }
-
                     // Read and write data
-                    access.read(buffer);
-                    out.write(buffer);
+                    int bufferised = access.read(buffer);
+                    out.write(buffer, 0, bufferised);
 
                     // Update read and write status
-                    read += buffer.length;
-                    total += buffer.length;
-                    this.fireEngineDone((double) total / (double) fileLength);
+                    read += bufferised;
+                    total += bufferised;
+                    this.fireEngineDone((double) total, (double) fileLength);
                 }
 
                 // Close the part
@@ -166,9 +160,6 @@ public class Xtremsplit extends DefaultMergeEngine
                         // Notify the user about the error
                     }
                 }
-
-                // Notify the end of the part
-                this.fireEnginePartEnded(((i + 1) > parts) ? -1 : i);
             }
 
             // Notify the end of the merge

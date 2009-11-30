@@ -32,16 +32,21 @@ public interface EngineListener
      * Update the current {@link Engine engine}.
      */
     public void setEngine(Engine engine);
-    
+
     /**
      * Get the current used {@link Engine engine}.
      */
     public Engine getEngine();
 
     /**
-     * Used when a part has been fully read/written.
+     * Used when a part has been created.
      */
-    public void enginePartEnded(int next);
+    public void enginePartCreated(String filename);
+
+    /**
+     * Used when a part is currently being read.
+     */
+    public void enginePartRead(String filename);
 
     /**
      * Used when the action has finished.
@@ -56,5 +61,5 @@ public interface EngineListener
     /**
      * Used when a read has been done.
      */
-    public void engineDone(double progress);
+    public void engineDone(double done, double total);
 }

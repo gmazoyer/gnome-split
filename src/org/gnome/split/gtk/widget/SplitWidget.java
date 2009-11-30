@@ -253,11 +253,14 @@ public class SplitWidget extends Frame implements ActionWidget
         sizeButton.setValue(1);
         sizeUnits.setActive(0);
         algoList.setActive(0);
+        progressbar.setFraction(0);
+        progressbar.setText("");
     }
 
     @Override
-    public void updateProgress(double progress) {
+    public void updateProgress(double progress, String text) {
         progressbar.setFraction(progress);
+        progressbar.setText(text);
     }
 
     /**

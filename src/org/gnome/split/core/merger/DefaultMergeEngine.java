@@ -122,10 +122,10 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     public abstract void merge() throws IOException, FileNotFoundException;
 
     /**
-     * Notify the view that a part has been read.
+     * Notify the view that a part is being read.
      */
-    protected void fireEnginePartEnded(int next) {
-        app.getEngineListener().enginePartEnded(next);
+    protected void fireEnginePartRead(String filename) {
+        app.getEngineListener().enginePartRead(filename);
     }
 
     /**
@@ -145,7 +145,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Notify the view that a part of the file has been read.
      */
-    protected void fireEngineDone(double progress) {
-        app.getEngineListener().engineDone(progress);
+    protected void fireEngineDone(double done, double total) {
+        app.getEngineListener().engineDone(done, total);
     }
 }

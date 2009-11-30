@@ -12,15 +12,33 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:80
+msgid "Split terminated."
+msgstr "Découpage terminé."
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:82
+msgid "Merge terminated."
+msgstr "Assemblage terminé."
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:93
+#, java-format
+msgid "Writting {0}."
+msgstr "Écriture de {0}."
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:98
+#, java-format
+msgid "Reading {0}."
+msgstr "Lecture de {0}."
+
 #: src/org/gnome/split/gtk/MainWindow.java:173
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:191
+#: src/org/gnome/split/gtk/MainWindow.java:190
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:199
+#: src/org/gnome/split/gtk/MainWindow.java:198
 msgid "_Help"
 msgstr "_Aide"
 
@@ -36,22 +54,21 @@ msgstr "Suspendre"
 msgid "_Open folder"
 msgstr "_Ouvrir le dossier"
 
-#: src/org/gnome/split/gtk/action/NewAction.java:52
-#: src/org/gnome/split/gtk/action/SelectSplitAction.java:35
-msgid "Split"
-msgstr "Découpage"
-
 #: src/org/gnome/split/gtk/action/StartAction.java:45
 msgid "Start"
 msgstr "Démarrer"
 
-#: src/org/gnome/split/gtk/action/StartAction.java:56
+#: src/org/gnome/split/gtk/action/StartAction.java:64
 msgid "Incompleted fields."
 msgstr "Champs incomplets."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:57
+#: src/org/gnome/split/gtk/action/StartAction.java:65
 msgid "You must fill all fields to start a split."
 msgstr "Vous devez remplir tous les champs avant de lancer un découpage."
+
+#: src/org/gnome/split/gtk/action/SelectSplitAction.java:35
+msgid "Split"
+msgstr "Découpage"
 
 #: src/org/gnome/split/gtk/action/MainWindowAction.java:36
 msgid "Main _window"

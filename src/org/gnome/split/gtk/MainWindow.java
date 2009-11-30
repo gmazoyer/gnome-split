@@ -264,6 +264,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
+     * Get the widget that displays the status.
+     */
+    public StatusWidget getStatusWidget() {
+        return status;
+    }
+
+    /**
      * Get the preferences dialog.
      */
     public PreferencesDialog getPreferencesDialog() {

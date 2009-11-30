@@ -39,6 +39,7 @@ public final class ClearAction extends Action
         // No action is performed, allow the widget clean up
         if (this.getApplication().getEngineListener().getEngine() == null) {
             this.getApplication().getMainWindow().getActionWidget().reset();
+            this.getApplication().getMainWindow().getStatusWidget().reset();
         }
     }
 }

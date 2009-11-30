@@ -70,16 +70,17 @@ public final class StartAction extends Action
 
             // A split is performed
             if (widget instanceof SplitWidget) {
+                // Widget related info
                 SplitWidget split = (SplitWidget) widget;
                 int algorithm = split.getAlgorithm();
 
+                // Split related info
+                File file = new File(split.getFilename());
+                long size = split.getMaxSize();
+                String dest = split.getDestination();
+
                 switch (algorithm) {
                 case Algorithm.XTREMSPLIT:
-                    // Get needed infos
-                    File file = new File(split.getFilename());
-                    long size = split.getMaxSize();
-                    String dest = split.getDestination();
-
                     // Create the new process and start it
                     Engine run = new Xtremsplit(app, file, size, dest);
                     app.getEngineListener().setEngine(run);
