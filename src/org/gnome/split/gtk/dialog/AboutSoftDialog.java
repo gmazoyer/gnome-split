@@ -45,7 +45,9 @@ public class AboutSoftDialog extends AboutDialog implements Window.DeleteEvent, 
 
     private static String expackager = N_("Retired packager:");
 
-    /** Builds the about dialog. */
+    /**
+     * Build the about dialog.
+     */
     public AboutSoftDialog() {
         super();
 

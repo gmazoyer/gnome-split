@@ -104,7 +104,7 @@ public class SplitWidget extends Frame implements ActionWidget
         final VBox container = new VBox(false, 12);
         this.add(container);
 
-        // --------------------------------------------
+        // Pack all Labels in the same box
         final HBox firstRow = new HBox(false, 5);
         container.packStart(firstRow);
 
@@ -117,6 +117,7 @@ public class SplitWidget extends Frame implements ActionWidget
         final Label destinationLabel = new Label(_("Destination:"));
         labelColumn.packStart(destinationLabel);
 
+        // Pack all Entrys in the same box
         final VBox entryColumn = new VBox(false, 5);
         firstRow.packStart(entryColumn);
 
@@ -130,6 +131,7 @@ public class SplitWidget extends Frame implements ActionWidget
         destinationEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
         entryColumn.packStart(destinationEntry);
 
+        // Pack all choosers in the same box
         final VBox chooserColumn = new VBox(false, 5);
         firstRow.packStart(chooserColumn);
 
@@ -146,12 +148,11 @@ public class SplitWidget extends Frame implements ActionWidget
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
         dirChooser.setCurrentFolder(System.getProperty("user.home"));
         chooserColumn.packStart(dirChooser);
-        // --------------------------------------------
 
         final HBox thirdRow = new HBox(false, 5);
         container.packStart(thirdRow);
 
-        // --------------------------------------------
+        // Pack size related widgets
         final VBox firstColumn = new VBox(false, 5);
         thirdRow.packStart(firstColumn);
 
@@ -171,9 +172,8 @@ public class SplitWidget extends Frame implements ActionWidget
         }
         sizeUnits.setActive(0);
         splitSize.packStart(sizeUnits);
-        // --------------------------------------------
 
-        // --------------------------------------------
+        // Pack algorithm related widgets
         final VBox secondColumn = new VBox(false, 5);
         thirdRow.packStart(secondColumn);
 
@@ -187,14 +187,13 @@ public class SplitWidget extends Frame implements ActionWidget
         }
         algoList.setActive(0);
         secondColumn.packStart(algoList);
-        // --------------------------------------------
 
-        // --------------------------------------------
+        // Make the sizes of size and algorithm boxes equal
         final SizeGroup group = new SizeGroup(SizeGroupMode.BOTH);
         group.add(firstColumn);
         group.add(secondColumn);
-        // --------------------------------------------
 
+        // Pack the progress bar
         progressbar = new ProgressBar();
         container.packStart(progressbar);
 

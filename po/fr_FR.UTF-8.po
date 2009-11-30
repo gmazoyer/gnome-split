@@ -98,19 +98,19 @@ msgstr "Packageur :"
 msgid "Retired packager:"
 msgstr "Packageur retraité :"
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:57
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:59
 msgid "Split and merge your files easily."
 msgstr "Découpez et assemblez vos fichiers."
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:58
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:60
 msgid "the GNOME Split project"
 msgstr "le projet GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:82
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:84
 msgid "translator-credits"
 msgstr "Guillaume Mazoyer <respawneral@gmail.com>"
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:85
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:87
 msgid ""
 "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3, as published by the Free Software Foundation.\n"
 "\n"
@@ -156,70 +156,13 @@ msgstr "Afficher l'_icône dans la zone de notification."
 msgid "Show desktop _notification."
 msgstr "Afficher les _notifications."
 
-#: src/org/gnome/split/gtk/dialog/InfoDialog.java:47
+#: src/org/gnome/split/gtk/dialog/InfoDialog.java:41
 msgid "Information"
 msgstr "Information"
 
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:82
-msgid "New split"
-msgstr "Nouveau découpage"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:97
-msgid "File to split"
-msgstr "À découper"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:101
-msgid "Splitted file size"
-msgstr "Taille des fichiers"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:105
-msgid "Target folder"
-msgstr "Dossier de destination"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:121
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:136
-msgid "Choose a file."
-msgstr "Choisissez un fichier."
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:136
-msgid "byte"
-msgstr "octet"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:137
-msgid "kilobyte (KB)"
-msgstr "kibioctet (Kio)"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:138
-msgid "megabyte (MB)"
-msgstr "mébioctet (Mio)"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:139
-msgid "gigabyte (GB)"
-msgstr "gibioctet (Gio)"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:140
-msgid "parts"
-msgstr "parties"
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:145
-msgid "Choose a folder."
-msgstr "Choisissez un dossier."
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:174
-msgid "Uncompleted fields."
-msgstr "Champs incomplets."
-
-#: src/org/gnome/split/gtk/dialog/SplitDialog.java:175
-msgid "Check that all fields are completed."
-msgstr "Vérifiez que tous les champs ont été complétés."
-
-#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:47
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:41
 msgid "Error!"
 msgstr "Erreur !"
-
-#: src/org/gnome/split/gtk/dialog/QuestionDialog.java:48
-msgid "Question"
-msgstr "Question"
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:114
 msgid "File:"
@@ -229,11 +172,15 @@ msgstr "Fichier :"
 msgid "Destination:"
 msgstr "Destination :"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:146
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:138
+msgid "Choose a file."
+msgstr "Choisissez un fichier."
+
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:148
 msgid "Choose a directory."
 msgstr "Choisissez un dossier."
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:158
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:159
 msgid "Split in:"
 msgstr "Découper en :"
 

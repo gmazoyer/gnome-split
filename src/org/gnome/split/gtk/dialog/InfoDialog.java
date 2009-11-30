@@ -33,14 +33,8 @@ import org.gnome.gtk.Window;
 public class InfoDialog extends InfoMessageDialog
 {
     /**
-     * Create an <code>InfoDialog</code>.
-     * 
-     * @param parent
-     *            the parent window this dialog is attached with.
-     * @param title
-     *            the dialog title.
-     * @param text
-     *            the dialog text.
+     * Create an <code>InfoDialog</code> with a <code>title</code> and
+     * <code>text</code>
      */
     public InfoDialog(Window parent, String title, String text) {
         super(parent, title, text);
