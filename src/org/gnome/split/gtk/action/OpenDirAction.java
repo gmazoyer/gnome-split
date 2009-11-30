@@ -20,8 +20,13 @@
  */
 package org.gnome.split.gtk.action;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
+import org.gnome.gtk.Gtk;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.DefaultEngine;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -38,6 +43,17 @@ public final class OpenDirAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        System.out.println(this.getClass().toString());
+        DefaultEngine engine = (DefaultEngine) this.getApplication().getEngineListener().getEngine();
+        if (engine != null) {
+            String directory = engine.getDirectory();
+            if (directory != null) {
+                try {
+                    // Open the directory with the default program
+                    Gtk.showURI(new URI("file://" + directory));
+                } catch (URISyntaxException e) {
+                    // Should never happened
+                }
+            }
+        }
     }
 }

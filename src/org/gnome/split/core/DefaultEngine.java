@@ -35,6 +35,11 @@ public abstract class DefaultEngine implements Engine
     protected final Object mutex = new Object();
 
     /**
+     * Current instance of GNOME Split.
+     */
+    protected GnomeSplit app = null;
+
+    /**
      * Total of bytes read.
      */
     protected long total;
@@ -45,14 +50,15 @@ public abstract class DefaultEngine implements Engine
     protected boolean paused;
 
     /**
-     * Current instance of GNOME Split.
+     * The directory where the file(s) is/are created.
      */
-    protected GnomeSplit app = null;
+    protected String directory;
 
     public DefaultEngine(final GnomeSplit app) {
         this.app = app;
         this.total = 0;
         this.paused = false;
+        this.directory = null;
     }
 
     @Override
@@ -74,5 +80,12 @@ public abstract class DefaultEngine implements Engine
     @Override
     public boolean paused() {
         return paused;
+    }
+
+    /**
+     * Get the directory where the current action is performed.
+     */
+    public String getDirectory() {
+        return directory;
     }
 }

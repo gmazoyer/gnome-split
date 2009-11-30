@@ -64,6 +64,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     public DefaultSplitEngine(final GnomeSplit app, File file, long size, String destination) {
         super(app);
+        this.directory = destination.substring(0, destination.lastIndexOf(File.separator));
         this.file = file;
         this.size = size;
         this.destination = destination;
