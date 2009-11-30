@@ -36,6 +36,9 @@ public final class ClearAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getActionWidget().reset();
+        // No action is performed, allow the widget clean up
+        if (this.getApplication().getEngineListener().getEngine() == null) {
+            this.getApplication().getMainWindow().getActionWidget().reset();
+        }
     }
 }

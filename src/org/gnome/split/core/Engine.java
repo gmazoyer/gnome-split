@@ -39,4 +39,9 @@ public interface Engine extends Runnable
      * Resume the previously paused action.
      */
     public void resume();
+
+    /**
+     * Tell if the current action is paused or not.
+     */
+    public boolean paused();
 }

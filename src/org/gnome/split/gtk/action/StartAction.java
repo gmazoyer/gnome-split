@@ -49,36 +49,45 @@ public final class StartAction extends Action
     public void actionPerformed(ActionEvent event) {
         // Get current instance and current widget
         GnomeSplit app = this.getApplication();
-        ActionWidget widget = app.getMainWindow().getActionWidget();
+        Engine engine = app.getEngineListener().getEngine();
 
-        if (!widget.isFullyFilled()) {
-            // The user did not fill all the fields
-            Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Incompleted fields."),
-                    _("You must fill all fields to start a split."));
-            dialog.run();
-            dialog.hide();
-            return;
-        }
+        // Action already started and paused
+        if ((engine != null) && engine.paused()) {
+            // Then resume it
+            engine.resume();
+        } else {
+            // Get current widget
+            ActionWidget widget = app.getMainWindow().getActionWidget();
 
-        // A split is performed
-        if (widget instanceof SplitWidget) {
-            SplitWidget split = (SplitWidget) widget;
-            int algorithm = split.getAlgorithm();
+            if (!widget.isFullyFilled()) {
+                // The user did not fill all the fields
+                Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Incompleted fields."),
+                        _("You must fill all fields to start a split."));
+                dialog.run();
+                dialog.hide();
+                return;
+            }
 
-            switch (algorithm) {
-            case Algorithm.XTREMSPLIT:
-                // Get needed infos
-                File file = new File(split.getFilename());
-                long size = split.getMaxSize();
-                String dest = split.getDestination();
+            // A split is performed
+            if (widget instanceof SplitWidget) {
+                SplitWidget split = (SplitWidget) widget;
+                int algorithm = split.getAlgorithm();
 
-                // Create the new process and start it
-                Engine run = new Xtremsplit(app, file, size, dest);
-                app.getEngineListener().setEngine(run);
-                new Thread(run, "Split - " + file.getName()).start();
-                break;
-            default:
-                break;
+                switch (algorithm) {
+                case Algorithm.XTREMSPLIT:
+                    // Get needed infos
+                    File file = new File(split.getFilename());
+                    long size = split.getMaxSize();
+                    String dest = split.getDestination();
+
+                    // Create the new process and start it
+                    Engine run = new Xtremsplit(app, file, size, dest);
+                    app.getEngineListener().setEngine(run);
+                    new Thread(run, "Split - " + file.getName()).start();
+                    break;
+                default:
+                    break;
+                }
             }
         }
     }

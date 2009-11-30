@@ -70,4 +70,9 @@ public abstract class DefaultEngine implements Engine
             mutex.notify();
         }
     }
+
+    @Override
+    public boolean paused() {
+        return paused;
+    }
 }
