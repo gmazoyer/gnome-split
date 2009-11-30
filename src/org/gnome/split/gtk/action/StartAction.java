@@ -55,6 +55,7 @@ public final class StartAction extends Action
         if ((engine != null) && engine.paused()) {
             // Then resume it
             engine.resume();
+            app.getMainWindow().getToolbar().setActives(false, true, true, false, true);
         } else {
             // Get current widget
             ActionWidget widget = app.getMainWindow().getActionWidget();
@@ -78,16 +79,23 @@ public final class StartAction extends Action
                 File file = new File(split.getFilename());
                 long size = split.getMaxSize();
                 String dest = split.getDestination();
+                Engine run = null;
 
                 switch (algorithm) {
                 case Algorithm.XTREMSPLIT:
                     // Create the new process and start it
-                    Engine run = new Xtremsplit(app, file, size, dest);
-                    app.getEngineListener().setEngine(run);
+                    run = new Xtremsplit(app, file, size, dest);
+
                     new Thread(run, "Split - " + file.getName()).start();
                     break;
                 default:
                     break;
+                }
+
+                // Update the interface toolbar
+                if (run != null) {
+                    app.getEngineListener().setEngine(run);
+                    app.getMainWindow().getToolbar().setActives(false, true, true, false, true);
                 }
             }
         }

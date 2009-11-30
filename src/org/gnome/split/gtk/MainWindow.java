@@ -26,7 +26,6 @@ import org.gnome.gtk.Menu;
 import org.gnome.gtk.MenuBar;
 import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.SeparatorMenuItem;
-import org.gnome.gtk.SeparatorToolItem;
 import org.gnome.gtk.SizeGroup;
 import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.Toolbar;
@@ -40,6 +39,7 @@ import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
 import org.gnome.split.gtk.dialog.PreferencesDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
+import org.gnome.split.gtk.widget.MainToolbar;
 import org.gnome.split.gtk.widget.MergeWidget;
 import org.gnome.split.gtk.widget.SelectView;
 import org.gnome.split.gtk.widget.SplitWidget;
@@ -76,6 +76,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Main container of the {@link Window}.
      */
     private VBox mainContainer;
+
+    /**
+     * {@link Toolbar} of the interface.
+     */
+    private MainToolbar toolbar;
 
     /**
      * Widget to display when the split view is selected.
@@ -132,7 +137,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.mainContainer.packStart(this.createMenu(), false, false, 0);
 
         // Add the tool bar
-        this.mainContainer.packStart(this.createToolbar(), false, false, 0);
+        this.toolbar = new MainToolbar(app);
+        this.toolbar.setActives(true, false, false, true, false);
+        this.mainContainer.packStart(this.toolbar, false, false, 0);
 
         // Add the views selector
         this.views = new SelectView(app);
@@ -207,23 +214,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
-     * Create the toolbar to use.
-     */
-    private Toolbar createToolbar() {
-        final Toolbar toolbar = new Toolbar();
-        final ActionManager actions = app.getActionManager();
-
-        toolbar.insert(actions.getAction(ActionId.TOOL_START).createToolItem(), 0);
-        toolbar.insert(actions.getAction(ActionId.TOOL_PAUSE).createToolItem(), 1);
-        toolbar.insert(actions.getAction(ActionId.TOOL_CANCEL).createToolItem(), 2);
-        toolbar.insert(actions.getAction(ActionId.TOOL_CLEAR).createToolItem(), 3);
-        toolbar.insert(new SeparatorToolItem(), 4);
-        toolbar.insert(actions.getAction(ActionId.TOOL_PROPERTIES).createToolItem(), 5);
-
-        return toolbar;
-    }
-
-    /**
      * Switch between widget to display.
      */
     public void switchView() {
@@ -250,6 +240,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Finally we re-add the status widget
         mainContainer.packStart(status);
+    }
+
+    /**
+     * Get the main {@link Toolbar}.
+     */
+    public MainToolbar getToolbar() {
+        return toolbar;
     }
 
     /**

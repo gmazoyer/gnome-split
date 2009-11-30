@@ -81,6 +81,9 @@ public class DefaultEngineListener implements EngineListener
         } else {
             gtk.getStatusWidget().update(Stock.YES, _("Merge terminated."));
         }
+
+        // Finally, update the toolbar
+        gtk.getToolbar().setActives(true, false, false, true, false);
     }
 
     @Override

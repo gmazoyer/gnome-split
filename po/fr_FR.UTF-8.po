@@ -20,25 +20,25 @@ msgstr "Découpage terminé."
 msgid "Merge terminated."
 msgstr "Assemblage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:93
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:103
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:98
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:108
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
 
-#: src/org/gnome/split/gtk/MainWindow.java:173
+#: src/org/gnome/split/gtk/MainWindow.java:180
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:190
+#: src/org/gnome/split/gtk/MainWindow.java:197
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:198
+#: src/org/gnome/split/gtk/MainWindow.java:205
 msgid "_Help"
 msgstr "_Aide"
 
@@ -46,7 +46,7 @@ msgstr "_Aide"
 msgid "Cancel and delete files"
 msgstr "Annuler et supprimer les fichiers"
 
-#: src/org/gnome/split/gtk/action/PauseAction.java:36
+#: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "Suspend"
 msgstr "Suspendre"
 
@@ -58,11 +58,11 @@ msgstr "_Ouvrir le dossier"
 msgid "Start"
 msgstr "Démarrer"
 
-#: src/org/gnome/split/gtk/action/StartAction.java:64
+#: src/org/gnome/split/gtk/action/StartAction.java:65
 msgid "Incompleted fields."
 msgstr "Champs incomplets."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:65
+#: src/org/gnome/split/gtk/action/StartAction.java:66
 msgid "You must fill all fields to start a split."
 msgstr "Vous devez remplir tous les champs avant de lancer un découpage."
 

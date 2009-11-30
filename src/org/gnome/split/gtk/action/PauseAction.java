@@ -22,6 +22,7 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.Engine;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -38,6 +39,14 @@ public final class PauseAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().getEngineListener().getEngine().pause();
+        GnomeSplit app = this.getApplication();
+        Engine engine = app.getEngineListener().getEngine();
+
+        // If an engine is running
+        if ((engine != null) && !engine.paused()) {
+            // The pause it and update the toolbar
+            engine.pause();
+            app.getMainWindow().getToolbar().setActives(true, false, true, false, true);
+        }
     }
 }
