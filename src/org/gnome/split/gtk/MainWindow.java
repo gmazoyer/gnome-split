@@ -78,11 +78,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private VBox mainContainer;
 
     /**
-     * {@link Toolbar} of the interface.
-     */
-    private MainToolbar toolbar;
-
-    /**
      * Widget to display when the split view is selected.
      */
     private SplitWidget split;
@@ -137,9 +132,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.mainContainer.packStart(this.createMenu(), false, false, 0);
 
         // Add the tool bar
-        this.toolbar = new MainToolbar(app);
-        this.toolbar.setActives(true, false, false, true, false);
-        this.mainContainer.packStart(this.toolbar, false, false, 0);
+        this.mainContainer.packStart(new MainToolbar(app), false, false, 0);
 
         // Add the views selector
         this.views = new SelectView(app);
@@ -161,6 +154,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Add status widget
         this.status = new StatusWidget();
         this.mainContainer.packStart(this.status, false, false, 0);
+
+        // Set the state of the interface
+        this.app.getActionManager().setReadyState();
 
         // Connect delete event handler
         this.connect((Window.DeleteEvent) this);
@@ -240,13 +236,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Finally we re-add the status widget
         mainContainer.packStart(status);
-    }
-
-    /**
-     * Get the main {@link Toolbar}.
-     */
-    public MainToolbar getToolbar() {
-        return toolbar;
     }
 
     /**

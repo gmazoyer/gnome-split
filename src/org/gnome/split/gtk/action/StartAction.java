@@ -55,7 +55,7 @@ public final class StartAction extends Action
         if ((engine != null) && engine.paused()) {
             // Then resume it
             engine.resume();
-            app.getMainWindow().getToolbar().setActives(false, true, true, false, true);
+            app.getActionManager().setRunningState();
         } else {
             // Get current widget
             ActionWidget widget = app.getMainWindow().getActionWidget();
@@ -92,10 +92,10 @@ public final class StartAction extends Action
                     break;
                 }
 
-                // Update the interface toolbar
+                // Update the interface state
                 if (run != null) {
                     app.getEngineListener().setEngine(run);
-                    app.getMainWindow().getToolbar().setActives(false, true, true, false, true);
+                    app.getActionManager().setRunningState();
                 }
             }
         }

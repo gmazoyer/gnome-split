@@ -86,6 +86,60 @@ public class ActionManager
     }
 
     /**
+     * Set the actions in the ready state of the interface.
+     */
+    public void setReadyState() {
+        this.getAction(ActionId.MENU_OPEN_DIR).setActive(false);
+        this.getAction(ActionId.MENU_PROPERTIES).setActive(false);
+        this.getAction(ActionId.MENU_START).setActive(true);
+        this.getAction(ActionId.MENU_PAUSE).setActive(false);
+        this.getAction(ActionId.MENU_CANCEL).setActive(false);
+        this.getAction(ActionId.MENU_DELETE).setActive(false);
+        this.getAction(ActionId.MENU_CLEAR).setActive(true);
+        this.getAction(ActionId.TOOL_START).setActive(true);
+        this.getAction(ActionId.TOOL_PAUSE).setActive(false);
+        this.getAction(ActionId.TOOL_CANCEL).setActive(false);
+        this.getAction(ActionId.TOOL_CLEAR).setActive(true);
+        this.getAction(ActionId.TOOL_PROPERTIES).setActive(false);
+    }
+
+    /**
+     * Set the actions in the pause state of the interface.
+     */
+    public void setPauseState() {
+        this.getAction(ActionId.MENU_OPEN_DIR).setActive(true);
+        this.getAction(ActionId.MENU_PROPERTIES).setActive(true);
+        this.getAction(ActionId.MENU_START).setActive(true);
+        this.getAction(ActionId.MENU_PAUSE).setActive(false);
+        this.getAction(ActionId.MENU_CANCEL).setActive(true);
+        this.getAction(ActionId.MENU_DELETE).setActive(true);
+        this.getAction(ActionId.MENU_CLEAR).setActive(false);
+        this.getAction(ActionId.TOOL_START).setActive(true);
+        this.getAction(ActionId.TOOL_PAUSE).setActive(false);
+        this.getAction(ActionId.TOOL_CANCEL).setActive(true);
+        this.getAction(ActionId.TOOL_CLEAR).setActive(false);
+        this.getAction(ActionId.TOOL_PROPERTIES).setActive(true);
+    }
+
+    /**
+     * Set the actions in the running state of the interface.
+     */
+    public void setRunningState() {
+        this.getAction(ActionId.MENU_OPEN_DIR).setActive(true);
+        this.getAction(ActionId.MENU_PROPERTIES).setActive(true);
+        this.getAction(ActionId.MENU_START).setActive(false);
+        this.getAction(ActionId.MENU_PAUSE).setActive(true);
+        this.getAction(ActionId.MENU_CANCEL).setActive(true);
+        this.getAction(ActionId.MENU_DELETE).setActive(true);
+        this.getAction(ActionId.MENU_CLEAR).setActive(false);
+        this.getAction(ActionId.TOOL_START).setActive(false);
+        this.getAction(ActionId.TOOL_PAUSE).setActive(true);
+        this.getAction(ActionId.TOOL_CANCEL).setActive(true);
+        this.getAction(ActionId.TOOL_CLEAR).setActive(false);
+        this.getAction(ActionId.TOOL_PROPERTIES).setActive(true);
+    }
+
+    /**
      * List of all action IDs.
      * 
      * @author Guillaume Mazoyer

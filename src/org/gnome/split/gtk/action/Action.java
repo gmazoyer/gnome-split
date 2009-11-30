@@ -45,11 +45,14 @@ public abstract class Action
 
     private Stock stock;
 
+    private Widget widget;
+
     public Action(GnomeSplit app, String label, String tooltip, Stock stock) {
         this.app = app;
         this.label = label;
         this.tooltip = tooltip;
         this.stock = stock;
+        this.widget = null;
     }
 
     public Action(GnomeSplit app, Stock stock, String label) {
@@ -64,8 +67,21 @@ public abstract class Action
         this(app, label, null, null);
     }
 
+    /**
+     * Get the current program instance.
+     */
+    protected final GnomeSplit getApplication() {
+        return app;
+    }
+
+    /**
+     * Used when a widget related to this action is used.
+     */
     public abstract void actionPerformed(ActionEvent event);
 
+    /**
+     * Create a new {@link MenuItem} related to this action.
+     */
     public MenuItem createMenuItem() {
         MenuItem item = null;
 
@@ -94,9 +110,15 @@ public abstract class Action
             }
         });
 
+        // Register the widget
+        widget = item;
+
         return item;
     }
 
+    /**
+     * Create a new {@link ToolItem} related to this action.
+     */
     public ToolItem createToolItem() {
         // Cannot build a tool button without stock item
         if (stock == null) {
@@ -125,11 +147,17 @@ public abstract class Action
             }
         });
 
+        // Register the widget
+        widget = item;
+
         return item;
     }
 
-    protected GnomeSplit getApplication() {
-        return app;
+    /**
+     * Change the sensitive state of the widgets related to this action.
+     */
+    public void setActive(boolean setting) {
+        widget.setSensitive(setting);
     }
 
     /**

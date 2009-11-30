@@ -111,8 +111,8 @@ public class DefaultEngineListener implements EngineListener
             dialog.hide();
         }
 
-        // Finally, update the toolbar
-        gtk.getToolbar().setActives(true, false, false, true, false);
+        // Finally, update the interface state
+        app.getActionManager().setRunningState();
     }
 
     @Override

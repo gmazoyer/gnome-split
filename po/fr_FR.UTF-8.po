@@ -38,15 +38,15 @@ msgstr "Écriture de {0}."
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
 
-#: src/org/gnome/split/gtk/MainWindow.java:180
+#: src/org/gnome/split/gtk/MainWindow.java:176
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:197
+#: src/org/gnome/split/gtk/MainWindow.java:193
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:205
+#: src/org/gnome/split/gtk/MainWindow.java:201
 msgid "_Help"
 msgstr "_Aide"
 
@@ -58,7 +58,7 @@ msgstr "Annuler et supprimer les fichiers"
 msgid "Suspend"
 msgstr "Suspendre"
 
-#: src/org/gnome/split/gtk/action/OpenDirAction.java:36
+#: src/org/gnome/split/gtk/action/OpenDirAction.java:41
 msgid "_Open folder"
 msgstr "_Ouvrir le dossier"
 
