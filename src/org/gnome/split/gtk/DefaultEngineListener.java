@@ -20,13 +20,17 @@
  */
 package org.gnome.split.gtk;
 
+import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Stock;
+import org.gnome.notify.Notification;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.config.Constants;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineException;
 import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
+import org.gnome.split.gtk.dialog.InfoDialog;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -37,6 +41,11 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public class DefaultEngineListener implements EngineListener
 {
+    /**
+     * The current instance of the application.
+     */
+    private GnomeSplit app;
+
     /**
      * GTK+ interface of the application (<code>null</code> if the command
      * line interface is used).
@@ -53,8 +62,9 @@ public class DefaultEngineListener implements EngineListener
      * listener}.
      */
     public DefaultEngineListener(final GnomeSplit app) {
-        gtk = app.getMainWindow();
-        engine = null;
+        this.app = app;
+        this.gtk = app.getMainWindow();
+        this.engine = null;
     }
 
     @Override
@@ -75,11 +85,30 @@ public class DefaultEngineListener implements EngineListener
         // Enable user interaction (only in action widget)
         gtk.getActionWidget().enable();
 
-        // Update the status widget
+        // Title and body of the message to display
+        String title;
+        String body;
         if (engine instanceof DefaultSplitEngine) {
-            gtk.getStatusWidget().update(Stock.YES, _("Split terminated."));
+            title = _("Split terminated.");
+            body = _("The split has been terminated successfully without any errors.");
         } else {
-            gtk.getStatusWidget().update(Stock.YES, _("Merge terminated."));
+            title = _("Merge terminated.");
+            body = _("The merge has been terminated successfully without any errors.");
+        }
+
+        // Update the status widget
+        gtk.getStatusWidget().update(Stock.YES, title);
+
+        if (app.getConfig().USE_NOTIFICATION) {
+            // Use notification
+            Notification notify = new Notification(title, body, null, gtk.getTrayIcon());
+            notify.setIcon(Constants.PROGRAM_LOGO);
+            notify.show();
+        } else {
+            // Use simple dialog
+            Dialog dialog = new InfoDialog(gtk, title, body);
+            dialog.run();
+            dialog.hide();
         }
 
         // Finally, update the toolbar
