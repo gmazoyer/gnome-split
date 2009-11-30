@@ -116,29 +116,37 @@ msgstr ""
 "\n"
 "Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce program.  Sinon, reportez-vous à <http://www.gnu.org/licenses/>."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:59
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:84
 msgid "GNOME Split Preferences"
 msgstr "Préférences de GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:71
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:96
 msgid "General"
 msgstr "Général"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:72
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:97
 msgid "Desktop"
 msgstr "Bureau"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:99
-msgid "Inhibit desktop _hibernation when action is performed"
-msgstr "Empêcher la mise en veille lorsqu'une action est en cours"
-
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:111
-msgid "Show _icon in the desktop notification area"
-msgstr "Afficher l'_icône dans la zone de notification"
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:115
+msgid "_Calculate the MD5 if possible."
+msgstr "_Calculer la somme MD5 si possible."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:126
-msgid "Show desktop _notification"
-msgstr "Afficher les _notifications"
+msgid "_Remove parts if the merge was successful."
+msgstr "_Supprimer les parties si l'assemblage s'est bien terminé."
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:156
+msgid "Inhibit desktop _hibernation when action is performed."
+msgstr "Empêcher la mise en veille lorsqu'une action est en cours."
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:168
+msgid "Show _icon in the desktop notification area."
+msgstr "Afficher l'_icône dans la zone de notification."
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:183
+msgid "Show desktop _notification."
+msgstr "Afficher les _notifications."
 
 #: src/org/gnome/split/gtk/dialog/InfoDialog.java:47
 msgid "Information"
