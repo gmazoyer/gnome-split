@@ -72,6 +72,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     public DefaultMergeEngine(final GnomeSplit app, File file) {
         super(app);
+        this.directory = filename.substring(0, filename.lastIndexOf(File.separator));
         this.file = file;
 
         try {
