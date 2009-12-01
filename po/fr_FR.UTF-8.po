@@ -12,28 +12,28 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:92
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:99
 msgid "Split terminated."
 msgstr "Découpage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:93
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:100
 msgid "The split has been terminated successfully without any errors."
 msgstr "Le découpage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:95
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:102
 msgid "Merge terminated."
 msgstr "Assemblage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:96
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:103
 msgid "The merge has been terminated successfully without any errors."
 msgstr "L'assemblage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:132
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:144
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:137
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:149
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
@@ -201,7 +201,7 @@ msgstr "version"
 msgid "View:"
 msgstr "Affichage :"
 
-#: src/org/gnome/split/dbus/DbusInhibit.java:67
+#: src/org/gnome/split/dbus/DbusInhibit.java:72
 msgid "GNOME Split activity"
 msgstr "Activité de GNOME Split"
 

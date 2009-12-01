@@ -30,6 +30,7 @@ import org.gnome.split.core.EngineException;
 import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
+import org.gnome.split.dbus.DbusInhibit;
 import org.gnome.split.gtk.dialog.InfoDialog;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -45,6 +46,11 @@ public class DefaultEngineListener implements EngineListener
      * The current instance of the application.
      */
     private GnomeSplit app;
+
+    /**
+     * Object to inhibit and uninhibit computer hibernation.
+     */
+    private DbusInhibit inhibit;
 
     /**
      * GTK+ interface of the application (<code>null</code> if the command
@@ -63,6 +69,7 @@ public class DefaultEngineListener implements EngineListener
      */
     public DefaultEngineListener(final GnomeSplit app) {
         this.app = app;
+        this.inhibit = new DbusInhibit();
         this.gtk = app.getMainWindow();
         this.engine = null;
     }
@@ -111,8 +118,13 @@ public class DefaultEngineListener implements EngineListener
             dialog.hide();
         }
 
-        // Finally, update the interface state
+        // Update the interface state
         app.getActionManager().setRunningState();
+
+        // Finally, uninhibit computer hibernation if needed
+        if (inhibit.hasInhibit()) {
+            inhibit.unInhibit();
+        }
     }
 
     @Override
@@ -144,6 +156,11 @@ public class DefaultEngineListener implements EngineListener
 
         // Disable user interaction (only in action widget)
         gtk.getActionWidget().disable();
+
+        // Inhibit hibernation if requested
+        if (app.getConfig().NO_HIBERNATION) {
+            inhibit.inhibit();
+        }
     }
 
     @Override

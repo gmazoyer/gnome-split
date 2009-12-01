@@ -20,10 +20,10 @@
  */
 package org.gnome.split.dbus;
 
-import org.freedesktop.PowerManagement.Inhibit;
 import org.freedesktop.dbus.DBusConnection;
 import org.freedesktop.dbus.UInt32;
 import org.freedesktop.dbus.exceptions.DBusException;
+import org.gnome.SessionManager;
 import org.gnome.split.config.Constants;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -44,12 +44,17 @@ public class DbusInhibit
     /**
      * Inhibit dbus object.
      */
-    private Inhibit inhibit;
+    private SessionManager inhibit;
 
     /**
      * Inhibit cookie.
      */
     private UInt32 cookie;
+
+    /**
+     * To know if we have inhibit hibernation before.
+     */
+    private boolean hasInhibit;
 
     /**
      * Inhibit the computer hibernation.
@@ -60,11 +65,13 @@ public class DbusInhibit
             connection = DBusConnection.getConnection(DBusConnection.SESSION);
 
             // Get inhibit object
-            inhibit = connection.getRemoteObject("org.freedesktop.PowerManagement",
-                    "/org/freedesktop/PowerManagement/Inhibit", Inhibit.class);
+            inhibit = connection.getRemoteObject("org.gnome.SessionManager",
+                    "/org/gnome/SessionManager", SessionManager.class);
 
             // Inhibit hibernation and get inhibit cookie
-            cookie = inhibit.Inhibit(Constants.PROGRAM_NAME, _("GNOME Split activity"));
+            cookie = inhibit.Inhibit(Constants.PROGRAM_NAME, new UInt32(0), _("GNOME Split activity"),
+                    new UInt32(1 + 2 + 4 + 8));
+            hasInhibit = true;
         } catch (DBusException e) {
             e.printStackTrace();
         }
@@ -75,9 +82,17 @@ public class DbusInhibit
      */
     public void unInhibit() {
         // Uninhibit hibernation
-        inhibit.UnInhibit(cookie);
+        inhibit.Uninhibit(cookie);
+        hasInhibit = false;
 
         // Close dbus connection
         connection.disconnect();
+    }
+
+    /**
+     * Used to know if we has inhibit before.
+     */
+    public boolean hasInhibit() {
+        return hasInhibit;
     }
 }
