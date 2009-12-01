@@ -30,7 +30,7 @@ import org.freedesktop.dbus.exceptions.DBusException;
  * Interface to access to the GNOME Session Manager.
  * 
  * <p>
- * This interface is generated dbus-java.
+ * This interface is generated with dbus-java.
  * 
  * @author Guillaume Mazoyer
  */

@@ -52,6 +52,11 @@ public final class Configuration
     public boolean DELETE_PARTS;
 
     /**
+     * The ID of the default algorithm to use to split files.
+     */
+    public int DEFAULT_ALGORITHM;
+
+    /**
      * Disable computer hibernation.
      */
     public boolean NO_HIBERNATION;
@@ -97,6 +102,7 @@ public final class Configuration
             writer = new FileWriter(configuration);
             writer.write("SaveFileHash    = true\n");
             writer.write("DeleteParts     = false\n");
+            writer.write("DefaultAlgo     = 0\n");
             writer.write("NoHibernation   = true\n");
             writer.write("UseNotification = true\n");
             writer.write("ShowTrayIcon    = false\n");
@@ -127,6 +133,7 @@ public final class Configuration
 
             SAVE_FILE_HASH = Boolean.parseBoolean(preferences.getProperty("SaveFileHash", "true"));
             DELETE_PARTS = Boolean.parseBoolean(preferences.getProperty("DeleteParts", "false"));
+            DEFAULT_ALGORITHM = Integer.parseInt(preferences.getProperty("DefaultAlgo", "0"));
             NO_HIBERNATION = Boolean.parseBoolean(preferences.getProperty("NoHibernation", "true"));
             USE_NOTIFICATION = Boolean.parseBoolean(preferences.getProperty("UseNotification", "false"));
             SHOW_TRAY_ICON = Boolean.parseBoolean(preferences.getProperty("ShowTrayIcon", "false"));
@@ -145,6 +152,7 @@ public final class Configuration
             writer = new FileWriter(configuration);
             writer.write("SaveFileHash    = " + SAVE_FILE_HASH + "\n");
             writer.write("DeleteParts     = " + DELETE_PARTS + "\n");
+            writer.write("DefaultAlgo     = " + DEFAULT_ALGORITHM + "\n");
             writer.write("NoHibernation   = " + NO_HIBERNATION + "\n");
             writer.write("UseNotification = " + USE_NOTIFICATION + "\n");
             writer.write("ShowTrayIcon    = " + SHOW_TRAY_ICON + "\n");

@@ -139,7 +139,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.mainContainer.packStart(views, false, false, 0);
 
         // Create the two main widgets
-        this.split = new SplitWidget();
+        this.split = new SplitWidget(app);
         this.merge = new MergeWidget();
 
         // Make sure they have the same size

@@ -24,12 +24,16 @@ import org.gnome.gdk.Event;
 import org.gnome.gtk.Alignment;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.CheckButton;
+import org.gnome.gtk.ComboBox;
 import org.gnome.gtk.Dialog;
+import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.Notebook;
 import org.gnome.gtk.PositionType;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
+import org.gnome.gtk.TextComboBox;
+import org.gnome.gtk.VBox;
 import org.gnome.gtk.VButtonBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
@@ -39,6 +43,7 @@ import org.gnome.notify.Notify;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
+import org.gnome.split.core.utils.Algorithm;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -63,6 +68,11 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
      * Button to know if we should remove the parts files.
      */
     private CheckButton remove;
+
+    /**
+     * List to know what should be the default algorithm to use.
+     */
+    private TextComboBox algorithms;
 
     /**
      * Button to know if we should inhibit the hibernation during an action.
@@ -134,13 +144,45 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
+        // Algorithm label
+        final Label algoLabel = new Label(_("Default algorithm:"));
+
+        // Algorithm list
+        algorithms = new TextComboBox();
+        for (String algorithm : Algorithm.toStrings()) {
+            // Fill the list
+            algorithms.appendText(algorithm);
+        }
+
+        // Set the default algorithm
+        algorithms.setActive(config.DEFAULT_ALGORITHM);
+        algorithms.connect(new ComboBox.Changed() {
+            @Override
+            public void onChanged(ComboBox source) {
+                // Save preferences
+                config.DEFAULT_ALGORITHM = algorithms.getActive();
+                config.savePreferences();
+            }
+        });
+
+        // Main container
+        final VBox container = new VBox(false, 0);
+        page.add(container);
+
         // Pack buttons in the box
         final VButtonBox vbox = new VButtonBox();
-        page.add(vbox);
+        container.packStart(vbox);
 
         // Add every options
         vbox.add(md5sum);
         vbox.add(remove);
+
+        // Pack algorithms list
+        final HBox hbox = new HBox(false, 3);
+        container.packStart(hbox);
+
+        hbox.packStart(algoLabel);
+        hbox.packStart(algorithms);
 
         return page;
     }

@@ -28,12 +28,12 @@ msgstr "Assemblage terminé."
 msgid "The merge has been terminated successfully without any errors."
 msgstr "L'assemblage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:144
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:149
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:149
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:154
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
@@ -124,35 +124,39 @@ msgstr ""
 "\n"
 "Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce program.  Sinon, reportez-vous à <http://www.gnu.org/licenses/>."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:84
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:94
 msgid "GNOME Split Preferences"
 msgstr "Préférences de GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:96
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:106
 msgid "General"
 msgstr "Général"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:97
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:107
 msgid "Desktop"
 msgstr "Bureau"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:115
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:125
 msgid "_Calculate the MD5 if possible."
 msgstr "_Calculer la somme MD5 si possible."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:126
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:136
 msgid "_Remove parts if the merge was successful."
 msgstr "_Supprimer les parties si l'assemblage s'est bien terminé."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:156
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:148
+msgid "Default algorithm:"
+msgstr "Algorithme par défaut :"
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:198
 msgid "Inhibit desktop _hibernation when action is performed."
 msgstr "Empêcher la mise en veille lorsqu'une action est en cours."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:168
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:210
 msgid "Show _icon in the desktop notification area."
 msgstr "Afficher l'_icône dans la zone de notification."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:183
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:225
 msgid "Show desktop _notification."
 msgstr "Afficher les _notifications."
 
@@ -164,27 +168,27 @@ msgstr "Information"
 msgid "Error!"
 msgstr "Erreur !"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:114
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:115
 msgid "File:"
 msgstr "Fichier :"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:117
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:118
 msgid "Destination:"
 msgstr "Destination :"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:138
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:139
 msgid "Choose a file."
 msgstr "Choisissez un fichier."
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:148
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:149
 msgid "Choose a directory."
 msgstr "Choisissez un dossier."
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:159
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:160
 msgid "Split in:"
 msgstr "Découper en :"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:180
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:181
 msgid "Algorithm:"
 msgstr "Algorithme :"
 

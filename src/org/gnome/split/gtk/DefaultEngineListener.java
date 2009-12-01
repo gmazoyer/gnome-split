@@ -137,6 +137,11 @@ public class DefaultEngineListener implements EngineListener
 
         // Update the status widget
         gtk.getStatusWidget().update(Stock.DIALOG_ERROR, exception.getMessage());
+
+        // Finally, uninhibit computer hibernation if needed
+        if (inhibit.hasInhibit()) {
+            inhibit.unInhibit();
+        }
     }
 
     @Override

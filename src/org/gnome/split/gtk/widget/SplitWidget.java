@@ -37,6 +37,7 @@ import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.VBox;
+import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.SizeUnit;
 
@@ -94,7 +95,7 @@ public class SplitWidget extends Frame implements ActionWidget
      */
     private ProgressBar progressbar;
 
-    public SplitWidget() {
+    public SplitWidget(final GnomeSplit app) {
         super(null);
 
         // At first, it is invisible
@@ -185,7 +186,7 @@ public class SplitWidget extends Frame implements ActionWidget
             // Fill the box
             algoList.appendText(algorithm);
         }
-        algoList.setActive(0);
+        algoList.setActive(app.getConfig().DEFAULT_ALGORITHM);
         secondColumn.packStart(algoList);
 
         // Make the sizes of size and algorithm boxes equal
