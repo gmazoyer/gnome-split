@@ -32,8 +32,8 @@ import org.gnome.split.core.utils.MD5Hasher;
 
 public class Xtremsplit extends DefaultMergeEngine
 {
-    public Xtremsplit(final GnomeSplit app, File file) {
-        super(app, file);
+    public Xtremsplit(final GnomeSplit app, File file, String filename) {
+        super(app, file, filename);
     }
 
     @Override
@@ -49,8 +49,12 @@ public class Xtremsplit extends DefaultMergeEngine
             // Read filename
             byte[] bytes = new byte[access.read()];
             access.read(bytes);
-            filename = file.getAbsolutePath().replace(file.getName(), "") + new String(bytes);
             access.skipBytes(50 - bytes.length);
+
+            // Update the filename only if it is not specified by the user
+            if (filename == null) {
+                filename = file.getAbsolutePath().replace(file.getName(), "") + new String(bytes);
+            }
 
             // Read if MD5 is used
             md5 = ByteUtils.toBoolean(new byte[] {

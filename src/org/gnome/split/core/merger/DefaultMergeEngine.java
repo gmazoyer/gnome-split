@@ -70,10 +70,14 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Create a new merge {@link Engine engine} using a first
      * <code>file</code> to merge.
      */
-    public DefaultMergeEngine(final GnomeSplit app, File file) {
+    public DefaultMergeEngine(final GnomeSplit app, File file, String filename) {
         super(app);
-        this.directory = filename.substring(0, filename.lastIndexOf(File.separator));
+        this.filename = filename;
         this.file = file;
+
+        if (filename != null) {
+            this.directory = filename.substring(0, filename.lastIndexOf(File.separator));
+        }
 
         try {
             // Load headers
@@ -87,12 +91,12 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Return the right merger to merge files with right algorithm.
      */
-    public static DefaultMergeEngine getInstance(File file) {
+    public static DefaultMergeEngine getInstance(GnomeSplit app, File file, String filename) {
         String name = file.getName();
 
         if (name.endsWith(".001.xtm")) {
             // Use Xtremsplit algorithm
-            // return new Xtremsplit(null, file);
+            return new Xtremsplit(app, file, filename);
         }
 
         // Can't find the right algorithm
@@ -148,5 +152,34 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     protected void fireEngineDone(double done, double total) {
         app.getEngineListener().engineDone(done, total);
+    }
+
+    /**
+     * Get the name of the file to create.
+     */
+    public String getFilename() {
+        return filename;
+    }
+
+    /**
+     * Get the length of the file to create.
+     */
+    public long getFileLength() {
+        return fileLength;
+    }
+
+    /**
+     * Get the number of parts to merge.
+     */
+    public int getParts() {
+        return parts;
+    }
+
+    /**
+     * Tell if whether or not the merge will use a MD5 sum to control the file
+     * integrity.
+     */
+    public boolean useMD5() {
+        return md5;
     }
 }

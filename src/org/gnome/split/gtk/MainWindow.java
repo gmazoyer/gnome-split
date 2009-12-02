@@ -140,7 +140,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Create the two main widgets
         this.split = new SplitWidget(app);
-        this.merge = new MergeWidget();
+        this.merge = new MergeWidget(app);
 
         // Make sure they have the same size
         final SizeGroup group = new SizeGroup(SizeGroupMode.BOTH);
@@ -235,7 +235,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         }
 
         // Finally we re-add the status widget
-        mainContainer.packStart(status);
+        mainContainer.packStart(status, false, false, 0);
     }
 
     /**

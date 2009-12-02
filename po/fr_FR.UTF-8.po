@@ -62,17 +62,22 @@ msgstr "Suspendre"
 msgid "_Open folder"
 msgstr "_Ouvrir le dossier"
 
-#: src/org/gnome/split/gtk/action/StartAction.java:45
+#: src/org/gnome/split/gtk/action/StartAction.java:47
 msgid "Start"
 msgstr "Démarrer"
 
-#: src/org/gnome/split/gtk/action/StartAction.java:65
+#: src/org/gnome/split/gtk/action/StartAction.java:70
+#: src/org/gnome/split/gtk/action/StartAction.java:99
 msgid "Incompleted fields."
 msgstr "Champs incomplets."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:66
+#: src/org/gnome/split/gtk/action/StartAction.java:71
 msgid "You must fill all fields to start a split."
 msgstr "Vous devez remplir tous les champs avant de lancer un découpage."
+
+#: src/org/gnome/split/gtk/action/StartAction.java:100
+msgid "You must fill all fields to start a merge."
+msgstr "Vous devez remplir tous les champs avant de lancer un assemblage."
 
 #: src/org/gnome/split/gtk/action/SelectSplitAction.java:35
 msgid "Split"
@@ -173,14 +178,17 @@ msgid "File:"
 msgstr "Fichier :"
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:118
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:120
 msgid "Destination:"
 msgstr "Destination :"
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:139
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:100
 msgid "Choose a file."
 msgstr "Choisissez un fichier."
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:149
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:128
 msgid "Choose a directory."
 msgstr "Choisissez un dossier."
 
@@ -191,6 +199,38 @@ msgstr "Découper en :"
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:181
 msgid "Algorithm:"
 msgstr "Algorithme :"
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:92
+msgid "First chunk:"
+msgstr "Premier fichier :"
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:133
+msgid "Chunks:"
+msgstr "Parties :"
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:140
+msgid "Total size:"
+msgstr "Taille totale :"
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:147
+msgid "MD5 sum:"
+msgstr "Somme MD5 :"
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:168
+msgid "Cannot merge."
+msgstr "Assemblage impossible."
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:169
+msgid "You will not be able to merge the files because this file format is unknown. You are welcome to fill a bug about that."
+msgstr "Vous ne pouvez assembler les fichiers car le format est inconnu. Il vous est conseillé de rapporter un bug à propos de ceci."
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:190
+msgid "MD5 sum will be use."
+msgstr "Une somme MD5 sera calculée."
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:190
+msgid "MD5 sum will not be use."
+msgstr "Aucune somme MD5 ne sera calculée."
 
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:63
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:73
@@ -240,4 +280,7 @@ msgstr "mébioctets (Mio)"
 #: src/org/gnome/split/core/utils/SizeUnit.java:140
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
+
+#~ msgid "Files to merge"
+#~ msgstr "Fichiers à assembler"
 

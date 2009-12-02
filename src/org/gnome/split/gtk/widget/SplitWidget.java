@@ -105,10 +105,10 @@ public class SplitWidget extends Frame implements ActionWidget
         final VBox container = new VBox(false, 12);
         this.add(container);
 
-        // Pack all Labels in the same box
         final HBox firstRow = new HBox(false, 5);
         container.packStart(firstRow);
 
+        // Pack all Labels in the same box
         final VBox labelColumn = new VBox(false, 5);
         firstRow.packStart(labelColumn);
 
@@ -196,9 +196,7 @@ public class SplitWidget extends Frame implements ActionWidget
 
         // Pack the progress bar
         progressbar = new ProgressBar();
-        container.packStart(progressbar);
-
-        this.showAll();
+        container.packStart(progressbar, false, false, 0);
     }
 
     @Override
@@ -219,8 +217,7 @@ public class SplitWidget extends Frame implements ActionWidget
 
     @Override
     public boolean isFullyFilled() {
-        boolean result = (!fileEntry.getText().isEmpty() && !destinationEntry.getText().isEmpty());
-        return result;
+        return (!fileEntry.getText().isEmpty() && !destinationEntry.getText().isEmpty());
     }
 
     @Override
