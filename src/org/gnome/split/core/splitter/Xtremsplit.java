@@ -154,7 +154,6 @@ public class Xtremsplit extends DefaultSplitEngine
                         String md5sum = hasher.hashToString(file);
 
                         // Write it a the end of the file
-                        access.writeByte(md5sum.length());
                         access.write(md5sum.getBytes());
                     }
                 } catch (FileNotFoundException e) {

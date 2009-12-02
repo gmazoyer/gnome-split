@@ -62,9 +62,9 @@ public class Xtremsplit extends DefaultMergeEngine
             }
 
             // Read if MD5 is used
-            md5 = ByteUtils.toBoolean(new byte[] {
-                (byte) access.read()
-            });
+            bytes = new byte[1];
+            access.read(bytes);
+            md5 = ByteUtils.toBoolean(bytes);
 
             // Read file number
             bytes = new byte[4];

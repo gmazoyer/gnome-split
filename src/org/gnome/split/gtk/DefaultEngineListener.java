@@ -119,7 +119,7 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the interface state
-        app.getActionManager().setRunningState();
+        app.getActionManager().setReadyState();
 
         // Finally, uninhibit computer hibernation if needed
         if (inhibit.hasInhibit()) {
