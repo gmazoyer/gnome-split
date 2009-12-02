@@ -30,6 +30,11 @@ import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
 
+/**
+ * Algorithm to merge files with the Xtremsplit algorithm.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public class Xtremsplit extends DefaultMergeEngine
 {
     public Xtremsplit(final GnomeSplit app, File file, String filename) {

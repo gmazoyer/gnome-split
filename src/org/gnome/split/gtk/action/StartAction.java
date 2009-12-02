@@ -87,7 +87,6 @@ public final class StartAction extends Action
                 case Algorithm.XTREMSPLIT:
                     // Create the new process and start it
                     run = new Xtremsplit(app, file, size, dest);
-
                     new Thread(run, "Split - " + file.getName()).start();
                     break;
                 default:
@@ -110,6 +109,7 @@ public final class StartAction extends Action
                 File file = merge.getFirstFile();
                 String dest = merge.getDestination();
 
+                // Create the new process and start it
                 run = DefaultMergeEngine.getInstance(app, file, dest);
                 new Thread(run, "Merge - " + file.getName()).start();
 

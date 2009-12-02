@@ -30,6 +30,11 @@ import org.gnome.split.config.Constants;
 import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
 
+/**
+ * Algorithm to split a file with the Xtremsplit algorithm.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public class Xtremsplit extends DefaultSplitEngine
 {
     private int parts;
