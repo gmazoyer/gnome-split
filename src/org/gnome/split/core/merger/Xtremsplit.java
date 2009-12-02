@@ -120,14 +120,12 @@ public class Xtremsplit extends DefaultMergeEngine
                 // Notify the view from a new part read
                 this.fireEnginePartRead(chunk.getName());
 
-                if (md5 && (i == parts)) {
-                    // Skip the MD5 sum if it is the last part
-                    length -= 32;
-                }
-
                 if (i == 1) {
                     // Skip headers if it is the first part
                     access.skipBytes(104);
+                } else if (md5 && (i == parts)) {
+                    // Skip the MD5 sum if it is the last part
+                    length -= 32;
                 }
 
                 // Merge the file
@@ -140,9 +138,19 @@ public class Xtremsplit extends DefaultMergeEngine
                             // Drop the exception
                         }
                     }
+                    
+                    if (stopped) {
+                        // Stop the current thread
+                        this.fireEngineStopped();
+                        return;
+                    }
 
                     // Read and write data
                     int bufferised = access.read(buffer);
+                    if (bufferised == -1) {
+                        // Nothing to write
+                        break;
+                    }
                     out.write(buffer, 0, bufferised);
 
                     // Update read and write status
@@ -157,7 +165,7 @@ public class Xtremsplit extends DefaultMergeEngine
                 if (md5 && (i == parts)) {
                     // Read the MD5 which was calculated during the split
                     byte[] sum = new byte[32];
-                    access.read(sum, (int) length, 32);
+                    access.read(sum);
                     md5sum = new String(sum);
 
                     // Calculate the MD5 of the new file

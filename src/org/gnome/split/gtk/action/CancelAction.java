@@ -22,6 +22,7 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.Engine;
 
 /**
  * Action to cancel a split/merge.
@@ -36,6 +37,9 @@ public final class CancelAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        System.out.println(this.getClass().toString());
+        Engine engine = this.getApplication().getEngineListener().getEngine();
+        if (engine != null) {
+            engine.stop(false);
+        }
     }
 }

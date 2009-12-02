@@ -116,6 +116,16 @@ public abstract class DefaultMergeEngine extends DefaultEngine
         }
     }
 
+    @Override
+    public void stop(boolean clean) {
+        super.stop(clean);
+
+        if (clean) {
+            // Remove the created file
+            new File(filename).delete();
+        }
+    }
+
     /**
      * Load the headers of the files to merge.
      */
@@ -138,6 +148,13 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     protected void fireEngineEnded() {
         app.getEngineListener().engineEnded();
+    }
+
+    /**
+     * Notify the view that the engine has been stopped.
+     */
+    protected void fireEngineStopped() {
+        app.getEngineListener().engineStopped();
     }
 
     /**

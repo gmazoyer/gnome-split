@@ -84,6 +84,18 @@ public abstract class DefaultSplitEngine extends DefaultEngine
         }
     }
 
+    @Override
+    public void stop(boolean clean) {
+        super.stop(clean);
+
+        if (clean) {
+            // Remove all created parts
+            for (String chunk : chunks) {
+                new File(chunk).delete();
+            }
+        }
+    }
+
     /**
      * Split a file into smaller parts.
      */
@@ -101,6 +113,13 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected void fireEngineEnded() {
         app.getEngineListener().engineEnded();
+    }
+
+    /**
+     * Notify the view that the engine has been stopped.
+     */
+    protected void fireEngineStopped() {
+        app.getEngineListener().engineStopped();
     }
 
     /**

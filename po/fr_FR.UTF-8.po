@@ -28,12 +28,20 @@ msgstr "Assemblage terminé."
 msgid "The merge has been terminated successfully without any errors."
 msgstr "L'assemblage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:149
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:141
+msgid "Split stopped."
+msgstr "Découpage stoppé."
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:143
+msgid "Merge stopped."
+msgstr "Assemblage stoppé."
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:177
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:154
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:182
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
@@ -67,7 +75,7 @@ msgid "Start"
 msgstr "Démarrer"
 
 #: src/org/gnome/split/gtk/action/StartAction.java:70
-#: src/org/gnome/split/gtk/action/StartAction.java:99
+#: src/org/gnome/split/gtk/action/StartAction.java:98
 msgid "Incompleted fields."
 msgstr "Champs incomplets."
 
@@ -75,7 +83,7 @@ msgstr "Champs incomplets."
 msgid "You must fill all fields to start a split."
 msgstr "Vous devez remplir tous les champs avant de lancer un découpage."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:100
+#: src/org/gnome/split/gtk/action/StartAction.java:99
 msgid "You must fill all fields to start a merge."
 msgstr "Vous devez remplir tous les champs avant de lancer un assemblage."
 

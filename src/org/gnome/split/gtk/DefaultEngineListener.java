@@ -128,6 +128,34 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
+    public void engineStopped() {
+        // Update engine
+        engine = null;
+
+        // Enable user interaction (only in action widget)
+        gtk.getActionWidget().enable();
+
+        // Use the correct text
+        String text;
+        if (engine instanceof DefaultSplitEngine) {
+            text = _("Split stopped.");
+        } else {
+            text = _("Merge stopped.");
+        }
+
+        // Update the status widget
+        gtk.getStatusWidget().update(Stock.CANCEL, text);
+
+        // Update the interface state
+        app.getActionManager().setReadyState();
+
+        // Finally, uninhibit computer hibernation if needed
+        if (inhibit.hasInhibit()) {
+            inhibit.unInhibit();
+        }
+    }
+
+    @Override
     public void engineError(EngineException exception) {
         // Update engine
         engine = null;

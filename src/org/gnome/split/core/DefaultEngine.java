@@ -45,20 +45,26 @@ public abstract class DefaultEngine implements Engine
     protected long total;
 
     /**
+     * The directory where the file(s) is/are created.
+     */
+    protected String directory;
+
+    /**
      * To manage pause and resume actions.
      */
     protected boolean paused;
 
     /**
-     * The directory where the file(s) is/are created.
+     * To stop an action
      */
-    protected String directory;
+    protected boolean stopped;
 
     public DefaultEngine(final GnomeSplit app) {
         this.app = app;
         this.total = 0;
-        this.paused = false;
         this.directory = null;
+        this.paused = false;
+        this.stopped = false;
     }
 
     @Override
@@ -75,6 +81,14 @@ public abstract class DefaultEngine implements Engine
             paused = false;
             mutex.notify();
         }
+    }
+
+    @Override
+    public void stop(boolean clean) {
+        if (paused) {
+            this.resume();
+        }
+        stopped = true;
     }
 
     @Override

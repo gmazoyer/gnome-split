@@ -41,6 +41,11 @@ public interface Engine extends Runnable
     public void resume();
 
     /**
+     * Stop the current action and remove the created file(s) if needed.
+     */
+    public void stop(boolean clean);
+
+    /**
      * Tell if the current action is paused or not.
      */
     public boolean paused();

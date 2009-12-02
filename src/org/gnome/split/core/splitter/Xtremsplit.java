@@ -137,6 +137,12 @@ public class Xtremsplit extends DefaultSplitEngine
                             }
                         }
 
+                        if (stopped) {
+                            // Stop the current thread
+                            this.fireEngineStopped();
+                            return;
+                        }
+
                         // Read and write data
                         int bufferised = toSplit.read(buffer);
                         access.write(buffer, 0, bufferised);

@@ -54,6 +54,11 @@ public interface EngineListener
     public void engineEnded();
 
     /**
+     * Used when the action is stopped.
+     */
+    public void engineStopped();
+
+    /**
      * Used when an {@link EngineException error} has occurred.
      */
     public void engineError(EngineException exception);
