@@ -123,6 +123,7 @@ public class Xtremsplit extends DefaultMergeEngine
                 if (i == 1) {
                     // Skip headers if it is the first part
                     access.skipBytes(104);
+                    read += 104;
                 } else if (md5 && (i == parts)) {
                     // Skip the MD5 sum if it is the last part
                     length -= 32;
@@ -158,9 +159,6 @@ public class Xtremsplit extends DefaultMergeEngine
                     this.fireEngineDone((double) total, (double) fileLength);
                 }
 
-                // Close the part
-                access.close();
-
                 if (md5 && (i == parts)) {
                     // Read the MD5 which was calculated during the split
                     buffer = new byte[32];
@@ -176,6 +174,9 @@ public class Xtremsplit extends DefaultMergeEngine
                         // Notify the user about the error
                     }
                 }
+
+                // Close the part
+                access.close();
             }
 
             // Notify the end of the merge
