@@ -79,9 +79,9 @@ public final class ByteUtils
     }
 
     /**
-     * Convert an array of {@link Byte bytes} to a {@link Boolean} value.
+     * Convert a byte to a {@link Boolean} value.
      */
-    public static boolean toBoolean(byte[] b) {
-        return Boolean.parseBoolean(new String(b));
+    public static boolean toBoolean(byte b) {
+        return ((b == 0) ? false : true);
     }
 }

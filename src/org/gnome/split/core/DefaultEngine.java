@@ -25,11 +25,6 @@ import org.gnome.split.GnomeSplit;
 public abstract class DefaultEngine implements Engine
 {
     /**
-     * Default size of a buffer.
-     */
-    protected static final int BUFFER = 65536;
-
-    /**
      * To manage synchronization of thread.
      */
     protected final Object mutex = new Object();

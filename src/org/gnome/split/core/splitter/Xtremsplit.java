@@ -94,7 +94,7 @@ public class Xtremsplit extends DefaultSplitEngine
             toSplit = new RandomAccessFile(file, "r");
 
             // Define the buffer size
-            byte[] buffer = new byte[BUFFER];
+            byte[] buffer;
 
             for (int i = 1; i <= parts; i++) {
                 RandomAccessFile access = null;
@@ -143,13 +143,16 @@ public class Xtremsplit extends DefaultSplitEngine
                             return;
                         }
 
+                        // Define a new buffer size
+                        buffer = new byte[(65536 > (size - read) ? (int) (size - read) : 65536)];
+
                         // Read and write data
-                        int bufferised = toSplit.read(buffer);
-                        access.write(buffer, 0, bufferised);
+                        toSplit.read(buffer);
+                        access.write(buffer);
 
                         // Update read and write status
-                        read += bufferised;
-                        total += bufferised;
+                        read += buffer.length;
+                        total += buffer.length;
                         this.fireEngineDone((double) total, (double) file.length());
                     }
 

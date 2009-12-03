@@ -64,7 +64,7 @@ public class Xtremsplit extends DefaultMergeEngine
             // Read if MD5 is used
             bytes = new byte[1];
             access.read(bytes);
-            md5 = ByteUtils.toBoolean(bytes);
+            md5 = ByteUtils.toBoolean(bytes[0]);
 
             // Read file number
             bytes = new byte[4];
@@ -98,7 +98,7 @@ public class Xtremsplit extends DefaultMergeEngine
             out = new FileOutputStream(filename);
 
             // Define the buffer size
-            byte[] buffer = new byte[BUFFER];
+            byte[] buffer;
 
             for (int i = 1; i <= parts; i++) {
                 // Get the current extension
@@ -138,24 +138,23 @@ public class Xtremsplit extends DefaultMergeEngine
                             // Drop the exception
                         }
                     }
-                    
+
                     if (stopped) {
                         // Stop the current thread
                         this.fireEngineStopped();
                         return;
                     }
 
+                    // Define a new buffer size
+                    buffer = new byte[(65536 > (length - read) ? (int) (length - read) : 65536)];
+
                     // Read and write data
-                    int bufferised = access.read(buffer);
-                    if (bufferised == -1) {
-                        // Nothing to write
-                        break;
-                    }
-                    out.write(buffer, 0, bufferised);
+                    access.read(buffer);
+                    out.write(buffer);
 
                     // Update read and write status
-                    read += bufferised;
-                    total += bufferised;
+                    read += buffer.length;
+                    total += buffer.length;
                     this.fireEngineDone((double) total, (double) fileLength);
                 }
 
@@ -164,9 +163,9 @@ public class Xtremsplit extends DefaultMergeEngine
 
                 if (md5 && (i == parts)) {
                     // Read the MD5 which was calculated during the split
-                    byte[] sum = new byte[32];
-                    access.read(sum);
-                    md5sum = new String(sum);
+                    buffer = new byte[32];
+                    access.read(buffer);
+                    md5sum = new String(buffer);
 
                     // Calculate the MD5 of the new file
                     MD5Hasher hasher = new MD5Hasher();
