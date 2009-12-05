@@ -20,6 +20,8 @@
  */
 package org.gnome.split.core;
 
+import org.gnome.split.core.exception.EngineException;
+
 /**
  * Define the way that an {@link Engine} class will notify the
  * &quot;view&quot;.

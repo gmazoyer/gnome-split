@@ -1,5 +1,5 @@
 /*
- * EngineException.java
+ * WarningDialog.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,38 +18,27 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.core;
+package org.gnome.split.gtk.dialog;
+
+import org.gnome.gtk.ButtonsType;
+import org.gnome.gtk.MessageDialog;
+import org.gnome.gtk.MessageType;
+import org.gnome.gtk.Window;
+
+import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Define a new {@link Exception} to manager exceptions thrown by
- * {@link Engine} classes.
+ * This class is used to build GTK+ Warning dialog.
  * 
  * @author Guillaume Mazoyer
  */
-public class EngineException extends Exception
+public final class WarningDialog extends MessageDialog
 {
-    private static final long serialVersionUID = 1L;
-
     /**
-     * Create a new exception with a <code>message</code>.
+     * Create an <code>ErrorDialog</code> with a <code>text</code>.
      */
-    public EngineException(String message) {
-        super(message);
-    }
-
-    /**
-     * Create a new exception with an <code>error</code> (a {@link Throwable}
-     * object).
-     */
-    public EngineException(Throwable error) {
-        super(error);
-    }
-
-    /**
-     * Create a new exception with a <code>message</code> and an
-     * <code>error</code> (a {@link Throwable} object).
-     */
-    public EngineException(String message, Throwable error) {
-        super(message, error);
+    public WarningDialog(Window parent, String text) {
+        super(parent, true, MessageType.WARNING, ButtonsType.OK, text);
+        this.setTitle(_("Warning!"));
     }
 }

@@ -12,36 +12,40 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:99
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:102
 msgid "Split terminated."
 msgstr "Découpage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:100
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:103
 msgid "The split has been terminated successfully without any errors."
 msgstr "Le découpage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:102
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:105
 msgid "Merge terminated."
 msgstr "Assemblage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:103
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:106
 msgid "The merge has been terminated successfully without any errors."
 msgstr "L'assemblage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:141
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:144
 msgid "Split stopped."
 msgstr "Découpage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:143
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:146
 msgid "Merge stopped."
 msgstr "Assemblage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:177
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:173
+msgid "The MD5 sums are different. There is no guarantee that the created file will work. Maybe you should try to merge the chunks again."
+msgstr "Les sommes MD5 sont différentes. Il n'y a aucune garantie que le fichier créé fonctionne. Vous devriez peut-être essayer d'assembler les parties de nouveau."
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:201
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:182
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:206
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
@@ -58,7 +62,7 @@ msgstr "É_dition"
 msgid "_Help"
 msgstr "_Aide"
 
-#: src/org/gnome/split/gtk/action/DeleteAction.java:36
+#: src/org/gnome/split/gtk/action/DeleteAction.java:37
 msgid "Cancel and delete files"
 msgstr "Annuler et supprimer les fichiers"
 
@@ -173,6 +177,10 @@ msgstr "Afficher l'_icône dans la zone de notification."
 msgid "Show desktop _notification."
 msgstr "Afficher les _notifications."
 
+#: src/org/gnome/split/gtk/dialog/WarningDialog.java:42
+msgid "Warning!"
+msgstr "Attention !"
+
 #: src/org/gnome/split/gtk/dialog/InfoDialog.java:41
 msgid "Information"
 msgstr "Information"
@@ -257,6 +265,10 @@ msgstr "Affichage :"
 msgid "GNOME Split activity"
 msgstr "Activité de GNOME Split"
 
+#: src/org/gnome/split/core/exception/ExceptionMessage.java:32
+msgid "MD5 sums are different."
+msgstr "Les sommes MD5 sont différentes."
+
 #: src/org/gnome/split/core/utils/SizeUnit.java:99
 msgid "bytes"
 msgstr "octets"
@@ -288,7 +300,4 @@ msgstr "mébioctets (Mio)"
 #: src/org/gnome/split/core/utils/SizeUnit.java:140
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
-
-#~ msgid "Files to merge"
-#~ msgstr "Fichiers à assembler"
 

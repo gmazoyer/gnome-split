@@ -1,5 +1,5 @@
 /*
- * ErrorDialog.java
+ * ExceptionMessage.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,26 +18,27 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.dialog;
+package org.gnome.split.core.exception;
 
 import static org.freedesktop.bindings.Internationalization._;
 
-import org.gnome.gtk.ErrorMessageDialog;
-import org.gnome.gtk.Window;
-
 /**
- * This class is used to build GTK+ Error dialog.
+ * Enumeration which contains all error messages.
  * 
  * @author Guillaume Mazoyer
  */
-public final class ErrorDialog extends ErrorMessageDialog
+public enum ExceptionMessage
 {
-    /**
-     * Create an <code>ErrorDialog</code> with a <code>title</code> and
-     * <code>text</code>.
-     */
-    public ErrorDialog(Window parent, String title, String text) {
-        super(parent, title, text);
-        this.setTitle(_("Error!"));
+    MD5_DIFFER(_("MD5 sums are different."));
+
+    private String message;
+
+    private ExceptionMessage(String message) {
+        this.message = message;
+    }
+
+    @Override
+    public String toString() {
+        return message;
     }
 }

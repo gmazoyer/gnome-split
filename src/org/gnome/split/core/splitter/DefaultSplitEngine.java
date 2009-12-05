@@ -23,13 +23,11 @@ package org.gnome.split.core.splitter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
-import org.gnome.split.core.EngineException;
+import org.gnome.split.core.exception.EngineException;
 
 /**
  * Define the model that all split engines should use.
@@ -54,11 +52,6 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     protected String destination;
 
     /**
-     * {@link List} of all chunks which had been created.
-     */
-    protected List<String> chunks;
-
-    /**
      * Create a new split {@link Engine engine} using a <code>file</code> to
      * split and a maximum <code>size</code> for each chunk.
      */
@@ -68,7 +61,6 @@ public abstract class DefaultSplitEngine extends DefaultEngine
         this.file = file;
         this.size = size;
         this.destination = destination;
-        this.chunks = new ArrayList<String>();
     }
 
     @Override

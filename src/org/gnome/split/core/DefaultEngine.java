@@ -20,6 +20,9 @@
  */
 package org.gnome.split.core;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gnome.split.GnomeSplit;
 
 public abstract class DefaultEngine implements Engine
@@ -45,6 +48,11 @@ public abstract class DefaultEngine implements Engine
     protected String directory;
 
     /**
+     * {@link List} of all chunks which had been created/read.
+     */
+    protected List<String> chunks;
+
+    /**
      * To manage pause and resume actions.
      */
     protected boolean paused;
@@ -58,6 +66,7 @@ public abstract class DefaultEngine implements Engine
         this.app = app;
         this.total = 0;
         this.directory = null;
+        this.chunks = new ArrayList<String>();
         this.paused = false;
         this.stopped = false;
     }

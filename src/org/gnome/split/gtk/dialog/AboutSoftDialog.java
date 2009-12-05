@@ -37,7 +37,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class AboutSoftDialog extends AboutDialog implements Window.DeleteEvent, Dialog.Response
+public final class AboutSoftDialog extends AboutDialog implements Window.DeleteEvent, Dialog.Response
 {
     private static String developer = N_("Head developer:");
 

@@ -27,6 +27,9 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.exception.EngineException;
+import org.gnome.split.core.exception.ExceptionMessage;
+import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
 
@@ -93,6 +96,7 @@ public class Xtremsplit extends DefaultMergeEngine
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
         FileOutputStream out = null;
         File chunk = null;
+        boolean md5match = true;
         try {
             // Open the final file
             out = new FileOutputStream(filename);
@@ -170,17 +174,31 @@ public class Xtremsplit extends DefaultMergeEngine
                     String found = hasher.hashToString(new File(filename));
 
                     // MD5 are different
-                    if (!md5sum.equals(found)) {
-                        // Notify the user about the error
-                    }
+                    md5match = md5sum.equals(found);
                 }
+                
+                // Add the part the full read parts
+                chunks.add(chunk.getAbsolutePath());
 
                 // Close the part
                 access.close();
             }
 
+            if (app.getConfig().DELETE_PARTS && md5 && md5match) {
+                // Delete all parts if and *only if* the MD5 sums are equals
+                for (String path : chunks) {
+                    new File(path).delete();
+                }
+            }
+
             // Notify the end of the merge
-            this.fireEngineEnded();
+            if (md5 && !md5match) {
+                String message = ExceptionMessage.MD5_DIFFER.toString();
+                EngineException exception = new MD5Exception(message);
+                this.fireEngineError(exception);
+            } else {
+                this.fireEngineEnded();
+            }
         } catch (FileNotFoundException e) {
             throw e;
         } catch (IOException e) {

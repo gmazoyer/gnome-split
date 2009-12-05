@@ -11,7 +11,7 @@ For the impatient:
 -----------------------------------------------------------------
  2. Installing
 -----------------------------------------------------------------
-Really, that's your GNU/Linux distribution's job, but if you insist:
+Really? That's your GNU/Linux distribution's job, but if you insist:
 
 	# make install
 
@@ -51,7 +51,7 @@ GPLv3. Please read the LICENSE file for more informations
 -----------------------------------------------------------------
  5. What is GNOME Split?
 -----------------------------------------------------------------
-GNOME Split is a program made written in Java and using a GTK+
+GNOME Split is a program written in Java and using a GTK+
 graphical interface. It allows you to split a file in more little
 chunks in order to be able to store it easily. You can also
 merge the chunks later and check the file integrity using a MD5 sum.

@@ -26,12 +26,15 @@ import org.gnome.notify.Notification;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.Engine;
-import org.gnome.split.core.EngineException;
 import org.gnome.split.core.EngineListener;
+import org.gnome.split.core.exception.EngineException;
+import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.dbus.DbusInhibit;
+import org.gnome.split.gtk.dialog.ErrorDialog;
 import org.gnome.split.gtk.dialog.InfoDialog;
+import org.gnome.split.gtk.dialog.WarningDialog;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -160,11 +163,32 @@ public class DefaultEngineListener implements EngineListener
         // Update engine
         engine = null;
 
+        Stock item;
+        Dialog dialog;
+        if (exception instanceof MD5Exception) {
+            // MD5 exception - warning only (file *may* work)
+            item = Stock.DIALOG_WARNING;
+            dialog = new WarningDialog(
+                    gtk,
+                    _("The MD5 sums are different. There is no guarantee that the created file will work. Maybe you should try to merge the chunks again."));
+        } else {
+            // Other exception - error (file is supposed broken)
+            item = Stock.DIALOG_ERROR;
+            dialog = new ErrorDialog(gtk, exception.getMessage(), "");
+        }
+
+        // Update the status widget
+        gtk.getStatusWidget().update(item, exception.getMessage());
+
+        // Display the dialog
+        dialog.run();
+        dialog.hide();
+
         // Enable user interaction (only in action widget)
         gtk.getActionWidget().enable();
 
-        // Update the status widget
-        gtk.getStatusWidget().update(Stock.DIALOG_ERROR, exception.getMessage());
+        // Make user interface back to ready state
+        app.getActionManager().setReadyState();
 
         // Finally, uninhibit computer hibernation if needed
         if (inhibit.hasInhibit()) {

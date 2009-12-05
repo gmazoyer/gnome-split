@@ -27,7 +27,7 @@ import java.io.IOException;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
-import org.gnome.split.core.EngineException;
+import org.gnome.split.core.exception.EngineException;
 
 /**
  * Define the model that all merge engines should use.

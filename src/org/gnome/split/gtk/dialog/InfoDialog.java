@@ -30,7 +30,7 @@ import org.gnome.gtk.Window;
  * 
  * @author Guillaume Mazoyer
  */
-public class InfoDialog extends InfoMessageDialog
+public final class InfoDialog extends InfoMessageDialog
 {
     /**
      * Create an <code>InfoDialog</code> with a <code>title</code> and

@@ -1,5 +1,5 @@
 /*
- * ErrorDialog.java
+ * EngineException.java
  * 
  * Copyright (c) 2009 Guillaume Mazoyer
  * 
@@ -18,26 +18,38 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.dialog;
-
-import static org.freedesktop.bindings.Internationalization._;
-
-import org.gnome.gtk.ErrorMessageDialog;
-import org.gnome.gtk.Window;
+package org.gnome.split.core.exception;
 
 /**
- * This class is used to build GTK+ Error dialog.
+ * Define a new {@link Exception} to manager exceptions thrown by
+ * {@link Engine} classes.
  * 
  * @author Guillaume Mazoyer
  */
-public final class ErrorDialog extends ErrorMessageDialog
+public class EngineException extends Exception
 {
+    private static final long serialVersionUID = 1L;
+
     /**
-     * Create an <code>ErrorDialog</code> with a <code>title</code> and
-     * <code>text</code>.
+     * Create a new exception with a <code>message</code>.
      */
-    public ErrorDialog(Window parent, String title, String text) {
-        super(parent, title, text);
-        this.setTitle(_("Error!"));
+    public EngineException(String message) {
+        super(message);
+    }
+
+    /**
+     * Create a new exception with an <code>error</code> (a {@link Throwable}
+     * object).
+     */
+    public EngineException(Throwable error) {
+        super(error);
+    }
+
+    /**
+     * Create a new exception with a <code>message</code> and an
+     * <code>error</code> (a {@link Throwable} object).
+     */
+    public EngineException(String message, Throwable error) {
+        super(message, error);
     }
 }
