@@ -47,27 +47,27 @@ public final class GnomeSplit
     /**
      * Used to check that only one instance of this application is running.
      */
-    private Application application = null;
+    private Application application;
 
     /**
      * Configuration for the application.
      */
-    private Configuration config = null;
+    private Configuration config;
 
     /**
      * Application actions manager.
      */
-    private ActionManager actions = null;
+    private ActionManager actions;
 
     /**
      * Application main window.
      */
-    private MainWindow window = null;
+    private MainWindow window;
 
     /**
      * Engine listener to update the view.
      */
-    private EngineListener engine = null;
+    private EngineListener engine;
 
     /**
      * Create an instance of the application.

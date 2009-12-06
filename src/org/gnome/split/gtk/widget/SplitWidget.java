@@ -141,7 +141,13 @@ public class SplitWidget extends Frame implements ActionWidget
         fileChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
-                fileEntry.setText(source.getFilename());
+                String filename = source.getFilename();
+                int separator = filename.lastIndexOf(File.separator) + 1;
+                String file = filename.substring(separator, filename.length());
+
+                // Update entries
+                fileEntry.setText(filename);
+                destinationEntry.setText(file);
             }
         });
         chooserColumn.packStart(fileChooser);
