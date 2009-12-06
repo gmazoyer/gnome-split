@@ -24,9 +24,9 @@ import java.io.File;
 
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.merger.DefaultMergeEngine;
+import org.gnome.split.core.splitter.GnomeSplit;
 import org.gnome.split.core.splitter.Xtremsplit;
 import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.gtk.dialog.ErrorDialog;
@@ -43,14 +43,14 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public final class StartAction extends Action
 {
-    public StartAction(final GnomeSplit app) {
+    public StartAction(final org.gnome.split.GnomeSplit app) {
         super(app, Stock.MEDIA_PLAY, _("Start"));
     }
 
     @Override
     public void actionPerformed(ActionEvent event) {
         // Get current instance and current widget
-        GnomeSplit app = this.getApplication();
+        org.gnome.split.GnomeSplit app = this.getApplication();
         Engine engine = app.getEngineListener().getEngine();
 
         // Action already started and paused
@@ -87,6 +87,11 @@ public final class StartAction extends Action
                 case Algorithm.XTREMSPLIT:
                     // Create the new process and start it
                     run = new Xtremsplit(app, file, size, dest);
+                    new Thread(run, "Split - " + file.getName()).start();
+                    break;
+                case Algorithm.GNOME_SPLIT:
+                    // Create the new process and start it
+                    run = new GnomeSplit(app, file, size, dest);
                     new Thread(run, "Split - " + file.getName()).start();
                     break;
                 default:

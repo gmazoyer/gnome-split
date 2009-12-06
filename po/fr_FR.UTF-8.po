@@ -79,7 +79,7 @@ msgid "Start"
 msgstr "Démarrer"
 
 #: src/org/gnome/split/gtk/action/StartAction.java:70
-#: src/org/gnome/split/gtk/action/StartAction.java:98
+#: src/org/gnome/split/gtk/action/StartAction.java:103
 msgid "Incompleted fields."
 msgstr "Champs incomplets."
 
@@ -87,7 +87,7 @@ msgstr "Champs incomplets."
 msgid "You must fill all fields to start a split."
 msgstr "Vous devez remplir tous les champs avant de lancer un découpage."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:99
+#: src/org/gnome/split/gtk/action/StartAction.java:104
 msgid "You must fill all fields to start a merge."
 msgstr "Vous devez remplir tous les champs avant de lancer un assemblage."
 
@@ -203,16 +203,16 @@ msgstr "Destination :"
 msgid "Choose a file."
 msgstr "Choisissez un fichier."
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:149
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:155
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:128
 msgid "Choose a directory."
 msgstr "Choisissez un dossier."
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:160
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:166
 msgid "Split in:"
 msgstr "Découper en :"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:181
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:187
 msgid "Algorithm:"
 msgstr "Algorithme :"
 

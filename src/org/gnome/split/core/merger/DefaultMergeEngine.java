@@ -24,7 +24,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
@@ -70,7 +69,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Create a new merge {@link Engine engine} using a first
      * <code>file</code> to merge.
      */
-    public DefaultMergeEngine(final GnomeSplit app, File file, String filename) {
+    public DefaultMergeEngine(final org.gnome.split.GnomeSplit app, File file, String filename) {
         super(app);
         this.filename = filename;
         this.file = file;
@@ -91,8 +90,14 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Return the right merger to merge files with right algorithm.
      */
-    public static DefaultMergeEngine getInstance(GnomeSplit app, File file, String filename) {
+    public static DefaultMergeEngine getInstance(final org.gnome.split.GnomeSplit app, File file,
+            String filename) {
         String name = file.getName();
+
+        if (name.endsWith(".001.gsp")) {
+            // Use GNOME Split algorithm
+            return new GnomeSplit(app, file, filename);
+        }
 
         if (name.endsWith(".001.xtm")) {
             // Use Xtremsplit algorithm

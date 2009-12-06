@@ -35,7 +35,7 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class WarningDialog extends MessageDialog
 {
     /**
-     * Create an <code>ErrorDialog</code> with a <code>text</code>.
+     * Create an <code>WarningDialog</code> with a <code>text</code>.
      */
     public WarningDialog(Window parent, String text) {
         super(parent, true, MessageType.WARNING, ButtonsType.OK, text);
