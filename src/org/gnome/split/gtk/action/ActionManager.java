@@ -118,7 +118,7 @@ public class ActionManager
         this.getAction(ActionId.TOOL_PAUSE).setActive(false);
         this.getAction(ActionId.TOOL_CANCEL).setActive(true);
         this.getAction(ActionId.TOOL_CLEAR).setActive(false);
-        this.getAction(ActionId.TOOL_PROPERTIES).setActive(true);
+        this.getAction(ActionId.TOOL_PROPERTIES).setActive(false);
     }
 
     /**
@@ -136,7 +136,7 @@ public class ActionManager
         this.getAction(ActionId.TOOL_PAUSE).setActive(true);
         this.getAction(ActionId.TOOL_CANCEL).setActive(true);
         this.getAction(ActionId.TOOL_CLEAR).setActive(false);
-        this.getAction(ActionId.TOOL_PROPERTIES).setActive(true);
+        this.getAction(ActionId.TOOL_PROPERTIES).setActive(false);
     }
 
     /**
