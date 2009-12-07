@@ -31,6 +31,12 @@ public class EngineException extends Exception
     private static final long serialVersionUID = 1L;
 
     /**
+     * The {@link ExceptionMessage message} of this {@link Exception
+     * exception}.
+     */
+    protected ExceptionMessage message;
+
+    /**
      * Create a new exception with a <code>message</code>.
      */
     public EngineException(String message) {
@@ -51,5 +57,20 @@ public class EngineException extends Exception
      */
     public EngineException(String message, Throwable error) {
         super(message, error);
+    }
+
+    /**
+     * Create an {@link Exception} with an {@link ExceptionMessage} .
+     */
+    public EngineException(ExceptionMessage message) {
+        this(message.getMessage());
+        this.message = message;
+    }
+
+    /**
+     * Get the {@link ExceptionMessage} of this {@link Exception exception}.
+     */
+    public ExceptionMessage getExceptionMessage() {
+        return message;
     }
 }

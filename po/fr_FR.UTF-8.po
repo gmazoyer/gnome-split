@@ -36,10 +36,6 @@ msgstr "Découpage stoppé."
 msgid "Merge stopped."
 msgstr "Assemblage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:173
-msgid "The MD5 sums are different. There is no guarantee that the created file will work. Maybe you should try to merge the chunks again."
-msgstr "Les sommes MD5 sont différentes. Il n'y a aucune garantie que le fichier créé fonctionne. Vous devriez peut-être essayer d'assembler les parties de nouveau."
-
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:201
 #, java-format
 msgid "Writting {0}."
@@ -265,9 +261,21 @@ msgstr "Affichage :"
 msgid "GNOME Split activity"
 msgstr "Activité de GNOME Split"
 
-#: src/org/gnome/split/core/exception/ExceptionMessage.java:32
+#: src/org/gnome/split/core/exception/ExceptionMessage.java:33
 msgid "MD5 sums are different."
 msgstr "Les sommes MD5 sont différentes."
+
+#: src/org/gnome/split/core/exception/ExceptionMessage.java:34
+msgid "The MD5 sums are different. There is no guarantee that the created file will work. Maybe you should try to merge the chunks again."
+msgstr "Les sommes MD5 sont différentes. Il n'y a aucune garantie que le fichier créé fonctionne. Vous devriez peut-être essayer d'assembler les parties de nouveau."
+
+#: src/org/gnome/split/core/exception/ExceptionMessage.java:35
+msgid "Invalid chunk size."
+msgstr "Taille non valide."
+
+#: src/org/gnome/split/core/exception/ExceptionMessage.java:36
+msgid "You must specify a size which is lower than the size of the file to split."
+msgstr "Vous devez spécifier une taille qui est inférieure à la taille du fichier à découper."
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:99
 msgid "bytes"

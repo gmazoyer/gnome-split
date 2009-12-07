@@ -192,8 +192,7 @@ public class GnomeSplit extends DefaultMergeEngine
 
             // Notify the end of the merge
             if (md5 && !md5match) {
-                String message = ExceptionMessage.MD5_DIFFER.toString();
-                EngineException exception = new MD5Exception(message);
+                EngineException exception = new MD5Exception(ExceptionMessage.MD5_DIFFER);
                 this.fireEngineError(exception);
             } else {
                 this.fireEngineEnded();

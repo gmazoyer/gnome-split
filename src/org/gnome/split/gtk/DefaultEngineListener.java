@@ -168,13 +168,13 @@ public class DefaultEngineListener implements EngineListener
         if (exception instanceof MD5Exception) {
             // MD5 exception - warning only (file *may* work)
             item = Stock.DIALOG_WARNING;
-            dialog = new WarningDialog(
-                    gtk,
-                    _("The MD5 sums are different. There is no guarantee that the created file will work. Maybe you should try to merge the chunks again."));
+            dialog = new WarningDialog(gtk, ((MD5Exception) exception).getExceptionMessage()
+                    .getDetails());
         } else {
             // Other exception - error (file is supposed broken)
             item = Stock.DIALOG_ERROR;
-            dialog = new ErrorDialog(gtk, exception.getMessage(), "");
+            dialog = new ErrorDialog(gtk, exception.getMessage(), exception.getExceptionMessage()
+                    .getDetails());
         }
 
         // Update the status widget

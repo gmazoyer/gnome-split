@@ -21,8 +21,8 @@
 package org.gnome.split.core.exception;
 
 /**
- * Define a new {@link Exception} to manager exceptions thrown by
- * {@link Engine} classes.
+ * Define a new {@link Exception} to manage exceptions due to MD5 sums that
+ * differ.
  * 
  * @author Guillaume Mazoyer
  */
@@ -31,25 +31,9 @@ public final class MD5Exception extends EngineException
     private static final long serialVersionUID = 1L;
 
     /**
-     * Create a new exception with a <code>message</code>.
+     * Create an {@link Exception} with an {@link ExceptionMessage} .
      */
-    public MD5Exception(String message) {
+    public MD5Exception(ExceptionMessage message) {
         super(message);
-    }
-
-    /**
-     * Create a new exception with an <code>error</code> (a {@link Throwable}
-     * object).
-     */
-    public MD5Exception(Throwable error) {
-        super(error);
-    }
-
-    /**
-     * Create a new exception with a <code>message</code> and an
-     * <code>error</code> (a {@link Throwable} object).
-     */
-    public MD5Exception(String message, Throwable error) {
-        super(message, error);
     }
 }

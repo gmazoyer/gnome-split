@@ -29,16 +29,43 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public enum ExceptionMessage
 {
-    MD5_DIFFER(_("MD5 sums are different."));
+    MD5_DIFFER(
+            _("MD5 sums are different."),
+            _("The MD5 sums are different. There is no guarantee that the created file will work. Maybe you should try to merge the chunks again.")), INVALID_SIZE(
+            _("Invalid chunk size."),
+            _("You must specify a size which is lower than the size of the file to split."));
 
+    /**
+     * The message which will be used in the {@link Exception}.
+     */
     private String message;
 
-    private ExceptionMessage(String message) {
+    /**
+     * The more detailed message which will be used to be displayed in the
+     * interface.
+     */
+    private String details;
+
+    /**
+     * Create an {@link ExceptionMessage} with a <code>message</code> and
+     * <code>details</code>.
+     */
+    private ExceptionMessage(String message, String details) {
         this.message = message;
+        this.details = details;
     }
 
-    @Override
-    public String toString() {
+    /**
+     * Get the short message of this {@link ExceptionMessage}.
+     */
+    public String getMessage() {
         return message;
+    }
+
+    /**
+     * Get the detailed message of this {@link ExceptionMessage}.
+     */
+    public String getDetails() {
+        return details;
     }
 }

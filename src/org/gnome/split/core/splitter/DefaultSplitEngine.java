@@ -28,6 +28,7 @@ import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
+import org.gnome.split.core.exception.ExceptionMessage;
 
 /**
  * Define the model that all split engines should use.
@@ -67,6 +68,12 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     public void run() {
         synchronized (mutex) {
             try {
+                // Invalid size
+                if (size == -1) {
+                    this.fireEngineError(new EngineException(ExceptionMessage.INVALID_SIZE));
+                    return;
+                }
+
                 // Split the file
                 this.split();
             } catch (Exception e) {

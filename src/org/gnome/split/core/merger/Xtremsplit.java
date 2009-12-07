@@ -176,7 +176,7 @@ public class Xtremsplit extends DefaultMergeEngine
                     // MD5 are different
                     md5match = md5sum.equals(found);
                 }
-                
+
                 // Add the part the full read parts
                 chunks.add(chunk.getAbsolutePath());
 
@@ -193,8 +193,7 @@ public class Xtremsplit extends DefaultMergeEngine
 
             // Notify the end of the merge
             if (md5 && !md5match) {
-                String message = ExceptionMessage.MD5_DIFFER.toString();
-                EngineException exception = new MD5Exception(message);
+                EngineException exception = new MD5Exception(ExceptionMessage.MD5_DIFFER);
                 this.fireEngineError(exception);
             } else {
                 this.fireEngineEnded();
