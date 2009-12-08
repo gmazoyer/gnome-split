@@ -182,6 +182,6 @@ dist: all
 	@/bin/echo -e "EXPORT\ttmp/gnome-split-$(VERSION)"
 	-rm -rf tmp/gnome-split-$(VERSION)
 	bzr export --format=dir tmp/gnome-split-$(VERSION)
-	@/bin/echo -e "TAR\gnome-split-$(VERSION).tar.gz"
-	tar cvf gnome-split-$(VERSION).tar.gz -C tmp gnome-split-$(VERSION)
+	@/bin/echo -e "TAR\tgnome-split-$(VERSION).tar.bz2"
+	tar cjf gnome-split-$(VERSION).tar.bz2 -C tmp gnome-split-$(VERSION)
 	rm -r tmp/gnome-split-$(VERSION)
