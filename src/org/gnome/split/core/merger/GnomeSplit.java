@@ -91,6 +91,22 @@ public class GnomeSplit extends DefaultMergeEngine
     }
 
     @Override
+    protected String getNextChunk(String part, int number) {
+        // Get the current extension
+        String current;
+        if (number >= 100) {
+            current = String.valueOf(number);
+        } else if (number >= 10) {
+            current = "0" + number;
+        } else {
+            current = "00" + number;
+        }
+
+        // Finally
+        return (part + current + ".gsp");
+    }
+
+    @Override
     public void merge() throws IOException, FileNotFoundException {
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
         FileOutputStream out = null;
@@ -104,18 +120,9 @@ public class GnomeSplit extends DefaultMergeEngine
             byte[] buffer;
 
             for (int i = 1; i <= parts; i++) {
-                // Get the current extension
-                String current;
-                if (i >= 100) {
-                    current = String.valueOf(i);
-                } else if (i >= 10) {
-                    current = "0" + i;
-                } else {
-                    current = "00" + i;
-                }
 
                 // Open the current part to merge
-                chunk = new File(part + current + ".gsp");
+                chunk = new File(this.getNextChunk(part, i));
                 RandomAccessFile access = new RandomAccessFile(chunk, "r");
                 long read = 0;
                 long length = access.length();

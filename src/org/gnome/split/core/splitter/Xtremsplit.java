@@ -62,8 +62,8 @@ public class Xtremsplit extends DefaultSplitEngine
             access.write(0);
         }
 
-        // Write date : supposed to be 4 bytes
-        access.writeInt(0);
+        // Write date
+        access.writeDouble(0);
 
         // Write original filename
         access.writeByte(file.getName().length());
@@ -87,6 +87,22 @@ public class Xtremsplit extends DefaultSplitEngine
     }
 
     @Override
+    protected String getChunkName(String destination, int number) {
+        // Get the current extension
+        String current;
+        if (number >= 100) {
+            current = String.valueOf(number);
+        } else if (number >= 10) {
+            current = "0" + number;
+        } else {
+            current = "00" + number;
+        }
+
+        // Finally
+        return (destination + "." + current + ".xtm");
+    }
+
+    @Override
     public void split() throws IOException, FileNotFoundException {
         RandomAccessFile toSplit = null;
         try {
@@ -100,18 +116,8 @@ public class Xtremsplit extends DefaultSplitEngine
                 RandomAccessFile access = null;
                 File chunk = null;
                 try {
-                    // Get the current extension
-                    String current;
-                    if (i >= 100) {
-                        current = String.valueOf(i);
-                    } else if (i >= 10) {
-                        current = "0" + i;
-                    } else {
-                        current = "00" + i;
-                    }
-
                     // Open the part
-                    chunk = new File(destination + "." + current + ".xtm");
+                    chunk = new File(this.getChunkName(destination, i));
                     access = new RandomAccessFile(chunk, "rw");
                     int read = 0;
 

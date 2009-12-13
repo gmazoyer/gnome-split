@@ -76,6 +76,22 @@ public class GnomeSplit extends DefaultSplitEngine
     }
 
     @Override
+    protected String getChunkName(String destination, int number) {
+        // Get the current extension
+        String current;
+        if (number >= 100) {
+            current = String.valueOf(number);
+        } else if (number >= 10) {
+            current = "0" + number;
+        } else {
+            current = "00" + number;
+        }
+
+        // Finally
+        return (destination + "." + current + ".gsp");
+    }
+
+    @Override
     public void split() throws IOException, FileNotFoundException {
         RandomAccessFile toSplit = null;
         try {
@@ -89,18 +105,8 @@ public class GnomeSplit extends DefaultSplitEngine
                 RandomAccessFile access = null;
                 File chunk = null;
                 try {
-                    // Get the current extension
-                    String current;
-                    if (i >= 100) {
-                        current = String.valueOf(i);
-                    } else if (i >= 10) {
-                        current = "0" + i;
-                    } else {
-                        current = "00" + i;
-                    }
-
                     // Open the part
-                    chunk = new File(destination + "." + current + ".gsp");
+                    chunk = new File(this.getChunkName(destination, i));
                     access = new RandomAccessFile(chunk, "rw");
                     int read = 0;
 

@@ -137,6 +137,11 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     protected abstract void loadHeaders() throws IOException, FileNotFoundException;
 
     /**
+     * Get the next name of the file to merge.
+     */
+    protected abstract String getNextChunk(String part, int number);
+
+    /**
      * Merge files to get a new one.
      */
     public abstract void merge() throws IOException, FileNotFoundException;

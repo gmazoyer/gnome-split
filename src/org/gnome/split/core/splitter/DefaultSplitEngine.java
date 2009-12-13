@@ -96,6 +96,11 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     }
 
     /**
+     * Get a filename for the current chunk using the file number.
+     */
+    protected abstract String getChunkName(String destination, int number);
+
+    /**
      * Split a file into smaller parts.
      */
     public abstract void split() throws IOException, FileNotFoundException;
