@@ -294,18 +294,22 @@ msgid "GB"
 msgstr "Gio"
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:140
+msgid "chunks"
+msgstr "parties"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:141
 msgid "bytes (B)"
 msgstr "octets (o)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:140
+#: src/org/gnome/split/core/utils/SizeUnit.java:142
 msgid "kilobytes (KB)"
 msgstr "kibioctets (Kio)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:140
+#: src/org/gnome/split/core/utils/SizeUnit.java:143
 msgid "megabytes (MB)"
 msgstr "mébioctets (Mio)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:140
+#: src/org/gnome/split/core/utils/SizeUnit.java:144
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
 

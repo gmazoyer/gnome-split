@@ -137,7 +137,11 @@ public final class SizeUnit
      */
     public static String[] toStrings() {
         return new String[] {
-                _("bytes (B)"), _("kilobytes (KB)"), _("megabytes (MB)"), _("gigbaytes (GB)")
+                _("chunks"),
+                _("bytes (B)"),
+                _("kilobytes (KB)"),
+                _("megabytes (MB)"),
+                _("gigbaytes (GB)")
         };
     }
 }

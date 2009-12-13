@@ -291,12 +291,20 @@ public class SplitWidget extends Frame implements ActionWidget
      * Get the maximum size of each chunk.
      */
     public long getMaxSize() {
-        int unit = sizeUnits.getActive() - 1;
-        double multiplicator = (unit == -1) ? 1 : SizeUnit.values()[unit];
-        long result = (long) (sizeButton.getValue() * multiplicator);
+        int unit = sizeUnits.getActive();
+        long input = new File(this.getFilename()).length();
+        long result;
+
+        if (unit == 0) {
+            result = (long) (input / sizeButton.getValue());
+        } else {
+            unit -= 2;
+            double multiplicator = (unit == -1) ? 1 : SizeUnit.values()[unit];
+            result = (long) (sizeButton.getValue() * multiplicator);
+        }
 
         // Size not valid (bigger than the length of the file to split)
-        if (result >= new File(this.getFilename()).length()) {
+        if (result >= input) {
             return -1;
         }
         return result;
