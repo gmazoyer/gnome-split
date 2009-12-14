@@ -48,30 +48,36 @@ public class Xtremsplit extends DefaultSplitEngine
      * Write the xtm header at the beginning of a file.
      */
     private void writeHeaders(RandomAccessFile access) throws IOException {
+        byte[] toWrite;
+
         // Write program name
-        access.writeByte(Constants.PROGRAM_NAME.length());
-        access.write(Constants.PROGRAM_NAME.getBytes());
-        for (int i = Constants.PROGRAM_NAME.length(); i < 20; i++) {
+        toWrite = Constants.PROGRAM_NAME.getBytes();
+        access.writeByte(toWrite.length);
+        access.write(toWrite);
+        for (int i = toWrite.length; i < 20; i++) {
             access.write(0);
         }
 
         // Write program version
-        access.writeByte(Constants.PROGRAM_VERSION.length());
-        access.write(Constants.PROGRAM_VERSION.getBytes());
-        for (int i = Constants.PROGRAM_VERSION.length(); i < 14; i++) {
+        toWrite = Constants.PROGRAM_VERSION.getBytes();
+        access.writeByte(toWrite.length);
+        access.write(toWrite);
+        for (int i = toWrite.length; i < 14; i++) {
             access.write(0);
         }
 
         // Write date
-        access.writeDouble(0);
+        access.writeInt(0);
 
         // Write original filename
-        access.writeByte(file.getName().length());
-        if (file.getName().length() > 50) {
-            access.write(file.getName().substring(0, 50).getBytes());
+        toWrite = file.getName().getBytes();
+        access.writeByte(toWrite.length);
+        if (toWrite.length > 50) {
+            toWrite = file.getName().substring(0, 50).getBytes();
+            access.write(toWrite);
         } else {
-            access.write(file.getName().getBytes());
-            for (int i = file.getName().length(); i < 50; i++) {
+            access.write(toWrite);
+            for (int i = toWrite.length; i < 50; i++) {
                 access.write(0);
             }
         }
