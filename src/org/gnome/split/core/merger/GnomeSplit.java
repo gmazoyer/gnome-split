@@ -29,7 +29,6 @@ import java.io.RandomAccessFile;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.ExceptionMessage;
 import org.gnome.split.core.exception.MD5Exception;
-import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
 
 /**
@@ -64,19 +63,13 @@ public class GnomeSplit extends DefaultMergeEngine
             }
 
             // Read if MD5 is used
-            bytes = new byte[1];
-            access.read(bytes);
-            md5 = ByteUtils.toBoolean(bytes[0]);
+            md5 = access.readBoolean();
 
             // Read file number
-            bytes = new byte[4];
-            access.read(bytes);
-            parts = (int) ByteUtils.toInt(bytes);
+            parts = access.readInt();
 
             // Read file length
-            bytes = new byte[8];
-            access.read(bytes);
-            fileLength = ByteUtils.toLong(bytes);
+            fileLength = access.readLong();
         } catch (FileNotFoundException e) {
             throw e;
         } catch (IOException e) {

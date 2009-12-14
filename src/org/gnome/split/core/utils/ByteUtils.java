@@ -77,11 +77,4 @@ public final class ByteUtils
         }
         return b;
     }
-
-    /**
-     * Convert a byte to a {@link Boolean} value.
-     */
-    public static boolean toBoolean(byte b) {
-        return ((b == 0) ? false : true);
-    }
 }

@@ -26,7 +26,6 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import org.gnome.split.config.Constants;
-import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
 
 /**
@@ -47,20 +46,25 @@ public class GnomeSplit extends DefaultSplitEngine
      * Write the GNOME Split header at the beginning of a file.
      */
     private void writeHeaders(RandomAccessFile access) throws IOException {
+        byte[] toWrite;
+
         // Write program version
-        access.writeByte(Constants.PROGRAM_VERSION.length());
-        access.write(Constants.PROGRAM_VERSION.getBytes());
-        for (int i = Constants.PROGRAM_VERSION.length(); i < 4; i++) {
+        toWrite = Constants.PROGRAM_VERSION.getBytes();
+        access.writeByte(toWrite.length);
+        access.write(toWrite);
+        for (int i = toWrite.length; i < 4; i++) {
             access.write(0);
         }
 
         // Write original filename
-        access.writeByte(file.getName().length());
-        if (file.getName().length() > 50) {
-            access.write(file.getName().substring(0, 50).getBytes());
+        toWrite = file.getName().getBytes();
+        access.writeByte(toWrite.length);
+        if (toWrite.length > 50) {
+            toWrite = file.getName().substring(0, 50).getBytes();
+            access.write(toWrite);
         } else {
-            access.write(file.getName().getBytes());
-            for (int i = file.getName().length(); i < 50; i++) {
+            access.write(toWrite);
+            for (int i = toWrite.length; i < 50; i++) {
                 access.write(0);
             }
         }
@@ -69,10 +73,10 @@ public class GnomeSplit extends DefaultSplitEngine
         access.writeBoolean(app.getConfig().SAVE_FILE_HASH);
 
         // Write number of files
-        access.write(ByteUtils.toBytes(parts));
+        access.writeInt(parts);
 
         // Write file size
-        access.write(ByteUtils.toBytes(file.length()));
+        access.writeLong(file.length());
     }
 
     @Override

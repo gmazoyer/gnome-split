@@ -52,7 +52,7 @@ public class Xtremsplit extends DefaultMergeEngine
             access = new RandomAccessFile(file, "r");
 
             // Skip useless header
-            access.skipBytes(44);
+            access.skipBytes(40);
 
             // Read filename
             byte[] bytes = new byte[access.read()];
@@ -65,9 +65,7 @@ public class Xtremsplit extends DefaultMergeEngine
             }
 
             // Read if MD5 is used
-            bytes = new byte[1];
-            access.read(bytes);
-            md5 = ByteUtils.toBoolean(bytes[0]);
+            md5 = access.readBoolean();
 
             // Read file number
             bytes = new byte[4];
@@ -132,8 +130,8 @@ public class Xtremsplit extends DefaultMergeEngine
 
                 if (i == 1) {
                     // Skip headers if it is the first part
-                    access.skipBytes(108);
-                    read += 108;
+                    access.skipBytes(104);
+                    read += 104;
                 } else if (md5 && (i == parts)) {
                     // Skip the MD5 sum if it is the last part
                     length -= 32;
