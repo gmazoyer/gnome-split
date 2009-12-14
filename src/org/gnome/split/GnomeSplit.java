@@ -31,10 +31,10 @@ import org.gnome.notify.Notify;
 import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.EngineListener;
+import org.gnome.split.core.utils.UncaughtExceptionLogger;
 import org.gnome.split.gtk.DefaultEngineListener;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
-import org.gnome.split.utils.UncaughtExceptionLogger;
 import org.gnome.unique.Application;
 
 /**

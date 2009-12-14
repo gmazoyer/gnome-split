@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.utils;
+package org.gnome.split.core.utils;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;

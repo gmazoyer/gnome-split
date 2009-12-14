@@ -296,8 +296,10 @@ public class SplitWidget extends Frame implements ActionWidget
         long result;
 
         if (unit == 0) {
+            // Split by chunk number
             result = (long) (input / sizeButton.getValue());
         } else {
+            // Split by size
             unit -= 2;
             double multiplicator = (unit == -1) ? 1 : SizeUnit.values()[unit];
             result = (long) (sizeButton.getValue() * multiplicator);
