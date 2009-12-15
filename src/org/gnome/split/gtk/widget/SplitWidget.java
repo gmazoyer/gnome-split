@@ -51,6 +51,11 @@ import static org.freedesktop.bindings.Internationalization._;
 public class SplitWidget extends Frame implements ActionWidget
 {
     /**
+     * The GNOME Split application.
+     */
+    private GnomeSplit app;
+
+    /**
      * Define if the widget is visible or not.
      */
     private boolean visible;
@@ -97,6 +102,9 @@ public class SplitWidget extends Frame implements ActionWidget
 
     public SplitWidget(final GnomeSplit app) {
         super(null);
+
+        // Save instance
+        this.app = app;
 
         // At first, it is invisible
         visible = false;
@@ -255,7 +263,7 @@ public class SplitWidget extends Frame implements ActionWidget
         dirChooser.setCurrentFolder(System.getProperty("user.home"));
         sizeButton.setValue(1);
         sizeUnits.setActive(0);
-        algoList.setActive(0);
+        algoList.setActive(app.getConfig().DEFAULT_ALGORITHM);
         progressbar.setFraction(0);
         progressbar.setText("");
     }

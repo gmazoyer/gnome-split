@@ -27,6 +27,7 @@ import org.gnome.gtk.Entry;
 import org.gnome.gtk.EntryIconPosition;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
+import org.gnome.gtk.FileChooserWidget;
 import org.gnome.gtk.Frame;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.ProgressBar;
@@ -47,6 +48,9 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public class MergeWidget extends Frame implements ActionWidget
 {
+    /**
+     * The GNOME Split application.
+     */
     private GnomeSplit app;
 
     /**
@@ -54,20 +58,44 @@ public class MergeWidget extends Frame implements ActionWidget
      */
     private boolean visible;
 
+    /**
+     * The first file to merge.
+     */
     private Entry fileEntry;
 
+    /**
+     * Select a file using a {@link FileChooserWidget}.
+     */
     private FileChooserButton fileChooser;
 
+    /**
+     * The file to create.
+     */
     private Entry destEntry;
 
+    /**
+     * The directory where the file will be created.
+     */
     private FileChooserButton dirChooser;
 
+    /**
+     * The number of parts.
+     */
     private Label partsNumber;
 
+    /**
+     * The file to create size.
+     */
     private Label fileSize;
 
+    /**
+     * Display if we will calculate a MD5 sum.
+     */
     private Label md5sum;
 
+    /**
+     * Merge progress.
+     */
     private ProgressBar progressbar;
 
     public MergeWidget(final GnomeSplit app) {
