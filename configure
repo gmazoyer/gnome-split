@@ -1490,14 +1490,14 @@ print DESKTOP <<HERE ;
 [Desktop Entry]
 Version=$version
 Type=Application
-Name=gnome-split
+Name=GNOME Split
 GenericName="Files splitter"
 GenericName[fr]="Découpeur de fichiers"
 Comment=Split and assemble files easily.
 Comment[fr]=Découpage et assemblage des fichiers.
 Categories=GNOME;GTK;Utility;
 Path=$prefix
-Exec=$prefix/bin/gsplit
+Exec=$prefix/bin/gnome-split
 Icon=$prefix/share/pixmaps/gnome-split.png
 HERE
 

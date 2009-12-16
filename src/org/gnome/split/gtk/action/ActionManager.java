@@ -25,6 +25,11 @@ import java.util.Map;
 
 import org.gnome.split.GnomeSplit;
 
+/**
+ * A manager to manage actions used by the GTK+ interface.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public class ActionManager
 {
     /**

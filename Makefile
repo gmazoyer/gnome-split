@@ -126,7 +126,6 @@ tmp/stamp/install-pixmaps: \
 		share/pixmaps/*.png
 	@/bin/echo -e "INSTALL\t$(DESTDIR)$(PREFIX)/share/pixmaps/*.png"
 	cp -f share/pixmaps/*.png $(DESTDIR)$(PREFIX)/share/pixmaps
-	chmod 644 $(DESTDIR)$(PREFIX)/share/pixmaps/gnome-split.png
 	touch $@
 
 tmp/stamp/install-translations: \
