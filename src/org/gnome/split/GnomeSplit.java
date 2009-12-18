@@ -96,6 +96,8 @@ public final class GnomeSplit
 
         // Initialize unique application check
         application = new Application("org.gnome.GnomeSplit", null);
+
+        // Signal to handle message from other instances
         application.connect(new Application.MessageReceived() {
             @Override
             public Response onMessageReceived(Application source, Command cmd, MessageData data, int time) {
@@ -109,9 +111,14 @@ public final class GnomeSplit
 
         // Already running, quit this application
         if (application.isRunning() && !config.MULTIPLE_INSTANCES) {
+            // Message to send to the running app
             MessageData message = new MessageData();
             message.setText(N_("Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."));
+
+            // Send the message
             application.sendMessage(Command.CLOSE, message);
+
+            // Quit the current app
             System.exit(1);
         }
 
