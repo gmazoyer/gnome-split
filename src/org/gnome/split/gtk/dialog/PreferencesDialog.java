@@ -90,6 +90,11 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
      */
     private CheckButton notification;
 
+    /**
+     * Button to know if we should have to allow multiples instances.
+     */
+    private CheckButton instances;
+
     public PreferencesDialog(final GnomeSplit app) {
         super(_("GNOME Split Preferences"), app.getMainWindow(), true);
 
@@ -240,6 +245,18 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
+        // Restore multiple instances status
+        instances = new CheckButton(_("Allow multiple instances."));
+        instances.setActive(config.MULTIPLE_INSTANCES);
+        instances.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                // Save preferences
+                config.MULTIPLE_INSTANCES = instances.getActive();
+                config.savePreferences();
+            }
+        });
+
         // Pack buttons in the box
         final VButtonBox vbox = new VButtonBox();
         page.add(vbox);
@@ -248,6 +265,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         vbox.add(hibernation);
         vbox.add(trayIcon);
         vbox.add(notification);
+        vbox.add(instances);
 
         return page;
     }

@@ -72,6 +72,11 @@ public final class Configuration
     public boolean SHOW_TRAY_ICON;
 
     /**
+     * Allow multiple instances
+     */
+    public boolean MULTIPLE_INSTANCES;
+
+    /**
      * Private constructor can't instantiate Configuration in other class.<br>
      * Check for preferences file and load it.
      */
@@ -100,12 +105,13 @@ public final class Configuration
         FileWriter writer = null;
         try {
             writer = new FileWriter(configuration);
-            writer.write("SaveFileHash    = true\n");
-            writer.write("DeleteParts     = false\n");
-            writer.write("DefaultAlgo     = 0\n");
-            writer.write("NoHibernation   = true\n");
-            writer.write("UseNotification = true\n");
-            writer.write("ShowTrayIcon    = false\n");
+            writer.write("SaveFileHash      = true\n");
+            writer.write("DeleteParts       = false\n");
+            writer.write("DefaultAlgo       = 0\n");
+            writer.write("NoHibernation     = true\n");
+            writer.write("UseNotification   = true\n");
+            writer.write("ShowTrayIcon      = false\n");
+            writer.write("MultipleInstances = false\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -137,6 +143,8 @@ public final class Configuration
             NO_HIBERNATION = Boolean.parseBoolean(preferences.getProperty("NoHibernation", "true"));
             USE_NOTIFICATION = Boolean.parseBoolean(preferences.getProperty("UseNotification", "false"));
             SHOW_TRAY_ICON = Boolean.parseBoolean(preferences.getProperty("ShowTrayIcon", "false"));
+            MULTIPLE_INSTANCES = Boolean.parseBoolean(preferences.getProperty("MultipleInstances",
+                    "false"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -150,12 +158,13 @@ public final class Configuration
         FileWriter writer = null;
         try {
             writer = new FileWriter(configuration);
-            writer.write("SaveFileHash    = " + SAVE_FILE_HASH + "\n");
-            writer.write("DeleteParts     = " + DELETE_PARTS + "\n");
-            writer.write("DefaultAlgo     = " + DEFAULT_ALGORITHM + "\n");
-            writer.write("NoHibernation   = " + NO_HIBERNATION + "\n");
-            writer.write("UseNotification = " + USE_NOTIFICATION + "\n");
-            writer.write("ShowTrayIcon    = " + SHOW_TRAY_ICON + "\n");
+            writer.write("SaveFileHash      = " + SAVE_FILE_HASH + "\n");
+            writer.write("DeleteParts       = " + DELETE_PARTS + "\n");
+            writer.write("DefaultAlgo       = " + DEFAULT_ALGORITHM + "\n");
+            writer.write("NoHibernation     = " + NO_HIBERNATION + "\n");
+            writer.write("UseNotification   = " + USE_NOTIFICATION + "\n");
+            writer.write("ShowTrayIcon      = " + SHOW_TRAY_ICON + "\n");
+            writer.write("MultipleInstances = " + MULTIPLE_INSTANCES + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -137,41 +137,45 @@ msgstr ""
 "\n"
 "Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce program.  Sinon, reportez-vous à <http://www.gnu.org/licenses/>."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:94
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:99
 msgid "GNOME Split Preferences"
 msgstr "Préférences de GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:106
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:111
 msgid "General"
 msgstr "Général"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:107
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:112
 msgid "Desktop"
 msgstr "Bureau"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:125
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:130
 msgid "_Calculate the MD5 if possible."
 msgstr "_Calculer la somme MD5 si possible."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:136
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:141
 msgid "_Remove parts if the merge was successful."
 msgstr "_Supprimer les parties si l'assemblage s'est bien terminé."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:148
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:153
 msgid "Default algorithm:"
 msgstr "Algorithme par défaut :"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:198
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:203
 msgid "Inhibit desktop _hibernation when action is performed."
 msgstr "Empêcher la mise en veille lorsqu'une action est en cours."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:210
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:215
 msgid "Show _icon in the desktop notification area."
 msgstr "Afficher l'_icône dans la zone de notification."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:225
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:230
 msgid "Show desktop _notification."
 msgstr "Afficher les _notifications."
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:249
+msgid "Allow multiple instances."
+msgstr "Autoriser plusieurs instances."
 
 #: src/org/gnome/split/gtk/dialog/WarningDialog.java:42
 msgid "Warning!"
@@ -185,62 +189,62 @@ msgstr "Information"
 msgid "Error!"
 msgstr "Erreur !"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:115
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:123
 msgid "File:"
 msgstr "Fichier :"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:118
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:120
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:126
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:148
 msgid "Destination:"
 msgstr "Destination :"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:139
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:100
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:147
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:128
 msgid "Choose a file."
 msgstr "Choisissez un fichier."
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:155
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:128
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:163
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:156
 msgid "Choose a directory."
 msgstr "Choisissez un dossier."
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:166
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:174
 msgid "Split in:"
 msgstr "Découper en :"
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:187
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:195
 msgid "Algorithm:"
 msgstr "Algorithme :"
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:92
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:120
 msgid "First chunk:"
 msgstr "Premier fichier :"
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:133
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:161
 msgid "Chunks:"
 msgstr "Parties :"
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:140
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:168
 msgid "Total size:"
 msgstr "Taille totale :"
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:147
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:175
 msgid "MD5 sum:"
 msgstr "Somme MD5 :"
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:168
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:196
 msgid "Cannot merge."
 msgstr "Assemblage impossible."
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:169
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:197
 msgid "You will not be able to merge the files because this file format is unknown. You are welcome to fill a bug about that."
 msgstr "Vous ne pouvez assembler les fichiers car le format est inconnu. Il vous est conseillé de rapporter un bug à propos de ceci."
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:190
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:218
 msgid "MD5 sum will be use."
 msgstr "Une somme MD5 sera calculée."
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:190
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:218
 msgid "MD5 sum will not be use."
 msgstr "Aucune somme MD5 ne sera calculée."
 
@@ -312,4 +316,12 @@ msgstr "mébioctets (Mio)"
 #: src/org/gnome/split/core/utils/SizeUnit.java:144
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
+
+#: src/org/gnome/split/GnomeSplit.java:101
+msgid "More than one instance."
+msgstr "Plus de une instance."
+
+#: src/org/gnome/split/GnomeSplit.java:112
+msgid "Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."
+msgstr "Une seule instance de GNOME Split ne peut être exécuté à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
 

@@ -35,7 +35,14 @@ import org.gnome.split.core.utils.UncaughtExceptionLogger;
 import org.gnome.split.gtk.DefaultEngineListener;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
+import org.gnome.split.gtk.dialog.ErrorDialog;
 import org.gnome.unique.Application;
+import org.gnome.unique.Command;
+import org.gnome.unique.MessageData;
+import org.gnome.unique.Response;
+
+import static org.freedesktop.bindings.Internationalization.N_;
+import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This class contains the GNOME Split application entry point.
@@ -79,19 +86,32 @@ public final class GnomeSplit
         // Load GTK
         Gtk.init(args);
 
-        // Initialize unique application check
-        application = new Application("org.gnome.GnomeSplit", null);
-
-        // Already running, quit this application
-        if (application.isRunning()) {
-            System.exit(1);
-        }
-
-        // Load constants and preferences
         try {
+            // Load constants and preferences
             config = new Configuration();
         } catch (IOException e) {
             e.printStackTrace();
+            System.exit(1);
+        }
+
+        // Initialize unique application check
+        application = new Application("org.gnome.GnomeSplit", null);
+        application.connect(new Application.MessageReceived() {
+            @Override
+            public Response onMessageReceived(Application source, Command cmd, MessageData data, int time) {
+                ErrorDialog dialog = new ErrorDialog(getMainWindow(), _("More than one instance."),
+                        _(data.getText()));
+                dialog.run();
+                dialog.hide();
+                return Response.OK;
+            }
+        });
+
+        // Already running, quit this application
+        if (application.isRunning() && !config.MULTIPLE_INSTANCES) {
+            MessageData message = new MessageData();
+            message.setText(N_("Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."));
+            application.sendMessage(Command.CLOSE, message);
             System.exit(1);
         }
 
