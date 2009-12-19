@@ -28,7 +28,6 @@ import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.split.config.Constants;
 
-import static org.freedesktop.bindings.Internationalization.N_;
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
@@ -39,12 +38,6 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public final class AboutSoftDialog extends AboutDialog implements Window.DeleteEvent, Dialog.Response
 {
-    private static String developer = N_("Head developer:");
-
-    private static String packager = N_("Packager:");
-
-    private static String expackager = N_("Retired packager:");
-
     /**
      * Build the about dialog.
      */
@@ -62,17 +55,12 @@ public final class AboutSoftDialog extends AboutDialog implements Window.DeleteE
 
         // Program authors
         this.setAuthors(new String[] {
-                _(developer),
-                "  Guillaume Mazoyer <respawneral@gmail.com>\n",
-                _(packager),
-                "  Olivier Bitsch <olivier.b@iabsis.com>\n",
-                _(expackager),
-                "  J\u00E9r\u00F4me <eclipse.magick@gmail.com>"
+            "  Guillaume Mazoyer <respawneral@gmail.com>"
         });
 
         // Program documenters
         this.setDocumenters(new String[] {
-            "Guillaume Mazoyer <respawneral@gmail.com>"
+                "Guillaume Mazoyer <respawneral@gmail.com>", "Aur\u00E9lien Paulus <paupoo@gmail.com>"
         });
 
         // Program artists

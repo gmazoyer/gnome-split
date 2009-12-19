@@ -99,31 +99,19 @@ msgstr "_Fenêtre principale"
 msgid "Merge"
 msgstr "Assemblage"
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:42
-msgid "Head developer:"
-msgstr "Développeur principal :"
-
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:44
-msgid "Packager:"
-msgstr "Packageur :"
-
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:46
-msgid "Retired packager:"
-msgstr "Packageur retraité :"
-
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:59
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:52
 msgid "Split and merge your files easily."
 msgstr "Découpez et assemblez vos fichiers."
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:60
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:53
 msgid "the GNOME Split project"
 msgstr "le projet GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:84
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:72
 msgid "translator-credits"
 msgstr "Guillaume Mazoyer <respawneral@gmail.com>"
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:87
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:75
 msgid ""
 "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3, as published by the Free Software Foundation.\n"
 "\n"
@@ -317,11 +305,11 @@ msgstr "mébioctets (Mio)"
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
 
-#: src/org/gnome/split/GnomeSplit.java:101
+#: src/org/gnome/split/GnomeSplit.java:105
 msgid "More than one instance."
 msgstr "Plus de une instance."
 
-#: src/org/gnome/split/GnomeSplit.java:112
+#: src/org/gnome/split/GnomeSplit.java:106
 msgid "Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."
 msgstr "Une seule instance de GNOME Split ne peut être exécuté à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
 
