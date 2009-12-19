@@ -61,7 +61,10 @@ public final class Constants
      */
     public static String CONFIG_FILE = null;
 
-    static {
+    /**
+     * Load all the constants file.
+     */
+    public static void load() {
         try {
             PROGRAM_LOGO = new Pixbuf("share/pixmaps/gnome-split.png");
             CONFIG_FOLDER = System.getProperty("user.home") + "/.config/gnome-split/";

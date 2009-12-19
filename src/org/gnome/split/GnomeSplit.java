@@ -90,6 +90,7 @@ public final class GnomeSplit
 
         try {
             // Load constants and preferences
+            Constants.load();
             config = new Configuration();
         } catch (IOException e) {
             e.printStackTrace();
