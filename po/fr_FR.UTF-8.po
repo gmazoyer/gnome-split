@@ -107,11 +107,15 @@ msgstr "Découpez et assemblez vos fichiers."
 msgid "the GNOME Split project"
 msgstr "le projet GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:72
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:55
+msgid "Project website"
+msgstr "Site web du projet"
+
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:73
 msgid "translator-credits"
 msgstr "Guillaume Mazoyer <respawneral@gmail.com>"
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:75
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:76
 msgid ""
 "This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3, as published by the Free Software Foundation.\n"
 "\n"
@@ -305,11 +309,11 @@ msgstr "mébioctets (Mio)"
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
 
-#: src/org/gnome/split/GnomeSplit.java:105
+#: src/org/gnome/split/GnomeSplit.java:109
 msgid "More than one instance."
 msgstr "Plus de une instance."
 
-#: src/org/gnome/split/GnomeSplit.java:106
+#: src/org/gnome/split/GnomeSplit.java:110
 msgid "Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."
 msgstr "Une seule instance de GNOME Split ne peut être exécuté à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
 

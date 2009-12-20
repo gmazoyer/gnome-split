@@ -39,7 +39,7 @@ public final class Constants
     /**
      * Version of the program.
      */
-    public static String PROGRAM_VERSION = "0.2";
+    public static String PROGRAM_VERSION = "0.3";
 
     /**
      * Logo of the program (as a {@link Pixbuf}).
