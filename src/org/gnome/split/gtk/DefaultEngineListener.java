@@ -94,6 +94,7 @@ public class DefaultEngineListener implements EngineListener
 
         // Enable user interaction (only in action widget)
         gtk.getActionWidget().enable();
+        gtk.getViewSwitcher().enable();
 
         // Title and body of the message to display
         String title;
@@ -137,6 +138,7 @@ public class DefaultEngineListener implements EngineListener
 
         // Enable user interaction (only in action widget)
         gtk.getActionWidget().enable();
+        gtk.getViewSwitcher().enable();
 
         // Use the correct text
         String text;
@@ -186,6 +188,7 @@ public class DefaultEngineListener implements EngineListener
 
         // Enable user interaction (only in action widget)
         gtk.getActionWidget().enable();
+        gtk.getViewSwitcher().enable();
 
         // Make user interface back to ready state
         app.getActionManager().setReadyState();
@@ -213,6 +216,7 @@ public class DefaultEngineListener implements EngineListener
 
         // Disable user interaction (only in action widget)
         gtk.getActionWidget().disable();
+        gtk.getViewSwitcher().disable();
 
         // Inhibit hibernation if requested
         if (app.getConfig().NO_HIBERNATION) {

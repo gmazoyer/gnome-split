@@ -113,7 +113,7 @@ public class ActionManager
      */
     public void setPauseState() {
         this.getAction(ActionId.MENU_OPEN_DIR).setActive(true);
-        this.getAction(ActionId.MENU_PROPERTIES).setActive(true);
+        this.getAction(ActionId.MENU_PROPERTIES).setActive(false);
         this.getAction(ActionId.MENU_START).setActive(true);
         this.getAction(ActionId.MENU_PAUSE).setActive(false);
         this.getAction(ActionId.MENU_CANCEL).setActive(true);
@@ -131,7 +131,7 @@ public class ActionManager
      */
     public void setRunningState() {
         this.getAction(ActionId.MENU_OPEN_DIR).setActive(true);
-        this.getAction(ActionId.MENU_PROPERTIES).setActive(true);
+        this.getAction(ActionId.MENU_PROPERTIES).setActive(false);
         this.getAction(ActionId.MENU_START).setActive(false);
         this.getAction(ActionId.MENU_PAUSE).setActive(true);
         this.getAction(ActionId.MENU_CANCEL).setActive(true);

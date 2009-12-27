@@ -239,6 +239,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
+     * Get the select view widget.
+     */
+    public SelectView getViewSwitcher() {
+        return views;
+    }
+
+    /**
      * Get the current displayed widget.
      */
     public ActionWidget getActionWidget() {

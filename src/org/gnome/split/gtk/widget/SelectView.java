@@ -39,6 +39,16 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public class SelectView extends HBox
 {
+    /**
+     * Button used to select the split view.
+     */
+    private RadioButton split;
+
+    /**
+     * Button used to select the merge view.
+     */
+    private RadioButton merge;
+
     public SelectView(final GnomeSplit app) {
         super(false, 10);
 
@@ -56,13 +66,27 @@ public class SelectView extends HBox
         final RadioButtonGroup group = new RadioButtonGroup();
 
         // Split action - switch to split view
-        final RadioButton split = manager.getToggleAction(ActionId.SELECT_SPLIT)
-                .createRadioButton(group);
+        split = manager.getToggleAction(ActionId.SELECT_SPLIT).createRadioButton(group);
         this.packStart(split, false, false, 0);
 
         // Merge action - switch to merge view
-        final RadioButton merge = manager.getToggleAction(ActionId.SELECT_MERGE)
-                .createRadioButton(group);
+        merge = manager.getToggleAction(ActionId.SELECT_MERGE).createRadioButton(group);
         this.packStart(merge, false, false, 0);
+    }
+
+    /**
+     * Disable all buttons so the user will not be able to switch the view.
+     */
+    public void disable() {
+        split.setSensitive(false);
+        merge.setSensitive(false);
+    }
+
+    /**
+     * Enable all buttons so the user will be able to switch the view.
+     */
+    public void enable() {
+        split.setSensitive(true);
+        merge.setSensitive(true);
     }
 }
