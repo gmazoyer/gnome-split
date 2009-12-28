@@ -41,26 +41,26 @@ public class MainToolbar extends Toolbar
         final ActionManager actions = app.getActionManager();
 
         // Add start button
-        final ToolItem start = actions.getAction(ActionId.TOOL_START).createToolItem();
+        final ToolItem start = actions.getAction(ActionId.START).createToolItem();
         this.insert(start, 0);
 
         // Add pause button
-        final ToolItem pause = actions.getAction(ActionId.TOOL_PAUSE).createToolItem();
+        final ToolItem pause = actions.getAction(ActionId.PAUSE).createToolItem();
         this.insert(pause, 1);
 
         // Add cancel button
-        final ToolItem cancel = actions.getAction(ActionId.TOOL_CANCEL).createToolItem();
+        final ToolItem cancel = actions.getAction(ActionId.CANCEL).createToolItem();
         this.insert(cancel, 2);
 
         // Add clear button
-        final ToolItem clear = actions.getAction(ActionId.TOOL_CLEAR).createToolItem();
+        final ToolItem clear = actions.getAction(ActionId.CLEAR).createToolItem();
         this.insert(clear, 3);
 
         // Add a separator
         this.insert(new SeparatorToolItem(), 4);
 
         // Add properties button
-        final ToolItem properties = actions.getAction(ActionId.TOOL_PROPERTIES).createToolItem();
+        final ToolItem properties = actions.getAction(ActionId.PROPERTIES).createToolItem();
         this.insert(properties, 5);
     }
 }

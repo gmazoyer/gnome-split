@@ -12,36 +12,36 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:102
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:103
 msgid "Split terminated."
 msgstr "Découpage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:103
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:104
 msgid "The split has been terminated successfully without any errors."
 msgstr "Le découpage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:105
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:106
 msgid "Merge terminated."
 msgstr "Assemblage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:106
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:107
 msgid "The merge has been terminated successfully without any errors."
 msgstr "L'assemblage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:144
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:146
 msgid "Split stopped."
 msgstr "Découpage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:146
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:148
 msgid "Merge stopped."
 msgstr "Assemblage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:201
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:204
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:206
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:209
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
@@ -249,7 +249,7 @@ msgstr "Prêt."
 msgid "version"
 msgstr "version"
 
-#: src/org/gnome/split/gtk/widget/SelectView.java:52
+#: src/org/gnome/split/gtk/widget/SelectView.java:62
 msgid "View:"
 msgstr "Affichage :"
 

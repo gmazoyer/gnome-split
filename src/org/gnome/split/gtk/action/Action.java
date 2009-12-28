@@ -20,6 +20,9 @@
  */
 package org.gnome.split.gtk.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gnome.gtk.IconSize;
 import org.gnome.gtk.Image;
 import org.gnome.gtk.ImageMenuItem;
@@ -45,14 +48,14 @@ public abstract class Action
 
     private Stock stock;
 
-    private Widget widget;
+    private List<Widget> widgets;
 
     public Action(GnomeSplit app, String label, String tooltip, Stock stock) {
         this.app = app;
         this.label = label;
         this.tooltip = tooltip;
         this.stock = stock;
-        this.widget = null;
+        this.widgets = new ArrayList<Widget>();
     }
 
     public Action(GnomeSplit app, Stock stock, String label) {
@@ -111,7 +114,7 @@ public abstract class Action
         });
 
         // Register the widget
-        widget = item;
+        widgets.add(item);
 
         return item;
     }
@@ -148,7 +151,7 @@ public abstract class Action
         });
 
         // Register the widget
-        widget = item;
+        widgets.add(item);
 
         return item;
     }
@@ -157,7 +160,9 @@ public abstract class Action
      * Change the sensitive state of the widgets related to this action.
      */
     public void setActive(boolean setting) {
-        widget.setSensitive(setting);
+        for (Widget widget : widgets) {
+            widget.setSensitive(setting);
+        }
     }
 
     /**

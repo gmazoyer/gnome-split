@@ -46,34 +46,46 @@ public class ActionManager
         actions = new HashMap<ActionId, Action>();
         toggles = new HashMap<ActionId, ToggleAction>();
 
-        // Actions related to the menubar
-        actions.put(ActionId.MENU_PROPERTIES, new PropertiesAction(app));
-        actions.put(ActionId.MENU_OPEN_DIR, new OpenDirAction(app));
-        actions.put(ActionId.MENU_START, new StartAction(app));
-        actions.put(ActionId.MENU_PAUSE, new PauseAction(app));
-        actions.put(ActionId.MENU_CANCEL, new CancelAction(app));
-        actions.put(ActionId.MENU_DELETE, new DeleteAction(app));
-        actions.put(ActionId.MENU_CLEAR, new ClearAction(app));
-        actions.put(ActionId.MENU_EXIT, new QuitAction(app));
-        actions.put(ActionId.MENU_PREFERENCES, new PreferencesAction(app));
-        actions.put(ActionId.MENU_HELP, new HelpAction(app));
-        actions.put(ActionId.MENU_ABOUT, new AboutAction(app));
+        // Actions related to split and merge processes
+        OpenDirAction directory = new OpenDirAction(app);
+        PropertiesAction properties = new PropertiesAction(app);
+        StartAction start = new StartAction(app);
+        PauseAction pause = new PauseAction(app);
+        CancelAction cancel = new CancelAction(app);
+        DeleteAction delete = new DeleteAction(app);
 
-        // Actions related to the toolbar
-        actions.put(ActionId.TOOL_START, new StartAction(app));
-        actions.put(ActionId.TOOL_PAUSE, new PauseAction(app));
-        actions.put(ActionId.TOOL_CANCEL, new CancelAction(app));
-        actions.put(ActionId.TOOL_CLEAR, new ClearAction(app));
-        actions.put(ActionId.TOOL_PROPERTIES, new PropertiesAction(app));
+        // Add the previously created actions
+        actions.put(ActionId.OPEN_DIR, directory);
+        actions.put(ActionId.PROPERTIES, properties);
+        actions.put(ActionId.START, start);
+        actions.put(ActionId.PAUSE, pause);
+        actions.put(ActionId.CANCEL, cancel);
+        actions.put(ActionId.DELETE, delete);
 
-        // Actions related to the select view widget
-        toggles.put(ActionId.SELECT_SPLIT, new SelectSplitAction(app));
-        toggles.put(ActionId.SELECT_MERGE, new SelectMergeAction(app));
+        // Actions related to the interface and program management
+        ClearAction clear = new ClearAction(app);
+        QuitAction quit = new QuitAction(app);
+        PreferencesAction preferences = new PreferencesAction(app);
+        HelpAction help = new HelpAction(app);
+        AboutAction about = new AboutAction(app);
 
-        // Actions related to the tray icon
-        toggles.put(ActionId.TRAY_WINDOW, new MainWindowAction(app));
-        actions.put(ActionId.TRAY_EXIT, new QuitAction(app));
-        actions.put(ActionId.TRAY_ABOUT, new AboutAction(app));
+        // Add the previously created actions
+        actions.put(ActionId.CLEAR, clear);
+        actions.put(ActionId.EXIT, quit);
+        actions.put(ActionId.PREFERENCES, preferences);
+        actions.put(ActionId.HELP, help);
+        actions.put(ActionId.ABOUT, about);
+
+        // Other actions related to the interface which have two possible
+        // states (active or inactive)
+        SelectSplitAction split = new SelectSplitAction(app);
+        SelectMergeAction merge = new SelectMergeAction(app);
+        MainWindowAction window = new MainWindowAction(app);
+
+        // Add the previously created actions
+        toggles.put(ActionId.SELECT_SPLIT, split);
+        toggles.put(ActionId.SELECT_MERGE, merge);
+        toggles.put(ActionId.TRAY_WINDOW, window);
     }
 
     /**
@@ -94,54 +106,39 @@ public class ActionManager
      * Set the actions in the ready state of the interface.
      */
     public void setReadyState() {
-        this.getAction(ActionId.MENU_OPEN_DIR).setActive(false);
-        this.getAction(ActionId.MENU_PROPERTIES).setActive(false);
-        this.getAction(ActionId.MENU_START).setActive(true);
-        this.getAction(ActionId.MENU_PAUSE).setActive(false);
-        this.getAction(ActionId.MENU_CANCEL).setActive(false);
-        this.getAction(ActionId.MENU_DELETE).setActive(false);
-        this.getAction(ActionId.MENU_CLEAR).setActive(true);
-        this.getAction(ActionId.TOOL_START).setActive(true);
-        this.getAction(ActionId.TOOL_PAUSE).setActive(false);
-        this.getAction(ActionId.TOOL_CANCEL).setActive(false);
-        this.getAction(ActionId.TOOL_CLEAR).setActive(true);
-        this.getAction(ActionId.TOOL_PROPERTIES).setActive(false);
+        this.getAction(ActionId.OPEN_DIR).setActive(false);
+        this.getAction(ActionId.PROPERTIES).setActive(false);
+        this.getAction(ActionId.START).setActive(true);
+        this.getAction(ActionId.PAUSE).setActive(false);
+        this.getAction(ActionId.CANCEL).setActive(false);
+        this.getAction(ActionId.DELETE).setActive(false);
+        this.getAction(ActionId.CLEAR).setActive(true);
     }
 
     /**
      * Set the actions in the pause state of the interface.
      */
     public void setPauseState() {
-        this.getAction(ActionId.MENU_OPEN_DIR).setActive(true);
-        this.getAction(ActionId.MENU_PROPERTIES).setActive(false);
-        this.getAction(ActionId.MENU_START).setActive(true);
-        this.getAction(ActionId.MENU_PAUSE).setActive(false);
-        this.getAction(ActionId.MENU_CANCEL).setActive(true);
-        this.getAction(ActionId.MENU_DELETE).setActive(true);
-        this.getAction(ActionId.MENU_CLEAR).setActive(false);
-        this.getAction(ActionId.TOOL_START).setActive(true);
-        this.getAction(ActionId.TOOL_PAUSE).setActive(false);
-        this.getAction(ActionId.TOOL_CANCEL).setActive(true);
-        this.getAction(ActionId.TOOL_CLEAR).setActive(false);
-        this.getAction(ActionId.TOOL_PROPERTIES).setActive(false);
+        this.getAction(ActionId.OPEN_DIR).setActive(true);
+        this.getAction(ActionId.PROPERTIES).setActive(false);
+        this.getAction(ActionId.START).setActive(true);
+        this.getAction(ActionId.PAUSE).setActive(false);
+        this.getAction(ActionId.CANCEL).setActive(true);
+        this.getAction(ActionId.DELETE).setActive(true);
+        this.getAction(ActionId.CLEAR).setActive(false);
     }
 
     /**
      * Set the actions in the running state of the interface.
      */
     public void setRunningState() {
-        this.getAction(ActionId.MENU_OPEN_DIR).setActive(true);
-        this.getAction(ActionId.MENU_PROPERTIES).setActive(false);
-        this.getAction(ActionId.MENU_START).setActive(false);
-        this.getAction(ActionId.MENU_PAUSE).setActive(true);
-        this.getAction(ActionId.MENU_CANCEL).setActive(true);
-        this.getAction(ActionId.MENU_DELETE).setActive(true);
-        this.getAction(ActionId.MENU_CLEAR).setActive(false);
-        this.getAction(ActionId.TOOL_START).setActive(false);
-        this.getAction(ActionId.TOOL_PAUSE).setActive(true);
-        this.getAction(ActionId.TOOL_CANCEL).setActive(true);
-        this.getAction(ActionId.TOOL_CLEAR).setActive(false);
-        this.getAction(ActionId.TOOL_PROPERTIES).setActive(false);
+        this.getAction(ActionId.OPEN_DIR).setActive(true);
+        this.getAction(ActionId.PROPERTIES).setActive(false);
+        this.getAction(ActionId.START).setActive(false);
+        this.getAction(ActionId.PAUSE).setActive(true);
+        this.getAction(ActionId.CANCEL).setActive(true);
+        this.getAction(ActionId.DELETE).setActive(true);
+        this.getAction(ActionId.CLEAR).setActive(false);
     }
 
     /**
@@ -151,6 +148,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        MENU_OPEN_DIR, MENU_PROPERTIES, MENU_START, MENU_PAUSE, MENU_CANCEL, MENU_DELETE, MENU_CLEAR, MENU_EXIT, MENU_PREFERENCES, MENU_HELP, MENU_ABOUT, TOOL_START, TOOL_PAUSE, TOOL_CANCEL, TOOL_CLEAR, TOOL_PROPERTIES, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW, TRAY_EXIT, TRAY_ABOUT;
+        OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW;
     }
 }

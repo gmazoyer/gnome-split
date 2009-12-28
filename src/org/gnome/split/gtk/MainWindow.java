@@ -177,16 +177,16 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu fileMenu = new Menu();
 
         fileItem.setSubmenu(fileMenu);
-        fileMenu.append(actions.getAction(ActionId.MENU_OPEN_DIR).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_PROPERTIES).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.OPEN_DIR).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.PROPERTIES).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_START).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_PAUSE).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_CANCEL).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_DELETE).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_CLEAR).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.START).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.PAUSE).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.CANCEL).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.DELETE).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.CLEAR).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
-        fileMenu.append(actions.getAction(ActionId.MENU_EXIT).createMenuItem());
+        fileMenu.append(actions.getAction(ActionId.EXIT).createMenuItem());
         menubar.append(fileItem);
 
         // Edit menu item
@@ -194,7 +194,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu editMenu = new Menu();
 
         editItem.setSubmenu(editMenu);
-        editMenu.append(actions.getAction(ActionId.MENU_PREFERENCES).createMenuItem());
+        editMenu.append(actions.getAction(ActionId.PREFERENCES).createMenuItem());
         menubar.append(editItem);
 
         // Help menu item
@@ -202,8 +202,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu helpMenu = new Menu();
 
         helpItem.setSubmenu(helpMenu);
-        helpMenu.append(actions.getAction(ActionId.MENU_HELP).createMenuItem());
-        helpMenu.append(actions.getAction(ActionId.MENU_ABOUT).createMenuItem());
+        helpMenu.append(actions.getAction(ActionId.HELP).createMenuItem());
+        helpMenu.append(actions.getAction(ActionId.ABOUT).createMenuItem());
         menubar.append(helpItem);
 
         return menubar;
