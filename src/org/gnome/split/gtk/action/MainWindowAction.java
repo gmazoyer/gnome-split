@@ -39,7 +39,7 @@ public final class MainWindowAction extends ToggleAction
     @Override
     public void actionPerformed(ToggleActionEvent event, boolean active) {
         // Get the main window
-        final MainWindow window = this.getApplication().getMainWindow();
+        MainWindow window = this.getApplication().getMainWindow();
 
         // Change action state
         this.setActive(!active);
@@ -51,5 +51,8 @@ public final class MainWindowAction extends ToggleAction
             // Show the window
             window.showAll();
         }
+
+        // Set the active state of the notification zone icon
+        window.getTrayIcon().setActivated(active);
     }
 }

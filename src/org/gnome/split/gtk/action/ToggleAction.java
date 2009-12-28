@@ -137,7 +137,10 @@ public abstract class ToggleAction
         return app;
     }
 
-    protected void setActive(boolean active) {
+    /**
+     * Change the state of this action.
+     */
+    public void setActive(boolean active) {
         this.active = active;
     }
 

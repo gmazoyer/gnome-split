@@ -81,7 +81,7 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
      * Create the tray icon menu.
      */
     private void createIconMenu() {
-        final ActionManager actions = app.getActionManager();
+        ActionManager actions = app.getActionManager();
         menu = new Menu();
 
         menu.append(actions.getToggleAction(ActionId.TRAY_WINDOW).createCheckMenuItem());
@@ -92,19 +92,30 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
 
     @Override
     public void onActivate(StatusIcon source) {
-        activated = !activated;
-        final Window window = app.getMainWindow();
+        Window window = app.getMainWindow();
 
         if (activated) {
-            window.hide();
-        } else {
+            // Show the main window
             window.showAll();
+        } else {
+            // Hide the main window
+            window.hide();
         }
+
+        // Change the state
+        activated = !activated;
     }
 
     @Override
     public void onPopupMenu(StatusIcon source, int button, int activateTime) {
         menu.popup();
         menu.showAll();
+    }
+
+    /**
+     * Set the current activated state.
+     */
+    public void setActivated(boolean setting) {
+        activated = setting;
     }
 }
