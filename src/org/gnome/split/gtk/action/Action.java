@@ -40,16 +40,34 @@ import org.gnome.split.GnomeSplit;
  */
 public abstract class Action
 {
+    /**
+     * The current instance of GNOME Split.
+     */
     private GnomeSplit app;
 
+    /**
+     * The label of the action.
+     */
     private String label;
 
+    /**
+     * The tooltip of the action.
+     */
     private String tooltip;
 
+    /**
+     * The {@link Stock} item attached to the action.
+     */
     private Stock stock;
 
+    /**
+     * The widgets attached to the action.
+     */
     private List<Widget> widgets;
 
+    /**
+     * Create a new action using a label, a tooltip and a {@link Stock} item.
+     */
     public Action(GnomeSplit app, String label, String tooltip, Stock stock) {
         this.app = app;
         this.label = label;
@@ -58,16 +76,18 @@ public abstract class Action
         this.widgets = new ArrayList<Widget>();
     }
 
+    /**
+     * Create a new action using a {@link Stock} item and a label.
+     */
     public Action(GnomeSplit app, Stock stock, String label) {
         this(app, label, null, stock);
     }
 
+    /**
+     * Create a new action using a {@link Stock} item.
+     */
     public Action(GnomeSplit app, Stock stock) {
         this(app, null, null, stock);
-    }
-
-    public Action(GnomeSplit app, String label) {
-        this(app, label, null, null);
     }
 
     /**
@@ -90,7 +110,7 @@ public abstract class Action
 
         if ((stock != null) && (label != null)) {
             // Create a menu item with a label and an image
-            final Image image = new Image(stock, IconSize.MENU);
+            Image image = new Image(stock, IconSize.MENU);
             item = new ImageMenuItem(image, label);
         } else if (stock != null) {
             // Create a menu item with an image
@@ -105,6 +125,7 @@ public abstract class Action
             item.setTooltipText(tooltip);
         }
 
+        // Connect the activate handler
         item.connect(new MenuItem.Activate() {
             @Override
             public void onActivate(MenuItem source) {
@@ -142,6 +163,7 @@ public abstract class Action
             item.setTooltipText(tooltip);
         }
 
+        // Connect the activate handler
         ((ToolButton) item).connect(new ToolButton.Clicked() {
             @Override
             public void onClicked(ToolButton source) {
@@ -172,12 +194,21 @@ public abstract class Action
      */
     public class ActionEvent
     {
+        /**
+         * The widget which created the event.
+         */
         private Widget item;
 
+        /**
+         * Create a new event using a {@link Widget widget}.
+         */
         public ActionEvent(Widget item) {
             this.item = item;
         }
 
+        /**
+         * Get the current widget.
+         */
         public Widget getWidget() {
             return item;
         }

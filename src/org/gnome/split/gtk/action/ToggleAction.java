@@ -21,6 +21,7 @@
 package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.CheckMenuItem;
+import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.RadioButton;
 import org.gnome.gtk.RadioButtonGroup;
 import org.gnome.gtk.ToggleButton;
@@ -35,14 +36,29 @@ import org.gnome.split.GnomeSplit;
  */
 public abstract class ToggleAction
 {
+    /**
+     * The current instance of GNOME Split.
+     */
     private GnomeSplit app;
 
+    /**
+     * The label of the action.
+     */
     private String label;
 
+    /**
+     * The tooltip of the action.
+     */
     private String tooltip;
 
+    /**
+     * The state of the action.
+     */
     private boolean active;
 
+    /**
+     * Create a new action using a label, a tooltip and a state.
+     */
     public ToggleAction(GnomeSplit app, String label, String tooltip, boolean active) {
         this.app = app;
         this.label = label;
@@ -50,19 +66,30 @@ public abstract class ToggleAction
         this.active = active;
     }
 
+    /**
+     * Create a new action using a label and a state.
+     */
     public ToggleAction(GnomeSplit app, String label, boolean active) {
         this(app, label, null, active);
     }
 
+    /**
+     * Used when a widget related to this action is used.
+     */
     public abstract void actionPerformed(ToggleActionEvent event, boolean active);
 
+    /**
+     * Create a new {@link MenuItem} related to this action.
+     */
     public CheckMenuItem createCheckMenuItem() {
-        final CheckMenuItem item = new CheckMenuItem(label);
+        CheckMenuItem item = new CheckMenuItem(label);
 
         // Set tooltip if there is one and active state
         if (tooltip != null) {
             item.setTooltipText(tooltip);
         }
+
+        // Set the state of the widget using the state of the action
         item.setActive(active);
 
         // Connect signal and event use
@@ -77,13 +104,18 @@ public abstract class ToggleAction
         return item;
     }
 
+    /**
+     * Create a new {@link RadioButton} related to this action.
+     */
     public RadioButton createRadioButton(RadioButtonGroup group) {
-        final RadioButton button = new RadioButton(group, label);
+        RadioButton button = new RadioButton(group, label);
 
         // Set tooltip if there is one and active state
         if (tooltip != null) {
             button.setTooltipText(tooltip);
         }
+
+        // Set the state of the widget using the state of the action
         button.setActive(active);
 
         // Connect signal and event use
@@ -98,6 +130,9 @@ public abstract class ToggleAction
         return button;
     }
 
+    /**
+     * Get the current program instance.
+     */
     protected GnomeSplit getApplication() {
         return app;
     }
@@ -113,12 +148,21 @@ public abstract class ToggleAction
      */
     public class ToggleActionEvent
     {
+        /**
+         * The widget which created the event.
+         */
         private Widget item;
 
+        /**
+         * Create a new event using a {@link Widget widget}.
+         */
         public ToggleActionEvent(Widget item) {
             this.item = item;
         }
 
+        /**
+         * Get the current widget.
+         */
         public Widget getWidget() {
             return item;
         }
