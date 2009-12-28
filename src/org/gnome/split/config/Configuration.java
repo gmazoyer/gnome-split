@@ -42,9 +42,29 @@ public final class Configuration
     private File configuration;
 
     /**
+     * Default view to display
+     */
+    public byte DEFAULT_VIEW;
+
+    /**
+     * Allow multiple instances
+     */
+    public boolean MULTIPLE_INSTANCES;
+
+    /**
      * Write a file containing the file hash.
      */
     public boolean SAVE_FILE_HASH;
+
+    /**
+     * The ID of the default algorithm to use to split files.
+     */
+    public int DEFAULT_ALGORITHM;
+
+    /**
+     * The default directory to select files to split.
+     */
+    public String SPLIT_DIRECTORY;
 
     /**
      * Delete the parts file after the assembly.
@@ -52,9 +72,14 @@ public final class Configuration
     public boolean DELETE_PARTS;
 
     /**
-     * The ID of the default algorithm to use to split files.
+     * Open the file after a successful merge.
      */
-    public int DEFAULT_ALGORITHM;
+    public boolean OPEN_FILE_AT_END;
+
+    /**
+     * The default directory to select files to merge.
+     */
+    public String MERGE_DIRECTORY;
 
     /**
      * Disable computer hibernation.
@@ -70,11 +95,6 @@ public final class Configuration
      * Show icon in the notification zone.
      */
     public boolean SHOW_TRAY_ICON;
-
-    /**
-     * Allow multiple instances
-     */
-    public boolean MULTIPLE_INSTANCES;
 
     /**
      * Private constructor can't instantiate Configuration in other class.<br>
@@ -104,14 +124,27 @@ public final class Configuration
     private void createPreferences() {
         FileWriter writer = null;
         try {
+            // Open the file writer
             writer = new FileWriter(configuration);
+
+            // Write general config
+            writer.write("DefaultView       = 0\n");
+            writer.write("MultipleInstances = false\n");
+
+            // Write split config
             writer.write("SaveFileHash      = true\n");
-            writer.write("DeleteParts       = false\n");
             writer.write("DefaultAlgo       = 0\n");
+            writer.write("SplitDirectory    = " + System.getProperty("user.home") + "\n");
+
+            // Write merge config
+            writer.write("DeleteParts       = false\n");
+            writer.write("OpenFile          = false\n");
+            writer.write("MergeDirectory    = " + System.getProperty("user.home") + "\n");
+
+            // Write desktop config
             writer.write("NoHibernation     = true\n");
             writer.write("UseNotification   = true\n");
             writer.write("ShowTrayIcon      = false\n");
-            writer.write("MultipleInstances = false\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -134,17 +167,29 @@ public final class Configuration
             Properties preferences = new Properties();
             InputStream stream = new FileInputStream(configuration);
 
+            // Load the properties
             preferences.load(stream);
             stream.close();
 
+            // Load general config
+            DEFAULT_VIEW = Byte.parseByte(preferences.getProperty("DefaultView", "0"));
+            MULTIPLE_INSTANCES = Boolean.parseBoolean(preferences.getProperty("MultipleInstances",
+                    "false"));
+
+            // Load split config
             SAVE_FILE_HASH = Boolean.parseBoolean(preferences.getProperty("SaveFileHash", "true"));
-            DELETE_PARTS = Boolean.parseBoolean(preferences.getProperty("DeleteParts", "false"));
             DEFAULT_ALGORITHM = Integer.parseInt(preferences.getProperty("DefaultAlgo", "0"));
+            SPLIT_DIRECTORY = preferences.getProperty("SplitDirectory", System.getProperty("user.home"));
+
+            // Load merge config
+            DELETE_PARTS = Boolean.parseBoolean(preferences.getProperty("DeleteParts", "false"));
+            OPEN_FILE_AT_END = Boolean.parseBoolean(preferences.getProperty("OpenFile", "false"));
+            MERGE_DIRECTORY = preferences.getProperty("MergeDirectory", System.getProperty("user.home"));
+
+            // Load desktop config
             NO_HIBERNATION = Boolean.parseBoolean(preferences.getProperty("NoHibernation", "true"));
             USE_NOTIFICATION = Boolean.parseBoolean(preferences.getProperty("UseNotification", "false"));
             SHOW_TRAY_ICON = Boolean.parseBoolean(preferences.getProperty("ShowTrayIcon", "false"));
-            MULTIPLE_INSTANCES = Boolean.parseBoolean(preferences.getProperty("MultipleInstances",
-                    "false"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -157,14 +202,27 @@ public final class Configuration
     public void savePreferences() {
         FileWriter writer = null;
         try {
+            // Open the file writer
             writer = new FileWriter(configuration);
+
+            // Write general config
+            writer.write("DefaultView       = " + DEFAULT_VIEW + "\n");
+            writer.write("MultipleInstances = " + MULTIPLE_INSTANCES + "\n");
+
+            // Write split config
             writer.write("SaveFileHash      = " + SAVE_FILE_HASH + "\n");
-            writer.write("DeleteParts       = " + DELETE_PARTS + "\n");
             writer.write("DefaultAlgo       = " + DEFAULT_ALGORITHM + "\n");
+            writer.write("SplitDirectory    = " + SPLIT_DIRECTORY + "\n");
+
+            // Write merge config
+            writer.write("DeleteParts       = " + DELETE_PARTS + "\n");
+            writer.write("OpenFile          = " + OPEN_FILE_AT_END + "\n");
+            writer.write("MergeDirectory    = " + MERGE_DIRECTORY + "\n");
+
+            // Write desktop config
             writer.write("NoHibernation     = " + NO_HIBERNATION + "\n");
             writer.write("UseNotification   = " + USE_NOTIFICATION + "\n");
             writer.write("ShowTrayIcon      = " + SHOW_TRAY_ICON + "\n");
-            writer.write("MultipleInstances = " + MULTIPLE_INSTANCES + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
