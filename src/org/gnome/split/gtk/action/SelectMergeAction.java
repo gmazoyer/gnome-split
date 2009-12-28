@@ -37,7 +37,7 @@ public class SelectMergeAction extends ToggleAction
 
     @Override
     public void actionPerformed(ToggleActionEvent event, boolean active) {
-        this.setActive(!active);
+        this.setActive(!active, false);
         if (!active) {
             this.getApplication().getMainWindow().switchView();
         }

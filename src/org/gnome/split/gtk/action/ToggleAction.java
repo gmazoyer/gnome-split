@@ -20,6 +20,9 @@
  */
 package org.gnome.split.gtk.action;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.gnome.gtk.CheckMenuItem;
 import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.RadioButton;
@@ -57,6 +60,11 @@ public abstract class ToggleAction
     private boolean active;
 
     /**
+     * The widgets attached to the action.
+     */
+    private List<Widget> widgets;
+
+    /**
      * Create a new action using a label, a tooltip and a state.
      */
     public ToggleAction(GnomeSplit app, String label, String tooltip, boolean active) {
@@ -64,6 +72,7 @@ public abstract class ToggleAction
         this.label = label;
         this.tooltip = tooltip;
         this.active = active;
+        this.widgets = new ArrayList<Widget>();
     }
 
     /**
@@ -101,6 +110,9 @@ public abstract class ToggleAction
             }
         });
 
+        // Register the widget
+        widgets.add(item);
+
         return item;
     }
 
@@ -127,6 +139,9 @@ public abstract class ToggleAction
             }
         });
 
+        // Register the widget
+        widgets.add(button);
+
         return button;
     }
 
@@ -140,8 +155,24 @@ public abstract class ToggleAction
     /**
      * Change the state of this action.
      */
-    public void setActive(boolean active) {
+    protected void setActive(boolean active, boolean force) {
         this.active = active;
+
+        // The user did not really use a registered widgets
+        if (force) {
+            // Can be a CheckMenuItem or a RadioButton
+            for (Widget widget : widgets) {
+                // Update the CheckMenuItem
+                if (widget instanceof CheckMenuItem) {
+                    ((CheckMenuItem) widget).setActive(active);
+                }
+
+                // Update the RadioButton
+                if (widget instanceof RadioButton) {
+                    ((RadioButton) widget).setActive(active);
+                }
+            }
+        }
     }
 
     /**

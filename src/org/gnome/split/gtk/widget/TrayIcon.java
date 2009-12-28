@@ -23,10 +23,10 @@ package org.gnome.split.gtk.widget;
 import org.gnome.gtk.Menu;
 import org.gnome.gtk.SeparatorMenuItem;
 import org.gnome.gtk.StatusIcon;
-import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.action.ActionManager;
+import org.gnome.split.gtk.action.ToggleAction;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -92,18 +92,8 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
 
     @Override
     public void onActivate(StatusIcon source) {
-        Window window = app.getMainWindow();
-
-        if (activated) {
-            // Show the main window
-            window.showAll();
-        } else {
-            // Hide the main window
-            window.hide();
-        }
-
-        // Change the state
-        activated = !activated;
+        ToggleAction action = app.getActionManager().getToggleAction(ActionId.TRAY_WINDOW);
+        action.actionPerformed(null, activated);
     }
 
     @Override

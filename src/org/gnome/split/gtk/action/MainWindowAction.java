@@ -42,7 +42,7 @@ public final class MainWindowAction extends ToggleAction
         MainWindow window = this.getApplication().getMainWindow();
 
         // Change action state
-        this.setActive(!active);
+        this.setActive(!active, (event == null));
 
         if (active) {
             // Hide the window
@@ -53,6 +53,6 @@ public final class MainWindowAction extends ToggleAction
         }
 
         // Set the active state of the notification zone icon
-        window.getTrayIcon().setActivated(active);
+        window.getTrayIcon().setActivated(!active);
     }
 }
