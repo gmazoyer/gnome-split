@@ -92,7 +92,9 @@ public final class SizeUnit
         // Can have (a maximum of) 1 figure after comma
         format.setMaximumFractionDigits(1);
 
-        if (divider == 0) {
+        if (size == -1) {
+            builder.append(_("Unknown"));
+        } else if (divider == 0) {
             // Use bytes only
             builder.append(format.format(size));
             builder.append(" ");

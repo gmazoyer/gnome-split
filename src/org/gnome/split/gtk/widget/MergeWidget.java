@@ -260,9 +260,9 @@ public class MergeWidget extends Frame implements ActionWidget
     @Override
     public void reset() {
         fileEntry.setText("");
-        fileChooser.setCurrentFolder(System.getProperty("user.home"));
+        fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
         destEntry.setText("");
-        dirChooser.setCurrentFolder(System.getProperty("user.home"));
+        dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
         partsNumber.setLabel("");
         fileSize.setLabel("");
         md5sum.setLabel("");

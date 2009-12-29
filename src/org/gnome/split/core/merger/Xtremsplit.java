@@ -38,7 +38,7 @@ import org.gnome.split.core.utils.MD5Hasher;
  * 
  * @author Guillaume Mazoyer
  */
-public class Xtremsplit extends DefaultMergeEngine
+public final class Xtremsplit extends DefaultMergeEngine
 {
     public Xtremsplit(final GnomeSplit app, File file, String filename) {
         super(app, file, filename);
@@ -111,6 +111,7 @@ public class Xtremsplit extends DefaultMergeEngine
         FileOutputStream out = null;
         File chunk = null;
         boolean success = true;
+
         try {
             // Open the final file
             out = new FileOutputStream(filename);

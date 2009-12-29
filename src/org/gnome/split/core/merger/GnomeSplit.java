@@ -36,7 +36,7 @@ import org.gnome.split.core.utils.MD5Hasher;
  * 
  * @author Guillaume Mazoyer
  */
-public class GnomeSplit extends DefaultMergeEngine
+public final class GnomeSplit extends DefaultMergeEngine
 {
     public GnomeSplit(final org.gnome.split.GnomeSplit app, File file, String filename) {
         super(app, file, filename);
@@ -105,6 +105,7 @@ public class GnomeSplit extends DefaultMergeEngine
         FileOutputStream out = null;
         File chunk = null;
         boolean success = true;
+
         try {
             // Open the final file
             out = new FileOutputStream(filename);
@@ -113,7 +114,6 @@ public class GnomeSplit extends DefaultMergeEngine
             byte[] buffer;
 
             for (int i = 1; i <= parts; i++) {
-
                 // Open the current part to merge
                 chunk = new File(this.getNextChunk(part, i));
                 RandomAccessFile access = new RandomAccessFile(chunk, "r");

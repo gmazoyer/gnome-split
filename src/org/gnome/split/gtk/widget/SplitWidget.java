@@ -259,8 +259,9 @@ public class SplitWidget extends Frame implements ActionWidget
     @Override
     public void reset() {
         fileEntry.setText("");
+        fileChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
         destinationEntry.setText("");
-        dirChooser.setCurrentFolder(System.getProperty("user.home"));
+        dirChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
         sizeButton.setValue(1);
         sizeUnits.setActive(0);
         algoList.setActive(app.getConfig().DEFAULT_ALGORITHM);

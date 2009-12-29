@@ -33,7 +33,7 @@ import org.gnome.split.core.utils.MD5Hasher;
  * 
  * @author Guillaume Mazoyer
  */
-public class GnomeSplit extends DefaultSplitEngine
+public final class GnomeSplit extends DefaultSplitEngine
 {
     private int parts;
 

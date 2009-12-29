@@ -292,39 +292,43 @@ msgstr "Taille non valide."
 msgid "You must specify a size which is lower than the size of the file to split."
 msgstr "Vous devez spécifier une taille qui est inférieure à la taille du fichier à découper."
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:99
+#: src/org/gnome/split/core/utils/SizeUnit.java:96
+msgid "Unknown"
+msgstr "Inconnue"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:101
 msgid "bytes"
 msgstr "octets"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:108
+#: src/org/gnome/split/core/utils/SizeUnit.java:110
 msgid "KB"
 msgstr "Kio"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:114
+#: src/org/gnome/split/core/utils/SizeUnit.java:116
 msgid "MB"
 msgstr "Mio"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:120
+#: src/org/gnome/split/core/utils/SizeUnit.java:122
 msgid "GB"
 msgstr "Gio"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:140
+#: src/org/gnome/split/core/utils/SizeUnit.java:142
 msgid "chunks"
 msgstr "parties"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:141
+#: src/org/gnome/split/core/utils/SizeUnit.java:143
 msgid "bytes (B)"
 msgstr "octets (o)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:142
+#: src/org/gnome/split/core/utils/SizeUnit.java:144
 msgid "kilobytes (KB)"
 msgstr "kibioctets (Kio)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:143
+#: src/org/gnome/split/core/utils/SizeUnit.java:145
 msgid "megabytes (MB)"
 msgstr "mébioctets (Mio)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:144
+#: src/org/gnome/split/core/utils/SizeUnit.java:146
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
 

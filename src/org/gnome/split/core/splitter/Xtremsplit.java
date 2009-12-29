@@ -35,7 +35,7 @@ import org.gnome.split.core.utils.MD5Hasher;
  * 
  * @author Guillaume Mazoyer
  */
-public class Xtremsplit extends DefaultSplitEngine
+public final class Xtremsplit extends DefaultSplitEngine
 {
     private int parts;
 

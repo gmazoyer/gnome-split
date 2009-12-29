@@ -117,7 +117,6 @@ public final class StartAction extends Action
                 // Create the new process and start it
                 run = DefaultMergeEngine.getInstance(app, file, dest);
                 new Thread(run, "Merge - " + file.getName()).start();
-
             }
 
             // Update the interface state
