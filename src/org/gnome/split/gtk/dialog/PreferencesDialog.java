@@ -183,11 +183,13 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         store.setValue(row, icon, pixbuf);
         store.setValue(row, text, _("Desktop"));
 
+        // Connect the signal to handle change of page
         view.connect(new IconView.SelectionChanged() {
             @Override
             public void onSelectionChanged(IconView source) {
                 TreePath[] selections = source.getSelectedItems();
                 if ((selections != null) && (selections.length > 0)) {
+                    // Get the page ID and change the page
                     int id = selections[0].getIndices()[0];
                     switchTo(id);
                 }
@@ -240,7 +242,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         });
 
         // Restore multiple instances status
-        final CheckButton instances = new CheckButton(_("Allow multiple instances."));
+        final CheckButton instances = new CheckButton(_("_Allow multiple instances."));
         instances.setActive(config.MULTIPLE_INSTANCES);
         instances.connect(new Button.Clicked() {
             @Override
