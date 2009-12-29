@@ -177,11 +177,11 @@ public final class GnomeSplit
     }
 
     /**
-     * Open the web browser to show the documentation.
+     * Open the the URI with the default program.
      */
-    public void openDocumentation() {
+    public void openURI(String uri) {
         try {
-            Gtk.showURI(new URI("http://www.respawner.fr/gnome-split/"));
+            Gtk.showURI(new URI(uri));
         } catch (URISyntaxException e) {
             // Can be dropped, should *never* happen
         }

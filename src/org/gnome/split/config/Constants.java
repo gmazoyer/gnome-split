@@ -42,6 +42,11 @@ public final class Constants
     public static String PROGRAM_VERSION = "0.3";
 
     /**
+     * Website of the program.
+     */
+    public static String PROGRAM_WEBSITE = "http://www.respawner.fr/gnome-split/";
+
+    /**
      * Logo of the program (as a {@link Pixbuf}).
      */
     public static Pixbuf PROGRAM_LOGO = null;

@@ -145,7 +145,7 @@ public class SplitWidget extends Frame implements ActionWidget
         firstRow.packStart(chooserColumn);
 
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
-        fileChooser.setCurrentFolder(System.getProperty("user.home"));
+        fileChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
         fileChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
@@ -161,7 +161,7 @@ public class SplitWidget extends Frame implements ActionWidget
         chooserColumn.packStart(fileChooser);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
-        dirChooser.setCurrentFolder(System.getProperty("user.home"));
+        dirChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
         chooserColumn.packStart(dirChooser);
 
         final HBox thirdRow = new HBox(false, 5);

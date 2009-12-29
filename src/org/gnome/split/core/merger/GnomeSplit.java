@@ -104,7 +104,7 @@ public class GnomeSplit extends DefaultMergeEngine
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
         FileOutputStream out = null;
         File chunk = null;
-        boolean md5match = true;
+        boolean success = true;
         try {
             // Open the final file
             out = new FileOutputStream(filename);
@@ -173,7 +173,7 @@ public class GnomeSplit extends DefaultMergeEngine
                     String found = hasher.hashToString(new File(filename));
 
                     // MD5 are different
-                    md5match = md5sum.equals(found);
+                    success = md5sum.equals(found);
                 }
 
                 // Add the part the full read parts
@@ -183,18 +183,25 @@ public class GnomeSplit extends DefaultMergeEngine
                 access.close();
             }
 
-            if (app.getConfig().DELETE_PARTS && md5 && md5match) {
-                // Delete all parts if and *only if* the MD5 sums are equals
-                for (String path : chunks) {
-                    new File(path).delete();
-                }
-            }
-
-            // Notify the end of the merge
-            if (md5 && !md5match) {
+            if (!success && md5) {
+                // Notify the error
                 EngineException exception = new MD5Exception(ExceptionMessage.MD5_DIFFER);
                 this.fireEngineError(exception);
-            } else {
+            } else if (success) {
+                if (app.getConfig().DELETE_PARTS && md5) {
+                    // Delete all parts if and *only if* the MD5 sums are
+                    // equals
+                    for (String path : chunks) {
+                        new File(path).delete();
+                    }
+                }
+
+                if (app.getConfig().OPEN_FILE_AT_END) {
+                    // Open the created file if requested
+                    app.openURI("file://" + filename);
+                }
+
+                // Notify the end
                 this.fireEngineEnded();
             }
         } catch (FileNotFoundException e) {

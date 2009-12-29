@@ -126,7 +126,7 @@ public class MergeWidget extends Frame implements ActionWidget
         table.attach(fileEntry, 1, 2, 0, 1);
 
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
-        fileChooser.setCurrentFolder(System.getProperty("user.home"));
+        fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
         fileChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
@@ -154,7 +154,7 @@ public class MergeWidget extends Frame implements ActionWidget
         table.attach(destEntry, 1, 2, 1, 2);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
-        dirChooser.setCurrentFolder(System.getProperty("user.home"));
+        dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
         table.attach(dirChooser, 2, 3, 1, 2);
 
         // Parts info row

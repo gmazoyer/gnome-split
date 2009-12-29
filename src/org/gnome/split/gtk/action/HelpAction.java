@@ -22,6 +22,7 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.config.Constants;
 
 /**
  * Action to open the program help.
@@ -36,6 +37,6 @@ public final class HelpAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().openDocumentation();
+        this.getApplication().openURI(Constants.PROGRAM_WEBSITE);
     }
 }
