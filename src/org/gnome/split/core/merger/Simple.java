@@ -1,5 +1,5 @@
 /*
- * Xtremsplit.java
+ * Simple.java
  * 
  * Copyright (c) 2010 Guillaume Mazoyer
  * 

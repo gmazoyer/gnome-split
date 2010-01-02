@@ -27,6 +27,7 @@ import org.gnome.gtk.Stock;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.merger.DefaultMergeEngine;
 import org.gnome.split.core.splitter.GnomeSplit;
+import org.gnome.split.core.splitter.Simple;
 import org.gnome.split.core.splitter.Xtremsplit;
 import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.gtk.dialog.ErrorDialog;
@@ -92,6 +93,11 @@ public final class StartAction extends Action
                 case Algorithm.GNOME_SPLIT:
                     // Create the new process and start it
                     run = new GnomeSplit(app, file, size, dest);
+                    new Thread(run, "Split - " + file.getName()).start();
+                    break;
+                case Algorithm.SIMPLE:
+                    // Create the new process and start it
+                    run = new Simple(app, file, size, dest);
                     new Thread(run, "Split - " + file.getName()).start();
                     break;
                 default:
