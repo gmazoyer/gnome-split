@@ -543,7 +543,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
     @Override
     public boolean onDeleteEvent(Widget source, Event event) {
-        this.emitResponse(ResponseType.CANCEL);
+        this.emitResponse(ResponseType.CLOSE);
         return false;
     }
 

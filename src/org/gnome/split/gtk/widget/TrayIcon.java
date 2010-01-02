@@ -55,9 +55,6 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
 
     /**
      * Build the tray icon to show it into the notification zone.
-     * 
-     * @param app
-     *            the instance of the application.
      */
     public TrayIcon(final GnomeSplit app) {
         super(Constants.PROGRAM_LOGO);

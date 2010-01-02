@@ -1,7 +1,7 @@
 /*
  * DefaultMergeEngine.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -90,7 +90,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Return the right merger to merge files with right algorithm.
      */
-    public static DefaultMergeEngine getInstance(final org.gnome.split.GnomeSplit app, File file,
+    public static final DefaultMergeEngine getInstance(final org.gnome.split.GnomeSplit app, File file,
             String filename) {
         String name = file.getName();
 
@@ -102,6 +102,11 @@ public abstract class DefaultMergeEngine extends DefaultEngine
         if (name.endsWith(".001.xtm")) {
             // Use Xtremsplit algorithm
             return new Xtremsplit(app, file, filename);
+        }
+
+        if (name.endsWith(".001")) {
+            // Use Simple algorithm
+            return new Simple(app, file, filename);
         }
 
         // Can't find the right algorithm

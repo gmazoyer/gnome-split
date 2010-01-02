@@ -251,11 +251,16 @@ msgstr "Assemblage impossible."
 msgid "You will not be able to merge the files because this file format is unknown. You are welcome to fill a bug about that."
 msgstr "Vous ne pouvez assembler les fichiers car le format est inconnu. Il vous est conseillé de rapporter un bug à propos de ceci."
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:218
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:219
+#: src/org/gnome/split/core/utils/SizeUnit.java:96
+msgid "Unknown"
+msgstr "Inconnue"
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:221
 msgid "MD5 sum will be use."
 msgstr "Une somme MD5 sera calculée."
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:218
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:221
 msgid "MD5 sum will not be use."
 msgstr "Aucune somme MD5 ne sera calculée."
 
@@ -264,7 +269,7 @@ msgstr "Aucune somme MD5 ne sera calculée."
 msgid "Ready."
 msgstr "Prêt."
 
-#: src/org/gnome/split/gtk/widget/TrayIcon.java:72
+#: src/org/gnome/split/gtk/widget/TrayIcon.java:69
 msgid "version"
 msgstr "version"
 
@@ -291,10 +296,6 @@ msgstr "Taille non valide."
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:36
 msgid "You must specify a size which is lower than the size of the file to split."
 msgstr "Vous devez spécifier une taille qui est inférieure à la taille du fichier à découper."
-
-#: src/org/gnome/split/core/utils/SizeUnit.java:96
-msgid "Unknown"
-msgstr "Inconnue"
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:101
 msgid "bytes"

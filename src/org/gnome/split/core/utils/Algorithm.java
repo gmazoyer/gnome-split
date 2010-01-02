@@ -1,7 +1,7 @@
 /*
  * Algorithm.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -38,11 +38,16 @@ public final class Algorithm
     public static final int XTREMSPLIT = 1;
 
     /**
+     * Algorithm used for files without headers.
+     */
+    public static final int SIMPLE = 2;
+
+    /**
      * Get a {@link String} representation of all algorithms.
      */
     public static String[] toStrings() {
         return new String[] {
-                "GNOME Split", "Xtremsplit"
+                "GNOME Split", "Xtremsplit", "Simple"
         };
     }
 }

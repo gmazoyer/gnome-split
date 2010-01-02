@@ -1,7 +1,7 @@
 /*
  * MergeWidget.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -210,10 +210,13 @@ public class MergeWidget extends Frame implements ActionWidget
         String filename = fullpath.substring((lastSeparator + 1), fullpath.length());
         String directory = fullpath.substring(0, lastSeparator);
 
+        // Get the number of parts
+        int number = engine.getParts();
+
         // Update the widgets
         destEntry.setText(filename);
         dirChooser.setCurrentFolder(directory);
-        partsNumber.setLabel(String.valueOf(engine.getParts()));
+        partsNumber.setLabel((number == -1) ? _("Unknown") : String.valueOf(number));
         fileSize.setLabel(SizeUnit.formatSize(engine.getFileLength()));
         md5sum.setLabel(engine.useMD5() ? _("MD5 sum will be use.") : _("MD5 sum will not be use."));
 
