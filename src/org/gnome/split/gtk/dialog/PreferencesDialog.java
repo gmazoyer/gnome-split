@@ -1,7 +1,7 @@
 /*
  * PreferencesDialog.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -64,6 +64,11 @@ import org.gnome.split.core.utils.Algorithm;
 
 import static org.freedesktop.bindings.Internationalization._;
 
+/**
+ * This class is used to build GTK+ Preferences dialog.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 {
     /**
@@ -90,6 +95,16 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
      * The current displayed page.
      */
     private Alignment current;
+
+    /**
+     * Directory chooser for the split widget.
+     */
+    private FileChooserButton splitDirChooser;
+
+    /**
+     * Directory chooser for the merge widget.
+     */
+    private FileChooserButton mergeDirChooser;
 
     public PreferencesDialog(final GnomeSplit app) {
         super(_("GNOME Split Preferences"), app.getMainWindow(), false);
@@ -318,17 +333,9 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         final Label directoryLabel = new Label(_("Default directory:"));
 
         // Default directory button
-        final FileChooserButton directoryChooser = new FileChooserButton(_("Choose a directory."),
+        splitDirChooser = new FileChooserButton(_("Choose a directory."),
                 FileChooserAction.SELECT_FOLDER);
-        directoryChooser.setCurrentFolder(config.SPLIT_DIRECTORY);
-        directoryChooser.connect(new FileChooserButton.FileSet() {
-            @Override
-            public void onFileSet(FileChooserButton source) {
-                // Save preferences
-                config.SPLIT_DIRECTORY = new String(source.getCurrentFolder());
-                config.savePreferences();
-            }
-        });
+        splitDirChooser.setCurrentFolder(config.SPLIT_DIRECTORY);
 
         // Main container
         final VBox container = new VBox(false, 5);
@@ -351,7 +358,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Pack directory related widgets
         directoryContainer.packStart(directoryLabel);
-        directoryContainer.packStart(directoryChooser);
+        directoryContainer.packStart(splitDirChooser);
 
         // Size group for labels
         SizeGroup labelGroup = new SizeGroup(SizeGroupMode.BOTH);
@@ -361,7 +368,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         // Size group for option widgets
         SizeGroup optionGroup = new SizeGroup(SizeGroupMode.BOTH);
         optionGroup.add(algorithms);
-        optionGroup.add(directoryChooser);
+        optionGroup.add(splitDirChooser);
 
         // Show all widgets
         page.showAll();
@@ -405,17 +412,9 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         final Label directoryLabel = new Label(_("Default directory:"));
 
         // Default directory button
-        final FileChooserButton directoryChooser = new FileChooserButton(_("Choose a directory."),
+        mergeDirChooser = new FileChooserButton(_("Choose a directory."),
                 FileChooserAction.SELECT_FOLDER);
-        directoryChooser.setCurrentFolder(config.MERGE_DIRECTORY);
-        directoryChooser.connect(new FileChooserButton.FileSet() {
-            @Override
-            public void onFileSet(FileChooserButton source) {
-                // Save preferences
-                config.MERGE_DIRECTORY = new String(source.getCurrentFolder());
-                config.savePreferences();
-            }
-        });
+        mergeDirChooser.setCurrentFolder(config.MERGE_DIRECTORY);
 
         // Main container
         final VBox container = new VBox(false, 5);
@@ -437,7 +436,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Pack directory related widgets
         directoryContainer.packStart(directoryLabel);
-        directoryContainer.packStart(directoryChooser);
+        directoryContainer.packStart(mergeDirChooser);
 
         // Show all widgets
         page.showAll();
@@ -549,6 +548,11 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
     @Override
     public void onResponse(Dialog source, ResponseType response) {
+        // Save preferences that cannot be saved using signals
+        config.SPLIT_DIRECTORY = splitDirChooser.getCurrentFolder();
+        config.MERGE_DIRECTORY = mergeDirChooser.getCurrentFolder();
+        config.savePreferences();
+
         // Hide the dialog
         this.hide();
     }

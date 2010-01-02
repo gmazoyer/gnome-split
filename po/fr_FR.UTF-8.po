@@ -70,26 +70,26 @@ msgstr "Suspendre"
 msgid "_Open folder"
 msgstr "_Ouvrir le dossier"
 
-#: src/org/gnome/split/gtk/action/StartAction.java:47
+#: src/org/gnome/split/gtk/action/StartAction.java:48
 msgid "Start"
 msgstr "Démarrer"
 
-#: src/org/gnome/split/gtk/action/StartAction.java:70
-#: src/org/gnome/split/gtk/action/StartAction.java:103
+#: src/org/gnome/split/gtk/action/StartAction.java:76
+#: src/org/gnome/split/gtk/action/StartAction.java:110
 msgid "Incompleted fields."
 msgstr "Champs incomplets."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:71
+#: src/org/gnome/split/gtk/action/StartAction.java:77
 msgid "You must fill all fields to start a split."
 msgstr "Vous devez remplir tous les champs avant de lancer un découpage."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:104
+#: src/org/gnome/split/gtk/action/StartAction.java:111
 msgid "You must fill all fields to start a merge."
 msgstr "Vous devez remplir tous les champs avant de lancer un assemblage."
 
 #: src/org/gnome/split/gtk/action/SelectSplitAction.java:35
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:172
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:216
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:181
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:225
 msgid "Split"
 msgstr "Découpage"
 
@@ -98,8 +98,8 @@ msgid "Main _window"
 msgstr "_Fenêtre principale"
 
 #: src/org/gnome/split/gtk/action/SelectMergeAction.java:35
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:178
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:230
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:187
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:239
 msgid "Merge"
 msgstr "Assemblage"
 
@@ -133,63 +133,63 @@ msgstr ""
 "\n"
 "Vous devez avoir reçu une copie de la Licence Publique Générale GNU en même temps que ce program.  Sinon, reportez-vous à <http://www.gnu.org/licenses/>."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:95
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:104
 msgid "GNOME Split Preferences"
 msgstr "Préférences de GNOME Split"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:166
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:175
 msgid "General"
 msgstr "Général"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:184
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:193
 msgid "Desktop"
 msgstr "Bureau"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:214
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:223
 msgid "Default view:"
 msgstr "Vue par défaut :"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:245
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:254
 msgid "_Allow multiple instances."
 msgstr "_Autoriser plusieurs instances."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:285
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:294
 msgid "_Calculate the MD5 if possible."
 msgstr "_Calculer la somme MD5 si possible."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:297
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:306
 msgid "Default algorithm:"
 msgstr "Algorithme par défaut :"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:318
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:405
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:327
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:406
 msgid "Default directory:"
 msgstr "Dossier par défaut :"
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:321
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:408
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:330
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:409
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:163
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:156
 msgid "Choose a directory."
 msgstr "Choisissez un dossier."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:380
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:381
 msgid "_Remove parts if the merge was successful."
 msgstr "_Supprimer les parties si l'assemblage s'est bien terminé."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:393
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:394
 msgid "_Open the created file if the merge was successful."
 msgstr "_Ouvrir le fichier créé si l'assemblage s'est bien terminé."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:457
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:450
 msgid "Inhibit desktop _hibernation when action is performed."
 msgstr "_Empêcher la mise en veille lorsqu'une action est en cours."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:469
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:462
 msgid "Show _icon in the desktop notification area."
 msgstr "Afficher l'_icône dans la zone de notification."
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:484
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:477
 msgid "Show desktop _notification."
 msgstr "Afficher les _notifications."
 
