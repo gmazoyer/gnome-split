@@ -21,6 +21,7 @@
 package org.gnome.split.gtk.action;
 
 import java.io.File;
+import java.lang.reflect.Constructor;
 
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Stock;
@@ -29,7 +30,6 @@ import org.gnome.split.core.merger.DefaultMergeEngine;
 import org.gnome.split.core.splitter.GnomeSplit;
 import org.gnome.split.core.splitter.Simple;
 import org.gnome.split.core.splitter.Xtremsplit;
-import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.gtk.dialog.ErrorDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.MergeWidget;
@@ -64,6 +64,11 @@ public final class StartAction extends Action
             ActionWidget widget = app.getMainWindow().getActionWidget();
             Engine run = null;
 
+            // These classes are our splitter classes
+            Class<?>[] splitters = new Class[] {
+                    GnomeSplit.class, Xtremsplit.class, Simple.class
+            };
+
             // A split is performed
             if (widget instanceof SplitWidget) {
                 if (!widget.isFullyFilled()) {
@@ -84,24 +89,20 @@ public final class StartAction extends Action
                 long size = split.getMaxSize();
                 String dest = split.getDestination();
 
-                switch (algorithm) {
-                case Algorithm.XTREMSPLIT:
-                    // Create the new process and start it
-                    run = new Xtremsplit(app, file, size, dest);
+                Constructor<?> constructor;
+                try {
+                    // Get the class constructor
+                    constructor = splitters[algorithm].getConstructor(org.gnome.split.GnomeSplit.class,
+                            File.class, long.class, String.class);
+
+                    // Create the runnable object
+                    run = (Engine) constructor.newInstance(app, file, size, dest);
+
+                    // Finally, start the thread
                     new Thread(run, "Split - " + file.getName()).start();
-                    break;
-                case Algorithm.GNOME_SPLIT:
-                    // Create the new process and start it
-                    run = new GnomeSplit(app, file, size, dest);
-                    new Thread(run, "Split - " + file.getName()).start();
-                    break;
-                case Algorithm.SIMPLE:
-                    // Create the new process and start it
-                    run = new Simple(app, file, size, dest);
-                    new Thread(run, "Split - " + file.getName()).start();
-                    break;
-                default:
-                    break;
+                } catch (Exception e) {
+                    // Should *never* happen
+                    e.printStackTrace();
                 }
             } else if (widget instanceof MergeWidget) {
                 if (!widget.isFullyFilled()) {
