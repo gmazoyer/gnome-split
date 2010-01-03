@@ -1,7 +1,7 @@
 /*
  * Configuration.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -94,7 +94,7 @@ public final class Configuration
     /**
      * Show icon in the notification zone.
      */
-    public boolean SHOW_TRAY_ICON;
+    public boolean SHOW_STATUS_ICON;
 
     /**
      * Private constructor can't instantiate Configuration in other class.<br>
@@ -144,7 +144,7 @@ public final class Configuration
             // Write desktop config
             writer.write("NoHibernation     = true\n");
             writer.write("UseNotification   = true\n");
-            writer.write("ShowTrayIcon      = false\n");
+            writer.write("ShowStatusIcon    = false\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -189,7 +189,7 @@ public final class Configuration
             // Load desktop config
             NO_HIBERNATION = Boolean.parseBoolean(preferences.getProperty("NoHibernation", "true"));
             USE_NOTIFICATION = Boolean.parseBoolean(preferences.getProperty("UseNotification", "false"));
-            SHOW_TRAY_ICON = Boolean.parseBoolean(preferences.getProperty("ShowTrayIcon", "false"));
+            SHOW_STATUS_ICON = Boolean.parseBoolean(preferences.getProperty("ShowStatusIcon", "false"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -222,7 +222,7 @@ public final class Configuration
             // Write desktop config
             writer.write("NoHibernation     = " + NO_HIBERNATION + "\n");
             writer.write("UseNotification   = " + USE_NOTIFICATION + "\n");
-            writer.write("ShowTrayIcon      = " + SHOW_TRAY_ICON + "\n");
+            writer.write("ShowStatusIcon    = " + SHOW_STATUS_ICON + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

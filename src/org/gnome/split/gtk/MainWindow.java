@@ -116,7 +116,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Create the notification zone icon
         this.statusIcon = new AreaStatusIcon(app);
-        this.statusIcon.setVisible(app.getConfig().SHOW_TRAY_ICON);
+        this.statusIcon.setVisible(app.getConfig().SHOW_STATUS_ICON);
 
         // Create classic preferences dialog
         this.preferences = new PreferencesDialog(app);

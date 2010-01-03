@@ -466,12 +466,12 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Restore tray icon status
         final CheckButton statusIcon = new CheckButton(_("Show _icon in the desktop notification area."));
-        statusIcon.setActive(config.SHOW_TRAY_ICON);
+        statusIcon.setActive(config.SHOW_STATUS_ICON);
         statusIcon.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
                 boolean showStatusIcon = statusIcon.getActive();
-                config.SHOW_TRAY_ICON = showStatusIcon;
+                config.SHOW_STATUS_ICON = showStatusIcon;
 
                 // Display icon and save preferences
                 app.getMainWindow().getAreaStatusIcon().setVisible(showStatusIcon);

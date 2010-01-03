@@ -67,7 +67,7 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
 
         // Set up visibility and icon tooltip
         this.setTooltip("GNOME Split - " + _("version") + " " + Constants.PROGRAM_VERSION);
-        this.setVisible(app.getConfig().SHOW_TRAY_ICON);
+        this.setVisible(app.getConfig().SHOW_STATUS_ICON);
 
         // Connect interaction signals
         this.connect((StatusIcon.Activate) this);
