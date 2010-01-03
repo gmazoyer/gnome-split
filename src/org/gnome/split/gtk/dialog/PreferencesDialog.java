@@ -465,16 +465,16 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         });
 
         // Restore tray icon status
-        final CheckButton trayIcon = new CheckButton(_("Show _icon in the desktop notification area."));
-        trayIcon.setActive(config.SHOW_TRAY_ICON);
-        trayIcon.connect(new Button.Clicked() {
+        final CheckButton statusIcon = new CheckButton(_("Show _icon in the desktop notification area."));
+        statusIcon.setActive(config.SHOW_TRAY_ICON);
+        statusIcon.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
-                boolean showTrayIcon = trayIcon.getActive();
-                config.SHOW_TRAY_ICON = showTrayIcon;
+                boolean showStatusIcon = statusIcon.getActive();
+                config.SHOW_TRAY_ICON = showStatusIcon;
 
                 // Display icon and save preferences
-                app.getMainWindow().getTrayIcon().setVisible(showTrayIcon);
+                app.getMainWindow().getAreaStatusIcon().setVisible(showStatusIcon);
                 config.savePreferences();
             }
         });
@@ -505,7 +505,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Add every options
         vbox.add(hibernation);
-        vbox.add(trayIcon);
+        vbox.add(statusIcon);
         vbox.add(notification);
 
         // Show all widgets

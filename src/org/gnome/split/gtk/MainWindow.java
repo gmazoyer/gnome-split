@@ -39,12 +39,12 @@ import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
 import org.gnome.split.gtk.dialog.PreferencesDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
+import org.gnome.split.gtk.widget.AreaStatusIcon;
 import org.gnome.split.gtk.widget.MainToolbar;
 import org.gnome.split.gtk.widget.MergeWidget;
 import org.gnome.split.gtk.widget.SelectView;
 import org.gnome.split.gtk.widget.SplitWidget;
 import org.gnome.split.gtk.widget.StatusWidget;
-import org.gnome.split.gtk.widget.TrayIcon;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -65,7 +65,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
     /**
      * Icon in the notification area associated to this window.
      */
-    private TrayIcon trayIcon;
+    private AreaStatusIcon statusIcon;
 
     /**
      * Views selector.
@@ -115,8 +115,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.setPosition(WindowPosition.CENTER);
 
         // Create the notification zone icon
-        this.trayIcon = new TrayIcon(app);
-        this.trayIcon.setVisible(app.getConfig().SHOW_TRAY_ICON);
+        this.statusIcon = new AreaStatusIcon(app);
+        this.statusIcon.setVisible(app.getConfig().SHOW_TRAY_ICON);
 
         // Create classic preferences dialog
         this.preferences = new PreferencesDialog(app);
@@ -278,10 +278,10 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
-     * Get the tray icon associated to this window.
+     * Get the notification area icon associated to this window.
      */
-    public TrayIcon getTrayIcon() {
-        return trayIcon;
+    public AreaStatusIcon getAreaStatusIcon() {
+        return statusIcon;
     }
 
     @Override

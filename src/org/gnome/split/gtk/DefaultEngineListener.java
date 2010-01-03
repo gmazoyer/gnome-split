@@ -1,7 +1,7 @@
 /*
  * DefaultEngineListener.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -112,7 +112,7 @@ public class DefaultEngineListener implements EngineListener
 
         if (app.getConfig().USE_NOTIFICATION) {
             // Use notification
-            Notification notify = new Notification(title, body, null, gtk.getTrayIcon());
+            Notification notify = new Notification(title, body, null, gtk.getAreaStatusIcon());
             notify.setIcon(Constants.PROGRAM_LOGO);
             notify.show();
         } else {

@@ -1,7 +1,7 @@
 /*
- * TrayIcon.java
+ * AreaStatusIcon.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -36,7 +36,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusIcon.PopupMenu
+public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, StatusIcon.PopupMenu
 {
     /**
      * The GNOME Split application.
@@ -56,7 +56,7 @@ public class TrayIcon extends StatusIcon implements StatusIcon.Activate, StatusI
     /**
      * Build the tray icon to show it into the notification zone.
      */
-    public TrayIcon(final GnomeSplit app) {
+    public AreaStatusIcon(final GnomeSplit app) {
         super(Constants.PROGRAM_LOGO);
 
         this.app = app;

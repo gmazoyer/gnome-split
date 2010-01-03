@@ -1,7 +1,7 @@
 /*
  * MainWindowAction.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -53,6 +53,6 @@ public final class MainWindowAction extends ToggleAction
         }
 
         // Set the active state of the notification zone icon
-        window.getTrayIcon().setActivated(!active);
+        window.getAreaStatusIcon().setActivated(!active);
     }
 }
