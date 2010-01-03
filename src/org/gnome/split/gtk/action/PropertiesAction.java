@@ -1,7 +1,7 @@
 /*
  * PropertiesAction.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -23,6 +23,8 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
+import static org.freedesktop.bindings.Internationalization._;
+
 /**
  * Action to see properties of a split/merge.
  * 
@@ -31,7 +33,7 @@ import org.gnome.split.GnomeSplit;
 public final class PropertiesAction extends Action
 {
     public PropertiesAction(final GnomeSplit app) {
-        super(app, Stock.PROPERTIES);
+        super(app, Stock.PROPERTIES, null, _("Properties of this action."));
     }
 
     @Override

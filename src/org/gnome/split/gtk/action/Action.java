@@ -1,7 +1,7 @@
 /*
  * Action.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -66,13 +66,13 @@ public abstract class Action
     private List<Widget> widgets;
 
     /**
-     * Create a new action using a label, a tooltip and a {@link Stock} item.
+     * Create a new action using {@link Stock} item, a label, and a tooltip.
      */
-    public Action(GnomeSplit app, String label, String tooltip, Stock stock) {
+    public Action(GnomeSplit app, Stock stock, String label, String tooltip) {
         this.app = app;
+        this.stock = stock;
         this.label = label;
         this.tooltip = tooltip;
-        this.stock = stock;
         this.widgets = new ArrayList<Widget>();
     }
 
@@ -80,14 +80,14 @@ public abstract class Action
      * Create a new action using a {@link Stock} item and a label.
      */
     public Action(GnomeSplit app, Stock stock, String label) {
-        this(app, label, null, stock);
+        this(app, stock, label, null);
     }
 
     /**
      * Create a new action using a {@link Stock} item.
      */
     public Action(GnomeSplit app, Stock stock) {
-        this(app, null, null, stock);
+        this(app, stock, null, null);
     }
 
     /**
@@ -118,11 +118,6 @@ public abstract class Action
         } else if (label != null) {
             // Create a menu item with a label
             item = new MenuItem(label);
-        }
-
-        // Set menu item tooltip
-        if (tooltip != null) {
-            item.setTooltipText(tooltip);
         }
 
         // Connect the activate handler

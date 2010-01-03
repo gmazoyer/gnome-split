@@ -1,7 +1,7 @@
 /*
  * PauseAction.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -34,7 +34,7 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class PauseAction extends Action
 {
     public PauseAction(final GnomeSplit app) {
-        super(app, Stock.MEDIA_PAUSE, _("Suspend"));
+        super(app, Stock.MEDIA_PAUSE, _("Suspend"), _("Suspend this action."));
     }
 
     @Override

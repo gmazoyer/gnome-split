@@ -1,7 +1,7 @@
 /*
  * CancelAction.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -24,6 +24,8 @@ import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.Engine;
 
+import static org.freedesktop.bindings.Internationalization._;
+
 /**
  * Action to cancel a split/merge.
  * 
@@ -32,7 +34,7 @@ import org.gnome.split.core.Engine;
 public final class CancelAction extends Action
 {
     public CancelAction(final GnomeSplit app) {
-        super(app, Stock.CANCEL);
+        super(app, Stock.CANCEL, null, _("Cancel this action."));
     }
 
     @Override

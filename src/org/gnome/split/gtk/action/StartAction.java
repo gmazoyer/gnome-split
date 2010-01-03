@@ -45,7 +45,7 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class StartAction extends Action
 {
     public StartAction(final org.gnome.split.GnomeSplit app) {
-        super(app, Stock.MEDIA_PLAY, _("Start"));
+        super(app, Stock.MEDIA_PLAY, _("Start"), _("Start this action."));
     }
 
     @Override

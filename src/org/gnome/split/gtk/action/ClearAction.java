@@ -1,7 +1,7 @@
 /*
  * ClearAction.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -23,6 +23,8 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
+import static org.freedesktop.bindings.Internationalization._;
+
 /**
  * Action to clear the action widgets.
  * 
@@ -31,7 +33,7 @@ import org.gnome.split.GnomeSplit;
 public final class ClearAction extends Action
 {
     public ClearAction(final GnomeSplit app) {
-        super(app, Stock.CLEAR);
+        super(app, Stock.CLEAR, null, _("Clear this view."));
     }
 
     @Override

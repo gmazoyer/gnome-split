@@ -66,6 +66,14 @@ msgstr "Annuler et supprimer les fichiers"
 msgid "Suspend"
 msgstr "Suspendre"
 
+#: src/org/gnome/split/gtk/action/PauseAction.java:37
+msgid "Suspend this action."
+msgstr "Suspendre cette action."
+
+#: src/org/gnome/split/gtk/action/PropertiesAction.java:36
+msgid "Properties of this action."
+msgstr "Propriétés de cette action."
+
 #: src/org/gnome/split/gtk/action/OpenDirAction.java:37
 msgid "_Open folder"
 msgstr "_Ouvrir le dossier"
@@ -73,6 +81,10 @@ msgstr "_Ouvrir le dossier"
 #: src/org/gnome/split/gtk/action/StartAction.java:48
 msgid "Start"
 msgstr "Démarrer"
+
+#: src/org/gnome/split/gtk/action/StartAction.java:48
+msgid "Start this action."
+msgstr "Démarrer cette action."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:76
 #: src/org/gnome/split/gtk/action/StartAction.java:110
@@ -102,6 +114,14 @@ msgstr "_Fenêtre principale"
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:245
 msgid "Merge"
 msgstr "Assemblage"
+
+#: src/org/gnome/split/gtk/action/ClearAction.java:36
+msgid "Clear this view."
+msgstr "Effacer cet affichage."
+
+#: src/org/gnome/split/gtk/action/CancelAction.java:37
+msgid "Cancel this action."
+msgstr "Annuler cette action."
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:52
 msgid "Split and merge your files easily."

@@ -93,11 +93,6 @@ public abstract class ToggleAction
     public CheckMenuItem createCheckMenuItem() {
         CheckMenuItem item = new CheckMenuItem(label);
 
-        // Set tooltip if there is one and active state
-        if (tooltip != null) {
-            item.setTooltipText(tooltip);
-        }
-
         // Set the state of the widget using the state of the action
         item.setActive(active);
 
