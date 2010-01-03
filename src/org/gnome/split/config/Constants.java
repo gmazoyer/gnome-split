@@ -1,7 +1,7 @@
 /*
  * Constants.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -39,7 +39,7 @@ public final class Constants
     /**
      * Version of the program.
      */
-    public static String PROGRAM_VERSION = "0.3";
+    public static String PROGRAM_VERSION = "0.4";
 
     /**
      * Website of the program.
