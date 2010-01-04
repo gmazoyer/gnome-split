@@ -45,6 +45,7 @@ import org.gnome.gtk.RadioButtonGroup;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.SizeGroup;
 import org.gnome.gtk.SizeGroupMode;
+import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.ToggleButton;
@@ -268,21 +269,120 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
+        // Width value
+        final SpinButton width = new SpinButton(1, 2048, 1);
+        width.setSensitive(config.CUSTOM_WINDOW_SIZE);
+        width.setValue(config.WINDOW_SIZE_X);
+        width.connect(new SpinButton.ValueChanged() {
+            @Override
+            public void onValueChanged(SpinButton source) {
+                // Save preferences
+                config.WINDOW_SIZE_X = (int) source.getValue();
+                config.savePreferences();
+            }
+        });
+
+        // Height value
+        final SpinButton height = new SpinButton(1, 2048, 1);
+        height.setSensitive(config.CUSTOM_WINDOW_SIZE);
+        height.setValue(config.WINDOW_SIZE_Y);
+        height.connect(new SpinButton.ValueChanged() {
+            @Override
+            public void onValueChanged(SpinButton source) {
+                // Save preferences
+                config.WINDOW_SIZE_Y = (int) source.getValue();
+                config.savePreferences();
+            }
+        });
+
+        // Button to use the current size of the window
+        final Button useCurrent = new Button(_("Use the current size"));
+        useCurrent.setSensitive(config.CUSTOM_WINDOW_SIZE);
+        useCurrent.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                double x = (double) app.getMainWindow().getWidth();
+                double y = (double) app.getMainWindow().getHeight();
+
+                // Update the widgets
+                width.setValue(x);
+                height.setValue(y);
+            }
+        });
+
+        // Button to apply the defined size
+        final Button apply = new Button(Stock.APPLY);
+        apply.setSensitive(config.CUSTOM_WINDOW_SIZE);
+        apply.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                // Get the size
+                int width = config.WINDOW_SIZE_X;
+                int height = config.WINDOW_SIZE_Y;
+
+                // Resize the window
+                app.getMainWindow().resize(width, height);
+            }
+        });
+
+        // Restore window size status
+        final CheckButton customSize = new CheckButton(_("_Use a custom size for the main window."));
+        customSize.setActive(config.CUSTOM_WINDOW_SIZE);
+        customSize.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                boolean active = customSize.getActive();
+
+                // Enable the needed widgets
+                width.setSensitive(active);
+                height.setSensitive(active);
+                useCurrent.setSensitive(active);
+                apply.setSensitive(active);
+
+                // Save preferences
+                config.CUSTOM_WINDOW_SIZE = active;
+                config.savePreferences();
+            }
+        });
+
         // Main container
         final VBox container = new VBox(false, 5);
         page.add(container);
 
         // Pack default view widgets
-        final HBox hbox = new HBox(false, 3);
-        container.packStart(hbox);
+        final HBox viewBox = new HBox(false, 3);
+        container.packStart(viewBox);
 
         // Pack the widgets
-        hbox.packStart(viewLabel);
-        hbox.packStart(split);
-        hbox.packStart(merge);
+        viewBox.packStart(viewLabel);
+        viewBox.packStart(split);
+        viewBox.packStart(merge);
 
-        // And pack the multiple instances option
+        // Pack the multiple instances option
         container.packStart(instances);
+
+        // Pack size view widgets
+        final VBox sizeBox = new VBox(false, 3);
+        container.packStart(sizeBox);
+
+        // Pack the check button
+        sizeBox.packStart(customSize);
+
+        // Pack widgets in a box
+        final HBox line = new HBox(false, 3);
+        line.packStart(width);
+        line.packStart(new Label("x"));
+        line.packStart(height);
+        line.packStart(useCurrent);
+        line.packStart(apply);
+
+        // Pack the box
+        sizeBox.packStart(line);
+
+        // Make the widgets the same size
+        SizeGroup widgets = new SizeGroup(SizeGroupMode.HORIZONTAL);
+        widgets.add(width);
+        widgets.add(height);
 
         // Show all widgets
         page.showAll();

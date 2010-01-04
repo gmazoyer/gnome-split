@@ -1,7 +1,7 @@
 /*
  * MainWindow.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -160,6 +160,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Connect delete event handler
         this.connect((Window.DeleteEvent) this);
+
+        // Restore the window size
+        if (app.getConfig().CUSTOM_WINDOW_SIZE) {
+            this.setDefaultSize(app.getConfig().WINDOW_SIZE_X, app.getConfig().WINDOW_SIZE_Y);
+        }
 
         // Show everything
         this.showAll();

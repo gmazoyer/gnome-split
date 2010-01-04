@@ -1,7 +1,7 @@
 /*
  * DefaultEngine.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -25,6 +25,12 @@ import java.util.List;
 
 import org.gnome.split.GnomeSplit;
 
+/**
+ * A class giving a model and an initial behavior for all merger and splitter
+ * classes.
+ * 
+ * @author Guillaume Mazoyer
+ */
 public abstract class DefaultEngine implements Engine
 {
     /**
@@ -35,7 +41,7 @@ public abstract class DefaultEngine implements Engine
     /**
      * Current instance of GNOME Split.
      */
-    protected GnomeSplit app = null;
+    protected GnomeSplit app;
 
     /**
      * Total of bytes read.

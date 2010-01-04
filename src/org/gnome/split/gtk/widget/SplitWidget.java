@@ -1,7 +1,7 @@
 /*
  * SplitWidget.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -118,7 +118,7 @@ public class SplitWidget extends Frame implements ActionWidget
 
         // Pack all Labels in the same box
         final VBox labelColumn = new VBox(false, 5);
-        firstRow.packStart(labelColumn);
+        firstRow.packStart(labelColumn, false, false, 0);
 
         final Label fileLabel = new Label(_("File:"));
         labelColumn.packStart(fileLabel);
@@ -142,7 +142,7 @@ public class SplitWidget extends Frame implements ActionWidget
 
         // Pack all choosers in the same box
         final VBox chooserColumn = new VBox(false, 5);
-        firstRow.packStart(chooserColumn);
+        firstRow.packStart(chooserColumn, false, false, 0);
 
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
         fileChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);

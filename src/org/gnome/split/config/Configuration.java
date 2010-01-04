@@ -52,6 +52,21 @@ public final class Configuration
     public boolean MULTIPLE_INSTANCES;
 
     /**
+     * The user defined a custom size.
+     */
+    public boolean CUSTOM_WINDOW_SIZE;
+
+    /**
+     * The width of the main window.
+     */
+    public int WINDOW_SIZE_X;
+
+    /**
+     * The height of the main window.
+     */
+    public int WINDOW_SIZE_Y;
+
+    /**
      * Write a file containing the file hash.
      */
     public boolean SAVE_FILE_HASH;
@@ -130,6 +145,9 @@ public final class Configuration
             // Write general config
             writer.write("DefaultView       = 0\n");
             writer.write("MultipleInstances = false\n");
+            writer.write("CustomWindowSize  = false\n");
+            writer.write("WindowSizeX       = -1\n");
+            writer.write("WindowSizeY       = -1\n");
 
             // Write split config
             writer.write("SaveFileHash      = true\n");
@@ -175,6 +193,10 @@ public final class Configuration
             DEFAULT_VIEW = Byte.parseByte(preferences.getProperty("DefaultView", "0"));
             MULTIPLE_INSTANCES = Boolean.parseBoolean(preferences.getProperty("MultipleInstances",
                     "false"));
+            WINDOW_SIZE_X = Integer.parseInt(preferences.getProperty("WindowSizeX", "-1"));
+            WINDOW_SIZE_Y = Integer.parseInt(preferences.getProperty("WindowSizeY", "-1"));
+            CUSTOM_WINDOW_SIZE = Boolean.parseBoolean(preferences.getProperty("CustomWindowSize",
+                    "false"));
 
             // Load split config
             SAVE_FILE_HASH = Boolean.parseBoolean(preferences.getProperty("SaveFileHash", "true"));
@@ -208,6 +230,9 @@ public final class Configuration
             // Write general config
             writer.write("DefaultView       = " + DEFAULT_VIEW + "\n");
             writer.write("MultipleInstances = " + MULTIPLE_INSTANCES + "\n");
+            writer.write("CustomWindowSize  = " + CUSTOM_WINDOW_SIZE + "\n");
+            writer.write("WindowSizeX       = " + WINDOW_SIZE_X + "\n");
+            writer.write("WindowSizeY       = " + WINDOW_SIZE_Y + "\n");
 
             // Write split config
             writer.write("SaveFileHash      = " + SAVE_FILE_HASH + "\n");

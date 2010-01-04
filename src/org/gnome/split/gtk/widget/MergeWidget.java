@@ -29,10 +29,12 @@ import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
 import org.gnome.gtk.FileChooserWidget;
 import org.gnome.gtk.Frame;
+import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.ProgressBar;
+import org.gnome.gtk.SizeGroup;
+import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.Table;
 import org.gnome.gtk.VBox;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.merger.DefaultMergeEngine;
@@ -111,19 +113,21 @@ public class MergeWidget extends Frame implements ActionWidget
         final VBox container = new VBox(false, 12);
         this.add(container);
 
-        final Table table = new Table(5, 3, false);
-        table.setRowSpacing(5);
-        table.setColumnSpacing(5);
-        container.packStart(table, false, false, 0);
+        // Secondary vertical box
+        final VBox secondary = new VBox(false, 5);
+        container.packStart(secondary);
 
         // First chunk row
+        final HBox chunkRow = new HBox(false, 5);
+        secondary.packStart(chunkRow);
+
         final Label fileLabel = new Label(_("First chunk:"));
-        table.attach(fileLabel, 0, 1, 0, 1);
+        chunkRow.packStart(fileLabel, false, false, 0);
 
         fileEntry = new Entry();
         fileEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
         fileEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
-        table.attach(fileEntry, 1, 2, 0, 1);
+        chunkRow.packStart(fileEntry);
 
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
         fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
@@ -142,41 +146,72 @@ public class MergeWidget extends Frame implements ActionWidget
                 }
             }
         });
-        table.attach(fileChooser, 2, 3, 0, 1);
+        // table.attach(fileChooser, 2, 3, 0, 1);
+        chunkRow.packStart(fileChooser, false, false, 0);
 
         // Destination row
+        final HBox destinationRow = new HBox(false, 5);
+        secondary.packStart(destinationRow);
+
         final Label destinationLabel = new Label(_("Destination:"));
-        table.attach(destinationLabel, 0, 1, 1, 2);
+        destinationRow.packStart(destinationLabel, false, false, 0);
 
         destEntry = new Entry();
         destEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
         destEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
-        table.attach(destEntry, 1, 2, 1, 2);
+        destinationRow.packStart(destEntry);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
         dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
-        table.attach(dirChooser, 2, 3, 1, 2);
+        destinationRow.packStart(dirChooser, false, false, 0);
 
         // Parts info row
+        final HBox partsRow = new HBox(false, 5);
+        secondary.packStart(partsRow);
+
         final Label partsLabel = new Label(_("Chunks:"));
-        table.attach(partsLabel, 0, 1, 2, 3);
+        partsRow.packStart(partsLabel, false, false, 0);
 
         partsNumber = new Label();
-        table.attach(partsNumber, 1, 3, 2, 3);
+        partsRow.packStart(partsNumber);
 
         // Size info row
+        final HBox infoRow = new HBox(false, 5);
+        secondary.packStart(infoRow);
+
         final Label sizeLabel = new Label(_("Total size:"));
-        table.attach(sizeLabel, 0, 1, 3, 4);
+        infoRow.packStart(sizeLabel, false, false, 0);
 
         fileSize = new Label();
-        table.attach(fileSize, 1, 3, 3, 4);
+        infoRow.packStart(fileSize);
 
         // MD5 sum info row
+        final HBox md5Row = new HBox(false, 5);
+        secondary.packStart(md5Row);
+
         final Label md5Label = new Label(_("MD5 sum:"));
-        table.attach(md5Label, 0, 1, 4, 5);
+        md5Row.packStart(md5Label, false, false, 0);
 
         md5sum = new Label();
-        table.attach(md5sum, 1, 3, 4, 5);
+        md5Row.packStart(md5sum);
+
+        // Make all labels the same size
+        SizeGroup labels = new SizeGroup(SizeGroupMode.HORIZONTAL);
+        labels.add(fileLabel);
+        labels.add(destinationLabel);
+        labels.add(partsLabel);
+        labels.add(sizeLabel);
+        labels.add(md5Label);
+
+        // Make all entries the same size
+        SizeGroup entries = new SizeGroup(SizeGroupMode.HORIZONTAL);
+        entries.add(fileEntry);
+        entries.add(destEntry);
+
+        // Make all choosers the same size
+        SizeGroup choosers = new SizeGroup(SizeGroupMode.BOTH);
+        choosers.add(fileChooser);
+        choosers.add(dirChooser);
 
         // Pack the progress bar
         progressbar = new ProgressBar();
