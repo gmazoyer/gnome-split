@@ -225,6 +225,10 @@ msgstr "Information"
 msgid "Error!"
 msgstr "Erreur !"
 
+#: src/org/gnome/split/gtk/dialog/QuestionDialog.java:42
+msgid "Question"
+msgstr "Question"
+
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:123
 msgid "File:"
 msgstr "Fichier :"
@@ -353,11 +357,19 @@ msgstr "mébioctets (Mio)"
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
 
-#: src/org/gnome/split/GnomeSplit.java:109
+#: src/org/gnome/split/GnomeSplit.java:110
 msgid "More than one instance."
 msgstr "Plus de une instance."
 
-#: src/org/gnome/split/GnomeSplit.java:110
+#: src/org/gnome/split/GnomeSplit.java:111
 msgid "Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."
 msgstr "Une seule instance de GNOME Split ne peut être exécuté à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
+
+#: src/org/gnome/split/GnomeSplit.java:200
+msgid "Quit GNOME Split."
+msgstr "Quitter GNOME Split."
+
+#: src/org/gnome/split/GnomeSplit.java:201
+msgid "An action is currently being perfomed. Do you really want to quit GNOME Split?"
+msgstr "Une action est en cours d'exécution. Voulez-vous vraiment quitter GNOME Split ?"
 

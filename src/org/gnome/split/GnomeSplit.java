@@ -36,6 +36,7 @@ import org.gnome.split.gtk.DefaultEngineListener;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.dialog.ErrorDialog;
+import org.gnome.split.gtk.dialog.QuestionDialog;
 import org.gnome.unique.Application;
 import org.gnome.unique.Command;
 import org.gnome.unique.MessageData;
@@ -191,17 +192,33 @@ public final class GnomeSplit
      * This will cause the program to be ended.
      */
     public void quit() {
-        // Hide the window immediately
-        window.hide();
+        boolean quit = true;
 
-        // Quit the GTK main loop (cause the app end)
-        Gtk.mainQuit();
+        // An action is running
+        if (engine.getEngine() != null) {
+            // Show a question to the user
+            QuestionDialog dialog = new QuestionDialog(window, _("Quit GNOME Split."),
+                    _("An action is currently being perfomed. Do you really want to quit GNOME Split?"));
 
-        // Forcing Garbage Collector
-        System.gc();
+            // Get his response and hide the dialog
+            quit = dialog.response();
+            dialog.hide();
+        }
 
-        // Ending program
-        System.exit(0);
+        // The user really wants to quit
+        if (quit) {
+            // Hide the window immediately
+            window.hide();
+
+            // Quit the GTK main loop (cause the app end)
+            Gtk.mainQuit();
+
+            // Forcing Garbage Collector
+            System.gc();
+
+            // Ending program
+            System.exit(0);
+        }
     }
 
     /**

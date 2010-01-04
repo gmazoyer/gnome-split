@@ -42,8 +42,8 @@ public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler
      * {@link String}.
      */
     private String getStackTrace(Throwable exception) {
-        final StringWriter swriter = new StringWriter();
-        final PrintWriter pwriter = new PrintWriter(swriter, true);
+        StringWriter swriter = new StringWriter();
+        PrintWriter pwriter = new PrintWriter(swriter, true);
 
         // Get the stacktrace
         exception.printStackTrace(pwriter);
@@ -55,7 +55,7 @@ public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler
 
     @Override
     public void uncaughtException(Thread thread, Throwable exception) {
-        final StringBuilder report = new StringBuilder();
+        StringBuilder report = new StringBuilder();
 
         report.append("UncaughtException in thread: " + thread.getName() + "\n");
         report.append("  Thread ID      = " + thread.getId() + "\n");
