@@ -48,7 +48,7 @@ public final class QuestionDialog extends QuestionMessageDialog
      * said &quot;yes&quot;.
      */
     public boolean response() {
-        ResponseType response = super.run();
+        ResponseType response = this.run();
         return (response == ResponseType.YES);
     }
 }

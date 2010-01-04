@@ -64,6 +64,15 @@ public final class StartAction extends Action
             ActionWidget widget = app.getMainWindow().getActionWidget();
             Engine run = null;
 
+            if (!widget.isFullyFilled()) {
+                // The user did not fill all the fields
+                Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Incompleted fields."),
+                        _("You must fill all fields to start an action."));
+                dialog.run();
+                dialog.hide();
+                return;
+            }
+
             // These classes are our splitter classes
             Class<?>[] splitters = new Class[] {
                     GnomeSplit.class, Xtremsplit.class, Simple.class
@@ -71,23 +80,14 @@ public final class StartAction extends Action
 
             // A split is performed
             if (widget instanceof SplitWidget) {
-                if (!widget.isFullyFilled()) {
-                    // The user did not fill all the fields
-                    Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Incompleted fields."),
-                            _("You must fill all fields to start a split."));
-                    dialog.run();
-                    dialog.hide();
-                    return;
-                }
-
                 // Widget related info
                 SplitWidget split = (SplitWidget) widget;
-                int algorithm = split.getAlgorithm();
 
                 // Split related info
                 File file = new File(split.getFilename());
                 long size = split.getMaxSize();
                 String dest = split.getDestination();
+                int algorithm = split.getAlgorithm();
 
                 Constructor<?> constructor;
                 try {
@@ -105,15 +105,6 @@ public final class StartAction extends Action
                     e.printStackTrace();
                 }
             } else if (widget instanceof MergeWidget) {
-                if (!widget.isFullyFilled()) {
-                    // The user did not fill all the fields
-                    Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Incompleted fields."),
-                            _("You must fill all fields to start a merge."));
-                    dialog.run();
-                    dialog.hide();
-                    return;
-                }
-
                 // Widget related info
                 MergeWidget merge = (MergeWidget) widget;
 

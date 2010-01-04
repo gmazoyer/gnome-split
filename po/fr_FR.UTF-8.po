@@ -86,18 +86,13 @@ msgstr "Démarrer"
 msgid "Start this action."
 msgstr "Démarrer cette action."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:76
-#: src/org/gnome/split/gtk/action/StartAction.java:110
+#: src/org/gnome/split/gtk/action/StartAction.java:69
 msgid "Incompleted fields."
 msgstr "Champs incomplets."
 
-#: src/org/gnome/split/gtk/action/StartAction.java:77
-msgid "You must fill all fields to start a split."
-msgstr "Vous devez remplir tous les champs avant de lancer un découpage."
-
-#: src/org/gnome/split/gtk/action/StartAction.java:111
-msgid "You must fill all fields to start a merge."
-msgstr "Vous devez remplir tous les champs avant de lancer un assemblage."
+#: src/org/gnome/split/gtk/action/StartAction.java:70
+msgid "You must fill all fields to start an action."
+msgstr "Vous devez remplir tous les champs avant de lancer une action."
 
 #: src/org/gnome/split/gtk/action/SelectSplitAction.java:35
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:187
