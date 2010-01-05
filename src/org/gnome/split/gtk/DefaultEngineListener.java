@@ -98,9 +98,6 @@ public class DefaultEngineListener implements EngineListener
 
     @Override
     public void engineEnded() {
-        // Update engine
-        engine = null;
-
         // Enable user interaction (only in action widget)
         gtk.getActionWidget().enable();
         gtk.getViewSwitcher().enable();
@@ -138,13 +135,13 @@ public class DefaultEngineListener implements EngineListener
         if (inhibit.hasInhibit()) {
             inhibit.unInhibit();
         }
+
+        // Update engine
+        engine = null;
     }
 
     @Override
     public void engineStopped() {
-        // Update engine
-        engine = null;
-
         // Enable user interaction (only in action widget)
         gtk.getActionWidget().enable();
         gtk.getViewSwitcher().enable();
@@ -167,13 +164,13 @@ public class DefaultEngineListener implements EngineListener
         if (inhibit.hasInhibit()) {
             inhibit.unInhibit();
         }
+
+        // Update engine
+        engine = null;
     }
 
     @Override
     public void engineError(EngineException exception) {
-        // Update engine
-        engine = null;
-
         Stock item;
         Dialog dialog;
         if (exception instanceof MD5Exception) {
@@ -206,6 +203,9 @@ public class DefaultEngineListener implements EngineListener
         if (inhibit.hasInhibit()) {
             inhibit.unInhibit();
         }
+
+        // Update engine
+        engine = null;
     }
 
     @Override
