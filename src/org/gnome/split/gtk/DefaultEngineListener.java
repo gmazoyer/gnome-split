@@ -20,6 +20,9 @@
  */
 package org.gnome.split.gtk;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Stock;
 import org.gnome.notify.Notification;
@@ -67,6 +70,11 @@ public class DefaultEngineListener implements EngineListener
     private Engine engine;
 
     /**
+     * A timer to schedule an action.
+     */
+    private Timer timer;
+
+    /**
      * Create a new implementation of the {@link EngineListener engine
      * listener}.
      */
@@ -75,6 +83,7 @@ public class DefaultEngineListener implements EngineListener
         this.inhibit = new DbusInhibit();
         this.gtk = app.getMainWindow();
         this.engine = null;
+        this.timer = null;
     }
 
     @Override
@@ -84,7 +93,7 @@ public class DefaultEngineListener implements EngineListener
         String text = SizeUnit.formatSize(done, divider) + " / " + SizeUnit.formatSize(total, divider);
 
         // Now update the widget
-        gtk.getActionWidget().updateProgress((done / total), text);
+        gtk.getActionWidget().updateProgress((done / total), text, true);
     }
 
     @Override
@@ -210,6 +219,25 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
+    public void engineMD5SumEnded() {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+
+        // Now update the widget
+        gtk.getActionWidget().updateProgress(1, "", true);
+    }
+
+    @Override
+    public void engineMD5SumStarted() {
+        if (timer == null) {
+            timer = new Timer();
+            timer.scheduleAtFixedRate(new PulseProgress(), 0, 250);
+        }
+    }
+
+    @Override
     public void setEngine(Engine engine) {
         // Update engine
         this.engine = engine;
@@ -227,5 +255,19 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public Engine getEngine() {
         return engine;
+    }
+
+    /**
+     * A class to use with a timer to make the progress bar of the user
+     * interface pulse.
+     * 
+     * @author Guillaume Mazoyer
+     */
+    class PulseProgress extends TimerTask
+    {
+        @Override
+        public void run() {
+            gtk.getActionWidget().updateProgress(1, _("MD5 sum calculation."), false);
+        }
     }
 }

@@ -60,5 +60,5 @@ public interface ActionWidget
     /**
      * Update the progress which is displayed by the widget.
      */
-    public void updateProgress(double progress, String text);
+    public void updateProgress(double progress, String text, boolean sure);
 }

@@ -51,6 +51,16 @@ public interface EngineListener
     public void enginePartRead(String filename);
 
     /**
+     * Used when the MD5 sum calculation is started.
+     */
+    public void engineMD5SumStarted();
+
+    /**
+     * Used when the MD5 sum calculation has ended.
+     */
+    public void engineMD5SumEnded();
+
+    /**
      * Used when the action has finished.
      */
     public void engineEnded();

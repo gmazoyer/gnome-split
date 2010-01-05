@@ -170,12 +170,18 @@ public final class Xtremsplit extends DefaultSplitEngine
 
                     // Should we save MD5 sum?
                     if (app.getConfig().SAVE_FILE_HASH && (i == parts)) {
+                        // Notify the view
+                        this.fireMD5SumStarted();
+
                         // Get file MD5 sum
                         MD5Hasher hasher = new MD5Hasher();
                         String md5sum = hasher.hashToString(file);
 
                         // Write it a the end of the file
                         access.write(md5sum.getBytes());
+
+                        // Notify the view again
+                        this.fireMD5SumEnded();
                     }
                 } catch (FileNotFoundException e) {
                     throw e;

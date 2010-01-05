@@ -159,6 +159,20 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     }
 
     /**
+     * Notify the view that the MD5 sum calculation has started.
+     */
+    protected void fireMD5SumStarted() {
+        app.getEngineListener().engineMD5SumStarted();
+    }
+
+    /**
+     * Notify the view that the MD5 sum calculation has ended.
+     */
+    protected void fireMD5SumEnded() {
+        app.getEngineListener().engineMD5SumEnded();
+    }
+
+    /**
      * Notify the view that the engine has finish its work.
      */
     protected void fireEngineEnded() {

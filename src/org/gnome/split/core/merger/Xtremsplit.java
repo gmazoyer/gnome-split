@@ -174,12 +174,18 @@ public final class Xtremsplit extends DefaultMergeEngine
                     access.read(buffer);
                     md5sum = new String(buffer);
 
+                    // Notify the view
+                    this.fireMD5SumStarted();
+
                     // Calculate the MD5 of the new file
                     MD5Hasher hasher = new MD5Hasher();
                     String found = hasher.hashToString(new File(filename));
 
                     // MD5 are different
                     success = md5sum.equals(found);
+
+                    // Notify the view again
+                    this.fireMD5SumEnded();
                 }
 
                 // Add the part the full read parts
