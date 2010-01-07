@@ -265,8 +265,12 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public void engineMD5SumStarted() {
         if (timer == null) {
+            // Start the timer
             timer = new Timer();
             timer.scheduleAtFixedRate(new PulseProgress(), 0, 250);
+
+            // Update the status widget
+            gtk.getStatusWidget().updateText(_("MD5 sum calculation."));
         }
     }
 
@@ -330,10 +334,8 @@ public class DefaultEngineListener implements EngineListener
     {
         @Override
         public void run() {
-            String text = _("MD5 sum calculation.");
-
-            gtk.getActionWidget().updateProgress(1, text, false);
-            gtk.getPropertiesDialog().updateProgress(1, text, false);
+            gtk.getActionWidget().updateProgress(1, "", false);
+            gtk.getPropertiesDialog().updateProgress(1, "", false);
         }
     }
 }

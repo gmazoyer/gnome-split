@@ -46,7 +46,7 @@ msgstr "Écriture de {0}."
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:333
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:273
 msgid "MD5 sum calculation."
 msgstr "Calcul de la somme MD5."
 

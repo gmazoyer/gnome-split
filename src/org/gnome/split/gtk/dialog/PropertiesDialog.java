@@ -201,14 +201,17 @@ public class PropertiesDialog extends Dialog implements DeleteEvent, Response
      * Update the progress bar.
      */
     public void updateProgress(double value, String text, boolean sure) {
-        if (sure) {
-            // Known progress
-            progress.setFraction(value);
-        } else {
+        if (!sure) {
             // Unknown progress
             progress.pulse();
+        } else {
+            // Known progress
+            progress.setFraction(value);
+
+            if (!text.isEmpty()) {
+                progress.setText(text);
+            }
         }
-        progress.setText(text);
     }
 
     /**

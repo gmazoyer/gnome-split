@@ -271,14 +271,17 @@ public class SplitWidget extends Frame implements ActionWidget
 
     @Override
     public void updateProgress(double progress, String text, boolean sure) {
-        if (sure) {
-            // Known progress
-            progressbar.setFraction(progress);
-        } else {
+        if (!sure) {
             // Unknown progress
             progressbar.pulse();
+        } else {
+            // Known progress
+            progressbar.setFraction(progress);
+
+            if (!text.isEmpty()) {
+                progressbar.setText(text);
+            }
         }
-        progressbar.setText(text);
     }
 
     /**
