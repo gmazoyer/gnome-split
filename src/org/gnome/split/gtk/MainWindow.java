@@ -38,6 +38,7 @@ import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
 import org.gnome.split.gtk.dialog.PreferencesDialog;
+import org.gnome.split.gtk.dialog.PropertiesDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.AreaStatusIcon;
 import org.gnome.split.gtk.widget.MainToolbar;
@@ -93,6 +94,12 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private StatusWidget status;
 
     /**
+     * Properties dialog associated to this window to display detailed
+     * information about the current action.
+     */
+    private PropertiesDialog properties;
+
+    /**
      * Classic preferences dialog associated to this window.
      */
     private PreferencesDialog preferences;
@@ -117,12 +124,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Create the notification zone icon
         this.statusIcon = new AreaStatusIcon(app);
         this.statusIcon.setVisible(app.getConfig().SHOW_STATUS_ICON);
-
-        // Create classic preferences dialog
-        this.preferences = new PreferencesDialog(app);
-
-        // Create classic about dialog
-        this.about = new AboutSoftDialog();
 
         // Main container
         this.mainContainer = new VBox(false, 0);
@@ -215,6 +216,20 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
+     * Setup all the dialogs attached to the main window.
+     */
+    public void setupDialogs() {
+        // Create the properties dialog
+        this.properties = new PropertiesDialog(app);
+
+        // Create classic preferences dialog
+        this.preferences = new PreferencesDialog(app);
+
+        // Create classic about dialog
+        this.about = new AboutSoftDialog();
+    }
+
+    /**
      * Switch between widget to display.
      */
     public void switchView() {
@@ -266,6 +281,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
      */
     public StatusWidget getStatusWidget() {
         return status;
+    }
+
+    /**
+     * Get the properties dialog.
+     */
+    public PropertiesDialog getPropertiesDialog() {
+        return properties;
     }
 
     /**

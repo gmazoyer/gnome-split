@@ -112,6 +112,9 @@ public final class Simple extends DefaultSplitEngine
                         total += buffer.length;
                         this.fireEngineDone((double) total, (double) file.length());
                     }
+
+                    // Notify the view from a written part
+                    this.fireEnginePartWritten(chunk.getName());
                 } catch (FileNotFoundException e) {
                     throw e;
                 } catch (IOException e) {

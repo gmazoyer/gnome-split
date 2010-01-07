@@ -46,6 +46,11 @@ public interface EngineListener
     public void enginePartCreated(String filename);
 
     /**
+     * Used when a part has been written.
+     */
+    public void enginePartWritten(String filename);
+
+    /**
      * Used when a part is currently being read.
      */
     public void enginePartRead(String filename);

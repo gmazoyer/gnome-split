@@ -1,7 +1,7 @@
 /*
  * ActionManager.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -120,7 +120,7 @@ public class ActionManager
      */
     public void setPauseState() {
         this.getAction(ActionId.OPEN_DIR).setActive(true);
-        this.getAction(ActionId.PROPERTIES).setActive(false);
+        this.getAction(ActionId.PROPERTIES).setActive(true);
         this.getAction(ActionId.START).setActive(true);
         this.getAction(ActionId.PAUSE).setActive(false);
         this.getAction(ActionId.CANCEL).setActive(true);
@@ -133,7 +133,7 @@ public class ActionManager
      */
     public void setRunningState() {
         this.getAction(ActionId.OPEN_DIR).setActive(true);
-        this.getAction(ActionId.PROPERTIES).setActive(false);
+        this.getAction(ActionId.PROPERTIES).setActive(true);
         this.getAction(ActionId.START).setActive(false);
         this.getAction(ActionId.PAUSE).setActive(true);
         this.getAction(ActionId.CANCEL).setActive(true);

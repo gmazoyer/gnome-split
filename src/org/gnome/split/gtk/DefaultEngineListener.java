@@ -20,6 +20,7 @@
  */
 package org.gnome.split.gtk;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -32,6 +33,7 @@ import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MD5Exception;
+import org.gnome.split.core.merger.DefaultMergeEngine;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.dbus.DbusInhibit;
@@ -91,9 +93,11 @@ public class DefaultEngineListener implements EngineListener
         // Format the sizes to display them in the widget
         double divider = SizeUnit.getSizeDivider(total);
         String text = SizeUnit.formatSize(done, divider) + " / " + SizeUnit.formatSize(total, divider);
+        double value = done / total;
 
-        // Now update the widget
-        gtk.getActionWidget().updateProgress((done / total), text, true);
+        // Now update the widgets
+        gtk.getActionWidget().updateProgress(value, text, true);
+        gtk.getPropertiesDialog().updateProgress(value, text, true);
     }
 
     @Override
@@ -115,6 +119,9 @@ public class DefaultEngineListener implements EngineListener
 
         // Update the status widget
         gtk.getStatusWidget().update(Stock.YES, title);
+
+        // Reset the properties dialog
+        gtk.getPropertiesDialog().reset();
 
         if (app.getConfig().USE_NOTIFICATION) {
             // Use notification
@@ -157,6 +164,9 @@ public class DefaultEngineListener implements EngineListener
         // Update the status widget
         gtk.getStatusWidget().update(Stock.CANCEL, text);
 
+        // Reset the properties dialog
+        gtk.getPropertiesDialog().reset();
+
         // Update the interface state
         app.getActionManager().setReadyState();
 
@@ -188,6 +198,9 @@ public class DefaultEngineListener implements EngineListener
         // Update the status widget
         gtk.getStatusWidget().update(item, exception.getMessage());
 
+        // Reset the properties dialog
+        gtk.getPropertiesDialog().reset();
+
         // Display the dialog
         dialog.run();
         dialog.hide();
@@ -210,12 +223,31 @@ public class DefaultEngineListener implements EngineListener
 
     @Override
     public void enginePartCreated(String filename) {
+        // Update the status widget
         gtk.getStatusWidget().update(Stock.REFRESH, _("Writting {0}.", filename));
     }
 
     @Override
+    public void enginePartWritten(String filename) {
+        // Get the merge engine and the full path
+        DefaultSplitEngine split = (DefaultSplitEngine) engine;
+        String fullpath = split.getDirectory() + File.separator + filename;
+
+        // Update the properties dialog
+        gtk.getPropertiesDialog().updateListFile(fullpath);
+    }
+
+    @Override
     public void enginePartRead(String filename) {
+        // Update the status widget
         gtk.getStatusWidget().update(Stock.REFRESH, _("Reading {0}.", filename));
+
+        // Get the merge engine and the full path
+        DefaultMergeEngine merge = (DefaultMergeEngine) engine;
+        String fullpath = merge.getDirectory() + File.separator + filename;
+
+        // Update the properties dialog
+        gtk.getPropertiesDialog().updateListFile(fullpath);
     }
 
     @Override
@@ -225,8 +257,9 @@ public class DefaultEngineListener implements EngineListener
             timer = null;
         }
 
-        // Now update the widget
+        // Now update the widgets
         gtk.getActionWidget().updateProgress(1, "", true);
+        gtk.getPropertiesDialog().updateProgress(1, "", true);
     }
 
     @Override
@@ -250,6 +283,36 @@ public class DefaultEngineListener implements EngineListener
         if (app.getConfig().NO_HIBERNATION) {
             inhibit.inhibit();
         }
+
+        if (engine instanceof DefaultSplitEngine) {
+            // A split is running
+            DefaultSplitEngine split = (DefaultSplitEngine) engine;
+
+            // Find directory and filename
+            int separator = split.getFilename().lastIndexOf(File.separator);
+            String directory = split.getFilename().substring(0, separator);
+            String filename = split.getFilename().substring((separator + 1));
+
+            // Update the dialog
+            gtk.getPropertiesDialog().updateDirectory(directory);
+            gtk.getPropertiesDialog().updateFilename(filename);
+            gtk.getPropertiesDialog().updateFileSize(split.getFileLength());
+            gtk.getPropertiesDialog().updateListDirectory(split.getDirectory());
+        } else {
+            // A merge is running
+            DefaultMergeEngine merge = (DefaultMergeEngine) engine;
+
+            // Find directory and filename
+            int separator = merge.getFilename().lastIndexOf(File.separator);
+            String directory = merge.getFilename().substring(0, separator);
+            String filename = merge.getFilename().substring((separator + 1));
+
+            // Update the dialog
+            gtk.getPropertiesDialog().updateDirectory(directory);
+            gtk.getPropertiesDialog().updateFilename(filename);
+            gtk.getPropertiesDialog().updateFileSize(merge.getFileLength());
+            gtk.getPropertiesDialog().updateListDirectory(merge.getDirectory());
+        }
     }
 
     @Override
@@ -267,7 +330,10 @@ public class DefaultEngineListener implements EngineListener
     {
         @Override
         public void run() {
-            gtk.getActionWidget().updateProgress(1, _("MD5 sum calculation."), false);
+            String text = _("MD5 sum calculation.");
+
+            gtk.getActionWidget().updateProgress(1, text, false);
+            gtk.getPropertiesDialog().updateProgress(1, text, false);
         }
     }
 }

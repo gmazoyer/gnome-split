@@ -12,53 +12,53 @@ msgstr ""
 "X-Poedit-Country: FRANCE\n"
 "X-Poedit-SourceCharset: utf-8\n"
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:112
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:113
 msgid "Split terminated."
 msgstr "Découpage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:113
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:114
 msgid "The split has been terminated successfully without any errors."
 msgstr "Le découpage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:115
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:116
 msgid "Merge terminated."
 msgstr "Assemblage terminé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:116
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:117
 msgid "The merge has been terminated successfully without any errors."
 msgstr "L'assemblage s'est terminé avec succès sans erreur."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:155
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:159
 msgid "Split stopped."
 msgstr "Découpage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:157
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:161
 msgid "Merge stopped."
 msgstr "Assemblage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:213
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:227
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:218
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:243
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:270
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:333
 msgid "MD5 sum calculation."
 msgstr "Calcul de la somme MD5."
 
-#: src/org/gnome/split/gtk/MainWindow.java:181
+#: src/org/gnome/split/gtk/MainWindow.java:182
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:198
+#: src/org/gnome/split/gtk/MainWindow.java:199
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:206
+#: src/org/gnome/split/gtk/MainWindow.java:207
 msgid "_Help"
 msgstr "_Aide"
 
@@ -236,6 +236,47 @@ msgstr "Erreur !"
 msgid "Question"
 msgstr "Question"
 
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:82
+msgid "Properties of the action"
+msgstr "Propriétés de l'action"
+
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:98
+msgid "Information about the file"
+msgstr "Informations du fichier"
+
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:109
+msgid "Directory:"
+msgstr "Dossier :"
+
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:112
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:123
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:133
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:192
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:193
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:194
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:175
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:185
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:195
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:254
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:304
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:305
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:306
+#: src/org/gnome/split/core/utils/SizeUnit.java:96
+msgid "Unknown"
+msgstr "Inconnue"
+
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:120
+msgid "Filename:"
+msgstr "Nom du fichier :"
+
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:130
+msgid "Size of the file:"
+msgstr "Taille du fichier :"
+
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:143
+msgid "Progress of the action"
+msgstr "Progression de l'action"
+
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:123
 msgid "File:"
 msgstr "Fichier :"
@@ -285,11 +326,6 @@ msgstr "Assemblage impossible."
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:232
 msgid "You will not be able to merge the files because this file format is unknown. You are welcome to fill a bug about that."
 msgstr "Vous ne pouvez assembler les fichiers car le format est inconnu. Il vous est conseillé de rapporter un bug à propos de ceci."
-
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:254
-#: src/org/gnome/split/core/utils/SizeUnit.java:96
-msgid "Unknown"
-msgstr "Inconnue"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:256
 msgid "MD5 sum will be use."
@@ -372,11 +408,11 @@ msgstr "Plus de une instance."
 msgid "Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."
 msgstr "Une seule instance de GNOME Split ne peut être exécuté à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
 
-#: src/org/gnome/split/GnomeSplit.java:200
+#: src/org/gnome/split/GnomeSplit.java:201
 msgid "Quit GNOME Split."
 msgstr "Quitter GNOME Split."
 
-#: src/org/gnome/split/GnomeSplit.java:201
+#: src/org/gnome/split/GnomeSplit.java:202
 msgid "An action is currently being perfomed. Do you really want to quit GNOME Split?"
 msgstr "Une action est en cours d'exécution. Voulez-vous vraiment quitter GNOME Split ?"
 

@@ -170,6 +170,9 @@ public final class GnomeSplit extends DefaultSplitEngine
                         // Notify the view again
                         this.fireMD5SumEnded();
                     }
+
+                    // Notify the view from a written part
+                    this.fireEnginePartWritten(chunk.getName());
                 } catch (FileNotFoundException e) {
                     throw e;
                 } catch (IOException e) {

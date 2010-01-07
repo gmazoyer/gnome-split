@@ -172,7 +172,7 @@ public class MergeWidget extends Frame implements ActionWidget
         final Label partsLabel = new Label(_("Chunks:"));
         partsRow.packStart(partsLabel, false, false, 0);
 
-        partsNumber = new Label();
+        partsNumber = new Label(_("Unknown"));
         partsRow.packStart(partsNumber);
 
         // Size info row
@@ -182,7 +182,7 @@ public class MergeWidget extends Frame implements ActionWidget
         final Label sizeLabel = new Label(_("Total size:"));
         infoRow.packStart(sizeLabel, false, false, 0);
 
-        fileSize = new Label();
+        fileSize = new Label(_("Unknown"));
         infoRow.packStart(fileSize);
 
         // MD5 sum info row
@@ -192,11 +192,11 @@ public class MergeWidget extends Frame implements ActionWidget
         final Label md5Label = new Label(_("MD5 sum:"));
         md5Row.packStart(md5Label, false, false, 0);
 
-        md5sum = new Label();
+        md5sum = new Label(_("Unknown"));
         md5Row.packStart(md5sum);
 
         // Make all labels the same size
-        SizeGroup labels = new SizeGroup(SizeGroupMode.HORIZONTAL);
+        final SizeGroup labels = new SizeGroup(SizeGroupMode.HORIZONTAL);
         labels.add(fileLabel);
         labels.add(destinationLabel);
         labels.add(partsLabel);
@@ -204,12 +204,12 @@ public class MergeWidget extends Frame implements ActionWidget
         labels.add(md5Label);
 
         // Make all entries the same size
-        SizeGroup entries = new SizeGroup(SizeGroupMode.HORIZONTAL);
+        final SizeGroup entries = new SizeGroup(SizeGroupMode.HORIZONTAL);
         entries.add(fileEntry);
         entries.add(destEntry);
 
         // Make all choosers the same size
-        SizeGroup choosers = new SizeGroup(SizeGroupMode.BOTH);
+        final SizeGroup choosers = new SizeGroup(SizeGroupMode.BOTH);
         choosers.add(fileChooser);
         choosers.add(dirChooser);
 
@@ -301,9 +301,9 @@ public class MergeWidget extends Frame implements ActionWidget
         fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
         destEntry.setText("");
         dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
-        partsNumber.setLabel("");
-        fileSize.setLabel("");
-        md5sum.setLabel("");
+        partsNumber.setLabel(_("Unknown"));
+        fileSize.setLabel(_("Unknown"));
+        md5sum.setLabel(_("Unknown"));
         progressbar.setFraction(0);
         progressbar.setText("");
     }

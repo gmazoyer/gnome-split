@@ -113,6 +113,13 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     }
 
     /**
+     * Notify the view that a part has been written.
+     */
+    protected void fireEnginePartWritten(String filename) {
+        app.getEngineListener().enginePartWritten(filename);
+    }
+
+    /**
      * Notify the view that the MD5 sum calculation has started.
      */
     protected void fireMD5SumStarted() {
@@ -152,5 +159,19 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected void fireEngineDone(double done, double total) {
         app.getEngineListener().engineDone(done, total);
+    }
+
+    /**
+     * Get the name of the file to split.
+     */
+    public String getFilename() {
+        return file.getAbsolutePath();
+    }
+
+    /**
+     * Get the length of the file to split.
+     */
+    public long getFileLength() {
+        return file.length();
     }
 }
