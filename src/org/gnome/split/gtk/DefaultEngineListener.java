@@ -186,13 +186,14 @@ public class DefaultEngineListener implements EngineListener
         if (exception instanceof MD5Exception) {
             // MD5 exception - warning only (file *may* work)
             item = Stock.DIALOG_WARNING;
-            dialog = new WarningDialog(gtk, ((MD5Exception) exception).getExceptionMessage()
-                    .getDetails());
+            dialog = new WarningDialog(gtk, exception.getExceptionMessage().getDetails());
         } else {
             // Other exception - error (file is supposed broken)
             item = Stock.DIALOG_ERROR;
-            dialog = new ErrorDialog(gtk, exception.getMessage(), exception.getExceptionMessage()
-                    .getDetails());
+            dialog = new ErrorDialog(
+                    gtk,
+                    exception.getMessage(),
+                    _("An exception occurs. Please launch GNOME Split in a terminal and reproduce it. An exception message will appear in the terminal. You can then report it to the developers."));
         }
 
         // Update the status widget

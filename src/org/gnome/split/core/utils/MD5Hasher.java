@@ -1,7 +1,7 @@
 /*
  * MD5Hasher.java
  * 
- * Copyright (c) 2009 Guillaume Mazoyer
+ * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -26,6 +26,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.RandomAccessFile;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -81,6 +82,42 @@ public class MD5Hasher
     }
 
     /**
+     * Hash a specified file using the maximal length of bytes to include.
+     */
+    private byte[] hash(RandomAccessFile access, long length) throws IOException {
+        byte[] data;
+
+        // Reset to clean other calculation
+        algorithm.reset();
+
+        // Where the file pointer is
+        long pointer = 0;
+
+        // Data already read
+        long read = 0;
+
+        // Size of the buffer
+        int size = 0;
+
+        while (read < length) {
+            // Get the size of the buffer
+            pointer = access.getFilePointer();
+            size = (65536 > (length - pointer)) ? (int) (length - pointer) : 65536;
+            data = new byte[size];
+
+            // Read data
+            access.read(data);
+            read += data.length;
+
+            // Update hash
+            algorithm.update(data);
+        }
+
+        // Finalize calculation
+        return algorithm.digest();
+    }
+
+    /**
      * Hash the specified file to a bytes array.
      */
     private byte[] hash(File file) {
@@ -108,10 +145,37 @@ public class MD5Hasher
     }
 
     /**
+     * Hash the specified file to a bytes array.
+     */
+    private byte[] hash(File file, long length) {
+        RandomAccessFile access = null;
+        byte[] hash = null;
+
+        try {
+            // Open file and calculate the hash
+            access = new RandomAccessFile(file, "r");
+            hash = this.hash(access, length);
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                // Close the file
+                if (access != null) {
+                    access.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return hash;
+    }
+
+    /**
      * Return the specified bytes array as an hexadecimal {@link String}.
      */
     private String buildHexaString(byte[] hash) {
-        final StringBuilder builder = new StringBuilder();
+        StringBuilder builder = new StringBuilder();
 
         for (int i = 0; i < hash.length; i++) {
             int current = hash[i] & 0xFF;
@@ -130,5 +194,13 @@ public class MD5Hasher
      */
     public String hashToString(File file) {
         return this.buildHexaString(this.hash(file));
+    }
+
+    /**
+     * Hash the specified file to a {@link String} using the number of bytes
+     * to include.
+     */
+    public String hashToString(File file, long length) {
+        return this.buildHexaString(this.hash(file, length));
     }
 }

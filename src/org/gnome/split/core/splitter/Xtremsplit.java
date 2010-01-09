@@ -118,6 +118,16 @@ public final class Xtremsplit extends DefaultSplitEngine
             // Define the buffer size
             byte[] buffer;
 
+            // Used for the MD5 calculation
+            StringBuilder md5sum = null;
+            MD5Hasher md5hasher = null;
+
+            // Use it only if the MD5 should be calculated
+            if (app.getConfig().SAVE_FILE_HASH) {
+                md5sum = new StringBuilder();
+                md5hasher = new MD5Hasher();
+            }
+
             for (int i = 1; i <= parts; i++) {
                 RandomAccessFile access = null;
                 File chunk = null;
@@ -169,19 +179,19 @@ public final class Xtremsplit extends DefaultSplitEngine
                     }
 
                     // Should we save MD5 sum?
-                    if (app.getConfig().SAVE_FILE_HASH && (i == parts)) {
-                        // Notify the view
+                    if (app.getConfig().SAVE_FILE_HASH) {
+                        // Calculate the MD5 sum
                         this.fireMD5SumStarted();
-
-                        // Get file MD5 sum
-                        MD5Hasher hasher = new MD5Hasher();
-                        String md5sum = hasher.hashToString(file);
-
-                        // Write it a the end of the file
-                        access.write(md5sum.getBytes());
-
-                        // Notify the view again
+                        String md5 = md5hasher.hashToString(chunk);
                         this.fireMD5SumEnded();
+
+                        // Append it to the other
+                        md5sum.append(md5);
+
+                        // Write all the MD5 sums at the end of the last file
+                        if (i == parts) {
+                            access.write(md5sum.toString().getBytes());
+                        }
                     }
 
                     // Notify the view from a written part

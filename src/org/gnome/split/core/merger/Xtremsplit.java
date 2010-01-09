@@ -40,8 +40,35 @@ import org.gnome.split.core.utils.MD5Hasher;
  */
 public final class Xtremsplit extends DefaultMergeEngine
 {
+    private String[] md5sums;
+
     public Xtremsplit(final GnomeSplit app, File file, String filename) {
         super(app, file, filename);
+    }
+
+    /**
+     * Used to find all the MD5 sums of the files
+     */
+    private void loadMD5sums(String lastFilename) throws IOException, FileNotFoundException {
+        // Find the last file to read
+        File lastFile = new File(lastFilename);
+        RandomAccessFile access = new RandomAccessFile(lastFile, "r");
+
+        // Find the position of the MD5 sums
+        long position = access.length() - (parts * 32);
+        access.seek(position);
+
+        byte[] read = new byte[32];
+        for (int i = 0; i < parts; i++) {
+            // Read a MD5 sum
+            access.read(read);
+
+            // Convert it to a String
+            md5sums[i] = new String(read);
+        }
+
+        // Close the file access
+        access.close();
     }
 
     @Override
@@ -119,6 +146,18 @@ public final class Xtremsplit extends DefaultMergeEngine
             // Define the buffer size
             byte[] buffer;
 
+            // Load all the MD5 sums
+            md5sums = new String[parts];
+            this.loadMD5sums(this.getNextChunk(part, parts));
+
+            // Use for MD5 calculation
+            MD5Hasher md5hasher = null;
+
+            // Use it only if we should calculate the MD5
+            if (md5) {
+                md5hasher = new MD5Hasher();
+            }
+
             for (int i = 1; i <= parts; i++) {
                 // Open the current part to merge
                 chunk = new File(this.getNextChunk(part, i));
@@ -135,7 +174,7 @@ public final class Xtremsplit extends DefaultMergeEngine
                     read += 104;
                 } else if (md5 && (i == parts)) {
                     // Skip the MD5 sum if it is the last part
-                    length -= 32;
+                    length -= (parts * 32);
                 }
 
                 // Merge the file
@@ -168,24 +207,27 @@ public final class Xtremsplit extends DefaultMergeEngine
                     this.fireEngineDone((double) total, (double) fileLength);
                 }
 
-                if (md5 && (i == parts)) {
-                    // Read the MD5 which was calculated during the split
-                    buffer = new byte[32];
-                    access.read(buffer);
-                    md5sum = new String(buffer);
-
+                if (md5) {
                     // Notify the view
                     this.fireMD5SumStarted();
 
-                    // Calculate the MD5 of the new file
-                    MD5Hasher hasher = new MD5Hasher();
-                    String found = hasher.hashToString(new File(filename));
+                    if (i != parts) {
+                        // Calculate the MD5 sum normally
+                        md5sum = md5hasher.hashToString(chunk);
+                    } else {
+                        // Calculate the MD5 sum without including the MD5
+                        // sums at the end of the last file
+                        long max = access.length() - (parts * 32);
+                        md5sum = md5hasher.hashToString(chunk, max);
+                    }
 
-                    // MD5 are different
-                    success = md5sum.equals(found);
-
-                    // Notify the view again
+                    // Notify the view
                     this.fireMD5SumEnded();
+
+                    // MD5 sums are different
+                    if (!md5sum.equals(md5sums[i - 1])) {
+                        success = false;
+                    }
                 }
 
                 // Add the part the full read parts

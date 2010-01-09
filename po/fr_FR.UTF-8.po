@@ -36,17 +36,21 @@ msgstr "Découpage stoppé."
 msgid "Merge stopped."
 msgstr "Assemblage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:227
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:196
+msgid "An exception occurs. Please launch GNOME Split in a terminal and reproduce it. An exception message will appear in the terminal. You can then report it to the developers."
+msgstr "Une exception s'est produite. Merci de lancer GNOME Split dans un terminal et de la reproduire. Un message d'exception apparaîtra dans le terminal. Vous pourrez ensuite le rapporter aux développeurs."
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:228
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:243
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:244
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:273
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:274
 msgid "MD5 sum calculation."
 msgstr "Calcul de la somme MD5."
 
