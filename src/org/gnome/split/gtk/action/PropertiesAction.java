@@ -38,6 +38,6 @@ public final class PropertiesAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getPropertiesDialog().run();
+        this.getApplication().getMainWindow().getPropertiesDialog().present();
     }
 }

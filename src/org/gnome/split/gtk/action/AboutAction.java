@@ -36,6 +36,6 @@ public final class AboutAction extends Action
 
     @Override
     public void actionPerformed(ActionEvent event) {
-        this.getApplication().getMainWindow().getAboutDialog().run();
+        this.getApplication().getMainWindow().getAboutDialog().present();
     }
 }

@@ -635,9 +635,9 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
     }
 
     @Override
-    public ResponseType run() {
+    public void present() {
         this.showAll();
-        return super.run();
+        super.present();
     }
 
     @Override
