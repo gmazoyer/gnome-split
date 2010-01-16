@@ -33,11 +33,11 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class PropertiesAction extends Action
 {
     public PropertiesAction(final GnomeSplit app) {
-        super(app, Stock.PROPERTIES, null, _("Properties of this action."));
+        super(app, "properties-action", null, _("Properties of this action."), Stock.PROPERTIES);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         this.getApplication().getMainWindow().getPropertiesDialog().present();
     }
 }

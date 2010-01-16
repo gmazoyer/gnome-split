@@ -45,11 +45,11 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class StartAction extends Action
 {
     public StartAction(final org.gnome.split.GnomeSplit app) {
-        super(app, Stock.MEDIA_PLAY, _("Start"), _("Start this action."));
+        super(app, "start-action", _("Start"), _("Start this action."), Stock.MEDIA_PLAY);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         // Get current instance and current widget
         org.gnome.split.GnomeSplit app = this.getApplication();
         Engine engine = app.getEngineListener().getEngine();

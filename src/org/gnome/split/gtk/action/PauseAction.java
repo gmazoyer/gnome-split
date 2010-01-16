@@ -34,11 +34,11 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class PauseAction extends Action
 {
     public PauseAction(final GnomeSplit app) {
-        super(app, Stock.MEDIA_PAUSE, _("Suspend"), _("Suspend this action."));
+        super(app, "pause-action", _("Suspend"), _("Suspend this action."), Stock.MEDIA_PAUSE);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         GnomeSplit app = this.getApplication();
         Engine engine = app.getEngineListener().getEngine();
 

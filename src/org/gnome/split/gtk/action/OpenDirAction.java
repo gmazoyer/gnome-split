@@ -34,11 +34,11 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class OpenDirAction extends Action
 {
     public OpenDirAction(final GnomeSplit app) {
-        super(app, Stock.OPEN, _("_Open folder"));
+        super(app, "opendir-action", _("_Open folder"), null, Stock.OPEN);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         DefaultEngine engine = (DefaultEngine) this.getApplication().getEngineListener().getEngine();
         if (engine != null) {
             String directory = engine.getDirectory();

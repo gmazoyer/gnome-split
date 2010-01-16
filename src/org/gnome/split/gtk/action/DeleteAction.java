@@ -34,11 +34,11 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class DeleteAction extends Action
 {
     public DeleteAction(final GnomeSplit app) {
-        super(app, Stock.DELETE, _("Cancel and delete files"));
+        super(app, "delete-action", _("Cancel and delete files"), null, Stock.DELETE);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         Engine engine = this.getApplication().getEngineListener().getEngine();
         if (engine != null) {
             engine.stop(true);

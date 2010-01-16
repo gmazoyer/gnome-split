@@ -34,11 +34,11 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class CancelAction extends Action
 {
     public CancelAction(final GnomeSplit app) {
-        super(app, Stock.CANCEL, null, _("Cancel this action."));
+        super(app, "cancel-action", null, _("Cancel this action."), Stock.CANCEL);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         Engine engine = this.getApplication().getEngineListener().getEngine();
         if (engine != null) {
             engine.stop(false);

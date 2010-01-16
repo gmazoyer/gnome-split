@@ -31,11 +31,11 @@ import org.gnome.split.GnomeSplit;
 public final class PreferencesAction extends Action
 {
     public PreferencesAction(final GnomeSplit app) {
-        super(app, Stock.PREFERENCES);
+        super(app, "preferences-action", Stock.PREFERENCES);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         this.getApplication().getMainWindow().getPreferencesDialog().present();
     }
 }

@@ -32,11 +32,11 @@ import org.gnome.split.config.Constants;
 public final class HelpAction extends Action
 {
     public HelpAction(final GnomeSplit app) {
-        super(app, Stock.HELP);
+        super(app, "help-action", Stock.HELP);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         this.getApplication().openURI(Constants.PROGRAM_WEBSITE);
     }
 }

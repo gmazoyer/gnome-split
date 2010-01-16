@@ -31,11 +31,11 @@ import org.gnome.split.GnomeSplit;
 public final class AboutAction extends Action
 {
     public AboutAction(final GnomeSplit app) {
-        super(app, Stock.ABOUT);
+        super(app, "about-action", Stock.ABOUT);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         this.getApplication().getMainWindow().getAboutDialog().present();
     }
 }

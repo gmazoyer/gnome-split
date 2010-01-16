@@ -31,11 +31,11 @@ import org.gnome.split.GnomeSplit;
 public final class QuitAction extends Action
 {
     public QuitAction(final GnomeSplit app) {
-        super(app, Stock.QUIT);
+        super(app, "quit-action", Stock.QUIT);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         this.getApplication().quit();
     }
 }

@@ -106,39 +106,39 @@ public class ActionManager
      * Set the actions in the ready state of the interface.
      */
     public void setReadyState() {
-        this.getAction(ActionId.OPEN_DIR).setActive(false);
-        this.getAction(ActionId.PROPERTIES).setActive(false);
-        this.getAction(ActionId.START).setActive(true);
-        this.getAction(ActionId.PAUSE).setActive(false);
-        this.getAction(ActionId.CANCEL).setActive(false);
-        this.getAction(ActionId.DELETE).setActive(false);
-        this.getAction(ActionId.CLEAR).setActive(true);
+        this.getAction(ActionId.OPEN_DIR).setSensitive(false);
+        this.getAction(ActionId.PROPERTIES).setSensitive(false);
+        this.getAction(ActionId.START).setSensitive(true);
+        this.getAction(ActionId.PAUSE).setSensitive(false);
+        this.getAction(ActionId.CANCEL).setSensitive(false);
+        this.getAction(ActionId.DELETE).setSensitive(false);
+        this.getAction(ActionId.CLEAR).setSensitive(true);
     }
 
     /**
      * Set the actions in the pause state of the interface.
      */
     public void setPauseState() {
-        this.getAction(ActionId.OPEN_DIR).setActive(true);
-        this.getAction(ActionId.PROPERTIES).setActive(true);
-        this.getAction(ActionId.START).setActive(true);
-        this.getAction(ActionId.PAUSE).setActive(false);
-        this.getAction(ActionId.CANCEL).setActive(true);
-        this.getAction(ActionId.DELETE).setActive(true);
-        this.getAction(ActionId.CLEAR).setActive(false);
+        this.getAction(ActionId.OPEN_DIR).setSensitive(true);
+        this.getAction(ActionId.PROPERTIES).setSensitive(true);
+        this.getAction(ActionId.START).setSensitive(true);
+        this.getAction(ActionId.PAUSE).setSensitive(false);
+        this.getAction(ActionId.CANCEL).setSensitive(true);
+        this.getAction(ActionId.DELETE).setSensitive(true);
+        this.getAction(ActionId.CLEAR).setSensitive(false);
     }
 
     /**
      * Set the actions in the running state of the interface.
      */
     public void setRunningState() {
-        this.getAction(ActionId.OPEN_DIR).setActive(true);
-        this.getAction(ActionId.PROPERTIES).setActive(true);
-        this.getAction(ActionId.START).setActive(false);
-        this.getAction(ActionId.PAUSE).setActive(true);
-        this.getAction(ActionId.CANCEL).setActive(true);
-        this.getAction(ActionId.DELETE).setActive(true);
-        this.getAction(ActionId.CLEAR).setActive(false);
+        this.getAction(ActionId.OPEN_DIR).setSensitive(true);
+        this.getAction(ActionId.PROPERTIES).setSensitive(true);
+        this.getAction(ActionId.START).setSensitive(false);
+        this.getAction(ActionId.PAUSE).setSensitive(true);
+        this.getAction(ActionId.CANCEL).setSensitive(true);
+        this.getAction(ActionId.DELETE).setSensitive(true);
+        this.getAction(ActionId.CLEAR).setSensitive(false);
     }
 
     /**

@@ -33,11 +33,11 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class ClearAction extends Action
 {
     public ClearAction(final GnomeSplit app) {
-        super(app, Stock.CLEAR, null, _("Clear this view."));
+        super(app, "clear-action", null, _("Clear this view."), Stock.CLEAR);
     }
 
     @Override
-    public void actionPerformed(ActionEvent event) {
+    public void onActivate(org.gnome.gtk.Action source) {
         // No action is performed, allow the widget clean up
         if (this.getApplication().getEngineListener().getEngine() == null) {
             this.getApplication().getMainWindow().getActionWidget().reset();

@@ -44,7 +44,7 @@ public final class SelectSplitAction extends ToggleAction
 
             if (window != null) {
                 // Update the interface
-                this.getApplication().getMainWindow().switchView();
+                window.switchView();
             }
         }
     }
