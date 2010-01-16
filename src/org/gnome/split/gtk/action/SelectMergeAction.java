@@ -21,6 +21,7 @@
 package org.gnome.split.gtk.action;
 
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.gtk.MainWindow;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -32,14 +33,19 @@ import static org.freedesktop.bindings.Internationalization._;
 public class SelectMergeAction extends ToggleAction
 {
     public SelectMergeAction(final GnomeSplit app) {
-        super(app, _("Merge"), false);
+        super(app, _("Merge"), (app.getConfig().DEFAULT_VIEW == 1));
     }
 
     @Override
     public void actionPerformed(ToggleActionEvent event, boolean active) {
-        this.setActive(!active, false);
-        if (!active) {
-            this.getApplication().getMainWindow().switchView();
+        this.setActive(active, false);
+        if (active) {
+            MainWindow window = this.getApplication().getMainWindow();
+
+            if (window != null) {
+                // Update the interface
+                this.getApplication().getMainWindow().switchView();
+            }
         }
     }
 }
