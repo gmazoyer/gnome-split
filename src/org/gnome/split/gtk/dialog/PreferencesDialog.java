@@ -231,7 +231,6 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         final RadioButton split = new RadioButton(group, _("Split"));
         split.setActive(config.DEFAULT_VIEW == 0);
-        split.setSensitive(false);
         split.connect(new RadioButton.Toggled() {
             @Override
             public void onToggled(ToggleButton source) {
@@ -245,7 +244,6 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         final RadioButton merge = new RadioButton(group, _("Merge"));
         merge.setActive(config.DEFAULT_VIEW == 1);
-        merge.setSensitive(false);
         merge.connect(new RadioButton.Toggled() {
             @Override
             public void onToggled(ToggleButton source) {

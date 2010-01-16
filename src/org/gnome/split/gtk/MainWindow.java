@@ -135,10 +135,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Add the tool bar
         this.mainContainer.packStart(new MainToolbar(app), false, false, 0);
 
-        // Add the views selector
-        this.views = new SelectView(app);
-        this.mainContainer.packStart(views, false, false, 0);
-
         // Create the two main widgets
         this.split = new SplitWidget(app);
         this.merge = new MergeWidget(app);
@@ -148,9 +144,23 @@ public class MainWindow extends Window implements Window.DeleteEvent
         group.add(this.split);
         group.add(this.merge);
 
+        // Add the views selector
+        this.views = new SelectView(app);
+        this.mainContainer.packStart(views, false, false, 0);
+
         // Add the main widget
-        this.split.setVisible(true);
-        this.mainContainer.packStart(this.split);
+        switch (app.getConfig().DEFAULT_VIEW) {
+        case 0:
+            // Add the split widget
+            this.split.setVisible(true);
+            this.mainContainer.packStart(this.split);
+            break;
+        case 1:
+            // Add the merge widget
+            this.merge.setVisible(true);
+            this.mainContainer.packStart(this.merge);
+            break;
+        }
 
         // Add status widget
         this.status = new StatusWidget();
