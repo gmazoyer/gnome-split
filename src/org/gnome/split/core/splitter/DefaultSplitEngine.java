@@ -74,8 +74,14 @@ public abstract class DefaultSplitEngine extends DefaultEngine
                     return;
                 }
 
+                // Start the speed calculator
+                this.startSpeedCalculator();
+
                 // Split the file
                 this.split();
+
+                // Stop the speed calculator
+                this.stopSpeedCalculator();
             } catch (Exception e) {
                 // Handle the error
                 this.fireEngineError(new EngineException(e));

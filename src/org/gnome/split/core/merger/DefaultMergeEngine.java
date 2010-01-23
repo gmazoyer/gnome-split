@@ -117,8 +117,14 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     public void run() {
         synchronized (mutex) {
             try {
+                // Start the speed calculator
+                this.startSpeedCalculator();
+
                 // Merge files
                 this.merge();
+
+                // Stop the speed calculator
+                this.stopSpeedCalculator();
             } catch (Exception e) {
                 // Handle the error
                 this.fireEngineError(new EngineException(e));

@@ -22,8 +22,11 @@ package org.gnome.split.core;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.utils.SizeUnit;
 
 /**
  * A class giving a model and an initial behavior for all merger and splitter
@@ -68,6 +71,11 @@ public abstract class DefaultEngine implements Engine
      */
     protected boolean stopped;
 
+    /**
+     * A timer to calculate the speed.
+     */
+    protected Timer speed;
+
     public DefaultEngine(final GnomeSplit app) {
         this.app = app;
         this.total = 0;
@@ -75,6 +83,7 @@ public abstract class DefaultEngine implements Engine
         this.chunks = new ArrayList<String>();
         this.paused = false;
         this.stopped = false;
+        this.speed = null;
     }
 
     @Override
@@ -96,8 +105,16 @@ public abstract class DefaultEngine implements Engine
     @Override
     public void stop(boolean clean) {
         if (paused) {
+            // If suspended, resume the action
             this.resume();
         }
+
+        if (speed != null) {
+            // Stop the speed calculator
+            this.stopSpeedCalculator();
+        }
+
+        // Stop the action
         stopped = true;
     }
 
@@ -111,5 +128,68 @@ public abstract class DefaultEngine implements Engine
      */
     public String getDirectory() {
         return directory;
+    }
+
+    /**
+     * Notify the view from a speed that has changed.
+     */
+    protected void fireEngineSpeedChanged(String speed) {
+        app.getEngineListener().engineSpeedChanged(speed);
+    }
+
+    /**
+     * Start the speed calculator which should notify the view from the speed
+     * of the action.
+     */
+    protected void startSpeedCalculator() {
+        // Create a new timer and start its task
+        speed = new Timer("Speed calculator");
+        speed.scheduleAtFixedRate(new SpeedCalculatorTask(total), 1, 2000);
+    }
+
+    /**
+     * Stop the speed calculator.
+     */
+    protected void stopSpeedCalculator() {
+        // Stop the timer
+        if (speed != null) {
+            speed.cancel();
+            speed = null;
+        }
+
+        // Make displayed speed to unknown
+        this.fireEngineSpeedChanged(null);
+    }
+
+    /**
+     * A class which calculate the speed of the action.
+     * 
+     * @author Guillaume Mazoyer
+     */
+    class SpeedCalculatorTask extends TimerTask
+    {
+        private long oldTotal;
+
+        SpeedCalculatorTask(long oldTotal) {
+            this.oldTotal = oldTotal;
+        }
+
+        @Override
+        public void run() {
+            // The speed is calculated every 2 seconds
+            double speed = (total - oldTotal) / 2;
+
+            // Update the old total
+            oldTotal = total;
+
+            // Notify the view
+            if (speed == 0) {
+                fireEngineSpeedChanged(null);
+            } else {
+                String value = SizeUnit.formatSpeed(speed);
+                fireEngineSpeedChanged(value);
+            }
+        }
+
     }
 }

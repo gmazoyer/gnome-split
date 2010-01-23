@@ -36,21 +36,21 @@ msgstr "Découpage stoppé."
 msgid "Merge stopped."
 msgstr "Assemblage stoppé."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:196
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:200
 msgid "An exception occurs. Please launch GNOME Split in a terminal and reproduce it. An exception message will appear in the terminal. You can then report it to the developers."
 msgstr "Une exception s'est produite. Merci de lancer GNOME Split dans un terminal et de la reproduire. Un message d'exception apparaîtra dans le terminal. Vous pourrez ensuite le rapporter aux développeurs."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:228
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:238
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:244
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:254
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:274
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:284
 msgid "MD5 sum calculation."
 msgstr "Calcul de la somme MD5."
 
@@ -339,10 +339,20 @@ msgstr "Une somme MD5 sera calculée."
 msgid "MD5 sum will not be use."
 msgstr "Aucune somme MD5 ne sera calculée."
 
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:63
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:73
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:113
 msgid "Ready."
 msgstr "Prêt."
+
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:82
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:104
+#: src/org/gnome/split/core/utils/SizeUnit.java:148
+msgid "Unknown speed"
+msgstr "Vitesse inconnue"
+
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:104
+msgid "Speed"
+msgstr "Vitesse"
 
 #: src/org/gnome/split/gtk/widget/SelectView.java:62
 msgid "View:"
@@ -384,23 +394,39 @@ msgstr "Mio"
 msgid "GB"
 msgstr "Gio"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:142
+#: src/org/gnome/split/core/utils/SizeUnit.java:153
+msgid "b/s"
+msgstr "o/s"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:162
+msgid "KB/s"
+msgstr "Kio/s"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:168
+msgid "MB/s"
+msgstr "Mio/s"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:174
+msgid "GB/s"
+msgstr "Gio/s"
+
+#: src/org/gnome/split/core/utils/SizeUnit.java:201
 msgid "chunks"
 msgstr "parties"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:143
+#: src/org/gnome/split/core/utils/SizeUnit.java:202
 msgid "bytes (B)"
 msgstr "octets (o)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:144
+#: src/org/gnome/split/core/utils/SizeUnit.java:203
 msgid "kilobytes (KB)"
 msgstr "kibioctets (Kio)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:145
+#: src/org/gnome/split/core/utils/SizeUnit.java:204
 msgid "megabytes (MB)"
 msgstr "mébioctets (Mio)"
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:146
+#: src/org/gnome/split/core/utils/SizeUnit.java:205
 msgid "gigbaytes (GB)"
 msgstr "gibioctets (Gio)"
 

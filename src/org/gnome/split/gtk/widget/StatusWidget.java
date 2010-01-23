@@ -27,6 +27,7 @@ import org.gnome.gtk.Image;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.Statusbar;
 import org.gnome.gtk.Stock;
+import org.gnome.gtk.VSeparator;
 import org.gnome.pango.EllipsizeMode;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -44,6 +45,12 @@ public class StatusWidget extends Frame
     private Image image;
 
     /**
+     * Display an icon taken from {@link Stock} with a tooltip to show the
+     * speed.
+     */
+    private Image speed;
+
+    /**
      * Display the information.
      */
     private Label text;
@@ -52,25 +59,28 @@ public class StatusWidget extends Frame
         super(null);
 
         // Add a box to the frame
-        final HBox box = new HBox(false, 2);
+        final HBox box = new HBox(false, 5);
         this.add(box);
 
         // Add the icon
         image = new Image(Stock.DIALOG_INFO, IconSize.MENU);
         box.packStart(image, false, false, 0);
 
+        // Add a first separator
+        box.packStart(new VSeparator(), false, false, 0);
+
         // Add the text display
         text = new Label(_("Ready."));
         text.setEllipsize(EllipsizeMode.END);
         box.packStart(text);
-    }
 
-    /**
-     * Reset the widget to its initial status.
-     */
-    public void reset() {
-        image.setImage(Stock.DIALOG_INFO, IconSize.MENU);
-        text.setLabel(_("Ready."));
+        // Add a second separator
+        box.packStart(new VSeparator(), false, false, 0);
+
+        // Add the speed display
+        speed = new Image(Stock.HARDDISK, IconSize.MENU);
+        speed.setTooltipText(_("Unknown speed"));
+        box.packStart(speed, false, false, 0);
     }
 
     /**
@@ -88,10 +98,36 @@ public class StatusWidget extends Frame
     }
 
     /**
+     * Update the displayed speed.
+     */
+    public void updateSpeed(String value) {
+        String tooltip = (value == null) ? _("Unknown speed") : _("Speed") + " " + value;
+        speed.setTooltipText(tooltip);
+    }
+
+    /**
+     * Reset the widget to its initial status.
+     */
+    public void reset() {
+        this.updateImage(Stock.DIALOG_INFO);
+        this.updateText(_("Ready."));
+        this.updateSpeed(null);
+    }
+
+    /**
      * Update the displayed icon and text.
      */
     public void update(Stock stock, String message) {
         this.updateImage(stock);
         this.updateText(message);
+    }
+
+    /**
+     * Update the displayed icon, text and speed.
+     */
+    public void update(Stock stock, String message, String speed) {
+        this.updateImage(stock);
+        this.updateText(message);
+        this.updateSpeed(speed);
     }
 }

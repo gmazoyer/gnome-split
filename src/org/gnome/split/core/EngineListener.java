@@ -41,6 +41,11 @@ public interface EngineListener
     public Engine getEngine();
 
     /**
+     * Used when the speed of the action has changed.
+     */
+    public void engineSpeedChanged(String speed);
+
+    /**
      * Used when a part has been created.
      */
     public void enginePartCreated(String filename);

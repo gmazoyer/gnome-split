@@ -91,7 +91,7 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public void engineDone(double done, double total) {
         // Format the sizes to display them in the widget
-        double divider = SizeUnit.getSizeDivider(total);
+        double divider = SizeUnit.getDivider(total);
         String text = SizeUnit.formatSize(done, divider) + " / " + SizeUnit.formatSize(total, divider);
         double value = done / total;
 
@@ -118,7 +118,7 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the status widget
-        gtk.getStatusWidget().update(Stock.YES, title);
+        gtk.getStatusWidget().update(Stock.YES, title, null);
 
         // Reset the properties dialog
         gtk.getPropertiesDialog().reset();
@@ -162,7 +162,7 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the status widget
-        gtk.getStatusWidget().update(Stock.CANCEL, text);
+        gtk.getStatusWidget().update(Stock.CANCEL, text, null);
 
         // Reset the properties dialog
         gtk.getPropertiesDialog().reset();
@@ -183,6 +183,10 @@ public class DefaultEngineListener implements EngineListener
     public void engineError(EngineException exception) {
         Stock item;
         Dialog dialog;
+
+        // First print the stacktrace
+        exception.printStackTrace();
+
         if (exception instanceof MD5Exception) {
             // MD5 exception - warning only (file *may* work)
             item = Stock.DIALOG_WARNING;
@@ -197,7 +201,7 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the status widget
-        gtk.getStatusWidget().update(item, exception.getMessage());
+        gtk.getStatusWidget().update(item, exception.getMessage(), null);
 
         // Reset the properties dialog
         gtk.getPropertiesDialog().reset();
@@ -220,6 +224,12 @@ public class DefaultEngineListener implements EngineListener
 
         // Update engine
         engine = null;
+    }
+
+    @Override
+    public void engineSpeedChanged(String speed) {
+        // Update the status widget
+        gtk.getStatusWidget().updateSpeed(speed);
     }
 
     @Override
