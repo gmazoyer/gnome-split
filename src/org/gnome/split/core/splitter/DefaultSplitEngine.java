@@ -67,24 +67,24 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     @Override
     public void run() {
         synchronized (mutex) {
+            // Invalid size
+            if (size == -1) {
+                this.fireEngineError(new EngineException(ExceptionMessage.INVALID_SIZE));
+                return;
+            }
+
+            // Start the speed calculator
+            this.startSpeedCalculator();
+
             try {
-                // Invalid size
-                if (size == -1) {
-                    this.fireEngineError(new EngineException(ExceptionMessage.INVALID_SIZE));
-                    return;
-                }
-
-                // Start the speed calculator
-                this.startSpeedCalculator();
-
                 // Split the file
                 this.split();
-
-                // Stop the speed calculator
-                this.stopSpeedCalculator();
             } catch (Exception e) {
                 // Handle the error
                 this.fireEngineError(new EngineException(e));
+            } finally {
+                // Stop the speed calculator
+                this.stopSpeedCalculator();
             }
         }
     }
