@@ -45,21 +45,21 @@ public class StatusWidget extends Frame
     private Image image;
 
     /**
+     * Display the information.
+     */
+    private Label text;
+    
+    /**
      * Display an icon taken from {@link Stock} with a tooltip to show the
      * speed.
      */
     private Image speed;
 
-    /**
-     * Display the information.
-     */
-    private Label text;
-
     public StatusWidget() {
         super(null);
 
         // Add a box to the frame
-        final HBox box = new HBox(false, 5);
+        final HBox box = new HBox(false, 1);
         this.add(box);
 
         // Add the icon
