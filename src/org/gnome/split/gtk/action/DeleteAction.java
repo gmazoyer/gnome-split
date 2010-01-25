@@ -23,6 +23,7 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.Engine;
+import org.gnome.split.core.EngineListener;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -39,9 +40,12 @@ public final class DeleteAction extends Action
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        Engine engine = this.getApplication().getEngineListener().getEngine();
+        EngineListener listener = this.getApplication().getEngineListener();
+        Engine engine = listener.getEngine();
+
         if (engine != null) {
             engine.stop(true);
+            listener.setEngine(null);
         }
     }
 }

@@ -66,7 +66,7 @@ msgstr "É_dition"
 msgid "_Help"
 msgstr "_Aide"
 
-#: src/org/gnome/split/gtk/action/DeleteAction.java:37
+#: src/org/gnome/split/gtk/action/DeleteAction.java:38
 msgid "Cancel and delete files"
 msgstr "Annuler et supprimer les fichiers"
 
@@ -122,7 +122,7 @@ msgstr "Assemblage"
 msgid "Clear this view."
 msgstr "Effacer cet affichage."
 
-#: src/org/gnome/split/gtk/action/CancelAction.java:37
+#: src/org/gnome/split/gtk/action/CancelAction.java:38
 msgid "Cancel this action."
 msgstr "Annuler cette action."
 

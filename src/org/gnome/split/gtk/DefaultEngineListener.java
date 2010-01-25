@@ -290,43 +290,45 @@ public class DefaultEngineListener implements EngineListener
         // Update engine
         this.engine = engine;
 
-        // Disable user interaction (only in action widget)
-        gtk.getActionWidget().disable();
-        gtk.getViewSwitcher().disable();
+        if (engine != null) {
+            // Disable user interaction (only in action widget)
+            gtk.getActionWidget().disable();
+            gtk.getViewSwitcher().disable();
 
-        // Inhibit hibernation if requested
-        if (app.getConfig().NO_HIBERNATION) {
-            inhibit.inhibit();
-        }
+            // Inhibit hibernation if requested
+            if (app.getConfig().NO_HIBERNATION) {
+                inhibit.inhibit();
+            }
 
-        if (engine instanceof DefaultSplitEngine) {
-            // A split is running
-            DefaultSplitEngine split = (DefaultSplitEngine) engine;
+            if (engine instanceof DefaultSplitEngine) {
+                // A split is running
+                DefaultSplitEngine split = (DefaultSplitEngine) engine;
 
-            // Find directory and filename
-            int separator = split.getFilename().lastIndexOf(File.separator);
-            String directory = split.getFilename().substring(0, separator);
-            String filename = split.getFilename().substring((separator + 1));
+                // Find directory and filename
+                int separator = split.getFilename().lastIndexOf(File.separator);
+                String directory = split.getFilename().substring(0, separator);
+                String filename = split.getFilename().substring((separator + 1));
 
-            // Update the dialog
-            gtk.getPropertiesDialog().updateDirectory(directory);
-            gtk.getPropertiesDialog().updateFilename(filename);
-            gtk.getPropertiesDialog().updateFileSize(split.getFileLength());
-            gtk.getPropertiesDialog().updateListDirectory(split.getDirectory());
-        } else {
-            // A merge is running
-            DefaultMergeEngine merge = (DefaultMergeEngine) engine;
+                // Update the dialog
+                gtk.getPropertiesDialog().updateDirectory(directory);
+                gtk.getPropertiesDialog().updateFilename(filename);
+                gtk.getPropertiesDialog().updateFileSize(split.getFileLength());
+                gtk.getPropertiesDialog().updateListDirectory(split.getDirectory());
+            } else {
+                // A merge is running
+                DefaultMergeEngine merge = (DefaultMergeEngine) engine;
 
-            // Find directory and filename
-            int separator = merge.getFilename().lastIndexOf(File.separator);
-            String directory = merge.getFilename().substring(0, separator);
-            String filename = merge.getFilename().substring((separator + 1));
+                // Find directory and filename
+                int separator = merge.getFilename().lastIndexOf(File.separator);
+                String directory = merge.getFilename().substring(0, separator);
+                String filename = merge.getFilename().substring((separator + 1));
 
-            // Update the dialog
-            gtk.getPropertiesDialog().updateDirectory(directory);
-            gtk.getPropertiesDialog().updateFilename(filename);
-            gtk.getPropertiesDialog().updateFileSize(merge.getFileLength());
-            gtk.getPropertiesDialog().updateListDirectory(merge.getDirectory());
+                // Update the dialog
+                gtk.getPropertiesDialog().updateDirectory(directory);
+                gtk.getPropertiesDialog().updateFilename(filename);
+                gtk.getPropertiesDialog().updateFileSize(merge.getFileLength());
+                gtk.getPropertiesDialog().updateListDirectory(merge.getDirectory());
+            }
         }
     }
 
