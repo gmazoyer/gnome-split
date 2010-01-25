@@ -240,24 +240,24 @@ msgstr "Erreur !"
 msgid "Question"
 msgstr "Question"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:82
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:87
 msgid "Properties of the action"
 msgstr "Propriétés de l'action"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:98
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:103
 msgid "Information about the file"
 msgstr "Informations du fichier"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:109
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:114
 msgid "Directory:"
 msgstr "Dossier :"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:112
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:123
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:133
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:192
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:193
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:194
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:117
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:128
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:138
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:197
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:198
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:199
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:175
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:185
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:195
@@ -269,15 +269,15 @@ msgstr "Dossier :"
 msgid "Unknown"
 msgstr "Inconnue"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:120
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:125
 msgid "Filename:"
 msgstr "Nom du fichier :"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:130
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:135
 msgid "Size of the file:"
 msgstr "Taille du fichier :"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:143
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:148
 msgid "Progress of the action"
 msgstr "Progression de l'action"
 
