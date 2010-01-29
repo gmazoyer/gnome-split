@@ -193,6 +193,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu fileMenu = new Menu();
 
         fileItem.setSubmenu(fileMenu);
+        fileMenu.append(actions.getAction(ActionId.ASSISTANT).createMenuItem());
+        fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.OPEN_DIR).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.PROPERTIES).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());

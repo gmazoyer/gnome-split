@@ -58,21 +58,21 @@ msgstr "Calcul de la somme MD5."
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:209
+#: src/org/gnome/split/gtk/MainWindow.java:211
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:217
+#: src/org/gnome/split/gtk/MainWindow.java:219
 msgid "_Help"
 msgstr "_Aide"
 
 #: src/org/gnome/split/gtk/action/DeleteAction.java:38
-msgid "Cancel and delete files"
-msgstr "Annuler et supprimer les fichiers"
+msgid "Cancel and _delete files"
+msgstr "Annuler et _supprimer les fichiers"
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
-msgid "Suspend"
-msgstr "Suspendre"
+msgid "_Suspend"
+msgstr "S_uspendre"
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "Suspend this action."
@@ -86,9 +86,13 @@ msgstr "Propriétés de cette action."
 msgid "_Open folder"
 msgstr "_Ouvrir le dossier"
 
+#: src/org/gnome/split/gtk/action/OpenDirAction.java:38
+msgid "Open the folder where the action is performed."
+msgstr "Ouvrir le dossier où l'action se déroule."
+
 #: src/org/gnome/split/gtk/action/StartAction.java:48
 msgid "Start"
-msgstr "Démarrer"
+msgstr "_Démarrer"
 
 #: src/org/gnome/split/gtk/action/StartAction.java:48
 msgid "Start this action."
@@ -121,6 +125,14 @@ msgstr "Assemblage"
 #: src/org/gnome/split/gtk/action/ClearAction.java:36
 msgid "Clear this view."
 msgstr "Effacer cet affichage."
+
+#: src/org/gnome/split/gtk/action/AssistantAction.java:36
+msgid "_Assistant"
+msgstr "_Assistant"
+
+#: src/org/gnome/split/gtk/action/AssistantAction.java:36
+msgid "Create a split or a merge."
+msgstr "Créer un découpage ou un assemblage."
 
 #: src/org/gnome/split/gtk/action/CancelAction.java:38
 msgid "Cancel this action."

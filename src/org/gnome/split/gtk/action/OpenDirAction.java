@@ -34,7 +34,8 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class OpenDirAction extends Action
 {
     public OpenDirAction(final GnomeSplit app) {
-        super(app, "opendir-action", _("_Open folder"), null, Stock.OPEN);
+        super(app, "opendir-action", _("_Open folder"),
+                _("Open the folder where the action is performed."), Stock.OPEN);
     }
 
     @Override

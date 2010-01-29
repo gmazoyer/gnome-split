@@ -1,5 +1,5 @@
 /*
- * PauseAction.java
+ * AssistantAction.java
  * 
  * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
@@ -22,31 +22,22 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.core.Engine;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Action to suspend a split/merge.
+ * Popup an assistant to create an action easily.
  * 
  * @author Guillaume Mazoyer
  */
-public final class PauseAction extends Action
+public final class AssistantAction extends Action
 {
-    public PauseAction(final GnomeSplit app) {
-        super(app, "pause-action", _("_Suspend"), _("Suspend this action."), Stock.MEDIA_PAUSE);
+    public AssistantAction(final GnomeSplit app) {
+        super(app, "assistant-action", _("_Assistant"), _("Create a split or a merge."), Stock.NEW);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        GnomeSplit app = this.getApplication();
-        Engine engine = app.getEngineListener().getEngine();
-
-        // If an engine is running
-        if ((engine != null) && !engine.paused()) {
-            // The pause it and update the interface state
-            engine.pause();
-            app.getActionManager().setPauseState();
-        }
+        System.out.println(this.getClass().getSimpleName());
     }
 }

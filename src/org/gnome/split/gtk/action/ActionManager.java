@@ -47,6 +47,7 @@ public class ActionManager
         toggles = new HashMap<ActionId, ToggleAction>();
 
         // Actions related to split and merge processes
+        AssistantAction assistant = new AssistantAction(app);
         OpenDirAction directory = new OpenDirAction(app);
         PropertiesAction properties = new PropertiesAction(app);
         StartAction start = new StartAction(app);
@@ -55,6 +56,7 @@ public class ActionManager
         DeleteAction delete = new DeleteAction(app);
 
         // Add the previously created actions
+        actions.put(ActionId.ASSISTANT, assistant);
         actions.put(ActionId.OPEN_DIR, directory);
         actions.put(ActionId.PROPERTIES, properties);
         actions.put(ActionId.START, start);
@@ -106,6 +108,7 @@ public class ActionManager
      * Set the actions in the ready state of the interface.
      */
     public void setReadyState() {
+        this.getAction(ActionId.ASSISTANT).setSensitive(true);
         this.getAction(ActionId.OPEN_DIR).setSensitive(false);
         this.getAction(ActionId.PROPERTIES).setSensitive(false);
         this.getAction(ActionId.START).setSensitive(true);
@@ -119,6 +122,7 @@ public class ActionManager
      * Set the actions in the pause state of the interface.
      */
     public void setPauseState() {
+        this.getAction(ActionId.ASSISTANT).setSensitive(false);
         this.getAction(ActionId.OPEN_DIR).setSensitive(true);
         this.getAction(ActionId.PROPERTIES).setSensitive(true);
         this.getAction(ActionId.START).setSensitive(true);
@@ -132,6 +136,7 @@ public class ActionManager
      * Set the actions in the running state of the interface.
      */
     public void setRunningState() {
+        this.getAction(ActionId.ASSISTANT).setSensitive(false);
         this.getAction(ActionId.OPEN_DIR).setSensitive(true);
         this.getAction(ActionId.PROPERTIES).setSensitive(true);
         this.getAction(ActionId.START).setSensitive(false);
@@ -148,6 +153,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW;
+        ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW;
     }
 }
