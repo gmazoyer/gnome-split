@@ -101,6 +101,16 @@ public abstract class DefaultSplitEngine extends DefaultEngine
         }
     }
 
+    @Override
+    public String getFilename() {
+        return file.getAbsolutePath();
+    }
+
+    @Override
+    public long getFileLength() {
+        return file.length();
+    }
+
     /**
      * Get a filename for the current chunk using the file number.
      */
@@ -165,19 +175,5 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected void fireEngineDone(double done, double total) {
         app.getEngineListener().engineDone(done, total);
-    }
-
-    /**
-     * Get the name of the file to split.
-     */
-    public String getFilename() {
-        return file.getAbsolutePath();
-    }
-
-    /**
-     * Get the length of the file to split.
-     */
-    public long getFileLength() {
-        return file.length();
     }
 }

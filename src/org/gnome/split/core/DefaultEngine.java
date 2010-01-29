@@ -90,6 +90,12 @@ public abstract class DefaultEngine implements Engine
     public abstract void run();
 
     @Override
+    public abstract String getFilename();
+
+    @Override
+    public abstract long getFileLength();
+
+    @Override
     public void pause() {
         paused = true;
     }
@@ -123,9 +129,7 @@ public abstract class DefaultEngine implements Engine
         return paused;
     }
 
-    /**
-     * Get the directory where the current action is performed.
-     */
+    @Override
     public String getDirectory() {
         return directory;
     }

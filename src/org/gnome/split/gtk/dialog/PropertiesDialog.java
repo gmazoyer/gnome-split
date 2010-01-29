@@ -255,47 +255,18 @@ public class PropertiesDialog extends Dialog implements DeleteEvent, Response
     }
 
     /**
-     * Update the properties dialog using a {@link DefaultSplitEngine split
-     * engine}.
-     */
-    private void updateSplit(DefaultSplitEngine engine) {
-        // Find directory and filename
-        int separator = engine.getFilename().lastIndexOf(File.separator);
-        String directory = engine.getFilename().substring(0, separator);
-        String filename = engine.getFilename().substring((separator + 1));
-
-        // Update the widgets
-        this.updateDirectory(directory);
-        this.updateFilename(filename);
-        this.updateFileSize(engine.getFileLength());
-        this.updateListDirectory(engine.getDirectory());
-    }
-
-    /**
-     * Update the properties dialog using a {@link DefaultMergeEngine merge
-     * engine}.
-     */
-    private void updateMerge(DefaultMergeEngine engine) {
-        // Find directory and filename
-        int separator = engine.getFilename().lastIndexOf(File.separator);
-        String directory = engine.getFilename().substring(0, separator);
-        String filename = engine.getFilename().substring((separator + 1));
-
-        // Update the widgets
-        this.updateDirectory(directory);
-        this.updateFilename(filename);
-        this.updateFileSize(engine.getFileLength());
-        this.updateListDirectory(engine.getDirectory());
-    }
-
-    /**
      * Update the properties dialog using the current engine which is running.
      */
     public void update(Engine engine) {
-        if (engine instanceof DefaultSplitEngine) {
-            this.updateSplit((DefaultSplitEngine) engine);
-        } else {
-            this.updateMerge((DefaultMergeEngine) engine);
-        }
+        // Find directory and filename
+        int separator = engine.getFilename().lastIndexOf(File.separator);
+        String directory = engine.getFilename().substring(0, separator);
+        String filename = engine.getFilename().substring((separator + 1));
+
+        // Update the widgets
+        this.updateDirectory(directory);
+        this.updateFilename(filename);
+        this.updateFileSize(engine.getFileLength());
+        this.updateListDirectory(engine.getDirectory());
     }
 }

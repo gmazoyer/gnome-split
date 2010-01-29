@@ -142,6 +142,16 @@ public abstract class DefaultMergeEngine extends DefaultEngine
         }
     }
 
+    @Override
+    public String getFilename() {
+        return filename;
+    }
+
+    @Override
+    public long getFileLength() {
+        return fileLength;
+    }
+
     /**
      * Load the headers of the files to merge.
      */
@@ -204,20 +214,6 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     protected void fireEngineDone(double done, double total) {
         app.getEngineListener().engineDone(done, total);
-    }
-
-    /**
-     * Get the name of the file to create.
-     */
-    public String getFilename() {
-        return filename;
-    }
-
-    /**
-     * Get the length of the file to create.
-     */
-    public long getFileLength() {
-        return fileLength;
     }
 
     /**

@@ -49,4 +49,19 @@ public interface Engine extends Runnable
      * Tell if the current action is paused or not.
      */
     public boolean paused();
+
+    /**
+     * Get the directory where the current action is performed.
+     */
+    public String getDirectory();
+
+    /**
+     * Get the name of the file to read/create.
+     */
+    public String getFilename();
+
+    /**
+     * Get the length of the file to read/create.
+     */
+    public long getFileLength();
 }
