@@ -192,8 +192,19 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final MenuItem fileItem = new MenuItem(_("_File"));
         final Menu fileMenu = new Menu();
 
+        // Create a special case for the assistants
+        final Menu assistants = new Menu();
+
+        // Add the assistants to the menu
+        assistants.append(actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem());
+        assistants.append(actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem());
+
+        // Pack it in a menu item
+        final MenuItem assistant = actions.getAction(ActionId.ASSISTANT).createMenuItem();
+        assistant.setSubmenu(assistants);
+
         fileItem.setSubmenu(fileMenu);
-        fileMenu.append(actions.getAction(ActionId.ASSISTANT).createMenuItem());
+        fileMenu.append(assistant);
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.OPEN_DIR).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.PROPERTIES).createMenuItem());

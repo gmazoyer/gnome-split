@@ -43,8 +43,6 @@ import org.gnome.gtk.Window.DeleteEvent;
 import org.gnome.pango.EllipsizeMode;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.Engine;
-import org.gnome.split.core.merger.DefaultMergeEngine;
-import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.gtk.widget.FileList;
 

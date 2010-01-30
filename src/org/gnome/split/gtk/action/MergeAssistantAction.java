@@ -1,5 +1,5 @@
 /*
- * AssistantAction.java
+ * MergeAssistantAction.java
  * 
  * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
@@ -20,25 +20,24 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.ToolItem;
 import org.gnome.split.GnomeSplit;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Does nothing just an action to create a {@link MenuItem} or a
- * {@link ToolItem}.
+ * Popup an assistant to create an merge easily.
  * 
  * @author Guillaume Mazoyer
  */
-public final class AssistantAction extends Action
+public final class MergeAssistantAction extends Action
 {
-    public AssistantAction(final GnomeSplit app) {
-        super(app, "assistant-action", _("_Assistant"), _("Create a split or a merge."), Stock.NEW);
+    public MergeAssistantAction(final GnomeSplit app) {
+        super(app, "merge-assistant-action", _("_Merge assistant"), _("Create a merge."), Stock.PASTE);
     }
 
     @Override
-    public void onActivate(org.gnome.gtk.Action source) {}
+    public void onActivate(org.gnome.gtk.Action source) {
+
+    }
 }

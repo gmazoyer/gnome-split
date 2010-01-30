@@ -58,11 +58,11 @@ msgstr "Calcul de la somme MD5."
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:211
+#: src/org/gnome/split/gtk/MainWindow.java:222
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:219
+#: src/org/gnome/split/gtk/MainWindow.java:230
 msgid "_Help"
 msgstr "_Aide"
 
@@ -89,6 +89,14 @@ msgstr "_Ouvrir le dossier"
 #: src/org/gnome/split/gtk/action/OpenDirAction.java:38
 msgid "Open the folder where the action is performed."
 msgstr "Ouvrir le dossier où l'action se déroule."
+
+#: src/org/gnome/split/gtk/action/MergeAssistantAction.java:36
+msgid "_Merge assistant"
+msgstr "Assistant d'_assemblage"
+
+#: src/org/gnome/split/gtk/action/MergeAssistantAction.java:36
+msgid "Create a merge."
+msgstr "Créer un assemblage."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:48
 msgid "Start"
@@ -126,13 +134,21 @@ msgstr "Assemblage"
 msgid "Clear this view."
 msgstr "Effacer cet affichage."
 
-#: src/org/gnome/split/gtk/action/AssistantAction.java:36
+#: src/org/gnome/split/gtk/action/AssistantAction.java:39
 msgid "_Assistant"
 msgstr "_Assistant"
 
-#: src/org/gnome/split/gtk/action/AssistantAction.java:36
+#: src/org/gnome/split/gtk/action/AssistantAction.java:39
 msgid "Create a split or a merge."
 msgstr "Créer un découpage ou un assemblage."
+
+#: src/org/gnome/split/gtk/action/SplitAssistantAction.java:36
+msgid "_Split assistant"
+msgstr "Assistant de dé_coupage"
+
+#: src/org/gnome/split/gtk/action/SplitAssistantAction.java:36
+msgid "Create a split."
+msgstr "Créer un découpage."
 
 #: src/org/gnome/split/gtk/action/CancelAction.java:38
 msgid "Cancel this action."
@@ -252,24 +268,24 @@ msgstr "Erreur !"
 msgid "Question"
 msgstr "Question"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:87
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:85
 msgid "Properties of the action"
 msgstr "Propriétés de l'action"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:103
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:101
 msgid "Information about the file"
 msgstr "Informations du fichier"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:114
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:112
 msgid "Directory:"
 msgstr "Dossier :"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:117
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:128
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:138
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:115
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:126
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:136
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:195
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:196
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:197
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:198
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:199
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:175
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:185
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:195
@@ -281,15 +297,15 @@ msgstr "Dossier :"
 msgid "Unknown"
 msgstr "Inconnue"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:125
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:123
 msgid "Filename:"
 msgstr "Nom du fichier :"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:135
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:133
 msgid "Size of the file:"
 msgstr "Taille du fichier :"
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:148
+#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:146
 msgid "Progress of the action"
 msgstr "Progression de l'action"
 

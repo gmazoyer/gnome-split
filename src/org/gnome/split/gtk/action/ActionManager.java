@@ -48,6 +48,8 @@ public class ActionManager
 
         // Actions related to split and merge processes
         AssistantAction assistant = new AssistantAction(app);
+        SplitAssistantAction sassistant = new SplitAssistantAction(app);
+        MergeAssistantAction massistant = new MergeAssistantAction(app);
         OpenDirAction directory = new OpenDirAction(app);
         PropertiesAction properties = new PropertiesAction(app);
         StartAction start = new StartAction(app);
@@ -57,6 +59,8 @@ public class ActionManager
 
         // Add the previously created actions
         actions.put(ActionId.ASSISTANT, assistant);
+        actions.put(ActionId.SPLIT_ASSISTANT, sassistant);
+        actions.put(ActionId.MERGE_ASSISTANT, massistant);
         actions.put(ActionId.OPEN_DIR, directory);
         actions.put(ActionId.PROPERTIES, properties);
         actions.put(ActionId.START, start);
@@ -153,6 +157,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW;
+        ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW;
     }
 }
