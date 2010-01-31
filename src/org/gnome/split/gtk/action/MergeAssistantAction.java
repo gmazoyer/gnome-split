@@ -22,6 +22,7 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.gtk.widget.MergeAssistant;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -38,6 +39,6 @@ public final class MergeAssistantAction extends Action
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-
+        new MergeAssistant(this.getApplication()).showAll();
     }
 }

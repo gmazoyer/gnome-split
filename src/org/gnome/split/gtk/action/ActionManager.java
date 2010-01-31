@@ -84,13 +84,9 @@ public class ActionManager
 
         // Other actions related to the interface which have two possible
         // states (active or inactive)
-        SelectSplitAction split = new SelectSplitAction(app);
-        SelectMergeAction merge = new SelectMergeAction(app);
         MainWindowAction window = new MainWindowAction(app);
 
         // Add the previously created actions
-        toggles.put(ActionId.SELECT_SPLIT, split);
-        toggles.put(ActionId.SELECT_MERGE, merge);
         toggles.put(ActionId.TRAY_WINDOW, window);
     }
 
@@ -157,6 +153,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, SELECT_SPLIT, SELECT_MERGE, TRAY_WINDOW;
+        ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, TRAY_WINDOW;
     }
 }

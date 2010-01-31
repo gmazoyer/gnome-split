@@ -90,11 +90,11 @@ msgstr "_Ouvrir le dossier"
 msgid "Open the folder where the action is performed."
 msgstr "Ouvrir le dossier où l'action se déroule."
 
-#: src/org/gnome/split/gtk/action/MergeAssistantAction.java:36
+#: src/org/gnome/split/gtk/action/MergeAssistantAction.java:37
 msgid "_Merge assistant"
 msgstr "Assistant d'_assemblage"
 
-#: src/org/gnome/split/gtk/action/MergeAssistantAction.java:36
+#: src/org/gnome/split/gtk/action/MergeAssistantAction.java:37
 msgid "Create a merge."
 msgstr "Créer un assemblage."
 
@@ -114,21 +114,9 @@ msgstr "Champs incomplets."
 msgid "You must fill all fields to start an action."
 msgstr "Vous devez remplir tous les champs avant de lancer une action."
 
-#: src/org/gnome/split/gtk/action/SelectSplitAction.java:36
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:188
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:232
-msgid "Split"
-msgstr "Découpage"
-
 #: src/org/gnome/split/gtk/action/MainWindowAction.java:36
 msgid "Main _window"
 msgstr "_Fenêtre principale"
-
-#: src/org/gnome/split/gtk/action/SelectMergeAction.java:36
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:194
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:245
-msgid "Merge"
-msgstr "Assemblage"
 
 #: src/org/gnome/split/gtk/action/ClearAction.java:36
 msgid "Clear this view."
@@ -191,6 +179,18 @@ msgstr "Préférences de GNOME Split"
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:182
 msgid "General"
 msgstr "Général"
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:188
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:232
+#: src/org/gnome/split/gtk/widget/SelectView.java:74
+msgid "Split"
+msgstr "Découpage"
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:194
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:245
+#: src/org/gnome/split/gtk/widget/SelectView.java:95
+msgid "Merge"
+msgstr "Assemblage"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:200
 msgid "Desktop"
@@ -298,6 +298,7 @@ msgid "Unknown"
 msgstr "Inconnue"
 
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:123
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:262
 msgid "Filename:"
 msgstr "Nom du fichier :"
 
@@ -334,6 +335,86 @@ msgstr "Algorithme :"
 #: src/org/gnome/split/gtk/widget/AreaStatusIcon.java:69
 msgid "version"
 msgstr "version"
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:128
+msgid ""
+"Here, you have to select the first file to merge. After that, you can go to the\n"
+"next step of this assistant. The file that you will choose should be displayed\n"
+"using its full path in the text entry."
+msgstr ""
+"Ici, vous devez sélectionner le premier fichier à assembler. Après ceci, vous\n"
+"pouvez vous rendre à l'étape suivante de cet assistant. Le fichier que vous\n"
+"allez sélectionner devrait être affiché dans l'entrée de texte en utilisant son\n"
+"chemin complet."
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:144
+msgid "File to merge:"
+msgstr "Fichier à assembler :"
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:152
+msgid "Select a file."
+msgstr "Choisissez un fichier."
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:187
+msgid "This file is a directory!"
+msgstr "Ce fichier est un dossier !"
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:195
+msgid "This file does not exist!"
+msgstr "Ce fichier n'existe pas !"
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:227
+msgid "File selection"
+msgstr "Sélection du fichier"
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:242
+msgid ""
+"The first file to merge is now selected. But you can still check that you pick\n"
+"up the right file. If it is not the first file to merge, go back to the\n"
+"previous step to choose another one."
+msgstr ""
+"Le premier fichier à assembler est maintenant sélectionné. Mais, vous pouvez\n"
+"toujours vérifier que vous avez choisi le bon. Si ce n'est pas le premier fichier\n"
+"à assembler, revenez à l'étape précédente pour en choisir un autre."
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:270
+msgid ""
+"Just a last question before you confirm the merge to do.\n"
+"If you check the following box, the merge will start after your confirmation."
+msgstr ""
+"Juste une dernière question avant que vous ne confirmiez l'assemblage à\n"
+"réaliser. Si vous cochez la boîte ci-dessous, l'assemblage démarrera après\n"
+"votre confirmation."
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:275
+msgid "Start the merge after the confirmation."
+msgstr "Démarrer l'assemblage après confirmation."
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:289
+msgid "Confirmation"
+msgstr "Confirmation"
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:302
+msgid ""
+"This assistant will help you to create a <b>merge</b>.\n"
+"\n"
+"Actually, merging several files is easy. You just have to select the first file\n"
+"to merge and GNOME Split will do the everything else for you.\n"
+"\n"
+"So the first and only thing that we will need is to select the first file to merge."
+msgstr ""
+"Cet assistant va vous aider à créer un <b>assemblage</b>.\n"
+"\n"
+"En réalité, assembler plusieurs fichiers est simple. Il vous suffit simplement\n"
+"de sélectionner le premier fichier à assembler et GNOME Split s'occupera de\n"
+"faire tout le reste pour vous.\n"
+"\n"
+"Par conséquent, la seule et unique chose que nous ferons sera de sélectionner\n"
+"le premier fichier à assembler."
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:316
+msgid "Introduction"
+msgstr "Introduction"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:124
 msgid "First chunk:"
@@ -382,7 +463,7 @@ msgstr "Vitesse inconnue"
 msgid "Speed"
 msgstr "Vitesse"
 
-#: src/org/gnome/split/gtk/widget/SelectView.java:62
+#: src/org/gnome/split/gtk/widget/SelectView.java:67
 msgid "View:"
 msgstr "Affichage :"
 
@@ -473,4 +554,7 @@ msgstr "Quitter GNOME Split."
 #: src/org/gnome/split/GnomeSplit.java:202
 msgid "An action is currently being perfomed. Do you really want to quit GNOME Split?"
 msgstr "Une action est en cours d'exécution. Voulez-vous vraiment quitter GNOME Split ?"
+
+#~ msgid "Directory of the file:"
+#~ msgstr "Dossier du fichier :"
 

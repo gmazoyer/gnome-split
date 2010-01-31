@@ -134,16 +134,10 @@ public class MergeWidget extends Frame implements ActionWidget
         fileChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
-                boolean load = false;
                 String file = source.getFilename();
 
-                // Load the file
-                load = loadFile(new File(file));
-
-                // If the load succeeded, update the view
-                if (load) {
-                    fileEntry.setText(source.getFilename());
-                }
+                // Update the widget
+                setFirstFile(file);
             }
         });
         // table.attach(fileChooser, 2, 3, 0, 1);
@@ -342,5 +336,23 @@ public class MergeWidget extends Frame implements ActionWidget
      */
     public File getFirstFile() {
         return new File(fileEntry.getText());
+    }
+
+    /**
+     * Set the first file to merge and update the widget.
+     */
+    public void setFirstFile(String filename) {
+        boolean load = false;
+
+        // Load the file
+        load = loadFile(new File(filename));
+
+        // If the load succeeded, update the view
+        if (!load) {
+            this.reset();
+        } else {
+            fileChooser.setFilename(filename);
+            fileEntry.setText(filename);
+        }
     }
 }
