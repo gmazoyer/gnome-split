@@ -127,13 +127,18 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Main container
         this.mainContainer = new VBox(false, 0);
+        this.mainContainer.showAll();
         this.add(this.mainContainer);
 
         // Add the menu bar
-        this.mainContainer.packStart(this.createMenu(), false, false, 0);
+        final MenuBar menubar = this.createMenu();
+        menubar.showAll();
+        this.mainContainer.packStart(menubar, false, false, 0);
 
         // Add the tool bar
-        this.mainContainer.packStart(new MainToolbar(app), false, false, 0);
+        final MainToolbar toolbar = new MainToolbar(app);
+        toolbar.showAll();
+        this.mainContainer.packStart(toolbar, false, false, 0);
 
         // Create the two main widgets
         this.split = new SplitWidget(app);
@@ -146,24 +151,30 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Add the views selector
         this.views = new SelectView(app);
+        this.views.showAll();
         this.mainContainer.packStart(views, false, false, 0);
 
-        // Add the main widget
+        // Add the main widgets
+        this.mainContainer.packStart(this.split);
+        this.mainContainer.packStart(this.merge);
+
+        // Show the right one
         switch (app.getConfig().DEFAULT_VIEW) {
         case 0:
             // Add the split widget
             this.split.setVisible(true);
-            this.mainContainer.packStart(this.split);
+            this.split.showAll();
             break;
         case 1:
             // Add the merge widget
             this.merge.setVisible(true);
-            this.mainContainer.packStart(this.merge);
+            this.merge.showAll();
             break;
         }
 
         // Add status widget
         this.status = new StatusWidget();
+        this.status.showAll();
         this.mainContainer.packStart(this.status, false, false, 0);
 
         // Set the state of the interface
@@ -176,9 +187,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         if (app.getConfig().CUSTOM_WINDOW_SIZE) {
             this.setDefaultSize(app.getConfig().WINDOW_SIZE_X, app.getConfig().WINDOW_SIZE_Y);
         }
-
-        // Show everything
-        this.showAll();
     }
 
     /**
@@ -256,29 +264,23 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Switch between widget to display.
      */
     public void switchView() {
-        // First we must remove the status widget
-        mainContainer.remove(status);
-
         if (split.isVisible()) {
-            // Remove the split widget
-            mainContainer.remove(split);
+            // Hide the split widget
+            split.hide();
             split.setVisible(false);
 
-            // Add the merge widget
-            mainContainer.packStart(merge);
+            // Show the merge widget
+            merge.showAll();
             merge.setVisible(true);
         } else {
-            // Remove the merge widget
-            mainContainer.remove(merge);
+            // Hide the merge widget
+            merge.hide();
             merge.setVisible(false);
 
-            // Add the split widget
-            mainContainer.packStart(split);
+            // Show the split widget
+            split.showAll();
             split.setVisible(true);
         }
-
-        // Finally we re-add the status widget
-        mainContainer.packStart(status, false, false, 0);
     }
 
     /**

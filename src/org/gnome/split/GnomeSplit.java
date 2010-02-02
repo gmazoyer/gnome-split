@@ -141,7 +141,7 @@ public final class GnomeSplit
         // Start the user interface
         window = new MainWindow(this);
         window.setupDialogs();
-        window.showAll();
+        window.show();
 
         // Load engine listener
         engine = new DefaultEngineListener(this);
