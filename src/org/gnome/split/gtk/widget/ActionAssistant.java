@@ -34,7 +34,7 @@ interface ActionAssistant
     /**
      * Method to create the first page of the assistant.
      */
-    Page createIntroduction();
+    void createIntroduction();
 
     /**
      * Method to update the right widget using the previously gathered data.

@@ -22,7 +22,6 @@ package org.gnome.split.gtk.widget;
 
 import java.io.File;
 
-import org.gnome.gdk.Color;
 import org.gnome.gdk.Pixbuf;
 import org.gnome.gtk.Assistant;
 import org.gnome.gtk.AssistantPageType;
@@ -37,7 +36,6 @@ import org.gnome.gtk.HBox;
 import org.gnome.gtk.IconSize;
 import org.gnome.gtk.Justification;
 import org.gnome.gtk.Label;
-import org.gnome.gtk.StateType;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.WindowPosition;
@@ -98,18 +96,14 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
 
         // Create a logo for the assistant
         logo = Gtk.renderIcon(this, Stock.PASTE, IconSize.DIALOG);
-
-        // Pages of the assistant
-        Page[] pages = new Page[3];
-
         // Setup the introduction
-        pages[0] = this.createIntroduction();
+        this.createIntroduction();
 
         // Setup the file selection
-        pages[1] = this.createFileSelection();
+        this.createFileSelection();
 
         // Setup the confirmation
-        pages[2] = this.createSummaryPage();
+        this.createSummaryPage();
 
         // Connect signal handlers
         this.connect((Prepare) this);
@@ -121,7 +115,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
     /**
      * Create a page to select the first file to merge.
      */
-    private Page createFileSelection() {
+    private void createFileSelection() {
         final Page page = new Page();
 
         // The text to display
@@ -156,7 +150,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
 
         // Add a last label to see if the file actually exists
         final Label exist = new Label();
-        exist.modifyText(StateType.NORMAL, Color.RED);
+        exist.setUseMarkup(true);
         page.container.packStart(exist, false, false, 0);
 
         // Connect entry handler to change the filename
@@ -200,7 +194,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
                 setPageComplete(page, complete);
 
                 // Update label
-                exist.setLabel(text);
+                exist.setLabel("<b><span foreground=\"red\">" + text + "</span></b>");
             }
         });
 
@@ -227,15 +221,12 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         this.setPageTitle(page, _("File selection"));
         this.setPageHeaderImage(page, logo);
         this.setPageComplete(page, false);
-
-        // Finally
-        return page;
     }
 
     /**
      * Create a page to sum up all info and validate the merge.
      */
-    private Page createSummaryPage() {
+    private void createSummaryPage() {
         final Page page = new Page();
 
         // The text to display
@@ -289,13 +280,10 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         this.setPageTitle(page, _("Confirmation"));
         this.setPageHeaderImage(page, logo);
         this.setPageComplete(page, true);
-
-        // Finally
-        return page;
     }
 
     @Override
-    public Page createIntroduction() {
+    public void createIntroduction() {
         final Page page = new Page();
 
         // The text to display
@@ -316,9 +304,6 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         this.setPageTitle(page, _("Introduction"));
         this.setPageHeaderImage(page, logo);
         this.setPageComplete(page, true);
-
-        // Finally
-        return page;
     }
 
     @Override
