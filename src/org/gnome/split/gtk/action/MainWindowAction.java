@@ -49,7 +49,7 @@ public final class MainWindowAction extends ToggleAction
             window.hide();
         } else {
             // Show the window
-            window.showAll();
+            window.show();
         }
 
         // Set the active state of the notification zone icon
