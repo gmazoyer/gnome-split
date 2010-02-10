@@ -149,13 +149,7 @@ public class SplitWidget extends Frame implements ActionWidget
         fileChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
-                String filename = source.getFilename();
-                int separator = filename.lastIndexOf(File.separator) + 1;
-                String file = filename.substring(separator, filename.length());
-
-                // Update entries
-                fileEntry.setText(filename);
-                destinationEntry.setText(file);
+                setFile(source.getFilename());
             }
         });
         chooserColumn.packStart(fileChooser);
@@ -211,6 +205,40 @@ public class SplitWidget extends Frame implements ActionWidget
         // Pack the progress bar
         progressbar = new ProgressBar();
         container.packStart(progressbar, false, false, 0);
+    }
+
+    /**
+     * Set the file to split and update the widget.
+     */
+    private void setFile(String filename) {
+        int separator = filename.lastIndexOf(File.separator) + 1;
+        String file = filename.substring(separator, filename.length());
+
+        // Update entries
+        fileChooser.setFilename(filename);
+        fileEntry.setText(filename);
+        destinationEntry.setText(file);
+    }
+
+    /**
+     * Set the size and update the widget.
+     */
+    private void setSize(double size) {
+        sizeButton.setValue(size);
+    }
+
+    /**
+     * Set the unit and update the widget.
+     */
+    private void setUnit(int unit) {
+        sizeUnits.setActive(unit);
+    }
+
+    /**
+     * Set the algorithm and update the widget.
+     */
+    private void setAlgorithm(int algorithm) {
+        algoList.setActive(algorithm);
     }
 
     @Override
@@ -323,11 +351,9 @@ public class SplitWidget extends Frame implements ActionWidget
             result = (long) (sizeButton.getValue() * multiplicator);
         }
 
-        // Size not valid (bigger than the length of the file to split)
-        if (result >= input) {
-            return -1;
-        }
-        return result;
+        // If size is not valid (bigger than the length of the file to split),
+        // just return -1, else return the result
+        return ((result >= input) ? -1 : result);
     }
 
     /**
@@ -343,5 +369,15 @@ public class SplitWidget extends Frame implements ActionWidget
      */
     public void setProgress(double progress) {
         progressbar.setFraction(progress);
+    }
+
+    /**
+     * Update the widget with the given values.
+     */
+    public void setSplit(String filename, double size, int unit, int algorithm) {
+        this.setFile(filename);
+        this.setSize(size);
+        this.setUnit(unit);
+        this.setAlgorithm(algorithm);
     }
 }

@@ -1,5 +1,5 @@
 /*
- * SplitAssistantAction.java
+ * DummyAssistantAction.java
  * 
  * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
@@ -22,23 +22,20 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.SplitAssistant;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Popup an assistant to create an split easily.
+ * Fake action, does nothing but help us to manage the UI integrity.
  * 
  * @author Guillaume Mazoyer
  */
-public final class SplitAssistantAction extends Action
+public final class DummyAssistantAction extends Action
 {
-    public SplitAssistantAction(final GnomeSplit app) {
-        super(app, "split-assistant-action", _("_Split assistant"), _("Create a split."), Stock.CUT);
+    public DummyAssistantAction(final GnomeSplit app) {
+        super(app, "dummy-assistant-action", _("_Assistant"), _("Create a split or a merge."), Stock.NEW);
     }
 
     @Override
-    public void onActivate(org.gnome.gtk.Action source) {
-        new SplitAssistant(this.getApplication()).showAll();
-    }
+    public void onActivate(org.gnome.gtk.Action source) {}
 }

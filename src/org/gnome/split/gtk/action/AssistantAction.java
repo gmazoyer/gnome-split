@@ -20,16 +20,13 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.ToolItem;
 import org.gnome.split.GnomeSplit;
 
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Does nothing just an action to create a {@link MenuItem} or a
- * {@link ToolItem}.
+ * Allow the user to choose what assistant to use.
  * 
  * @author Guillaume Mazoyer
  */
@@ -40,5 +37,7 @@ public final class AssistantAction extends Action
     }
 
     @Override
-    public void onActivate(org.gnome.gtk.Action source) {}
+    public void onActivate(org.gnome.gtk.Action source) {
+        this.getApplication().getMainWindow().getAssistantDialog().present();
+    }
 }

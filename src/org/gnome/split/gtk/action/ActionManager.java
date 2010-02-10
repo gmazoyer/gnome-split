@@ -47,6 +47,7 @@ public class ActionManager
         toggles = new HashMap<ActionId, ToggleAction>();
 
         // Actions related to split and merge processes
+        DummyAssistantAction dummy = new DummyAssistantAction(app);
         AssistantAction assistant = new AssistantAction(app);
         SplitAssistantAction sassistant = new SplitAssistantAction(app);
         MergeAssistantAction massistant = new MergeAssistantAction(app);
@@ -58,6 +59,7 @@ public class ActionManager
         DeleteAction delete = new DeleteAction(app);
 
         // Add the previously created actions
+        actions.put(ActionId.DUMMY_ASSISTANT, dummy);
         actions.put(ActionId.ASSISTANT, assistant);
         actions.put(ActionId.SPLIT_ASSISTANT, sassistant);
         actions.put(ActionId.MERGE_ASSISTANT, massistant);
@@ -108,6 +110,7 @@ public class ActionManager
      * Set the actions in the ready state of the interface.
      */
     public void setReadyState() {
+        this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(true);
         this.getAction(ActionId.ASSISTANT).setSensitive(true);
         this.getAction(ActionId.OPEN_DIR).setSensitive(false);
         this.getAction(ActionId.PROPERTIES).setSensitive(false);
@@ -122,6 +125,7 @@ public class ActionManager
      * Set the actions in the pause state of the interface.
      */
     public void setPauseState() {
+        this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
         this.getAction(ActionId.ASSISTANT).setSensitive(false);
         this.getAction(ActionId.OPEN_DIR).setSensitive(true);
         this.getAction(ActionId.PROPERTIES).setSensitive(true);
@@ -136,6 +140,7 @@ public class ActionManager
      * Set the actions in the running state of the interface.
      */
     public void setRunningState() {
+        this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
         this.getAction(ActionId.ASSISTANT).setSensitive(false);
         this.getAction(ActionId.OPEN_DIR).setSensitive(true);
         this.getAction(ActionId.PROPERTIES).setSensitive(true);
@@ -153,6 +158,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, TRAY_WINDOW;
+        DUMMY_ASSISTANT, ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, TRAY_WINDOW;
     }
 }

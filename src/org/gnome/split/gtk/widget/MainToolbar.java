@@ -20,7 +20,10 @@
  */
 package org.gnome.split.gtk.widget;
 
+import org.gnome.gtk.Menu;
+import org.gnome.gtk.MenuToolButton;
 import org.gnome.gtk.SeparatorToolItem;
+import org.gnome.gtk.Stock;
 import org.gnome.gtk.ToolItem;
 import org.gnome.gtk.Toolbar;
 import org.gnome.split.GnomeSplit;
@@ -40,27 +43,45 @@ public class MainToolbar extends Toolbar
         // Get the current manager
         final ActionManager actions = app.getActionManager();
 
+        // Add a button to select an assistant
+        final MenuToolButton assistants = new MenuToolButton(Stock.NEW);
+        this.insert(assistants, 0);
+
+        // Make this button a proxy of the assistant action
+        actions.getAction(ActionId.ASSISTANT).connectProxy(assistants);
+
+        // Attach a menu to this button
+        final Menu menu = new Menu();
+        assistants.setMenu(menu);
+
+        // And finally, attache menu items to the menu
+        menu.append(actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem());
+        menu.append(actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem());
+
+        // Add a separator
+        this.insert(new SeparatorToolItem(), 1);
+
         // Add start button
         final ToolItem start = actions.getAction(ActionId.START).createToolItem();
-        this.insert(start, 0);
+        this.insert(start, 2);
 
         // Add pause button
         final ToolItem pause = actions.getAction(ActionId.PAUSE).createToolItem();
-        this.insert(pause, 1);
+        this.insert(pause, 3);
 
         // Add cancel button
         final ToolItem cancel = actions.getAction(ActionId.CANCEL).createToolItem();
-        this.insert(cancel, 2);
+        this.insert(cancel, 4);
 
         // Add clear button
         final ToolItem clear = actions.getAction(ActionId.CLEAR).createToolItem();
-        this.insert(clear, 3);
+        this.insert(clear, 5);
 
         // Add a separator
-        this.insert(new SeparatorToolItem(), 4);
+        this.insert(new SeparatorToolItem(), 6);
 
         // Add properties button
         final ToolItem properties = actions.getAction(ActionId.PROPERTIES).createToolItem();
-        this.insert(properties, 5);
+        this.insert(properties, 7);
     }
 }

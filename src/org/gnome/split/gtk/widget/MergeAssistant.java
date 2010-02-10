@@ -89,6 +89,9 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         // Set this assistant in the center of the screen
         this.setPosition(WindowPosition.CENTER);
 
+        // Set the title
+        this.setTitle(_("Merge assistant"));
+
         // Setup the default values
         this.label = new Label();
         this.filename = null;
@@ -103,7 +106,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         this.createFileSelection();
 
         // Setup the confirmation
-        this.createSummaryPage();
+        this.createSummary();
 
         // Connect signal handlers
         this.connect((Prepare) this);
@@ -226,7 +229,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
     /**
      * Create a page to sum up all info and validate the merge.
      */
-    private void createSummaryPage() {
+    private void createSummary() {
         final Page page = new Page();
 
         // The text to display
@@ -287,7 +290,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         final Page page = new Page();
 
         // The text to display
-        final String data = _("This assistant will help you to create a <b>merge</b>.\n\nActually, merging several files is easy. You just have to select the first file\nto merge and GNOME Split will do the everything else for you.\n\nSo the first and only thing that we will need is to select the first file to merge.");
+        final String data = _("This assistant will help you to create a <b>merge</b>.\n\nActually, merging several files is easy. You just have to select the first file\nto merge and GNOME Split will do the everything else for you.\n\nSo the first and only thing that we will need is to select the first file to merge.\n\nYou can also modify the merge configuration to define in details how you want\nto have the merge done by taking a look at <i>Edit > Preferences > Merge</i>.");
 
         // Create the label
         final Label text = new Label();

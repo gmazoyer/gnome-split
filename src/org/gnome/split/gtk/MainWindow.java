@@ -37,6 +37,7 @@ import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
+import org.gnome.split.gtk.dialog.AssistantDialog;
 import org.gnome.split.gtk.dialog.PreferencesDialog;
 import org.gnome.split.gtk.dialog.PropertiesDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
@@ -92,6 +93,12 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Widget derived from {@link Frame} to display the status.
      */
     private StatusWidget status;
+
+    /**
+     * Assistant dialog associated to this window to allow the user to choose
+     * what assistant he/she wants to use.
+     */
+    private AssistantDialog assistants;
 
     /**
      * Properties dialog associated to this window to display detailed
@@ -163,12 +170,10 @@ public class MainWindow extends Window implements Window.DeleteEvent
         case 0:
             // Add the split widget
             this.split.setVisible(true);
-            this.split.showAll();
             break;
         case 1:
             // Add the merge widget
             this.merge.setVisible(true);
-            this.merge.showAll();
             break;
         }
 
@@ -208,7 +213,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         assistants.append(actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem());
 
         // Pack it in a menu item
-        final MenuItem assistant = actions.getAction(ActionId.ASSISTANT).createMenuItem();
+        final MenuItem assistant = actions.getAction(ActionId.DUMMY_ASSISTANT).createMenuItem();
         assistant.setSubmenu(assistants);
 
         fileItem.setSubmenu(fileMenu);
@@ -250,14 +255,17 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Setup all the dialogs attached to the main window.
      */
     public void setupDialogs() {
+        // Create the assistant dialog
+        assistants = new AssistantDialog(app);
+
         // Create the properties dialog
-        this.properties = new PropertiesDialog(app);
+        properties = new PropertiesDialog(app);
 
         // Create classic preferences dialog
-        this.preferences = new PreferencesDialog(app);
+        preferences = new PreferencesDialog(app);
 
         // Create classic about dialog
-        this.about = new AboutSoftDialog();
+        about = new AboutSoftDialog();
     }
 
     /**
@@ -266,19 +274,15 @@ public class MainWindow extends Window implements Window.DeleteEvent
     public void switchView() {
         if (split.isVisible()) {
             // Hide the split widget
-            split.hide();
             split.setVisible(false);
 
             // Show the merge widget
-            merge.showAll();
             merge.setVisible(true);
         } else {
             // Hide the merge widget
-            merge.hide();
             merge.setVisible(false);
 
             // Show the split widget
-            split.showAll();
             split.setVisible(true);
         }
     }
@@ -306,6 +310,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
      */
     public StatusWidget getStatusWidget() {
         return status;
+    }
+
+    /**
+     * Get the assistant dialog.
+     */
+    public AssistantDialog getAssistantDialog() {
+        return assistants;
     }
 
     /**
