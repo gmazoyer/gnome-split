@@ -46,8 +46,18 @@ public final class SizeUnit
      */
     public static final double GB = 1024 * 1024 * 1024;
 
+    /**
+     * One CD-ROM.
+     */
+    public static final double CDROM = 700 * MB;
+
+    /**
+     * One DVD-ROM
+     */
+    public static final double DVDROM = 4.7 * GB;
+
     private static final double[] values = {
-            KB, MB, GB
+            KB, MB, GB, CDROM, DVDROM
     };
 
     /**
@@ -198,11 +208,8 @@ public final class SizeUnit
      */
     public static String[] toStrings() {
         return new String[] {
-                _("chunks"),
-                _("bytes (B)"),
-                _("kilobytes (KB)"),
-                _("megabytes (MB)"),
-                _("gigbaytes (GB)")
+                _("chunks"), _("bytes (B)"), _("kilobytes (KB)"), _("megabytes (MB)"),
+                _("gigbaytes (GB)"), _("CD-ROM (700 MB)"), _("DVD-ROM (4.7 GB)")
         };
     }
 }
