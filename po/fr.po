@@ -1,12 +1,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Split\n"
-"POT-Creation-Date: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-02-13 00:52+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Guillaume Mazoyer <respawneral@gmail.com>\n"
 "Language-Team: Guillaume Mazoyer <respawneral@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Poedit-Language: French\n"
 "X-Poedit-Country: FRANCE\n"
@@ -18,7 +19,7 @@ msgstr "Découpage terminé."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:114
 msgid "The split has been terminated successfully without any errors."
-msgstr "Le découpage s'est terminé avec succès sans erreur."
+msgstr "Le découpage s'est terminé avec succès, sans aucune erreur."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:116
 msgid "Merge terminated."
@@ -26,7 +27,7 @@ msgstr "Assemblage terminé."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:117
 msgid "The merge has been terminated successfully without any errors."
-msgstr "L'assemblage s'est terminé avec succès sans erreur."
+msgstr "L'assemblage s'est terminé avec succès, sans aucune erreur."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:159
 msgid "Split stopped."
@@ -54,15 +55,15 @@ msgstr "Lecture de {0}."
 msgid "MD5 sum calculation."
 msgstr "Calcul de la somme MD5."
 
-#: src/org/gnome/split/gtk/MainWindow.java:209
+#: src/org/gnome/split/gtk/MainWindow.java:205
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:239
+#: src/org/gnome/split/gtk/MainWindow.java:235
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:247
+#: src/org/gnome/split/gtk/MainWindow.java:243
 msgid "_Help"
 msgstr "_Aide"
 
@@ -99,7 +100,8 @@ msgid "Create a merge."
 msgstr "Créer un assemblage."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:48
-msgid "Start"
+#, fuzzy
+msgid "_Start"
 msgstr "_Démarrer"
 
 #: src/org/gnome/split/gtk/action/StartAction.java:48
@@ -123,8 +125,9 @@ msgid "Clear this view."
 msgstr "Effacer cet affichage."
 
 #: src/org/gnome/split/gtk/action/AssistantAction.java:36
-msgid "_Assistant"
-msgstr "_Assistant"
+#: src/org/gnome/split/gtk/action/DummyAssistantAction.java:36
+msgid "_Assistants"
+msgstr "_Assistants"
 
 #: src/org/gnome/split/gtk/action/AssistantAction.java:36
 #: src/org/gnome/split/gtk/action/DummyAssistantAction.java:36
@@ -138,11 +141,6 @@ msgstr "Assistant de dé_coupage"
 #: src/org/gnome/split/gtk/action/SplitAssistantAction.java:37
 msgid "Create a split."
 msgstr "Créer un découpage."
-
-#: src/org/gnome/split/gtk/action/DummyAssistantAction.java:36
-#, fuzzy
-msgid "_Assistants"
-msgstr "_Assistant"
 
 #: src/org/gnome/split/gtk/action/CancelAction.java:38
 msgid "Cancel this action."
@@ -410,12 +408,12 @@ msgid ""
 msgstr ""
 "L'algorithme de découpage détermine la façon dont le fichier sera découpé.\n"
 "\n"
-"Si vous voulez découper le fcihier puis assembler les parties créées avec ce\n"
+"Si vous voulez découper le fichier puis assembler les parties créées avec ce\n"
 "programme, vous pouvez utiliser l'algorithme <b>GNOME Split</b>. Vous pouvez aussi\n"
 "vous servir de l'algorithme <b>Xtremsplit</b>. Son avantage est que les parties\n"
 "pourront être assemblées avec le logiciel Xtremsplit disponible sous <s>Windows</s>.\n"
 "Pour terminer, vous avez peut-être envie d'utiliser l'algorithme <b>Simple</b>. Il\n"
-"vous permettra d'assembler les partie en utilisant la ligne de commande avec un\n"
+"vous permettra d'assembler les parties en utilisant la ligne de commande avec un\n"
 "outil tel que `cat`."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:404
@@ -494,7 +492,7 @@ msgstr ""
 msgid "Introduction"
 msgstr "Introduction"
 
-#: src/org/gnome/split/gtk/widget/SplitAssistant.java:516
+#: src/org/gnome/split/gtk/widget/SplitAssistant.java:519
 #, java-format
 msgid ""
 "The file to split is <b>{0}</b>.\n"
@@ -727,11 +725,11 @@ msgstr "DVD-ROM (4,7 Gio)"
 
 #: src/org/gnome/split/GnomeSplit.java:110
 msgid "More than one instance."
-msgstr "Plus de une instance."
+msgstr "Plus d'une instance."
 
 #: src/org/gnome/split/GnomeSplit.java:111
 msgid "Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."
-msgstr "Une seule instance de GNOME Split ne peut être exécuté à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
+msgstr "Une seule instance de GNOME Split ne peut être exécutée à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
 
 #: src/org/gnome/split/GnomeSplit.java:201
 msgid "Quit GNOME Split."
@@ -740,15 +738,4 @@ msgstr "Quitter GNOME Split."
 #: src/org/gnome/split/GnomeSplit.java:202
 msgid "An action is currently being perfomed. Do you really want to quit GNOME Split?"
 msgstr "Une action est en cours d'exécution. Voulez-vous vraiment quitter GNOME Split ?"
-
-#~ msgid "This is the summary."
-#~ msgstr "Ceci est le résumé."
-#~ msgid "The file to split is <b>{0}</b>."
-#~ msgstr "Le fichier à découper est <b>{0}</b>."
-#~ msgid "The maximum size of each chunk will be <b>{0}</b>."
-#~ msgstr "La taille maximale de chaque partie sera de <b>{0}</b>."
-#~ msgid "The file will be splitted using the <b>{0}</b> algorithm."
-#~ msgstr "Le fichier sera découpé en utilisant <b>{0}</b> comme algorithme."
-#~ msgid "Directory of the file:"
-#~ msgstr "Dossier du fichier :"
 
