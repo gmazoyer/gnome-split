@@ -503,8 +503,11 @@ public class SplitAssistant extends Assistant implements ActionAssistant, Prepar
 
     @Override
     public void updateWidget() {
+        // Switch the view if needed
+        app.getMainWindow().getViewSwitcher().switchToSplit();
+
         // Update the widget using the info
-        ((SplitWidget) app.getMainWindow().getActionWidget()).setSplit(filename, size, unit, algorithm);
+        app.getMainWindow().getSplitWidget().setSplit(filename, size, unit, algorithm);
     }
 
     @Override
@@ -516,9 +519,6 @@ public class SplitAssistant extends Assistant implements ActionAssistant, Prepar
                     "The file to split is <b>{0}</b>.\n\nThe maximum size of each chunk will be <b>{1}</b>.\n\nThe file will be splitted using the <b>{2}</b> algorithm.",
                     new File(filename).getName(), SizeUnit.formatSize(this.calculateSize(size, unit)),
                     Algorithm.toStrings()[algorithm]));
-
-            // Switch the view if needed
-            app.getMainWindow().getViewSwitcher().switchToSplit();
         }
     }
 

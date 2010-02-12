@@ -311,8 +311,11 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
 
     @Override
     public void updateWidget() {
+        // Switch the view if needed
+        app.getMainWindow().getViewSwitcher().switchToMerge();
+
         // Update the widget using the filename
-        ((MergeWidget) app.getMainWindow().getActionWidget()).setFirstFile(filename);
+        app.getMainWindow().getMergeWidget().setFirstFile(filename);
     }
 
     @Override
@@ -321,9 +324,6 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         if (source.getCurrentPage() == 2) {
             // Setup the label value
             label.setLabel(new File(filename).getName());
-
-            // Switch the view if needed
-            app.getMainWindow().getViewSwitcher().switchToMerge();
         }
     }
 

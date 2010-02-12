@@ -295,14 +295,24 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
+     * Get the split widget which is used.
+     */
+    public SplitWidget getSplitWidget() {
+        return split;
+    }
+
+    /**
+     * Get the merge widget which is used.
+     */
+    public MergeWidget getMergeWidget() {
+        return merge;
+    }
+
+    /**
      * Get the current displayed widget.
      */
     public ActionWidget getActionWidget() {
-        if (split.isVisible()) {
-            return split;
-        } else {
-            return merge;
-        }
+        return (split.isVisible() ? split : merge);
     }
 
     /**
