@@ -106,7 +106,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
 
         if (name.endsWith(".001")) {
             // Use Simple algorithm
-            return new Simple(app, file, filename);
+            return new Generic(app, file, filename);
         }
 
         // Can't find the right algorithm

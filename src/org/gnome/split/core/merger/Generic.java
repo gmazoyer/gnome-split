@@ -1,5 +1,5 @@
 /*
- * Simple.java
+ * Generic.java
  * 
  * Copyright (c) 2010 Guillaume Mazoyer
  * 
@@ -34,9 +34,9 @@ import org.gnome.split.GnomeSplit;
  * 
  * @author Guillaume Mazoyer
  */
-public final class Simple extends DefaultMergeEngine
+public final class Generic extends DefaultMergeEngine
 {
-    public Simple(final GnomeSplit app, File file, String filename) {
+    public Generic(final GnomeSplit app, File file, String filename) {
         super(app, file, filename);
     }
 

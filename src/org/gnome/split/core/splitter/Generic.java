@@ -1,5 +1,5 @@
 /*
- * Simple.java
+ * Generic.java
  * 
  * Copyright (c) 2010 Guillaume Mazoyer
  * 
@@ -31,11 +31,11 @@ import java.io.RandomAccessFile;
  * 
  * @author Guillaume Mazoyer
  */
-public final class Simple extends DefaultSplitEngine
+public final class Generic extends DefaultSplitEngine
 {
     private int parts;
 
-    public Simple(final org.gnome.split.GnomeSplit app, File file, long size, String destination) {
+    public Generic(final org.gnome.split.GnomeSplit app, File file, long size, String destination) {
         super(app, file, size, destination);
         parts = (int) Math.ceil((float) file.length() / (float) size);
     }

@@ -20,6 +20,8 @@
  */
 package org.gnome.split.core.utils;
 
+import static org.freedesktop.bindings.Internationalization._;
+
 /**
  * A class which contains all algorithms references.
  * 
@@ -40,14 +42,14 @@ public final class Algorithm
     /**
      * Algorithm used for files without headers.
      */
-    public static final int SIMPLE = 2;
+    public static final int GENERIC = 2;
 
     /**
      * Get a {@link String} representation of all algorithms.
      */
     public static String[] toStrings() {
         return new String[] {
-                "GNOME Split", "Xtremsplit", "Simple"
+                "GNOME Split", "Xtremsplit", _("Generic")
         };
     }
 }
