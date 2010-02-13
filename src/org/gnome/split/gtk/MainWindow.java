@@ -363,6 +363,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
     @Override
     public boolean onDeleteEvent(Widget source, Event event) {
         app.quit();
-        return false;
+        return true;
     }
 }
