@@ -208,19 +208,6 @@ public class SplitWidget extends Frame implements ActionWidget
     }
 
     /**
-     * Set the file to split and update the widget.
-     */
-    private void setFile(String filename) {
-        int separator = filename.lastIndexOf(File.separator) + 1;
-        String file = filename.substring(separator, filename.length());
-
-        // Update entries
-        fileChooser.setFilename(filename);
-        fileEntry.setText(filename);
-        destinationEntry.setText(file);
-    }
-
-    /**
      * Set the size and update the widget.
      */
     private void setSize(double size) {
@@ -369,6 +356,19 @@ public class SplitWidget extends Frame implements ActionWidget
      */
     public void setProgress(double progress) {
         progressbar.setFraction(progress);
+    }
+
+    /**
+     * Set the file to split and update the widget.
+     */
+    public void setFile(String filename) {
+        int separator = filename.lastIndexOf(File.separator) + 1;
+        String file = filename.substring(separator, filename.length());
+
+        // Update entries
+        fileChooser.setFilename(filename);
+        fileEntry.setText(filename);
+        destinationEntry.setText(file);
     }
 
     /**

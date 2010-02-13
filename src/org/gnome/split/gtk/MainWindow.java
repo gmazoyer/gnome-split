@@ -269,22 +269,25 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
-     * Switch between widget to display.
+     * Show the split widget.
      */
-    public void switchView() {
-        if (split.isVisible()) {
-            // Hide the split widget
-            split.setVisible(false);
+    public void switchToSplitView() {
+        // Hide the merge widget
+        merge.setVisible(false);
 
-            // Show the merge widget
-            merge.setVisible(true);
-        } else {
-            // Hide the merge widget
-            merge.setVisible(false);
+        // Show the split widget
+        split.setVisible(true);
+    }
 
-            // Show the split widget
-            split.setVisible(true);
-        }
+    /**
+     * Show the merge widget.
+     */
+    public void switchToMergeView() {
+        // Hide the split widget
+        split.setVisible(false);
+
+        // Show the merge widget
+        merge.setVisible(true);
     }
 
     /**

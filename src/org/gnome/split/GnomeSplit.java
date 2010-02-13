@@ -20,6 +20,7 @@
  */
 package org.gnome.split;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -31,6 +32,7 @@ import org.gnome.notify.Notify;
 import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.EngineListener;
+import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.UncaughtExceptionLogger;
 import org.gnome.split.gtk.DefaultEngineListener;
 import org.gnome.split.gtk.MainWindow;
@@ -146,8 +148,44 @@ public final class GnomeSplit
         // Load engine listener
         engine = new DefaultEngineListener(this);
 
+        // If an argument is given
+        if (args.length > 0) {
+            // Use it like a file
+            this.useCommandLineFile(args[0]);
+        }
+
         // Start GTK main loop (blocker method)
         Gtk.main();
+    }
+
+    /**
+     * Open the file with GNOME Split.
+     * 
+     * <p>
+     * If the file is a valid that can be merged, open the interface using the
+     * merge widget and update it. In the other case, open the interface using
+     * the split widget and update it.
+     */
+    private void useCommandLineFile(String filename) {
+        File file = new File(filename);
+
+        // The file exist
+        if (file.exists()) {
+            // The file is a chunk that can be merged
+            if (Algorithm.isValidExtension(filename)) {
+                // Update the merge widget
+                window.getMergeWidget().setFirstFile(file.getAbsolutePath());
+
+                // Show the merge widget
+                window.getViewSwitcher().switchToMerge();
+            } else {
+                // Load the file as a split file
+                window.getSplitWidget().setFile(file.getAbsolutePath());
+
+                // Show the split widget
+                window.getViewSwitcher().switchToSplit();
+            }
+        }
     }
 
     /**

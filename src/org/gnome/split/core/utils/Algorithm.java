@@ -52,4 +52,36 @@ public final class Algorithm
                 "GNOME Split", "Xtremsplit", _("Generic")
         };
     }
+
+    /**
+     * Get the extensions for the algorithms.
+     */
+    public static String[] getExtensions() {
+        return new String[] {
+                ".001.gsp", ".001.xtm", ".001"
+        };
+    }
+
+    /**
+     * Check if the extension is valid.
+     */
+    public static boolean isValidExtension(String extension) {
+        // GNOME Split file format
+        if (extension.endsWith(".001.gsp")) {
+            return true;
+        }
+
+        // Xtremsplit file format
+        if (extension.endsWith(".001.xtm")) {
+            return true;
+        }
+
+        // Generic file format
+        if (extension.endsWith(".001")) {
+            return true;
+        }
+
+        // Unknown
+        return false;
+    }
 }

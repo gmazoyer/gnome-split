@@ -27,6 +27,7 @@ import java.io.IOException;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
+import org.gnome.split.core.utils.Algorithm;
 
 /**
  * Define the model that all merge engines should use.
@@ -93,19 +94,20 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     public static final DefaultMergeEngine getInstance(final org.gnome.split.GnomeSplit app, File file,
             String filename) {
         String name = file.getName();
+        String[] extensions = Algorithm.getExtensions();
 
-        if (name.endsWith(".001.gsp")) {
+        if (name.endsWith(extensions[0])) {
             // Use GNOME Split algorithm
             return new GnomeSplit(app, file, filename);
         }
 
-        if (name.endsWith(".001.xtm")) {
+        if (name.endsWith(extensions[1])) {
             // Use Xtremsplit algorithm
             return new Xtremsplit(app, file, filename);
         }
 
-        if (name.endsWith(".001")) {
-            // Use Simple algorithm
+        if (name.endsWith(extensions[2])) {
+            // Use Generic algorithm
             return new Generic(app, file, filename);
         }
 

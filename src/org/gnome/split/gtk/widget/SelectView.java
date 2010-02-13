@@ -85,7 +85,7 @@ public class SelectView extends HBox
                 if (window.getActionWidget() instanceof MergeWidget) {
                     if (source.getActive()) {
                         // Switch the view
-                        window.switchView();
+                        window.switchToSplitView();
                     }
                 }
             }
@@ -106,7 +106,7 @@ public class SelectView extends HBox
                 if (window.getActionWidget() instanceof SplitWidget) {
                     if (source.getActive()) {
                         // Switch the view
-                        window.switchView();
+                        window.switchToMergeView();
                     }
                 }
             }
