@@ -170,11 +170,11 @@ public abstract class DefaultEngine implements Engine
      * 
      * @author Guillaume Mazoyer
      */
-    class SpeedCalculatorTask extends TimerTask
+    private class SpeedCalculatorTask extends TimerTask
     {
         private long oldTotal;
 
-        SpeedCalculatorTask(long oldTotal) {
+        private SpeedCalculatorTask(long oldTotal) {
             this.oldTotal = oldTotal;
         }
 

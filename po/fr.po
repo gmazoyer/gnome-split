@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Split\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-13 00:52+0100\n"
+"POT-Creation-Date: 2010-02-13 19:56+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Guillaume Mazoyer <respawneral@gmail.com>\n"
 "Language-Team: Guillaume Mazoyer <respawneral@gmail.com>\n"
@@ -31,11 +31,11 @@ msgstr "L'assemblage s'est terminé avec succès, sans aucune erreur."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:159
 msgid "Split stopped."
-msgstr "Découpage stoppé."
+msgstr "Découpage arrêté."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:161
 msgid "Merge stopped."
-msgstr "Assemblage stoppé."
+msgstr "Assemblage arrêté."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:200
 msgid "An exception occurs. Please launch GNOME Split in a terminal and reproduce it. An exception message will appear in the terminal. You can then report it to the developers."
@@ -93,14 +93,13 @@ msgstr "Ouvrir le dossier où l'action se déroule."
 
 #: src/org/gnome/split/gtk/action/MergeAssistantAction.java:37
 msgid "_Merge assistant"
-msgstr "Assistant d'_assemblage"
+msgstr "Assistant d'asse_mblage"
 
 #: src/org/gnome/split/gtk/action/MergeAssistantAction.java:37
 msgid "Create a merge."
 msgstr "Créer un assemblage."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:48
-#, fuzzy
 msgid "_Start"
 msgstr "_Démarrer"
 
@@ -723,19 +722,23 @@ msgstr "CD-ROM (700 Mio)"
 msgid "DVD-ROM (4.7 GB)"
 msgstr "DVD-ROM (4,7 Gio)"
 
-#: src/org/gnome/split/GnomeSplit.java:110
+#: src/org/gnome/split/core/utils/Algorithm.java:52
+msgid "Generic"
+msgstr "Générique"
+
+#: src/org/gnome/split/GnomeSplit.java:112
 msgid "More than one instance."
 msgstr "Plus d'une instance."
 
-#: src/org/gnome/split/GnomeSplit.java:111
+#: src/org/gnome/split/GnomeSplit.java:113
 msgid "Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."
 msgstr "Une seule instance de GNOME Split ne peut être exécutée à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
 
-#: src/org/gnome/split/GnomeSplit.java:201
+#: src/org/gnome/split/GnomeSplit.java:239
 msgid "Quit GNOME Split."
 msgstr "Quitter GNOME Split."
 
-#: src/org/gnome/split/GnomeSplit.java:202
+#: src/org/gnome/split/GnomeSplit.java:240
 msgid "An action is currently being perfomed. Do you really want to quit GNOME Split?"
 msgstr "Une action est en cours d'exécution. Voulez-vous vraiment quitter GNOME Split ?"
 

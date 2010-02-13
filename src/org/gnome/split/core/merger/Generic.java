@@ -87,12 +87,12 @@ public final class Generic extends DefaultMergeEngine
             // We assume that there is at least one part (which is kinda
             // ridiculous, but still...). We'll do some tricks to find out
             // which files we have to merge
-            parts = 1;
+            parts = file.getName().endsWith(".000") ? 0 : 1;
 
             // Define the buffer size
             byte[] buffer;
 
-            for (int i = 1; i <= parts; i++) {
+            for (int i = parts; i <= parts; i++) {
                 // Open the current part to merge
                 chunk = new File(this.getNextChunk(part, i));
                 RandomAccessFile access = new RandomAccessFile(chunk, "r");
@@ -128,6 +128,7 @@ public final class Generic extends DefaultMergeEngine
 
                     // Update read and write status
                     read += buffer.length;
+                    total += buffer.length;
                     this.fireEngineDone((double) read, (double) length);
                 }
 

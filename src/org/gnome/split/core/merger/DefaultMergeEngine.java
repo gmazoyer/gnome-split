@@ -106,7 +106,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             return new Xtremsplit(app, file, filename);
         }
 
-        if (name.endsWith(extensions[2])) {
+        if (name.endsWith(extensions[2]) || name.endsWith(extensions[3])) {
             // Use Generic algorithm
             return new Generic(app, file, filename);
         }

@@ -58,7 +58,7 @@ public final class Algorithm
      */
     public static String[] getExtensions() {
         return new String[] {
-                ".001.gsp", ".001.xtm", ".001"
+                ".001.gsp", ".001.xtm", ".000", ".001"
         };
     }
 
@@ -73,6 +73,11 @@ public final class Algorithm
 
         // Xtremsplit file format
         if (extension.endsWith(".001.xtm")) {
+            return true;
+        }
+
+        // Generic file format
+        if (extension.endsWith(".000")) {
             return true;
         }
 
