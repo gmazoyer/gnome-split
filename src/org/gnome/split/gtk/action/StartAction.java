@@ -75,7 +75,7 @@ public final class StartAction extends Action
 
             // These classes are our splitter classes
             Class<?>[] splitters = new Class[] {
-                    GnomeSplit.class, Xtremsplit.class, Generic.class
+                    Generic.class, GnomeSplit.class, Xtremsplit.class
             };
 
             // A split is performed

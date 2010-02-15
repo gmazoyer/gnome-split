@@ -30,26 +30,26 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class Algorithm
 {
     /**
+     * Algorithm used for files without headers.
+     */
+    public static final int GENERIC = 0;
+
+    /**
      * Our own algorithm.
      */
-    public static final int GNOME_SPLIT = 0;
+    public static final int GNOME_SPLIT = 1;
 
     /**
      * Algorithm used by Xtremsplit.
      */
-    public static final int XTREMSPLIT = 1;
-
-    /**
-     * Algorithm used for files without headers.
-     */
-    public static final int GENERIC = 2;
+    public static final int XTREMSPLIT = 2;
 
     /**
      * Get a {@link String} representation of all algorithms.
      */
     public static String[] toStrings() {
         return new String[] {
-                "GNOME Split", "Xtremsplit", _("Generic")
+                _("Generic"), "GNOME Split", "Xtremsplit"
         };
     }
 
