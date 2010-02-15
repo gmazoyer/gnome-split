@@ -51,11 +51,27 @@ public final class Generic extends DefaultMergeEngine
         // We do not use an MD5 sum
         md5 = false;
 
-        // We do not know the number of parts
-        parts = -1;
+        // Setup to found chunks to merge
+        String directory = file.getAbsolutePath().replace(file.getName(), "");
+        String name = file.getName();
 
-        // We do not know the size of the final file
-        fileLength = -1;
+        // Get all the files of the directory
+        File[] files = new File(directory).listFiles();
+
+        // Setup default values
+        parts = 0;
+        fileLength = 0;
+
+        for (File chunk : files) {
+            boolean valid = chunk.getName().contains(name.substring(0, name.lastIndexOf('.')));
+            if (!chunk.isDirectory() && valid) {
+                // Increase the number of chunks
+                parts++;
+
+                // Update the size
+                fileLength += chunk.length();
+            }
+        }
     }
 
     @Override
@@ -129,7 +145,7 @@ public final class Generic extends DefaultMergeEngine
                     // Update read and write status
                     read += buffer.length;
                     total += buffer.length;
-                    this.fireEngineDone((double) read, (double) length);
+                    this.fireEngineDone((double) total, (double) fileLength);
                 }
 
                 // Add the part the full read parts
