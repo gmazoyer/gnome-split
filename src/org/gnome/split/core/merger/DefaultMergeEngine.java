@@ -98,19 +98,24 @@ public abstract class DefaultMergeEngine extends DefaultEngine
         String name = file.getName();
         String[] extensions = Algorithm.getExtensions();
 
-        if (name.endsWith(extensions[0])) {
+        if (name.endsWith(extensions[0]) || name.endsWith(extensions[1])) {
+            // Use Generic algorithm
+            return new Generic(app, file, filename);
+        }
+
+        if (name.endsWith(extensions[2])) {
             // Use GNOME Split algorithm
             return new GnomeSplit(app, file, filename);
         }
 
-        if (name.endsWith(extensions[1])) {
+        if (name.endsWith(extensions[3])) {
             // Use Xtremsplit algorithm
             return new Xtremsplit(app, file, filename);
         }
 
-        if (name.endsWith(extensions[2]) || name.endsWith(extensions[3])) {
-            // Use Generic algorithm
-            return new Generic(app, file, filename);
+        if (name.endsWith(extensions[4])) {
+            // Use KFK algorithm
+            return new KFK(app, file, filename);
         }
 
         // Can't find the right algorithm

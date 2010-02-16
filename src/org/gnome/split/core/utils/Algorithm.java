@@ -45,11 +45,16 @@ public final class Algorithm
     public static final int XTREMSPLIT = 2;
 
     /**
+     * Algorithm used by KFK.
+     */
+    public static final int KFK = 3;
+
+    /**
      * Get a {@link String} representation of all algorithms.
      */
     public static String[] toStrings() {
         return new String[] {
-                _("Generic"), "GNOME Split", "Xtremsplit"
+                _("Generic"), "GNOME Split", "Xtremsplit", "KFK"
         };
     }
 
@@ -58,7 +63,7 @@ public final class Algorithm
      */
     public static String[] getExtensions() {
         return new String[] {
-                ".001.gsp", ".001.xtm", ".000", ".001"
+                ".000", ".001", ".001.gsp", ".001.xtm", ".kk0"
         };
     }
 
@@ -66,6 +71,16 @@ public final class Algorithm
      * Check if the extension is valid.
      */
     public static boolean isValidExtension(String extension) {
+        // Generic file format
+        if (extension.endsWith(".000")) {
+            return true;
+        }
+
+        // Generic file format
+        if (extension.endsWith(".001")) {
+            return true;
+        }
+
         // GNOME Split file format
         if (extension.endsWith(".001.gsp")) {
             return true;
@@ -76,13 +91,8 @@ public final class Algorithm
             return true;
         }
 
-        // Generic file format
-        if (extension.endsWith(".000")) {
-            return true;
-        }
-
-        // Generic file format
-        if (extension.endsWith(".001")) {
+        // KFK file format
+        if (extension.endsWith(".kk0")) {
             return true;
         }
 

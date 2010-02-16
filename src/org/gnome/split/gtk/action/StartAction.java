@@ -29,6 +29,7 @@ import org.gnome.split.core.Engine;
 import org.gnome.split.core.merger.DefaultMergeEngine;
 import org.gnome.split.core.splitter.Generic;
 import org.gnome.split.core.splitter.GnomeSplit;
+import org.gnome.split.core.splitter.KFK;
 import org.gnome.split.core.splitter.Xtremsplit;
 import org.gnome.split.gtk.dialog.ErrorDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
@@ -75,7 +76,7 @@ public final class StartAction extends Action
 
             // These classes are our splitter classes
             Class<?>[] splitters = new Class[] {
-                    Generic.class, GnomeSplit.class, Xtremsplit.class
+                    Generic.class, GnomeSplit.class, Xtremsplit.class, KFK.class
             };
 
             // A split is performed

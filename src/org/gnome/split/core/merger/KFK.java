@@ -1,5 +1,5 @@
 /*
- * Generic.java
+ * KFK.java
  * 
  * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
@@ -29,42 +29,36 @@ import java.io.RandomAccessFile;
 import org.gnome.split.GnomeSplit;
 
 /**
- * Algorithm to merge files with an algorithm which does not use any headers
- * in the files.
+ * Algorithm to merge files with the KFK algorithm.
  * 
  * @author Guillaume Mazoyer
  */
-public final class Generic extends DefaultMergeEngine
+public final class KFK extends DefaultMergeEngine
 {
-    public Generic(final GnomeSplit app, File file, String filename) {
+    public KFK(final GnomeSplit app, File file, String filename) {
         super(app, file, filename);
     }
 
     @Override
     protected void loadHeaders() throws IOException, FileNotFoundException {
+        String name = file.getName();
+        File[] files = new File(file.getAbsolutePath().replace(name, "")).listFiles();
+
+        // Get the common part of the name of each chunk
+        name = name.substring(0, name.lastIndexOf("."));
+
         // Update the filename only if it is not specified by the user
         if (filename == null) {
-            String name = file.getName().substring(0, file.getName().lastIndexOf('.'));
             filename = file.getAbsolutePath().replace(file.getName(), "") + name;
         }
 
-        // We do not use an MD5 sum
-        md5 = false;
-
-        // Setup to found chunks to merge
-        String directory = file.getAbsolutePath().replace(file.getName(), "");
-        String name = file.getName();
-
-        // Get all the files of the directory
-        File[] files = new File(directory).listFiles();
-
-        // Setup default values
+        // Default values
         parts = 0;
         fileLength = 0;
 
+        // Calculate the number of chunks and the length :
         for (File chunk : files) {
-            boolean valid = chunk.getName().contains(name.substring(0, name.lastIndexOf('.')));
-            if (!chunk.isDirectory() && valid) {
+            if (chunk.getName().contains(name + ".kk")) {
                 // Increase the number of chunks
                 parts++;
 
@@ -76,23 +70,12 @@ public final class Generic extends DefaultMergeEngine
 
     @Override
     protected String getNextChunk(String part, int number) {
-        // Get the current extension
-        String current;
-        if (number >= 100) {
-            current = String.valueOf(number);
-        } else if (number >= 10) {
-            current = "0" + number;
-        } else {
-            current = "00" + number;
-        }
-
-        // Finally
-        return (part + current);
+        return (part + ".kk" + number);
     }
 
     @Override
     public void merge() throws IOException, FileNotFoundException {
-        String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 3);
+        String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 4);
         FileOutputStream out = null;
         File chunk = null;
 
@@ -100,15 +83,10 @@ public final class Generic extends DefaultMergeEngine
             // Open the final file
             out = new FileOutputStream(filename);
 
-            // We assume that there is at least one part (which is kinda
-            // ridiculous, but still...). We'll do some tricks to find out
-            // which files we have to merge
-            parts = file.getName().endsWith(".000") ? 0 : 1;
-
             // Define the buffer size
             byte[] buffer;
 
-            for (int i = parts; i <= parts; i++) {
+            for (int i = 0; i < parts; i++) {
                 // Open the current part to merge
                 chunk = new File(this.getNextChunk(part, i));
                 RandomAccessFile access = new RandomAccessFile(chunk, "r");
@@ -155,11 +133,6 @@ public final class Generic extends DefaultMergeEngine
 
                 // Close the part
                 access.close();
-
-                // Lets find out if there is one more part
-                if (new File(this.getNextChunk(part, (i + 1))).exists()) {
-                    parts++;
-                }
             }
 
             if (app.getConfig().OPEN_FILE_AT_END) {
