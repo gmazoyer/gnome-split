@@ -33,7 +33,7 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class MainWindowAction extends ToggleAction
 {
     public MainWindowAction(final GnomeSplit app) {
-        super(app, _("Main _window"), true);
+        super(app, _("Show the main _window"), true);
     }
 
     @Override

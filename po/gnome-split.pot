@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-13 19:56+0100\n"
+"POT-Creation-Date: 2010-02-18 12:57+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -105,24 +105,24 @@ msgstr ""
 msgid "Create a merge."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:48
+#: src/org/gnome/split/gtk/action/StartAction.java:49
 msgid "_Start"
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:48
+#: src/org/gnome/split/gtk/action/StartAction.java:49
 msgid "Start this action."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:69
+#: src/org/gnome/split/gtk/action/StartAction.java:70
 msgid "Incompleted fields."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:70
+#: src/org/gnome/split/gtk/action/StartAction.java:71
 msgid "You must fill all fields to start an action."
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/MainWindowAction.java:36
-msgid "Main _window"
+msgid "Show the main _window"
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/ClearAction.java:36
@@ -687,26 +687,26 @@ msgstr ""
 msgid "DVD-ROM (4.7 GB)"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/Algorithm.java:52
+#: src/org/gnome/split/core/utils/Algorithm.java:57
 msgid "Generic"
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:112
+#: src/org/gnome/split/GnomeSplit.java:115
 msgid "More than one instance."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:113
+#: src/org/gnome/split/GnomeSplit.java:116
 msgid ""
 "Only one instance of GNOME Split can be executed at a time. If you want to "
 "run multiple instances, edit the preferences. Remember that it is never safe "
 "to run more than one instance of GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:239
+#: src/org/gnome/split/GnomeSplit.java:217
 msgid "Quit GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:240
+#: src/org/gnome/split/GnomeSplit.java:218
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"

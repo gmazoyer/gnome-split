@@ -83,6 +83,9 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
 
         menu.append(actions.getToggleAction(ActionId.TRAY_WINDOW).createCheckMenuItem());
         menu.append(new SeparatorMenuItem());
+        menu.append(actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem());
+        menu.append(actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem());
+        menu.append(new SeparatorMenuItem());
         menu.append(actions.getAction(ActionId.ABOUT).createMenuItem());
         menu.append(actions.getAction(ActionId.EXIT).createMenuItem());
     }
