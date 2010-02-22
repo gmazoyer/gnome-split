@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-22 20:29+0100\n"
+"POT-Creation-Date: 2010-02-22 21:48+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -40,24 +40,29 @@ msgstr ""
 msgid "Merge stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:200
-msgid ""
-"An exception occurs. Please launch GNOME Split in a terminal and reproduce "
-"it. An exception message will appear in the terminal. You can then report it "
-"to the developers."
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:199
+msgid "Unhandled exception."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:238
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:200
+msgid ""
+"An exception occurs. You can report it to the developers and tell them how "
+"to reproduce it.\n"
+"\n"
+"See the details for more information."
+msgstr ""
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:239
 #, java-format
 msgid "Writting {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:254
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:255
 #, java-format
 msgid "Reading {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:284
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:285
 msgid "MD5 sum calculation."
 msgstr ""
 
@@ -300,8 +305,13 @@ msgstr ""
 msgid "Merge assistant"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:41
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:47
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:56
 msgid "Error!"
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:59
+msgid "Details"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/QuestionDialog.java:42

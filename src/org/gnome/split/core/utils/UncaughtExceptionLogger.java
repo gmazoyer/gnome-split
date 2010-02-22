@@ -41,7 +41,7 @@ public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler
      * This method is used to write the stacktrace exception in a
      * {@link String}.
      */
-    private String getStackTrace(Throwable exception) {
+    public static String getStackTrace(Throwable exception) {
         StringWriter swriter = new StringWriter();
         PrintWriter pwriter = new PrintWriter(swriter, true);
 
@@ -61,7 +61,7 @@ public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler
         report.append("  Thread ID      = " + thread.getId() + "\n");
         report.append("  Thread prority = " + thread.getPriority() + "\n");
         report.append("Exception stacktrace:\n");
-        report.append(this.getStackTrace(exception));
+        report.append(getStackTrace(exception));
 
         System.err.println(report.toString());
     }

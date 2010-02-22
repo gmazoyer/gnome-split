@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Split\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: \n"
+"POT-Creation-Date: 2010-02-22 21:48+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Guillaume Mazoyer <respawneral@gmail.com>\n"
 "Language-Team: Guillaume Mazoyer <respawneral@gmail.com>\n"
@@ -37,21 +37,31 @@ msgstr "Découpage arrêté."
 msgid "Merge stopped."
 msgstr "Assemblage arrêté."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:200
-msgid "An exception occurs. Please launch GNOME Split in a terminal and reproduce it. An exception message will appear in the terminal. You can then report it to the developers."
-msgstr "Une exception s'est produite. Merci de lancer GNOME Split dans un terminal et de la reproduire. Un message d'exception apparaîtra dans le terminal. Vous pourrez ensuite le rapporter aux développeurs."
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:199
+msgid "Unhandled exception."
+msgstr "Exception inattendue."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:238
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:200
+msgid ""
+"An exception occurs. You can report it to the developers and tell them how to reproduce it.\n"
+"\n"
+"See the details for more information."
+msgstr ""
+"Une exception s'est produite. Vous pouvez la rapporter aux développeurs et leur dire comment la reproduire.\n"
+"\n"
+"Voir les détails pour plus d'information."
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:239
 #, java-format
 msgid "Writting {0}."
 msgstr "Écriture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:254
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:255
 #, java-format
 msgid "Reading {0}."
 msgstr "Lecture de {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:284
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:285
 msgid "MD5 sum calculation."
 msgstr "Calcul de la somme MD5."
 
@@ -293,9 +303,14 @@ msgstr "Assistant de découpage"
 msgid "Merge assistant"
 msgstr "Assistant d'assemblage"
 
-#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:41
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:47
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:56
 msgid "Error!"
 msgstr "Erreur !"
+
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:59
+msgid "Details"
+msgstr "Détails"
 
 #: src/org/gnome/split/gtk/dialog/QuestionDialog.java:42
 msgid "Question"
@@ -753,4 +768,13 @@ msgstr "Quitter GNOME Split."
 #: src/org/gnome/split/GnomeSplit.java:211
 msgid "An action is currently being perfomed. Do you really want to quit GNOME Split?"
 msgstr "Une action est en cours d'exécution. Voulez-vous vraiment quitter GNOME Split ?"
+
+#~ msgid ""
+#~ "An exception occurs. Please launch GNOME Split in a terminal and "
+#~ "reproduce it. An exception message will appear in the terminal. You can "
+#~ "then report it to the developers."
+#~ msgstr ""
+#~ "Une exception s'est produite. Merci de lancer GNOME Split dans un "
+#~ "terminal et de la reproduire. Un message d'exception apparaîtra dans le "
+#~ "terminal. Vous pourrez ensuite le rapporter aux développeurs."
 

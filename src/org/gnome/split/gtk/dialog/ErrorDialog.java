@@ -23,7 +23,13 @@ package org.gnome.split.gtk.dialog;
 import static org.freedesktop.bindings.Internationalization._;
 
 import org.gnome.gtk.ErrorMessageDialog;
+import org.gnome.gtk.Expander;
+import org.gnome.gtk.Frame;
+import org.gnome.gtk.TextBuffer;
+import org.gnome.gtk.TextView;
 import org.gnome.gtk.Window;
+import org.gnome.gtk.WrapMode;
+import org.gnome.split.core.utils.UncaughtExceptionLogger;
 
 /**
  * This class is used to build GTK+ Error dialog.
@@ -39,5 +45,40 @@ public final class ErrorDialog extends ErrorMessageDialog
     public ErrorDialog(Window parent, String title, String text) {
         super(parent, title, text);
         this.setTitle(_("Error!"));
+    }
+
+    /**
+     * Create an <code>ErrorDialog</code> with a <code>title</code>, a
+     * <code>text</code> and an <code>exception</code>.
+     */
+    public ErrorDialog(Window parent, String title, String text, Throwable exception) {
+        super(parent, title, text);
+        this.setTitle(_("Error!"));
+
+        // Add details to the dialog
+        final Expander expander = new Expander(_("Details"));
+        this.add(expander);
+
+        // Add a frame into the expander
+        final Frame frame = new Frame(null);
+        expander.add(frame);
+
+        // Add a text view with the exception stacktrace
+        final TextBuffer buffer = new TextBuffer();
+        final TextView view = new TextView(buffer);
+
+        // The view is not editable
+        view.setEditable(false);
+        view.setWrapMode(WrapMode.WORD);
+
+        // Insert the exception stacktrace
+        buffer.insert(buffer.getIterStart(), exception.getMessage() + "\n");
+        buffer.insert(buffer.getIterEnd(), UncaughtExceptionLogger.getStackTrace(exception));
+
+        // Add the textview inside the frame
+        frame.add(view);
+
+        // Show everything
+        this.showAll();
     }
 }

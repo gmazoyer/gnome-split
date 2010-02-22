@@ -196,8 +196,9 @@ public class DefaultEngineListener implements EngineListener
             item = Stock.DIALOG_ERROR;
             dialog = new ErrorDialog(
                     gtk,
-                    exception.getMessage(),
-                    _("An exception occurs. Please launch GNOME Split in a terminal and reproduce it. An exception message will appear in the terminal. You can then report it to the developers."));
+                    _("Unhandled exception."),
+                    _("An exception occurs. You can report it to the developers and tell them how to reproduce it.\n\nSee the details for more information."),
+                    exception);
         }
 
         // Update the status widget
