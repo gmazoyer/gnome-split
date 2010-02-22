@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-18 12:57+0100\n"
+"POT-Creation-Date: 2010-02-22 20:29+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -77,6 +77,10 @@ msgstr ""
 msgid "Cancel and _delete files"
 msgstr ""
 
+#: src/org/gnome/split/gtk/action/TranslateAction.java:35
+msgid "_Translate This Application..."
+msgstr ""
+
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "_Suspend"
 msgstr ""
@@ -103,6 +107,10 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/action/MergeAssistantAction.java:37
 msgid "Create a merge."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/OnlineHelpAction.java:35
+msgid "Get Help _Online..."
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:49
@@ -145,6 +153,10 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/action/SplitAssistantAction.java:37
 msgid "Create a split."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/ReportBugAction.java:35
+msgid "_Report a Problem..."
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/CancelAction.java:38
@@ -691,22 +703,22 @@ msgstr ""
 msgid "Generic"
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:115
+#: src/org/gnome/split/GnomeSplit.java:110
 msgid "More than one instance."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:116
+#: src/org/gnome/split/GnomeSplit.java:111
 msgid ""
 "Only one instance of GNOME Split can be executed at a time. If you want to "
 "run multiple instances, edit the preferences. Remember that it is never safe "
 "to run more than one instance of GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:217
+#: src/org/gnome/split/GnomeSplit.java:210
 msgid "Quit GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:218
+#: src/org/gnome/split/GnomeSplit.java:211
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"

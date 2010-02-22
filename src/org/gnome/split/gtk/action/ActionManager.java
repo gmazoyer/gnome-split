@@ -75,6 +75,9 @@ public class ActionManager
         QuitAction quit = new QuitAction(app);
         PreferencesAction preferences = new PreferencesAction(app);
         HelpAction help = new HelpAction(app);
+        OnlineHelpAction online = new OnlineHelpAction(app);
+        TranslateAction translate = new TranslateAction(app);
+        ReportBugAction report = new ReportBugAction(app);
         AboutAction about = new AboutAction(app);
 
         // Add the previously created actions
@@ -82,6 +85,9 @@ public class ActionManager
         actions.put(ActionId.EXIT, quit);
         actions.put(ActionId.PREFERENCES, preferences);
         actions.put(ActionId.HELP, help);
+        actions.put(ActionId.ONLINE_HELP, online);
+        actions.put(ActionId.TRANSLATE, translate);
+        actions.put(ActionId.REPORT_BUG, report);
         actions.put(ActionId.ABOUT, about);
 
         // Other actions related to the interface which have two possible
@@ -158,6 +164,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        DUMMY_ASSISTANT, ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ABOUT, TRAY_WINDOW;
+        DUMMY_ASSISTANT, ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
     }
 }

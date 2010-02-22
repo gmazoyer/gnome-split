@@ -71,6 +71,10 @@ msgstr "_Aide"
 msgid "Cancel and _delete files"
 msgstr "Annuler et _supprimer les fichiers"
 
+#: src/org/gnome/split/gtk/action/TranslateAction.java:35
+msgid "_Translate This Application..."
+msgstr "_Traduire cette application..."
+
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "_Suspend"
 msgstr "S_uspendre"
@@ -98,6 +102,10 @@ msgstr "Assistant d'asse_mblage"
 #: src/org/gnome/split/gtk/action/MergeAssistantAction.java:37
 msgid "Create a merge."
 msgstr "Créer un assemblage."
+
+#: src/org/gnome/split/gtk/action/OnlineHelpAction.java:35
+msgid "Get Help _Online..."
+msgstr "Aide en ligne..."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:49
 msgid "_Start"
@@ -140,6 +148,10 @@ msgstr "Assistant de dé_coupage"
 #: src/org/gnome/split/gtk/action/SplitAssistantAction.java:37
 msgid "Create a split."
 msgstr "Créer un découpage."
+
+#: src/org/gnome/split/gtk/action/ReportBugAction.java:35
+msgid "_Report a Problem..."
+msgstr "_Rapporter un problème..."
 
 #: src/org/gnome/split/gtk/action/CancelAction.java:38
 msgid "Cancel this action."
@@ -726,19 +738,19 @@ msgstr "DVD-ROM (4,7 Gio)"
 msgid "Generic"
 msgstr "Générique"
 
-#: src/org/gnome/split/GnomeSplit.java:115
+#: src/org/gnome/split/GnomeSplit.java:110
 msgid "More than one instance."
 msgstr "Plus d'une instance."
 
-#: src/org/gnome/split/GnomeSplit.java:116
+#: src/org/gnome/split/GnomeSplit.java:111
 msgid "Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."
 msgstr "Une seule instance de GNOME Split ne peut être exécutée à la fois. Si vous voulez lancer plusieurs instances, éditez les préférences. Souvenez-vous qu'il n'est jamais sûr de lancer plusieurs instances de GNOME Split."
 
-#: src/org/gnome/split/GnomeSplit.java:217
+#: src/org/gnome/split/GnomeSplit.java:210
 msgid "Quit GNOME Split."
 msgstr "Quitter GNOME Split."
 
-#: src/org/gnome/split/GnomeSplit.java:218
+#: src/org/gnome/split/GnomeSplit.java:211
 msgid "An action is currently being perfomed. Do you really want to quit GNOME Split?"
 msgstr "Une action est en cours d'exécution. Voulez-vous vraiment quitter GNOME Split ?"
 

@@ -245,6 +245,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         helpItem.setSubmenu(helpMenu);
         helpMenu.append(actions.getAction(ActionId.HELP).createMenuItem());
+        helpMenu.append(new SeparatorMenuItem());
+        helpMenu.append(actions.getAction(ActionId.ONLINE_HELP).createMenuItem());
+        helpMenu.append(actions.getAction(ActionId.TRANSLATE).createMenuItem());
+        helpMenu.append(actions.getAction(ActionId.REPORT_BUG).createMenuItem());
+        helpMenu.append(new SeparatorMenuItem());
         helpMenu.append(actions.getAction(ActionId.ABOUT).createMenuItem());
         menubar.append(helpItem);
 
