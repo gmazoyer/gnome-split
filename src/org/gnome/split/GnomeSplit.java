@@ -77,11 +77,6 @@ public final class GnomeSplit
     private EngineListener engine;
 
     /**
-     * Command line parser.
-     */
-    private CommandLineParser parser;
-
-    /**
      * Create an instance of the application.
      */
     public GnomeSplit(String[] args) {
@@ -153,12 +148,10 @@ public final class GnomeSplit
 
         // If there are some arguments
         if (args.length > 0) {
-            parser = new CommandLineParser(window);
-
             if (args.length == 1) {
-                parser.useCommandLineFile(args[0]);
+                CommandLineParser.useCommandLineFile(window, args[0]);
             } else {
-                parser.parseCommandLine(args);
+                CommandLineParser.parseCommandLine(window, args);
             }
         }
 
@@ -226,6 +219,11 @@ public final class GnomeSplit
         if (quit) {
             // Hide the window immediately
             window.hide();
+
+            // Uninitialize the libnotify
+            if (Notify.isInitialized()) {
+                Notify.uninit();
+            }
 
             // Quit the GTK main loop (cause the app end)
             Gtk.mainQuit();

@@ -33,22 +33,13 @@ import org.gnome.split.gtk.MainWindow;
 class CommandLineParser
 {
     /**
-     * A reference to the GTK+ interface to update.
-     */
-    private MainWindow window;
-
-    CommandLineParser(final MainWindow window) {
-        this.window = window;
-    }
-
-    /**
      * Open the file with GNOME Split.
      * 
      * <p>
      * The first argument must be <code>--split</code> or <code>--merge</code>
      * and the second argument must be a valid file.
      */
-    void parseCommandLine(String[] args) {
+    static void parseCommandLine(MainWindow window, String[] args) {
         // Check if the file exists
         File file = new File(args[1]);
         if (!file.exists()) {
@@ -79,14 +70,14 @@ class CommandLineParser
      * merge widget and update it. In the other case, open the interface using
      * the split widget and update it.
      */
-    void useCommandLineFile(String filename) {
+    static void useCommandLineFile(MainWindow window, String filename) {
         // The file is a chunk that can be merged
         if (Algorithm.isValidExtension(filename)) {
-            this.parseCommandLine(new String[] {
+            parseCommandLine(window, new String[] {
                     "--merge", filename
             });
         } else {
-            this.parseCommandLine(new String[] {
+            parseCommandLine(window, new String[] {
                     "--split", filename
             });
         }
