@@ -37,6 +37,7 @@ import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.VBox;
+import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.SizeUnit;
@@ -251,24 +252,22 @@ public class SplitWidget extends Frame implements ActionWidget
 
     @Override
     public void disable() {
-        fileEntry.setSensitive(false);
-        fileChooser.setSensitive(false);
-        destinationEntry.setSensitive(false);
-        dirChooser.setSensitive(false);
-        sizeButton.setSensitive(false);
-        sizeUnits.setSensitive(false);
-        algoList.setSensitive(false);
+        // Get all widgets
+        Widget[] widgets = this.getChildren();
+        for (Widget widget : widgets) {
+            // Make them non-sensitive
+            widget.setSensitive(false);
+        }
     }
 
     @Override
     public void enable() {
-        fileEntry.setSensitive(true);
-        fileChooser.setSensitive(true);
-        destinationEntry.setSensitive(true);
-        dirChooser.setSensitive(true);
-        sizeButton.setSensitive(true);
-        sizeUnits.setSensitive(true);
-        algoList.setSensitive(true);
+        // Get all widgets
+        Widget[] widgets = this.getChildren();
+        for (Widget widget : widgets) {
+            // Make them sensitive
+            widget.setSensitive(true);
+        }
     }
 
     @Override
