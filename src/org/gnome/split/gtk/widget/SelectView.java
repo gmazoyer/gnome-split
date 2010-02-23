@@ -40,11 +40,6 @@ import static org.freedesktop.bindings.Internationalization._;
 public class SelectView extends HBox
 {
     /**
-     * Current instance of GNOME Split.
-     */
-    private GnomeSplit app;
-
-    /**
      * Button used to select the split view.
      */
     private RadioButton split;
@@ -56,9 +51,6 @@ public class SelectView extends HBox
 
     public SelectView(final GnomeSplit app) {
         super(false, 10);
-
-        // Save instance
-        this.app = app;
 
         // Set width of the borders
         this.setBorderWidth(5);
@@ -133,17 +125,13 @@ public class SelectView extends HBox
      * Switch the view to the split.
      */
     public void switchToSplit() {
-        if (app.getMainWindow().getActionWidget() instanceof MergeWidget) {
-            split.activate();
-        }
+        split.activate();
     }
 
     /**
      * Switch the view to the merge.
      */
     public void switchToMerge() {
-        if (app.getMainWindow().getActionWidget() instanceof SplitWidget) {
-            merge.activate();
-        }
+        merge.activate();
     }
 }
