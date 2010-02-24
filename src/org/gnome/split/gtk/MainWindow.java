@@ -253,6 +253,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         viewMenu.append(actions.getToggleAction(ActionId.TOOLBAR).createMenuItem());
         viewMenu.append(actions.getToggleAction(ActionId.SWITCHER).createMenuItem());
         viewMenu.append(actions.getToggleAction(ActionId.STATUS).createMenuItem());
+        viewMenu.append(new SeparatorMenuItem());
+        viewMenu.append(actions.getRadioAction(ActionId.SPLIT).createMenuItem());
+        viewMenu.append(actions.getRadioAction(ActionId.MERGE).createMenuItem());
         menubar.append(viewItem);
 
         // Help menu item

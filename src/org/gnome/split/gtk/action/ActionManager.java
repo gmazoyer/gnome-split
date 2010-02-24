@@ -23,6 +23,7 @@ package org.gnome.split.gtk.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.gnome.gtk.RadioGroup;
 import org.gnome.split.GnomeSplit;
 
 /**
@@ -108,6 +109,16 @@ public class ActionManager
         toggles.put(ActionId.TOOLBAR, toolbar);
         toggles.put(ActionId.SWITCHER, switcher);
         toggles.put(ActionId.STATUS, status);
+
+        // Other actions related to the interface which have two possible
+        // states (active or inactive) but only one can be active
+        RadioGroup views = new RadioGroup();
+        SplitViewAction split = new SplitViewAction(app, views);
+        MergeViewAction merge = new MergeViewAction(app, views);
+
+        // Add the previously created actions
+        radios.put(ActionId.SPLIT, split);
+        radios.put(ActionId.MERGE, merge);
     }
 
     /**
@@ -144,6 +155,8 @@ public class ActionManager
         this.getAction(ActionId.CANCEL).setSensitive(false);
         this.getAction(ActionId.DELETE).setSensitive(false);
         this.getAction(ActionId.CLEAR).setSensitive(true);
+        this.getRadioAction(ActionId.SPLIT).setSensitive(true);
+        this.getRadioAction(ActionId.MERGE).setSensitive(true);
     }
 
     /**
@@ -159,6 +172,8 @@ public class ActionManager
         this.getAction(ActionId.CANCEL).setSensitive(true);
         this.getAction(ActionId.DELETE).setSensitive(true);
         this.getAction(ActionId.CLEAR).setSensitive(false);
+        this.getRadioAction(ActionId.SPLIT).setSensitive(false);
+        this.getRadioAction(ActionId.MERGE).setSensitive(false);
     }
 
     /**
@@ -174,6 +189,8 @@ public class ActionManager
         this.getAction(ActionId.CANCEL).setSensitive(true);
         this.getAction(ActionId.DELETE).setSensitive(true);
         this.getAction(ActionId.CLEAR).setSensitive(false);
+        this.getRadioAction(ActionId.SPLIT).setSensitive(false);
+        this.getRadioAction(ActionId.MERGE).setSensitive(false);
     }
 
     /**

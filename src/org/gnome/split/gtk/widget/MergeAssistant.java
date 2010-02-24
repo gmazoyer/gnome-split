@@ -312,7 +312,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
     @Override
     public void updateWidget() {
         // Switch the view if needed
-        app.getMainWindow().getViewSwitcher().switchToMerge();
+        app.getActionManager().getRadioAction(ActionId.MERGE).emitActivate();
 
         // Update the widget using the filename
         app.getMainWindow().getMergeWidget().setFirstFile(filename);

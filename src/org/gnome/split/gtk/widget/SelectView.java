@@ -24,10 +24,10 @@ import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.RadioButton;
 import org.gnome.gtk.RadioGroup;
-import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.MainWindow;
+import org.gnome.split.gtk.action.RadioAction;
+import org.gnome.split.gtk.action.ActionManager.ActionId;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -61,48 +61,23 @@ public class SelectView extends HBox
 
         // Buttons group
         final RadioGroup group = new RadioGroup();
+        RadioAction action;
 
         // Split action - switch to split view
         this.split = new RadioButton(group, _("Split"));
         this.packStart(this.split, false, false, 0);
 
-        // Connect signal handler for split action
-        this.split.connect(new ToggleButton.Toggled() {
-            @Override
-            public void onToggled(ToggleButton source) {
-                // Get the main window
-                MainWindow window = app.getMainWindow();
-
-                // If the merge widget is shown
-                if (window.getActionWidget() instanceof MergeWidget) {
-                    if (source.getActive()) {
-                        // Switch the view
-                        window.switchToSplitView();
-                    }
-                }
-            }
-        });
+        // Connect the button as a proxy to the existing action
+        action = app.getActionManager().getRadioAction(ActionId.SPLIT);
+        action.connectProxy(split);
 
         // Merge action - switch to merge view
         this.merge = new RadioButton(group, _("Merge"));
         this.packStart(this.merge, false, false, 0);
 
-        // Connect signal handler for merge action
-        this.merge.connect(new ToggleButton.Toggled() {
-            @Override
-            public void onToggled(ToggleButton source) {
-                // Get the main window
-                MainWindow window = app.getMainWindow();
-
-                // If the split widget is shown
-                if (window.getActionWidget() instanceof SplitWidget) {
-                    if (source.getActive()) {
-                        // Switch the view
-                        window.switchToMergeView();
-                    }
-                }
-            }
-        });
+        // Connect the button as a proxy to the existing action
+        action = app.getActionManager().getRadioAction(ActionId.MERGE);
+        action.connectProxy(merge);
     }
 
     /**
@@ -119,19 +94,5 @@ public class SelectView extends HBox
     public void enable() {
         split.setSensitive(true);
         merge.setSensitive(true);
-    }
-
-    /**
-     * Switch the view to the split.
-     */
-    public void switchToSplit() {
-        split.activate();
-    }
-
-    /**
-     * Switch the view to the merge.
-     */
-    public void switchToMerge() {
-        merge.activate();
     }
 }

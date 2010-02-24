@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Split\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-24 15:50+0100\n"
+"POT-Creation-Date: 2010-02-24 17:35+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Guillaume Mazoyer <respawneral@gmail.com>\n"
 "Language-Team: Guillaume Mazoyer <respawneral@gmail.com>\n"
@@ -77,7 +77,7 @@ msgstr "É_dition"
 msgid "_View"
 msgstr "_Affichage"
 
-#: src/org/gnome/split/gtk/MainWindow.java:259
+#: src/org/gnome/split/gtk/MainWindow.java:262
 msgid "_Help"
 msgstr "_Aide"
 
@@ -100,6 +100,14 @@ msgstr "Suspendre cette action."
 #: src/org/gnome/split/gtk/action/PropertiesAction.java:36
 msgid "Properties of this action."
 msgstr "Propriétés de cette action."
+
+#: src/org/gnome/split/gtk/action/MergeViewAction.java:40
+msgid "_Merge"
+msgstr "Assemblage"
+
+#: src/org/gnome/split/gtk/action/SplitViewAction.java:40
+msgid "S_plit"
+msgstr "_Découpage"
 
 #: src/org/gnome/split/gtk/action/ViewStatusbarAction.java:36
 msgid "_Statusbar"
@@ -223,13 +231,13 @@ msgstr "Général"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:186
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:230
-#: src/org/gnome/split/gtk/widget/SelectView.java:66
+#: src/org/gnome/split/gtk/widget/SelectView.java:67
 msgid "Split"
 msgstr "Découpage"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:192
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:243
-#: src/org/gnome/split/gtk/widget/SelectView.java:87
+#: src/org/gnome/split/gtk/widget/SelectView.java:75
 msgid "Merge"
 msgstr "Assemblage"
 

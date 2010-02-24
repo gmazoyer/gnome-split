@@ -149,9 +149,9 @@ public final class GnomeSplit
         // If there are some arguments
         if (args.length > 0) {
             if (args.length == 1) {
-                CommandLineParser.useCommandLineFile(window, args[0]);
+                CommandLineParser.useCommandLineFile(this, window, args[0]);
             } else {
-                CommandLineParser.parseCommandLine(window, args);
+                CommandLineParser.parseCommandLine(this, window, args);
             }
         }
 

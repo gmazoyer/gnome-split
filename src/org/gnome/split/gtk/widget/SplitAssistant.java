@@ -504,7 +504,7 @@ public class SplitAssistant extends Assistant implements ActionAssistant, Prepar
     @Override
     public void updateWidget() {
         // Switch the view if needed
-        app.getMainWindow().getViewSwitcher().switchToSplit();
+        app.getActionManager().getRadioAction(ActionId.SPLIT).emitActivate();
 
         // Update the widget using the info
         app.getMainWindow().getSplitWidget().setSplit(filename, size, unit, algorithm);

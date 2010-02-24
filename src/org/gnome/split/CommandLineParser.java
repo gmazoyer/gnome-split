@@ -24,6 +24,7 @@ import java.io.File;
 
 import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.gtk.MainWindow;
+import org.gnome.split.gtk.action.ActionManager.ActionId;
 
 /**
  * A class to parse the command line and the arguments the user gave.
@@ -39,7 +40,7 @@ class CommandLineParser
      * The first argument must be <code>--split</code> or <code>--merge</code>
      * and the second argument must be a valid file.
      */
-    static void parseCommandLine(MainWindow window, String[] args) {
+    static void parseCommandLine(final GnomeSplit app, MainWindow window, String[] args) {
         // Check if the file exists
         File file = new File(args[1]);
         if (!file.exists()) {
@@ -52,12 +53,13 @@ class CommandLineParser
             window.getSplitWidget().setFile(args[1]);
 
             // Show the split widget
-            window.getViewSwitcher().switchToSplit();
+            app.getActionManager().getRadioAction(ActionId.SPLIT).emitActivate();
         } else if (args[0].equals("-m") || args[0].equals("--merge")) {
             // Update the merge widget
             window.getMergeWidget().setFirstFile(args[1]);
+
             // Show the merge widget
-            window.getViewSwitcher().switchToMerge();
+            app.getActionManager().getRadioAction(ActionId.MERGE).emitActivate();
         }
 
     }
@@ -70,14 +72,14 @@ class CommandLineParser
      * merge widget and update it. In the other case, open the interface using
      * the split widget and update it.
      */
-    static void useCommandLineFile(MainWindow window, String filename) {
+    static void useCommandLineFile(final GnomeSplit app, MainWindow window, String filename) {
         // The file is a chunk that can be merged
         if (Algorithm.isValidExtension(filename)) {
-            parseCommandLine(window, new String[] {
+            parseCommandLine(app, window, new String[] {
                     "--merge", filename
             });
         } else {
-            parseCommandLine(window, new String[] {
+            parseCommandLine(app, window, new String[] {
                     "--split", filename
             });
         }

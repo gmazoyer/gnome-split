@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-24 15:50+0100\n"
+"POT-Creation-Date: 2010-02-24 17:35+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -78,7 +78,7 @@ msgstr ""
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:259
+#: src/org/gnome/split/gtk/MainWindow.java:262
 msgid "_Help"
 msgstr ""
 
@@ -100,6 +100,14 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/action/PropertiesAction.java:36
 msgid "Properties of this action."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/MergeViewAction.java:40
+msgid "_Merge"
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/SplitViewAction.java:40
+msgid "S_plit"
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/ViewStatusbarAction.java:36
@@ -225,13 +233,13 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:186
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:230
-#: src/org/gnome/split/gtk/widget/SelectView.java:66
+#: src/org/gnome/split/gtk/widget/SelectView.java:67
 msgid "Split"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:192
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:243
-#: src/org/gnome/split/gtk/widget/SelectView.java:87
+#: src/org/gnome/split/gtk/widget/SelectView.java:75
 msgid "Merge"
 msgstr ""
 
