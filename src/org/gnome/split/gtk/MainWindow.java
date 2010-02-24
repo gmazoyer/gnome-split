@@ -70,6 +70,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private AreaStatusIcon statusIcon;
 
     /**
+     * Toolbar.
+     */
+    private MainToolbar toolbar;
+
+    /**
      * Views selector.
      */
     private SelectView views;
@@ -143,9 +148,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.mainContainer.packStart(menubar, false, false, 0);
 
         // Add the tool bar
-        final MainToolbar toolbar = new MainToolbar(app);
-        toolbar.showAll();
-        this.mainContainer.packStart(toolbar, false, false, 0);
+        this.toolbar = new MainToolbar(app);
+        this.toolbar.showAll();
+        this.mainContainer.packStart(this.toolbar, false, false, 0);
 
         // Create the two main widgets
         this.split = new SplitWidget(app);
@@ -245,6 +250,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         viewItem.setSubmenu(viewMenu);
         viewMenu.append(actions.getAction(ActionId.CLEAR).createMenuItem());
         viewMenu.append(new SeparatorMenuItem());
+        viewMenu.append(actions.getToggleAction(ActionId.TOOLBAR).createMenuItem());
+        viewMenu.append(actions.getToggleAction(ActionId.SWITCHER).createMenuItem());
+        viewMenu.append(actions.getToggleAction(ActionId.STATUS).createMenuItem());
         menubar.append(viewItem);
 
         // Help menu item
@@ -301,6 +309,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Show the merge widget
         merge.setVisible(true);
+    }
+
+    /**
+     * Get the toolbar of the window.
+     */
+    public MainToolbar getToolbar() {
+        return toolbar;
     }
 
     /**

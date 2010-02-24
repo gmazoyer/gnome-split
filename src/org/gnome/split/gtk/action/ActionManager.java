@@ -42,9 +42,15 @@ public class ActionManager
      */
     private Map<ActionId, ToggleAction> toggles;
 
+    /**
+     * Actions based on two states but only one can be active.
+     */
+    private Map<ActionId, RadioAction> radios;
+
     public ActionManager(final GnomeSplit app) {
         actions = new HashMap<ActionId, Action>();
         toggles = new HashMap<ActionId, ToggleAction>();
+        radios = new HashMap<ActionId, RadioAction>();
 
         // Actions related to split and merge processes
         DummyAssistantAction dummy = new DummyAssistantAction(app);
@@ -93,9 +99,15 @@ public class ActionManager
         // Other actions related to the interface which have two possible
         // states (active or inactive)
         MainWindowAction window = new MainWindowAction(app);
+        ViewToolbarAction toolbar = new ViewToolbarAction(app);
+        ViewSwitcherAction switcher = new ViewSwitcherAction(app);
+        ViewStatusbarAction status = new ViewStatusbarAction(app);
 
         // Add the previously created actions
         toggles.put(ActionId.TRAY_WINDOW, window);
+        toggles.put(ActionId.TOOLBAR, toolbar);
+        toggles.put(ActionId.SWITCHER, switcher);
+        toggles.put(ActionId.STATUS, status);
     }
 
     /**
@@ -110,6 +122,13 @@ public class ActionManager
      */
     public ToggleAction getToggleAction(ActionId id) {
         return toggles.get(id);
+    }
+
+    /**
+     * Get a radio action using its ID.
+     */
+    public RadioAction getRadioAction(ActionId id) {
+        return radios.get(id);
     }
 
     /**
@@ -164,6 +183,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        DUMMY_ASSISTANT, ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
+        DUMMY_ASSISTANT, ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
     }
 }
