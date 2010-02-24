@@ -20,24 +20,15 @@
  */
 package org.gnome.split.gtk.action;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import org.gnome.gtk.CheckMenuItem;
-import org.gnome.gtk.MenuItem;
-import org.gnome.gtk.RadioButton;
-import org.gnome.gtk.RadioGroup;
-import org.gnome.gtk.ToggleButton;
-import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
 
 /**
- * Abstract class to define a action triggered by a GTK+ toggle/radio/check
- * widget.
+ * Abstract class to define a action triggered by a GTK+ toggle widget.
  * 
  * @author Guillaume Mazoyer
  */
-public abstract class ToggleAction
+public abstract class ToggleAction extends org.gnome.gtk.ToggleAction implements
+        org.gnome.gtk.ToggleAction.Toggled
 {
     /**
      * The current instance of GNOME Split.
@@ -45,99 +36,25 @@ public abstract class ToggleAction
     private GnomeSplit app;
 
     /**
-     * The label of the action.
-     */
-    private String label;
-
-    /**
-     * The tooltip of the action.
-     */
-    private String tooltip;
-
-    /**
-     * The state of the action.
-     */
-    private boolean active;
-
-    /**
-     * The widgets attached to the action.
-     */
-    private List<Widget> widgets;
-
-    /**
      * Create a new action using a label, a tooltip and a state.
      */
-    public ToggleAction(GnomeSplit app, String label, String tooltip, boolean active) {
+    public ToggleAction(GnomeSplit app, String name, String label, String tooltip, boolean active) {
+        super(name, label, tooltip, null);
+
         this.app = app;
-        this.label = label;
-        this.tooltip = tooltip;
-        this.active = active;
-        this.widgets = new ArrayList<Widget>();
+        this.setActive(active);
+        this.connect((ToggleAction.Toggled) this);
     }
 
     /**
      * Create a new action using a label and a state.
      */
-    public ToggleAction(GnomeSplit app, String label, boolean active) {
-        this(app, label, null, active);
-    }
+    public ToggleAction(GnomeSplit app, String name, String label, boolean active) {
+        super(name, label);
 
-    /**
-     * Used when a widget related to this action is used.
-     */
-    public abstract void actionPerformed(ToggleActionEvent event, boolean active);
-
-    /**
-     * Create a new {@link MenuItem} related to this action.
-     */
-    public CheckMenuItem createCheckMenuItem() {
-        CheckMenuItem item = new CheckMenuItem(label);
-
-        // Set the state of the widget using the state of the action
-        item.setActive(active);
-
-        // Connect signal and event use
-        item.connect(new CheckMenuItem.Toggled() {
-            @Override
-            public void onToggled(CheckMenuItem source) {
-                ToggleActionEvent event = new ToggleActionEvent(source);
-                actionPerformed(event, active);
-            }
-        });
-
-        // Register the widget
-        widgets.add(item);
-
-        return item;
-    }
-
-    /**
-     * Create a new {@link RadioButton} related to this action.
-     */
-    public RadioButton createRadioButton(RadioGroup group) {
-        RadioButton button = new RadioButton(group, label);
-
-        // Set tooltip if there is one and active state
-        if (tooltip != null) {
-            button.setTooltipText(tooltip);
-        }
-
-        // Set the state of the widget using the state of the action
-        button.setActive(active);
-
-        // Connect signal and event use
-        button.connect(new RadioButton.Toggled() {
-            @Override
-            public void onToggled(ToggleButton source) {
-                ToggleActionEvent event = new ToggleActionEvent(source);
-                actionPerformed(event, active);
-            }
-        });
-
-        // Register the widget
-        widgets.add(button);
-
-        return button;
+        this.app = app;
+        this.setActive(active);
+        this.connect((ToggleAction.Toggled) this);
     }
 
     /**
@@ -145,55 +62,5 @@ public abstract class ToggleAction
      */
     protected GnomeSplit getApplication() {
         return app;
-    }
-
-    /**
-     * Change the state of this action.
-     */
-    protected void setActive(boolean active, boolean force) {
-        this.active = active;
-
-        // The user did not really use a registered widgets
-        if (force) {
-            // Can be a CheckMenuItem or a RadioButton
-            for (Widget widget : widgets) {
-                // Update the CheckMenuItem
-                if (widget instanceof CheckMenuItem) {
-                    ((CheckMenuItem) widget).setActive(active);
-                }
-
-                // Update the RadioButton
-                if (widget instanceof RadioButton) {
-                    ((RadioButton) widget).setActive(active);
-                }
-            }
-        }
-    }
-
-    /**
-     * Event generated when the associated action is triggered.
-     * 
-     * @author Guillaume Mazoyer
-     */
-    public class ToggleActionEvent
-    {
-        /**
-         * The widget which created the event.
-         */
-        private Widget item;
-
-        /**
-         * Create a new event using a {@link Widget widget}.
-         */
-        public ToggleActionEvent(Widget item) {
-            this.item = item;
-        }
-
-        /**
-         * Get the current widget.
-         */
-        public Widget getWidget() {
-            return item;
-        }
     }
 }

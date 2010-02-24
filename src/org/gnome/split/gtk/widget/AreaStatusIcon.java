@@ -44,11 +44,6 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
     private GnomeSplit app;
 
     /**
-     * State of the tray icon.
-     */
-    private boolean activated;
-
-    /**
      * Menu attached to this status icon.
      */
     private Menu menu;
@@ -60,7 +55,6 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
         super(Constants.PROGRAM_LOGO);
 
         this.app = app;
-        this.activated = false;
 
         // Create icon menu
         this.createIconMenu();
@@ -81,7 +75,7 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
         ActionManager actions = app.getActionManager();
         menu = new Menu();
 
-        menu.append(actions.getToggleAction(ActionId.TRAY_WINDOW).createCheckMenuItem());
+        menu.append(actions.getToggleAction(ActionId.TRAY_WINDOW).createMenuItem());
         menu.append(new SeparatorMenuItem());
         menu.append(actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem());
         menu.append(actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem());
@@ -93,19 +87,12 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
     @Override
     public void onActivate(StatusIcon source) {
         ToggleAction action = app.getActionManager().getToggleAction(ActionId.TRAY_WINDOW);
-        action.actionPerformed(null, activated);
+        action.emitActivate();
     }
 
     @Override
     public void onPopupMenu(StatusIcon source, int button, int activateTime) {
         menu.popup();
         menu.showAll();
-    }
-
-    /**
-     * Set the current activated state.
-     */
-    public void setActivated(boolean setting) {
-        activated = setting;
     }
 }

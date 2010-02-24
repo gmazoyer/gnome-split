@@ -33,26 +33,20 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class MainWindowAction extends ToggleAction
 {
     public MainWindowAction(final GnomeSplit app) {
-        super(app, _("Show the main _window"), true);
+        super(app, "main-window-action", _("Show the main _window"), true);
     }
 
     @Override
-    public void actionPerformed(ToggleActionEvent event, boolean active) {
+    public void onToggled(org.gnome.gtk.ToggleAction source) {
         // Get the main window
         MainWindow window = this.getApplication().getMainWindow();
 
-        // Change action state
-        this.setActive(!active, (event == null));
-
-        if (active) {
-            // Hide the window
-            window.hide();
-        } else {
+        if (source.getActive()) {
             // Show the window
             window.show();
+        } else {
+            // Hide the window
+            window.hide();
         }
-
-        // Set the active state of the notification zone icon
-        window.getAreaStatusIcon().setActivated(!active);
     }
 }
