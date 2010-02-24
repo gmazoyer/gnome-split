@@ -116,11 +116,11 @@ public class MergeWidget extends Frame implements ActionWidget
 
         // Secondary vertical box
         final VBox secondary = new VBox(false, 5);
-        container.packStart(secondary);
+        container.packStart(secondary, true, true, 0);
 
         // First chunk row
         final HBox chunkRow = new HBox(false, 5);
-        secondary.packStart(chunkRow);
+        secondary.packStart(chunkRow, true, true, 0);
 
         final Label fileLabel = new Label(_("First chunk:"));
         chunkRow.packStart(fileLabel, false, false, 0);
@@ -128,7 +128,7 @@ public class MergeWidget extends Frame implements ActionWidget
         fileEntry = new Entry();
         fileEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
         fileEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
-        chunkRow.packStart(fileEntry);
+        chunkRow.packStart(fileEntry, true, true, 0);
 
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
         fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
@@ -146,7 +146,7 @@ public class MergeWidget extends Frame implements ActionWidget
 
         // Destination row
         final HBox destinationRow = new HBox(false, 5);
-        secondary.packStart(destinationRow);
+        secondary.packStart(destinationRow, true, true, 0);
 
         final Label destinationLabel = new Label(_("Destination:"));
         destinationRow.packStart(destinationLabel, false, false, 0);
@@ -154,7 +154,7 @@ public class MergeWidget extends Frame implements ActionWidget
         destEntry = new Entry();
         destEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
         destEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
-        destinationRow.packStart(destEntry);
+        destinationRow.packStart(destEntry, true, true, 0);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
         dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
@@ -162,33 +162,33 @@ public class MergeWidget extends Frame implements ActionWidget
 
         // Parts info row
         final HBox partsRow = new HBox(false, 5);
-        secondary.packStart(partsRow);
+        secondary.packStart(partsRow, true, true, 0);
 
         final Label partsLabel = new Label(_("Chunks:"));
         partsRow.packStart(partsLabel, false, false, 0);
 
         partsNumber = new Label(_("Unknown"));
-        partsRow.packStart(partsNumber);
+        partsRow.packStart(partsNumber, true, true, 0);
 
         // Size info row
         final HBox infoRow = new HBox(false, 5);
-        secondary.packStart(infoRow);
+        secondary.packStart(infoRow, true, true, 0);
 
         final Label sizeLabel = new Label(_("Total size:"));
         infoRow.packStart(sizeLabel, false, false, 0);
 
         fileSize = new Label(_("Unknown"));
-        infoRow.packStart(fileSize);
+        infoRow.packStart(fileSize, true, true, 0);
 
         // MD5 sum info row
         final HBox md5Row = new HBox(false, 5);
-        secondary.packStart(md5Row);
+        secondary.packStart(md5Row, true, true, 0);
 
         final Label md5Label = new Label(_("MD5 sum:"));
         md5Row.packStart(md5Label, false, false, 0);
 
         md5sum = new Label(_("Unknown"));
-        md5Row.packStart(md5sum);
+        md5Row.packStart(md5sum, true, true, 0);
 
         // Make all labels the same size
         final SizeGroup labels = new SizeGroup(SizeGroupMode.HORIZONTAL);

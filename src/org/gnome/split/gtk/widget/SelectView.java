@@ -23,7 +23,7 @@ package org.gnome.split.gtk.widget;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.RadioButton;
-import org.gnome.gtk.RadioButtonGroup;
+import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
@@ -60,7 +60,7 @@ public class SelectView extends HBox
         this.packStart(label, false, false, 0);
 
         // Buttons group
-        final RadioButtonGroup group = new RadioButtonGroup();
+        final RadioGroup group = new RadioGroup();
 
         // Split action - switch to split view
         this.split = new RadioButton(group, _("Split"));

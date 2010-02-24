@@ -162,8 +162,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.mainContainer.packStart(views, false, false, 0);
 
         // Add the main widgets
-        this.mainContainer.packStart(this.split);
-        this.mainContainer.packStart(this.merge);
+        this.mainContainer.packStart(this.split, true, true, 0);
+        this.mainContainer.packStart(this.merge, true, true, 0);
 
         // Show the right one
         switch (app.getConfig().DEFAULT_VIEW) {
@@ -226,7 +226,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         fileMenu.append(actions.getAction(ActionId.PAUSE).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.CANCEL).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.DELETE).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.CLEAR).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.EXIT).createMenuItem());
         menubar.append(fileItem);
@@ -238,6 +237,15 @@ public class MainWindow extends Window implements Window.DeleteEvent
         editItem.setSubmenu(editMenu);
         editMenu.append(actions.getAction(ActionId.PREFERENCES).createMenuItem());
         menubar.append(editItem);
+
+        // View menu item
+        final MenuItem viewItem = new MenuItem(_("_View"));
+        final Menu viewMenu = new Menu();
+
+        viewItem.setSubmenu(viewMenu);
+        viewMenu.append(actions.getAction(ActionId.CLEAR).createMenuItem());
+        viewMenu.append(new SeparatorMenuItem());
+        menubar.append(viewItem);
 
         // Help menu item
         final MenuItem helpItem = new MenuItem(_("_Help"));

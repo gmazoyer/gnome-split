@@ -26,7 +26,7 @@ import java.util.List;
 import org.gnome.gtk.CheckMenuItem;
 import org.gnome.gtk.MenuItem;
 import org.gnome.gtk.RadioButton;
-import org.gnome.gtk.RadioButtonGroup;
+import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
@@ -114,7 +114,7 @@ public abstract class ToggleAction
     /**
      * Create a new {@link RadioButton} related to this action.
      */
-    public RadioButton createRadioButton(RadioButtonGroup group) {
+    public RadioButton createRadioButton(RadioGroup group) {
         RadioButton button = new RadioButton(group, label);
 
         // Set tooltip if there is one and active state

@@ -143,7 +143,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
 
         // Add an entry to it
         final Entry entry = new Entry();
-        box.packStart(entry);
+        box.packStart(entry, true, true, 0);
 
         // Add a chooser button to it
         final FileChooserButton button = new FileChooserButton(_("Select a file."),

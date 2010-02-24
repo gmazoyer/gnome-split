@@ -115,31 +115,31 @@ public class SplitWidget extends Frame implements ActionWidget
         this.add(container);
 
         final HBox firstRow = new HBox(false, 5);
-        container.packStart(firstRow);
+        container.packStart(firstRow, true, true, 0);
 
         // Pack all Labels in the same box
         final VBox labelColumn = new VBox(false, 5);
         firstRow.packStart(labelColumn, false, false, 0);
 
         final Label fileLabel = new Label(_("File:"));
-        labelColumn.packStart(fileLabel);
+        labelColumn.packStart(fileLabel, true, true, 0);
 
         final Label destinationLabel = new Label(_("Destination:"));
-        labelColumn.packStart(destinationLabel);
+        labelColumn.packStart(destinationLabel, true, true, 0);
 
         // Pack all Entrys in the same box
         final VBox entryColumn = new VBox(false, 5);
-        firstRow.packStart(entryColumn);
+        firstRow.packStart(entryColumn, true, true, 0);
 
         fileEntry = new Entry();
         fileEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
         fileEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
-        entryColumn.packStart(fileEntry);
+        entryColumn.packStart(fileEntry, true, true, 0);
 
         destinationEntry = new Entry();
         destinationEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
         destinationEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
-        entryColumn.packStart(destinationEntry);
+        entryColumn.packStart(destinationEntry, true, true, 0);
 
         // Pack all choosers in the same box
         final VBox chooserColumn = new VBox(false, 5);
@@ -153,27 +153,27 @@ public class SplitWidget extends Frame implements ActionWidget
                 setFile(source.getFilename());
             }
         });
-        chooserColumn.packStart(fileChooser);
+        chooserColumn.packStart(fileChooser, true, true, 0);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
         dirChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
-        chooserColumn.packStart(dirChooser);
+        chooserColumn.packStart(dirChooser, true, true, 0);
 
         final HBox thirdRow = new HBox(false, 5);
-        container.packStart(thirdRow);
+        container.packStart(thirdRow, true, true, 0);
 
         // Pack size related widgets
         final VBox firstColumn = new VBox(false, 5);
-        thirdRow.packStart(firstColumn);
+        thirdRow.packStart(firstColumn, true, true, 0);
 
         final Label sizeLabel = new Label(_("Split in:"));
-        firstColumn.packStart(sizeLabel);
+        firstColumn.packStart(sizeLabel, true, true, 0);
 
         final HBox splitSize = new HBox(false, 3);
-        firstColumn.packStart(splitSize);
+        firstColumn.packStart(splitSize, true, true, 0);
 
         sizeButton = new SpinButton(1, 4096, 1);
-        splitSize.packStart(sizeButton);
+        splitSize.packStart(sizeButton, true, true, 0);
 
         sizeUnits = new TextComboBox();
         for (String unit : SizeUnit.toStrings()) {
@@ -181,14 +181,14 @@ public class SplitWidget extends Frame implements ActionWidget
             sizeUnits.appendText(unit);
         }
         sizeUnits.setActive(0);
-        splitSize.packStart(sizeUnits);
+        splitSize.packStart(sizeUnits, true, true, 0);
 
         // Pack algorithm related widgets
         final VBox secondColumn = new VBox(false, 5);
-        thirdRow.packStart(secondColumn);
+        thirdRow.packStart(secondColumn, true, true, 0);
 
         final Label algoLabel = new Label(_("Algorithm:"));
-        secondColumn.packStart(algoLabel);
+        secondColumn.packStart(algoLabel, true, true, 0);
 
         algoList = new TextComboBox();
         for (String algorithm : Algorithm.toStrings()) {
@@ -196,7 +196,7 @@ public class SplitWidget extends Frame implements ActionWidget
             algoList.appendText(algorithm);
         }
         algoList.setActive(app.getConfig().DEFAULT_ALGORITHM);
-        secondColumn.packStart(algoList);
+        secondColumn.packStart(algoList, true, true, 0);
 
         // Make the sizes of size and algorithm boxes equal
         final SizeGroup group = new SizeGroup(SizeGroupMode.BOTH);

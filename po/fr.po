@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Split\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-22 21:48+0100\n"
+"POT-Creation-Date: 2010-02-23 18:38+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: Guillaume Mazoyer <respawneral@gmail.com>\n"
 "Language-Team: Guillaume Mazoyer <respawneral@gmail.com>\n"
@@ -69,11 +69,15 @@ msgstr "Calcul de la somme MD5."
 msgid "_File"
 msgstr "_Fichier"
 
-#: src/org/gnome/split/gtk/MainWindow.java:235
+#: src/org/gnome/split/gtk/MainWindow.java:234
 msgid "_Edit"
 msgstr "É_dition"
 
-#: src/org/gnome/split/gtk/MainWindow.java:243
+#: src/org/gnome/split/gtk/MainWindow.java:242
+msgid "_View"
+msgstr "_Affichage"
+
+#: src/org/gnome/split/gtk/MainWindow.java:250
 msgid "_Help"
 msgstr "_Aide"
 

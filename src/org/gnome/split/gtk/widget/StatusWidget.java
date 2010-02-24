@@ -72,7 +72,7 @@ public class StatusWidget extends Frame
         // Add the text display
         text = new Label(_("Ready."));
         text.setEllipsize(EllipsizeMode.END);
-        box.packStart(text);
+        box.packStart(text, true, true, 0);
 
         // Add a second separator
         box.packStart(new VSeparator(), false, false, 0);

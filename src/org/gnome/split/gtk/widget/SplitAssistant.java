@@ -196,7 +196,7 @@ public class SplitAssistant extends Assistant implements ActionAssistant, Prepar
 
         // Add an entry to it
         final Entry entry = new Entry();
-        box.packStart(entry);
+        box.packStart(entry, true, true, 0);
 
         // Add a chooser button to it
         final FileChooserButton button = new FileChooserButton(_("Select a file."),
@@ -307,7 +307,7 @@ public class SplitAssistant extends Assistant implements ActionAssistant, Prepar
 
         // Create the spin button
         final SpinButton button = new SpinButton(1, 4096, 1);
-        box.packStart(button);
+        box.packStart(button, true, true, 0);
 
         // Create the list of units
         final TextComboBox units = new TextComboBox();
@@ -316,7 +316,7 @@ public class SplitAssistant extends Assistant implements ActionAssistant, Prepar
             units.appendText(unit);
         }
         units.setActive(0);
-        box.packStart(units);
+        box.packStart(units, true, true, 0);
 
         // Add a last label to see if the size is valid
         final Label valid = new Label();

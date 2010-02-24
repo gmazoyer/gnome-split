@@ -114,7 +114,7 @@ public class PropertiesDialog extends Dialog implements DeleteEvent, Response
 
         directory = new Label(_("Unknown"));
         directory.setEllipsize(EllipsizeMode.MIDDLE);
-        firstRow.packStart(directory);
+        firstRow.packStart(directory, true, true, 0);
 
         // Information about filename
         final HBox secondRow = new HBox(false, 3);
@@ -124,7 +124,7 @@ public class PropertiesDialog extends Dialog implements DeleteEvent, Response
         secondRow.packStart(filenameLabel, false, false, 0);
 
         filename = new Label(_("Unknown"));
-        secondRow.packStart(filename);
+        secondRow.packStart(filename, true, true, 0);
 
         // Information about the size of the file
         final HBox thirdRow = new HBox(false, 3);
@@ -134,7 +134,7 @@ public class PropertiesDialog extends Dialog implements DeleteEvent, Response
         thirdRow.packStart(sizeLabel, false, false, 0);
 
         size = new Label(_("Unknown"));
-        thirdRow.packStart(size);
+        thirdRow.packStart(size, true, true, 0);
 
         // Make all labels the same size
         final SizeGroup fileLabels = new SizeGroup(SizeGroupMode.BOTH);
@@ -144,7 +144,7 @@ public class PropertiesDialog extends Dialog implements DeleteEvent, Response
 
         // Frame containing information about the progress
         final Frame progFrame = new Frame(_("Progress of the action"));
-        container.packStart(progFrame);
+        container.packStart(progFrame, true, true, 0);
 
         // Add a first container into the frame
         final VBox progRows = new VBox(false, 3);
@@ -156,7 +156,7 @@ public class PropertiesDialog extends Dialog implements DeleteEvent, Response
         final ScrolledWindow scroll = new ScrolledWindow();
         scroll.setPolicy(PolicyType.AUTOMATIC, PolicyType.AUTOMATIC);
         scroll.add(list);
-        progRows.packStart(scroll);
+        progRows.packStart(scroll, true, true, 0);
 
         // Add the progress bar
         progress = new ProgressBar();

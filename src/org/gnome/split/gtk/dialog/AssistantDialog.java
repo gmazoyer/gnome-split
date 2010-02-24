@@ -26,7 +26,7 @@ import org.gnome.gtk.ButtonBoxStyle;
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.RadioButton;
-import org.gnome.gtk.RadioButtonGroup;
+import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.ToggleButton;
@@ -87,14 +87,14 @@ public class AssistantDialog extends Dialog implements DeleteEvent, Response
         // Add container for the buttons
         final VButtonBox box = new VButtonBox();
         box.setLayout(ButtonBoxStyle.SPREAD);
-        container.packStart(box);
+        container.packStart(box, true, true, 0);
 
         // Buttons group
-        final RadioButtonGroup group = new RadioButtonGroup();
+        final RadioGroup group = new RadioGroup();
 
         // Split assistant selector
         final RadioButton split = new RadioButton(group, _("Split assistant"));
-        box.packStart(split);
+        box.packStart(split, true, true, 0);
 
         // Handle the signal for the split selector
         split.connect(new ToggleButton.Toggled() {
@@ -108,7 +108,7 @@ public class AssistantDialog extends Dialog implements DeleteEvent, Response
 
         // Merge assistant selector
         final RadioButton merge = new RadioButton(group, _("Merge assistant"));
-        box.packStart(merge);
+        box.packStart(merge, true, true, 0);
 
         // Handle the signal for the merge selector
         merge.connect(new ToggleButton.Toggled() {

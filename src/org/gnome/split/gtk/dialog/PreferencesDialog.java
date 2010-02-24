@@ -41,7 +41,7 @@ import org.gnome.gtk.IconView;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.ListStore;
 import org.gnome.gtk.RadioButton;
-import org.gnome.gtk.RadioButtonGroup;
+import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.SizeGroup;
 import org.gnome.gtk.SizeGroupMode;
@@ -123,9 +123,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Pages available
         pages = new Alignment[] {
-                this.createGeneralPage(),
-                this.createSplitPage(),
-                this.createMergePage(),
+                this.createGeneralPage(), this.createSplitPage(), this.createMergePage(),
                 this.createDesktopPage()
         };
 
@@ -224,7 +222,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         page.setPadding(5, 5, 20, 5);
 
         // Buttons group for default view choice
-        final RadioButtonGroup group = new RadioButtonGroup();
+        final RadioGroup group = new RadioGroup();
 
         // Restore default view status
         final Label viewLabel = new Label(_("Default view:"));
@@ -349,33 +347,33 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Pack default view widgets
         final HBox viewBox = new HBox(false, 3);
-        container.packStart(viewBox);
+        container.packStart(viewBox, true, true, 0);
 
         // Pack the widgets
-        viewBox.packStart(viewLabel);
-        viewBox.packStart(split);
-        viewBox.packStart(merge);
+        viewBox.packStart(viewLabel, true, true, 0);
+        viewBox.packStart(split, true, true, 0);
+        viewBox.packStart(merge, true, true, 0);
 
         // Pack the multiple instances option
-        container.packStart(instances);
+        container.packStart(instances, true, true, 0);
 
         // Pack size view widgets
         final VBox sizeBox = new VBox(false, 3);
-        container.packStart(sizeBox);
+        container.packStart(sizeBox, true, true, 0);
 
         // Pack the check button
-        sizeBox.packStart(customSize);
+        sizeBox.packStart(customSize, true, true, 0);
 
         // Pack widgets in a box
         final HBox line = new HBox(false, 3);
-        line.packStart(width);
-        line.packStart(new Label("x"));
-        line.packStart(height);
-        line.packStart(useCurrent);
-        line.packStart(apply);
+        line.packStart(width, true, true, 0);
+        line.packStart(new Label("x"), true, true, 0);
+        line.packStart(height, true, true, 0);
+        line.packStart(useCurrent, true, true, 0);
+        line.packStart(apply, true, true, 0);
 
         // Pack the box
-        sizeBox.packStart(line);
+        sizeBox.packStart(line, true, true, 0);
 
         // Make the widgets the same size
         SizeGroup widgets = new SizeGroup(SizeGroupMode.HORIZONTAL);
@@ -440,23 +438,23 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         page.add(container);
 
         // Add MD5 sum option
-        container.packStart(md5sum);
+        container.packStart(md5sum, true, true, 0);
 
         // Algorithm container
         final HBox algoContainer = new HBox(false, 3);
-        container.packStart(algoContainer);
+        container.packStart(algoContainer, true, true, 0);
 
         // Pack algorithm related widgets
-        algoContainer.packStart(algoLabel);
-        algoContainer.packStart(algorithms);
+        algoContainer.packStart(algoLabel, true, true, 0);
+        algoContainer.packStart(algorithms, true, true, 0);
 
         // Directory container
         final HBox directoryContainer = new HBox(false, 3);
-        container.packStart(directoryContainer);
+        container.packStart(directoryContainer, true, true, 0);
 
         // Pack directory related widgets
-        directoryContainer.packStart(directoryLabel);
-        directoryContainer.packStart(splitDirChooser);
+        directoryContainer.packStart(directoryLabel, true, true, 0);
+        directoryContainer.packStart(splitDirChooser, true, true, 0);
 
         // Size group for labels
         SizeGroup labelGroup = new SizeGroup(SizeGroupMode.BOTH);
@@ -522,19 +520,19 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         final VButtonBox buttons = new VButtonBox();
         buttons.setSpacing(5);
         buttons.setLayout(ButtonBoxStyle.SPREAD);
-        container.packStart(buttons);
+        container.packStart(buttons, true, true, 0);
 
         // Add the buttons
-        buttons.packStart(remove);
-        buttons.packStart(open);
+        buttons.packStart(remove, true, true, 0);
+        buttons.packStart(open, true, true, 0);
 
         // Directory container
         final HBox directoryContainer = new HBox(false, 3);
-        container.packStart(directoryContainer);
+        container.packStart(directoryContainer, true, true, 0);
 
         // Pack directory related widgets
-        directoryContainer.packStart(directoryLabel);
-        directoryContainer.packStart(mergeDirChooser);
+        directoryContainer.packStart(directoryLabel, true, true, 0);
+        directoryContainer.packStart(mergeDirChooser, true, true, 0);
 
         // Show all widgets
         page.showAll();
@@ -629,7 +627,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         }
 
         // Display the new page
-        container.packStart(current);
+        container.packStart(current, true, true, 0);
     }
 
     @Override
