@@ -23,6 +23,7 @@ package org.gnome.split.config;
 import java.io.FileNotFoundException;
 
 import org.gnome.gdk.Pixbuf;
+import org.gnome.glib.Glib;
 
 /**
  * This class is used to define and load the global constants variables.
@@ -72,7 +73,7 @@ public final class Constants
     public static void load() {
         try {
             PROGRAM_LOGO = new Pixbuf("share/pixmaps/gnome-split.png");
-            CONFIG_FOLDER = System.getProperty("user.home") + "/.config/gnome-split/";
+            CONFIG_FOLDER = Glib.getUserConfigDir() + "/gnome-split/";
             CONFIG_FILE = CONFIG_FOLDER + "config";
         } catch (FileNotFoundException e) {
             System.err.println(e.getMessage());
