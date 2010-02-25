@@ -170,17 +170,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.mainContainer.packStart(this.split, true, true, 0);
         this.mainContainer.packStart(this.merge, true, true, 0);
 
-        // Show the right one
-        switch (app.getConfig().DEFAULT_VIEW) {
-        case 0:
-            // Add the split widget
-            this.split.setVisible(true);
-            break;
-        case 1:
-            // Add the merge widget
-            this.merge.setVisible(true);
-            break;
-        }
+        // Show the split widget first
+        this.split.setVisible(true);
 
         // Add status widget
         this.status = new StatusWidget();
@@ -290,6 +281,20 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Create classic about dialog
         about = new AboutSoftDialog();
+    }
+
+    /**
+     * Select the default view of the interface.
+     */
+    public void selectDefaultView() {
+        // Get the default view
+        int view = app.getConfig().DEFAULT_VIEW;
+
+        // The merge view is the default one
+        if (view == 1) {
+            // Switch the view
+            app.getActionManager().getRadioAction(ActionId.MERGE).emitActivate();
+        }
     }
 
     /**
