@@ -33,7 +33,7 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class ViewToolbarAction extends ToggleAction
 {
     public ViewToolbarAction(final GnomeSplit app) {
-        super(app, "view-toolbar-action", _("_Toolbar"), true);
+        super(app, "view-toolbar-action", _("_Toolbar"), app.getConfig().SHOW_TOOLBAR);
     }
 
     @Override
@@ -43,10 +43,14 @@ public final class ViewToolbarAction extends ToggleAction
 
         if (source.getActive()) {
             // Show it
-            toolbar.show();
+            toolbar.showAll();
         } else {
             // Hide it
             toolbar.hide();
         }
+
+        // Save config
+        this.getApplication().getConfig().SHOW_TOOLBAR = source.getActive();
+        this.getApplication().getConfig().savePreferences();
     }
 }

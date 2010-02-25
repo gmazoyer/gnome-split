@@ -149,8 +149,12 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Add the tool bar
         this.toolbar = new MainToolbar(app);
-        this.toolbar.showAll();
         this.mainContainer.packStart(this.toolbar, false, false, 0);
+
+        // Show the toolbar if needed
+        if (app.getConfig().SHOW_TOOLBAR) {
+            this.toolbar.showAll();
+        }
 
         // Create the two main widgets
         this.split = new SplitWidget(app);
@@ -163,8 +167,12 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Add the views selector
         this.views = new SelectView(app);
-        this.views.showAll();
         this.mainContainer.packStart(views, false, false, 0);
+
+        // Show the switcher if need
+        if (app.getConfig().SHOW_SWITCHER) {
+            this.views.showAll();
+        }
 
         // Add the main widgets
         this.mainContainer.packStart(this.split, true, true, 0);
@@ -175,8 +183,12 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Add status widget
         this.status = new StatusWidget();
-        this.status.showAll();
         this.mainContainer.packStart(this.status, false, false, 0);
+
+        // Show the status widget if needed
+        if (app.getConfig().SHOW_STATUSBAR) {
+            this.status.showAll();
+        }
 
         // Set the state of the interface
         this.app.getActionManager().setReadyState();

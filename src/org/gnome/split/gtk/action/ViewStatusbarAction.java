@@ -33,7 +33,7 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class ViewStatusbarAction extends ToggleAction
 {
     public ViewStatusbarAction(final GnomeSplit app) {
-        super(app, "view-statusbar-action", _("_Statusbar"), true);
+        super(app, "view-statusbar-action", _("_Statusbar"), app.getConfig().SHOW_STATUSBAR);
     }
 
     @Override
@@ -43,10 +43,14 @@ public final class ViewStatusbarAction extends ToggleAction
 
         if (source.getActive()) {
             // Show it
-            statusbar.show();
+            statusbar.showAll();
         } else {
             // Hide it
             statusbar.hide();
         }
+
+        // Save config
+        this.getApplication().getConfig().SHOW_STATUSBAR = source.getActive();
+        this.getApplication().getConfig().savePreferences();
     }
 }

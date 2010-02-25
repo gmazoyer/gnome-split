@@ -112,6 +112,21 @@ public final class Configuration
     public boolean SHOW_STATUS_ICON;
 
     /**
+     * Show the toolbar.
+     */
+    public boolean SHOW_TOOLBAR;
+
+    /**
+     * Show the view switcher.
+     */
+    public boolean SHOW_SWITCHER;
+
+    /**
+     * Show the statusbar.
+     */
+    public boolean SHOW_STATUSBAR;
+
+    /**
      * Private constructor can't instantiate Configuration in other class.<br>
      * Check for preferences file and load it.
      */
@@ -163,6 +178,11 @@ public final class Configuration
             writer.write("NoHibernation     = true\n");
             writer.write("UseNotification   = true\n");
             writer.write("ShowStatusIcon    = false\n");
+
+            // Write other config
+            writer.write("ShowToolbar       = true\n");
+            writer.write("ShowSwitcher      = true\n");
+            writer.write("ShowStatusbar     = true\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -212,6 +232,11 @@ public final class Configuration
             NO_HIBERNATION = Boolean.parseBoolean(preferences.getProperty("NoHibernation", "true"));
             USE_NOTIFICATION = Boolean.parseBoolean(preferences.getProperty("UseNotification", "false"));
             SHOW_STATUS_ICON = Boolean.parseBoolean(preferences.getProperty("ShowStatusIcon", "false"));
+
+            // Load other config
+            SHOW_TOOLBAR = Boolean.parseBoolean(preferences.getProperty("ShowToolbar", "true"));
+            SHOW_SWITCHER = Boolean.parseBoolean(preferences.getProperty("ShowSwitcher", "true"));
+            SHOW_STATUSBAR = Boolean.parseBoolean(preferences.getProperty("ShowStatusbar", "true"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -248,6 +273,11 @@ public final class Configuration
             writer.write("NoHibernation     = " + NO_HIBERNATION + "\n");
             writer.write("UseNotification   = " + USE_NOTIFICATION + "\n");
             writer.write("ShowStatusIcon    = " + SHOW_STATUS_ICON + "\n");
+
+            // Write other config
+            writer.write("ShowToolbar       = " + SHOW_TOOLBAR + "\n");
+            writer.write("ShowSwitcher      = " + SHOW_SWITCHER + "\n");
+            writer.write("ShowStatusbar     = " + SHOW_STATUSBAR + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

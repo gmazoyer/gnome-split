@@ -33,7 +33,7 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class ViewSwitcherAction extends ToggleAction
 {
     public ViewSwitcherAction(final GnomeSplit app) {
-        super(app, "view-switcher-action", _("_View switcher"), true);
+        super(app, "view-switcher-action", _("_View switcher"), app.getConfig().SHOW_SWITCHER);
     }
 
     @Override
@@ -43,10 +43,14 @@ public final class ViewSwitcherAction extends ToggleAction
 
         if (source.getActive()) {
             // Show it
-            switcher.show();
+            switcher.showAll();
         } else {
             // Hide it
             switcher.hide();
         }
+
+        // Save config
+        this.getApplication().getConfig().SHOW_SWITCHER = source.getActive();
+        this.getApplication().getConfig().savePreferences();
     }
 }
