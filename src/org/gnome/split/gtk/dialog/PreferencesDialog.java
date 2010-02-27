@@ -24,7 +24,6 @@ import org.gnome.gdk.Event;
 import org.gnome.gdk.Pixbuf;
 import org.gnome.gtk.Alignment;
 import org.gnome.gtk.Button;
-import org.gnome.gtk.ButtonBoxStyle;
 import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.ComboBox;
 import org.gnome.gtk.DataColumn;
@@ -116,6 +115,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Main container
         container = new VBox(false, 3);
+        container.show();
         this.add(container);
 
         // Add the icon view
@@ -126,6 +126,12 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
                 this.createGeneralPage(), this.createSplitPage(), this.createMergePage(),
                 this.createDesktopPage()
         };
+
+        // Add all pages
+        for (Alignment page : pages) {
+            page.hide();
+            container.packStart(page, false, false, 0);
+        }
 
         // Make all pages the same size
         SizeGroup group = new SizeGroup(SizeGroupMode.BOTH);
@@ -149,11 +155,11 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
      */
     private Frame createIconView() {
         // Widget which will contain the view
-        final Frame container = new Frame(null);
+        final Frame frame = new Frame(null);
 
         // Create the icon view
         final IconView view = new IconView();
-        container.add(view);
+        frame.add(view);
 
         // Create the needed columns
         final DataColumnPixbuf icon = new DataColumnPixbuf();
@@ -197,6 +203,9 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         store.setValue(row, icon, pixbuf);
         store.setValue(row, text, _("Desktop"));
 
+        // Select the first icon
+        view.selectPath(new TreePath("0"));
+
         // Connect the signal to handle change of page
         view.connect(new IconView.SelectionChanged() {
             @Override
@@ -210,8 +219,11 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
+        // Show the view
+        frame.showAll();
+
         // And finally
-        return container;
+        return frame;
     }
 
     /**
@@ -518,8 +530,6 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
 
         // Container to add check buttons
         final VButtonBox buttons = new VButtonBox();
-        buttons.setSpacing(5);
-        buttons.setLayout(ButtonBoxStyle.SPREAD);
         container.packStart(buttons, true, true, 0);
 
         // Add the buttons
@@ -618,21 +628,20 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         if (current == null) {
             // Use the first page
             current = pages[0];
+            current.showAll();
         } else {
-            // Remove the current page
-            container.remove(current);
+            // Hide the current page
+            current.hide();
 
             // Update the current page with the requested one
             current = pages[page];
+            current.showAll();
         }
-
-        // Display the new page
-        container.packStart(current, true, true, 0);
     }
 
     @Override
     public void present() {
-        this.showAll();
+        this.show();
         super.present();
     }
 
