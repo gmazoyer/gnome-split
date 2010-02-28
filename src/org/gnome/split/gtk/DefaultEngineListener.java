@@ -44,7 +44,8 @@ import org.gnome.split.gtk.dialog.WarningDialog;
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * Manage the view update of the application.
+ * Manage the view update of the application. We *must not* set the engine
+ * without using the {@link #setEngine(Engine) setEngine()} method.
  * 
  * @author Guillaume Mazoyer
  */
@@ -61,8 +62,7 @@ public class DefaultEngineListener implements EngineListener
     private DbusInhibit inhibit;
 
     /**
-     * GTK+ interface of the application (<code>null</code> if the command
-     * line interface is used).
+     * GTK+ interface of the application.
      */
     private MainWindow gtk;
 
@@ -89,6 +89,49 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
+    public void setEngine(Engine engine) {
+        // Update engine
+        this.engine = engine;
+
+        if (engine != null) {
+            // Inhibit hibernation if requested
+            if (app.getConfig().NO_HIBERNATION) {
+                inhibit.inhibit();
+            }
+
+            // Disable user interaction (only in action widget)
+            gtk.getActionWidget().disable();
+            gtk.getViewSwitcher().disable();
+
+            // Update the properties dialog
+            gtk.getPropertiesDialog().update(engine);
+
+            // Update the interface state
+            app.getActionManager().setRunningState();
+        } else {
+            // Uninhibit hibernation if requested
+            if (app.getConfig().NO_HIBERNATION) {
+                inhibit.unInhibit();
+            }
+
+            // Enable user interaction (only in action widget)
+            gtk.getActionWidget().enable();
+            gtk.getViewSwitcher().enable();
+
+            // Reset the properties dialog
+            gtk.getPropertiesDialog().reset();
+
+            // Update the interface state
+            app.getActionManager().setReadyState();
+        }
+    }
+
+    @Override
+    public Engine getEngine() {
+        return engine;
+    }
+
+    @Override
     public void engineDone(double done, double total) {
         // Format the sizes to display them in the widget
         double divider = SizeUnit.getDivider(total);
@@ -102,10 +145,6 @@ public class DefaultEngineListener implements EngineListener
 
     @Override
     public void engineEnded() {
-        // Enable user interaction (only in action widget)
-        gtk.getActionWidget().enable();
-        gtk.getViewSwitcher().enable();
-
         // Title and body of the message to display
         String title;
         String body;
@@ -120,9 +159,6 @@ public class DefaultEngineListener implements EngineListener
         // Update the status widget
         gtk.getStatusWidget().update(Stock.YES, title, null);
 
-        // Reset the properties dialog
-        gtk.getPropertiesDialog().reset();
-
         if (app.getConfig().USE_NOTIFICATION) {
             // Use notification
             Notification notify = new Notification(title, body, null, gtk.getAreaStatusIcon());
@@ -135,24 +171,12 @@ public class DefaultEngineListener implements EngineListener
             dialog.hide();
         }
 
-        // Update the interface state
-        app.getActionManager().setReadyState();
-
-        // Finally, uninhibit computer hibernation if needed
-        if (inhibit.hasInhibit()) {
-            inhibit.unInhibit();
-        }
-
         // Update engine
-        engine = null;
+        this.setEngine(null);
     }
 
     @Override
     public void engineStopped() {
-        // Enable user interaction (only in action widget)
-        gtk.getActionWidget().enable();
-        gtk.getViewSwitcher().enable();
-
         // Use the correct text
         String text;
         if (engine instanceof DefaultSplitEngine) {
@@ -164,19 +188,8 @@ public class DefaultEngineListener implements EngineListener
         // Update the status widget
         gtk.getStatusWidget().update(Stock.CANCEL, text, null);
 
-        // Reset the properties dialog
-        gtk.getPropertiesDialog().reset();
-
-        // Update the interface state
-        app.getActionManager().setReadyState();
-
-        // Finally, uninhibit computer hibernation if needed
-        if (inhibit.hasInhibit()) {
-            inhibit.unInhibit();
-        }
-
         // Update engine
-        engine = null;
+        this.setEngine(null);
     }
 
     @Override
@@ -204,27 +217,12 @@ public class DefaultEngineListener implements EngineListener
         // Update the status widget
         gtk.getStatusWidget().update(item, exception.getMessage(), null);
 
-        // Reset the properties dialog
-        gtk.getPropertiesDialog().reset();
-
         // Display the dialog
         dialog.run();
         dialog.hide();
 
-        // Enable user interaction (only in action widget)
-        gtk.getActionWidget().enable();
-        gtk.getViewSwitcher().enable();
-
-        // Make user interface back to ready state
-        app.getActionManager().setReadyState();
-
-        // Finally, uninhibit computer hibernation if needed
-        if (inhibit.hasInhibit()) {
-            inhibit.unInhibit();
-        }
-
         // Update engine
-        engine = null;
+        this.setEngine(null);
     }
 
     @Override
@@ -284,31 +282,6 @@ public class DefaultEngineListener implements EngineListener
             // Update the status widget
             gtk.getStatusWidget().updateText(_("MD5 sum calculation."));
         }
-    }
-
-    @Override
-    public void setEngine(Engine engine) {
-        // Update engine
-        this.engine = engine;
-
-        if (engine != null) {
-            // Disable user interaction (only in action widget)
-            gtk.getActionWidget().disable();
-            gtk.getViewSwitcher().disable();
-
-            // Inhibit hibernation if requested
-            if (app.getConfig().NO_HIBERNATION) {
-                inhibit.inhibit();
-            }
-
-            // Update the properties dialog
-            gtk.getPropertiesDialog().update(engine);
-        }
-    }
-
-    @Override
-    public Engine getEngine() {
-        return engine;
     }
 
     /**

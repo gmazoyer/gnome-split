@@ -121,7 +121,6 @@ public final class StartAction extends Action
             // Update the interface state
             if (run != null) {
                 app.getEngineListener().setEngine(run);
-                app.getActionManager().setRunningState();
             }
         }
     }

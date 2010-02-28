@@ -84,15 +84,23 @@ public class SelectView extends HBox
      * Disable all buttons so the user will not be able to switch the view.
      */
     public void disable() {
-        split.setSensitive(false);
-        merge.setSensitive(false);
+        // Get all widgets
+        Widget[] widgets = this.getChildren();
+        for (Widget widget : widgets) {
+            // Make them non-sensitive
+            widget.setSensitive(false);
+        }
     }
 
     /**
      * Enable all buttons so the user will be able to switch the view.
      */
     public void enable() {
-        split.setSensitive(true);
-        merge.setSensitive(true);
+        // Get all widgets
+        Widget[] widgets = this.getChildren();
+        for (Widget widget : widgets) {
+            // Make them sensitive
+            widget.setSensitive(true);
+        }
     }
 }
