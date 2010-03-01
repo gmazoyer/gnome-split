@@ -22,6 +22,7 @@ package org.gnome.split.gtk;
 
 import org.gnome.gdk.Event;
 import org.gnome.gtk.Frame;
+import org.gnome.gtk.HSeparator;
 import org.gnome.gtk.Menu;
 import org.gnome.gtk.MenuBar;
 import org.gnome.gtk.MenuItem;
@@ -85,6 +86,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private VBox mainContainer;
 
     /**
+     * Separators just to perfect the interface.
+     */
+    private HSeparator[] separators;
+
+    /**
      * Widget to display when the split view is selected.
      */
     private SplitWidget split;
@@ -130,6 +136,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Save program instance
         this.app = app;
 
+        // Create the separators array
+        this.separators = new HSeparator[2];
+
         // Place the window in the middle of the screen
         this.setPosition(WindowPosition.CENTER);
 
@@ -139,7 +148,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Main container
         this.mainContainer = new VBox(false, 0);
-        this.mainContainer.showAll();
+        this.mainContainer.show();
         this.add(this.mainContainer);
 
         // Add the menu bar
@@ -156,6 +165,19 @@ public class MainWindow extends Window implements Window.DeleteEvent
             this.toolbar.showAll();
         }
 
+        // Add the views selector
+        this.views = new SelectView(app);
+        this.mainContainer.packStart(views, false, false, 0);
+
+        // Add a separator
+        this.separators[0] = new HSeparator();
+        mainContainer.packStart(this.separators[0], false, false, 0);
+
+        // Show the switcher if need
+        if (app.getConfig().SHOW_SWITCHER) {
+            this.views.showAll();
+            this.separators[0].show();
+        }
         // Create the two main widgets
         this.split = new SplitWidget(app);
         this.merge = new MergeWidget(app);
@@ -165,21 +187,16 @@ public class MainWindow extends Window implements Window.DeleteEvent
         group.add(this.split);
         group.add(this.merge);
 
-        // Add the views selector
-        this.views = new SelectView(app);
-        this.mainContainer.packStart(views, false, false, 0);
-
-        // Show the switcher if need
-        if (app.getConfig().SHOW_SWITCHER) {
-            this.views.showAll();
-        }
-
         // Add the main widgets
         this.mainContainer.packStart(this.split, true, true, 0);
         this.mainContainer.packStart(this.merge, true, true, 0);
 
         // Show the split widget first
         this.split.setVisible(true);
+
+        // Add a separator
+        this.separators[1] = new HSeparator();
+        mainContainer.packStart(this.separators[1], false, false, 0);
 
         // Add status widget
         this.status = new StatusWidget();
@@ -188,6 +205,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Show the status widget if needed
         if (app.getConfig().SHOW_STATUSBAR) {
             this.status.showAll();
+            this.separators[1].show();
         }
 
         // Set the state of the interface
@@ -329,6 +347,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Show the merge widget
         merge.setVisible(true);
+    }
+
+    /**
+     * Get the separators of the interface.
+     */
+    public HSeparator[] getSeparators() {
+        return separators;
     }
 
     /**

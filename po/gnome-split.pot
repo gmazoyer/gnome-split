@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-02-24 17:35+0100\n"
+"POT-Creation-Date: 2010-03-02 00:07+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,35 +16,35 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:113
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:152
 msgid "Split terminated."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:114
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:153
 msgid "The split has been terminated successfully without any errors."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:116
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:155
 msgid "Merge terminated."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:117
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:156
 msgid "The merge has been terminated successfully without any errors."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:159
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:183
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:161
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:185
 msgid "Merge stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:199
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:212
 msgid "Unhandled exception."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:200
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:213
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"
@@ -52,33 +52,33 @@ msgid ""
 "See the details for more information."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:239
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:237
 #, java-format
 msgid "Writting {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:255
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:253
 #, java-format
 msgid "Reading {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:285
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:283
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:210
+#: src/org/gnome/split/gtk/MainWindow.java:231
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:239
+#: src/org/gnome/split/gtk/MainWindow.java:260
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:247
+#: src/org/gnome/split/gtk/MainWindow.java:268
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:262
+#: src/org/gnome/split/gtk/MainWindow.java:283
 msgid "_Help"
 msgstr ""
 
@@ -110,7 +110,7 @@ msgstr ""
 msgid "S_plit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/ViewStatusbarAction.java:36
+#: src/org/gnome/split/gtk/action/ViewStatusbarAction.java:37
 msgid "_Statusbar"
 msgstr ""
 
@@ -180,7 +180,7 @@ msgstr ""
 msgid "Create a split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:36
+#: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:37
 msgid "_View switcher"
 msgstr ""
 
@@ -223,83 +223,83 @@ msgid ""
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:111
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:110
 msgid "GNOME Split Preferences"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:180
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:186
 msgid "General"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:186
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:230
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:192
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:242
 #: src/org/gnome/split/gtk/widget/SelectView.java:67
 msgid "Split"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:192
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:243
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:198
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:255
 #: src/org/gnome/split/gtk/widget/SelectView.java:75
 msgid "Merge"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:198
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:204
 msgid "Desktop"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:228
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:240
 msgid "Default view:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:257
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:269
 msgid "_Allow multiple instances."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:295
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:307
 msgid "Use the current size"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:325
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:337
 msgid "_Use a custom size for the main window."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:396
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:408
 msgid "_Calculate the MD5 if possible."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:408
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:420
 msgid "Default algorithm:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:429
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:508
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:441
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:520
 msgid "Default directory:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:432
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:511
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:158
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:159
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:444
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:523
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:154
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:155
 msgid "Choose a directory."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:483
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:495
 msgid "_Remove parts if the merge was successful."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:496
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:508
 msgid "_Open the created file if the merge was successful."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:552
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:562
 msgid "Inhibit desktop _hibernation when action is performed."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:564
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:574
 msgid "Show _icon in the desktop notification area."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:579
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:589
 msgid "Show desktop _notification."
 msgstr ""
 
@@ -360,13 +360,13 @@ msgstr ""
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:195
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:196
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:197
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:170
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:180
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:190
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:249
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:303
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:304
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:305
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:166
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:176
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:186
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:245
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:299
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:300
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:301
 #: src/org/gnome/split/core/utils/SizeUnit.java:106
 msgid "Unknown"
 msgstr ""
@@ -428,7 +428,7 @@ msgid ""
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:305
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:169
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:165
 msgid "Split in:"
 msgstr ""
 
@@ -528,21 +528,21 @@ msgid ""
 "The file will be splitted using the <b>{2}</b> algorithm."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:124
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:120
 msgid "File:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:127
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:151
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:123
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:147
 msgid "Destination:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:148
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:133
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:144
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:129
 msgid "Choose a file."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/SplitWidget.java:190
+#: src/org/gnome/split/gtk/widget/SplitWidget.java:186
 msgid "Algorithm:"
 msgstr ""
 
@@ -597,52 +597,52 @@ msgid ""
 "to have the merge done by taking a look at <i>Edit > Preferences > Merge</i>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:125
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:121
 msgid "First chunk:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:167
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:163
 msgid "Chunks:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:177
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:173
 msgid "Total size:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:187
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:183
 msgid "MD5 sum:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:226
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:222
 msgid "Cannot merge."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:227
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:223
 msgid ""
 "You will not be able to merge the files because this file format is unknown. "
 "You are welcome to fill a bug about that."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:251
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:247
 msgid "MD5 sum will be use."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:251
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:247
 msgid "MD5 sum will not be use."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:73
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:113
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:68
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:108
 msgid "Ready."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:82
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:104
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:77
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:99
 #: src/org/gnome/split/core/utils/SizeUnit.java:158
 msgid "Unknown speed"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:104
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:99
 msgid "Speed"
 msgstr ""
 
@@ -748,11 +748,11 @@ msgid ""
 "to run more than one instance of GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:210
+#: src/org/gnome/split/GnomeSplit.java:211
 msgid "Quit GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:211
+#: src/org/gnome/split/GnomeSplit.java:212
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"

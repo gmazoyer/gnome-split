@@ -49,7 +49,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class MergeWidget extends Frame implements ActionWidget
+public class MergeWidget extends VBox implements ActionWidget
 {
     /**
      * The GNOME Split application.
@@ -102,7 +102,7 @@ public class MergeWidget extends Frame implements ActionWidget
     private ProgressBar progressbar;
 
     public MergeWidget(final GnomeSplit app) {
-        super(null);
+        super(false, 12);
 
         // Save instance
         this.app = app;
@@ -110,13 +110,9 @@ public class MergeWidget extends Frame implements ActionWidget
         // At first, it is invisible
         visible = false;
 
-        // Main container
-        final VBox container = new VBox(false, 12);
-        this.add(container);
-
         // Secondary vertical box
         final VBox secondary = new VBox(false, 5);
-        container.packStart(secondary, true, true, 0);
+        this.packStart(secondary, true, true, 0);
 
         // First chunk row
         final HBox chunkRow = new HBox(false, 5);
@@ -210,7 +206,7 @@ public class MergeWidget extends Frame implements ActionWidget
 
         // Pack the progress bar
         progressbar = new ProgressBar();
-        container.packStart(progressbar, false, false, 0);
+        this.packStart(progressbar, false, false, 0);
     }
 
     /**

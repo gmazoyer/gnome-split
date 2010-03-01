@@ -49,7 +49,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class SplitWidget extends Frame implements ActionWidget
+public class SplitWidget extends VBox implements ActionWidget
 {
     /**
      * The GNOME Split application.
@@ -102,7 +102,7 @@ public class SplitWidget extends Frame implements ActionWidget
     private ProgressBar progressbar;
 
     public SplitWidget(final GnomeSplit app) {
-        super(null);
+        super(false, 12);
 
         // Save instance
         this.app = app;
@@ -110,12 +110,8 @@ public class SplitWidget extends Frame implements ActionWidget
         // At first, it is invisible
         visible = false;
 
-        // Main container
-        final VBox container = new VBox(false, 12);
-        this.add(container);
-
         final HBox firstRow = new HBox(false, 5);
-        container.packStart(firstRow, true, true, 0);
+        this.packStart(firstRow, true, true, 0);
 
         // Pack all Labels in the same box
         final VBox labelColumn = new VBox(false, 5);
@@ -160,7 +156,7 @@ public class SplitWidget extends Frame implements ActionWidget
         chooserColumn.packStart(dirChooser, true, true, 0);
 
         final HBox thirdRow = new HBox(false, 5);
-        container.packStart(thirdRow, true, true, 0);
+        this.packStart(thirdRow, true, true, 0);
 
         // Pack size related widgets
         final VBox firstColumn = new VBox(false, 5);
@@ -205,7 +201,7 @@ public class SplitWidget extends Frame implements ActionWidget
 
         // Pack the progress bar
         progressbar = new ProgressBar();
-        container.packStart(progressbar, false, false, 0);
+        this.packStart(progressbar, false, false, 0);
     }
 
     /**

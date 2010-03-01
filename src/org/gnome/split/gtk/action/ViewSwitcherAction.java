@@ -20,6 +20,7 @@
  */
 package org.gnome.split.gtk.action;
 
+import org.gnome.gtk.HSeparator;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.widget.SelectView;
 
@@ -38,15 +39,18 @@ public final class ViewSwitcherAction extends ToggleAction
 
     @Override
     public void onToggled(org.gnome.gtk.ToggleAction source) {
-        // Get the switcher of the interface
+        // Get the switcher and the separator of the interface
         SelectView switcher = this.getApplication().getMainWindow().getViewSwitcher();
+        HSeparator separator = this.getApplication().getMainWindow().getSeparators()[0];
 
         if (source.getActive()) {
             // Show it
             switcher.showAll();
+            separator.show();
         } else {
             // Hide it
             switcher.hide();
+            separator.hide();
         }
 
         // Save config

@@ -20,6 +20,7 @@
  */
 package org.gnome.split.gtk.action;
 
+import org.gnome.gtk.HSeparator;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.widget.StatusWidget;
 
@@ -40,13 +41,16 @@ public final class ViewStatusbarAction extends ToggleAction
     public void onToggled(org.gnome.gtk.ToggleAction source) {
         // Get the statusbar of the interface
         StatusWidget statusbar = this.getApplication().getMainWindow().getStatusWidget();
+        HSeparator separator = this.getApplication().getMainWindow().getSeparators()[1];
 
         if (source.getActive()) {
             // Show it
             statusbar.showAll();
+            separator.show();
         } else {
             // Hide it
             statusbar.hide();
+            separator.hide();
         }
 
         // Save config

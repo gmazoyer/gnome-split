@@ -20,7 +20,6 @@
  */
 package org.gnome.split.gtk.widget;
 
-import org.gnome.gtk.Frame;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.IconSize;
 import org.gnome.gtk.Image;
@@ -37,7 +36,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class StatusWidget extends Frame
+public class StatusWidget extends HBox
 {
     /**
      * Display an icon taken from {@link Stock}.
@@ -48,7 +47,7 @@ public class StatusWidget extends Frame
      * Display the information.
      */
     private Label text;
-    
+
     /**
      * Display an icon taken from {@link Stock} with a tooltip to show the
      * speed.
@@ -56,31 +55,27 @@ public class StatusWidget extends Frame
     private Image speed;
 
     public StatusWidget() {
-        super(null);
-
-        // Add a box to the frame
-        final HBox box = new HBox(false, 1);
-        this.add(box);
+        super(false, 1);
 
         // Add the icon
         image = new Image(Stock.DIALOG_INFO, IconSize.MENU);
-        box.packStart(image, false, false, 0);
+        this.packStart(image, false, false, 0);
 
         // Add a first separator
-        box.packStart(new VSeparator(), false, false, 0);
+        this.packStart(new VSeparator(), false, false, 0);
 
         // Add the text display
         text = new Label(_("Ready."));
         text.setEllipsize(EllipsizeMode.END);
-        box.packStart(text, true, true, 0);
+        this.packStart(text, true, true, 0);
 
         // Add a second separator
-        box.packStart(new VSeparator(), false, false, 0);
+        this.packStart(new VSeparator(), false, false, 0);
 
         // Add the speed display
         speed = new Image(Stock.HARDDISK, IconSize.MENU);
         speed.setTooltipText(_("Unknown speed"));
-        box.packStart(speed, false, false, 0);
+        this.packStart(speed, false, false, 0);
     }
 
     /**
