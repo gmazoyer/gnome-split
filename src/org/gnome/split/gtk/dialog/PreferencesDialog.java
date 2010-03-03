@@ -140,7 +140,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         }
 
         // Display the first page
-        this.switchTo(0);
+        this.switchTo(pages[0]);
 
         // Close button (save the configuration and close)
         this.addButton(Stock.CLOSE, ResponseType.CLOSE);
@@ -214,7 +214,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
                 if ((selections != null) && (selections.length > 0)) {
                     // Get the page ID and change the page
                     int id = selections[0].getIndices()[0];
-                    switchTo(id);
+                    switchTo(pages[id]);
                 }
             }
         });
@@ -623,20 +623,15 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
     /**
      * Switch the displayed page of the dialog using its ID.
      */
-    private void switchTo(int page) {
-        // First display
-        if (current == null) {
-            // Use the first page
-            current = pages[0];
-            current.showAll();
-        } else {
-            // Hide the current page
+    private void switchTo(Alignment page) {
+        // Not the first display
+        if (current != null) {
             current.hide();
-
-            // Update the current page with the requested one
-            current = pages[page];
-            current.showAll();
         }
+
+        // Update the current page with the requested one
+        current = page;
+        current.showAll();
     }
 
     @Override
