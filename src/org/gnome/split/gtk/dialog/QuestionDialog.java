@@ -20,9 +20,12 @@
  */
 package org.gnome.split.gtk.dialog;
 
+import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.QuestionMessageDialog;
 import org.gnome.gtk.ResponseType;
+import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.Window;
+import org.gnome.split.GnomeSplit;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -41,6 +44,26 @@ public final class QuestionDialog extends QuestionMessageDialog
         super(parent, title, text);
         this.setTitle(_("Question"));
         this.setModal(true);
+    }
+
+    public QuestionDialog(final GnomeSplit app, Window parent, String title, String text) {
+        this(parent, title, text);
+
+        // Add a check button
+        final CheckButton ask = new CheckButton(_("Do not ask me again."));
+        this.add(ask);
+
+        // Show this button
+        ask.show();
+
+        // When the check button is used the config changes
+        ask.connect(new ToggleButton.Toggled() {
+            @Override
+            public void onToggled(ToggleButton source) {
+                app.getConfig().DO_NOT_ASK_QUIT = source.getActive();
+                app.getConfig().savePreferences();
+            }
+        });
     }
 
     /**

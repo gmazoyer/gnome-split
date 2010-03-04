@@ -127,6 +127,11 @@ public final class Configuration
     public boolean SHOW_STATUSBAR;
 
     /**
+     * Do not ask the user if he/she really wants to quit.
+     */
+    public boolean DO_NOT_ASK_QUIT;
+
+    /**
      * Private constructor can't instantiate Configuration in other class.<br>
      * Check for preferences file and load it.
      */
@@ -183,6 +188,7 @@ public final class Configuration
             writer.write("ShowToolbar       = true\n");
             writer.write("ShowSwitcher      = true\n");
             writer.write("ShowStatusbar     = true\n");
+            writer.write("DontAskToQuit     = false\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -237,6 +243,7 @@ public final class Configuration
             SHOW_TOOLBAR = Boolean.parseBoolean(preferences.getProperty("ShowToolbar", "true"));
             SHOW_SWITCHER = Boolean.parseBoolean(preferences.getProperty("ShowSwitcher", "true"));
             SHOW_STATUSBAR = Boolean.parseBoolean(preferences.getProperty("ShowStatusbar", "true"));
+            DO_NOT_ASK_QUIT = Boolean.parseBoolean(preferences.getProperty("DontAskToQuit", "false"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -278,6 +285,7 @@ public final class Configuration
             writer.write("ShowToolbar       = " + SHOW_TOOLBAR + "\n");
             writer.write("ShowSwitcher      = " + SHOW_SWITCHER + "\n");
             writer.write("ShowStatusbar     = " + SHOW_STATUSBAR + "\n");
+            writer.write("DontAskToQuit     = " + DO_NOT_ASK_QUIT + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
