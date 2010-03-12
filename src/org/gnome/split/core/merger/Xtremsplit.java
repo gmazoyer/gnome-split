@@ -97,12 +97,12 @@ public final class Xtremsplit extends DefaultMergeEngine
             // Read file number
             bytes = new byte[4];
             access.read(bytes);
-            parts = (int) ByteUtils.toInt(bytes);
+            parts = (int) ByteUtils.littleEndianToInt(bytes);
 
             // Read file length
             bytes = new byte[8];
             access.read(bytes);
-            fileLength = ByteUtils.toLong(bytes);
+            fileLength = ByteUtils.littleEndianToLong(bytes);
         } catch (FileNotFoundException e) {
             throw e;
         } catch (IOException e) {

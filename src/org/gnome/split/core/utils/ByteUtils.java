@@ -20,6 +20,9 @@
  */
 package org.gnome.split.core.utils;
 
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+
 /**
  * Give some methods to convert bytes or other types to bytes.
  * 
@@ -28,53 +31,76 @@ package org.gnome.split.core.utils;
 public final class ByteUtils
 {
     /**
-     * Convert an array of {@link Byte bytes} to a {@link Integer} value.
+     * Convert an array of {@link Byte bytes} using little endian coding to a
+     * {@link Integer} value.
      */
-    public static int toInt(byte[] b) {
-        int value = 0;
-        int exp = 0;
-        for (int i = 0; i < b.length; i++) {
-            value += b[i] << exp;
-            exp += 8;
-        }
-        return value;
+    public static int littleEndianToInt(byte[] array) {
+        ByteBuffer buffer = ByteBuffer.wrap(array);
+
+        // Order as little endian
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+        // Convert and return the value
+        return buffer.getInt();
     }
 
     /**
-     * Convert an {@link Integer} value to an array of {@link Byte bytes}.
+     * Convert the value using the little endian coding.
      */
-    public static byte[] toBytes(int num) {
-        byte[] b = new byte[4];
-        int exp = 3 * 8;
-        for (int i = b.length - 1; i >= 0; i--) {
-            b[i] = (byte) (num << exp);
-            exp -= 8;
-        }
-        return b;
+    public static byte[] toLittleEndian(int value) {
+        ByteBuffer buffer = ByteBuffer.allocate(4);
+
+        // Order as little endian and convert the value
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+        buffer.putInt(value);
+
+        return buffer.array();
     }
 
     /**
-     * Convert a {@link Long} value to an array of {@link Byte bytes}.
+     * Convert an array of {@link Byte bytes} using little endian coding to a
+     * {@link Long} value.
      */
-    public static long toLong(byte[] b) {
-        long value = 0;
-        int exp = 0;
-        for (int i = 0; i < b.length; i++) {
-            value += (((long) b[i]) & 0xFF) << exp;
-            exp += 8;
-        }
-        return value;
+    public static long littleEndianToLong(byte[] array) {
+        ByteBuffer buffer = ByteBuffer.wrap(array);
+
+        // Order as little endian
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+
+        // Convert and return the value
+        return buffer.getLong();
     }
 
     /**
-     * Convert an array of {@link Byte bytes} to a {@link Long} value.
+     * Convert the value using the little endian coding.
      */
-    public static byte[] toBytes(long num) {
-        byte[] b = new byte[8];
-        for (int i = 0; i < b.length; i++) {
-            b[i] = (byte) num;
-            num >>>= 8;
-        }
-        return b;
+    public static byte[] toLittleEndian(long value) {
+        ByteBuffer buffer = ByteBuffer.allocate(8);
+
+        // Order as little endian and convert the value
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+        buffer.putLong(value);
+
+        return buffer.array();
+    }
+
+    /**
+     * Convert the value using the little endian coding and return only the 4
+     * interesting bytes.
+     */
+    public static byte[] toLittleEndian(double value) {
+        ByteBuffer buffer = ByteBuffer.allocate(8);
+
+        // Order as little endian and convert the value
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+        buffer.putDouble(value);
+
+        // Keep only the 4 needed bytes
+        byte[] result = buffer.array();
+        result = new byte[] {
+                result[4], result[5], result[6], result[7]
+        };
+
+        return result;
     }
 }

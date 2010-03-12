@@ -29,6 +29,7 @@ import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
+import org.gnome.split.core.utils.Utils;
 
 /**
  * Algorithm to split a file with the Xtremsplit algorithm.
@@ -67,7 +68,8 @@ public final class Xtremsplit extends DefaultSplitEngine
         }
 
         // Write date
-        access.writeInt(0);
+        double date = Utils.datetimeFromNow();
+        access.write(ByteUtils.toLittleEndian(date));
 
         // Write original filename
         toWrite = file.getName().getBytes();
@@ -86,10 +88,10 @@ public final class Xtremsplit extends DefaultSplitEngine
         access.writeBoolean(app.getConfig().SAVE_FILE_HASH);
 
         // Write number of files
-        access.write(ByteUtils.toBytes(parts));
+        access.write(ByteUtils.toLittleEndian(parts));
 
         // Write file size
-        access.write(ByteUtils.toBytes(file.length()));
+        access.write(ByteUtils.toLittleEndian(file.length()));
     }
 
     @Override
