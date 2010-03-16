@@ -51,7 +51,7 @@ public final class AboutSoftDialog extends AboutDialog implements Window.DeleteE
         this.setLogo(Constants.PROGRAM_LOGO);
         this.setComments(_("Split and merge your files easily."));
         this.setCopyright("Copyright \u00A9 2009-2010 " + _("the GNOME Split project"));
-        this.setWebsite("http://www.respawner.fr/gnome-split/");
+        this.setWebsite(Constants.PROGRAM_WEBSITE);
         this.setWebsiteLabel(_("Project website"));
 
         // Program authors

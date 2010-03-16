@@ -1,0 +1,92 @@
+NEWS
+
+GNOME Split 0.6 (16 Mar 2010)
+=============================
+
+Codename: Bengal Tiger
+
+  * Move 'Simple' algorithm to 'Generic'.
+  * Option to open a file after a successful merge.
+  * Make generic merger accepts *.000 files.
+  * Fix a bug that appeared when quitting the program.
+  * Enhance the command line handler.
+  * Add KFK split and merge algorithms.
+  * Add assistants item to the status icon menu.
+  * Add 3 new actions to the help menu.
+  * Add details to the error dialog.
+  * Fix cosmetic bug when using status icon.
+  * Add action to customise the interface.
+  * Fix default view selection.
+  * Use XDG based directory to store the config.
+  * Cosmetic change for the main window.
+  * Add an option to the exit dialog.
+  * Add support for the 'date' field of the Xtremsplit
+    algorithm.
+  * Depend of java-gnome >= 4.0.15.
+  * Add German translation (Mario Blättermann).
+  * Add Brazilian Portuguese translation (Magnun Leno).
+  * Add Georgian translation (al_x).
+  * Update French translation (Guillaume Mazoyer).
+
+GNOME Split 0.5 (12 Feb 2010)
+=============================
+
+Codename: Semi Pro
+
+  * Fix program launcher for non open-jdk users.
+  * Workaround for dialog that suspended the action.
+  * Activate default view option.
+  * Rework actions of the interface.
+  * Add a speed indicator to the status widget.
+  * Add a merge assistant and a split assistant.
+  * Optimize the view change in the main window.
+  * Add CD-ROM and DVD-ROM predefined sizes.
+  * Update French translation (Guillaume Mazoyer).
+
+GNOME Split 0.4 (09 Jan 2010)
+=============================
+
+Codename: Army Ant
+
+  * Add a confirmation dialog to quit the application if an
+    action (split or merge) is currently being performed.
+  * Fix the main window behavior when resized.
+  * Add graphical user interface interaction during the MD5
+    sum calculation.
+  * Fix a cosmetic bug.
+  * Add a dialog to show the properties of the action.
+  * Fix for the Xtremsplit algorithm.
+  * Update French translation (Guillaume Mazoyer).
+
+GNOME Split 0.3 (03 Jan 2010)
+=============================
+
+Codename: Motion Squad
+
+  * Improve of the user interface management.
+  * Fix some cosmetic problems.
+  * Update the preferences dialog to handle the new options.
+  * Add merge support of files splitted without any headers
+    (*.001, *.002, ...).
+  * Update French translation (Guillaume Mazoyer).
+
+GNOME Split 0.2 (19 Dec 2009)
+=============================
+
+Codename: Uncaught Break
+
+  * Add a choice to split a file using a number of chunks.
+  * Fix bug where .desktop doesn't launch the good file.
+  * Fix bug where .desktop doesn't display the good name.
+  * Remove an unnecessary line in the makefile.
+  * Add configuration to allow multiple instances.
+  * Depend of java-gnome >= 4.0.14.
+  * Update French translation (Guillaume Mazoyer).
+
+GNOME Split 0.1 (08 Dec 2009)
+==============================
+
+Codename: Little Things
+
+  * First stable release.
+  * Add French translation (Guillaume Mazoyer).
