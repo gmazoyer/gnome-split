@@ -1,4 +1,4 @@
-# French translation for gnome-split
+# French translation for gnome-split.
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the gnome-split package.
 # Guillaume Mazoyer <respawneral@gmail.com>, 2010.
@@ -6,16 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Split\n"
-"Report-Msgid-Bugs-To: Guillaume Mazoyer <respawneral@gmail.com>\n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2010-03-04 19:04+0100\n"
-"PO-Revision-Date: 2010-03-09 11:16+0000\n"
+"PO-Revision-Date: 2010-03-16 00:50+0000\n"
 "Last-Translator: Guillaume Mazoyer <respawneral@gmail.com>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-03-13 03:20+0000\n"
+"X-Launchpad-Export-Date: 2010-03-16 00:52+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Country: FRANCE\n"
+"X-Poedit-Language: French\n"
+"X-Poedit-SourceCharset: utf-8\n"
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:152
 msgid "Split terminated."
@@ -187,7 +190,7 @@ msgstr "Créer un découpage."
 
 #: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:37
 msgid "_View switcher"
-msgstr "Sélecteur de d'_affichage"
+msgstr "Sélecteur d'_affichage"
 
 #: src/org/gnome/split/gtk/action/ReportBugAction.java:35
 msgid "_Report a Problem..."
