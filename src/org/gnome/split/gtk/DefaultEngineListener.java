@@ -149,11 +149,11 @@ public class DefaultEngineListener implements EngineListener
         String title;
         String body;
         if (engine instanceof DefaultSplitEngine) {
-            title = _("Split terminated.");
-            body = _("The split has been terminated successfully without any errors.");
+            title = _("Split finished.");
+            body = _("The file was succesfully splitted.");
         } else {
-            title = _("Merge terminated.");
-            body = _("The merge has been terminated successfully without any errors.");
+            title = _("Merge finished.");
+            body = _("The files were successfully merged.");
         }
 
         // Update the status widget

@@ -1,32 +1,35 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-04 19:04+0100\n"
+"POT-Creation-Date: 2010-03-23 02:59+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-03-13 03:20+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:152
-msgid "Split terminated."
+msgid "Split finished."
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:153
-msgid "The split has been terminated successfully without any errors."
+msgid "The file was succesfully splitted."
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:155
-msgid "Merge terminated."
+msgid "Merge finished."
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:156
-msgid "The merge has been terminated successfully without any errors."
+msgid "The files were successfully merged."
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:183
