@@ -31,6 +31,7 @@ import org.gnome.gtk.Editable;
 import org.gnome.gtk.Entry;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
+import org.gnome.gtk.FileFilter;
 import org.gnome.gtk.Gtk;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.IconSize;
@@ -145,9 +146,17 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         final Entry entry = new Entry();
         box.packStart(entry, true, true, 0);
 
+        // File filter to help choosing a valid chunk
+        final FileFilter chk = new FileFilter(_("Valid chunks"));
+        chk.addPattern("*.001.gsp");
+        chk.addPattern("*.001.xtm");
+        chk.addPattern("*.000");
+        chk.addPattern("*.001");
+
         // Add a chooser button to it
         final FileChooserButton button = new FileChooserButton(_("Select a file."),
                 FileChooserAction.OPEN);
+        button.addFilter(chk);
         button.setCurrentFolder(System.getProperty("user.home"));
         box.packStart(button, false, false, 0);
 

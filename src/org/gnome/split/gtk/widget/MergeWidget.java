@@ -28,6 +28,7 @@ import org.gnome.gtk.EntryIconPosition;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
 import org.gnome.gtk.FileChooserWidget;
+import org.gnome.gtk.FileFilter;
 import org.gnome.gtk.Frame;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
@@ -126,8 +127,22 @@ public class MergeWidget extends VBox implements ActionWidget
         fileEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
         chunkRow.packStart(fileEntry, true, true, 0);
 
+        // Filter for the file chooser to limit the file choice
+        final FileFilter all = new FileFilter(_("All files"));
+        all.addPattern("*");
+        final FileFilter chk = new FileFilter(_("Valid chunks"));
+        chk.addPattern("*.001.gsp");
+        chk.addPattern("*.001.xtm");
+        chk.addPattern("*.000");
+        chk.addPattern("*.001");
+
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
         fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
+
+        // Add filters to the file chooser
+        fileChooser.addFilter(all);
+        fileChooser.addFilter(chk);
+
         fileChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {

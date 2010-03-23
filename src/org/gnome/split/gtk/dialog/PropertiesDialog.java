@@ -162,7 +162,7 @@ public class PropertiesDialog extends Dialog implements DeleteEvent, Response
         progress = new ProgressBar();
         progRows.packStart(progress, false, false, 0);
 
-        // Close button (save the configuration and close)
+        // Close button
         this.addButton(Stock.CLOSE, ResponseType.CLOSE);
 
         // Connect classic signals

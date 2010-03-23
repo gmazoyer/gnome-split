@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-03-23 02:59+0100\n"
+"POT-Creation-Date: 2010-03-24 00:18+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -279,7 +279,7 @@ msgstr ""
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:444
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:523
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:154
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:155
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:170
 msgid "Choose a directory."
 msgstr ""
 
@@ -301,6 +301,10 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:589
 msgid "Show desktop _notification."
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/MiniSplitDialog.java:49
+msgid "Split a file"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/WarningDialog.java:42
@@ -325,7 +329,7 @@ msgid "Split assistant"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:110
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:93
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:94
 msgid "Merge assistant"
 msgstr ""
 
@@ -364,19 +368,19 @@ msgstr ""
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:195
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:196
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:197
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:166
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:176
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:186
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:245
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:299
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:300
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:301
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:181
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:191
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:201
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:260
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:314
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:315
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:316
 #: src/org/gnome/split/core/utils/SizeUnit.java:106
 msgid "Unknown"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:123
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:256
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:265
 msgid "Filename:"
 msgstr ""
 
@@ -401,22 +405,22 @@ msgid "File to split:"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:202
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:149
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:157
 msgid "Select a file."
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:237
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:184
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:193
 msgid "This file is a directory!"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:245
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:192
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:201
 msgid "This file does not exist!"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:277
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:224
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:233
 msgid "File selection"
 msgstr ""
 
@@ -489,7 +493,7 @@ msgid "Start the split after the confirmation."
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:475
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:283
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:292
 msgid "Confirmation"
 msgstr ""
 
@@ -518,7 +522,7 @@ msgid ""
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:499
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:307
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:316
 msgid "Introduction"
 msgstr ""
 
@@ -537,12 +541,12 @@ msgid "File:"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:123
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:147
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:162
 msgid "Destination:"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:144
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:129
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:139
 msgid "Choose a file."
 msgstr ""
 
@@ -554,7 +558,7 @@ msgstr ""
 msgid "version"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:125
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:126
 msgid ""
 "Here, you have to select the first file to merge. After that, you can go to "
 "the\n"
@@ -563,11 +567,16 @@ msgid ""
 "using its full path in the text entry."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:141
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:142
 msgid "File to merge:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:236
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:150
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:133
+msgid "Valid chunks"
+msgstr ""
+
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:245
 msgid ""
 "The first file to merge is now selected. But you can still check that you "
 "pick\n"
@@ -575,17 +584,17 @@ msgid ""
 "previous step to choose another one."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:264
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:273
 msgid ""
 "Just a last question before you confirm the merge to do.\n"
 "If you check the following box, the merge will start after your confirmation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:269
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:278
 msgid "Start the merge after the confirmation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:293
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:302
 msgid ""
 "This assistant will help you to create a <b>merge</b>.\n"
 "\n"
@@ -601,37 +610,41 @@ msgid ""
 "to have the merge done by taking a look at <i>Edit > Preferences > Merge</i>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:121
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:122
 msgid "First chunk:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:163
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:131
+msgid "All files"
+msgstr ""
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:178
 msgid "Chunks:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:173
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:188
 msgid "Total size:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:183
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:198
 msgid "MD5 sum:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:222
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:237
 msgid "Cannot merge."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:223
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:238
 msgid ""
 "You will not be able to merge the files because this file format is unknown. "
 "You are welcome to fill a bug about that."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:247
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:262
 msgid "MD5 sum will be use."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:247
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:262
 msgid "MD5 sum will not be use."
 msgstr ""
 
