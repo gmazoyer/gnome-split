@@ -32,6 +32,8 @@ import org.gnome.split.config.Constants;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.exception.EngineException;
+import org.gnome.split.core.exception.ExceptionMessage;
+import org.gnome.split.core.exception.InvalidSizeException;
 import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.merger.DefaultMergeEngine;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
@@ -204,6 +206,11 @@ public class DefaultEngineListener implements EngineListener
             // MD5 exception - warning only (file *may* work)
             item = Stock.DIALOG_WARNING;
             dialog = new WarningDialog(gtk, exception.getExceptionMessage().getDetails());
+        } else if (exception instanceof InvalidSizeException) {
+            // Invalid size exception
+            ExceptionMessage message = exception.getExceptionMessage();
+            item = Stock.DIALOG_ERROR;
+            dialog = new ErrorDialog(gtk, message.getMessage(), message.getDetails());
         } else {
             // Other exception - error (file is supposed broken)
             item = Stock.DIALOG_ERROR;

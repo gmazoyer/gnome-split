@@ -28,7 +28,6 @@ import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.exception.EngineException;
-import org.gnome.split.core.exception.ExceptionMessage;
 import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
@@ -239,7 +238,7 @@ public final class Xtremsplit extends DefaultMergeEngine
 
             if (!success && md5) {
                 // Notify the error
-                EngineException exception = new MD5Exception(ExceptionMessage.MD5_DIFFER);
+                EngineException exception = new MD5Exception();
                 this.fireEngineError(exception);
             } else if (success) {
                 if (app.getConfig().DELETE_PARTS && md5) {

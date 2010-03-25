@@ -1,5 +1,5 @@
 /*
- * MD5Exception.java
+ * InvalidSizeException.java
  * 
  * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
@@ -21,19 +21,18 @@
 package org.gnome.split.core.exception;
 
 /**
- * Define a new {@link Exception} to manage exceptions due to MD5 sums that
- * differ.
+ * Define a new {@link Exception} to manage exceptions due to an invalid size.
  * 
  * @author Guillaume Mazoyer
  */
-public final class MD5Exception extends EngineException
+public final class InvalidSizeException extends EngineException
 {
     private static final long serialVersionUID = 1L;
 
     /**
      * Create an {@link Exception} with an {@link ExceptionMessage} .
      */
-    public MD5Exception() {
-        super(ExceptionMessage.MD5_DIFFER);
+    public InvalidSizeException() {
+        super(ExceptionMessage.INVALID_SIZE);
     }
 }

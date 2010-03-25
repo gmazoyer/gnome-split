@@ -28,7 +28,7 @@ import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
-import org.gnome.split.core.exception.ExceptionMessage;
+import org.gnome.split.core.exception.InvalidSizeException;
 
 /**
  * Define the model that all split engines should use.
@@ -69,7 +69,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
         synchronized (mutex) {
             // Invalid size
             if (size == -1) {
-                this.fireEngineError(new EngineException(ExceptionMessage.INVALID_SIZE));
+                this.fireEngineError(new InvalidSizeException());
                 return;
             }
 
