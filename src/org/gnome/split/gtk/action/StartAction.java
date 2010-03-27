@@ -20,17 +20,10 @@
  */
 package org.gnome.split.gtk.action;
 
-import java.io.File;
-import java.lang.reflect.Constructor;
-
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Stock;
 import org.gnome.split.core.Engine;
-import org.gnome.split.core.merger.DefaultMergeEngine;
-import org.gnome.split.core.splitter.Generic;
-import org.gnome.split.core.splitter.GnomeSplit;
-import org.gnome.split.core.splitter.KFK;
-import org.gnome.split.core.splitter.Xtremsplit;
+import org.gnome.split.core.EngineFactory;
 import org.gnome.split.gtk.dialog.ErrorDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.MergeWidget;
@@ -74,48 +67,21 @@ public final class StartAction extends Action
                 return;
             }
 
-            // These classes are our splitter classes
-            Class<?>[] splitters = new Class[] {
-                    Generic.class, GnomeSplit.class, Xtremsplit.class, KFK.class
-            };
-
             // A split is performed
             if (widget instanceof SplitWidget) {
                 // Widget related info
                 SplitWidget split = (SplitWidget) widget;
 
-                // Split related info
-                File file = new File(split.getFilename());
-                long size = split.getMaxSize();
-                String dest = split.getDestination();
-                int algorithm = split.getAlgorithm();
-
-                Constructor<?> constructor;
-                try {
-                    // Get the class constructor
-                    constructor = splitters[algorithm].getConstructor(org.gnome.split.GnomeSplit.class,
-                            File.class, long.class, String.class);
-
-                    // Create the runnable object
-                    run = (Engine) constructor.newInstance(app, file, size, dest);
-
-                    // Finally, start the thread
-                    new Thread(run, "Split - " + file.getName()).start();
-                } catch (Exception e) {
-                    // Should *never* happen
-                    e.printStackTrace();
-                }
+                // Create the new process and start it
+                run = EngineFactory.createSplitEngine(app, split);
+                new Thread(run, "Split - " + split.getFile().getName()).start();
             } else if (widget instanceof MergeWidget) {
                 // Widget related info
                 MergeWidget merge = (MergeWidget) widget;
 
-                // Split related info
-                File file = merge.getFirstFile();
-                String dest = merge.getDestination();
-
                 // Create the new process and start it
-                run = DefaultMergeEngine.getInstance(app, file, dest);
-                new Thread(run, "Merge - " + file.getName()).start();
+                run = EngineFactory.createMergeEngine(app, merge);
+                new Thread(run, "Merge - " + merge.getFile().getName()).start();
             }
 
             // Update the interface state

@@ -40,6 +40,7 @@ import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.merger.DefaultMergeEngine;
+import org.gnome.split.core.model.MergeModel;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.gtk.dialog.ErrorDialog;
 
@@ -50,7 +51,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class MergeWidget extends VBox implements ActionWidget
+public class MergeWidget extends VBox implements ActionWidget, MergeModel
 {
     /**
      * The GNOME Split application.
@@ -333,9 +334,12 @@ public class MergeWidget extends VBox implements ActionWidget
         }
     }
 
-    /**
-     * Get the name of the file to create.
-     */
+    @Override
+    public File getFile() {
+        return new File(fileEntry.getText());
+    }
+
+    @Override
     public String getDestination() {
         StringBuilder builder = new StringBuilder();
 
@@ -345,13 +349,6 @@ public class MergeWidget extends VBox implements ActionWidget
         builder.append(destEntry.getText());
 
         return builder.toString();
-    }
-
-    /**
-     * Get the first chunk to merge.
-     */
-    public File getFirstFile() {
-        return new File(fileEntry.getText());
     }
 
     /**

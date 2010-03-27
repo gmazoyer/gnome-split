@@ -39,6 +39,7 @@ import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.model.SplitModel;
 import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.SizeUnit;
 
@@ -49,7 +50,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class SplitWidget extends VBox implements ActionWidget
+public class SplitWidget extends VBox implements ActionWidget, SplitModel
 {
     /**
      * The GNOME Split application.
@@ -294,16 +295,12 @@ public class SplitWidget extends VBox implements ActionWidget
         }
     }
 
-    /**
-     * Get the name of the file to split.
-     */
-    public String getFilename() {
-        return fileEntry.getText();
+    @Override
+    public File getFile() {
+        return new File(fileEntry.getText());
     }
 
-    /**
-     * Get the names of the files to create.
-     */
+    @Override
     public String getDestination() {
         StringBuilder builder = new StringBuilder();
 
@@ -315,12 +312,10 @@ public class SplitWidget extends VBox implements ActionWidget
         return builder.toString();
     }
 
-    /**
-     * Get the maximum size of each chunk.
-     */
+    @Override
     public long getMaxSize() {
         int unit = sizeUnits.getActive();
-        long input = new File(this.getFilename()).length();
+        long input = this.getFile().length();
         long result;
 
         if (unit == 0) {
@@ -338,9 +333,7 @@ public class SplitWidget extends VBox implements ActionWidget
         return ((result >= input) ? -1 : result);
     }
 
-    /**
-     * Get the ID of the {@link Algorithm algorithm} to use.
-     */
+    @Override
     public int getAlgorithm() {
         return algoList.getActive();
     }
