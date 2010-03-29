@@ -23,6 +23,7 @@ package org.gnome.split.core.splitter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
@@ -175,5 +176,45 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected void fireEngineDone(double done, double total) {
         app.getEngineListener().engineDone(done, total);
+    }
+
+    /**
+     * Write a chunk by reading the file to split and copying its content.
+     */
+    protected void writeChunk(RandomAccessFile split, RandomAccessFile chunk) throws IOException {
+        // Needed variables to know when the chunk writing must be stopped
+        int read = 0;
+        byte[] buffer = null;
+
+        while (read < size) {
+            if (paused) {
+                try {
+                    // Pause the current thread
+                    mutex.wait();
+                } catch (InterruptedException e) {
+                    // Drop this exception
+                }
+            }
+
+            if (stopped) {
+                // Stop the current thread
+                this.fireEngineStopped();
+                return;
+            }
+
+            // Define a new buffer size
+            buffer = new byte[(65536 > (size - read) ? (int) (size - read) : 65536)];
+
+            // Read and write data
+            split.read(buffer);
+            chunk.write(buffer);
+
+            // Update read and write status
+            read += buffer.length;
+            total += buffer.length;
+
+            // Notify the view
+            this.fireEngineDone((double) total, (double) file.length());
+        }
     }
 }

@@ -117,9 +117,6 @@ public final class Xtremsplit extends DefaultSplitEngine
             // Open a new file
             toSplit = new RandomAccessFile(file, "r");
 
-            // Define the buffer size
-            byte[] buffer;
-
             // Used for the MD5 calculation
             StringBuilder md5sum = null;
             MD5Hasher md5hasher = null;
@@ -137,7 +134,6 @@ public final class Xtremsplit extends DefaultSplitEngine
                     // Open the part
                     chunk = new File(this.getChunkName(destination, i));
                     access = new RandomAccessFile(chunk, "rw");
-                    int read = 0;
 
                     // Notify the view from a new part
                     chunks.add(chunk.getAbsolutePath());
@@ -151,34 +147,8 @@ public final class Xtremsplit extends DefaultSplitEngine
                         size = file.length() - total;
                     }
 
-                    while (read < size) {
-                        if (paused) {
-                            try {
-                                // Pause the current thread
-                                mutex.wait();
-                            } catch (InterruptedException e) {
-                                // Drop this exception
-                            }
-                        }
-
-                        if (stopped) {
-                            // Stop the current thread
-                            this.fireEngineStopped();
-                            return;
-                        }
-
-                        // Define a new buffer size
-                        buffer = new byte[(65536 > (size - read) ? (int) (size - read) : 65536)];
-
-                        // Read and write data
-                        toSplit.read(buffer);
-                        access.write(buffer);
-
-                        // Update read and write status
-                        read += buffer.length;
-                        total += buffer.length;
-                        this.fireEngineDone((double) total, (double) file.length());
-                    }
+                    // Write the chunk
+                    this.writeChunk(toSplit, access);
 
                     // Should we save MD5 sum?
                     if (app.getConfig().SAVE_FILE_HASH) {

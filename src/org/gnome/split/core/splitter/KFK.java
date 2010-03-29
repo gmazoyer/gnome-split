@@ -51,9 +51,6 @@ public final class KFK extends DefaultSplitEngine
             // Open a new file
             toSplit = new RandomAccessFile(file, "r");
 
-            // Define the buffer size
-            byte[] buffer;
-
             for (int i = 0; i < parts; i++) {
                 RandomAccessFile access = null;
                 File chunk = null;
@@ -61,7 +58,6 @@ public final class KFK extends DefaultSplitEngine
                     // Open the part
                     chunk = new File(this.getChunkName(destination, i));
                     access = new RandomAccessFile(chunk, "rw");
-                    int read = 0;
 
                     // Notify the view from a new part
                     chunks.add(chunk.getAbsolutePath());
@@ -72,34 +68,8 @@ public final class KFK extends DefaultSplitEngine
                         size = file.length() - total;
                     }
 
-                    while (read < size) {
-                        if (paused) {
-                            try {
-                                // Pause the current thread
-                                mutex.wait();
-                            } catch (InterruptedException e) {
-                                // Drop this exception
-                            }
-                        }
-
-                        if (stopped) {
-                            // Stop the current thread
-                            this.fireEngineStopped();
-                            return;
-                        }
-
-                        // Define a new buffer size
-                        buffer = new byte[(65536 > (size - read) ? (int) (size - read) : 65536)];
-
-                        // Read and write data
-                        toSplit.read(buffer);
-                        access.write(buffer);
-
-                        // Update read and write status
-                        read += buffer.length;
-                        total += buffer.length;
-                        this.fireEngineDone((double) total, (double) file.length());
-                    }
+                    // Write the chunk
+                    this.writeChunk(toSplit, access);
 
                     // Notify the view from a written part
                     this.fireEnginePartWritten(chunk.getName());
