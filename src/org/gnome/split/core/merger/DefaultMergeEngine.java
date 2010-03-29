@@ -23,6 +23,7 @@ package org.gnome.split.core.merger;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
@@ -223,6 +224,50 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     protected void fireEngineDone(double done, double total) {
         app.getEngineListener().engineDone(done, total);
+    }
+
+    /**
+     * Merge a chunk into another file by copying its content. The
+     * <code>read</code> parameter is used to know how many bytes have been
+     * already read. The <code>length</code> parameter is used to know the
+     * maximum number of bytes that can be read.
+     */
+    protected void mergeChunk(RandomAccessFile merge, RandomAccessFile chunk, long read, long length)
+            throws IOException {
+        // Setup the buffer
+        byte[] buffer = null;
+
+        // Merge the file
+        while (read < length) {
+            if (paused) {
+                try {
+                    // Pause the current thread
+                    mutex.wait();
+                } catch (InterruptedException e) {
+                    // Drop the exception
+                }
+            }
+
+            if (stopped) {
+                // Stop the current thread
+                this.fireEngineStopped();
+                return;
+            }
+
+            // Define a new buffer size
+            buffer = new byte[(65536 > (length - read) ? (int) (length - read) : 65536)];
+
+            // Read and write data
+            chunk.read(buffer);
+            merge.write(buffer);
+
+            // Update read and write status
+            read += buffer.length;
+            total += buffer.length;
+
+            // Notify the view
+            this.fireEngineDone((double) total, (double) fileLength);
+        }
     }
 
     /**

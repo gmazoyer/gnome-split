@@ -22,7 +22,6 @@ package org.gnome.split.core.merger;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -76,57 +75,23 @@ public final class KFK extends DefaultMergeEngine
     @Override
     public void merge() throws IOException, FileNotFoundException {
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 4);
-        FileOutputStream out = null;
+        RandomAccessFile out = null;
         File chunk = null;
 
         try {
             // Open the final file
-            out = new FileOutputStream(filename);
-
-            // Define the buffer size
-            byte[] buffer;
+            out = new RandomAccessFile(filename, "rw");
 
             for (int i = 0; i < parts; i++) {
                 // Open the current part to merge
                 chunk = new File(this.getNextChunk(part, i));
                 RandomAccessFile access = new RandomAccessFile(chunk, "r");
 
-                // Setup size infos
-                long read = 0;
-                long length = access.length();
-
                 // Notify the view from a new part read
                 this.fireEnginePartRead(chunk.getName());
 
                 // Merge the file
-                while (read < length) {
-                    if (paused) {
-                        try {
-                            // Pause the current thread
-                            mutex.wait();
-                        } catch (InterruptedException e) {
-                            // Drop the exception
-                        }
-                    }
-
-                    if (stopped) {
-                        // Stop the current thread
-                        this.fireEngineStopped();
-                        return;
-                    }
-
-                    // Define a new buffer size
-                    buffer = new byte[(65536 > (length - read) ? (int) (length - read) : 65536)];
-
-                    // Read and write data
-                    access.read(buffer);
-                    out.write(buffer);
-
-                    // Update read and write status
-                    read += buffer.length;
-                    total += buffer.length;
-                    this.fireEngineDone((double) total, (double) fileLength);
-                }
+                this.mergeChunk(out, access, 0, access.length());
 
                 // Add the part the full read parts
                 chunks.add(chunk.getAbsolutePath());
