@@ -59,6 +59,7 @@ public final class Generic extends DefaultSplitEngine
     @Override
     public void split() throws IOException, FileNotFoundException {
         RandomAccessFile toSplit = null;
+        boolean run = true;
         try {
             // Open a new file
             toSplit = new RandomAccessFile(file, "r");
@@ -81,7 +82,12 @@ public final class Generic extends DefaultSplitEngine
                     }
 
                     // Write the chunk
-                    this.writeChunk(toSplit, access);
+                    run = this.writeChunk(toSplit, access);
+
+                    // Writing stopped
+                    if (!run) {
+                        return;
+                    }
 
                     // Notify the view from a written part
                     this.fireEnginePartWritten(chunk.getName());

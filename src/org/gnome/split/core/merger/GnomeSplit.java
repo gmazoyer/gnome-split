@@ -102,6 +102,7 @@ public final class GnomeSplit extends DefaultMergeEngine
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
         RandomAccessFile out = null;
         File chunk = null;
+        boolean run = true;
         boolean success = true;
 
         try {
@@ -130,7 +131,12 @@ public final class GnomeSplit extends DefaultMergeEngine
                 }
 
                 // Merge the file
-                this.mergeChunk(out, access, read, length);
+                run = this.mergeChunk(out, access, read, length);
+
+                // Reading stopped
+                if (!run) {
+                    return;
+                }
 
                 if (md5 && (i == parts)) {
                     // Read the MD5 which was calculated during the split

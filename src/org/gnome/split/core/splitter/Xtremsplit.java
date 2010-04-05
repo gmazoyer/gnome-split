@@ -113,6 +113,7 @@ public final class Xtremsplit extends DefaultSplitEngine
     @Override
     public void split() throws IOException, FileNotFoundException {
         RandomAccessFile toSplit = null;
+        boolean run = true;
         try {
             // Open a new file
             toSplit = new RandomAccessFile(file, "r");
@@ -148,7 +149,12 @@ public final class Xtremsplit extends DefaultSplitEngine
                     }
 
                     // Write the chunk
-                    this.writeChunk(toSplit, access);
+                    run = this.writeChunk(toSplit, access);
+
+                    // Writing stopped
+                    if (!run) {
+                        return;
+                    }
 
                     // Should we save MD5 sum?
                     if (app.getConfig().SAVE_FILE_HASH) {

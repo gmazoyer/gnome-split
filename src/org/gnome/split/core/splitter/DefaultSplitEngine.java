@@ -179,9 +179,11 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     }
 
     /**
-     * Write a chunk by reading the file to split and copying its content.
+     * Write a chunk by reading the file to split and copying its content. It
+     * returns <code>true</code> if the writing was fully performed, else it
+     * returns <code>false</code>.
      */
-    protected void writeChunk(RandomAccessFile split, RandomAccessFile chunk) throws IOException {
+    protected boolean writeChunk(RandomAccessFile split, RandomAccessFile chunk) throws IOException {
         // Needed variables to know when the chunk writing must be stopped
         int read = 0;
         byte[] buffer = null;
@@ -199,7 +201,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
             if (stopped) {
                 // Stop the current thread
                 this.fireEngineStopped();
-                return;
+                return false;
             }
 
             // Define a new buffer size
@@ -216,5 +218,8 @@ public abstract class DefaultSplitEngine extends DefaultEngine
             // Notify the view
             this.fireEngineDone((double) total, (double) file.length());
         }
+
+        // Success
+        return true;
     }
 }

@@ -23,7 +23,6 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.Engine;
-import org.gnome.split.core.EngineListener;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -40,12 +39,10 @@ public final class CancelAction extends Action
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        EngineListener listener = this.getApplication().getEngineListener();
-        Engine engine = listener.getEngine();
+        Engine engine = this.getApplication().getEngineListener().getEngine();
 
         if (engine != null) {
             engine.stop(false);
-            listener.setEngine(null);
         }
     }
 }

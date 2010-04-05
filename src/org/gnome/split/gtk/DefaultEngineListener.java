@@ -84,7 +84,7 @@ public class DefaultEngineListener implements EngineListener
      */
     public DefaultEngineListener(final GnomeSplit app) {
         this.app = app;
-        this.inhibit = new DbusInhibit();
+        this.inhibit = null;
         this.gtk = app.getMainWindow();
         this.engine = null;
         this.timer = null;
@@ -98,6 +98,7 @@ public class DefaultEngineListener implements EngineListener
         if (engine != null) {
             // Inhibit hibernation if requested
             if (app.getConfig().NO_HIBERNATION) {
+                inhibit = new DbusInhibit();
                 inhibit.inhibit();
             }
 
@@ -112,8 +113,9 @@ public class DefaultEngineListener implements EngineListener
             app.getActionManager().setRunningState();
         } else {
             // Uninhibit hibernation if requested
-            if (app.getConfig().NO_HIBERNATION) {
+            if (app.getConfig().NO_HIBERNATION && (inhibit != null)) {
                 inhibit.unInhibit();
+                inhibit = null;
             }
 
             // Enable user interaction (only in action widget)

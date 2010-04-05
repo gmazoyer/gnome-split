@@ -77,6 +77,7 @@ public final class KFK extends DefaultMergeEngine
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 4);
         RandomAccessFile out = null;
         File chunk = null;
+        boolean run = true;
 
         try {
             // Open the final file
@@ -91,7 +92,12 @@ public final class KFK extends DefaultMergeEngine
                 this.fireEnginePartRead(chunk.getName());
 
                 // Merge the file
-                this.mergeChunk(out, access, 0, access.length());
+                run = this.mergeChunk(out, access, 0, access.length());
+
+                // Reading stopped
+                if (!run) {
+                    return;
+                }
 
                 // Add the part the full read parts
                 chunks.add(chunk.getAbsolutePath());

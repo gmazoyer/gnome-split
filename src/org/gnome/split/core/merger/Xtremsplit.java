@@ -135,6 +135,7 @@ public final class Xtremsplit extends DefaultMergeEngine
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
         RandomAccessFile out = null;
         File chunk = null;
+        boolean run = true;
         boolean success = true;
 
         try {
@@ -173,7 +174,12 @@ public final class Xtremsplit extends DefaultMergeEngine
                 }
 
                 // Merge the file
-                this.mergeChunk(out, access, read, length);
+                run = this.mergeChunk(out, access, read, length);
+
+                // Reading stopped
+                if (!run) {
+                    return;
+                }
 
                 if (md5) {
                     // Notify the view

@@ -230,9 +230,10 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Merge a chunk into another file by copying its content. The
      * <code>read</code> parameter is used to know how many bytes have been
      * already read. The <code>length</code> parameter is used to know the
-     * maximum number of bytes that can be read.
+     * maximum number of bytes that can be read. It returns <code>true</code>
+     * if the reading was fully performed, else it returns <code>false</code>.
      */
-    protected void mergeChunk(RandomAccessFile merge, RandomAccessFile chunk, long read, long length)
+    protected boolean mergeChunk(RandomAccessFile merge, RandomAccessFile chunk, long read, long length)
             throws IOException {
         // Setup the buffer
         byte[] buffer = null;
@@ -251,7 +252,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             if (stopped) {
                 // Stop the current thread
                 this.fireEngineStopped();
-                return;
+                return false;
             }
 
             // Define a new buffer size
@@ -268,6 +269,9 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             // Notify the view
             this.fireEngineDone((double) total, (double) fileLength);
         }
+
+        // Success
+        return true;
     }
 
     /**
