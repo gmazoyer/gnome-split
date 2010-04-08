@@ -35,7 +35,7 @@ public final class Utils
      */
     public static double datetimeFromNow() {
         // Actually, Java can't go back further than 1900/01/30 so this is
-        // just for cosmetical purpose. It is the date on which Dephi's
+        // just for a cosmetic purpose. It is the date on which Delphi's
         // TDatetime type is based.
         GregorianCalendar base = new GregorianCalendar(1899, 12, 30);
         GregorianCalendar time = new GregorianCalendar();

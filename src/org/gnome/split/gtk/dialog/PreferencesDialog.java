@@ -21,24 +21,17 @@
 package org.gnome.split.gtk.dialog;
 
 import org.gnome.gdk.Event;
-import org.gnome.gdk.Pixbuf;
 import org.gnome.gtk.Alignment;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.ComboBox;
-import org.gnome.gtk.DataColumn;
-import org.gnome.gtk.DataColumnPixbuf;
-import org.gnome.gtk.DataColumnString;
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
-import org.gnome.gtk.Frame;
-import org.gnome.gtk.Gtk;
 import org.gnome.gtk.HBox;
-import org.gnome.gtk.IconSize;
-import org.gnome.gtk.IconView;
+import org.gnome.gtk.Justification;
 import org.gnome.gtk.Label;
-import org.gnome.gtk.ListStore;
+import org.gnome.gtk.Notebook;
 import org.gnome.gtk.RadioButton;
 import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.ResponseType;
@@ -48,8 +41,6 @@ import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.ToggleButton;
-import org.gnome.gtk.TreeIter;
-import org.gnome.gtk.TreePath;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.VButtonBox;
 import org.gnome.gtk.Widget;
@@ -82,21 +73,6 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
     private GnomeSplit app;
 
     /**
-     * The main container of the dialog.
-     */
-    private VBox container;
-
-    /**
-     * All pages that can be displayed.
-     */
-    private Alignment[] pages;
-
-    /**
-     * The current displayed page.
-     */
-    private Alignment current;
-
-    /**
      * Directory chooser for the split widget.
      */
     private FileChooserButton splitDirChooser;
@@ -113,34 +89,16 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         this.config = app.getConfig();
         this.app = app;
 
-        // Main container
-        container = new VBox(false, 3);
-        container.show();
-        this.add(container);
+        // Add the notebook
+        final Notebook notebook = new Notebook();
+        notebook.show();
+        this.add(notebook);
 
-        // Add the icon view
-        container.packStart(this.createIconView(), false, false, 0);
-
-        // Pages available
-        pages = new Alignment[] {
-                this.createGeneralPage(), this.createSplitPage(), this.createMergePage(),
-                this.createDesktopPage()
-        };
-
-        // Add all pages
-        for (Alignment page : pages) {
-            page.hide();
-            container.packStart(page, false, false, 0);
-        }
-
-        // Make all pages the same size
-        SizeGroup group = new SizeGroup(SizeGroupMode.BOTH);
-        for (Alignment page : pages) {
-            group.add(page);
-        }
-
-        // Display the first page
-        this.switchTo(pages[0]);
+        // Add all the pages
+        notebook.appendPage(this.createGeneralPage(), new Label(_("General")));
+        notebook.appendPage(this.createSplitPage(), new Label(_("Split")));
+        notebook.appendPage(this.createMergePage(), new Label(_("Merge")));
+        notebook.appendPage(this.createDesktopPage(), new Label(_("Desktop")));
 
         // Close button (save the configuration and close)
         this.addButton(Stock.CLOSE, ResponseType.CLOSE);
@@ -151,96 +109,62 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
     }
 
     /**
-     * Create a {@link IconView} and pack it in a {@link Frame}.
+     * Just create a label with 4 spaces in it for alignment reason.
      */
-    private Frame createIconView() {
-        // Widget which will contain the view
-        final Frame frame = new Frame(null);
+    private Label createEmptyLabel() {
+        return new Label("    ");
+    }
 
-        // Create the icon view
-        final IconView view = new IconView();
-        frame.add(view);
+    /**
+     * Create a label justified to the left and using bold font.
+     */
+    private Label createSectionLabel(String text) {
+        // Create the label
+        final Label label = new Label("<b>" + text + "</b>");
 
-        // Create the needed columns
-        final DataColumnPixbuf icon = new DataColumnPixbuf();
-        final DataColumnString text = new DataColumnString();
+        // Use pango markup language
+        label.setUseMarkup(true);
 
-        // Create the model and use it
-        final ListStore store = new ListStore(new DataColumn[] {
-                icon, text
-        });
-        view.setModel(store);
+        // Make it goes to the left
+        label.setAlignment(0f, 0.5f);
+        label.setJustify(Justification.LEFT);
 
-        // Set up the columns for the icon view
-        view.setPixbufColumn(icon);
-        view.setTextColumn(text);
-        view.setColumns(4);
-
-        TreeIter row;
-        Pixbuf pixbuf;
-
-        // General icon
-        row = store.appendRow();
-        pixbuf = Gtk.renderIcon(view, Stock.PREFERENCES, IconSize.LARGE_TOOLBAR);
-        store.setValue(row, icon, pixbuf);
-        store.setValue(row, text, _("General"));
-
-        // Split icon
-        row = store.appendRow();
-        pixbuf = Gtk.renderIcon(view, Stock.CUT, IconSize.LARGE_TOOLBAR);
-        store.setValue(row, icon, pixbuf);
-        store.setValue(row, text, _("Split"));
-
-        // Merge icon
-        row = store.appendRow();
-        pixbuf = Gtk.renderIcon(view, Stock.PASTE, IconSize.LARGE_TOOLBAR);
-        store.setValue(row, icon, pixbuf);
-        store.setValue(row, text, _("Merge"));
-
-        // Desktop icon
-        row = store.appendRow();
-        pixbuf = Gtk.renderIcon(view, Stock.FULLSCREEN, IconSize.LARGE_TOOLBAR);
-        store.setValue(row, icon, pixbuf);
-        store.setValue(row, text, _("Desktop"));
-
-        // Select the first icon
-        view.selectPath(new TreePath("0"));
-
-        // Connect the signal to handle change of page
-        view.connect(new IconView.SelectionChanged() {
-            @Override
-            public void onSelectionChanged(IconView source) {
-                TreePath[] selections = source.getSelectedItems();
-                if ((selections != null) && (selections.length > 0)) {
-                    // Get the page ID and change the page
-                    int id = selections[0].getIndices()[0];
-                    switchTo(pages[id]);
-                }
-            }
-        });
-
-        // Show the view
-        frame.showAll();
-
-        // And finally
-        return frame;
+        // Finally
+        return label;
     }
 
     /**
      * Create the first page of the dialog (general config).
      */
-    private Alignment createGeneralPage() {
-        final Alignment page = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
-        page.setPadding(5, 5, 20, 5);
+    private VBox createGeneralPage() {
+        final VBox page = new VBox(false, 18);
+        page.setBorderWidth(12);
 
         // Buttons group for default view choice
         final RadioGroup group = new RadioGroup();
 
-        // Restore default view status
-        final Label viewLabel = new Label(_("Default view:"));
+        // First options
+        final VBox first = new VBox(false, 6);
+        page.packStart(first, false, false, 0);
 
+        // Add the label
+        first.packStart(this.createSectionLabel(_("Default view")), false, false, 0);
+
+        // Add the row of options
+        final HBox firstRow = new HBox(false, 0);
+        first.packStart(firstRow, false, false, 0);
+
+        // Add an empty label
+        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+
+        // Pack the options
+        final VBox boxes = new VBox(false, 6);
+        firstRow.packStart(boxes, false, false, 0);
+
+        // Split choice
         final RadioButton split = new RadioButton(group, _("Split"));
         split.setActive(config.DEFAULT_VIEW == 0);
+        boxes.packStart(split, false, false, 0);
         split.connect(new RadioButton.Toggled() {
             @Override
             public void onToggled(ToggleButton source) {
@@ -252,8 +176,10 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
+        // Merge choice
         final RadioButton merge = new RadioButton(group, _("Merge"));
         merge.setActive(config.DEFAULT_VIEW == 1);
+        boxes.packStart(merge, false, false, 0);
         merge.connect(new RadioButton.Toggled() {
             @Override
             public void onToggled(ToggleButton source) {
@@ -265,9 +191,24 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
+        // Second option
+        final VBox second = new VBox(false, 6);
+        page.packStart(second, false, false, 0);
+
+        // Add the label
+        second.packStart(this.createSectionLabel(_("Program run")), false, false, 0);
+
+        // Add the row of options
+        final HBox secondRow = new HBox(false, 0);
+        second.packStart(secondRow, false, false, 0);
+
+        // Add an empty label
+        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+
         // Restore multiple instances status
         final CheckButton instances = new CheckButton(_("_Allow multiple instances."));
         instances.setActive(config.MULTIPLE_INSTANCES);
+        secondRow.packStart(instances, false, false, 0);
         instances.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -277,65 +218,34 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
-        // Width value
+        // Third option
+        final VBox third = new VBox(false, 6);
+        page.packStart(third, false, false, 0);
+
+        // Add the label
+        third.packStart(this.createSectionLabel(_("Size of the main window")), false, false, 0);
+
+        // Add the row of options
+        final HBox thirdRow = new HBox(false, 0);
+        third.packStart(thirdRow, false, false, 0);
+
+        // Add an empty label
+        thirdRow.packStart(this.createEmptyLabel(), false, false, 0);
+
+        // Add a box to pack widgets to change the size
+        final VBox sizeBox = new VBox(false, 6);
+        thirdRow.packStart(sizeBox, false, false, 0);
+
+        // Create some needed widgets
         final SpinButton width = new SpinButton(1, 2048, 1);
-        width.setSensitive(config.CUSTOM_WINDOW_SIZE);
-        width.setValue(config.WINDOW_SIZE_X);
-        width.connect(new SpinButton.ValueChanged() {
-            @Override
-            public void onValueChanged(SpinButton source) {
-                // Save preferences
-                config.WINDOW_SIZE_X = (int) source.getValue();
-                config.savePreferences();
-            }
-        });
-
-        // Height value
         final SpinButton height = new SpinButton(1, 2048, 1);
-        height.setSensitive(config.CUSTOM_WINDOW_SIZE);
-        height.setValue(config.WINDOW_SIZE_Y);
-        height.connect(new SpinButton.ValueChanged() {
-            @Override
-            public void onValueChanged(SpinButton source) {
-                // Save preferences
-                config.WINDOW_SIZE_Y = (int) source.getValue();
-                config.savePreferences();
-            }
-        });
-
-        // Button to use the current size of the window
-        final Button useCurrent = new Button(_("Use the current size"));
-        useCurrent.setSensitive(config.CUSTOM_WINDOW_SIZE);
-        useCurrent.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button source) {
-                double x = (double) app.getMainWindow().getWidth();
-                double y = (double) app.getMainWindow().getHeight();
-
-                // Update the widgets
-                width.setValue(x);
-                height.setValue(y);
-            }
-        });
-
-        // Button to apply the defined size
+        final Button useCurrent = new Button(_("Use the _current size"));
         final Button apply = new Button(Stock.APPLY);
-        apply.setSensitive(config.CUSTOM_WINDOW_SIZE);
-        apply.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button source) {
-                // Get the size
-                int width = config.WINDOW_SIZE_X;
-                int height = config.WINDOW_SIZE_Y;
-
-                // Resize the window
-                app.getMainWindow().resize(width, height);
-            }
-        });
 
         // Restore window size status
-        final CheckButton customSize = new CheckButton(_("_Use a custom size for the main window."));
+        final CheckButton customSize = new CheckButton(_("_Use a custom size."));
         customSize.setActive(config.CUSTOM_WINDOW_SIZE);
+        sizeBox.packStart(customSize, false, false, 0);
         customSize.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -353,44 +263,82 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
-        // Main container
-        final VBox container = new VBox(false, 5);
-        page.add(container);
+        // Pack spin buttons in a box
+        final HBox firstLine = new HBox(false, 3);
+        sizeBox.packStart(firstLine, false, false, 0);
 
-        // Pack default view widgets
-        final HBox viewBox = new HBox(false, 3);
-        container.packStart(viewBox, true, true, 0);
+        // Width value
+        width.setSensitive(config.CUSTOM_WINDOW_SIZE);
+        width.setValue(config.WINDOW_SIZE_X);
+        firstLine.packStart(width, true, true, 0);
+        width.connect(new SpinButton.ValueChanged() {
+            @Override
+            public void onValueChanged(SpinButton source) {
+                // Save preferences
+                config.WINDOW_SIZE_X = (int) source.getValue();
+                config.savePreferences();
+            }
+        });
 
-        // Pack the widgets
-        viewBox.packStart(viewLabel, true, true, 0);
-        viewBox.packStart(split, true, true, 0);
-        viewBox.packStart(merge, true, true, 0);
+        // Just for design
+        firstLine.packStart(new Label("x"), true, true, 0);
 
-        // Pack the multiple instances option
-        container.packStart(instances, true, true, 0);
+        // Height value
+        height.setSensitive(config.CUSTOM_WINDOW_SIZE);
+        height.setValue(config.WINDOW_SIZE_Y);
+        firstLine.packStart(height, true, true, 0);
+        height.connect(new SpinButton.ValueChanged() {
+            @Override
+            public void onValueChanged(SpinButton source) {
+                // Save preferences
+                config.WINDOW_SIZE_Y = (int) source.getValue();
+                config.savePreferences();
+            }
+        });
 
-        // Pack size view widgets
-        final VBox sizeBox = new VBox(false, 3);
-        container.packStart(sizeBox, true, true, 0);
+        // Pack buttons in a box
+        final HBox secondLine = new HBox(false, 3);
+        sizeBox.packStart(secondLine, false, false, 0);
 
-        // Pack the check button
-        sizeBox.packStart(customSize, true, true, 0);
+        // Button to use the current size of the window
+        useCurrent.setSensitive(config.CUSTOM_WINDOW_SIZE);
+        secondLine.packStart(useCurrent, false, false, 0);
+        useCurrent.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                double x = (double) app.getMainWindow().getWidth();
+                double y = (double) app.getMainWindow().getHeight();
 
-        // Pack widgets in a box
-        final HBox line = new HBox(false, 3);
-        line.packStart(width, true, true, 0);
-        line.packStart(new Label("x"), true, true, 0);
-        line.packStart(height, true, true, 0);
-        line.packStart(useCurrent, true, true, 0);
-        line.packStart(apply, true, true, 0);
+                // Update the widgets
+                width.setValue(x);
+                height.setValue(y);
+            }
+        });
 
-        // Pack the box
-        sizeBox.packStart(line, true, true, 0);
+        // Button to apply the defined size
+        apply.setSensitive(config.CUSTOM_WINDOW_SIZE);
+        secondLine.packStart(apply, false, false, 0);
+        apply.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                // Get the size
+                int width = config.WINDOW_SIZE_X;
+                int height = config.WINDOW_SIZE_Y;
 
-        // Make the widgets the same size
-        SizeGroup widgets = new SizeGroup(SizeGroupMode.HORIZONTAL);
-        widgets.add(width);
-        widgets.add(height);
+                // Resize the window
+                app.getMainWindow().resize(width, height);
+            }
+        });
+
+        // Make the buttons the same size
+        final SizeGroup spins = new SizeGroup(SizeGroupMode.HORIZONTAL);
+        spins.add(width);
+        spins.add(height);
+
+        // Make the other buttons the same size
+        final SizeGroup buttons = new SizeGroup(SizeGroupMode.HORIZONTAL);
+        buttons.add(useCurrent);
+        buttons.add(apply);
 
         // Show all widgets
         page.showAll();
@@ -553,14 +501,29 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
     /**
      * Create the last page of the dialog (desktop config).
      */
-    private Alignment createDesktopPage() {
-        final Alignment page = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
-        page.setPadding(5, 5, 20, 5);
+    private VBox createDesktopPage() {
+        final VBox page = new VBox(false, 18);
+        page.setBorderWidth(12);
+
+        // First option
+        final VBox first = new VBox(false, 6);
+        page.packStart(first, false, false, 0);
+
+        // Add the label
+        first.packStart(this.createSectionLabel(_("Power management")), false, false, 0);
+
+        // Add the row of options
+        final HBox firstRow = new HBox(false, 0);
+        first.packStart(firstRow, false, false, 0);
+
+        // Add an empty label
+        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Restore hibernation status
         final CheckButton hibernation = new CheckButton(
-                _("Inhibit desktop _hibernation when action is performed."));
+                _("Inhibit desktop _hibernation when an action is performed."));
         hibernation.setActive(config.NO_HIBERNATION);
+        firstRow.packStart(hibernation, false, false, 0);
         hibernation.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -570,9 +533,28 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
+        // Second options
+        final VBox second = new VBox(false, 6);
+        page.packStart(second, false, false, 0);
+
+        // Add the label
+        second.packStart(this.createSectionLabel(_("Notification")), false, false, 0);
+
+        // Add the row of options
+        final HBox secondRow = new HBox(false, 0);
+        second.packStart(secondRow, false, false, 0);
+
+        // Add an empty label
+        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+
+        // Box to pack buttons
+        final VBox checks = new VBox(false, 6);
+        secondRow.packStart(checks, false, false, 0);
+
         // Restore tray icon status
         final CheckButton statusIcon = new CheckButton(_("Show _icon in the desktop notification area."));
         statusIcon.setActive(config.SHOW_STATUS_ICON);
+        checks.packStart(statusIcon, false, false, 0);
         statusIcon.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -588,6 +570,7 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         // Restore notifications status
         final CheckButton notification = new CheckButton(_("Show desktop _notification."));
         notification.setActive(config.USE_NOTIFICATION);
+        checks.packStart(notification, false, false, 0);
         notification.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -605,33 +588,10 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
-        // Pack buttons in the box
-        final VButtonBox vbox = new VButtonBox();
-        page.add(vbox);
-
-        // Add every options
-        vbox.add(hibernation);
-        vbox.add(statusIcon);
-        vbox.add(notification);
-
         // Show all widgets
         page.showAll();
 
         return page;
-    }
-
-    /**
-     * Switch the displayed page of the dialog using its ID.
-     */
-    private void switchTo(Alignment page) {
-        // Not the first display
-        if (current != null) {
-            current.hide();
-        }
-
-        // Update the current page with the requested one
-        current = page;
-        current.showAll();
     }
 
     @Override
