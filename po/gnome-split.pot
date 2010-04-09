@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-09 01:21+0200\n"
+"POT-Creation-Date: 2010-04-09 20:55+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,99 +223,107 @@ msgid ""
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:86
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:84
 msgid "GNOME Split Preferences"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:98
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:96
 msgid "General"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:99
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:165
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:97
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:163
 #: src/org/gnome/split/gtk/widget/SelectView.java:67
 msgid "Split"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:100
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:180
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:98
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:178
 #: src/org/gnome/split/gtk/widget/SelectView.java:75
 msgid "Merge"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:101
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:99
 msgid "Desktop"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:151
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:149
 msgid "Default view"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:199
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:197
 msgid "Program run"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:209
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:207
 msgid "_Allow multiple instances."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:226
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:224
 msgid "Size of the main window"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:242
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:240
 msgid "Use the _current size"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:246
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:244
 msgid "_Use a custom size."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:356
-msgid "_Calculate the MD5 if possible."
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:359
+msgid "During a split"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:368
-msgid "Default algorithm:"
+msgid "_Calculate the MD5 sum if possible."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:389
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:468
-msgid "Default directory:"
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:385
+msgid "Default algorithm"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:392
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:471
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:418
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:500
+msgid "Default directory"
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:428
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:510
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:155
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:171
 msgid "Choose a directory."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:443
-msgid "_Remove parts if the merge was successful."
-msgstr ""
-
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:456
-msgid "_Open the created file if the merge was successful."
+msgid "After a merge"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:513
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:470
+msgid "_Remove the chunks."
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:483
+msgid "_Open the created file."
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:533
 msgid "Power management"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:524
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:544
 msgid "Inhibit desktop _hibernation when an action is performed."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:541
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:561
 msgid "Notification"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:555
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:575
 msgid "Show _icon in the desktop notification area."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:571
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:591
 msgid "Show desktop _notification."
 msgstr ""
 

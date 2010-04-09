@@ -21,7 +21,6 @@
 package org.gnome.split.gtk.dialog;
 
 import org.gnome.gdk.Event;
-import org.gnome.gtk.Alignment;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.ComboBox;
@@ -42,7 +41,6 @@ import org.gnome.gtk.Stock;
 import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.VBox;
-import org.gnome.gtk.VButtonBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.gtk.Dialog.Response;
@@ -349,12 +347,27 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
     /**
      * Create the second page of the dialog (split config).
      */
-    private Alignment createSplitPage() {
-        final Alignment page = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
-        page.setPadding(5, 5, 20, 5);
+    private VBox createSplitPage() {
+        final VBox page = new VBox(false, 18);
+        page.setBorderWidth(12);
 
-        final CheckButton md5sum = new CheckButton(_("_Calculate the MD5 if possible."));
+        // First option
+        final VBox first = new VBox(false, 6);
+        page.packStart(first, false, false, 0);
+
+        // Add the label
+        first.packStart(this.createSectionLabel(_("During a split")), false, false, 0);
+
+        // Add the row of option
+        final HBox firstRow = new HBox(false, 0);
+        first.packStart(firstRow, false, false, 0);
+
+        // Add an empty label
+        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+
+        final CheckButton md5sum = new CheckButton(_("_Calculate the MD5 sum if possible."));
         md5sum.setActive(config.SAVE_FILE_HASH);
+        firstRow.packStart(md5sum, false, false, 0);
         md5sum.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -364,11 +377,23 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
-        // Algorithm label
-        final Label algoLabel = new Label(_("Default algorithm:"));
+        // Second option
+        final VBox second = new VBox(false, 6);
+        page.packStart(second, false, false, 0);
+
+        // Add the label
+        second.packStart(this.createSectionLabel(_("Default algorithm")), false, false, 0);
+
+        // Add the row of option
+        final HBox secondRow = new HBox(false, 0);
+        second.packStart(secondRow, false, false, 0);
+
+        // Add an empty label
+        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Algorithm list
         final TextComboBox algorithms = new TextComboBox();
+        secondRow.packStart(algorithms, false, false, 0);
         for (String algorithm : Algorithm.toStrings()) {
             // Fill the list
             algorithms.appendText(algorithm);
@@ -385,41 +410,25 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
-        // Default directory label
-        final Label directoryLabel = new Label(_("Default directory:"));
+        // Third option
+        final VBox third = new VBox(false, 6);
+        page.packStart(third, false, false, 0);
+
+        // Add the label
+        third.packStart(this.createSectionLabel(_("Default directory")), false, false, 0);
+
+        // Add the row of option
+        final HBox thirdRow = new HBox(false, 0);
+        third.packStart(thirdRow, false, false, 0);
+
+        // Add an empty label
+        thirdRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Default directory button
         splitDirChooser = new FileChooserButton(_("Choose a directory."),
                 FileChooserAction.SELECT_FOLDER);
         splitDirChooser.setCurrentFolder(config.SPLIT_DIRECTORY);
-
-        // Main container
-        final VBox container = new VBox(false, 5);
-        page.add(container);
-
-        // Add MD5 sum option
-        container.packStart(md5sum, true, true, 0);
-
-        // Algorithm container
-        final HBox algoContainer = new HBox(false, 3);
-        container.packStart(algoContainer, true, true, 0);
-
-        // Pack algorithm related widgets
-        algoContainer.packStart(algoLabel, true, true, 0);
-        algoContainer.packStart(algorithms, true, true, 0);
-
-        // Directory container
-        final HBox directoryContainer = new HBox(false, 3);
-        container.packStart(directoryContainer, true, true, 0);
-
-        // Pack directory related widgets
-        directoryContainer.packStart(directoryLabel, true, true, 0);
-        directoryContainer.packStart(splitDirChooser, true, true, 0);
-
-        // Size group for labels
-        SizeGroup labelGroup = new SizeGroup(SizeGroupMode.BOTH);
-        labelGroup.add(algoLabel);
-        labelGroup.add(directoryLabel);
+        thirdRow.packStart(splitDirChooser, false, false, 0);
 
         // Size group for option widgets
         SizeGroup optionGroup = new SizeGroup(SizeGroupMode.BOTH);
@@ -435,13 +444,32 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
     /**
      * Create the third page of the dialog (merge config).
      */
-    private Alignment createMergePage() {
-        final Alignment page = new Alignment(0.0f, 0.0f, 0.0f, 0.0f);
-        page.setPadding(5, 5, 20, 5);
+    private VBox createMergePage() {
+        final VBox page = new VBox(false, 18);
+        page.setBorderWidth(12);
+
+        // First options
+        final VBox first = new VBox(false, 6);
+        page.packStart(first, false, false, 0);
+
+        // Add the label
+        first.packStart(this.createSectionLabel(_("After a merge")), false, false, 0);
+
+        // Add the row of options
+        final HBox firstRow = new HBox(false, 0);
+        first.packStart(firstRow, false, false, 0);
+
+        // Add an empty label
+        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+
+        // Box for check buttons
+        final VBox buttons = new VBox(false, 6);
+        firstRow.packStart(buttons, false, false, 0);
 
         // Restore remove parts status
-        final CheckButton remove = new CheckButton(_("_Remove parts if the merge was successful."));
+        final CheckButton remove = new CheckButton(_("_Remove the chunks."));
         remove.setActive(config.DELETE_PARTS);
+        buttons.packStart(remove, false, false, 0);
         remove.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -452,9 +480,9 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         });
 
         // Restore open file status
-        final CheckButton open = new CheckButton(
-                _("_Open the created file if the merge was successful."));
+        final CheckButton open = new CheckButton(_("_Open the created file."));
         open.setActive(config.OPEN_FILE_AT_END);
+        buttons.packStart(open, false, false, 0);
         open.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -464,33 +492,25 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
-        // Default directory label
-        final Label directoryLabel = new Label(_("Default directory:"));
+        // Second option
+        final VBox second = new VBox(false, 6);
+        page.packStart(second, false, false, 0);
+
+        // Add the label
+        second.packStart(this.createSectionLabel(_("Default directory")), false, false, 0);
+
+        // Add the row of option
+        final HBox secondRow = new HBox(false, 0);
+        second.packStart(secondRow, false, false, 0);
+
+        // Add an empty label
+        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Default directory button
         mergeDirChooser = new FileChooserButton(_("Choose a directory."),
                 FileChooserAction.SELECT_FOLDER);
         mergeDirChooser.setCurrentFolder(config.MERGE_DIRECTORY);
-
-        // Main container
-        final VBox container = new VBox(false, 5);
-        page.add(container);
-
-        // Container to add check buttons
-        final VButtonBox buttons = new VButtonBox();
-        container.packStart(buttons, true, true, 0);
-
-        // Add the buttons
-        buttons.packStart(remove, true, true, 0);
-        buttons.packStart(open, true, true, 0);
-
-        // Directory container
-        final HBox directoryContainer = new HBox(false, 3);
-        container.packStart(directoryContainer, true, true, 0);
-
-        // Pack directory related widgets
-        directoryContainer.packStart(directoryLabel, true, true, 0);
-        directoryContainer.packStart(mergeDirChooser, true, true, 0);
+        secondRow.packStart(mergeDirChooser, false, false, 0);
 
         // Show all widgets
         page.showAll();
