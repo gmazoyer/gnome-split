@@ -68,8 +68,6 @@ public final class GnomeSplit extends DefaultMergeEngine
 
             // Read file length
             fileLength = access.readLong();
-        } catch (FileNotFoundException e) {
-            throw e;
         } catch (IOException e) {
             throw e;
         } finally {
@@ -186,8 +184,6 @@ public final class GnomeSplit extends DefaultMergeEngine
                 // Notify the end
                 this.fireEngineEnded();
             }
-        } catch (FileNotFoundException e) {
-            throw e;
         } catch (IOException e) {
             throw e;
         } finally {

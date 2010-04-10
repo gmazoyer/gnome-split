@@ -140,8 +140,6 @@ public final class Generic extends DefaultMergeEngine
 
             // Notify the end
             this.fireEngineEnded();
-        } catch (FileNotFoundException e) {
-            throw e;
         } catch (IOException e) {
             throw e;
         } finally {

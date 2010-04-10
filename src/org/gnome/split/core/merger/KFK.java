@@ -113,8 +113,6 @@ public final class KFK extends DefaultMergeEngine
 
             // Notify the end
             this.fireEngineEnded();
-        } catch (FileNotFoundException e) {
-            throw e;
         } catch (IOException e) {
             throw e;
         } finally {

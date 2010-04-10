@@ -79,8 +79,6 @@ public final class KFK extends DefaultSplitEngine
 
                     // Notify the view from a written part
                     this.fireEnginePartWritten(chunk.getName());
-                } catch (FileNotFoundException e) {
-                    throw e;
                 } catch (IOException e) {
                     throw e;
                 } finally {
@@ -95,8 +93,6 @@ public final class KFK extends DefaultSplitEngine
 
             // Notify the end of the split
             this.fireEngineEnded();
-        } catch (FileNotFoundException e) {
-            throw e;
         } catch (IOException e) {
             throw e;
         } finally {

@@ -101,8 +101,6 @@ public final class Xtremsplit extends DefaultMergeEngine
             bytes = new byte[8];
             access.read(bytes);
             fileLength = ByteUtils.littleEndianToLong(bytes);
-        } catch (FileNotFoundException e) {
-            throw e;
         } catch (IOException e) {
             throw e;
         } finally {
@@ -232,8 +230,6 @@ public final class Xtremsplit extends DefaultMergeEngine
                 // Notify the end
                 this.fireEngineEnded();
             }
-        } catch (FileNotFoundException e) {
-            throw e;
         } catch (IOException e) {
             throw e;
         } finally {

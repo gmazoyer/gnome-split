@@ -20,8 +20,6 @@
  */
 package org.gnome.split.config;
 
-import org.gnome.split.config.Constants;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
