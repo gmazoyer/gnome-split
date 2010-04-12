@@ -25,8 +25,6 @@ import org.gnome.gtk.MessageDialog;
 import org.gnome.gtk.MessageType;
 import org.gnome.gtk.Window;
 
-import static org.freedesktop.bindings.Internationalization._;
-
 /**
  * This class is used to build GTK+ Warning dialog.
  * 
@@ -39,6 +37,5 @@ public final class WarningDialog extends MessageDialog
      */
     public WarningDialog(Window parent, String text) {
         super(parent, true, MessageType.WARNING, ButtonsType.OK, text);
-        this.setTitle(_("Warning!"));
     }
 }

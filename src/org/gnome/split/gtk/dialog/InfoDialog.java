@@ -20,8 +20,6 @@
  */
 package org.gnome.split.gtk.dialog;
 
-import static org.freedesktop.bindings.Internationalization._;
-
 import org.gnome.gtk.InfoMessageDialog;
 import org.gnome.gtk.Window;
 
@@ -38,6 +36,5 @@ public final class InfoDialog extends InfoMessageDialog
      */
     public InfoDialog(Window parent, String title, String text) {
         super(parent, title, text);
-        this.setTitle(_("Information"));
     }
 }

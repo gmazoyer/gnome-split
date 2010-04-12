@@ -42,7 +42,6 @@ public final class QuestionDialog extends QuestionMessageDialog
      */
     public QuestionDialog(Window parent, String title, String text) {
         super(parent, title, text);
-        this.setTitle(_("Question"));
         this.setModal(true);
     }
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-12 20:38+0200\n"
+"POT-Creation-Date: 2010-04-12 22:54+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -323,14 +323,6 @@ msgstr ""
 msgid "Show desktop _notification."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/WarningDialog.java:42
-msgid "Warning!"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/InfoDialog.java:41
-msgid "Information"
-msgstr ""
-
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:65
 msgid "Assistant chooser"
 msgstr ""
@@ -349,20 +341,11 @@ msgstr ""
 msgid "Merge assistant"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:47
-#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:56
-msgid "Error!"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:59
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:57
 msgid "Details"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/QuestionDialog.java:45
-msgid "Question"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/QuestionDialog.java:53
+#: src/org/gnome/split/gtk/dialog/QuestionDialog.java:52
 msgid "Do not ask me again."
 msgstr ""
 

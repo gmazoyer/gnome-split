@@ -20,8 +20,6 @@
  */
 package org.gnome.split.gtk.dialog;
 
-import static org.freedesktop.bindings.Internationalization._;
-
 import org.gnome.gtk.ErrorMessageDialog;
 import org.gnome.gtk.Expander;
 import org.gnome.gtk.Frame;
@@ -30,6 +28,8 @@ import org.gnome.gtk.TextView;
 import org.gnome.gtk.Window;
 import org.gnome.gtk.WrapMode;
 import org.gnome.split.core.utils.UncaughtExceptionLogger;
+
+import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This class is used to build GTK+ Error dialog.
@@ -44,7 +44,6 @@ public final class ErrorDialog extends ErrorMessageDialog
      */
     public ErrorDialog(Window parent, String title, String text) {
         super(parent, title, text);
-        this.setTitle(_("Error!"));
     }
 
     /**
@@ -53,7 +52,6 @@ public final class ErrorDialog extends ErrorMessageDialog
      */
     public ErrorDialog(Window parent, String title, String text, Throwable exception) {
         super(parent, title, text);
-        this.setTitle(_("Error!"));
 
         // Add details to the dialog
         final Expander expander = new Expander(_("Details"));
