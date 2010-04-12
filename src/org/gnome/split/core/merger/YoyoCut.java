@@ -1,5 +1,5 @@
 /*
- * GnomeSplit.java
+ * YoyoCut.java
  * 
  * Copyright (c) 2009-2010 Guillaume Mazoyer
  * 
@@ -24,19 +24,26 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
 
+import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.utils.MD5Hasher;
 
 /**
- * Algorithm to merge files with the GNOME Split algorithm.
+ * Algorithm to merge files with the YoyoCut algorithm.
  * 
  * @author Guillaume Mazoyer
  */
-public final class GnomeSplit extends DefaultMergeEngine
+public final class YoyoCut extends DefaultMergeEngine
 {
-    public GnomeSplit(final org.gnome.split.GnomeSplit app, File file, String filename) {
+    /**
+     * The length of the header.
+     */
+    private int header;
+
+    public YoyoCut(final GnomeSplit app, File file, String filename) {
         super(app, file, filename);
     }
 
@@ -47,27 +54,62 @@ public final class GnomeSplit extends DefaultMergeEngine
             // Open the first part to merge
             access = new RandomAccessFile(file, "r");
 
-            // Skip useless header
-            access.skipBytes(5);
+            // Set the length of the header to 0
+            header = 0;
 
-            // Read filename
-            byte[] bytes = new byte[access.read()];
+            // An array of bytes which will be useful
+            byte[] bytes;
+
+            // Read the file extension
+            ArrayList<Byte> buffer = new ArrayList<Byte>();
+            bytes = new byte[1];
+
+            // The separator is an space character
+            while (bytes[0] != 32) {
+                access.read(bytes);
+                buffer.add(bytes[0]);
+            }
+
+            // Update the header length
+            header += buffer.size();
+
+            // Read the number of chunks
+            bytes = new byte[3];
             access.read(bytes);
-            access.skipBytes(50 - bytes.length);
+
+            // Parse and update the length of the header
+            parts = Integer.parseInt(new String(bytes));
+            header += 3;
+
+            // Check if there is a MD5 sum
+            bytes = new byte[4];
+            access.read(bytes);
+
+            // Update the length of the header
+            if (new String(bytes).equals("MD5:")) {
+                md5 = true;
+                header += 36;
+            }
+
+            // Get the common part of the name of each chunk
+            String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
 
             // Update the filename only if it is not specified by the user
             if (filename == null) {
-                filename = file.getAbsolutePath().replace(file.getName(), "") + new String(bytes);
+                // Parse the extension (don't get the space character)
+                byte[] extension = new byte[buffer.size() - 1];
+                for (byte b = 0; b < extension.length; b++) {
+                    extension[b] = buffer.get(b);
+                }
+
+                // Update the name
+                filename = part + new String(extension);
             }
 
-            // Read if MD5 is used
-            md5 = access.readBoolean();
-
-            // Read file number
-            parts = access.readInt();
-
-            // Read file length
-            fileLength = access.readLong();
+            // Calculate the length of the final file
+            for (int i = 1; i <= parts; i++) {
+                fileLength += new File(this.getNextChunk(part, i)).length();
+            }
         } catch (IOException e) {
             throw e;
         } finally {
@@ -92,7 +134,7 @@ public final class GnomeSplit extends DefaultMergeEngine
         }
 
         // Finally
-        return (part + current + ".gsp");
+        return (part + current + ".yct");
     }
 
     @Override
@@ -107,9 +149,6 @@ public final class GnomeSplit extends DefaultMergeEngine
             // Open the final file
             out = new RandomAccessFile(filename, "rw");
 
-            // Define the buffer size
-            byte[] buffer;
-
             for (int i = 1; i <= parts; i++) {
                 // Open the current part to merge
                 chunk = new File(this.getNextChunk(part, i));
@@ -121,12 +160,23 @@ public final class GnomeSplit extends DefaultMergeEngine
                 long read = 0;
                 long length = access.length();
                 if (i == 1) {
-                    // Skip headers if it is the first part
-                    access.skipBytes(69);
-                    read += 69;
-                } else if (md5 && (i == parts)) {
-                    // Skip the MD5 sum if it is the last part
-                    length -= 32;
+                    if (!md5) {
+                        access.skipBytes(header);
+                    } else {
+                        // Skip headers (but not the MD5) if it is the first
+                        // part
+                        access.skipBytes(header - 32);
+
+                        // Read the MD5 sum
+                        byte[] bytes = new byte[32];
+                        access.read(bytes);
+
+                        // Parse the read bytes
+                        md5sum = new String(bytes).toUpperCase();
+                    }
+
+                    // Update the read bytes count
+                    read += header;
                 }
 
                 // Merge the file
@@ -138,11 +188,6 @@ public final class GnomeSplit extends DefaultMergeEngine
                 }
 
                 if (md5 && (i == parts)) {
-                    // Read the MD5 which was calculated during the split
-                    buffer = new byte[32];
-                    access.read(buffer);
-                    md5sum = new String(buffer);
-
                     // Notify the view
                     this.fireMD5SumStarted();
 

@@ -39,7 +39,7 @@ public final class KFK extends DefaultMergeEngine
     }
 
     @Override
-    protected void loadHeaders() throws IOException, FileNotFoundException {
+    protected void loadHeaders() throws IOException {
         String name = file.getName();
         File[] files = new File(file.getAbsolutePath().replace(name, "")).listFiles();
 

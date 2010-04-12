@@ -47,7 +47,7 @@ public final class Xtremsplit extends DefaultMergeEngine
     /**
      * Used to find all the MD5 sums of the files
      */
-    private void loadMD5sums(String lastFilename) throws IOException, FileNotFoundException {
+    private void loadMD5sums(String lastFilename) throws IOException {
         // Find the last file to read
         File lastFile = new File(lastFilename);
         RandomAccessFile access = new RandomAccessFile(lastFile, "r");
@@ -70,7 +70,7 @@ public final class Xtremsplit extends DefaultMergeEngine
     }
 
     @Override
-    protected void loadHeaders() throws IOException, FileNotFoundException {
+    protected void loadHeaders() throws IOException {
         RandomAccessFile access = null;
         try {
             // Open the first part to merge

@@ -21,7 +21,6 @@
 package org.gnome.split.core.merger;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -119,6 +118,11 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             return new KFK(app, file, filename);
         }
 
+        if (name.endsWith(extensions[5])) {
+            // Use YoyoCut algorithm
+            return new YoyoCut(app, file, filename);
+        }
+
         // Can't find the right algorithm
         return null;
     }
@@ -165,7 +169,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Load the headers of the files to merge.
      */
-    protected abstract void loadHeaders() throws IOException, FileNotFoundException;
+    protected abstract void loadHeaders() throws IOException;
 
     /**
      * Get the next name of the file to merge.
@@ -175,7 +179,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Merge files to get a new one.
      */
-    public abstract void merge() throws IOException, FileNotFoundException;
+    public abstract void merge() throws IOException;
 
     /**
      * Notify the view that a part is being read.

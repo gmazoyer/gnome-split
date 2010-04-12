@@ -40,7 +40,7 @@ public final class Generic extends DefaultMergeEngine
     }
 
     @Override
-    protected void loadHeaders() throws IOException, FileNotFoundException {
+    protected void loadHeaders() throws IOException {
         // Update the filename only if it is not specified by the user
         if (filename == null) {
             String name = file.getName().substring(0, file.getName().lastIndexOf('.'));

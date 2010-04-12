@@ -42,7 +42,8 @@ public class EngineFactory
      */
     private static final Class<?>[] splitters = new Class[] {
             org.gnome.split.core.splitter.Generic.class, org.gnome.split.core.splitter.GnomeSplit.class,
-            org.gnome.split.core.splitter.Xtremsplit.class, org.gnome.split.core.splitter.KFK.class
+            org.gnome.split.core.splitter.Xtremsplit.class, org.gnome.split.core.splitter.KFK.class,
+            org.gnome.split.core.splitter.YoyoCut.class
     };
 
     /**
@@ -50,7 +51,8 @@ public class EngineFactory
      */
     private static final Class<?>[] mergers = new Class[] {
             org.gnome.split.core.merger.Generic.class, org.gnome.split.core.merger.GnomeSplit.class,
-            org.gnome.split.core.merger.Xtremsplit.class, org.gnome.split.core.merger.KFK.class
+            org.gnome.split.core.merger.Xtremsplit.class, org.gnome.split.core.merger.KFK.class,
+            org.gnome.split.core.merger.YoyoCut.class
     };
 
     /**
@@ -111,6 +113,9 @@ public class EngineFactory
         } else if (name.endsWith(extensions[4])) {
             // Use KFK algorithm
             index = 3;
+        } else if (name.endsWith(extensions[5])) {
+            // Use YoyoCut algorithm
+            index = 4;
         }
 
         if (index != -1) {

@@ -50,11 +50,16 @@ public final class Algorithm
     public static final int KFK = 3;
 
     /**
+     * Algorithm used by YoyoCut.
+     */
+    public static final int YOYOCUT = 4;
+
+    /**
      * Get a {@link String} representation of all algorithms.
      */
     public static String[] toStrings() {
         return new String[] {
-                _("Generic"), "GNOME Split", "Xtremsplit", "KFK"
+                _("Generic"), "GNOME Split", "Xtremsplit", "KFK", "YoyoCut"
         };
     }
 
@@ -63,7 +68,7 @@ public final class Algorithm
      */
     public static String[] getExtensions() {
         return new String[] {
-                ".000", ".001", ".001.gsp", ".001.xtm", ".kk0"
+                ".000", ".001", ".001.gsp", ".001.xtm", ".kk0", ".001.yct"
         };
     }
 
@@ -93,6 +98,11 @@ public final class Algorithm
 
         // KFK file format
         if (extension.endsWith(".kk0")) {
+            return true;
+        }
+
+        // YoyoCut file format
+        if (extension.endsWith(".001.yct")) {
             return true;
         }
 

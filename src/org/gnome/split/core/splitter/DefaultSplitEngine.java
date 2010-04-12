@@ -21,7 +21,6 @@
 package org.gnome.split.core.splitter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
@@ -120,7 +119,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     /**
      * Split a file into smaller parts.
      */
-    public abstract void split() throws IOException, FileNotFoundException;
+    public abstract void split() throws IOException;
 
     /**
      * Notify the view that a part has been created.
