@@ -59,7 +59,6 @@ public class ActionManager
         SplitAssistantAction sassistant = new SplitAssistantAction(app);
         MergeAssistantAction massistant = new MergeAssistantAction(app);
         OpenDirAction directory = new OpenDirAction(app);
-        PropertiesAction properties = new PropertiesAction(app);
         StartAction start = new StartAction(app);
         PauseAction pause = new PauseAction(app);
         CancelAction cancel = new CancelAction(app);
@@ -71,7 +70,6 @@ public class ActionManager
         actions.put(ActionId.SPLIT_ASSISTANT, sassistant);
         actions.put(ActionId.MERGE_ASSISTANT, massistant);
         actions.put(ActionId.OPEN_DIR, directory);
-        actions.put(ActionId.PROPERTIES, properties);
         actions.put(ActionId.START, start);
         actions.put(ActionId.PAUSE, pause);
         actions.put(ActionId.CANCEL, cancel);
@@ -149,7 +147,6 @@ public class ActionManager
         this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(true);
         this.getAction(ActionId.ASSISTANT).setSensitive(true);
         this.getAction(ActionId.OPEN_DIR).setSensitive(false);
-        this.getAction(ActionId.PROPERTIES).setSensitive(false);
         this.getAction(ActionId.START).setSensitive(true);
         this.getAction(ActionId.PAUSE).setSensitive(false);
         this.getAction(ActionId.CANCEL).setSensitive(false);
@@ -166,7 +163,6 @@ public class ActionManager
         this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
         this.getAction(ActionId.ASSISTANT).setSensitive(false);
         this.getAction(ActionId.OPEN_DIR).setSensitive(true);
-        this.getAction(ActionId.PROPERTIES).setSensitive(true);
         this.getAction(ActionId.START).setSensitive(true);
         this.getAction(ActionId.PAUSE).setSensitive(false);
         this.getAction(ActionId.CANCEL).setSensitive(true);
@@ -183,7 +179,6 @@ public class ActionManager
         this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
         this.getAction(ActionId.ASSISTANT).setSensitive(false);
         this.getAction(ActionId.OPEN_DIR).setSensitive(true);
-        this.getAction(ActionId.PROPERTIES).setSensitive(true);
         this.getAction(ActionId.START).setSensitive(false);
         this.getAction(ActionId.PAUSE).setSensitive(true);
         this.getAction(ActionId.CANCEL).setSensitive(true);
@@ -200,6 +195,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        DUMMY_ASSISTANT, ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, PROPERTIES, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
+        DUMMY_ASSISTANT, ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
     }
 }

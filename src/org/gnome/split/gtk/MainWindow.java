@@ -37,7 +37,6 @@ import org.gnome.gtk.WindowPosition;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
-import org.gnome.split.gtk.dialog.PropertiesDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.AreaStatusIcon;
 import org.gnome.split.gtk.widget.MainToolbar;
@@ -101,12 +100,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Widget derived from {@link Frame} to display the status.
      */
     private StatusWidget status;
-
-    /**
-     * Properties dialog associated to this window to display detailed
-     * information about the current action.
-     */
-    private PropertiesDialog properties;
 
     /**
      * Build the main window of GNOME Split.
@@ -227,7 +220,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         fileMenu.append(assistant);
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.OPEN_DIR).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.PROPERTIES).createMenuItem());
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(actions.getAction(ActionId.START).createMenuItem());
         fileMenu.append(actions.getAction(ActionId.PAUSE).createMenuItem());
@@ -275,14 +267,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         menubar.append(helpItem);
 
         return menubar;
-    }
-
-    /**
-     * Setup all the dialogs attached to the main window.
-     */
-    public void setupDialogs() {
-        // Create the properties dialog
-        properties = new PropertiesDialog(app);
     }
 
     /**
@@ -368,13 +352,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
      */
     public StatusWidget getStatusWidget() {
         return status;
-    }
-
-    /**
-     * Get the properties dialog.
-     */
-    public PropertiesDialog getPropertiesDialog() {
-        return properties;
     }
 
     /**

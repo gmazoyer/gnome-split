@@ -73,15 +73,11 @@ public class MainToolbar extends Toolbar
         final ToolItem cancel = actions.getAction(ActionId.CANCEL).createToolItem();
         this.insert(cancel, 4);
 
+        // Add a separator
+        this.insert(new SeparatorToolItem(), 5);
+
         // Add clear button
         final ToolItem clear = actions.getAction(ActionId.CLEAR).createToolItem();
-        this.insert(clear, 5);
-
-        // Add a separator
-        this.insert(new SeparatorToolItem(), 6);
-
-        // Add properties button
-        final ToolItem properties = actions.getAction(ActionId.PROPERTIES).createToolItem();
-        this.insert(properties, 7);
+        this.insert(clear, 6);
     }
 }

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-09 20:55+0200\n"
+"POT-Creation-Date: 2010-04-12 20:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,35 +16,35 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:156
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:147
 msgid "Split finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:157
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:148
 msgid "The file was succesfully splitted."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:159
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:150
 msgid "Merge finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:160
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:151
 msgid "The files were successfully merged."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:187
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:178
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:189
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:180
 msgid "Merge stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:221
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:212
 msgid "Unhandled exception."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:222
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:213
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"
@@ -52,33 +52,33 @@ msgid ""
 "See the details for more information."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:246
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:237
 #, java-format
 msgid "Writting {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:262
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:246
 #, java-format
 msgid "Reading {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:292
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:268
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:231
+#: src/org/gnome/split/gtk/MainWindow.java:205
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:260
+#: src/org/gnome/split/gtk/MainWindow.java:233
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:268
+#: src/org/gnome/split/gtk/MainWindow.java:241
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:283
+#: src/org/gnome/split/gtk/MainWindow.java:256
 msgid "_Help"
 msgstr ""
 
@@ -96,10 +96,6 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "Suspend this action."
-msgstr ""
-
-#: src/org/gnome/split/gtk/action/PropertiesAction.java:36
-msgid "Properties of this action."
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/MergeViewAction.java:40
@@ -162,12 +158,12 @@ msgstr ""
 msgid "Clear this view."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/AssistantAction.java:36
+#: src/org/gnome/split/gtk/action/AssistantAction.java:37
 #: src/org/gnome/split/gtk/action/DummyAssistantAction.java:36
 msgid "_Assistants"
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/AssistantAction.java:36
+#: src/org/gnome/split/gtk/action/AssistantAction.java:37
 #: src/org/gnome/split/gtk/action/DummyAssistantAction.java:36
 msgid "Create a split or a merge."
 msgstr ""
@@ -370,48 +366,6 @@ msgstr ""
 msgid "Do not ask me again."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:85
-msgid "Properties of the action"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:101
-msgid "Information about the file"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:112
-msgid "Directory:"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:115
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:126
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:136
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:195
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:196
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:197
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:182
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:192
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:202
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:261
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:315
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:316
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:317
-#: src/org/gnome/split/core/utils/SizeUnit.java:106
-msgid "Unknown"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:123
-#: src/org/gnome/split/gtk/widget/MergeAssistant.java:265
-msgid "Filename:"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:133
-msgid "Size of the file:"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PropertiesDialog.java:146
-msgid "Progress of the action"
-msgstr ""
-
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:178
 msgid ""
 "Here, you have to select the file to split. After that, you can go to the\n"
@@ -604,6 +558,10 @@ msgid ""
 "previous step to choose another one."
 msgstr ""
 
+#: src/org/gnome/split/gtk/widget/MergeAssistant.java:265
+msgid "Filename:"
+msgstr ""
+
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:273
 msgid ""
 "Just a last question before you confirm the merge to do.\n"
@@ -640,6 +598,17 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:179
 msgid "Chunks:"
+msgstr ""
+
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:182
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:192
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:202
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:261
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:315
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:316
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:317
+#: src/org/gnome/split/core/utils/SizeUnit.java:106
+msgid "Unknown"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:189
@@ -785,11 +754,11 @@ msgid ""
 "to run more than one instance of GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:211
+#: src/org/gnome/split/GnomeSplit.java:210
 msgid "Quit GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:212
+#: src/org/gnome/split/GnomeSplit.java:211
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"

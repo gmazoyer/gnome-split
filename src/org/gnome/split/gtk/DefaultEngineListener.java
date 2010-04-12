@@ -20,7 +20,6 @@
  */
 package org.gnome.split.gtk;
 
-import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -35,7 +34,6 @@ import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.ExceptionMessage;
 import org.gnome.split.core.exception.InvalidSizeException;
 import org.gnome.split.core.exception.MD5Exception;
-import org.gnome.split.core.merger.DefaultMergeEngine;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.dbus.DbusInhibit;
@@ -106,9 +104,6 @@ public class DefaultEngineListener implements EngineListener
             gtk.getActionWidget().disable();
             gtk.getViewSwitcher().disable();
 
-            // Update the properties dialog
-            gtk.getPropertiesDialog().update(engine);
-
             // Update the interface state
             app.getActionManager().setRunningState();
         } else {
@@ -121,9 +116,6 @@ public class DefaultEngineListener implements EngineListener
             // Enable user interaction (only in action widget)
             gtk.getActionWidget().enable();
             gtk.getViewSwitcher().enable();
-
-            // Reset the properties dialog
-            gtk.getPropertiesDialog().reset();
 
             // Update the interface state
             app.getActionManager().setReadyState();
@@ -144,7 +136,6 @@ public class DefaultEngineListener implements EngineListener
 
         // Now update the widgets
         gtk.getActionWidget().updateProgress(value, text, true);
-        gtk.getPropertiesDialog().updateProgress(value, text, true);
     }
 
     @Override
@@ -247,26 +238,12 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
-    public void enginePartWritten(String filename) {
-        // Get the merge engine and the full path
-        DefaultSplitEngine split = (DefaultSplitEngine) engine;
-        String fullpath = split.getDirectory() + File.separator + filename;
-
-        // Update the properties dialog
-        gtk.getPropertiesDialog().updateListFile(fullpath);
-    }
+    public void enginePartWritten(String filename) {}
 
     @Override
     public void enginePartRead(String filename) {
         // Update the status widget
         gtk.getStatusWidget().update(Stock.REFRESH, _("Reading {0}.", filename));
-
-        // Get the merge engine and the full path
-        DefaultMergeEngine merge = (DefaultMergeEngine) engine;
-        String fullpath = merge.getDirectory() + File.separator + filename;
-
-        // Update the properties dialog
-        gtk.getPropertiesDialog().updateListFile(fullpath);
     }
 
     @Override
@@ -278,7 +255,6 @@ public class DefaultEngineListener implements EngineListener
 
         // Now update the widgets
         gtk.getActionWidget().updateProgress(1, "", true);
-        gtk.getPropertiesDialog().updateProgress(1, "", true);
     }
 
     @Override
@@ -304,7 +280,6 @@ public class DefaultEngineListener implements EngineListener
         @Override
         public void run() {
             gtk.getActionWidget().updateProgress(1, "", false);
-            gtk.getPropertiesDialog().updateProgress(1, "", false);
         }
     }
 }
