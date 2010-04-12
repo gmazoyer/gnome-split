@@ -22,6 +22,7 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.gtk.dialog.PreferencesDialog;
 
 /**
  * Action to open the GTK+ Preferences dialog.
@@ -36,6 +37,6 @@ public final class PreferencesAction extends Action
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        this.getApplication().getMainWindow().getPreferencesDialog().present();
+        new PreferencesDialog(this.getApplication()).present();
     }
 }

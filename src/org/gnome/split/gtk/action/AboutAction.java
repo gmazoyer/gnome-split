@@ -22,6 +22,7 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.gtk.dialog.AboutSoftDialog;
 
 /**
  * Action to popup the classic GTK+ About dialog.
@@ -36,6 +37,6 @@ public final class AboutAction extends Action
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        this.getApplication().getMainWindow().getAboutDialog().present();
+        new AboutSoftDialog().present();
     }
 }

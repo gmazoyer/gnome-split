@@ -37,9 +37,6 @@ import org.gnome.gtk.WindowPosition;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
-import org.gnome.split.gtk.dialog.AboutSoftDialog;
-import org.gnome.split.gtk.dialog.AssistantDialog;
-import org.gnome.split.gtk.dialog.PreferencesDialog;
 import org.gnome.split.gtk.dialog.PropertiesDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.AreaStatusIcon;
@@ -106,26 +103,10 @@ public class MainWindow extends Window implements Window.DeleteEvent
     private StatusWidget status;
 
     /**
-     * Assistant dialog associated to this window to allow the user to choose
-     * what assistant he/she wants to use.
-     */
-    private AssistantDialog assistants;
-
-    /**
      * Properties dialog associated to this window to display detailed
      * information about the current action.
      */
     private PropertiesDialog properties;
-
-    /**
-     * Classic preferences dialog associated to this window.
-     */
-    private PreferencesDialog preferences;
-
-    /**
-     * Classic about dialog associated to this window.
-     */
-    private AboutSoftDialog about;
 
     /**
      * Build the main window of GNOME Split.
@@ -300,17 +281,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Setup all the dialogs attached to the main window.
      */
     public void setupDialogs() {
-        // Create the assistant dialog
-        assistants = new AssistantDialog(app);
-
         // Create the properties dialog
         properties = new PropertiesDialog(app);
-
-        // Create classic preferences dialog
-        preferences = new PreferencesDialog(app);
-
-        // Create classic about dialog
-        about = new AboutSoftDialog();
     }
 
     /**
@@ -399,31 +371,10 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
-     * Get the assistant dialog.
-     */
-    public AssistantDialog getAssistantDialog() {
-        return assistants;
-    }
-
-    /**
      * Get the properties dialog.
      */
     public PropertiesDialog getPropertiesDialog() {
         return properties;
-    }
-
-    /**
-     * Get the preferences dialog.
-     */
-    public PreferencesDialog getPreferencesDialog() {
-        return preferences;
-    }
-
-    /**
-     * Get the about dialog.
-     */
-    public AboutSoftDialog getAboutDialog() {
-        return about;
     }
 
     /**
