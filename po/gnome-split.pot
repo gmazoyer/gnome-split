@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-14 17:34+0200\n"
+"POT-Creation-Date: 2010-04-14 22:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -625,7 +625,7 @@ msgid "A MD5 sum will be calculated."
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:264
-msgid "A MD5 sum will not calculated."
+msgid "A MD5 sum will not be calculated."
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:68
