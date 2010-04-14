@@ -260,7 +260,8 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         dirChooser.setCurrentFolder(directory);
         partsNumber.setLabel((number == -1) ? _("Unknown") : String.valueOf(number));
         fileSize.setLabel(SizeUnit.formatSize(engine.getFileLength()));
-        md5sum.setLabel(engine.useMD5() ? _("MD5 sum will be use.") : _("MD5 sum will not be use."));
+        md5sum.setLabel(engine.useMD5() && app.getConfig().CHECK_FILE_HASH ? _("A MD5 sum will be calculated.")
+                : _("A MD5 sum will not calculated."));
 
         return true;
     }

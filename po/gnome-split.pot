@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-12 22:54+0200\n"
+"POT-Creation-Date: 2010-04-14 17:34+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -223,103 +223,111 @@ msgstr ""
 msgid "GNOME Split Preferences"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:96
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:99
 msgid "General"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:97
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:163
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:100
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:166
 #: src/org/gnome/split/gtk/widget/SelectView.java:67
 msgid "Split"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:98
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:178
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:101
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:181
 #: src/org/gnome/split/gtk/widget/SelectView.java:75
 msgid "Merge"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:99
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:102
 msgid "Desktop"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:149
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:152
 msgid "Default view"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:197
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:200
 msgid "Program run"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:207
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:210
 msgid "_Allow multiple instances."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:224
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:227
 msgid "Size of the main window"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:240
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:243
 msgid "Use the _current size"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:244
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:247
 msgid "_Use a custom size."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:359
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:362
 msgid "During a split"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:368
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:371
 msgid "_Calculate the MD5 sum if possible."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:385
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:388
 msgid "Default algorithm"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:418
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:500
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:421
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:534
 msgid "Default directory"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:428
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:510
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:431
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:544
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:155
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:171
 msgid "Choose a directory."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:456
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:459
+msgid "During a merge"
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:473
+msgid "_Check the MD5 sum if possible."
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:490
 msgid "After a merge"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:470
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:504
 msgid "_Remove the chunks."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:483
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:517
 msgid "_Open the created file."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:533
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:567
 msgid "Power management"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:544
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:578
 msgid "Inhibit desktop _hibernation when an action is performed."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:561
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:595
 msgid "Notification"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:575
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:609
 msgid "Show _icon in the desktop notification area."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:591
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:625
 msgid "Show desktop _notification."
 msgstr ""
 
@@ -587,9 +595,9 @@ msgstr ""
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:192
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:202
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:261
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:315
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:316
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:317
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:318
 #: src/org/gnome/split/core/utils/SizeUnit.java:106
 msgid "Unknown"
 msgstr ""
@@ -613,11 +621,11 @@ msgid ""
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:263
-msgid "MD5 sum will be use."
+msgid "A MD5 sum will be calculated."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:263
-msgid "MD5 sum will not be use."
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:264
+msgid "A MD5 sum will not calculated."
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:68
@@ -722,7 +730,7 @@ msgstr ""
 msgid "DVD-ROM (4.7 GB)"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/Algorithm.java:57
+#: src/org/gnome/split/core/utils/Algorithm.java:62
 msgid "Generic"
 msgstr ""
 

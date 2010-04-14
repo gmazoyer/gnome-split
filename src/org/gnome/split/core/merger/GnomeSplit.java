@@ -137,7 +137,7 @@ public final class GnomeSplit extends DefaultMergeEngine
                     return;
                 }
 
-                if (md5 && (i == parts)) {
+                if (app.getConfig().CHECK_FILE_HASH && md5 && (i == parts)) {
                     // Read the MD5 which was calculated during the split
                     buffer = new byte[32];
                     access.read(buffer);

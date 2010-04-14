@@ -179,7 +179,7 @@ public final class Xtremsplit extends DefaultMergeEngine
                     return;
                 }
 
-                if (md5) {
+                if (app.getConfig().CHECK_FILE_HASH && md5) {
                     // Notify the view
                     this.fireMD5SumStarted();
 

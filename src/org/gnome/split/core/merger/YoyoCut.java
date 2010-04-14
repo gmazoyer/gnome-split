@@ -180,7 +180,7 @@ public final class YoyoCut extends DefaultMergeEngine
                     return;
                 }
 
-                if (md5 && (i == parts)) {
+                if (app.getConfig().CHECK_FILE_HASH && md5 && (i == parts)) {
                     // Notify the view
                     this.fireMD5SumStarted();
 

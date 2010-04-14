@@ -451,12 +451,12 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         final VBox page = new VBox(false, 18);
         page.setBorderWidth(12);
 
-        // First options
+        // First option
         final VBox first = new VBox(false, 6);
         page.packStart(first, false, false, 0);
 
         // Add the label
-        first.packStart(this.createSectionLabel(_("After a merge")), false, false, 0);
+        first.packStart(this.createSectionLabel(_("During a merge")), false, false, 0);
 
         // Add the row of options
         final HBox firstRow = new HBox(false, 0);
@@ -466,8 +466,39 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         firstRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Box for check buttons
+        final VBox button = new VBox(false, 6);
+        firstRow.packStart(button, false, false, 0);
+
+        // Restore check hash file status
+        final CheckButton check = new CheckButton(_("_Check the MD5 sum if possible."));
+        check.setActive(config.CHECK_FILE_HASH);
+        button.packStart(check, false, false, 0);
+        check.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                // Save preferences
+                config.CHECK_FILE_HASH = check.getActive();
+                config.savePreferences();
+            }
+        });
+
+        // Second options
+        final VBox second = new VBox(false, 6);
+        page.packStart(second, false, false, 0);
+
+        // Add the label
+        second.packStart(this.createSectionLabel(_("After a merge")), false, false, 0);
+
+        // Add the row of options
+        final HBox secondRow = new HBox(false, 0);
+        second.packStart(secondRow, false, false, 0);
+
+        // Add an empty label
+        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+
+        // Box for check buttons
         final VBox buttons = new VBox(false, 6);
-        firstRow.packStart(buttons, false, false, 0);
+        secondRow.packStart(buttons, false, false, 0);
 
         // Restore remove parts status
         final CheckButton remove = new CheckButton(_("_Remove the chunks."));
@@ -495,25 +526,25 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
             }
         });
 
-        // Second option
-        final VBox second = new VBox(false, 6);
-        page.packStart(second, false, false, 0);
+        // Third option
+        final VBox third = new VBox(false, 6);
+        page.packStart(third, false, false, 0);
 
         // Add the label
-        second.packStart(this.createSectionLabel(_("Default directory")), false, false, 0);
+        third.packStart(this.createSectionLabel(_("Default directory")), false, false, 0);
 
         // Add the row of option
-        final HBox secondRow = new HBox(false, 0);
-        second.packStart(secondRow, false, false, 0);
+        final HBox thirdRow = new HBox(false, 0);
+        third.packStart(thirdRow, false, false, 0);
 
         // Add an empty label
-        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+        thirdRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Default directory button
         mergeDirChooser = new FileChooserButton(_("Choose a directory."),
                 FileChooserAction.SELECT_FOLDER);
         mergeDirChooser.setCurrentFolder(config.MERGE_DIRECTORY);
-        secondRow.packStart(mergeDirChooser, false, false, 0);
+        thirdRow.packStart(mergeDirChooser, false, false, 0);
 
         // Show all widgets
         page.showAll();

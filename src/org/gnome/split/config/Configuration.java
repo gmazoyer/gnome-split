@@ -80,6 +80,12 @@ public final class Configuration
     public String SPLIT_DIRECTORY;
 
     /**
+     * Check the file hash at the end of the merge (needed in order to remove
+     * chunks after a merge).
+     */
+    public boolean CHECK_FILE_HASH;
+
+    /**
      * Delete the parts file after the assembly.
      */
     public boolean DELETE_PARTS;
@@ -173,6 +179,7 @@ public final class Configuration
             writer.write("SplitDirectory    = " + System.getProperty("user.home") + "\n");
 
             // Write merge config
+            writer.write("CheckFileHash     = true\n");
             writer.write("DeleteParts       = false\n");
             writer.write("OpenFile          = false\n");
             writer.write("MergeDirectory    = " + System.getProperty("user.home") + "\n");
@@ -228,6 +235,7 @@ public final class Configuration
             SPLIT_DIRECTORY = preferences.getProperty("SplitDirectory", System.getProperty("user.home"));
 
             // Load merge config
+            CHECK_FILE_HASH = Boolean.parseBoolean(preferences.getProperty("CheckFileHash", "true"));
             DELETE_PARTS = Boolean.parseBoolean(preferences.getProperty("DeleteParts", "false"));
             OPEN_FILE_AT_END = Boolean.parseBoolean(preferences.getProperty("OpenFile", "false"));
             MERGE_DIRECTORY = preferences.getProperty("MergeDirectory", System.getProperty("user.home"));
@@ -270,6 +278,7 @@ public final class Configuration
             writer.write("SplitDirectory    = " + SPLIT_DIRECTORY + "\n");
 
             // Write merge config
+            writer.write("CheckFileHash     = " + CHECK_FILE_HASH + "\n");
             writer.write("DeleteParts       = " + DELETE_PARTS + "\n");
             writer.write("OpenFile          = " + OPEN_FILE_AT_END + "\n");
             writer.write("MergeDirectory    = " + MERGE_DIRECTORY + "\n");
