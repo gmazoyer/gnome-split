@@ -89,6 +89,13 @@ public final class YoyoCut extends DefaultMergeEngine
             if (new String(bytes).equals("MD5:")) {
                 md5 = true;
                 header += 36;
+
+                // Read the MD5 sum
+                bytes = new byte[32];
+                access.read(bytes);
+
+                // Convert from bytes to string
+                md5sum = new String(bytes).toUpperCase();
             }
 
             // Get the common part of the name of each chunk
@@ -160,22 +167,8 @@ public final class YoyoCut extends DefaultMergeEngine
                 long read = 0;
                 long length = access.length();
                 if (i == 1) {
-                    if (!md5) {
-                        access.skipBytes(header);
-                    } else {
-                        // Skip headers (but not the MD5) if it is the first
-                        // part
-                        access.skipBytes(header - 32);
-
-                        // Read the MD5 sum
-                        byte[] bytes = new byte[32];
-                        access.read(bytes);
-
-                        // Parse the read bytes
-                        md5sum = new String(bytes).toUpperCase();
-                    }
-
                     // Update the read bytes count
+                    access.skipBytes(header);
                     read += header;
                 }
 

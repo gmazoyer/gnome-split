@@ -87,6 +87,9 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         this.config = app.getConfig();
         this.app = app;
 
+        // Border width
+        this.setBorderWidth(12);
+
         // Add the notebook
         final Notebook notebook = new Notebook();
         notebook.show();
