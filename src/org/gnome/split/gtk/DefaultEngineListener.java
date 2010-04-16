@@ -104,6 +104,9 @@ public class DefaultEngineListener implements EngineListener
             gtk.getActionWidget().disable();
             gtk.getViewSwitcher().disable();
 
+            // UPdate the status icon tooltip
+            gtk.getAreaStatusIcon().updateText(engine.toString());
+
             // Update the interface state
             app.getActionManager().setRunningState();
         } else {
@@ -116,6 +119,9 @@ public class DefaultEngineListener implements EngineListener
             // Enable user interaction (only in action widget)
             gtk.getActionWidget().enable();
             gtk.getViewSwitcher().enable();
+
+            // Reset the status icon tooltip
+            gtk.getAreaStatusIcon().updateText(null);
 
             // Update the interface state
             app.getActionManager().setReadyState();

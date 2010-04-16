@@ -29,6 +29,8 @@ import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.utils.Algorithm;
 
+import static org.freedesktop.bindings.Internationalization._;
+
 /**
  * Define the model that all merge engines should use.
  * 
@@ -144,6 +146,12 @@ public abstract class DefaultMergeEngine extends DefaultEngine
                 this.stopSpeedCalculator();
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        String name = filename.substring((filename.lastIndexOf('/') + 1), filename.length());
+        return _("Merging {0}", name);
     }
 
     @Override

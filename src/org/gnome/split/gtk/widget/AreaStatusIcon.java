@@ -60,8 +60,8 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
         this.createIconMenu();
 
         // Set up visibility and icon tooltip
-        this.setTooltip("GNOME Split - " + _("version") + " " + Constants.PROGRAM_VERSION);
         this.setVisible(app.getConfig().SHOW_STATUS_ICON);
+        this.updateText(null);
 
         // Connect interaction signals
         this.connect((StatusIcon.Activate) this);
@@ -94,5 +94,29 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
     public void onPopupMenu(StatusIcon source, int button, int activateTime) {
         menu.popup();
         menu.showAll();
+    }
+
+    /**
+     * Update the tooltip of the status icon. A string showing the program
+     * name and version will always be present.
+     */
+    public void updateText(String text) {
+        StringBuilder builder = new StringBuilder();
+
+        // Constant text - always here
+        builder.append(Constants.PROGRAM_NAME);
+        builder.append(" - ");
+        builder.append(_("version"));
+        builder.append(" ");
+        builder.append(Constants.PROGRAM_VERSION);
+
+        // Text to append
+        if (text != null) {
+            builder.append("\n");
+            builder.append(text);
+        }
+
+        // Update the icon tooltip
+        this.setTooltip(builder.toString());
     }
 }

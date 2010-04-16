@@ -30,6 +30,8 @@ import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.InvalidSizeException;
 
+import static org.freedesktop.bindings.Internationalization._;
+
 /**
  * Define the model that all split engines should use.
  * 
@@ -87,6 +89,11 @@ public abstract class DefaultSplitEngine extends DefaultEngine
                 this.stopSpeedCalculator();
             }
         }
+    }
+
+    @Override
+    public String toString() {
+        return _("Splitting {0}", file.getName());
     }
 
     @Override
