@@ -32,9 +32,12 @@ import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.utils.UncaughtExceptionLogger;
+import org.gnome.split.getopt.GetOptions;
+import org.gnome.split.getopt.LongOption;
 import org.gnome.split.gtk.DefaultEngineListener;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
+import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.ErrorDialog;
 import org.gnome.split.gtk.dialog.QuestionDialog;
 import org.gnome.unique.Application;
@@ -79,7 +82,7 @@ public final class GnomeSplit
     /**
      * Create an instance of the application.
      */
-    public GnomeSplit(String[] args) {
+    private GnomeSplit(String[] args) {
         // Initialize uncaught exception handler
         new UncaughtExceptionLogger();
 
@@ -148,15 +151,52 @@ public final class GnomeSplit
 
         // If there are some arguments
         if (args.length > 0) {
-            if (args.length == 1) {
-                CommandLineParser.useCommandLineFile(this, window, args[0]);
-            } else {
-                CommandLineParser.parseCommandLine(this, window, args);
-            }
+            this.parseCommandLine(args);
         }
 
         // Start GTK main loop (blocker method)
         Gtk.main();
+    }
+
+    /**
+     * Parse the command line using the GNU getopt.
+     */
+    private void parseCommandLine(String[] args) {
+        int character;
+
+        // Long options - use them make the command line more human readable
+        LongOption[] options = new LongOption[2];
+        options[0] = new LongOption("merge", LongOption.REQUIRED_ARGUMENT, 'm');
+        options[1] = new LongOption("split", LongOption.REQUIRED_ARGUMENT, 's');
+
+        // Create the getopt object to parse the arguments
+        GetOptions getopt = new GetOptions("gnome-split", args, "m:s:", options);
+
+        // While there is something to parse
+        while ((character = getopt.getOption()) != -1) {
+            switch (character) {
+            case 'm':
+                // Update the merge widget
+                window.getMergeWidget().setFirstFile(getopt.getArgument());
+
+                // Show the merge widget
+                actions.getRadioAction(ActionId.MERGE).emitActivate();
+
+                break;
+
+            case 's':
+                // Load the file to split
+                window.getSplitWidget().setFile(getopt.getArgument());
+
+                // Show the split widget
+                actions.getRadioAction(ActionId.SPLIT).emitActivate();
+
+                break;
+
+            default:
+                break;
+            }
+        }
     }
 
     /**
@@ -227,9 +267,6 @@ public final class GnomeSplit
 
             // Quit the GTK main loop (cause the app end)
             Gtk.mainQuit();
-
-            // Forcing Garbage Collector
-            System.gc();
 
             // Ending program
             System.exit(0);

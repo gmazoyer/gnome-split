@@ -104,7 +104,7 @@ public class DefaultEngineListener implements EngineListener
             gtk.getActionWidget().disable();
             gtk.getViewSwitcher().disable();
 
-            // UPdate the status icon tooltip
+            // Update the status icon tooltip
             gtk.getAreaStatusIcon().updateText(engine.toString());
 
             // Update the interface state

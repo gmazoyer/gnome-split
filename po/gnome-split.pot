@@ -8,13 +8,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-16 20:40+0200\n"
+"POT-Creation-Date: 2010-04-20 16:48+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: src/org/gnome/split/getopt/LongOption.java:72
+#, java-format
+msgid "Invalid value {0} for paramater 'arg'."
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:313
+#, java-format
+msgid "{0}: option ''{1}'' is ambiguous"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:335
+#, java-format
+msgid "{0}: option ''--{1}'' doesn't allow an argument"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:339
+#, java-format
+msgid "{0}: option ''{1}{2}'' doesn't allow an argument"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:353
+#, java-format
+msgid "{0}: option ''{1}'' requires an argument"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:489
+#, java-format
+msgid "{0}: unrecognized option ''--{1}''"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:491
+#, java-format
+msgid "{0}: unrecognized option ''{1}{2}''"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:522
+#, java-format
+msgid "{0}: illegal option -- {1}"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:524
+#, java-format
+msgid "{0}: invalid option -- {1}"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:539
+#: src/org/gnome/split/getopt/GetOptions.java:581
+#: src/org/gnome/split/getopt/GetOptions.java:597
+#, java-format
+msgid "{0}: option requires an argument -- {1}"
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:153
 msgid "Split finished."
@@ -744,22 +796,22 @@ msgstr ""
 msgid "Generic"
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:110
+#: src/org/gnome/split/GnomeSplit.java:113
 msgid "More than one instance."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:111
+#: src/org/gnome/split/GnomeSplit.java:114
 msgid ""
 "Only one instance of GNOME Split can be executed at a time. If you want to "
 "run multiple instances, edit the preferences. Remember that it is never safe "
 "to run more than one instance of GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:210
+#: src/org/gnome/split/GnomeSplit.java:250
 msgid "Quit GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:211
+#: src/org/gnome/split/GnomeSplit.java:251
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"
