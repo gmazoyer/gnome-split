@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-20 16:48+0200\n"
+"POT-Creation-Date: 2010-04-23 17:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -118,19 +118,19 @@ msgstr ""
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:205
+#: src/org/gnome/split/gtk/MainWindow.java:206
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:233
+#: src/org/gnome/split/gtk/MainWindow.java:234
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:241
+#: src/org/gnome/split/gtk/MainWindow.java:242
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:256
+#: src/org/gnome/split/gtk/MainWindow.java:257
 msgid "_Help"
 msgstr ""
 
@@ -401,12 +401,23 @@ msgstr ""
 msgid "Merge assistant"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:57
-msgid "Details"
+#: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:63
+msgid ""
+"What do you want to do?\n"
+"Quit GNOME Split or minimize the window?"
 msgstr ""
 
+#: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:69
 #: src/org/gnome/split/gtk/dialog/QuestionDialog.java:52
 msgid "Do not ask me again."
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:73
+msgid "_Minimize"
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/ErrorDialog.java:57
+msgid "Details"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:178

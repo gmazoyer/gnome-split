@@ -136,6 +136,11 @@ public final class Configuration
     public boolean DO_NOT_ASK_QUIT;
 
     /**
+     * What do we have to do if the user close the main window.
+     */
+    public byte CLOSE_BEHAVIOR;
+
+    /**
      * Private constructor can't instantiate Configuration in other class.<br>
      * Check for preferences file and load it.
      */
@@ -194,6 +199,7 @@ public final class Configuration
             writer.write("ShowSwitcher      = true\n");
             writer.write("ShowStatusbar     = true\n");
             writer.write("DontAskToQuit     = false\n");
+            writer.write("CloseBehavior     = 0\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -250,6 +256,7 @@ public final class Configuration
             SHOW_SWITCHER = Boolean.parseBoolean(preferences.getProperty("ShowSwitcher", "true"));
             SHOW_STATUSBAR = Boolean.parseBoolean(preferences.getProperty("ShowStatusbar", "true"));
             DO_NOT_ASK_QUIT = Boolean.parseBoolean(preferences.getProperty("DontAskToQuit", "false"));
+            CLOSE_BEHAVIOR = Byte.parseByte(preferences.getProperty("CloseBehavior", "0"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -293,6 +300,7 @@ public final class Configuration
             writer.write("ShowSwitcher      = " + SHOW_SWITCHER + "\n");
             writer.write("ShowStatusbar     = " + SHOW_STATUSBAR + "\n");
             writer.write("DontAskToQuit     = " + DO_NOT_ASK_QUIT + "\n");
+            writer.write("CloseBehavior     = " + CLOSE_BEHAVIOR + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

@@ -37,6 +37,7 @@ import org.gnome.gtk.WindowPosition;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
+import org.gnome.split.gtk.dialog.MinimizeDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.AreaStatusIcon;
 import org.gnome.split.gtk.widget.MainToolbar;
@@ -363,7 +364,29 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
     @Override
     public boolean onDeleteEvent(Widget source, Event event) {
-        app.quit();
+        if (!app.getConfig().SHOW_STATUS_ICON) {
+            // Close the program
+            app.quit();
+        } else {
+            switch (app.getConfig().CLOSE_BEHAVIOR) {
+            case 0:
+                // Show the dialog
+                final MinimizeDialog dialog = new MinimizeDialog(app);
+                dialog.present();
+                break;
+
+            case 1:
+                // Close the program
+                app.quit();
+                break;
+
+            case 2:
+                // Hide the window
+                statusIcon.onActivate(statusIcon);
+                break;
+            }
+        }
+
         return true;
     }
 }

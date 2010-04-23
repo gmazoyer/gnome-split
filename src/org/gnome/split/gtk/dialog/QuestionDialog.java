@@ -30,7 +30,7 @@ import org.gnome.split.GnomeSplit;
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * This class is used to build an question dialog.
+ * This class is used to build a question dialog.
  * 
  * @author Guillaume Mazoyer
  */
