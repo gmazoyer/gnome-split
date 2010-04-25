@@ -55,11 +55,6 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class GnomeSplit
 {
     /**
-     * Used to check that only one instance of this application is running.
-     */
-    private Application application;
-
-    /**
      * Configuration for the application.
      */
     private Configuration config;
@@ -102,7 +97,7 @@ public final class GnomeSplit
         }
 
         // Initialize unique application check
-        application = new Application("org.gnome.GnomeSplit", null);
+        Application application = new Application("org.gnome.GnomeSplit", null);
 
         // Signal to handle message from other instances
         application.connect(new Application.MessageReceived() {

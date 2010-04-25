@@ -469,6 +469,9 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         final VBox button = new VBox(false, 6);
         firstRow.packStart(button, false, false, 0);
 
+        // Depends on the next option
+        final CheckButton remove = new CheckButton(_("_Remove the chunks."));
+
         // Restore check hash file status
         final CheckButton check = new CheckButton(_("_Check the MD5 sum if possible."));
         check.setActive(config.CHECK_FILE_HASH);
@@ -476,6 +479,11 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         check.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
+                boolean active = check.getActive();
+
+                // Set the sensitivity of the remove chunks option
+                remove.setSensitive(active);
+
                 // Save preferences
                 config.CHECK_FILE_HASH = check.getActive();
                 config.savePreferences();
@@ -501,8 +509,8 @@ public class PreferencesDialog extends Dialog implements DeleteEvent, Response
         secondRow.packStart(buttons, false, false, 0);
 
         // Restore remove parts status
-        final CheckButton remove = new CheckButton(_("_Remove the chunks."));
         remove.setActive(config.DELETE_PARTS);
+        remove.setSensitive(config.CHECK_FILE_HASH);
         buttons.packStart(remove, false, false, 0);
         remove.connect(new Button.Clicked() {
             @Override

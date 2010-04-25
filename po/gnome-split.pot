@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-23 17:01+0200\n"
+"POT-Creation-Date: 2010-04-25 16:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -332,12 +332,12 @@ msgid "Default algorithm"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:421
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:534
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:542
 msgid "Default directory"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:431
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:544
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:552
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:155
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:171
 msgid "Choose a directory."
@@ -348,38 +348,38 @@ msgid "During a merge"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:473
-msgid "_Check the MD5 sum if possible."
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:490
-msgid "After a merge"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:504
 msgid "_Remove the chunks."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:517
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:476
+msgid "_Check the MD5 sum if possible."
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:498
+msgid "After a merge"
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:525
 msgid "_Open the created file."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:567
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:575
 msgid "Power management"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:578
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:586
 msgid "Inhibit desktop _hibernation when an action is performed."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:595
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:603
 msgid "Notification"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:609
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:617
 msgid "Show _icon in the desktop notification area."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:625
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:633
 msgid "Show desktop _notification."
 msgstr ""
 
@@ -807,22 +807,22 @@ msgstr ""
 msgid "Generic"
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:113
+#: src/org/gnome/split/GnomeSplit.java:108
 msgid "More than one instance."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:114
+#: src/org/gnome/split/GnomeSplit.java:109
 msgid ""
 "Only one instance of GNOME Split can be executed at a time. If you want to "
 "run multiple instances, edit the preferences. Remember that it is never safe "
 "to run more than one instance of GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:250
+#: src/org/gnome/split/GnomeSplit.java:245
 msgid "Quit GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:251
+#: src/org/gnome/split/GnomeSplit.java:246
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"
