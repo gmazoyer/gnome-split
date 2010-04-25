@@ -1,5 +1,26 @@
 NEWS
 
+GNOME Split 0.7 (25 Apr 2010)
+=============================
+
+Codename: Summer House
+
+  * Rework preferences dialog (follow GNOME HIG).
+  * Add file filters to the file choosers.
+  * Correct some terrible english sentences.
+  * Improve split and merge code.
+  * Remove some dead code.
+  * Remove the properties dialog.
+  * Improve exceptions handling.
+  * Add Yoyocut split and merge algorithms.
+  * Add option to disable the MD5 sum calculation.
+  * Make the status icon tooltip dynamic.
+  * Add GNU getopt like CLI parser.
+  * Add close confirmation dialog.
+  * Update German translation (Fabian Affolter, Nasenbaer).
+  * Update French translation (Guillaume Mazoyer).
+  * Add Russian translation (Bobka Switchev).
+
 GNOME Split 0.6 (16 Mar 2010)
 =============================
 
