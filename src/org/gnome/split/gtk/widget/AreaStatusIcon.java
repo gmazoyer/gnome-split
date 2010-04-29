@@ -54,6 +54,7 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
     public AreaStatusIcon(final GnomeSplit app) {
         super(Constants.PROGRAM_LOGO);
 
+        // Keep instance reference
         this.app = app;
 
         // Create icon menu
@@ -77,8 +78,8 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
 
         menu.append(actions.getToggleAction(ActionId.TRAY_WINDOW).createMenuItem());
         menu.append(new SeparatorMenuItem());
-        menu.append(actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem());
-        menu.append(actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem());
+        menu.append(actions.getAction(ActionId.START).createMenuItem());
+        menu.append(actions.getAction(ActionId.PAUSE).createMenuItem());
         menu.append(new SeparatorMenuItem());
         menu.append(actions.getAction(ActionId.ABOUT).createMenuItem());
         menu.append(actions.getAction(ActionId.EXIT).createMenuItem());
