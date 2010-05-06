@@ -33,9 +33,12 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class DummyAssistantAction extends Action
 {
     public DummyAssistantAction(final GnomeSplit app) {
-        super(app, "dummy-assistant-action", _("_Assistants"), _("Create a split or a merge."), Stock.NEW);
+        super(app, "dummy-assistant-action", _("_Assistants"), _("Create a split or a merge."),
+                Stock.NEW);
     }
 
     @Override
-    public void onActivate(org.gnome.gtk.Action source) {}
+    public void onActivate(org.gnome.gtk.Action source) {
+
+    }
 }
