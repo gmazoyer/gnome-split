@@ -46,7 +46,6 @@ public final class PauseAction extends Action
         if ((engine != null) && !engine.paused()) {
             // The pause it and update the interface state
             engine.pause();
-            app.getActionManager().setPauseState();
         }
     }
 }

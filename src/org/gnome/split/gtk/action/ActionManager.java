@@ -141,54 +141,6 @@ public class ActionManager
     }
 
     /**
-     * Set the actions in the ready state of the interface.
-     */
-    public void setReadyState() {
-        this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(true);
-        this.getAction(ActionId.ASSISTANT).setSensitive(true);
-        this.getAction(ActionId.OPEN_DIR).setSensitive(false);
-        this.getAction(ActionId.START).setSensitive(true);
-        this.getAction(ActionId.PAUSE).setSensitive(false);
-        this.getAction(ActionId.CANCEL).setSensitive(false);
-        this.getAction(ActionId.DELETE).setSensitive(false);
-        this.getAction(ActionId.CLEAR).setSensitive(true);
-        this.getRadioAction(ActionId.SPLIT).setSensitive(true);
-        this.getRadioAction(ActionId.MERGE).setSensitive(true);
-    }
-
-    /**
-     * Set the actions in the pause state of the interface.
-     */
-    public void setPauseState() {
-        this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
-        this.getAction(ActionId.ASSISTANT).setSensitive(false);
-        this.getAction(ActionId.OPEN_DIR).setSensitive(true);
-        this.getAction(ActionId.START).setSensitive(true);
-        this.getAction(ActionId.PAUSE).setSensitive(false);
-        this.getAction(ActionId.CANCEL).setSensitive(true);
-        this.getAction(ActionId.DELETE).setSensitive(true);
-        this.getAction(ActionId.CLEAR).setSensitive(false);
-        this.getRadioAction(ActionId.SPLIT).setSensitive(false);
-        this.getRadioAction(ActionId.MERGE).setSensitive(false);
-    }
-
-    /**
-     * Set the actions in the running state of the interface.
-     */
-    public void setRunningState() {
-        this.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
-        this.getAction(ActionId.ASSISTANT).setSensitive(false);
-        this.getAction(ActionId.OPEN_DIR).setSensitive(true);
-        this.getAction(ActionId.START).setSensitive(false);
-        this.getAction(ActionId.PAUSE).setSensitive(true);
-        this.getAction(ActionId.CANCEL).setSensitive(true);
-        this.getAction(ActionId.DELETE).setSensitive(true);
-        this.getAction(ActionId.CLEAR).setSensitive(false);
-        this.getRadioAction(ActionId.SPLIT).setSensitive(false);
-        this.getRadioAction(ActionId.MERGE).setSensitive(false);
-    }
-
-    /**
      * List of all action IDs.
      * 
      * @author Guillaume Mazoyer

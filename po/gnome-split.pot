@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-04-25 16:00+0200\n"
+"POT-Creation-Date: 2010-05-06 17:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,35 +68,49 @@ msgstr ""
 msgid "{0}: option requires an argument -- {1}"
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:153
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:150
+#, java-format
+msgid "Writting {0}."
+msgstr ""
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:161
+#, java-format
+msgid "Reading {0}."
+msgstr ""
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:172
+msgid "MD5 sum calculation."
+msgstr ""
+
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:241
 msgid "Split finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:154
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:242
 msgid "The file was succesfully splitted."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:156
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:244
 msgid "Merge finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:157
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:245
 msgid "The files were successfully merged."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:184
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:272
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:186
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:274
 msgid "Merge stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:218
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:306
 msgid "Unhandled exception."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:219
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:307
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"
@@ -104,33 +118,19 @@ msgid ""
 "See the details for more information."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:243
-#, java-format
-msgid "Writting {0}."
-msgstr ""
-
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:252
-#, java-format
-msgid "Reading {0}."
-msgstr ""
-
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:274
-msgid "MD5 sum calculation."
-msgstr ""
-
-#: src/org/gnome/split/gtk/MainWindow.java:206
+#: src/org/gnome/split/gtk/MainWindow.java:203
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:234
+#: src/org/gnome/split/gtk/MainWindow.java:231
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:242
+#: src/org/gnome/split/gtk/MainWindow.java:239
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:257
+#: src/org/gnome/split/gtk/MainWindow.java:254
 msgid "_Help"
 msgstr ""
 
@@ -190,11 +190,11 @@ msgstr ""
 msgid "Start this action."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:63
+#: src/org/gnome/split/gtk/action/StartAction.java:62
 msgid "Incompleted fields."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:64
+#: src/org/gnome/split/gtk/action/StartAction.java:63
 msgid "You must fill all fields to start an action."
 msgstr ""
 
@@ -582,7 +582,7 @@ msgstr ""
 msgid "Algorithm:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/AreaStatusIcon.java:109
+#: src/org/gnome/split/gtk/widget/AreaStatusIcon.java:110
 msgid "version"
 msgstr ""
 

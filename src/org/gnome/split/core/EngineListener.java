@@ -71,6 +71,21 @@ public interface EngineListener
     public void engineMD5SumEnded();
 
     /**
+     * Used when the engine is ready to do something.
+     */
+    public void engineReady();
+
+    /**
+     * Used when the engine is running.
+     */
+    public void engineRunning();
+
+    /**
+     * Used when the engine is suspended.
+     */
+    public void engineSuspended();
+
+    /**
      * Used when the action has finished.
      */
     public void engineEnded();

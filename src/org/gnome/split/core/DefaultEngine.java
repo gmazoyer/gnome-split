@@ -98,6 +98,7 @@ public abstract class DefaultEngine implements Engine
     @Override
     public void pause() {
         paused = true;
+        app.getEngineListener().engineSuspended();
     }
 
     @Override
@@ -105,6 +106,7 @@ public abstract class DefaultEngine implements Engine
         synchronized (mutex) {
             paused = false;
             mutex.notify();
+            app.getEngineListener().engineRunning();
         }
     }
 

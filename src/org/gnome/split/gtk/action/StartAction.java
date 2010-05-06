@@ -52,7 +52,6 @@ public final class StartAction extends Action
         if ((engine != null) && engine.paused()) {
             // Then resume it
             engine.resume();
-            app.getActionManager().setRunningState();
         } else {
             // Get current widget
             ActionWidget widget = app.getMainWindow().getActionWidget();

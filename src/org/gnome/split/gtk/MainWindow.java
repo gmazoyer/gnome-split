@@ -183,9 +183,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
             this.separators[1].show();
         }
 
-        // Set the state of the interface
-        this.app.getActionManager().setReadyState();
-
         // Connect delete event handler
         this.connect((Window.DeleteEvent) this);
 
