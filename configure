@@ -483,7 +483,35 @@ my @unix_jar;
 output "Check for required jar files:\n";
 
 if ($os eq "gentoo") {
-	# TODO
+	check_prereq(@java_gnome_jar,
+        "java-gnome library",
+        ">=dev-java/java-gnome-4.0",
+        "/usr/share/java-gnome-4.0/lib/gtk.jar");
+
+    check_prereq(@dbus_java_jar,
+        "dbus-java library",
+        ">=dev-java/dbus-java-2.7-r1",
+        "/usr/share/dbus-java/lib/dbus.jar");
+
+    check_prereq(@debug_disable_jar,
+        "matthew-debug disable library",
+        ">=dev-java/libmatthew-java-0.7-r1",
+        "/usr/share/libmatthew-java/lib/debug-disable.jar");
+
+    check_prereq(@debug_enable_jar,
+        "matthew-debug enable library",
+        ">=dev-java/libmatthew-java-0.7-r1",
+        "/usr/share/libmatthew-java/lib/debug-enable.jar");
+
+    check_prereq(@hexdump_jar,
+        "matthew-debug hexdump library",
+        ">=dev-java/libmatthew-java-0.7-r1",
+        "/usr/share/libmatthew-java/lib/hexdump.jar");
+
+    check_prereq(@unix_jar,
+        "Unix socket library",
+        ">=dev-java/libmatthew-java-0.7-r1",
+        "/usr/share/libmatthew-java/lib/unix.jar");
 } elsif ($os eq "debian") {
 	check_prereq(@java_gnome_jar,
 		"java-gnome library",
@@ -517,38 +545,8 @@ if ($os eq "gentoo") {
 } elsif ($os eq "fedora") {
 	check_prereq(@java_gnome_jar,
 		"java-gnome library",
-		"libjava-gnome-java",
-		"/usr/share/java/gtk.jar");
-
-	check_prereq(@dbus_java_jar,
-		"dbus-java library",
-		"libdbus-java",
-		"/usr/share/java/dbus.jar");
-
-	check_prereq(@debug_disable_jar,
-		"matthew-debug disable library",
-		"libmatthew-debug-java",
-		"/usr/share/java/debug-disable.jar");
-
-	check_prereq(@debug_enable_jar,
-		"matthew-debug enable library",
-		"libmatthew-debug-java",
-		"/usr/share/java/debug-enable.jar");
-
-	check_prereq(@hexdump_jar,
-		"matthew-debug hexdump library",
-		"libmatthew-debug-java",
-		"/usr/share/java/hexdump.jar");
-
-	check_prereq(@unix_jar,
-		"Unix socket library",
-		"libunixsocket-java",
-		"/usr/share/java/unix.jar");
-} elsif ($os eq "arch") {
-	check_prereq(@java_gnome_jar,
-		"java-gnome library",
-		"libjava-gnome-java",
-		"/usr/share/java/gtk.jar");
+		"java-gnome",
+		"/usr/lib/java-gnome/gtk.jar");
 
 	check_prereq(@dbus_java_jar,
 		"dbus-java library",
@@ -557,22 +555,52 @@ if ($os eq "gentoo") {
 
 	check_prereq(@debug_disable_jar,
 		"matthew-debug disable library",
-		"libmatthew-debug-java",
+		"libmatthew-java",
+		"/usr/lib/libmatthew-java/debug-disable.jar");
+
+	check_prereq(@debug_enable_jar,
+		"matthew-debug enable library",
+		"libmatthew-java",
+		"/usr/lib/libmatthew-java/debug-enable.jar");
+
+	check_prereq(@hexdump_jar,
+		"matthew-debug hexdump library",
+		"libmatthew-java",
+		"/usr/lib/libmatthew-java/hexdump.jar");
+
+	check_prereq(@unix_jar,
+		"Unix socket library",
+		"libmatthew-java",
+		"/usr/lib/libmatthew-java/unix.jar");
+} elsif ($os eq "arch") {
+	check_prereq(@java_gnome_jar,
+		"java-gnome library",
+		"java-gnome",
+		"/usr/share/java/gtk.jar");
+
+	check_prereq(@dbus_java_jar,
+		"dbus-java library",
+		"dbus-java",
+		"/usr/share/java/dbus-java/dbus.jar");
+
+	check_prereq(@debug_disable_jar,
+		"matthew-debug disable library",
+		"libmatthew-java",
 		"/usr/share/java/libmatthew-java/debug-disable.jar");
 
 	check_prereq(@debug_enable_jar,
 		"matthew-debug enable library",
-		"libmatthew-debug-java",
+		"libmatthew-java",
 		"/usr/share/java/libmatthew-java/debug-enable.jar");
 
 	check_prereq(@hexdump_jar,
 		"matthew-debug hexdump library",
-		"libmatthew-debug-java",
+		"libmatthew-java",
 		"/usr/share/java/libmatthew-java/hexdump.jar");
 
 	check_prereq(@unix_jar,
 		"Unix socket library",
-		"libunixsocket-java",
+		"libmatthew-java",
 		"/usr/share/java/libmatthew-java/unix.jar");
 } elsif ($os eq "suse") {
 	check_prereq(@java_gnome_jar,
