@@ -324,7 +324,7 @@ public class MergeAssistant extends Assistant implements ActionAssistant, Prepar
         app.getActionManager().getRadioAction(ActionId.MERGE).emitActivate();
 
         // Update the widget using the filename
-        app.getMainWindow().getMergeWidget().setFirstFile(filename);
+        app.getMainWindow().getMergeWidget().setFile(filename);
     }
 
     @Override

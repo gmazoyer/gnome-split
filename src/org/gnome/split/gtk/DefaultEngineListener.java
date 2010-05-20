@@ -116,7 +116,7 @@ public class DefaultEngineListener implements EngineListener
             this.engineRunning();
         } else {
             // Uninhibit hibernation if requested
-            if (app.getConfig().NO_HIBERNATION && (inhibit != null)) {
+            if ((inhibit != null) && inhibit.isInhibited()) {
                 inhibit.unInhibit();
                 inhibit = null;
             }

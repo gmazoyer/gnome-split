@@ -147,10 +147,8 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         fileChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
-                String file = source.getFilename();
-
                 // Update the widget
-                setFirstFile(file);
+                setFile(source.getFilename());
             }
         });
         // table.attach(fileChooser, 2, 3, 0, 1);
@@ -355,7 +353,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
     /**
      * Set the first file to merge and update the widget.
      */
-    public void setFirstFile(String filename) {
+    public void setFile(String filename) {
         boolean load = false;
 
         // Load the file

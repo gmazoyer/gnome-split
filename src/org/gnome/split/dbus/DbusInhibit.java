@@ -52,11 +52,6 @@ public class DbusInhibit
     private UInt32 cookie;
 
     /**
-     * To know if we have inhibit hibernation before.
-     */
-    private boolean hasInhibit;
-
-    /**
      * Inhibit the computer hibernation.
      */
     public void inhibit() {
@@ -71,7 +66,6 @@ public class DbusInhibit
             // Inhibit hibernation and get inhibit cookie
             cookie = inhibit.Inhibit(Constants.PROGRAM_NAME, new UInt32(0), _("GNOME Split activity"),
                     new UInt32(1 + 2 + 4 + 8));
-            hasInhibit = true;
         } catch (DBusException e) {
             e.printStackTrace();
         }
@@ -83,7 +77,6 @@ public class DbusInhibit
     public void unInhibit() {
         // Uninhibit hibernation
         inhibit.Uninhibit(cookie);
-        hasInhibit = false;
 
         // Close dbus connection
         connection.disconnect();
@@ -92,7 +85,7 @@ public class DbusInhibit
     /**
      * Used to know if we has inhibit before.
      */
-    public boolean hasInhibit() {
-        return hasInhibit;
+    public boolean isInhibited() {
+        return inhibit.IsInhibited(cookie);
     }
 }

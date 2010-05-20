@@ -172,7 +172,7 @@ public final class GnomeSplit
             switch (character) {
             case 'm':
                 // Update the merge widget
-                window.getMergeWidget().setFirstFile(getopt.getArgument());
+                window.getMergeWidget().setFile(getopt.getArgument());
 
                 // Show the merge widget
                 actions.getRadioAction(ActionId.MERGE).emitActivate();
