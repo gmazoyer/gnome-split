@@ -65,7 +65,7 @@ public class DbusInhibit
 
             // Inhibit hibernation and get inhibit cookie
             cookie = inhibit.Inhibit(Constants.PROGRAM_NAME, new UInt32(0), _("GNOME Split activity"),
-                    new UInt32(1 + 2 + 4 + 8));
+                    new UInt32(1 | 2 | 4 | 8));
         } catch (DBusException e) {
             e.printStackTrace();
         }
