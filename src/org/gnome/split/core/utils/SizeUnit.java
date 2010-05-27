@@ -34,30 +34,30 @@ public final class SizeUnit
     /**
      * One kilobyte.
      */
-    public static final double KB = 1024;
+    public static final double KiB = 1024;
 
     /**
      * One megabyte.
      */
-    public static final double MB = 1024 * 1024;
+    public static final double MiB = 1024 * 1024;
 
     /**
      * One gigabyte.
      */
-    public static final double GB = 1024 * 1024 * 1024;
+    public static final double GiB = 1024 * 1024 * 1024;
 
     /**
      * One CD-ROM.
      */
-    public static final double CDROM = 700 * MB;
+    public static final double CDROM = 700 * MiB;
 
     /**
      * One DVD-ROM
      */
-    public static final double DVDROM = 4.7 * GB;
+    public static final double DVDROM = 4.7 * GiB;
 
     private static final double[] values = {
-            KB, MB, GB, CDROM, DVDROM
+            KiB, MiB, GiB, CDROM, DVDROM
     };
 
     /**
@@ -73,18 +73,18 @@ public final class SizeUnit
      * Get the best divider for a size to make it readable for human being.
      */
     public static double getDivider(double size) {
-        if (size < KB) {
+        if (size < KiB) {
             // Use bytes only
             return 0;
-        } else if (size < MB) {
+        } else if (size < MiB) {
             // Use kilobytes
-            return KB;
-        } else if (size < GB) {
+            return KiB;
+        } else if (size < GiB) {
             // Use megabytes
-            return MB;
+            return MiB;
         } else {
             // Use gigabytes
-            return GB;
+            return GiB;
         }
     }
 
@@ -112,24 +112,24 @@ public final class SizeUnit
         } else {
             double displayed;
 
-            if (divider == KB) {
+            if (divider == KiB) {
                 // Use kilobytes
-                displayed = (double) size / KB;
+                displayed = (double) size / KiB;
                 builder.append(format.format(displayed));
                 builder.append(" ");
-                builder.append(_("KB"));
-            } else if (divider == MB) {
+                builder.append(_("KiB"));
+            } else if (divider == MiB) {
                 // Use megabytes
-                displayed = (double) size / MB;
+                displayed = (double) size / MiB;
                 builder.append(format.format(displayed));
                 builder.append(" ");
-                builder.append(_("MB"));
+                builder.append(_("MiB"));
             } else {
                 // Use gigabytes
-                displayed = (double) size / GB;
+                displayed = (double) size / GiB;
                 builder.append(format.format(displayed));
                 builder.append(" ");
-                builder.append(_("GB"));
+                builder.append(_("GiB"));
             }
         }
 
@@ -160,28 +160,28 @@ public final class SizeUnit
             // Use bytes only
             builder.append(format.format(speed));
             builder.append(" ");
-            builder.append(_("b/s"));
+            builder.append(_("B/s"));
         } else {
             double displayed;
 
-            if (divider == KB) {
+            if (divider == KiB) {
                 // Use kilobytes
-                displayed = (double) speed / KB;
+                displayed = (double) speed / KiB;
                 builder.append(format.format(displayed));
                 builder.append(" ");
-                builder.append(_("KB/s"));
-            } else if (divider == MB) {
+                builder.append(_("KiB/s"));
+            } else if (divider == MiB) {
                 // Use megabytes
-                displayed = (double) speed / MB;
+                displayed = (double) speed / MiB;
                 builder.append(format.format(displayed));
                 builder.append(" ");
-                builder.append(_("MB/s"));
+                builder.append(_("MiB/s"));
             } else {
                 // Use gigabytes
-                displayed = (double) speed / GB;
+                displayed = (double) speed / GiB;
                 builder.append(format.format(displayed));
                 builder.append(" ");
-                builder.append(_("GB/s"));
+                builder.append(_("GiB/s"));
             }
         }
 
@@ -208,8 +208,8 @@ public final class SizeUnit
      */
     public static String[] toStrings() {
         return new String[] {
-                _("chunks"), _("bytes (B)"), _("kilobytes (KB)"), _("megabytes (MB)"),
-                _("gigbaytes (GB)"), _("CD-ROM (700 MB)"), _("DVD-ROM (4.7 GB)")
+                _("chunks"), _("bytes (B)"), _("kibibytes (KiB)"), _("mebibytes (MiB)"),
+                _("gibibytes (GiB)"), _("CD-ROM (700 MiB)"), _("DVD-ROM (4.7 GiB)")
         };
     }
 }

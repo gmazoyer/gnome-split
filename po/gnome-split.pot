@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-06 17:12+0200\n"
+"POT-Creation-Date: 2010-05-27 23:22+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -339,7 +339,7 @@ msgstr ""
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:431
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:552
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:155
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:171
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:169
 msgid "Choose a directory."
 msgstr ""
 
@@ -569,7 +569,7 @@ msgid "File:"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:124
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:163
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:161
 msgid "Destination:"
 msgstr ""
 
@@ -650,44 +650,44 @@ msgstr ""
 msgid "All files"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:179
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:177
 msgid "Chunks:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:182
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:192
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:202
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:261
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:180
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:190
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:200
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:259
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:314
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:315
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:316
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:317
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:318
 #: src/org/gnome/split/core/utils/SizeUnit.java:106
 msgid "Unknown"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:189
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:187
 msgid "Total size:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:199
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:197
 msgid "MD5 sum:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:238
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:236
 msgid "Cannot merge."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:239
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:237
 msgid ""
 "You will not be able to merge the files because this file format is unknown. "
 "You are welcome to fill a bug about that."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:263
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:261
 msgid "A MD5 sum will be calculated."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:264
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:262
 msgid "A MD5 sum will not be calculated."
 msgstr ""
 
@@ -710,7 +710,7 @@ msgstr ""
 msgid "View:"
 msgstr ""
 
-#: src/org/gnome/split/dbus/DbusInhibit.java:72
+#: src/org/gnome/split/dbus/DbusInhibit.java:67
 msgid "GNOME Split activity"
 msgstr ""
 
@@ -748,31 +748,31 @@ msgid "bytes"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:120
-msgid "KB"
+msgid "KiB"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:126
-msgid "MB"
+msgid "MiB"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:132
-msgid "GB"
+msgid "GiB"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:163
-msgid "b/s"
+msgid "B/s"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:172
-msgid "KB/s"
+msgid "KiB/s"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:178
-msgid "MB/s"
+msgid "MiB/s"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:184
-msgid "GB/s"
+msgid "GiB/s"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:211
@@ -784,23 +784,23 @@ msgid "bytes (B)"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:211
-msgid "kilobytes (KB)"
+msgid "kibibytes (KiB)"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:211
-msgid "megabytes (MB)"
+msgid "mebibytes (MiB)"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:212
-msgid "gigbaytes (GB)"
+msgid "gibibytes (GiB)"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:212
-msgid "CD-ROM (700 MB)"
+msgid "CD-ROM (700 MiB)"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:212
-msgid "DVD-ROM (4.7 GB)"
+msgid "DVD-ROM (4.7 GiB)"
 msgstr ""
 
 #: src/org/gnome/split/core/utils/Algorithm.java:62
