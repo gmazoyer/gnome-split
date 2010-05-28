@@ -69,7 +69,7 @@ public class LongOption
     public LongOption(String name, int arg, int value) throws IllegalArgumentException {
         // Invalid argument type
         if ((arg != NO_ARGUMENT) && (arg != REQUIRED_ARGUMENT) && (arg != OPTIONAL_ARGUMENT)) {
-            throw new IllegalArgumentException(_("Invalid value {0} for paramater 'arg'.", arg));
+            throw new IllegalArgumentException(_("Invalid value {0} for paramater arg.", arg));
         }
 
         // Save values

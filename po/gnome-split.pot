@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-05-27 23:22+0200\n"
+"POT-Creation-Date: 2010-05-28 03:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,54 +18,58 @@ msgstr ""
 
 #: src/org/gnome/split/getopt/LongOption.java:72
 #, java-format
-msgid "Invalid value {0} for paramater 'arg'."
+msgid "Invalid value {0} for paramater arg."
 msgstr ""
 
-#: src/org/gnome/split/getopt/GetOptions.java:313
+#: src/org/gnome/split/getopt/GetOptions.java:311
 #, java-format
-msgid "{0}: option ''{1}'' is ambiguous"
+msgid "{0}: option {1} is ambiguous"
 msgstr ""
 
-#: src/org/gnome/split/getopt/GetOptions.java:335
+#: src/org/gnome/split/getopt/GetOptions.java:333
 #, java-format
-msgid "{0}: option ''--{1}'' doesn't allow an argument"
+msgid "{0}: option --{1} doesn't allow an argument"
 msgstr ""
 
-#: src/org/gnome/split/getopt/GetOptions.java:339
+#: src/org/gnome/split/getopt/GetOptions.java:337
 #, java-format
-msgid "{0}: option ''{1}{2}'' doesn't allow an argument"
+msgid "{0}: option {1}{2} doesn't allow an argument"
 msgstr ""
 
-#: src/org/gnome/split/getopt/GetOptions.java:353
+#: src/org/gnome/split/getopt/GetOptions.java:351
 #, java-format
-msgid "{0}: option ''{1}'' requires an argument"
+msgid "{0}: option {1} requires an argument"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:487
+#, java-format
+msgid "{0}: unrecognized option --{1}"
 msgstr ""
 
 #: src/org/gnome/split/getopt/GetOptions.java:489
 #, java-format
-msgid "{0}: unrecognized option ''--{1}''"
+msgid "{0}: unrecognized option {1}{2}"
 msgstr ""
 
-#: src/org/gnome/split/getopt/GetOptions.java:491
+#: src/org/gnome/split/getopt/GetOptions.java:520
 #, java-format
-msgid "{0}: unrecognized option ''{1}{2}''"
+msgid "{0}: illegal option --{1}"
 msgstr ""
 
 #: src/org/gnome/split/getopt/GetOptions.java:522
 #, java-format
-msgid "{0}: illegal option -- {1}"
+msgid "{0}: invalid option --{1}"
 msgstr ""
 
-#: src/org/gnome/split/getopt/GetOptions.java:524
-#, java-format
-msgid "{0}: invalid option -- {1}"
-msgstr ""
-
-#: src/org/gnome/split/getopt/GetOptions.java:539
-#: src/org/gnome/split/getopt/GetOptions.java:581
-#: src/org/gnome/split/getopt/GetOptions.java:597
+#: src/org/gnome/split/getopt/GetOptions.java:537
 #, java-format
 msgid "{0}: option requires an argument -- {1}"
+msgstr ""
+
+#: src/org/gnome/split/getopt/GetOptions.java:579
+#: src/org/gnome/split/getopt/GetOptions.java:595
+#, java-format
+msgid "{0}: option requires an argument --{1}"
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:150

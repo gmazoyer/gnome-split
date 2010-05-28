@@ -218,8 +218,6 @@ public class GetOptions
         return longOptionIndex;
     }
 
-    /**************************************************************************/
-
     /**
      * Exchange the shorter segment with the far end of the longer segment.
      * That puts the shorter segment into the right place. It leaves the
@@ -310,7 +308,7 @@ public class GetOptions
 
         // Print out an error if the option specified was ambiguous
         if (ambig && !exact) {
-            System.err.println(_("{0}: option ''{1}'' is ambiguous", program, args[optionIndex]));
+            System.err.println(_("{0}: option {1} is ambiguous", program, args[optionIndex]));
 
             nextchar = "";
             invalid = 0;
@@ -332,12 +330,12 @@ public class GetOptions
                 } else {
                     if (args[optionIndex - 1].startsWith("--")) {
                         // -- option
-                        System.err.println(_("{0}: option ''--{1}'' doesn't allow an argument", program,
+                        System.err.println(_("{0}: option --{1} doesn't allow an argument", program,
                                 pfound.getName()));
                     } else {
                         // +option or -option
-                        System.err.println(_("{0}: option ''{1}{2}'' doesn't allow an argument",
-                                program, args[optionIndex - 1].charAt(0), pfound.getName()));
+                        System.err.println(_("{0}: option {1}{2} doesn't allow an argument", program,
+                                args[optionIndex - 1].charAt(0), pfound.getName()));
                     }
 
                     nextchar = "";
@@ -350,7 +348,7 @@ public class GetOptions
                     argument = args[optionIndex];
                     ++optionIndex;
                 } else {
-                    System.err.println(_("{0}: option ''{1}'' requires an argument", program,
+                    System.err.println(_("{0}: option {1} requires an argument", program,
                             args[optionIndex - 1]));
 
                     nextchar = "";
@@ -486,9 +484,9 @@ public class GetOptions
             // Can't find it as a long option.
             if (args[optionIndex].startsWith("--") || (optionString.indexOf(nextchar.charAt(0)) == -1)) {
                 if (args[optionIndex].startsWith("--")) {
-                    System.err.println(_("{0}: unrecognized option ''--{1}''", program, nextchar));
+                    System.err.println(_("{0}: unrecognized option --{1}", program, nextchar));
                 } else {
-                    System.err.println(_("{0}: unrecognized option ''{1}{2}''", program,
+                    System.err.println(_("{0}: unrecognized option {1}{2}", program,
                             args[optionIndex].charAt(0), nextchar));
                 }
 
@@ -519,9 +517,9 @@ public class GetOptions
 
         if ((temp == null) || (c == ':')) {
             if (posixCorrect) {
-                System.err.println(_("{0}: illegal option -- {1}", program, (char) c));
+                System.err.println(_("{0}: illegal option --{1}", program, (char) c));
             } else {
-                System.err.println(_("{0}: invalid option -- {1}", program, (char) c));
+                System.err.println(_("{0}: invalid option --{1}", program, (char) c));
             }
 
             invalid = c;
@@ -578,7 +576,7 @@ public class GetOptions
                     argument = nextchar;
                     optionIndex++;
                 } else if (optionIndex == args.length) {
-                    System.err.println(_("{0}: option requires an argument -- {1}", program, (char) c));
+                    System.err.println(_("{0}: option requires an argument --{1}", program, (char) c));
 
                     invalid = c;
 
@@ -594,7 +592,7 @@ public class GetOptions
                     if ((posixCorrect) && argument.equals("--")) {
                         // If end of argv, error out
                         if (optionIndex == args.length) {
-                            System.err.println(_("{0}: option requires an argument -- {1}", program,
+                            System.err.println(_("{0}: option requires an argument --{1}", program,
                                     (char) c));
 
                             invalid = c;
