@@ -57,6 +57,9 @@ public class StatusWidget extends HBox
     public StatusWidget() {
         super(false, 1);
 
+        // Border width
+        this.setBorderWidth(2);
+
         // Add the icon
         image = new Image(Stock.DIALOG_INFO, IconSize.MENU);
         this.packStart(image, false, false, 0);
