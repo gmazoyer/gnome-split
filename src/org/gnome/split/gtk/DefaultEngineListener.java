@@ -320,10 +320,9 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
-    public void engineDone(double done, double total) {
+    public void engineDone(long done, long total) {
         // Format the sizes to display them in the widget
-        double divider = SizeUnit.getDivider(total);
-        String text = SizeUnit.formatSize(done, divider) + " / " + SizeUnit.formatSize(total, divider);
+        String text = SizeUnit.formatSize(done) + " / " + SizeUnit.formatSize(total);
         double value = done / total;
 
         // Now update the widgets

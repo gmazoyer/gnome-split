@@ -58,7 +58,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class PreferencesDialog extends Dialog implements DeleteEvent, Response
+public final class PreferencesDialog extends Dialog implements DeleteEvent, Response
 {
     /**
      * Configuration of the application.

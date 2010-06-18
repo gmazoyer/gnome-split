@@ -183,7 +183,7 @@ public abstract class DefaultEngine implements Engine
         @Override
         public void run() {
             // The speed is calculated every 2 seconds
-            double speed = (total - oldTotal) / 2;
+            long speed = (total - oldTotal) / 2;
 
             // Update the old total
             oldTotal = total;

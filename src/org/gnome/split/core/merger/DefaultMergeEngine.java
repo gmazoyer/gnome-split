@@ -234,7 +234,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Notify the view that a part of the file has been read.
      */
-    protected void fireEngineDone(double done, double total) {
+    protected void fireEngineDone(long done, long total) {
         app.getEngineListener().engineDone(done, total);
     }
 
@@ -279,7 +279,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             total += buffer.length;
 
             // Notify the view
-            this.fireEngineDone((double) total, (double) fileLength);
+            this.fireEngineDone(total, fileLength);
         }
 
         // Success

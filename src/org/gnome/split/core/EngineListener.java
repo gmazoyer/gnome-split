@@ -103,5 +103,5 @@ public interface EngineListener
     /**
      * Used when a read has been done.
      */
-    public void engineDone(double done, double total);
+    public void engineDone(long done, long total);
 }
