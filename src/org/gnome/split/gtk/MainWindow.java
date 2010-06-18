@@ -21,6 +21,9 @@
 package org.gnome.split.gtk;
 
 import org.gnome.gdk.Event;
+import org.gnome.gdk.Keyval;
+import org.gnome.gdk.ModifierType;
+import org.gnome.gtk.AcceleratorGroup;
 import org.gnome.gtk.Frame;
 import org.gnome.gtk.HSeparator;
 import org.gnome.gtk.Menu;
@@ -197,71 +200,137 @@ public class MainWindow extends Window implements Window.DeleteEvent
      */
     private MenuBar createMenu() {
         final MenuBar menubar = new MenuBar();
+        final AcceleratorGroup accelerators = new AcceleratorGroup();
         final ActionManager actions = app.getActionManager();
+
+        // Set the accelerators group to the window
+        this.addAcceleratorGroup(accelerators);
 
         // File menu item
         final MenuItem fileItem = new MenuItem(_("_File"));
         final Menu fileMenu = new Menu();
+        fileMenu.setAcceleratorGroup(accelerators);
 
         // Create a special case for the assistants
         final Menu assistants = new Menu();
 
+        // Create menu items
+        MenuItem[] items;
+
+        // Create menu items
+        items = new MenuItem[8];
+        items[0] = actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem();
+        items[1] = actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem();
+        items[2] = actions.getAction(ActionId.OPEN_DIR).createMenuItem();
+        items[3] = actions.getAction(ActionId.START).createMenuItem();
+        items[4] = actions.getAction(ActionId.PAUSE).createMenuItem();
+        items[5] = actions.getAction(ActionId.CANCEL).createMenuItem();
+        items[6] = actions.getAction(ActionId.DELETE).createMenuItem();
+        items[7] = actions.getAction(ActionId.EXIT).createMenuItem();
+
+        // Set accelerators
+        items[2].setAccelerator(accelerators, Keyval.o, ModifierType.CONTROL_MASK);
+        items[3].setAccelerator(accelerators, Keyval.s, ModifierType.CONTROL_MASK);
+        items[4].setAccelerator(accelerators, Keyval.e, ModifierType.CONTROL_MASK);
+        items[5].setAccelerator(accelerators, Keyval.c, ModifierType.CONTROL_MASK);
+        items[6].setAccelerator(accelerators, Keyval.Delete, ModifierType.SHIFT_MASK);
+        items[7].setAccelerator(accelerators, Keyval.q, ModifierType.CONTROL_MASK);
+
         // Add the assistants to the menu
-        assistants.append(actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem());
-        assistants.append(actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem());
+        assistants.append(items[0]);
+        assistants.append(items[1]);
 
         // Pack it in a menu item
         final MenuItem assistant = actions.getAction(ActionId.DUMMY_ASSISTANT).createMenuItem();
         assistant.setSubmenu(assistants);
 
+        // Add menu items to the menu
         fileItem.setSubmenu(fileMenu);
         fileMenu.append(assistant);
         fileMenu.append(new SeparatorMenuItem());
-        fileMenu.append(actions.getAction(ActionId.OPEN_DIR).createMenuItem());
+        fileMenu.append(items[2]);
         fileMenu.append(new SeparatorMenuItem());
-        fileMenu.append(actions.getAction(ActionId.START).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.PAUSE).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.CANCEL).createMenuItem());
-        fileMenu.append(actions.getAction(ActionId.DELETE).createMenuItem());
+        fileMenu.append(items[3]);
+        fileMenu.append(items[4]);
+        fileMenu.append(items[5]);
+        fileMenu.append(items[6]);
         fileMenu.append(new SeparatorMenuItem());
-        fileMenu.append(actions.getAction(ActionId.EXIT).createMenuItem());
+        fileMenu.append(items[7]);
         menubar.append(fileItem);
 
         // Edit menu item
         final MenuItem editItem = new MenuItem(_("_Edit"));
         final Menu editMenu = new Menu();
+        editMenu.setAcceleratorGroup(accelerators);
 
+        // Create menu items
+        items = new MenuItem[1];
+        items[0] = actions.getAction(ActionId.PREFERENCES).createMenuItem();
+
+        // Set accelerators
+        items[0].setAccelerator(accelerators, Keyval.p, ModifierType.CONTROL_MASK);
+
+        // Add menu items to the menu
         editItem.setSubmenu(editMenu);
-        editMenu.append(actions.getAction(ActionId.PREFERENCES).createMenuItem());
+        editMenu.append(items[0]);
         menubar.append(editItem);
 
         // View menu item
         final MenuItem viewItem = new MenuItem(_("_View"));
         final Menu viewMenu = new Menu();
+        viewMenu.setAcceleratorGroup(accelerators);
 
+        // Create menu items
+        items = new MenuItem[6];
+        items[0] = actions.getAction(ActionId.CLEAR).createMenuItem();
+        items[1] = actions.getToggleAction(ActionId.TOOLBAR).createMenuItem();
+        items[2] = actions.getToggleAction(ActionId.SWITCHER).createMenuItem();
+        items[3] = actions.getToggleAction(ActionId.STATUS).createMenuItem();
+        items[4] = actions.getRadioAction(ActionId.SPLIT).createMenuItem();
+        items[5] = actions.getRadioAction(ActionId.MERGE).createMenuItem();
+
+        // Set accelerators
+        items[0].setAccelerator(accelerators, Keyval.c, ModifierType.ALT_MASK);
+        items[4].setAccelerator(accelerators, Keyval.s, ModifierType.ALT_MASK);
+        items[5].setAccelerator(accelerators, Keyval.m, ModifierType.ALT_MASK);
+
+        // Add menu items to the menu
         viewItem.setSubmenu(viewMenu);
-        viewMenu.append(actions.getAction(ActionId.CLEAR).createMenuItem());
+        viewMenu.append(items[0]);
         viewMenu.append(new SeparatorMenuItem());
-        viewMenu.append(actions.getToggleAction(ActionId.TOOLBAR).createMenuItem());
-        viewMenu.append(actions.getToggleAction(ActionId.SWITCHER).createMenuItem());
-        viewMenu.append(actions.getToggleAction(ActionId.STATUS).createMenuItem());
+        viewMenu.append(items[1]);
+        viewMenu.append(items[2]);
+        viewMenu.append(items[3]);
         viewMenu.append(new SeparatorMenuItem());
-        viewMenu.append(actions.getRadioAction(ActionId.SPLIT).createMenuItem());
-        viewMenu.append(actions.getRadioAction(ActionId.MERGE).createMenuItem());
+        viewMenu.append(items[4]);
+        viewMenu.append(items[5]);
         menubar.append(viewItem);
 
         // Help menu item
         final MenuItem helpItem = new MenuItem(_("_Help"));
         final Menu helpMenu = new Menu();
+        helpMenu.setAcceleratorGroup(accelerators);
 
+        // Create menu items
+        items = new MenuItem[5];
+        items[0] = actions.getAction(ActionId.HELP).createMenuItem();
+        items[1] = actions.getAction(ActionId.ONLINE_HELP).createMenuItem();
+        items[2] = actions.getAction(ActionId.TRANSLATE).createMenuItem();
+        items[3] = actions.getAction(ActionId.REPORT_BUG).createMenuItem();
+        items[4] = actions.getAction(ActionId.ABOUT).createMenuItem();
+
+        // Set accelerators
+        items[0].setAccelerator(accelerators, Keyval.F1, ModifierType.NONE);
+
+        // Add menu items to the menu
         helpItem.setSubmenu(helpMenu);
-        helpMenu.append(actions.getAction(ActionId.HELP).createMenuItem());
+        helpMenu.append(items[0]);
         helpMenu.append(new SeparatorMenuItem());
-        helpMenu.append(actions.getAction(ActionId.ONLINE_HELP).createMenuItem());
-        helpMenu.append(actions.getAction(ActionId.TRANSLATE).createMenuItem());
-        helpMenu.append(actions.getAction(ActionId.REPORT_BUG).createMenuItem());
+        helpMenu.append(items[1]);
+        helpMenu.append(items[2]);
+        helpMenu.append(items[3]);
         helpMenu.append(new SeparatorMenuItem());
-        helpMenu.append(actions.getAction(ActionId.ABOUT).createMenuItem());
+        helpMenu.append(items[4]);
         menubar.append(helpItem);
 
         return menubar;
