@@ -20,6 +20,7 @@
  */
 package org.gnome.split.gtk.widget;
 
+import org.gnome.gtk.Activatable;
 import org.gnome.gtk.Menu;
 import org.gnome.gtk.MenuToolButton;
 import org.gnome.gtk.SeparatorToolItem;
@@ -48,7 +49,7 @@ public class MainToolbar extends Toolbar
         this.insert(assistants, 0);
 
         // Make this button a proxy of the assistant action
-        actions.getAction(ActionId.ASSISTANT).connectProxy(assistants);
+        ((Activatable) assistants).setRelatedAction(actions.getAction(ActionId.ASSISTANT));
 
         // Attach a menu to this button
         final Menu menu = new Menu();

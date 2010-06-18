@@ -20,6 +20,7 @@
  */
 package org.gnome.split.gtk.widget;
 
+import org.gnome.gtk.Activatable;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.RadioButton;
@@ -69,7 +70,7 @@ public class SelectView extends HBox
 
         // Connect the button as a proxy to the existing action
         action = app.getActionManager().getRadioAction(ActionId.SPLIT);
-        action.connectProxy(split);
+        ((Activatable) split).setRelatedAction(action);
 
         // Merge action - switch to merge view
         this.merge = new RadioButton(group, _("Merge"));
@@ -77,7 +78,7 @@ public class SelectView extends HBox
 
         // Connect the button as a proxy to the existing action
         action = app.getActionManager().getRadioAction(ActionId.MERGE);
-        action.connectProxy(merge);
+        ((Activatable) merge).setRelatedAction(action);
     }
 
     /**

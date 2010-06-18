@@ -118,6 +118,6 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
         }
 
         // Update the icon tooltip
-        this.setTooltip(builder.toString());
+        this.setTooltipText(builder.toString());
     }
 }
