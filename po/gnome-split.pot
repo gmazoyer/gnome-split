@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-06-18 16:10+0200\n"
+"POT-Creation-Date: 2010-06-19 16:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,8 +110,8 @@ msgstr ""
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:34
 msgid ""
-"The MD5 sums are different. There is no guarantee that the created file will "
-"work. Maybe you should try to merge the chunks again."
+"There is no guarantee that the created file will work. Maybe you should try "
+"to merge the chunks again."
 msgstr ""
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:35
@@ -264,19 +264,19 @@ msgstr ""
 msgid "_View switcher"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:210
+#: src/org/gnome/split/gtk/MainWindow.java:220
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:262
+#: src/org/gnome/split/gtk/MainWindow.java:272
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:279
+#: src/org/gnome/split/gtk/MainWindow.java:289
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:310
+#: src/org/gnome/split/gtk/MainWindow.java:320
 msgid "_Help"
 msgstr ""
 
@@ -460,49 +460,49 @@ msgstr ""
 msgid "Merge assistant"
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:150
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:147
 #, java-format
 msgid "Writting {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:161
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:158
 #, java-format
 msgid "Reading {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:172
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:169
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:241
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:238
 msgid "Split finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:242
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:239
 msgid "The file was succesfully splitted."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:244
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:241
 msgid "Merge finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:245
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:242
 msgid "The files were successfully merged."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:272
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:267
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:274
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:269
 msgid "Merge stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:306
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:304
 msgid "Unhandled exception."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:307
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:305
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"

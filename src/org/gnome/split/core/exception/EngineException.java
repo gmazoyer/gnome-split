@@ -37,10 +37,16 @@ public class EngineException extends Exception
     protected ExceptionMessage message;
 
     /**
+     * If this exception is just used as a warning or not.
+     */
+    protected boolean warning;
+
+    /**
      * Create a new exception with a <code>message</code>.
      */
     public EngineException(String message) {
         super(message);
+        this.warning = false;
     }
 
     /**
@@ -49,6 +55,7 @@ public class EngineException extends Exception
      */
     public EngineException(Throwable error) {
         super(error);
+        this.warning = false;
     }
 
     /**
@@ -57,6 +64,7 @@ public class EngineException extends Exception
      */
     public EngineException(String message, Throwable error) {
         super(message, error);
+        this.warning = false;
     }
 
     /**
@@ -65,6 +73,7 @@ public class EngineException extends Exception
     public EngineException(ExceptionMessage message) {
         this(message.getMessage());
         this.message = message;
+        this.warning = false;
     }
 
     /**
@@ -72,5 +81,12 @@ public class EngineException extends Exception
      */
     public ExceptionMessage getExceptionMessage() {
         return message;
+    }
+
+    /**
+     * Check if this exception is just a warning.
+     */
+    public boolean isWarning() {
+        return warning;
     }
 }

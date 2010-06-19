@@ -35,5 +35,6 @@ public final class MD5Exception extends EngineException
      */
     public MD5Exception() {
         super(ExceptionMessage.MD5_DIFFER);
+        this.warning = true;
     }
 }

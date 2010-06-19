@@ -31,7 +31,7 @@ public enum ExceptionMessage
 {
     MD5_DIFFER(
             _("MD5 sums are different."),
-            _("The MD5 sums are different. There is no guarantee that the created file will work. Maybe you should try to merge the chunks again.")), INVALID_SIZE(
+            _("There is no guarantee that the created file will work. Maybe you should try to merge the chunks again.")), INVALID_SIZE(
             _("Invalid chunk size."),
             _("You must specify a size which is lower than the size of the file to split."));
 

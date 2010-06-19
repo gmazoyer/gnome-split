@@ -33,15 +33,12 @@ import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.ExceptionMessage;
 import org.gnome.split.core.exception.InvalidSizeException;
-import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.dbus.DbusInhibit;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.ErrorDialog;
-import org.gnome.split.gtk.dialog.InfoDialog;
-import org.gnome.split.gtk.dialog.WarningDialog;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -248,16 +245,14 @@ public class DefaultEngineListener implements EngineListener
         // Update the status widget
         gtk.getStatusWidget().update(Stock.YES, title, null);
 
-        if (app.getConfig().USE_NOTIFICATION) {
+        if (!app.getConfig().USE_NOTIFICATION) {
+            // Use simple info bar
+            gtk.getInfoBar().showInfo(title, body);
+        } else {
             // Use notification
             Notification notify = new Notification(title, body, null, gtk.getAreaStatusIcon());
             notify.setIcon(Constants.PROGRAM_LOGO);
             notify.show();
-        } else {
-            // Use simple dialog
-            Dialog dialog = new InfoDialog(gtk, title, body);
-            dialog.run();
-            dialog.hide();
         }
 
         // Update engine
@@ -283,37 +278,43 @@ public class DefaultEngineListener implements EngineListener
 
     @Override
     public void engineError(EngineException exception) {
-        Stock item;
-        Dialog dialog;
+        Stock item = null;
+        Dialog dialog = null;
+        ExceptionMessage message = null;
 
-        // First print the stacktrace
-        exception.printStackTrace();
-
-        if (exception instanceof MD5Exception) {
-            // MD5 exception - warning only (file *may* work)
+        if (exception.isWarning()) {
+            // Warning only (file *may* work)
+            message = exception.getExceptionMessage();
             item = Stock.DIALOG_WARNING;
-            dialog = new WarningDialog(gtk, exception.getExceptionMessage().getDetails());
-        } else if (exception instanceof InvalidSizeException) {
-            // Invalid size exception
-            ExceptionMessage message = exception.getExceptionMessage();
-            item = Stock.DIALOG_ERROR;
-            dialog = new ErrorDialog(gtk, message.getMessage(), message.getDetails());
+            gtk.getInfoBar().showWarning(message.getMessage(), message.getDetails());
         } else {
-            // Other exception - error (file is supposed broken)
-            item = Stock.DIALOG_ERROR;
-            dialog = new ErrorDialog(
-                    gtk,
-                    _("Unhandled exception."),
-                    _("An exception occurs. You can report it to the developers and tell them how to reproduce it.\n\nSee the details for more information."),
-                    exception);
+            // First print the stacktrace
+            exception.printStackTrace();
+
+            if (exception instanceof InvalidSizeException) {
+                // Invalid size exception
+                message = exception.getExceptionMessage();
+                item = Stock.DIALOG_ERROR;
+                dialog = new ErrorDialog(gtk, message.getMessage(), message.getDetails());
+            } else {
+                // Other exception - error (file is supposed broken)
+                item = Stock.DIALOG_ERROR;
+                dialog = new ErrorDialog(
+                        gtk,
+                        _("Unhandled exception."),
+                        _("An exception occurs. You can report it to the developers and tell them how to reproduce it.\n\nSee the details for more information."),
+                        exception);
+            }
         }
 
         // Update the status widget
         gtk.getStatusWidget().update(item, exception.getMessage(), null);
 
-        // Display the dialog
-        dialog.run();
-        dialog.hide();
+        if (dialog != null) {
+            // Display the dialog
+            dialog.run();
+            dialog.hide();
+        }
 
         // Update engine
         this.setEngine(null);
@@ -323,7 +324,7 @@ public class DefaultEngineListener implements EngineListener
     public void engineDone(long done, long total) {
         // Format the sizes to display them in the widget
         String text = SizeUnit.formatSize(done) + " / " + SizeUnit.formatSize(total);
-        double value = done / total;
+        double value = (double) done / (double) total;
 
         // Now update the widgets
         gtk.getActionWidget().updateProgress(value, text, true);
@@ -335,7 +336,7 @@ public class DefaultEngineListener implements EngineListener
      * 
      * @author Guillaume Mazoyer
      */
-    class PulseProgress extends TimerTask
+    private class PulseProgress extends TimerTask
     {
         @Override
         public void run() {
