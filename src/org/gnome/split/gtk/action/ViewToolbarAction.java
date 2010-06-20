@@ -47,6 +47,11 @@ public final class ViewToolbarAction extends ToggleAction
         } else {
             // Hide it
             toolbar.hide();
+
+            // Resize the window if needed
+            if (!this.getApplication().getConfig().CUSTOM_WINDOW_SIZE) {
+                this.getApplication().getMainWindow().resize();
+            }
         }
 
         // Save config

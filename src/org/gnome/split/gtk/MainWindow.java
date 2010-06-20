@@ -383,6 +383,23 @@ public class MainWindow extends Window implements Window.DeleteEvent
     }
 
     /**
+     * Resize the window according to the user configuration.
+     */
+    public void resize() {
+        if (!app.getConfig().CUSTOM_WINDOW_SIZE) {
+            // Use the optimal size
+            this.resize(1, 1);
+        } else {
+            // Get the user defined size of the window
+            int x = app.getConfig().WINDOW_SIZE_X;
+            int y = app.getConfig().WINDOW_SIZE_Y;
+
+            // Resize the window
+            this.resize(x, y);
+        }
+    }
+
+    /**
      * Get the separators of the interface.
      */
     public HSeparator[] getSeparators() {

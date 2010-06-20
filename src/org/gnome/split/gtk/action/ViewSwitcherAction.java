@@ -51,6 +51,11 @@ public final class ViewSwitcherAction extends ToggleAction
             // Hide it
             switcher.hide();
             separator.hide();
+
+            // Resize the window if needed
+            if (!this.getApplication().getConfig().CUSTOM_WINDOW_SIZE) {
+                this.getApplication().getMainWindow().resize();
+            }
         }
 
         // Save config

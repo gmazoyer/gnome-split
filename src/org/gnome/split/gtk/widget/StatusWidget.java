@@ -69,7 +69,7 @@ public class StatusWidget extends HBox
 
         // Add the text display
         text = new Label(_("Ready."));
-        text.setEllipsize(EllipsizeMode.END);
+        text.setEllipsize(EllipsizeMode.MIDDLE);
         this.packStart(text, true, true, 0);
 
         // Add a second separator

@@ -51,6 +51,11 @@ public final class ViewStatusbarAction extends ToggleAction
             // Hide it
             statusbar.hide();
             separator.hide();
+
+            // Resize the window if needed
+            if (!this.getApplication().getConfig().CUSTOM_WINDOW_SIZE) {
+                this.getApplication().getMainWindow().resize();
+            }
         }
 
         // Save config

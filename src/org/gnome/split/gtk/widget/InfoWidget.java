@@ -75,12 +75,8 @@ public class InfoWidget extends InfoBar implements Close, Response
     public void hide() {
         super.hide();
 
-        // Get the default size of the window
-        int x = app.getConfig().WINDOW_SIZE_X;
-        int y = app.getConfig().WINDOW_SIZE_Y;
-
         // Resize the window
-        app.getMainWindow().resize(x, y);
+        app.getMainWindow().resize();
     }
 
     /**
