@@ -23,6 +23,9 @@ package org.gnome.split.gtk.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.gnome.gdk.Keyval;
+import org.gnome.gdk.ModifierType;
+import org.gnome.gtk.AcceleratorGroup;
 import org.gnome.gtk.RadioGroup;
 import org.gnome.split.GnomeSplit;
 
@@ -48,21 +51,45 @@ public class ActionManager
      */
     private Map<ActionId, RadioAction> radios;
 
+    /**
+     * Group of accelerators for actions.
+     */
+    private AcceleratorGroup accelerators;
+
     public ActionManager(final GnomeSplit app) {
+        // Create maps of actions
         actions = new HashMap<ActionId, Action>();
         toggles = new HashMap<ActionId, ToggleAction>();
         radios = new HashMap<ActionId, RadioAction>();
 
-        // Actions related to split and merge processes
+        // Create the group of acceperators
+        accelerators = new AcceleratorGroup();
+
+        // Actions related to split and merge assistants
         DummyAssistantAction dummy = new DummyAssistantAction(app);
         AssistantAction assistant = new AssistantAction(app);
         SplitAssistantAction sassistant = new SplitAssistantAction(app);
         MergeAssistantAction massistant = new MergeAssistantAction(app);
+
+        // Action to open the directory
         OpenDirAction directory = new OpenDirAction(app);
+        directory.setAccelerator(accelerators, Keyval.o, ModifierType.CONTROL_MASK);
+
+        // Action to start a split/merge
         StartAction start = new StartAction(app);
+        start.setAccelerator(accelerators, Keyval.s, ModifierType.CONTROL_MASK);
+
+        // Action to suspend a split/merge
         PauseAction pause = new PauseAction(app);
+        pause.setAccelerator(accelerators, Keyval.e, ModifierType.CONTROL_MASK);
+
+        // Action to cancel a split/merge
         CancelAction cancel = new CancelAction(app);
+        cancel.setAccelerator(accelerators, Keyval.c, ModifierType.CONTROL_MASK);
+
+        // Action to delete files and cancel a split/merge
         DeleteAction delete = new DeleteAction(app);
+        delete.setAccelerator(accelerators, Keyval.Delete, ModifierType.SHIFT_MASK);
 
         // Add the previously created actions
         actions.put(ActionId.DUMMY_ASSISTANT, dummy);
@@ -75,11 +102,23 @@ public class ActionManager
         actions.put(ActionId.CANCEL, cancel);
         actions.put(ActionId.DELETE, delete);
 
-        // Actions related to the interface and program management
+        // Action to clear the interface
         ClearAction clear = new ClearAction(app);
+        clear.setAccelerator(accelerators, Keyval.c, ModifierType.ALT_MASK);
+
+        // Action to quit the program
         QuitAction quit = new QuitAction(app);
+        quit.setAccelerator(accelerators, Keyval.q, ModifierType.CONTROL_MASK);
+
+        // Action to show the preferences
         PreferencesAction preferences = new PreferencesAction(app);
+        preferences.setAccelerator(accelerators, Keyval.p, ModifierType.CONTROL_MASK);
+
+        // Action to open the help
         HelpAction help = new HelpAction(app);
+        help.setAccelerator(accelerators, Keyval.F1, ModifierType.NONE);
+
+        // Actions to show the about dialog and to contribute to the project
         OnlineHelpAction online = new OnlineHelpAction(app);
         TranslateAction translate = new TranslateAction(app);
         ReportBugAction report = new ReportBugAction(app);
@@ -111,12 +150,25 @@ public class ActionManager
         // Other actions related to the interface which have two possible
         // states (active or inactive) but only one can be active
         RadioGroup views = new RadioGroup();
+
+        // Action to show the split view
         SplitViewAction split = new SplitViewAction(app, views);
+        split.setAccelerator(accelerators, Keyval.s, ModifierType.ALT_MASK);
+
+        // Action to show the merge view
         MergeViewAction merge = new MergeViewAction(app, views);
+        merge.setAccelerator(accelerators, Keyval.m, ModifierType.ALT_MASK);
 
         // Add the previously created actions
         radios.put(ActionId.SPLIT, split);
         radios.put(ActionId.MERGE, merge);
+    }
+
+    /**
+     * Get the group of accelerators associated to the window.
+     */
+    public AcceleratorGroup getAccelerators() {
+        return accelerators;
     }
 
     /**

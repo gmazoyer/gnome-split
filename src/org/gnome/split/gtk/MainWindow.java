@@ -21,8 +21,6 @@
 package org.gnome.split.gtk;
 
 import org.gnome.gdk.Event;
-import org.gnome.gdk.Keyval;
-import org.gnome.gdk.ModifierType;
 import org.gnome.gtk.AcceleratorGroup;
 import org.gnome.gtk.Frame;
 import org.gnome.gtk.HSeparator;
@@ -65,6 +63,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Current GNOME Split instance.
      */
     private GnomeSplit app;
+
+    /**
+     * Group of accelerators for actions.
+     */
+    private AcceleratorGroup accelerators;
 
     /**
      * Icon in the notification area associated to this window.
@@ -120,6 +123,10 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // Save program instance
         this.app = app;
 
+        // Create the accelerators group
+        this.accelerators = app.getActionManager().getAccelerators();
+        this.addAcceleratorGroup(this.accelerators);
+
         // Create the separators array
         this.separators = new HSeparator[2];
 
@@ -166,6 +173,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
             this.views.showAll();
             this.separators[0].show();
         }
+
         // Create the two main widgets
         this.split = new SplitWidget(app);
         this.merge = new MergeWidget(app);
@@ -210,11 +218,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
      */
     private MenuBar createMenu() {
         final MenuBar menubar = new MenuBar();
-        final AcceleratorGroup accelerators = new AcceleratorGroup();
         final ActionManager actions = app.getActionManager();
-
-        // Set the accelerators group to the window
-        this.addAcceleratorGroup(accelerators);
 
         // File menu item
         final MenuItem fileItem = new MenuItem(_("_File"));
@@ -237,14 +241,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         items[5] = actions.getAction(ActionId.CANCEL).createMenuItem();
         items[6] = actions.getAction(ActionId.DELETE).createMenuItem();
         items[7] = actions.getAction(ActionId.EXIT).createMenuItem();
-
-        // Set accelerators
-        items[2].setAccelerator(accelerators, Keyval.o, ModifierType.CONTROL_MASK);
-        items[3].setAccelerator(accelerators, Keyval.s, ModifierType.CONTROL_MASK);
-        items[4].setAccelerator(accelerators, Keyval.e, ModifierType.CONTROL_MASK);
-        items[5].setAccelerator(accelerators, Keyval.c, ModifierType.CONTROL_MASK);
-        items[6].setAccelerator(accelerators, Keyval.Delete, ModifierType.SHIFT_MASK);
-        items[7].setAccelerator(accelerators, Keyval.q, ModifierType.CONTROL_MASK);
 
         // Add the assistants to the menu
         assistants.append(items[0]);
@@ -277,9 +273,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         items = new MenuItem[1];
         items[0] = actions.getAction(ActionId.PREFERENCES).createMenuItem();
 
-        // Set accelerators
-        items[0].setAccelerator(accelerators, Keyval.p, ModifierType.CONTROL_MASK);
-
         // Add menu items to the menu
         editItem.setSubmenu(editMenu);
         editMenu.append(items[0]);
@@ -298,11 +291,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         items[3] = actions.getToggleAction(ActionId.STATUS).createMenuItem();
         items[4] = actions.getRadioAction(ActionId.SPLIT).createMenuItem();
         items[5] = actions.getRadioAction(ActionId.MERGE).createMenuItem();
-
-        // Set accelerators
-        items[0].setAccelerator(accelerators, Keyval.c, ModifierType.ALT_MASK);
-        items[4].setAccelerator(accelerators, Keyval.s, ModifierType.ALT_MASK);
-        items[5].setAccelerator(accelerators, Keyval.m, ModifierType.ALT_MASK);
 
         // Add menu items to the menu
         viewItem.setSubmenu(viewMenu);
@@ -328,9 +316,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         items[2] = actions.getAction(ActionId.TRANSLATE).createMenuItem();
         items[3] = actions.getAction(ActionId.REPORT_BUG).createMenuItem();
         items[4] = actions.getAction(ActionId.ABOUT).createMenuItem();
-
-        // Set accelerators
-        items[0].setAccelerator(accelerators, Keyval.F1, ModifierType.NONE);
 
         // Add menu items to the menu
         helpItem.setSubmenu(helpMenu);
