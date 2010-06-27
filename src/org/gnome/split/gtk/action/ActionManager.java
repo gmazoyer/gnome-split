@@ -81,7 +81,7 @@ public class ActionManager
 
         // Action to suspend a split/merge
         PauseAction pause = new PauseAction(app);
-        pause.setAccelerator(accelerators, Keyval.e, ModifierType.CONTROL_MASK);
+        pause.setAccelerator(accelerators, Keyval.p, ModifierType.CONTROL_MASK);
 
         // Action to cancel a split/merge
         CancelAction cancel = new CancelAction(app);
@@ -112,7 +112,6 @@ public class ActionManager
 
         // Action to show the preferences
         PreferencesAction preferences = new PreferencesAction(app);
-        preferences.setAccelerator(accelerators, Keyval.p, ModifierType.CONTROL_MASK);
 
         // Action to open the help
         HelpAction help = new HelpAction(app);

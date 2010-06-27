@@ -870,11 +870,11 @@ if ($os eq "gentoo") {
 		$javadoc_candidate = "$jdk_home/bin/javadoc";
 		$vendor            = "Specified";
 	} else {
-		$javac_candidate = "/usr/bin/javac";
-		$javah_candidate = "/usr/bin/javah";
-		$jar_candidate = "/usr/bin/jar";
+		$javac_candidate   = "/usr/bin/javac";
+		$javah_candidate   = "/usr/bin/javah";
+		$jar_candidate     = "/usr/bin/jar";
 		$javadoc_candidate = "/usr/bin/javadoc";
-		$vendor = "System Default";
+		$vendor            = "System Default";
 	}
 	check_compiler($javac, "$vendor javac", $javac_candidate, "-g");
 
@@ -1115,10 +1115,10 @@ if ($os eq "gentoo") {
 	my $vendor;
 	if ($jdk_home) {
 		$java_candidate = "$jdk_home/bin/java";
-		$vendor = "Specified";
+		$vendor         = "Specified";
 	} else {
 		$java_candidate = "/usr/bin/java";
-		$vendor = "System Default";
+		$vendor         = "System Default";
 	}
 	check_runtime($java, "$vendor java VM", $java_candidate, "-client -ea");
 
