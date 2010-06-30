@@ -185,6 +185,7 @@ public class DefaultEngineListener implements EngineListener
     public void engineReady() {
         ActionManager actions = app.getActionManager();
 
+        // Update the actions
         actions.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(true);
         actions.getAction(ActionId.ASSISTANT).setSensitive(true);
         actions.getAction(ActionId.OPEN_DIR).setSensitive(false);
@@ -195,12 +196,16 @@ public class DefaultEngineListener implements EngineListener
         actions.getAction(ActionId.CLEAR).setSensitive(true);
         actions.getRadioAction(ActionId.SPLIT).setSensitive(true);
         actions.getRadioAction(ActionId.MERGE).setSensitive(true);
+
+        // Update the cursor
+        gtk.setCursorWorkingState(false);
     }
 
     @Override
     public void engineRunning() {
         ActionManager actions = app.getActionManager();
 
+        // Update the actions
         actions.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.OPEN_DIR).setSensitive(true);
@@ -211,12 +216,16 @@ public class DefaultEngineListener implements EngineListener
         actions.getAction(ActionId.CLEAR).setSensitive(false);
         actions.getRadioAction(ActionId.SPLIT).setSensitive(false);
         actions.getRadioAction(ActionId.MERGE).setSensitive(false);
+
+        // Update the cursor
+        gtk.setCursorWorkingState(true);
     }
 
     @Override
     public void engineSuspended() {
         ActionManager actions = app.getActionManager();
 
+        // Update the actions
         actions.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.OPEN_DIR).setSensitive(true);
@@ -227,6 +236,9 @@ public class DefaultEngineListener implements EngineListener
         actions.getAction(ActionId.CLEAR).setSensitive(false);
         actions.getRadioAction(ActionId.SPLIT).setSensitive(false);
         actions.getRadioAction(ActionId.MERGE).setSensitive(false);
+
+        // Update the cursor
+        gtk.setCursorWorkingState(false);
     }
 
     @Override

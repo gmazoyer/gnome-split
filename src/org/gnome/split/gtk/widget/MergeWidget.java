@@ -251,7 +251,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         String directory = fullpath.substring(0, lastSeparator);
 
         // Get the number of parts
-        int number = engine.getParts();
+        int number = engine.getChunksNumber();
 
         // Update the widgets
         destEntry.setText(filename);

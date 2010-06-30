@@ -20,6 +20,7 @@
  */
 package org.gnome.split.gtk;
 
+import org.gnome.gdk.Cursor;
 import org.gnome.gdk.Event;
 import org.gnome.gtk.AcceleratorGroup;
 import org.gnome.gtk.Frame;
@@ -365,6 +366,14 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Show the merge widget
         merge.setVisible(true);
+    }
+
+    /**
+     * Set the state of the cursor. It can be {@link Cursor.WORKING} or
+     * {@link Cursor.NORMAL}.
+     */
+    public void setCursorWorkingState(boolean working) {
+        this.getWindow().setCursor(working ? Cursor.WORKING : Cursor.NORMAL);
     }
 
     /**

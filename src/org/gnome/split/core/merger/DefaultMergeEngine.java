@@ -289,7 +289,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Get the number of parts to merge.
      */
-    public int getParts() {
+    public int getChunksNumber() {
         return parts;
     }
 
