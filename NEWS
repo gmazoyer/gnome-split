@@ -1,5 +1,28 @@
 NEWS
 
+GNOME Split 0.8 (30 Jun 2010)
+=============================
+
+Codename: Happy Birthday
+
+  * Reorganize GTK+ interface state code.
+  * Remove some dead code.
+  * Update configure file for Gentoo, Fedora and ArchLinux.
+  * Fix computer hibernation inhibition.
+  * Use IEC standard units (KiB, MiB, GiB).
+  * Use glib function to format byte sizes to strings.
+  * Remove deprecated GTK+ methods.
+  * Add accelerators to menu items.
+  * Use GTK+ info bar instead of dialog for information.
+  * Automatic resize for the main window.
+  * Change cursor state according to the interface state.
+  * Update French translation (Guillaume Mazoyer).
+  * Add Galician translation (Marcos X, Xosé).
+  * Update German translation (Fabian Affolter, Janis
+    Fehrmann, Mario Blättermann, Nasenbaer, xlazarus).
+  * Add Portuguese translation (Ricardo Ferreira).
+  * Add Spanish translation (Marcos Escalier, victor tejada yau).
+
 GNOME Split 0.7 (25 Apr 2010)
 =============================
 

@@ -1,100 +1,101 @@
-# German translation for gnome-split.
+# Galician translation for gnome-split
 # Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
 # This file is distributed under the same license as the gnome-split package.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GNOME Split\n"
+"Project-Id-Version: gnome-split\n"
 "Report-Msgid-Bugs-To: Guillaume Mazoyer <respawneral@gmail.com>\n"
 "POT-Creation-Date: 2010-06-21 19:04+0200\n"
-"PO-Revision-Date: 2010-06-30 08:24+0000\n"
-"Last-Translator: xlazarus <xlazarus@lazarusware.at>\n"
-"Language-Team: German <gnome-de@gnome.org>\n"
+"PO-Revision-Date: 2010-06-07 22:06+0000\n"
+"Last-Translator: Marcos X. <Unknown>\n"
+"Language-Team: Galician <marcoslansgarza@gmail.com>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Launchpad-Export-Date: 2010-06-30 16:36+0000\n"
 "X-Generator: Launchpad (build Unknown)\n"
+"X-Poedit-Language: galego\n"
 
 #: src/org/gnome/split/getopt/GetOptions.java:311
 #, java-format
 msgid "{0}: option {1} is ambiguous"
-msgstr "{0}: Option {1} ist nicht eindeutig"
+msgstr "{0}: a opción {1} é ambigua"
 
 #: src/org/gnome/split/getopt/GetOptions.java:333
 #, java-format
 msgid "{0}: option --{1} doesn't allow an argument"
-msgstr "{0}: Die Option --{1} erlaubt kein Argument."
+msgstr "{0}: a opción --{1} non permite un argumento"
 
 #: src/org/gnome/split/getopt/GetOptions.java:337
 #, java-format
 msgid "{0}: option {1}{2} doesn't allow an argument"
-msgstr "{0}: Die Option {1}{2} erlaubt kein Argument."
+msgstr "{0}: a opción {1}{2} non permite un argumento"
 
 #: src/org/gnome/split/getopt/GetOptions.java:351
 #, java-format
 msgid "{0}: option {1} requires an argument"
-msgstr "{0}: Die Option {1} benötigt ein Argument."
+msgstr "{0}: a opción {1} precisa un argumento"
 
 #: src/org/gnome/split/getopt/GetOptions.java:487
 #, java-format
 msgid "{0}: unrecognized option --{1}"
-msgstr "{0}: unbekannte Option --{1}"
+msgstr "{0}: opción non recoñecida --{1}"
 
 #: src/org/gnome/split/getopt/GetOptions.java:489
 #, java-format
 msgid "{0}: unrecognized option {1}{2}"
-msgstr "{0}: unbekannte Option {1}{2}"
+msgstr "{0}: opción non recoñecida {1}{2}"
 
 #: src/org/gnome/split/getopt/GetOptions.java:520
 #, java-format
 msgid "{0}: illegal option --{1}"
-msgstr "{0}: Illegale Option --{1}"
+msgstr "{0}: opción ilegal --{1}"
 
 #: src/org/gnome/split/getopt/GetOptions.java:522
 #, java-format
 msgid "{0}: invalid option --{1}"
-msgstr "{0}: Ungültige Option --{1}"
+msgstr "{0}: opción incorrecta --{1}"
 
 #: src/org/gnome/split/getopt/GetOptions.java:537
 #, java-format
 msgid "{0}: option requires an argument -- {1}"
-msgstr "{0}: Option verlangt nach einem Argument -- {1}"
+msgstr "{0}: a opción precida un argumento -- {1}"
 
 #: src/org/gnome/split/getopt/GetOptions.java:579
 #: src/org/gnome/split/getopt/GetOptions.java:595
 #, java-format
 msgid "{0}: option requires an argument --{1}"
-msgstr "{0}: Die Option benötigt ein Argument. --{1}"
+msgstr "{0}: a opción precisa un argumento --{1}"
 
 #: src/org/gnome/split/getopt/LongOption.java:72
 #, java-format
 msgid "Invalid value {0} for paramater arg."
-msgstr "Ungültiger Wert {0} für Paramater arg."
+msgstr "Valor incorrecto {0} para o parámetro argumento."
 
 #: src/org/gnome/split/core/utils/Algorithm.java:62
 msgid "Generic"
-msgstr "Allgemein"
+msgstr "Xenérico"
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:92
 msgid "chunks"
-msgstr "Blöcke"
+msgstr "bloques"
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:92
 msgid "bytes (B)"
-msgstr "Bytes (B)"
+msgstr "bytes (B)"
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:92
 msgid "kibibytes (KiB)"
-msgstr "Kibibytes (KiB)"
+msgstr "kibibytes (KiB)"
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:92
 msgid "mebibytes (MiB)"
-msgstr "Mebibytes (MiB)"
+msgstr "mebibytes (MiB)"
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:93
 msgid "gibibytes (GiB)"
-msgstr "Gibibytes (GiB)"
+msgstr "gibibytes (GiB)"
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:93
 msgid "CD-ROM (700 MiB)"
@@ -106,44 +107,41 @@ msgstr "DVD-ROM (4.7 GiB)"
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:33
 msgid "MD5 sums are different."
-msgstr "MD5-Prüfsummen sind unterschiedlich"
+msgstr "A sumas MD5 son diferentes."
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:34
 msgid ""
 "There is no guarantee that the created file will work. Maybe you should try "
 "to merge the chunks again."
 msgstr ""
-"Es besteht keinerlei Garantie, dass die erzeugte Datei korrekt erstellt "
-"wurde. Möglicherweise sollten Sie versuchen, die einzelnen Dateien/Teile "
-"erneut zusammen zu fügen."
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:35
 msgid "Invalid chunk size."
-msgstr "Ungültige Blockgröße"
+msgstr "O tamaño do bloque é incorrecto."
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:36
 msgid ""
 "You must specify a size which is lower than the size of the file to split."
 msgstr ""
-"Sie müssen eine Größe angeben, die kleiner als die zu teilende Datei ist."
+"Debe indicar un tamaño inferior ao tamaño do ficheiro que quere dividir."
 
 #: src/org/gnome/split/core/merger/DefaultMergeEngine.java:154
 #, java-format
 msgid "Merging {0}"
-msgstr "Vereine {0}"
+msgstr "Combinando {0}"
 
 #: src/org/gnome/split/core/splitter/DefaultSplitEngine.java:96
 #, java-format
 msgid "Splitting {0}"
-msgstr "Zerteile {0}"
+msgstr "Dividindo {0}"
 
 #: src/org/gnome/split/dbus/DbusInhibit.java:67
 msgid "GNOME Split activity"
-msgstr "Aktivität von GNOME Split"
+msgstr "Actividade GNOME Split"
 
 #: src/org/gnome/split/GnomeSplit.java:108
 msgid "More than one instance."
-msgstr "Mehr als eine Instanz"
+msgstr "Máis dunha instancia."
 
 #: src/org/gnome/split/GnomeSplit.java:109
 msgid ""
@@ -151,300 +149,296 @@ msgid ""
 "run multiple instances, edit the preferences. Remember that it is never safe "
 "to run more than one instance of GNOME Split."
 msgstr ""
-"Es können nicht mehrere Instanzen von GNOME-Split gleichzeitig ausgeführt "
-"werden. Wenn Sie mehrere Instanzen ausführen wollen, dann ändern Sie die "
-"Einstellungen. Denken Sie daran, dass die Ausführung mehrerer Instanzen von "
-"GNOME-Split potenziell unsicher ist."
+"No GNOME Split unicamente é posíbel executar unha instancia. Se\n"
+"desexa executar múltiples instancias, edite as preferencias. Lembre\n"
+"que non é seguro executar máis dunha instancia de forma simultánea."
 
 #: src/org/gnome/split/GnomeSplit.java:245
 msgid "Quit GNOME Split."
-msgstr "GNOME Split beenden"
+msgstr "Saír de GNOME Split."
 
 #: src/org/gnome/split/GnomeSplit.java:246
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"
 msgstr ""
-"Ein Vorgang läuft derzeit noch. Wollen Sie GNOME Split wirklich beenden?"
+"Neste momento hai unha acción en proceso. Desexa saír do GNOME Split de "
+"todos os xeitos?"
 
 #: src/org/gnome/split/gtk/action/DeleteAction.java:37
 msgid "Cancel and _delete files"
-msgstr "Abbrechen und _Dateien löschen"
+msgstr "Cancelar e _eliminar os ficheiros"
 
 #: src/org/gnome/split/gtk/action/DummyAssistantAction.java:36
 #: src/org/gnome/split/gtk/action/AssistantAction.java:37
 msgid "_Assistants"
-msgstr "_Assistenten"
+msgstr "_Asistentes"
 
 #: src/org/gnome/split/gtk/action/DummyAssistantAction.java:36
 #: src/org/gnome/split/gtk/action/AssistantAction.java:37
 msgid "Create a split or a merge."
-msgstr "Eine Teilung oder Zusammenführung ausführen."
+msgstr "Dividir ou combinar"
 
 #: src/org/gnome/split/gtk/action/MergeAssistantAction.java:37
 msgid "_Merge assistant"
-msgstr "Zusa_mmenführungsassistent"
+msgstr "Asistente para co_mbinar"
 
 #: src/org/gnome/split/gtk/action/MergeAssistantAction.java:37
 msgid "Create a merge."
-msgstr "Eine Zusammenführung ausführen."
+msgstr "Facer unha combinación."
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "_Suspend"
-msgstr "_Unterbrechen"
+msgstr "_Suspender"
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "Suspend this action."
-msgstr "Diesen Vorgang unterbrechen."
+msgstr "Suspender esta acción."
 
 #: src/org/gnome/split/gtk/action/MergeViewAction.java:40
 msgid "_Merge"
-msgstr "Zusa_mmenführen"
+msgstr "C_ombinar"
 
 #: src/org/gnome/split/gtk/action/TranslateAction.java:35
 msgid "_Translate This Application..."
-msgstr "Diese Anwendung überse_tzen ..."
+msgstr "_Traducir este aplicativo..."
 
 #: src/org/gnome/split/gtk/action/OnlineHelpAction.java:35
 msgid "Get Help _Online..."
-msgstr "_Online Hilfe erhalten ..."
+msgstr "_Obter axuda en liña..."
 
 #: src/org/gnome/split/gtk/action/SplitViewAction.java:40
 msgid "S_plit"
-msgstr "Tei_len"
+msgstr "_Dividir"
 
 #: src/org/gnome/split/gtk/action/ViewToolbarAction.java:36
 msgid "_Toolbar"
-msgstr "Werkzeugleis_te"
+msgstr "Barra de ferramen_tas"
 
 #: src/org/gnome/split/gtk/action/CancelAction.java:37
 msgid "Cancel this action."
-msgstr "Diesen Vorgang abbrechen"
+msgstr "Cancelar esta acción."
 
 #: src/org/gnome/split/gtk/action/ReportBugAction.java:35
 msgid "_Report a Problem..."
-msgstr "Einen Fehle_r melden …"
+msgstr "Informa_r dun problema..."
 
 #: src/org/gnome/split/gtk/action/ViewStatusbarAction.java:37
 msgid "_Statusbar"
-msgstr "_Statusleiste"
+msgstr "Barra de e_stado"
 
 #: src/org/gnome/split/gtk/action/OpenDirAction.java:37
 msgid "_Open folder"
-msgstr "Ordner _öffnen"
+msgstr "Abrir un cartaf_ol"
 
 #: src/org/gnome/split/gtk/action/OpenDirAction.java:38
 msgid "Open the folder where the action is performed."
-msgstr "Den Ordner öffnen, in welchem der Vorgang ausgeführt wird."
+msgstr "Abrir o cartafol onde é executada a acción."
 
 #: src/org/gnome/split/gtk/action/ClearAction.java:36
 msgid "Clear this view."
-msgstr "Diese Ansicht leeren"
+msgstr "Limpar esta vista."
 
 #: src/org/gnome/split/gtk/action/MainWindowAction.java:36
 msgid "Show the main _window"
-msgstr "Das Hauptfenster anzeigen"
+msgstr "Mostrar a xa_nela principal"
 
 #: src/org/gnome/split/gtk/action/SplitAssistantAction.java:37
 msgid "_Split assistant"
-msgstr "Teilung_sassistent"
+msgstr "A_sistente para dividir"
 
 #: src/org/gnome/split/gtk/action/SplitAssistantAction.java:37
 msgid "Create a split."
-msgstr "Eine Teilung ausführen"
+msgstr "Facer unha división."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:42
 msgid "_Start"
-msgstr "_Starten"
+msgstr "_Iniciar"
 
 #: src/org/gnome/split/gtk/action/StartAction.java:42
 msgid "Start this action."
-msgstr "Diesen Vorgang starten"
+msgstr "Iniciar esta acción."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:62
 msgid "Incompleted fields."
-msgstr "Unvollständige Felder"
+msgstr "Campos incompletos."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:63
 msgid "You must fill all fields to start an action."
-msgstr "Sie müssen alle Felder ausfüllen, um einen Vorgang zu starten."
+msgstr "Debe encher todos os campos para iniciar unha acción."
 
 #: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:37
 msgid "_View switcher"
-msgstr "_Ansicht wechseln"
+msgstr "Selector de _vistas"
 
 #: src/org/gnome/split/gtk/MainWindow.java:224
 msgid "_File"
-msgstr "_Datei"
+msgstr "_Ficheiro"
 
 #: src/org/gnome/split/gtk/MainWindow.java:268
 msgid "_Edit"
-msgstr "_Bearbeiten"
+msgstr "_Editar"
 
 #: src/org/gnome/split/gtk/MainWindow.java:282
 msgid "_View"
-msgstr "_Ansicht"
+msgstr "_Ver"
 
 #: src/org/gnome/split/gtk/MainWindow.java:308
 msgid "_Help"
-msgstr "_Hilfe"
+msgstr "A_xuda"
 
 #: src/org/gnome/split/gtk/dialog/ErrorDialog.java:57
 msgid "Details"
-msgstr "Details"
+msgstr "Detalles"
 
 #: src/org/gnome/split/gtk/dialog/QuestionDialog.java:52
 #: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:69
 msgid "Do not ask me again."
-msgstr "Nicht mehr rückfragen."
+msgstr "Non preguntar de novo"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:84
 msgid "GNOME Split Preferences"
-msgstr "GNOME Split-Einstellungen"
+msgstr "Preferencias de GNOME Split"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:99
 msgid "General"
-msgstr "Allgemein"
+msgstr "Xeral"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:100
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:166
 #: src/org/gnome/split/gtk/widget/SelectView.java:68
 msgid "Split"
-msgstr "Teilen"
+msgstr "Dividir"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:101
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:181
 #: src/org/gnome/split/gtk/widget/SelectView.java:76
 msgid "Merge"
-msgstr "Zusammenführen"
+msgstr "Combinar"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:102
 msgid "Desktop"
-msgstr "Desktop"
+msgstr "Escritorio"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:152
 msgid "Default view"
-msgstr "Standardansicht"
+msgstr "VIsta predefinida"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:200
 msgid "Program run"
-msgstr "Programm läuft"
+msgstr "Execución do programa"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:210
 msgid "_Allow multiple instances."
-msgstr "Mehrere Inst_anzen erlauben"
+msgstr "Permitir múltiples inst_ancias."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:227
 msgid "Size of the main window"
-msgstr "Größe des Hauptfensters"
+msgstr "Tamaño da xanela principal"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:243
 msgid "Use the _current size"
-msgstr "Benutze die aktuelle Größe"
+msgstr "Usar o tamaño a_ctual"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:247
 msgid "_Use a custom size."
-msgstr "Benutze eine aktuelle Größe"
+msgstr "_Usar un tamaño personalizado."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:362
 msgid "During a split"
-msgstr "Während einer Teilung"
+msgstr "Durante a división"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:371
 msgid "_Calculate the MD5 sum if possible."
-msgstr "Berechne die MD5 Summe, wenn möglich."
+msgstr "_Calcular a suma MD5 (se é posíbel)."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:388
 msgid "Default algorithm"
-msgstr "vorgegebener Algorithmus"
+msgstr "Algoritmo predefinido"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:421
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:542
 msgid "Default directory"
-msgstr "vorgegebenes Verzeichnis"
+msgstr "Cartafol predefinido"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:431
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:552
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:155
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:169
 msgid "Choose a directory."
-msgstr "Wählen Sie einen Ordner."
+msgstr "Escolla un cartafol."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:459
 msgid "During a merge"
-msgstr "Während einer Vereinigung"
+msgstr "Durante a combinación"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:473
 msgid "_Remove the chunks."
-msgstr "Entferne die Einheiten"
+msgstr "Elimina_r os bloques."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:476
 msgid "_Check the MD5 sum if possible."
-msgstr "Prüfe die MD5 Summe, wenn möglich."
+msgstr "_Comprobar a suma MD5 (se é posíbel)."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:498
 msgid "After a merge"
-msgstr "Nach einer Vereinigung"
+msgstr "Despois de combinar"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:525
 msgid "_Open the created file."
-msgstr "Öffne die neu erstellte Datei."
+msgstr "Abrir _o ficheiro creado."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:575
 msgid "Power management"
-msgstr "Energieverwaltung"
+msgstr "Xestión de enerxía"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:586
 msgid "Inhibit desktop _hibernation when an action is performed."
 msgstr ""
-"Verhindere den Ruhezustand des Desktops während einer laufenden Aktion"
+"Inhibir a _hibernación do escritorio cando hai unha acción en proceso."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:603
 msgid "Notification"
-msgstr "Benachrichtigung"
+msgstr "Notificación"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:617
 msgid "Show _icon in the desktop notification area."
-msgstr "Symbol _im Benachrichtigungsfeld anzeigen"
+msgstr "Mostrar a _icona no espazo de notificación do escritorio."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:633
 msgid "Show desktop _notification."
-msgstr "Be_nachrichtigungen anzeigen"
+msgstr "Mostrar as notificacións _no escritorio."
 
 #: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:63
 msgid ""
 "What do you want to do?\n"
 "Quit GNOME Split or minimize the window?"
 msgstr ""
-"Was willst du machen?\n"
-"Beende GNOME Split oder minimiere das Fenster?"
+"Que desexa facer?\n"
+"Saír do GNOME Split ou minimizar a xanela?"
 
 #: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:73
 msgid "_Minimize"
-msgstr "_Minimieren"
+msgstr "_Minimizar"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:52
 msgid "Split and merge your files easily."
-msgstr "Einfaches Teilen und Zusammenführen von Dateien"
+msgstr "Divida e combine os seus ficheiros de forma doada."
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:53
 msgid "the GNOME Split project"
-msgstr "Das GNOME Split-Projekt"
+msgstr "o proxecto GNOME Split"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:55
 msgid "Project website"
-msgstr "Webseite des Projekts"
+msgstr "Sitio web do proxecto"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:73
 msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
-"  Fabian Affolter https://launchpad.net/~fab-fedoraproject\n"
-"  Guillaume Mazoyer https://launchpad.net/~respawneral\n"
-"  Janis Fehrmann https://launchpad.net/~janis96\n"
-"  Mario Blättermann https://launchpad.net/~mariobl\n"
-"  Nasenbaer https://launchpad.net/~nasenbaer\n"
-"  xlazarus https://launchpad.net/~xlazarus"
+"  Marcos X. https://launchpad.net/~markooss\n"
+"  Xosé https://launchpad.net/~ubuntu-galizaweb"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:76
 msgid ""
@@ -460,80 +454,77 @@ msgid ""
 "You should have received a copy of the GNU General Public License along with "
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
-"Dieses Programm ist freie Software, Sie können sie weitergeben und/oder "
-"verändern, solange Sie sich an die Regeln der GNU General Public License "
-"Version 3 halten, so wie sie von der Free Software Foundation festgelegt "
-"wurden.\n"
+"This program is free software: you can redistribute it and/or modify it "
+"under the terms of the GNU General Public License version 3, as published by "
+"the Free Software Foundation.\n"
 "\n"
-"Dieses Programm wurde mit dem Ziel veröffentlicht, dass Sie es nützlich "
-"finden, jedoch OHNE JEDWEDE GARANTIE, sogar ohne eine implizite Garantie der "
-"VERKAUFBARKEIT oder der NUTZBARKEIT FÜR EINEN SPEZIELLEN ZWECK. Schauen Sie "
-"für weitere Informationen bitte in der GNU General Public License (GNU GPL) "
-"nach.\n"
+"This program is distributed in the hope that it will be useful, but WITHOUT "
+"ANY WARRANTY; without even the implied warranties of MERCHANTABILITY, "
+"SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU "
+"General Public License for more details.\n"
 "\n"
-"Mit diesem Programm sollten Sie außerdem eine Kopie der GNU General Public "
-"License erhalten\n"
-" haben. Wenn dem nicht so ist, siehe <http://www.gnu.org/licenses/>."
+"You should have received a copy of the GNU General Public License along with "
+"this program.  If not, see <http://www.gnu.org/licenses/>."
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:65
 msgid "Assistant chooser"
-msgstr "Auswahl des Assistenten"
+msgstr "Selector de asistente"
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:84
 msgid "What assistant do you want to use?"
-msgstr "Welchen Assistenten wollen Sie verwenden?"
+msgstr "Que asistente desexa usar?"
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:96
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:113
 msgid "Split assistant"
-msgstr "Teilungsassistent"
+msgstr "Asistente para dividir"
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:110
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:94
 msgid "Merge assistant"
-msgstr "Zusammenführungsassistent"
+msgstr "Asistente para combinar"
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:147
 #, java-format
 msgid "Writting {0}."
-msgstr "{0} wird geschrieben."
+msgstr "Escribindo {0}."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:158
 #, java-format
 msgid "Reading {0}."
-msgstr "{0} wird gelesen."
+msgstr "Lendo {0}."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:169
 msgid "MD5 sum calculation."
-msgstr "Berechnung der MD5-Prüfsumme."
+msgstr "Cálculo da suma MD5."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:238
 msgid "Split finished."
-msgstr "Teilung fertig."
+msgstr "A división rematou."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:239
 msgid "The file was succesfully splitted."
-msgstr "Die Datei wurde erfolgreich geteilt."
+msgstr "O ficheiro foi dividido correctamente."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:241
 msgid "Merge finished."
-msgstr "Vereinigung fertig."
+msgstr "A combinación rematou."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:242
 msgid "The files were successfully merged."
-msgstr "Die Dateien wurden erfolgreich zusammengefügt."
+msgstr "Os ficheiros foron combinados correctamente."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:267
 msgid "Split stopped."
-msgstr "Teilung wurde abgebrochen."
+msgstr "A división rematou."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:269
 msgid "Merge stopped."
-msgstr "Zusammenführung wurde abgebrochen."
+msgstr "A combinación rematou."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:304
 msgid "Unhandled exception."
-msgstr "Unbehandelte Ausnahme."
+msgstr "Excepción non soportada."
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:305
 msgid ""
@@ -542,55 +533,55 @@ msgid ""
 "\n"
 "See the details for more information."
 msgstr ""
-"Es ist eine Ausnahme aufgetreten. Sie können sie an die Entwickler "
-"weiterleiten und ihnen sagen, wie sie reproduziert werden kann.\n"
+"Produciuse unha excepción. Pode informar os desenvolvedores para que poidan "
+"reproducila.\n"
 "\n"
-"Für mehr Informationen sehen unter Details nach."
+"Para ampliar a información vexa os detalles."
 
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:71
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:111
 msgid "Ready."
-msgstr "Bereit."
+msgstr "Listo."
 
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:80
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:102
 msgid "Unknown speed"
-msgstr "Unbekannte Geschwindigkeit"
+msgstr "Velocidade descoñecida"
 
 #: src/org/gnome/split/gtk/widget/StatusWidget.java:102
 msgid "Speed"
-msgstr "Geschwindigkeit"
+msgstr "Velocidade"
 
 #: src/org/gnome/split/gtk/widget/AreaStatusIcon.java:110
 msgid "version"
-msgstr "Version"
+msgstr "versión"
 
 #: src/org/gnome/split/gtk/widget/SelectView.java:60
 msgid "View:"
-msgstr "Ansicht:"
+msgstr "Ver:"
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:121
 msgid "File:"
-msgstr "Datei:"
+msgstr "Ficheiro:"
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:124
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:161
 msgid "Destination:"
-msgstr "Ziel:"
+msgstr "Destino:"
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:145
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:140
 msgid "Choose a file."
-msgstr "Datei auswählen"
+msgstr "Escoller un ficheiro."
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:166
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:305
 msgid "Split in:"
-msgstr "Teilen in:"
+msgstr "Dividir en:"
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:187
 msgid "Algorithm:"
-msgstr "Algorithmus:"
+msgstr "Algoritmo:"
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:126
 msgid ""
@@ -600,39 +591,39 @@ msgid ""
 "displayed\n"
 "using its full path in the text entry."
 msgstr ""
-"Hier wählen Sie zunächst die erste der zusammenzuführenden Dateien aus.\n"
-"Danach können Sie zum nächsten Schritt des Assistenten übergehen.\n"
-"Die von Ihnen gewählte Datei sollte mit vollem Pfad im Textfeld angezeigt "
-"werden."
+"Aquí debe seleccionar o primerio ficheiro para combinar. Despois pode ir ao\n"
+"seguinte paso do asistente. O ficheiro que escolla deberá mostrarse co seu "
+"camiño\n"
+"completo na entrada de texto."
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:142
 msgid "File to merge:"
-msgstr "Zusammenzuführende Datei:"
+msgstr "Ficheiro para combinar:"
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:150
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:134
 msgid "Valid chunks"
-msgstr "Gültige Einheiten"
+msgstr "Bloques correctos"
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:157
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:202
 msgid "Select a file."
-msgstr "Eine Datei wählen"
+msgstr "Seleccionar un ficheiro."
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:193
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:237
 msgid "This file is a directory!"
-msgstr "Diese Datei ist ein Ordner!"
+msgstr "Este ficheiro é un cartafol"
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:201
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:245
 msgid "This file does not exist!"
-msgstr "Diese Datei existiert nicht!"
+msgstr "Este ficheiro non existe"
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:233
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:277
 msgid "File selection"
-msgstr "Dateiauswahl"
+msgstr "Selección do ficheiro"
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:245
 msgid ""
@@ -641,33 +632,32 @@ msgid ""
 "up the right file. If it is not the first file to merge, go back to the\n"
 "previous step to choose another one."
 msgstr ""
-"Die erste Datei der Zusammenführung ist nun ausgewählt. Bitte überprüfen "
-"sie,\n"
-"ob Sie die richtige Datei gewählt haben. Falls dies nicht die erste Datei\n"
-"der Zusammenführung ist, dann gehen Sie zum vorherigen Schritt zurück\n"
-"und wählen Sie eine andere Datei."
+"Agora está seleccionado o primeiro ficheiro a combinar. Pero aínda pode "
+"comprobar \n"
+"que o ficheiro escollido é o correcto. Se non o é volva ao paso anterior e "
+"seleccione\n"
+"outro ficheiro."
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:265
 msgid "Filename:"
-msgstr "Dateiname:"
+msgstr "Nome do ficheiro:"
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:273
 msgid ""
 "Just a last question before you confirm the merge to do.\n"
 "If you check the following box, the merge will start after your confirmation."
 msgstr ""
-"Eine letzte Angabe noch, bevor Sie bestätigen, um die Zusammenführung\n"
-"zu starten. Wenn Sie das folgende Ankreuzfeld aktivieren, wird nach der\n"
-"Bestätigung mit der Zusammenführung begonnen."
+"Unha última pregunta antes de confirmar a unión a realizar.\n"
+"Se marca o seguinte cadro, a unión comezará despois da súa confirmación."
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:278
 msgid "Start the merge after the confirmation."
-msgstr "Nach der Bestätigung mit der Zusammenführung beginnen."
+msgstr "Iniciar a combinación despois da confirmación."
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:292
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:475
 msgid "Confirmation"
-msgstr "Bestätigung"
+msgstr "Confirmación"
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:302
 msgid ""
@@ -684,36 +674,33 @@ msgid ""
 "want\n"
 "to have the merge done by taking a look at <i>Edit > Preferences > Merge</i>."
 msgstr ""
-"Dieser Assistent möchte Ihnen beim Ausführen einer\n"
-"<b>Zusammenführung</b> helfen.\n"
+"Este asistente axudarao na <b>combinación</b> dos ficheiros.\n"
 "\n"
-"Das Zusammenführen verschiedener Dateien ist recht einfach. Sie müssen\n"
-"zunächst die erste Datei wählen, woraufhin GNOME-Split alles Weitere\n"
-"für Sie erledigt.\n"
+"Realmente combinar varios ficheiros é doado. Unicamente ten que seleccionar "
+"o\n"
+"primeiro e GNOME Split fará o resto.\n"
 "\n"
-"Folglich ist die erste und einzige Aufgabe für Sie: Geben Sie die erste\n"
-"der zusammenzuführenden Dateien an.\n"
+"Esta é a única cousa que ten que facer, seleccionar o primeiro ficheiro.\n"
 "\n"
-"Sie können die Zusammenführungskonfiguration auch anpassen,\n"
-"um Einzelheiten zur Zusammenführung festzulegen. Öffnen Sie hierzu\n"
-"<i>Bearbeiten → Einstellungen → Zusammenführen</i>."
+"Pode modificar a configuración para definir máis detalladamente como quere\n"
+"realizar a combinación indo a <i>Editar > Preferencias > Combinar</i>."
 
 #: src/org/gnome/split/gtk/widget/MergeAssistant.java:316
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:499
 msgid "Introduction"
-msgstr "Einführung"
+msgstr "Introdución"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:123
 msgid "First chunk:"
-msgstr "Erster Block:"
+msgstr "1º bloque:"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:132
 msgid "All files"
-msgstr "Alle Dateien"
+msgstr "Todos os ficheiros"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:177
 msgid "Chunks:"
-msgstr "Anzahl der Blöcke:"
+msgstr "Bloques:"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:180
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:190
@@ -723,35 +710,35 @@ msgstr "Anzahl der Blöcke:"
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:315
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:316
 msgid "Unknown"
-msgstr "Unbekannt"
+msgstr "Descoñecido"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:187
 msgid "Total size:"
-msgstr "Gesamtgröße:"
+msgstr "Total:"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:197
 msgid "MD5 sum:"
-msgstr "MD5-Prüfsumme:"
+msgstr "Suma MD5:"
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:236
 msgid "Cannot merge."
-msgstr "Zusammenführen ist nicht möglich."
+msgstr "Non é posíbel combinar."
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:237
 msgid ""
 "You will not be able to merge the files because this file format is unknown. "
 "You are welcome to fill a bug about that."
 msgstr ""
-"Es wird nicht möglich sein, diese Dateien zusammenzuführen, da das "
-"Dateiformat unbekannt ist. Bitte reichen Sie dafür eine Fehlermeldung ein."
+"Non é posíbel combinar os ficheiros porque este formato é descoñecido. "
+"Agradeceríamoslle que enviase un informe desta incidencia."
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:261
 msgid "A MD5 sum will be calculated."
-msgstr "MD5 Summe wird berechnet."
+msgstr "Calcularase a suma MD5."
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:262
 msgid "A MD5 sum will not be calculated."
-msgstr "MD5 Summe wird nicht berechnet."
+msgstr "Non se calculará a suma MD5."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:178
 msgid ""
@@ -760,14 +747,13 @@ msgid ""
 "displayed\n"
 "using its full path in the text entry."
 msgstr ""
-"Hier wählen Sie die zu teilende Datei. Danach können Se zum nächsten "
-"Schritt\n"
-"des Assistenten wechseln. Die von Ihnen gewählte Datei sollte mit\n"
-"vollem Pfad im Textfeld angezeigt werden."
+"Aquí ten que seleccionar o ficheiro para dividir. Despois, pode ir ao\n"
+"seguinte paso deste asistente. O ficheiro que escolla deberá mostrarse\n"
+"co seu camiño completo na entrada de texto."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:194
 msgid "File to split:"
-msgstr "Zu teilende Datei:"
+msgstr "Ficheiro para dividir:"
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:289
 msgid ""
@@ -779,21 +765,25 @@ msgid ""
 "GNOME\n"
 "Split calculate the size just by giving the number of chunks to create."
 msgstr ""
-"Nun wählen Sie die maximale Größe für jeden Block. Sie können hier entweder\n"
-"eine vordefinierte Größe wählen (wie CD-ROM oder DVD-ROM), oder Sie legen\n"
-"die Blockgröße in Einheiten wie kB, MB oder GB fest. Alternativ berechnet\n"
-"GNOME-Split die Größe der Blöcke anhand der angegebenen Anzahl der Blöcke."
+"Agora ten que seleccionar o tamaño máximo de cada bloque. Pode escoller "
+"este\n"
+"tamaño usando un axuste xa definido (como CD-ROM ou DVD-ROM), tamén pode\n"
+"seleccionar o tamaño usando unha unidade (B, KB, MB, GB) ou por último "
+"permitir\n"
+"que GNOME Split calcule o tamaño introducindo o número de bloques que desexa "
+"crear."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:326
 msgid ""
 "Invalid chunk size. The size must be lower than the size of the file to "
 "split."
 msgstr ""
-"Ungültige Blockgröße. Ein Block muss kleiner sein als die zu teilende Datei."
+"O tamaño do bloque é incorrecto. O tamaño debe ser inferior á dimensión do "
+"ficheiro que desexa dividir."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:373
 msgid "Size selection"
-msgstr "Auswahl der Größe"
+msgstr "Selección do tamaño"
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:388
 msgid ""
@@ -809,29 +799,24 @@ msgid ""
 "a\n"
 "command line with a tool like `cat`."
 msgstr ""
-"Der Teilungsalgorithmus legt fest, auf welche Weise eine Datei geteilt "
-"wird.\n"
+"O algoritmo da división define o xeito en que se fragmentará o ficheiro.\n"
 "\n"
-"Wenn Sie eine Datei teilen und die erzeugten Blöcke danach wieder mit "
-"diesem\n"
-"Programm zusammenführen wollen, können Sie den <b>GNOME Split</b>-"
-"Algorithmus\n"
-"verwenden. Sie können auch den <b>Xtremsplit</b>-Algorithmus verwenden. "
-"Dadurch\n"
-"wird es möglich, mit der unter <s>Windows</s> verfügbaren Software "
-"<b>Xtremsplit</b>\n"
-"die Blöcke wieder zusammenzuführen. Der <b>Simple</b>-Algorithmus erlaubt "
-"Ihnen die\n"
-"Zusammenführung der Dateien in der Befehlszeile mit einem Werkzeug wie z.B. "
-"»cat«."
+"Se desexa dividir o ficheiro para despois combinar os bloques creados\n"
+"con este mesmo programa, pode usar o algoritmo <b>GNOME Split</b>. Tamén "
+"pode\n"
+"usar o algoritmo <b>Xtremsplit</b> que ten a vantaxe de que os bloques poden "
+"ser\n"
+"combinados co aplicativo Xtremsplit dispoñíbel en <s>Windows</s>. Finalmente "
+"pode empregar o chamado algoritmo <b>Simple</b> que permite combinar os\n"
+"bloques usando a liña de ordes cunha ferramenta como 'cat'."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:404
 msgid "Algorithm to use:"
-msgstr "Zu verwendender Algorithmus:"
+msgstr "Algoritmo:"
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:427
 msgid "Algorithm selection"
-msgstr "Auswahl des Algorithmus"
+msgstr "Selección de algoritmo"
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:439
 msgid ""
@@ -841,25 +826,21 @@ msgid ""
 "it\n"
 "before confirming and starting the split."
 msgstr ""
-"Nun ist GNOME-Split bereit, die gewünschte Datei zu teilen. Bitte werfen "
-"Sie\n"
-"einen Blick auf die Zusammenfassung. Falls etwas nicht korrekt ist, gehen "
-"Sie\n"
-"zum vorherigen Schritt zurück, um die Angaben zu ändern, bevor Sie\n"
-"bestätigen und die Teilung starten."
+"Agora podemos comezar a división do ficheiro. Por favor bote unha ollada ao\n"
+"resumo. Se algo é incorrecto, regrese ao paso anterior e cámbieo\n"
+"antes de dar a confirmación e iniciar a división."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:456
 msgid ""
 "Just a last question before you confirm the split to do.\n"
 "If you check the following box, the split will start after your confirmation."
 msgstr ""
-"Eine letzte Angabe noch, bevor Sie bestätigen, um die Teilung\n"
-"zu starten. Wenn Sie das folgende Ankreuzfeld aktivieren, wird\n"
-"nach der Bestätigung mit der Teilung begonnen."
+"Unha última pregunta antes de confirmar a división a realizar.\n"
+"Se marca o seguinte cadro, a división comezará despois da súa confirmación."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:461
 msgid "Start the split after the confirmation."
-msgstr "Nach der Bestätigung mit der Teilung beginnen."
+msgstr "Iniciar a división despois da confirmación."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:485
 msgid ""
@@ -884,24 +865,22 @@ msgid ""
 "want\n"
 "to have the split done by taking a look at <i>Edit > Preferences > Split</i>."
 msgstr ""
-"Dieser Assistent möchte Sie dabei unterstützen,\n"
-"eine <b>Teilung</b> vorzunehmen.\n"
+"Este asistente axudarao na <b>división</b> do ficheiro.\n"
 "\n"
-"Durch Teilung einer Datei werden kleinere Dateien erzeugt, welche Sie\n"
-"auf einem Datenträger oder online speichern können. Während der Schritte\n"
-"dieses Assistenten werden Ihnen drei Fragen gestellt.\n"
+"A división dun ficheiro crea outros máis pequenos que se poden almacenar\n"
+"nun dispositivo ou en liña. Durante esta guía faránselle 3 preguntas.\n"
 "\n"
-"Zunächst müssen Sie die zu teilende Datei auswählen. Danach bestimmen Sie\n"
-"die maximale Größe der zu erzeugenden Blöcke. Zuletzt legen Sie\n"
-"den zu verwendenden Algorithmus fest.\n"
+"Primeiro terá que seleccionar o ficheiro que desexa dividir. Despois terá "
+"que\n"
+"escoller o tamaño máximo de cada bloque que se vai crear. Finalmente\n"
+"terá que decidir que algoritmo usar.\n"
 "\n"
-"Nach diesen drei Fragen zeigt der Assistent eine Zusammenfassung an,\n"
-"welche Vorgänge GNOME-Split ausführen wird. Nachdem Sie diese Angaben\n"
-"bestätigt haben, ist die Teilung bereit zur Ausführung.\n"
+"Despois destas 3 preguntas, o asistente mostrará un resumo do que o GNOME\n"
+"Split vai facer. E para rematar, tras a súa confirmación, a división estará "
+"lista.\n"
 "\n"
-"Sie können die Teilungskonfiguration auch anpassen, um Einzelheiten zur\n"
-"Teilung festzulegen. Öffnen Sie hierzu <i>Bearbeiten → Einstellungen → "
-"Teilen</i>."
+"Pode modificar a configuración para definir máis detalladamente como quere\n"
+"realizar a división indo a <i>Editar > Preferencias > Dividir</i>."
 
 #: src/org/gnome/split/gtk/widget/SplitAssistant.java:519
 #, java-format
@@ -912,9 +891,8 @@ msgid ""
 "\n"
 "The file will be splitted using the <b>{2}</b> algorithm."
 msgstr ""
-"Die zu teilende Datei ist <b>{0}</b>.\n"
+"O ficheiro a dividir é <b>{0}</b>.\n"
 "\n"
-"Die maximale Größe jedes Blocks wird <b>{1}</b> sein.\n"
+"O tamaño máximo de cada bloque será <b>{1}</b>.\n"
 "\n"
-"Die Datei wird mit dem <b>{2}</b>-Algorithmus geteilt."
-
+"O ficheiro dividirase usando o algoritmo <b>{2}</b>."
