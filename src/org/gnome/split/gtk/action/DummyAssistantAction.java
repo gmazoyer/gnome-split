@@ -34,7 +34,7 @@ public final class DummyAssistantAction extends Action
 {
     public DummyAssistantAction(final GnomeSplit app) {
         super(app, "dummy-assistant-action", _("_Assistants"), _("Create a split or a merge."),
-                Stock.NEW);
+                Stock.ADD);
     }
 
     @Override
