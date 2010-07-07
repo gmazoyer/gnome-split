@@ -97,11 +97,6 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
      */
     private TextComboBox algoList;
 
-    /**
-     * Split progress.
-     */
-    private ProgressBar progressbar;
-
     public SplitWidget(final GnomeSplit app) {
         super(false, 12);
 
@@ -110,6 +105,9 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
 
         // At first, it is invisible
         visible = false;
+
+        // Set the border of the widget
+        this.setBorderWidth(5);
 
         final HBox firstRow = new HBox(false, 5);
         this.packStart(firstRow, true, true, 0);
@@ -199,10 +197,6 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         final SizeGroup group = new SizeGroup(SizeGroupMode.BOTH);
         group.add(firstColumn);
         group.add(secondColumn);
-
-        // Pack the progress bar
-        progressbar = new ProgressBar();
-        this.packStart(progressbar, false, false, 0);
     }
 
     /**
@@ -276,21 +270,20 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         sizeButton.setValue(1);
         sizeUnits.setActive(0);
         algoList.setActive(app.getConfig().DEFAULT_ALGORITHM);
-        progressbar.setFraction(0);
-        progressbar.setText("");
+        app.getMainWindow().getProgressBar().reset();
     }
 
     @Override
     public void updateProgress(double progress, String text, boolean sure) {
         if (!sure) {
             // Unknown progress
-            progressbar.pulse();
+            app.getMainWindow().getProgressBar().pulse();
         } else {
             // Known progress
-            progressbar.setFraction(progress);
+            app.getMainWindow().getProgressBar().setFraction(progress);
 
             if (!text.isEmpty()) {
-                progressbar.setText(text);
+                app.getMainWindow().getProgressBar().setText(text);
             }
         }
     }
@@ -343,7 +336,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
      * <code>progress</code>.
      */
     public void setProgress(double progress) {
-        progressbar.setFraction(progress);
+        app.getMainWindow().getProgressBar().setFraction(progress);
     }
 
     /**

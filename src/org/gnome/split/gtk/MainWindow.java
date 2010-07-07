@@ -45,6 +45,7 @@ import org.gnome.split.gtk.widget.AreaStatusIcon;
 import org.gnome.split.gtk.widget.InfoWidget;
 import org.gnome.split.gtk.widget.MainToolbar;
 import org.gnome.split.gtk.widget.MergeWidget;
+import org.gnome.split.gtk.widget.ProgressWidget;
 import org.gnome.split.gtk.widget.SelectView;
 import org.gnome.split.gtk.widget.SplitWidget;
 import org.gnome.split.gtk.widget.StatusWidget;
@@ -104,6 +105,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
      * Widget to display when the merge view is selected.
      */
     private MergeWidget merge;
+
+    /**
+     * Widget to display the progress.
+     */
+    private ProgressWidget progress;
 
     /**
      * Widget derived from {@link Frame} to display the status.
@@ -190,6 +196,11 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Show the split widget first
         this.split.setVisible(true);
+
+        // Show the progress bar
+        this.progress = new ProgressWidget();
+        this.progress.show();
+        this.mainContainer.packStart(this.progress, false, false, 0);
 
         // Add a separator
         this.separators[1] = new HSeparator();
@@ -421,6 +432,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
      */
     public ActionWidget getActionWidget() {
         return (split.isVisible() ? split : merge);
+    }
+
+    /**
+     * Get the progress bar attached to this window.
+     */
+    public ProgressWidget getProgressBar() {
+        return progress;
     }
 
     /**

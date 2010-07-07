@@ -32,7 +32,6 @@ import org.gnome.gtk.FileFilter;
 import org.gnome.gtk.Frame;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
-import org.gnome.gtk.ProgressBar;
 import org.gnome.gtk.SizeGroup;
 import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.Stock;
@@ -98,11 +97,6 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
      */
     private Label md5sum;
 
-    /**
-     * Merge progress.
-     */
-    private ProgressBar progressbar;
-
     public MergeWidget(final GnomeSplit app) {
         super(false, 12);
 
@@ -111,6 +105,9 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         // At first, it is invisible
         visible = false;
+
+        // Set the border of the widget
+        this.setBorderWidth(5);
 
         // Secondary vertical box
         final VBox secondary = new VBox(false, 5);
@@ -217,10 +214,6 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         final SizeGroup choosers = new SizeGroup(SizeGroupMode.BOTH);
         choosers.add(fileChooser);
         choosers.add(dirChooser);
-
-        // Pack the progress bar
-        progressbar = new ProgressBar();
-        this.packStart(progressbar, false, false, 0);
     }
 
     /**
@@ -314,21 +307,20 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         partsNumber.setLabel(_("Unknown"));
         fileSize.setLabel(_("Unknown"));
         md5sum.setLabel(_("Unknown"));
-        progressbar.setFraction(0);
-        progressbar.setText("");
+        app.getMainWindow().getProgressBar().reset();
     }
 
     @Override
     public void updateProgress(double progress, String text, boolean sure) {
         if (!sure) {
             // Unknown progress
-            progressbar.pulse();
+            app.getMainWindow().getProgressBar().pulse();
         } else {
             // Known progress
-            progressbar.setFraction(progress);
+            app.getMainWindow().getProgressBar().setFraction(progress);
 
             if (!text.isEmpty()) {
-                progressbar.setText(text);
+                app.getMainWindow().getProgressBar().setText(text);
             }
         }
     }
