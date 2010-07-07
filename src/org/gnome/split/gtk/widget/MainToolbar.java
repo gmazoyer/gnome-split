@@ -20,11 +20,7 @@
  */
 package org.gnome.split.gtk.widget;
 
-import org.gnome.gtk.Activatable;
-import org.gnome.gtk.Menu;
-import org.gnome.gtk.MenuToolButton;
 import org.gnome.gtk.SeparatorToolItem;
-import org.gnome.gtk.Stock;
 import org.gnome.gtk.ToolItem;
 import org.gnome.gtk.Toolbar;
 import org.gnome.split.GnomeSplit;
@@ -44,20 +40,9 @@ public class MainToolbar extends Toolbar
         // Get the current manager
         final ActionManager actions = app.getActionManager();
 
-        // Add a button to select an assistant
-        final MenuToolButton assistants = new MenuToolButton(Stock.NEW);
-        this.insert(assistants, 0);
-
-        // Make this button a proxy of the assistant action
-        ((Activatable) assistants).setRelatedAction(actions.getAction(ActionId.ASSISTANT));
-
-        // Attach a menu to this button
-        final Menu menu = new Menu();
-        assistants.setMenu(menu);
-
-        // And finally, attache menu items to the menu
-        menu.append(actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem());
-        menu.append(actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem());
+        // Add a button to show the assistant
+        final ToolItem assistant = actions.getAction(ActionId.ASSISTANT).createToolItem();
+        this.insert(assistant, 0);
 
         // Add a separator
         this.insert(new SeparatorToolItem(), 1);

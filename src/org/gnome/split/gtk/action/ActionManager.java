@@ -65,11 +65,9 @@ public class ActionManager
         // Create the group of acceperators
         accelerators = new AcceleratorGroup();
 
-        // Actions related to split and merge assistants
-        DummyAssistantAction dummy = new DummyAssistantAction(app);
+        // Actions related to split and merge assistant
         AssistantAction assistant = new AssistantAction(app);
-        SplitAssistantAction sassistant = new SplitAssistantAction(app);
-        MergeAssistantAction massistant = new MergeAssistantAction(app);
+        assistant.setAccelerator(accelerators, Keyval.a, ModifierType.CONTROL_MASK);
 
         // Action to open the directory
         OpenDirAction directory = new OpenDirAction(app);
@@ -92,10 +90,7 @@ public class ActionManager
         delete.setAccelerator(accelerators, Keyval.Delete, ModifierType.SHIFT_MASK);
 
         // Add the previously created actions
-        actions.put(ActionId.DUMMY_ASSISTANT, dummy);
         actions.put(ActionId.ASSISTANT, assistant);
-        actions.put(ActionId.SPLIT_ASSISTANT, sassistant);
-        actions.put(ActionId.MERGE_ASSISTANT, massistant);
         actions.put(ActionId.OPEN_DIR, directory);
         actions.put(ActionId.START, start);
         actions.put(ActionId.PAUSE, pause);
@@ -198,6 +193,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        DUMMY_ASSISTANT, ASSISTANT, SPLIT_ASSISTANT, MERGE_ASSISTANT, OPEN_DIR, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
+        ASSISTANT, OPEN_DIR, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
     }
 }

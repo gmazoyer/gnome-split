@@ -226,43 +226,31 @@ public class MainWindow extends Window implements Window.DeleteEvent
         final Menu fileMenu = new Menu();
         fileMenu.setAcceleratorGroup(accelerators);
 
-        // Create a special case for the assistants
-        final Menu assistants = new Menu();
-
         // Create menu items
         MenuItem[] items;
 
         // Create menu items
         items = new MenuItem[8];
-        items[0] = actions.getAction(ActionId.SPLIT_ASSISTANT).createMenuItem();
-        items[1] = actions.getAction(ActionId.MERGE_ASSISTANT).createMenuItem();
-        items[2] = actions.getAction(ActionId.OPEN_DIR).createMenuItem();
-        items[3] = actions.getAction(ActionId.START).createMenuItem();
-        items[4] = actions.getAction(ActionId.PAUSE).createMenuItem();
-        items[5] = actions.getAction(ActionId.CANCEL).createMenuItem();
-        items[6] = actions.getAction(ActionId.DELETE).createMenuItem();
-        items[7] = actions.getAction(ActionId.EXIT).createMenuItem();
-
-        // Add the assistants to the menu
-        assistants.append(items[0]);
-        assistants.append(items[1]);
-
-        // Pack it in a menu item
-        final MenuItem assistant = actions.getAction(ActionId.DUMMY_ASSISTANT).createMenuItem();
-        assistant.setSubmenu(assistants);
+        items[0] = actions.getAction(ActionId.ASSISTANT).createMenuItem();
+        items[1] = actions.getAction(ActionId.OPEN_DIR).createMenuItem();
+        items[2] = actions.getAction(ActionId.START).createMenuItem();
+        items[3] = actions.getAction(ActionId.PAUSE).createMenuItem();
+        items[4] = actions.getAction(ActionId.CANCEL).createMenuItem();
+        items[5] = actions.getAction(ActionId.DELETE).createMenuItem();
+        items[6] = actions.getAction(ActionId.EXIT).createMenuItem();
 
         // Add menu items to the menu
         fileItem.setSubmenu(fileMenu);
-        fileMenu.append(assistant);
+        fileMenu.append(items[0]);
+        fileMenu.append(new SeparatorMenuItem());
+        fileMenu.append(items[1]);
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(items[2]);
-        fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(items[3]);
         fileMenu.append(items[4]);
         fileMenu.append(items[5]);
-        fileMenu.append(items[6]);
         fileMenu.append(new SeparatorMenuItem());
-        fileMenu.append(items[7]);
+        fileMenu.append(items[6]);
         menubar.append(fileItem);
 
         // Edit menu item

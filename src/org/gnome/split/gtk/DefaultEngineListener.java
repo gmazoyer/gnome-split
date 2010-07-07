@@ -186,7 +186,6 @@ public class DefaultEngineListener implements EngineListener
         ActionManager actions = app.getActionManager();
 
         // Update the actions
-        actions.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(true);
         actions.getAction(ActionId.ASSISTANT).setSensitive(true);
         actions.getAction(ActionId.OPEN_DIR).setSensitive(false);
         actions.getAction(ActionId.START).setSensitive(true);
@@ -206,7 +205,6 @@ public class DefaultEngineListener implements EngineListener
         ActionManager actions = app.getActionManager();
 
         // Update the actions
-        actions.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.OPEN_DIR).setSensitive(true);
         actions.getAction(ActionId.START).setSensitive(false);
@@ -226,7 +224,6 @@ public class DefaultEngineListener implements EngineListener
         ActionManager actions = app.getActionManager();
 
         // Update the actions
-        actions.getAction(ActionId.DUMMY_ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.OPEN_DIR).setSensitive(true);
         actions.getAction(ActionId.START).setSensitive(true);
