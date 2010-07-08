@@ -131,6 +131,11 @@ public final class Configuration
     public boolean SHOW_STATUSBAR;
 
     /**
+     * The style that should be used by the status widget.
+     */
+    public byte STATUS_STYLE;
+
+    /**
      * Do not ask the user if he/she really wants to quit.
      */
     public boolean DO_NOT_ASK_QUIT;
@@ -198,6 +203,7 @@ public final class Configuration
             writer.write("ShowToolbar       = true\n");
             writer.write("ShowSwitcher      = true\n");
             writer.write("ShowStatusbar     = true\n");
+            writer.write("StatusStyle       = 0\n");
             writer.write("DontAskToQuit     = false\n");
             writer.write("CloseBehavior     = 0\n");
         } catch (IOException e) {
@@ -255,6 +261,7 @@ public final class Configuration
             SHOW_TOOLBAR = Boolean.parseBoolean(preferences.getProperty("ShowToolbar", "true"));
             SHOW_SWITCHER = Boolean.parseBoolean(preferences.getProperty("ShowSwitcher", "true"));
             SHOW_STATUSBAR = Boolean.parseBoolean(preferences.getProperty("ShowStatusbar", "true"));
+            STATUS_STYLE = Byte.parseByte(preferences.getProperty("StatusStyle", "0"));
             DO_NOT_ASK_QUIT = Boolean.parseBoolean(preferences.getProperty("DontAskToQuit", "false"));
             CLOSE_BEHAVIOR = Byte.parseByte(preferences.getProperty("CloseBehavior", "0"));
         } catch (IOException e) {
@@ -299,6 +306,7 @@ public final class Configuration
             writer.write("ShowToolbar       = " + SHOW_TOOLBAR + "\n");
             writer.write("ShowSwitcher      = " + SHOW_SWITCHER + "\n");
             writer.write("ShowStatusbar     = " + SHOW_STATUSBAR + "\n");
+            writer.write("StatusStyle       = " + STATUS_STYLE + "\n");
             writer.write("DontAskToQuit     = " + DO_NOT_ASK_QUIT + "\n");
             writer.write("CloseBehavior     = " + CLOSE_BEHAVIOR + "\n");
         } catch (IOException e) {

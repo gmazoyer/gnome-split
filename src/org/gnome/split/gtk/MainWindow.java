@@ -49,6 +49,7 @@ import org.gnome.split.gtk.widget.ProgressWidget;
 import org.gnome.split.gtk.widget.SelectView;
 import org.gnome.split.gtk.widget.SplitWidget;
 import org.gnome.split.gtk.widget.StatusWidget;
+import org.gnome.split.gtk.widget.StatusWidget.StatusStyle;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -207,12 +208,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
         mainContainer.packStart(this.separators[1], false, false, 0);
 
         // Add status widget
-        this.status = new StatusWidget();
+        final StatusStyle style = StatusStyle.values()[app.getConfig().STATUS_STYLE];
+        this.status = new StatusWidget(style);
         this.mainContainer.packStart(this.status, false, false, 0);
 
         // Show the status widget if needed
         if (app.getConfig().SHOW_STATUSBAR) {
-            this.status.showAll();
+            this.status.show();
             this.separators[1].show();
         }
 
@@ -284,13 +286,14 @@ public class MainWindow extends Window implements Window.DeleteEvent
         viewMenu.setAcceleratorGroup(accelerators);
 
         // Create menu items
-        items = new MenuItem[6];
+        items = new MenuItem[7];
         items[0] = actions.getAction(ActionId.CLEAR).createMenuItem();
         items[1] = actions.getToggleAction(ActionId.TOOLBAR).createMenuItem();
         items[2] = actions.getToggleAction(ActionId.SWITCHER).createMenuItem();
         items[3] = actions.getToggleAction(ActionId.STATUS).createMenuItem();
-        items[4] = actions.getRadioAction(ActionId.SPLIT).createMenuItem();
-        items[5] = actions.getRadioAction(ActionId.MERGE).createMenuItem();
+        items[4] = actions.getToggleAction(ActionId.STATUS_STYLE).createMenuItem();
+        items[5] = actions.getRadioAction(ActionId.SPLIT).createMenuItem();
+        items[6] = actions.getRadioAction(ActionId.MERGE).createMenuItem();
 
         // Add menu items to the menu
         viewItem.setSubmenu(viewMenu);
@@ -301,7 +304,9 @@ public class MainWindow extends Window implements Window.DeleteEvent
         viewMenu.append(items[3]);
         viewMenu.append(new SeparatorMenuItem());
         viewMenu.append(items[4]);
+        viewMenu.append(new SeparatorMenuItem());
         viewMenu.append(items[5]);
+        viewMenu.append(items[6]);
         menubar.append(viewItem);
 
         // Help menu item

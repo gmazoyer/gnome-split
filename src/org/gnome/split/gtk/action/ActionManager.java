@@ -134,12 +134,14 @@ public class ActionManager
         ViewToolbarAction toolbar = new ViewToolbarAction(app);
         ViewSwitcherAction switcher = new ViewSwitcherAction(app);
         ViewStatusbarAction status = new ViewStatusbarAction(app);
+        StatusStyleAction style = new StatusStyleAction(app);
 
         // Add the previously created actions
         toggles.put(ActionId.TRAY_WINDOW, window);
         toggles.put(ActionId.TOOLBAR, toolbar);
         toggles.put(ActionId.SWITCHER, switcher);
         toggles.put(ActionId.STATUS, status);
+        toggles.put(ActionId.STATUS_STYLE, style);
 
         // Other actions related to the interface which have two possible
         // states (active or inactive) but only one can be active
@@ -193,6 +195,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        ASSISTANT, OPEN_DIR, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
+        ASSISTANT, OPEN_DIR, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, STATUS_STYLE, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
     }
 }

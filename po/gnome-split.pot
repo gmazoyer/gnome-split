@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-07 22:20+0200\n"
+"POT-Creation-Date: 2010-07-08 17:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -242,23 +242,27 @@ msgstr ""
 msgid "You must fill all fields to start an action."
 msgstr ""
 
+#: src/org/gnome/split/gtk/action/StatusStyleAction.java:37
+msgid "_Icons in statusbar"
+msgstr ""
+
 #: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:37
 msgid "_View switcher"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:236
+#: src/org/gnome/split/gtk/MainWindow.java:238
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:268
+#: src/org/gnome/split/gtk/MainWindow.java:270
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:282
+#: src/org/gnome/split/gtk/MainWindow.java:284
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:308
+#: src/org/gnome/split/gtk/MainWindow.java:313
 msgid "_Help"
 msgstr ""
 
@@ -474,17 +478,17 @@ msgid ""
 "See the details for more information."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:71
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:111
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:81
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:147
 msgid "Ready."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:80
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:102
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:91
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:138
 msgid "Unknown speed"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:102
+#: src/org/gnome/split/gtk/widget/StatusWidget.java:138
 msgid "Speed"
 msgstr ""
 

@@ -32,7 +32,7 @@ import org.gnome.pango.EllipsizeMode;
 import static org.freedesktop.bindings.Internationalization._;
 
 /**
- * A custom {@link Statusbar} like to show information about an action.
+ * A {@link Statusbar} like to show information about an action.
  * 
  * @author Guillaume Mazoyer
  */
@@ -54,31 +54,67 @@ public class StatusWidget extends HBox
      */
     private Image speed;
 
-    public StatusWidget() {
+    /**
+     * Separators for icons and texts.
+     */
+    private VSeparator[] separators;
+
+    public StatusWidget(StatusStyle style) {
         super(false, 1);
 
         // Border width
         this.setBorderWidth(2);
 
+        // Create separators
+        separators = new VSeparator[2];
+        separators[0] = new VSeparator();
+        separators[1] = new VSeparator();
+
         // Add the icon
-        image = new Image(Stock.DIALOG_INFO, IconSize.MENU);
+        this.image = new Image(Stock.DIALOG_INFO, IconSize.MENU);
         this.packStart(image, false, false, 0);
 
         // Add a first separator
-        this.packStart(new VSeparator(), false, false, 0);
+        this.packStart(separators[0], false, false, 0);
 
         // Add the text display
-        text = new Label(_("Ready."));
-        text.setEllipsize(EllipsizeMode.MIDDLE);
+        this.text = new Label(_("Ready."));
+        this.text.setEllipsize(EllipsizeMode.MIDDLE);
+        this.text.show();
         this.packStart(text, true, true, 0);
 
         // Add a second separator
-        this.packStart(new VSeparator(), false, false, 0);
+        this.packStart(separators[1], false, false, 0);
 
         // Add the speed display
-        speed = new Image(Stock.HARDDISK, IconSize.MENU);
-        speed.setTooltipText(_("Unknown speed"));
+        this.speed = new Image(Stock.HARDDISK, IconSize.MENU);
+        this.speed.setTooltipText(_("Unknown speed"));
         this.packStart(speed, false, false, 0);
+
+        // Set the style of the widget
+        this.setStyle(style);
+    }
+
+    public void setStyle(StatusStyle style) {
+        if (style == StatusStyle.ICON) {
+            // Show icons
+            image.show();
+            speed.show();
+
+            // Show separators
+            for (VSeparator separator : separators) {
+                separator.show();
+            }
+        } else {
+            // Hide icons
+            image.hide();
+            speed.hide();
+
+            // Hide separators
+            for (VSeparator separator : separators) {
+                separator.hide();
+            }
+        }
     }
 
     /**
@@ -127,5 +163,15 @@ public class StatusWidget extends HBox
         this.updateImage(stock);
         this.updateText(message);
         this.updateSpeed(speed);
+    }
+
+    /**
+     * Style of the status widget. It can use icons or texts.
+     * 
+     * @author Guillaume Mazoyer
+     */
+    public enum StatusStyle
+    {
+        ICON, TEXT;
     }
 }
