@@ -144,6 +144,23 @@ $(DESTDIR)$(JARDIR)/gnome-split-$(VERSION).jar: \
 	cd $(@D) && rm -f gnome-split.jar && ln -s gnome-split-$(VERSION).jar gnome-split.jar
 
 # --------------------------------------------------------------------
+# Uninstallation
+# --------------------------------------------------------------------
+
+uninstall:
+	@/bin/echo -e "RM\t$(DESTDIR)$(PREFIX)/share/locale/*/LC_MESSAGES/gnome-split.mo"
+	rm -f $(DESTDIR)$(PREFIX)/share/locale/*/LC_MESSAGES/gnome-split.mo
+	@/bin/echo -e "RM\t$(DESTDIR)$(PREFIX)/share/pixmaps/*.png"
+	rm -f $(DESTDIR)$(PREFIX)/share/pixmaps/gnome-split.png
+	@/bin/echo -e "RM\t$(DESTDIR)$(PREFIX)/share/applications/gnome-split.desktop"
+	rm -f $(DESTDIR)$(PREFIX)/share/applications/gnome-split.desktop
+	@/bin/echo -e "RM\t$(DESTDIR)$(PREFIX)/bin/gnome-split"
+	rm -f $(DESTDIR)$(PREFIX)/bin/gnome-split
+	@/bin/echo -e "RM\t$(DESTDIR)$(JARDIR)/gnome-split-$(VERSION).jar"
+	rm -f $(DESTDIR)$(JARDIR)/gnome-split-$(VERSION).jar
+	rm -f $(DESTDIR)$(JARDIR)/gnome-split.jar
+
+# --------------------------------------------------------------------
 # House keeping
 # --------------------------------------------------------------------
 
