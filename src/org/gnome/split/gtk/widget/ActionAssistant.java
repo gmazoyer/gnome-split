@@ -251,32 +251,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     }
 
     /**
-     * Create a page to introduce the user to the split.
-     */
-    private void createSplitIntroduction() {
-        final Page page = new Page();
-
-        // The text to display
-        final String data = _("This assistant will help you to create a <b>split</b>.\n\nSplitting a file will create smaller files that you will be able to store on a\ndevice or online. During this assistant, 3 questions will be asked to you.\n\nFirst, you will have to select the file to split. After that, you will have to\nchoose the maximal size for each chunks that will be created. And finally, you\nwill have to choose the algorithm to use.\n\nAfter those 3 questions, the assistant will show you a summary of what GNOME\nSplit will do. And to finish, after your confirmation, the split will be ready.\n\nYou can also modify the split configuration to define in details how you want\nto have the split done by taking a look at <i>Edit > Preferences > Split</i>.");
-
-        // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-
-        // Add the label
-        page.container.packStart(text, false, false, 0);
-
-        // Setup the page in the assistant
-        this.insertPage(page, 1);
-        this.setPageType(page, AssistantPageType.INTRO);
-        this.setPageTitle(page, _("Introduction"));
-        this.setPageHeaderImage(page, logo);
-        this.setPageComplete(page, true);
-    }
-
-    /**
      * Create a page to select the file to split.
      */
     private void createSplitFileSelection() {
@@ -587,32 +561,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     }
 
     /**
-     * Create a page to introduce the user to the merge.
-     */
-    public void createMergeIntroduction() {
-        final Page page = new Page();
-
-        // The text to display
-        final String data = _("This assistant will help you to create a <b>merge</b>.\n\nActually, merging several files is easy. You just have to select the first file\nto merge and GNOME Split will do the everything else for you.\n\nSo the first and only thing that we will need is to select the first file to merge.\n\nYou can also modify the merge configuration to define in details how you want\nto have the merge done by taking a look at <i>Edit > Preferences > Merge</i>.");
-
-        // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-
-        // Add the label
-        page.container.packStart(text, false, false, 0);
-
-        // Setup the page in the assistant
-        this.insertPage(page, 1);
-        this.setPageType(page, AssistantPageType.INTRO);
-        this.setPageTitle(page, _("Introduction"));
-        this.setPageHeaderImage(page, logo);
-        this.setPageComplete(page, true);
-    }
-
-    /**
      * Create a page to select the first file to merge.
      */
     private void createMergeFileSelection() {
@@ -810,7 +758,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
                 this.logo = Gtk.renderIcon(this, Stock.PASTE, IconSize.DIALOG);
 
                 // Use the merge assistant
-                this.createMergeIntroduction();
                 this.createMergeFileSelection();
                 this.createMergeSummary();
             } else {
@@ -818,7 +765,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
                 this.logo = Gtk.renderIcon(this, Stock.CUT, IconSize.DIALOG);
 
                 // Use the split assistant
-                this.createSplitIntroduction();
                 this.createSplitFileSelection();
                 this.createSplitSizeSelection();
                 this.createSplitAlgoSelection();
@@ -844,14 +790,14 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     @Override
     public void onPrepare(Assistant source, Widget widget) {
         switch (source.getCurrentPage()) {
-        case 3:
+        case 2:
             if (type == 1) {
                 // Setup the label value
                 label.setLabel(new File(filename).getName());
             }
             break;
 
-        case 5:
+        case 4:
             if (type == 0) {
                 // Setup the label
                 label.setLabel(_(
