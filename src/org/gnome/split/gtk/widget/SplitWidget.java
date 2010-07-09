@@ -23,7 +23,6 @@ package org.gnome.split.gtk.widget;
 import java.io.File;
 
 import org.gnome.gtk.Entry;
-import org.gnome.gtk.EntryIconPosition;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
 import org.gnome.gtk.FileChooserWidget;
@@ -34,7 +33,6 @@ import org.gnome.gtk.ProgressBar;
 import org.gnome.gtk.SizeGroup;
 import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.SpinButton;
-import org.gnome.gtk.Stock;
 import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
@@ -127,13 +125,9 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         firstRow.packStart(entryColumn, true, true, 0);
 
         fileEntry = new Entry();
-        fileEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
-        fileEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
         entryColumn.packStart(fileEntry, true, true, 0);
 
         destinationEntry = new Entry();
-        destinationEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
-        destinationEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
         entryColumn.packStart(destinationEntry, true, true, 0);
 
         // Pack all choosers in the same box

@@ -24,7 +24,6 @@ import java.io.File;
 
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Entry;
-import org.gnome.gtk.EntryIconPosition;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
 import org.gnome.gtk.FileChooserWidget;
@@ -34,7 +33,6 @@ import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.SizeGroup;
 import org.gnome.gtk.SizeGroupMode;
-import org.gnome.gtk.Stock;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
@@ -121,8 +119,6 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         chunkRow.packStart(fileLabel, false, false, 0);
 
         fileEntry = new Entry();
-        fileEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
-        fileEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
         chunkRow.packStart(fileEntry, true, true, 0);
 
         // Filter for the file chooser to limit the file choice
@@ -159,8 +155,6 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         destinationRow.packStart(destinationLabel, false, false, 0);
 
         destEntry = new Entry();
-        destEntry.setIconFromStock(EntryIconPosition.PRIMARY, Stock.FILE);
-        destEntry.setIconActivatable(EntryIconPosition.PRIMARY, false);
         destinationRow.packStart(destEntry, true, true, 0);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);

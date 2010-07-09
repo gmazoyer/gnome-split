@@ -26,7 +26,6 @@ import org.gnome.gtk.Image;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.Statusbar;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.VSeparator;
 import org.gnome.pango.EllipsizeMode;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -54,37 +53,21 @@ public class StatusWidget extends HBox
      */
     private Image speed;
 
-    /**
-     * Separators for icons and texts.
-     */
-    private VSeparator[] separators;
-
     public StatusWidget(StatusStyle style) {
         super(false, 1);
 
         // Border width
         this.setBorderWidth(2);
 
-        // Create separators
-        separators = new VSeparator[2];
-        separators[0] = new VSeparator();
-        separators[1] = new VSeparator();
-
         // Add the icon
         this.image = new Image(Stock.DIALOG_INFO, IconSize.MENU);
         this.packStart(image, false, false, 0);
-
-        // Add a first separator
-        this.packStart(separators[0], false, false, 0);
 
         // Add the text display
         this.text = new Label(_("Ready."));
         this.text.setEllipsize(EllipsizeMode.MIDDLE);
         this.text.show();
         this.packStart(text, true, true, 0);
-
-        // Add a second separator
-        this.packStart(separators[1], false, false, 0);
 
         // Add the speed display
         this.speed = new Image(Stock.HARDDISK, IconSize.MENU);
@@ -100,20 +83,10 @@ public class StatusWidget extends HBox
             // Show icons
             image.show();
             speed.show();
-
-            // Show separators
-            for (VSeparator separator : separators) {
-                separator.show();
-            }
         } else {
             // Hide icons
             image.hide();
             speed.hide();
-
-            // Hide separators
-            for (VSeparator separator : separators) {
-                separator.hide();
-            }
         }
     }
 
