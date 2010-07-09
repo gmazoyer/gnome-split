@@ -30,9 +30,7 @@ import org.gnome.gtk.Assistant.Cancel;
 import org.gnome.gtk.Assistant.Close;
 import org.gnome.gtk.Assistant.Prepare;
 import org.gnome.gtk.AssistantPageType;
-import org.gnome.gtk.Button;
 import org.gnome.gtk.ButtonBoxStyle;
-import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.ComboBox;
 import org.gnome.gtk.Editable;
 import org.gnome.gtk.Entry;
@@ -109,11 +107,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
      */
     private int algorithm;
 
-    /**
-     * To know if we should start the action.
-     */
-    private boolean start;
-
     public ActionAssistant(final GnomeSplit app) {
         super();
 
@@ -134,7 +127,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         this.size = 1;
         this.unit = 0;
         this.algorithm = 0;
-        this.start = false;
 
         // Add introduction
         this.createGeneralIntroduction();
@@ -534,24 +526,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         label.setUseMarkup(true);
         page.container.packStart(label, false, false, 0);
 
-        // Last label and last question
-        final Label last = new Label(
-                _("Just a last question before you confirm the split to do.\nIf you check the following box, the split will start after your confirmation."));
-        last.setJustify(Justification.LEFT);
-        page.container.packStart(last, false, false, 0);
-
-        // Last question
-        final CheckButton startCheck = new CheckButton(_("Start the split after the confirmation."));
-        page.container.packStart(startCheck, false, false, 0);
-
-        // Connect the signal handler of the question
-        startCheck.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button source) {
-                start = startCheck.getActive();
-            }
-        });
-
         // Setup the page in the assistant
         this.insertPage(page, 5);
         this.setPageType(page, AssistantPageType.CONFIRM);
@@ -713,24 +687,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         label = new Label();
         fileBox.packStart(label, false, false, 0);
 
-        // Last label and last question
-        final Label last = new Label(
-                _("Just a last question before you confirm the merge to do.\nIf you check the following box, the merge will start after your confirmation."));
-        last.setJustify(Justification.LEFT);
-        page.container.packStart(last, false, false, 0);
-
-        // Last question
-        final CheckButton startCheck = new CheckButton(_("Start the merge after the confirmation."));
-        page.container.packStart(startCheck, false, false, 0);
-
-        // Connect the signal handler of the question
-        startCheck.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button source) {
-                start = startCheck.getActive();
-            }
-        });
-
         // Setup the page in the assistant
         this.insertPage(page, 3);
         this.setPageType(page, AssistantPageType.CONFIRM);
@@ -745,10 +701,8 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
             // Update the widget
             this.updateWidget();
 
-            if (start) {
-                // Start the merge if requested
-                app.getActionManager().getAction(ActionId.START).emitActivate();
-            }
+            // Start the split/merge if requested
+            app.getActionManager().getAction(ActionId.START).emitActivate();
 
             // Then hide the assistant
             source.hide();
