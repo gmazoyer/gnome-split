@@ -37,8 +37,8 @@ public final class Utils
         // Actually, Java can't go back further than 1900/01/30 so this is
         // just for a cosmetic purpose. It is the date on which Delphi's
         // TDatetime type is based.
-        GregorianCalendar base = new GregorianCalendar(1899, 12, 30);
-        GregorianCalendar time = new GregorianCalendar();
+        final GregorianCalendar base = new GregorianCalendar(1899, 12, 30);
+        final GregorianCalendar time = new GregorianCalendar();
 
         // Start a 30 because there is one month of difference between
         // TDatetime and Java minimal time.

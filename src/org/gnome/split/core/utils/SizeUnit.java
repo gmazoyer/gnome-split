@@ -49,13 +49,16 @@ public final class SizeUnit
     /**
      * One CD-ROM.
      */
-    public static final double CDROM = 700 * MiB;
+    public static final double CDROM = 700 * 1000000;
 
     /**
-     * One DVD-ROM
+     * One DVD-ROM.
      */
-    public static final double DVDROM = 4.7 * GiB;
+    public static final double DVDROM = 4.7 * 1000000000;
 
+    /**
+     * Get all the values using an array.
+     */
     private static final double[] values = {
             KiB, MiB, GiB, CDROM, DVDROM
     };
