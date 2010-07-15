@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-09 23:16+0200\n"
+"POT-Creation-Date: 2010-07-15 19:01+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -76,32 +76,32 @@ msgstr ""
 msgid "Generic"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:92
+#: src/org/gnome/split/core/utils/SizeUnit.java:95
 msgid "chunks"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:92
+#: src/org/gnome/split/core/utils/SizeUnit.java:95
 msgid "bytes (B)"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:92
+#: src/org/gnome/split/core/utils/SizeUnit.java:95
 msgid "kibibytes (KiB)"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:92
+#: src/org/gnome/split/core/utils/SizeUnit.java:95
 msgid "mebibytes (MiB)"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:93
+#: src/org/gnome/split/core/utils/SizeUnit.java:96
 msgid "gibibytes (GiB)"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:93
-msgid "CD-ROM (700 MiB)"
+#: src/org/gnome/split/core/utils/SizeUnit.java:96
+msgid "CD-R (700 MB)"
 msgstr ""
 
-#: src/org/gnome/split/core/utils/SizeUnit.java:93
-msgid "DVD-ROM (4.7 GiB)"
+#: src/org/gnome/split/core/utils/SizeUnit.java:96
+msgid "DVD-R (4.7 GB)"
 msgstr ""
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:33

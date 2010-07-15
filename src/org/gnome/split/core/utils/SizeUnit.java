@@ -49,18 +49,18 @@ public final class SizeUnit
     /**
      * One CD-ROM.
      */
-    public static final double CDROM = 700 * 1000000;
+    public static final double CDR = 700 * 1000000;
 
     /**
      * One DVD-ROM.
      */
-    public static final double DVDROM = 4.7 * 1000000000;
+    public static final double DVDR = 4.7 * 1000000000;
 
     /**
      * Get all the values using an array.
      */
     private static final double[] values = {
-            KiB, MiB, GiB, CDROM, DVDROM
+            KiB, MiB, GiB, CDR, DVDR
     };
 
     /**
@@ -93,7 +93,7 @@ public final class SizeUnit
     public static String[] toStrings() {
         return new String[] {
                 _("chunks"), _("bytes (B)"), _("kibibytes (KiB)"), _("mebibytes (MiB)"),
-                _("gibibytes (GiB)"), _("CD-ROM (700 MiB)"), _("DVD-ROM (4.7 GiB)")
+                _("gibibytes (GiB)"), _("CD-R (700 MB)"), _("DVD-R (4.7 GB)")
         };
     }
 }

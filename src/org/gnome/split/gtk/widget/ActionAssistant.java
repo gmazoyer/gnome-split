@@ -324,7 +324,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
                 setPageComplete(page, complete);
 
                 // Update label
-                exist.setLabel("<b><span foreground=\"red\">" + text + "</span></b>");
+                exist.setLabel("<b><span foreground=\"orange\">" + text + "</span></b>");
             }
         });
 
@@ -396,7 +396,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Label valid = new Label();
         valid.setJustify(Justification.CENTER);
         valid.setUseMarkup(true);
-        valid.setLabel("<b><span foreground=\"red\">"
+        valid.setLabel("<b><span foreground=\"orange\">"
                 + _("Invalid chunk size. The size must be lower than the size of the file to split.")
                 + "</span></b>");
         page.container.packStart(valid, false, false, 0);
