@@ -40,6 +40,11 @@ public final class Configuration
     private File configuration;
 
     /**
+     * Show the assistant when GNOME Split starts.
+     */
+    public boolean ASSISTANT_ON_START;
+
+    /**
      * Default view to display
      */
     public byte DEFAULT_VIEW;
@@ -177,6 +182,7 @@ public final class Configuration
             writer = new FileWriter(configuration);
 
             // Write general config
+            writer.write("StartAssistant    = true\n");
             writer.write("DefaultView       = 0\n");
             writer.write("MultipleInstances = false\n");
             writer.write("CustomWindowSize  = false\n");
@@ -233,6 +239,7 @@ public final class Configuration
             stream.close();
 
             // Load general config
+            ASSISTANT_ON_START = Boolean.parseBoolean(preferences.getProperty("StartAssistant", "true"));
             DEFAULT_VIEW = Byte.parseByte(preferences.getProperty("DefaultView", "0"));
             MULTIPLE_INSTANCES = Boolean.parseBoolean(preferences.getProperty("MultipleInstances",
                     "false"));
@@ -280,6 +287,7 @@ public final class Configuration
             writer = new FileWriter(configuration);
 
             // Write general config
+            writer.write("StartAssistant    = " + ASSISTANT_ON_START + "\n");
             writer.write("DefaultView       = " + DEFAULT_VIEW + "\n");
             writer.write("MultipleInstances = " + MULTIPLE_INSTANCES + "\n");
             writer.write("CustomWindowSize  = " + CUSTOM_WINDOW_SIZE + "\n");

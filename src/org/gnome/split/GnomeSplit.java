@@ -147,6 +147,11 @@ public final class GnomeSplit
         // If there are some arguments
         if (args.length > 0) {
             this.parseCommandLine(args);
+        } else {
+            if (config.ASSISTANT_ON_START) {
+                // Show the assistant on start if requested
+                actions.getAction(ActionId.ASSISTANT).emitActivate();
+            }
         }
 
         // Start GTK main loop (blocker method)

@@ -149,7 +149,7 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
         page.packStart(first, false, false, 0);
 
         // Add the label
-        first.packStart(this.createSectionLabel(_("Default view")), false, false, 0);
+        first.packStart(this.createSectionLabel(_("Assistant")), false, false, 0);
 
         // Add the row of options
         final HBox firstRow = new HBox(false, 0);
@@ -158,9 +158,36 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
         // Add an empty label
         firstRow.packStart(this.createEmptyLabel(), false, false, 0);
 
+        // Add the option
+        final CheckButton assistant = new CheckButton(_("_Show the assistant on start"));
+        assistant.setActive(config.ASSISTANT_ON_START);
+        firstRow.packStart(assistant, false, false, 0);
+        assistant.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                // Save preferences
+                config.ASSISTANT_ON_START = assistant.getActive();
+                config.savePreferences();
+            }
+        });
+
+        // First options
+        final VBox second = new VBox(false, 6);
+        page.packStart(second, false, false, 0);
+
+        // Add the label
+        second.packStart(this.createSectionLabel(_("Default view")), false, false, 0);
+
+        // Add the row of options
+        final HBox secondRow = new HBox(false, 0);
+        second.packStart(secondRow, false, false, 0);
+
+        // Add an empty label
+        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+
         // Pack the options
         final VBox boxes = new VBox(false, 6);
-        firstRow.packStart(boxes, false, false, 0);
+        secondRow.packStart(boxes, false, false, 0);
 
         // Split choice
         final RadioButton split = new RadioButton(group, _("Split"));
@@ -193,23 +220,23 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
         });
 
         // Second option
-        final VBox second = new VBox(false, 6);
-        page.packStart(second, false, false, 0);
+        final VBox third = new VBox(false, 6);
+        page.packStart(third, false, false, 0);
 
         // Add the label
-        second.packStart(this.createSectionLabel(_("Program run")), false, false, 0);
+        third.packStart(this.createSectionLabel(_("Program run")), false, false, 0);
 
         // Add the row of options
-        final HBox secondRow = new HBox(false, 0);
-        second.packStart(secondRow, false, false, 0);
+        final HBox thirdRow = new HBox(false, 0);
+        third.packStart(thirdRow, false, false, 0);
 
         // Add an empty label
-        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+        thirdRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Restore multiple instances status
         final CheckButton instances = new CheckButton(_("_Allow multiple instances."));
         instances.setActive(config.MULTIPLE_INSTANCES);
-        secondRow.packStart(instances, false, false, 0);
+        thirdRow.packStart(instances, false, false, 0);
         instances.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
@@ -220,22 +247,22 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
         });
 
         // Third option
-        final VBox third = new VBox(false, 6);
-        page.packStart(third, false, false, 0);
+        final VBox fourth = new VBox(false, 6);
+        page.packStart(fourth, false, false, 0);
 
         // Add the label
-        third.packStart(this.createSectionLabel(_("Size of the main window")), false, false, 0);
+        fourth.packStart(this.createSectionLabel(_("Size of the main window")), false, false, 0);
 
         // Add the row of options
-        final HBox thirdRow = new HBox(false, 0);
-        third.packStart(thirdRow, false, false, 0);
+        final HBox fourthRow = new HBox(false, 0);
+        fourth.packStart(fourthRow, false, false, 0);
 
         // Add an empty label
-        thirdRow.packStart(this.createEmptyLabel(), false, false, 0);
+        fourthRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Add a box to pack widgets to change the size
         final VBox sizeBox = new VBox(false, 6);
-        thirdRow.packStart(sizeBox, false, false, 0);
+        fourthRow.packStart(sizeBox, false, false, 0);
 
         // Create some needed widgets
         final SpinButton width = new SpinButton(1, 2048, 1);

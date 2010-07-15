@@ -30,7 +30,9 @@ import org.gnome.gtk.Assistant.Cancel;
 import org.gnome.gtk.Assistant.Close;
 import org.gnome.gtk.Assistant.Prepare;
 import org.gnome.gtk.AssistantPageType;
+import org.gnome.gtk.Button;
 import org.gnome.gtk.ButtonBoxStyle;
+import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.ComboBox;
 import org.gnome.gtk.Editable;
 import org.gnome.gtk.Entry;
@@ -233,6 +235,21 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         type = (byte) (app.getMainWindow().getSplitWidget().isVisible() ? 0 : 1);
         split.setActive(type == 0);
         merge.setActive(type == 1);
+
+        // Add a button to turn on/off the assistant on start
+        final CheckButton assistant = new CheckButton(_("_Show the assistant on start"));
+        assistant.setActive(app.getConfig().ASSISTANT_ON_START);
+        page.container.packStart(assistant, false, false, 0);
+
+        // Connect check button signal
+        assistant.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                // Save preferences
+                app.getConfig().ASSISTANT_ON_START = assistant.getActive();
+                app.getConfig().savePreferences();
+            }
+        });
 
         // Setup the page in the assistant
         this.appendPage(page);
