@@ -189,6 +189,30 @@ public class ActionManager
     }
 
     /**
+     * Emit the signal connected to the {@link Action} associated the
+     * {@link ActionId}.
+     */
+    public void activateAction(ActionId id) {
+        this.getAction(id).emitActivate();
+    }
+
+    /**
+     * Emit the signal connected to the {@link ToggleAction} associated the
+     * {@link ActionId}.
+     */
+    public void activateToggleAction(ActionId id) {
+        this.getToggleAction(id).emitActivate();
+    }
+
+    /**
+     * Emit the signal connected to the {@link RadioAction} associated the
+     * {@link ActionId}.
+     */
+    public void activateRadioAction(ActionId id) {
+        this.getRadioAction(id).emitActivate();
+    }
+
+    /**
      * List of all action IDs.
      * 
      * @author Guillaume Mazoyer

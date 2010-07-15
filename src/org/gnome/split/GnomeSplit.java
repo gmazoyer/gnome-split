@@ -150,7 +150,7 @@ public final class GnomeSplit
         } else {
             if (config.ASSISTANT_ON_START) {
                 // Show the assistant on start if requested
-                actions.getAction(ActionId.ASSISTANT).emitActivate();
+                actions.activateAction(ActionId.ASSISTANT);
             }
         }
 
@@ -180,7 +180,7 @@ public final class GnomeSplit
                 window.getMergeWidget().setFile(getopt.getArgument());
 
                 // Show the merge widget
-                actions.getRadioAction(ActionId.MERGE).emitActivate();
+                actions.activateRadioAction(ActionId.MERGE);
 
                 break;
 
@@ -189,7 +189,7 @@ public final class GnomeSplit
                 window.getSplitWidget().setFile(getopt.getArgument());
 
                 // Show the split widget
-                actions.getRadioAction(ActionId.SPLIT).emitActivate();
+                actions.activateRadioAction(ActionId.SPLIT);
 
                 break;
 

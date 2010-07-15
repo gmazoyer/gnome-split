@@ -346,7 +346,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         // The merge view is the default one
         if (view == 1) {
             // Switch the view
-            app.getActionManager().getRadioAction(ActionId.MERGE).emitActivate();
+            app.getActionManager().activateRadioAction(ActionId.MERGE);
         }
     }
 

@@ -26,7 +26,6 @@ import org.gnome.gtk.StatusIcon;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.action.ActionManager;
-import org.gnome.split.gtk.action.ToggleAction;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -87,8 +86,7 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
 
     @Override
     public void onActivate(StatusIcon source) {
-        ToggleAction action = app.getActionManager().getToggleAction(ActionId.TRAY_WINDOW);
-        action.emitActivate();
+        app.getActionManager().activateToggleAction(ActionId.TRAY_WINDOW);
     }
 
     @Override

@@ -146,13 +146,13 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     private void updateWidget() {
         if (type == 0) {
             // Switch to the split view if needed
-            app.getActionManager().getRadioAction(ActionId.SPLIT).emitActivate();
+            app.getActionManager().activateRadioAction(ActionId.SPLIT);
 
             // Update the widget using the info
             app.getMainWindow().getSplitWidget().setSplit(filename, size, unit, algorithm);
         } else {
             // Switch to the merge view if needed
-            app.getActionManager().getRadioAction(ActionId.MERGE).emitActivate();
+            app.getActionManager().activateRadioAction(ActionId.MERGE);
 
             // Update the widget using the filename
             app.getMainWindow().getMergeWidget().setFile(filename);
@@ -719,7 +719,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
             this.updateWidget();
 
             // Start the split/merge if requested
-            app.getActionManager().getAction(ActionId.START).emitActivate();
+            app.getActionManager().activateAction(ActionId.START);
 
             // Then hide the assistant
             source.hide();
