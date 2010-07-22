@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-15 19:29+0200\n"
+"POT-Creation-Date: 2010-07-22 17:53+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -206,7 +206,7 @@ msgstr ""
 msgid "_Report a Problem..."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/ViewStatusbarAction.java:37
+#: src/org/gnome/split/gtk/action/ViewStatusbarAction.java:36
 msgid "_Statusbar"
 msgstr ""
 
@@ -242,27 +242,23 @@ msgstr ""
 msgid "You must fill all fields to start an action."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StatusStyleAction.java:37
-msgid "_Icons in statusbar"
-msgstr ""
-
 #: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:37
 msgid "_View switcher"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:238
+#: src/org/gnome/split/gtk/MainWindow.java:228
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:270
+#: src/org/gnome/split/gtk/MainWindow.java:260
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:284
+#: src/org/gnome/split/gtk/MainWindow.java:274
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:313
+#: src/org/gnome/split/gtk/MainWindow.java:300
 msgid "_Help"
 msgstr ""
 
@@ -438,41 +434,41 @@ msgid ""
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:147
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:149
 #, java-format
 msgid "Writting {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:158
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:160
 #, java-format
 msgid "Reading {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:169
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:171
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:247
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:249
 msgid "Split finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:248
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:250
 msgid "The file was succesfully splitted."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:250
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:252
 msgid "Merge finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:251
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:253
 msgid "The files were successfully merged."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:276
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:279
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:278
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:281
 msgid "Merge stopped."
 msgstr ""
 
@@ -488,21 +484,7 @@ msgid ""
 "See the details for more information."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:67
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:120
-msgid "Ready."
-msgstr ""
-
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:74
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:111
-msgid "Unknown speed"
-msgstr ""
-
-#: src/org/gnome/split/gtk/widget/StatusWidget.java:111
-msgid "Speed"
-msgstr ""
-
-#: src/org/gnome/split/gtk/widget/AreaStatusIcon.java:110
+#: src/org/gnome/split/gtk/widget/AreaStatusIcon.java:108
 msgid "version"
 msgstr ""
 

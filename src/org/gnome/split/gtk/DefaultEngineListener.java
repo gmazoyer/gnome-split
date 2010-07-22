@@ -125,7 +125,7 @@ public class DefaultEngineListener implements EngineListener
             gtk.getAreaStatusIcon().updateText(null);
 
             // Reset the status bar speed indicator
-            gtk.getStatusWidget().updateSpeed("");
+            gtk.getStatusWidget().updateSpeed(null);
 
             // Update the interface state
             this.engineReady();
