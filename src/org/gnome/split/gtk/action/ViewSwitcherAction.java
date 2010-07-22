@@ -41,7 +41,7 @@ public final class ViewSwitcherAction extends ToggleAction
     public void onToggled(org.gnome.gtk.ToggleAction source) {
         // Get the switcher and the separator of the interface
         SelectView switcher = this.getApplication().getMainWindow().getViewSwitcher();
-        HSeparator separator = this.getApplication().getMainWindow().getSeparators()[0];
+        HSeparator separator = this.getApplication().getMainWindow().getSeparator();
 
         if (source.getActive()) {
             // Show it

@@ -49,7 +49,6 @@ import org.gnome.split.gtk.widget.ProgressWidget;
 import org.gnome.split.gtk.widget.SelectView;
 import org.gnome.split.gtk.widget.SplitWidget;
 import org.gnome.split.gtk.widget.StatusWidget;
-import org.gnome.split.gtk.widget.StatusWidget.StatusStyle;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -95,7 +94,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
     /**
      * Separators just to perfect the interface.
      */
-    private HSeparator[] separators;
+    private HSeparator separator;
 
     /**
      * Widget to display when the split view is selected.
@@ -135,9 +134,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.accelerators = app.getActionManager().getAccelerators();
         this.addAcceleratorGroup(this.accelerators);
 
-        // Create the separators array
-        this.separators = new HSeparator[2];
-
         // Place the window in the middle of the screen
         this.setPosition(WindowPosition.CENTER);
 
@@ -173,13 +169,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.mainContainer.packStart(views, false, false, 0);
 
         // Add a separator
-        this.separators[0] = new HSeparator();
-        mainContainer.packStart(this.separators[0], false, false, 0);
+        this.separator = new HSeparator();
+        mainContainer.packStart(this.separator, false, false, 0);
 
         // Show the switcher if need
         if (app.getConfig().SHOW_SWITCHER) {
             this.views.showAll();
-            this.separators[0].show();
+            this.separator.show();
         }
 
         // Create the two main widgets
@@ -203,19 +199,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.progress.show();
         this.mainContainer.packStart(this.progress, false, false, 0);
 
-        // Add a separator
-        this.separators[1] = new HSeparator();
-        mainContainer.packStart(this.separators[1], false, false, 0);
-
         // Add status widget
-        final StatusStyle style = StatusStyle.values()[app.getConfig().STATUS_STYLE];
-        this.status = new StatusWidget(style);
+        this.status = new StatusWidget();
         this.mainContainer.packStart(this.status, false, false, 0);
 
         // Show the status widget if needed
         if (app.getConfig().SHOW_STATUSBAR) {
             this.status.show();
-            this.separators[1].show();
         }
 
         // Connect delete event handler
@@ -286,14 +276,13 @@ public class MainWindow extends Window implements Window.DeleteEvent
         viewMenu.setAcceleratorGroup(accelerators);
 
         // Create menu items
-        items = new MenuItem[7];
+        items = new MenuItem[6];
         items[0] = actions.getAction(ActionId.CLEAR).createMenuItem();
         items[1] = actions.getToggleAction(ActionId.TOOLBAR).createMenuItem();
         items[2] = actions.getToggleAction(ActionId.SWITCHER).createMenuItem();
         items[3] = actions.getToggleAction(ActionId.STATUS).createMenuItem();
-        items[4] = actions.getToggleAction(ActionId.STATUS_STYLE).createMenuItem();
-        items[5] = actions.getRadioAction(ActionId.SPLIT).createMenuItem();
-        items[6] = actions.getRadioAction(ActionId.MERGE).createMenuItem();
+        items[4] = actions.getRadioAction(ActionId.SPLIT).createMenuItem();
+        items[5] = actions.getRadioAction(ActionId.MERGE).createMenuItem();
 
         // Add menu items to the menu
         viewItem.setSubmenu(viewMenu);
@@ -304,9 +293,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         viewMenu.append(items[3]);
         viewMenu.append(new SeparatorMenuItem());
         viewMenu.append(items[4]);
-        viewMenu.append(new SeparatorMenuItem());
         viewMenu.append(items[5]);
-        viewMenu.append(items[6]);
         menubar.append(viewItem);
 
         // Help menu item
@@ -400,8 +387,8 @@ public class MainWindow extends Window implements Window.DeleteEvent
     /**
      * Get the separators of the interface.
      */
-    public HSeparator[] getSeparators() {
-        return separators;
+    public HSeparator getSeparator() {
+        return separator;
     }
 
     /**

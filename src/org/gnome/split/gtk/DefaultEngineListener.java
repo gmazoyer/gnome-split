@@ -24,7 +24,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import org.gnome.gtk.Dialog;
-import org.gnome.gtk.Stock;
 import org.gnome.notify.Notification;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
@@ -125,6 +124,9 @@ public class DefaultEngineListener implements EngineListener
             // Reset the status icon tooltip
             gtk.getAreaStatusIcon().updateText(null);
 
+            // Reset the status bar speed indicator
+            gtk.getStatusWidget().updateSpeed("");
+
             // Update the interface state
             this.engineReady();
         }
@@ -144,7 +146,7 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public void enginePartCreated(String filename) {
         // Update the status widget
-        gtk.getStatusWidget().update(Stock.REFRESH, _("Writting {0}.", filename));
+        gtk.getStatusWidget().updateText(_("Writting {0}.", filename));
     }
 
     @Override
@@ -155,7 +157,7 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public void enginePartRead(String filename) {
         // Update the status widget
-        gtk.getStatusWidget().update(Stock.REFRESH, _("Reading {0}.", filename));
+        gtk.getStatusWidget().updateText(_("Reading {0}.", filename));
     }
 
     @Override
@@ -252,7 +254,8 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the status widget
-        gtk.getStatusWidget().update(Stock.YES, title, null);
+        gtk.getStatusWidget().updateText(title);
+        gtk.getStatusWidget().scheduleTimeout(5);
 
         if (!app.getConfig().USE_NOTIFICATION) {
             // Use simple info bar
@@ -279,7 +282,8 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the status widget
-        gtk.getStatusWidget().update(Stock.CANCEL, text, null);
+        gtk.getStatusWidget().updateText(text);
+        gtk.getStatusWidget().scheduleTimeout(5);
 
         // Update engine
         this.setEngine(null);
@@ -287,14 +291,12 @@ public class DefaultEngineListener implements EngineListener
 
     @Override
     public void engineError(EngineException exception) {
-        Stock item = null;
         Dialog dialog = null;
         ExceptionMessage message = null;
 
         if (exception.isWarning()) {
             // Warning only (file *may* work)
             message = exception.getExceptionMessage();
-            item = Stock.DIALOG_WARNING;
             gtk.getInfoBar().showWarning(message.getMessage(), message.getDetails());
         } else {
             // First print the stacktrace
@@ -303,11 +305,9 @@ public class DefaultEngineListener implements EngineListener
             if (exception instanceof InvalidSizeException) {
                 // Invalid size exception
                 message = exception.getExceptionMessage();
-                item = Stock.DIALOG_ERROR;
                 dialog = new ErrorDialog(gtk, message.getMessage(), message.getDetails());
             } else {
                 // Other exception - error (file is supposed broken)
-                item = Stock.DIALOG_ERROR;
                 dialog = new ErrorDialog(
                         gtk,
                         _("Unhandled exception."),
@@ -317,7 +317,8 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the status widget
-        gtk.getStatusWidget().update(item, exception.getMessage(), null);
+        gtk.getStatusWidget().updateText(exception.getMessage());
+        gtk.getStatusWidget().scheduleTimeout(8);
 
         if (dialog != null) {
             // Display the dialog

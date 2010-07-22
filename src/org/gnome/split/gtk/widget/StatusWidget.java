@@ -20,131 +20,109 @@
  */
 package org.gnome.split.gtk.widget;
 
-import org.gnome.gtk.HBox;
-import org.gnome.gtk.IconSize;
-import org.gnome.gtk.Image;
-import org.gnome.gtk.Label;
-import org.gnome.gtk.Statusbar;
-import org.gnome.gtk.Stock;
-import org.gnome.pango.EllipsizeMode;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import static org.freedesktop.bindings.Internationalization._;
+import org.gnome.gtk.Frame;
+import org.gnome.gtk.Label;
+import org.gnome.gtk.ShadowType;
+import org.gnome.gtk.Statusbar;
 
 /**
  * A {@link Statusbar} like to show information about an action.
  * 
  * @author Guillaume Mazoyer
  */
-public class StatusWidget extends HBox
+public class StatusWidget extends Statusbar
 {
-    /**
-     * Display an icon taken from {@link Stock}.
-     */
-    private Image image;
-
     /**
      * Display the information.
      */
-    private Label text;
+    private Label speed;
 
-    /**
-     * Display an icon taken from {@link Stock} with a tooltip to show the
-     * speed.
-     */
-    private Image speed;
+    public StatusWidget() {
+        super();
 
-    public StatusWidget(StatusStyle style) {
-        super(false, 1);
+        // Always show the resize grip
+        this.setHasResizeGrip(true);
 
-        // Border width
+        // Just a little space
         this.setBorderWidth(2);
 
-        // Add the icon
-        this.image = new Image(Stock.DIALOG_INFO, IconSize.MENU);
-        this.packStart(image, false, false, 0);
+        // Add a frame to pack the widgets
+        final Frame frame = new Frame(null);
+        frame.setShadowType(ShadowType.IN);
+        this.packStart(frame, false, false, 0);
 
-        // Add the text display
-        this.text = new Label(_("Ready."));
-        this.text.setEllipsize(EllipsizeMode.MIDDLE);
-        this.text.show();
-        this.packStart(text, true, true, 0);
+        // Show the container
+        frame.show();
 
-        // Add the speed display
-        this.speed = new Image(Stock.HARDDISK, IconSize.MENU);
-        this.speed.setTooltipText(_("Unknown speed"));
-        this.packStart(speed, false, false, 0);
-
-        // Set the style of the widget
-        this.setStyle(style);
-    }
-
-    public void setStyle(StatusStyle style) {
-        if (style == StatusStyle.ICON) {
-            // Show icons
-            image.show();
-            speed.show();
-        } else {
-            // Hide icons
-            image.hide();
-            speed.hide();
-        }
-    }
-
-    /**
-     * Update the displayed icon.
-     */
-    public void updateImage(Stock stock) {
-        image.setImage(stock, IconSize.MENU);
+        // Add the speed label
+        this.speed = new Label();
+        frame.add(speed);
     }
 
     /**
      * Update the displayed text.
      */
     public void updateText(String message) {
-        text.setLabel(message);
+        this.setMessage((message == null) ? "" : message);
     }
 
     /**
      * Update the displayed speed.
      */
     public void updateSpeed(String value) {
-        String tooltip = (value == null) ? _("Unknown speed") : _("Speed") + " " + value;
-        speed.setTooltipText(tooltip);
+        if (value == null) {
+            speed.hide();
+            speed.setLabel("");
+        } else {
+            speed.setLabel(value);
+            speed.show();
+        }
+    }
+
+    /**
+     * Schedule the message disappearing in the statusbar using a timer.
+     */
+    public void scheduleTimeout(int seconds) {
+        // Create a timer
+        final Timer timer = new Timer();
+
+        // Schedule the text disappearing
+        timer.schedule(new TimeoutTask(timer), (seconds * 1000));
     }
 
     /**
      * Reset the widget to its initial status.
      */
     public void reset() {
-        this.updateImage(Stock.DIALOG_INFO);
-        this.updateText(_("Ready."));
+        this.updateText(null);
         this.updateSpeed(null);
     }
 
     /**
-     * Update the displayed icon and text.
-     */
-    public void update(Stock stock, String message) {
-        this.updateImage(stock);
-        this.updateText(message);
-    }
-
-    /**
-     * Update the displayed icon, text and speed.
-     */
-    public void update(Stock stock, String message, String speed) {
-        this.updateImage(stock);
-        this.updateText(message);
-        this.updateSpeed(speed);
-    }
-
-    /**
-     * Style of the status widget. It can use icons or texts.
+     * A class to schedule the message disappearing in the statusbar using a
+     * timer.
      * 
      * @author Guillaume Mazoyer
      */
-    public enum StatusStyle
+    private class TimeoutTask extends TimerTask
     {
-        ICON, TEXT;
+        private Timer timer;
+
+        TimeoutTask(Timer timer) {
+            this.timer = timer;
+        }
+
+        @Override
+        public void run() {
+            // Erase the text
+            updateText(null);
+
+            // Clear the timer object
+            timer.cancel();
+            timer.purge();
+        }
     }
 }
