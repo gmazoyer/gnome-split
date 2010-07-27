@@ -24,6 +24,7 @@ import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Stock;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineFactory;
+import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.gtk.dialog.ErrorDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.MergeWidget;
@@ -61,6 +62,17 @@ public final class StartAction extends Action
                 // The user did not fill all the fields
                 Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Incompleted fields."),
                         _("You must fill all fields to start an action."));
+                dialog.run();
+                dialog.hide();
+                return;
+            }
+
+            long free = widget.checkFreeSpace();
+            if (free != -1) {
+                // There is not enough space
+                Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Not enough space."), _(
+                        "There is not enough available space ({0}) in the folder that you selected.",
+                        SizeUnit.formatSize(free)));
                 dialog.run();
                 dialog.hide();
                 return;

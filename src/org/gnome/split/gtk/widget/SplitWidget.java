@@ -236,6 +236,15 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
     }
 
     @Override
+    public long checkFreeSpace() {
+        File dire = new File(dirChooser.getCurrentFolder());
+        File file = new File(fileEntry.getText());
+        long free = dire.getFreeSpace();
+
+        return ((free >= file.length()) ? -1 : free);
+    }
+
+    @Override
     public void disable() {
         // Get all widgets
         Widget[] widgets = this.getChildren();

@@ -95,6 +95,11 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
      */
     private Label md5sum;
 
+    /**
+     * Size of all the files to merge combined.
+     */
+    private long size;
+
     public MergeWidget(final GnomeSplit app) {
         super(false, 12);
 
@@ -240,11 +245,14 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         // Get the number of parts
         int number = engine.getChunksNumber();
 
+        // Get the size
+        size = engine.getFileLength();
+
         // Update the widgets
         destEntry.setText(filename);
         dirChooser.setCurrentFolder(directory);
         partsNumber.setLabel((number == -1) ? _("Unknown") : String.valueOf(number));
-        fileSize.setLabel(SizeUnit.formatSize(engine.getFileLength()));
+        fileSize.setLabel(SizeUnit.formatSize(size));
         md5sum.setLabel(engine.useMD5() && app.getConfig().CHECK_FILE_HASH ? _("A MD5 sum will be calculated.")
                 : _("A MD5 sum will not be calculated."));
 
@@ -270,6 +278,14 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
     @Override
     public boolean isFullyFilled() {
         return (!fileEntry.getText().isEmpty() && !destEntry.getText().isEmpty());
+    }
+
+    @Override
+    public long checkFreeSpace() {
+        File dire = new File(dirChooser.getCurrentFolder());
+        long free = dire.getFreeSpace();
+
+        return ((free >= size) ? -1 : free);
     }
 
     @Override
