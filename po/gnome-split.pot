@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-07-22 17:53+0200\n"
+"POT-Creation-Date: 2010-07-27 21:40+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -226,20 +226,30 @@ msgstr ""
 msgid "Show the main _window"
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:42
+#: src/org/gnome/split/gtk/action/StartAction.java:43
 msgid "_Start"
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:42
+#: src/org/gnome/split/gtk/action/StartAction.java:43
 msgid "Start this action."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:62
+#: src/org/gnome/split/gtk/action/StartAction.java:63
 msgid "Incompleted fields."
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/StartAction.java:63
+#: src/org/gnome/split/gtk/action/StartAction.java:64
 msgid "You must fill all fields to start an action."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/StartAction.java:73
+msgid "Not enough space."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/StartAction.java:74
+#, java-format
+msgid ""
+"There is not enough available space ({0}) in the folder that you selected."
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:37
@@ -349,7 +359,7 @@ msgstr ""
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:458
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:579
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:147
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:160
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:165
 msgid "Choose a directory."
 msgstr ""
 
@@ -497,12 +507,12 @@ msgid "File:"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:120
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:154
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:159
 msgid "Destination:"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:137
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:133
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:138
 msgid "Choose a file."
 msgstr ""
 
@@ -515,56 +525,56 @@ msgstr ""
 msgid "Algorithm:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:118
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:123
 msgid "First chunk:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:125
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:130
 msgid "All files"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:127
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:132
 #: src/org/gnome/split/gtk/widget/ActionAssistant.java:585
 msgid "Valid chunks"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:168
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:173
 msgid "Chunks:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:171
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:181
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:191
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:246
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:301
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:302
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:303
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:176
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:186
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:196
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:254
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:317
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:318
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:319
 msgid "Unknown"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:178
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:183
 msgid "Total size:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:188
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:193
 msgid "MD5 sum:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:223
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:228
 msgid "Cannot merge."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:224
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:229
 msgid ""
 "You will not be able to merge the files because this file format is unknown. "
 "You are welcome to fill a bug about that."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:248
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:256
 msgid "A MD5 sum will be calculated."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:249
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:257
 msgid "A MD5 sum will not be calculated."
 msgstr ""
 

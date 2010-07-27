@@ -43,6 +43,12 @@ public interface ActionWidget
     public boolean isFullyFilled();
 
     /**
+     * Return whether or not there is enough free space on the partition for
+     * our split/merge. If there is not enough space -1 is returned.
+     */
+    public long checkFreeSpace();
+
+    /**
      * Disable the widget causing all sub-widgets to be non-sensitive.
      */
     public void disable();
