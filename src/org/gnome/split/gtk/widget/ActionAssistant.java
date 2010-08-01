@@ -34,21 +34,21 @@ import org.gnome.gtk.Button;
 import org.gnome.gtk.ButtonBoxStyle;
 import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.ComboBox;
-import org.gnome.gtk.Editable;
-import org.gnome.gtk.Entry;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
 import org.gnome.gtk.FileFilter;
 import org.gnome.gtk.Gtk;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.IconSize;
+import org.gnome.gtk.Image;
 import org.gnome.gtk.Justification;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.RadioButton;
 import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.TextComboBox;
+import org.gnome.gtk.TextBuffer;
+import org.gnome.gtk.TextView;
 import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.VButtonBox;
@@ -59,6 +59,8 @@ import org.gnome.split.config.Constants;
 import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
+import org.gnome.split.gtk.widget.base.AlgorithmsBox;
+import org.gnome.split.gtk.widget.base.UnitsBox;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -87,7 +89,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     /**
      * The label to update to show the summary.
      */
-    private Label label;
+    private TextView summary;
 
     /**
      * The name of the file to split.
@@ -266,13 +268,13 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Page page = new Page();
 
         // The text to display
-        final String data = _("Here, you have to select the file to split. After that, you can go to the\nnext step of this assistant. The file that you will choose should be displayed\nusing its full path in the text entry.");
+        final String data = _("Select the file to split. The file that you will choose should be displayed using its full path in the text entry.");
 
         // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
+        final Label text = new Label(data);
         text.setUseMarkup(true);
         text.setJustify(Justification.LEFT);
+        text.setLineWrap(true);
 
         // Add the label
         page.container.packStart(text, false, false, 0);
@@ -285,77 +287,18 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Label label = new Label(_("File to split:"));
         box.packStart(label, false, false, 0);
 
-        // Add an entry to it
-        final Entry entry = new Entry();
-        box.packStart(entry, true, true, 0);
-
         // Add a chooser button to it
         final FileChooserButton button = new FileChooserButton(_("Select a file."),
                 FileChooserAction.OPEN);
         button.setCurrentFolder(System.getProperty("user.home"));
-        box.packStart(button, false, false, 0);
-
-        // Add a last label to see if the file actually exists
-        final Label exist = new Label();
-        exist.setUseMarkup(true);
-        page.container.packStart(exist, false, false, 0);
-
-        // Connect entry handler to change the filename
-        entry.connect(new Entry.Changed() {
-            @Override
-            public void onChanged(Editable source) {
-                // Update the filename
-                filename = entry.getText();
-
-                // Tell if we can go to the next step
-                boolean complete = true;
-
-                // Text to display
-                String text = "";
-
-                // No filename
-                if (filename.isEmpty()) {
-                    complete = false;
-                    text = "";
-                } else {
-                    File file = new File(filename);
-
-                    // The file exists
-                    if (file.exists()) {
-                        // The file is actually a directory
-                        if (file.isDirectory()) {
-                            complete = false;
-                            text = _("This file is a directory!");
-                        } else {
-                            complete = true;
-                            text = "";
-                        }
-                    } else {
-                        // The file does not exist
-                        complete = false;
-                        text = _("This file does not exist!");
-                    }
-                }
-
-                // Set the state of the page
-                setPageComplete(page, complete);
-
-                // Update label
-                exist.setLabel("<b><span foreground=\"orange\">" + text + "</span></b>");
-            }
-        });
+        box.packStart(button, true, true, 0);
 
         // Connect chooser handler to change the filename
         button.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
-                String file = source.getFilename();
-
-                // Update the entry
-                entry.setText(file);
-
                 // Update the filename
-                filename = file;
+                filename = source.getFilename();
 
                 // Set the state of the page
                 setPageComplete(page, true);
@@ -377,13 +320,13 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Page page = new Page();
 
         // The text to display
-        final String data = _("Now, you have to select the maximal size for each chunks. You can choose this\nsize by using an already defined size (like CD-ROM or DVD-ROM), you can also\nselect the size by using a unit (B, KB, MB, GB), and finally, you can let GNOME\nSplit calculate the size just by giving the number of chunks to create.");
+        final String data = _("Select the maximal size for each chunk. You can let GNOME Split calculate the size by giving the number of chunks to create.");
 
         // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
+        final Label text = new Label(data);
         text.setUseMarkup(true);
         text.setJustify(Justification.LEFT);
+        text.setLineWrap(true);
 
         // Add the label
         page.container.packStart(text, false, false, 0);
@@ -392,31 +335,18 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final HBox box = new HBox(false, 3);
         page.container.packStart(box, false, false, 0);
 
-        // Create a label
-        final Label label = new Label(_("Split in:"));
-        box.packStart(label, false, false, 0);
-
         // Create the spin button
         final SpinButton button = new SpinButton(1, 4096, 1);
+        button.setValue(2);
         box.packStart(button, true, true, 0);
 
         // Create the list of units
-        final TextComboBox units = new TextComboBox();
-        for (String unit : SizeUnit.toStrings()) {
-            // Fill the box
-            units.appendText(unit);
-        }
-        units.setActive(0);
+        final UnitsBox units = new UnitsBox(app);
         box.packStart(units, true, true, 0);
 
         // Add a last label to see if the size is valid
-        final Label valid = new Label();
-        valid.setJustify(Justification.CENTER);
-        valid.setUseMarkup(true);
-        valid.setLabel("<b><span foreground=\"orange\">"
-                + _("Invalid chunk size. The size must be lower than the size of the file to split.")
-                + "</span></b>");
-        page.container.packStart(valid, false, false, 0);
+        final Image valid = new Image(Stock.YES, IconSize.BUTTON);
+        box.packStart(valid, false, false, 0);
 
         // Handle the signal from the spin button
         button.connect(new SpinButton.ValueChanged() {
@@ -427,12 +357,15 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
                 // Calulate the size
                 long value = calculateSize(size, unit);
 
-                // Show or hide the label
+                // Change the image and its tooltip
                 if (value == -1) {
+                    valid.setImage(Stock.DIALOG_WARNING, IconSize.BUTTON);
+                    valid.setTooltipMarkup(_("Invalid chunk size. The size must be lower than the size of the file to split."));
                     valid.show();
                     setPageComplete(page, false);
                 } else {
-                    valid.hide();
+                    valid.setImage(Stock.YES, IconSize.BUTTON);
+                    valid.setTooltipMarkup("");
                     setPageComplete(page, true);
                 }
             }
@@ -463,7 +396,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("Size selection"));
         this.setPageHeaderImage(page, logo);
-        this.setPageComplete(page, false);
+        this.setPageComplete(page, true);
     }
 
     /**
@@ -476,13 +409,13 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         algorithm = app.getConfig().DEFAULT_ALGORITHM;
 
         // The text to display
-        final String data = _("The algorithm of split defines the way the file will be splitted.\n\nIf you want to split the file and then merge the created chunks with this\nprogram, you can use the <b>GNOME Split</b> algorithm. You can also use the\n<b>Xtremsplit</b> algorithm. Its advantage is that the chunks could be merged with the\nXtremsplit software available on <s>Windows</s>. And finally, you may want to\nuse the <b>Simple</b> algorithm. It will allow you to merge the chunks using a\ncommand line with a tool like `cat`.");
+        final String data = _("The algorithm defines the way how the file will be splitted.");
 
         // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
+        final Label text = new Label(data);
         text.setUseMarkup(true);
         text.setJustify(Justification.LEFT);
+        text.setLineWrap(true);
 
         // Add the label
         page.container.packStart(text, false, false, 0);
@@ -496,19 +429,21 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         box.packStart(label, false, false, 0);
 
         // Add a list containing the algorithm
-        final TextComboBox list = new TextComboBox();
-        for (String algorithm : Algorithm.toStrings()) {
-            // Fill the box
-            list.appendText(algorithm);
-        }
-        list.setActive(algorithm);
-        box.packStart(list, false, false, 0);
+        final AlgorithmsBox list = new AlgorithmsBox(app);
+        box.packStart(list, true, true, 0);
+
+        // Add an icon which will contain a quick description of the selected
+        // algorithm as a tooltip
+        final Image info = new Image(Stock.DIALOG_QUESTION, IconSize.BUTTON);
+        info.setTooltipMarkup(Algorithm.getDescriptions()[algorithm]);
+        box.packStart(info, false, false, 0);
 
         // Connect the signal handler for the list
         list.connect(new ComboBox.Changed() {
             @Override
             public void onChanged(ComboBox source) {
                 algorithm = source.getActive();
+                info.setTooltipMarkup(Algorithm.getDescriptions()[algorithm]);
             }
         });
 
@@ -527,21 +462,21 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Page page = new Page();
 
         // The text to display
-        final String data = _("Now, we are able to start to split the file you want. But please take a look to\nthe summary. If something is wrong, go back to the a previous step to change it\nbefore confirming and starting the split.");
+        final String data = _("The split is now ready. Take a look to the summary. If something is wrong, go back to the a previous step to change it before confirming.");
 
         // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
+        final Label text = new Label(data);
         text.setUseMarkup(true);
         text.setJustify(Justification.LEFT);
+        text.setLineWrap(true);
 
         // Add the label
         page.container.packStart(text, false, false, 0);
 
-        // Add the labels
-        label = new Label();
-        label.setUseMarkup(true);
-        page.container.packStart(label, false, false, 0);
+        // Add the text view
+        summary = new TextView(new TextBuffer());
+        summary.setEditable(false);
+        page.container.packStart(summary, false, false, 0);
 
         // Setup the page in the assistant
         this.insertPage(page, 5);
@@ -558,13 +493,13 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Page page = new Page();
 
         // The text to display
-        final String data = _("Here, you have to select the first file to merge. After that, you can go to the\nnext step of this assistant. The file that you will choose should be displayed\nusing its full path in the text entry.");
+        final String data = _("Select the first file to merge.");
 
         // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
+        final Label text = new Label(data);
         text.setUseMarkup(true);
         text.setJustify(Justification.LEFT);
+        text.setLineWrap(true);
 
         // Add the label
         page.container.packStart(text, false, false, 0);
@@ -576,10 +511,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         // Add a label to it
         final Label label = new Label(_("File to merge:"));
         box.packStart(label, false, false, 0);
-
-        // Add an entry to it
-        final Entry entry = new Entry();
-        box.packStart(entry, true, true, 0);
 
         // File filter to help choosing a valid chunk
         final FileFilter chk = new FileFilter(_("Valid chunks"));
@@ -593,69 +524,14 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
                 FileChooserAction.OPEN);
         button.addFilter(chk);
         button.setCurrentFolder(System.getProperty("user.home"));
-        box.packStart(button, false, false, 0);
-
-        // Add a last label to see if the file actually exists
-        final Label exist = new Label();
-        exist.setUseMarkup(true);
-        page.container.packStart(exist, false, false, 0);
-
-        // Connect entry handler to change the filename
-        entry.connect(new Entry.Changed() {
-            @Override
-            public void onChanged(Editable source) {
-                // Update the filename
-                filename = entry.getText();
-
-                // Tell if we can go to the next step
-                boolean complete = true;
-
-                // Text to display
-                String text = "";
-
-                // No filename
-                if (filename.isEmpty()) {
-                    complete = false;
-                    text = "";
-                } else {
-                    File file = new File(filename);
-
-                    // The file exists
-                    if (file.exists()) {
-                        // The file is actually a directory
-                        if (file.isDirectory()) {
-                            complete = false;
-                            text = _("This file is a directory!");
-                        } else {
-                            complete = true;
-                            text = "";
-                        }
-                    } else {
-                        // The file does not exist
-                        complete = false;
-                        text = _("This file does not exist!");
-                    }
-                }
-
-                // Set the state of the page
-                setPageComplete(page, complete);
-
-                // Update label
-                exist.setLabel("<b><span foreground=\"red\">" + text + "</span></b>");
-            }
-        });
+        box.packStart(button, true, true, 0);
 
         // Connect chooser handler to change the filename
         button.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
-                String file = source.getFilename();
-
-                // Update the entry
-                entry.setText(file);
-
                 // Update the filename
-                filename = file;
+                filename = source.getFilename();
 
                 // Set the state of the page
                 setPageComplete(page, true);
@@ -677,13 +553,13 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Page page = new Page();
 
         // The text to display
-        final String data = _("The first file to merge is now selected. But you can still check that you pick\nup the right file. If it is not the first file to merge, go back to the\nprevious step to choose another one.");
+        final String data = _("You can check that you pick up the right file. If it is not the first file to merge, go back to the previous step to choose another one.");
 
         // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
+        final Label text = new Label(data);
         text.setUseMarkup(true);
         text.setJustify(Justification.LEFT);
+        text.setLineWrap(true);
 
         // Add the label
         page.container.packStart(text, false, false, 0);
@@ -696,13 +572,10 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final HBox fileBox = new HBox(false, 3);
         page.container.packStart(fileBox, false, false, 0);
 
-        // Add a label
-        final Label fileLabel = new Label(_("Filename:"));
-        fileBox.packStart(fileLabel, false, false, 0);
-
-        // Add another label but empty
-        label = new Label();
-        fileBox.packStart(label, false, false, 0);
+        // Add the text view
+        summary = new TextView(new TextBuffer());
+        summary.setEditable(false);
+        fileBox.packStart(summary, false, false, 0);
 
         // Setup the page in the assistant
         this.insertPage(page, 3);
@@ -763,19 +636,23 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         switch (source.getCurrentPage()) {
         case 2:
             if (type == 1) {
-                // Setup the label value
-                label.setLabel(new File(filename).getName());
+                TextBuffer buffer = summary.getBuffer();
+                buffer.insert(buffer.getIterEnd(),
+                        _("First file to merge:") + " " + new File(filename).getName());
             }
             break;
 
         case 4:
             if (type == 0) {
-                // Setup the label
-                label.setLabel(_(
-                        "The file to split is <b>{0}</b>.\n\nThe maximum size of each chunk will be <b>{1}</b>.\n\nThe file will be splitted using the <b>{2}</b> algorithm.",
-                        new File(filename).getName(),
-                        SizeUnit.formatSize(this.calculateSize(size, unit)),
-                        Algorithm.toStrings()[algorithm]));
+                TextBuffer buffer = summary.getBuffer();
+                buffer.insert(buffer.getIterEnd(),
+                        _("File to split:") + " " + new File(filename).getName() + "\n");
+                buffer.insert(
+                        buffer.getIterEnd(),
+                        _("Maximum size of a chunk:") + " "
+                                + SizeUnit.formatSize(this.calculateSize(size, unit)) + "\n");
+                buffer.insert(buffer.getIterEnd(),
+                        _("Algorithm if split:") + " " + Algorithm.toStrings()[algorithm]);
             }
             break;
         }

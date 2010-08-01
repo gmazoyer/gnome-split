@@ -42,13 +42,13 @@ import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.MinimizeDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.AreaStatusIcon;
-import org.gnome.split.gtk.widget.InfoWidget;
 import org.gnome.split.gtk.widget.MainToolbar;
 import org.gnome.split.gtk.widget.MergeWidget;
-import org.gnome.split.gtk.widget.ProgressWidget;
 import org.gnome.split.gtk.widget.SelectView;
 import org.gnome.split.gtk.widget.SplitWidget;
 import org.gnome.split.gtk.widget.StatusWidget;
+import org.gnome.split.gtk.widget.base.InfoHeader;
+import org.gnome.split.gtk.widget.base.ProgressWidget;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -119,7 +119,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
     /**
      * Widget to display events instead of showing a dialog.
      */
-    private InfoWidget info;
+    private InfoHeader info;
 
     /**
      * Build the main window of GNOME Split.
@@ -152,7 +152,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
         this.mainContainer.packStart(menubar, false, false, 0);
 
         // Add the info bar
-        this.info = new InfoWidget(app);
+        this.info = new InfoHeader(app);
         this.mainContainer.packStart(info, false, false, 0);
 
         // Add the tool bar
@@ -443,7 +443,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
     /**
      * Get the widget that displays events.
      */
-    public InfoWidget getInfoBar() {
+    public InfoHeader getInfoBar() {
         return info;
     }
 

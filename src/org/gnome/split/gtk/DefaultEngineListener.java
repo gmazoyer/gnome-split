@@ -121,7 +121,7 @@ public class DefaultEngineListener implements EngineListener
             gtk.getActionWidget().enable();
             gtk.getViewSwitcher().enable();
 
-            // Reset the status icon tooltip
+            // Reset the status bar message
             gtk.getAreaStatusIcon().updateText(null);
 
             // Reset the status bar speed indicator

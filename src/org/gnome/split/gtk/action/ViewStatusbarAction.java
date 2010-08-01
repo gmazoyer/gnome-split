@@ -43,7 +43,7 @@ public final class ViewStatusbarAction extends ToggleAction
 
         if (source.getActive()) {
             // Show it
-            statusbar.showAll();
+            statusbar.show();
         } else {
             // Hide it
             statusbar.hide();

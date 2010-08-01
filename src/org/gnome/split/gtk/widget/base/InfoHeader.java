@@ -18,7 +18,7 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.widget;
+package org.gnome.split.gtk.widget.base;
 
 import org.gnome.gtk.InfoBar;
 import org.gnome.gtk.Justification;
@@ -36,7 +36,7 @@ import org.gnome.split.GnomeSplit;
  * 
  * @author Guillaume Mazoyer
  */
-public class InfoWidget extends InfoBar implements Close, Response
+public class InfoHeader extends InfoBar implements Close, Response
 {
     /**
      * Current GNOME Split instance.
@@ -48,7 +48,7 @@ public class InfoWidget extends InfoBar implements Close, Response
      */
     private Label label;
 
-    public InfoWidget(final GnomeSplit app) {
+    public InfoHeader(final GnomeSplit app) {
         super();
 
         // Save instance

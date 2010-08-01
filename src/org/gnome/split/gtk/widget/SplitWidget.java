@@ -33,13 +33,13 @@ import org.gnome.gtk.ProgressBar;
 import org.gnome.gtk.SizeGroup;
 import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.SpinButton;
-import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.model.SplitModel;
-import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.SizeUnit;
+import org.gnome.split.gtk.widget.base.AlgorithmsBox;
+import org.gnome.split.gtk.widget.base.UnitsBox;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -88,12 +88,12 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
     /**
      * Size units of the chunks.
      */
-    private TextComboBox sizeUnits;
+    private UnitsBox sizeUnits;
 
     /**
      * Algorithm to use to split the file.
      */
-    private TextComboBox algoList;
+    private AlgorithmsBox algoList;
 
     public SplitWidget(final GnomeSplit app) {
         super(false, 12);
@@ -164,12 +164,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         sizeButton = new SpinButton(1, 4096, 1);
         splitSize.packStart(sizeButton, true, true, 0);
 
-        sizeUnits = new TextComboBox();
-        for (String unit : SizeUnit.toStrings()) {
-            // Fill the box
-            sizeUnits.appendText(unit);
-        }
-        sizeUnits.setActive(0);
+        sizeUnits = new UnitsBox(app);
         splitSize.packStart(sizeUnits, true, true, 0);
 
         // Pack algorithm related widgets
@@ -179,12 +174,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         final Label algoLabel = new Label(_("Algorithm:"));
         secondColumn.packStart(algoLabel, true, true, 0);
 
-        algoList = new TextComboBox();
-        for (String algorithm : Algorithm.toStrings()) {
-            // Fill the box
-            algoList.appendText(algorithm);
-        }
-        algoList.setActive(app.getConfig().DEFAULT_ALGORITHM);
+        algoList = new AlgorithmsBox(app);
         secondColumn.packStart(algoList, true, true, 0);
 
         // Make the sizes of size and algorithm boxes equal
