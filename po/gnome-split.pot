@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-01 21:47+0200\n"
+"POT-Creation-Date: 2010-08-01 23:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -284,6 +284,34 @@ msgstr ""
 #, java-format
 msgid ""
 "There is not enough available space ({0}) in the folder that you selected."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/StartAction.java:89
+msgid "Can't read on the file system."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/StartAction.java:90
+msgid ""
+"Can't read the file. Please check the permissions before doing anything."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/StartAction.java:95
+msgid "Can't write on the file system."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/StartAction.java:96
+msgid ""
+"Can't write the file. Please check the permissions before doing anything."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/StartAction.java:101
+msgid "Can't read and write on the file system."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/StartAction.java:102
+msgid ""
+"Can't read and write the files. Please check the permissions before doing "
+"anything."
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:37
@@ -579,9 +607,9 @@ msgstr ""
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:186
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:196
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:254
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:317
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:318
-#: src/org/gnome/split/gtk/widget/MergeWidget.java:319
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:339
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:340
+#: src/org/gnome/split/gtk/widget/MergeWidget.java:341
 msgid "Unknown"
 msgstr ""
 

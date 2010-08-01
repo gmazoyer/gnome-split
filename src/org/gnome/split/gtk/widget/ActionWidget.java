@@ -49,6 +49,13 @@ public interface ActionWidget
     public long checkFreeSpace();
 
     /**
+     * Return whether or not we can read/write on the file system. 0 means OK,
+     * 1 means can't read, 2 means can't write, 3 means can't read and can't
+     * write.
+     */
+    public byte checkFileSystemPermission();
+
+    /**
      * Disable the widget causing all sub-widgets to be non-sensitive.
      */
     public void disable();

@@ -78,6 +78,38 @@ public final class StartAction extends Action
                 return;
             }
 
+            byte access = widget.checkFileSystemPermission();
+            if (access != 0) {
+                // We do not have all the permissions on the file system
+                String[] messages = new String[2];
+
+                switch (access) {
+                // Can't read
+                case 1:
+                    messages[0] = _("Can't read on the file system.");
+                    messages[1] = _("Can't read the file. Please check the permissions before doing anything.");
+                    break;
+
+                // Can't write
+                case 2:
+                    messages[0] = _("Can't write on the file system.");
+                    messages[1] = _("Can't write the file. Please check the permissions before doing anything.");
+                    break;
+
+                // Can't read and write
+                case 3:
+                    messages[0] = _("Can't read and write on the file system.");
+                    messages[1] = _("Can't read and write the files. Please check the permissions before doing anything.");
+                    break;
+                }
+
+                // Show the error dialog
+                Dialog dialog = new ErrorDialog(app.getMainWindow(), messages[0], messages[1]);
+                dialog.run();
+                dialog.hide();
+                return;
+            }
+
             // A split is performed
             if (widget instanceof SplitWidget) {
                 // Widget related info

@@ -289,6 +289,28 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
     }
 
     @Override
+    public byte checkFileSystemPermission() {
+        // Check permission
+        boolean read = new File(fileEntry.getText()).canRead();
+        boolean write = new File(dirChooser.getCurrentFolder()).canWrite();
+
+        // Consider we can do everything
+        byte result = 0;
+
+        if (!read) {
+            // Can't read
+            result += 1;
+        }
+
+        if (!write) {
+            // Can't write
+            result += 2;
+        }
+
+        return result;
+    }
+
+    @Override
     public void disable() {
         // Get all widgets
         Widget[] widgets = this.getChildren();
