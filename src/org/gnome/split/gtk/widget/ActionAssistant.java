@@ -268,7 +268,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Page page = new Page();
 
         // The text to display
-        final String data = _("Select the file to split. The file that you will choose should be displayed using its full path in the text entry.");
+        final String data = _("Select the file to split.");
 
         // Create the label
         final Label text = new Label(data);
@@ -652,7 +652,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
                         _("Maximum size of a chunk:") + " "
                                 + SizeUnit.formatSize(this.calculateSize(size, unit)) + "\n");
                 buffer.insert(buffer.getIterEnd(),
-                        _("Algorithm if split:") + " " + Algorithm.toStrings()[algorithm]);
+                        _("Algorithm of split:") + " " + Algorithm.toStrings()[algorithm]);
             }
             break;
         }
