@@ -22,7 +22,9 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.core.DefaultEngine;
+import org.gnome.split.gtk.widget.ActionWidget;
+import org.gnome.split.gtk.widget.MergeWidget;
+import org.gnome.split.gtk.widget.SplitWidget;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -40,13 +42,16 @@ public final class OpenDirAction extends Action
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        DefaultEngine engine = (DefaultEngine) this.getApplication().getEngineListener().getEngine();
-        if (engine != null) {
-            String directory = engine.getDirectory();
-            if (directory != null) {
-                // Open the directory with the default program
-                this.getApplication().openURI("file://" + directory);
-            }
+        ActionWidget widget = this.getApplication().getMainWindow().getActionWidget();
+        String directory = "file://";
+
+        if (widget instanceof SplitWidget) {
+            directory += ((SplitWidget) widget).getDirectory().getAbsolutePath();
+        } else {
+            directory += ((MergeWidget) widget).getDirectory().getAbsolutePath();
         }
+
+        // Open the directory with the default program
+        this.getApplication().openURI(directory);
     }
 }

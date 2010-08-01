@@ -341,6 +341,11 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
     }
 
     @Override
+    public File getDirectory() {
+        return new File(dirChooser.getCurrentFolder());
+    }
+
+    @Override
     public String getDestination() {
         StringBuilder builder = new StringBuilder();
 

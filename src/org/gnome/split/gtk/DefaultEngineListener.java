@@ -189,7 +189,6 @@ public class DefaultEngineListener implements EngineListener
 
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(true);
-        actions.getAction(ActionId.OPEN_DIR).setSensitive(false);
         actions.getAction(ActionId.START).setSensitive(true);
         actions.getAction(ActionId.PAUSE).setSensitive(false);
         actions.getAction(ActionId.CANCEL).setSensitive(false);
@@ -208,7 +207,6 @@ public class DefaultEngineListener implements EngineListener
 
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
-        actions.getAction(ActionId.OPEN_DIR).setSensitive(true);
         actions.getAction(ActionId.START).setSensitive(false);
         actions.getAction(ActionId.PAUSE).setSensitive(true);
         actions.getAction(ActionId.CANCEL).setSensitive(true);
@@ -227,7 +225,6 @@ public class DefaultEngineListener implements EngineListener
 
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
-        actions.getAction(ActionId.OPEN_DIR).setSensitive(true);
         actions.getAction(ActionId.START).setSensitive(true);
         actions.getAction(ActionId.PAUSE).setSensitive(false);
         actions.getAction(ActionId.CANCEL).setSensitive(true);

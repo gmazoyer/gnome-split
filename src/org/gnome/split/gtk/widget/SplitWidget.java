@@ -287,6 +287,11 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
     }
 
     @Override
+    public File getDirectory() {
+        return new File(dirChooser.getCurrentFolder());
+    }
+
+    @Override
     public String getDestination() {
         StringBuilder builder = new StringBuilder();
 

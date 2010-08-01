@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-01 15:00+0200\n"
+"POT-Creation-Date: 2010-08-01 15:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -244,11 +244,11 @@ msgstr ""
 msgid "_Statusbar"
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/OpenDirAction.java:37
+#: src/org/gnome/split/gtk/action/OpenDirAction.java:39
 msgid "_Open folder"
 msgstr ""
 
-#: src/org/gnome/split/gtk/action/OpenDirAction.java:38
+#: src/org/gnome/split/gtk/action/OpenDirAction.java:40
 msgid "Open the folder where the action is performed."
 msgstr ""
 
@@ -492,35 +492,35 @@ msgstr ""
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:249
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:246
 msgid "Split finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:250
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:247
 msgid "The file was succesfully splitted."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:252
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:249
 msgid "Merge finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:253
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:250
 msgid "The files were successfully merged."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:279
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:276
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:281
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:278
 msgid "Merge stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:313
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:310
 msgid "Unhandled exception."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:314
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:311
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"

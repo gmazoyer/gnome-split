@@ -38,6 +38,11 @@ public interface SplitModel
     public File getFile();
 
     /**
+     * Get the directory where the split will be done.
+     */
+    public File getDirectory();
+
+    /**
      * Get the names of the files to create.
      */
     public String getDestination();
