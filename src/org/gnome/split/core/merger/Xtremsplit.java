@@ -218,7 +218,6 @@ public final class Xtremsplit extends DefaultMergeEngine
                     this.fireMD5SumEnded();
 
                     // MD5 sums are different
-                    System.out.println(md5sum + " || " + md5sums[i - 1]);
                     if (!md5sum.equals(md5sums[i - 1])) {
                         success = false;
                     }
