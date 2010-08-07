@@ -84,7 +84,7 @@ public class MD5Hasher
     /**
      * Hash a specified file using the maximal length of bytes to include.
      */
-    private byte[] hash(RandomAccessFile access, long length) throws IOException {
+    private byte[] hash(RandomAccessFile access, long start, long end) throws IOException {
         byte[] data;
 
         // Reset to clean other calculation
@@ -99,10 +99,16 @@ public class MD5Hasher
         // Size of the buffer
         int size = 0;
 
-        while (read < length) {
+        // Skip some bytes if needed
+        if (start > 0) {
+            access.skipBytes((int) start);
+            read += start;
+        }
+
+        while (read < end) {
             // Get the size of the buffer
             pointer = access.getFilePointer();
-            size = (65536 > (length - pointer)) ? (int) (length - pointer) : 65536;
+            size = (65536 > (end - pointer)) ? (int) (end - pointer) : 65536;
             data = new byte[size];
 
             // Read data
@@ -147,14 +153,14 @@ public class MD5Hasher
     /**
      * Hash the specified file to a bytes array.
      */
-    private byte[] hash(File file, long length) {
+    private byte[] hash(File file, long start, long end) {
         RandomAccessFile access = null;
         byte[] hash = null;
 
         try {
             // Open file and calculate the hash
             access = new RandomAccessFile(file, "r");
-            hash = this.hash(access, length);
+            hash = this.hash(access, start, end);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -200,7 +206,15 @@ public class MD5Hasher
      * Hash the specified file to a {@link String} using the number of bytes
      * to include.
      */
-    public String hashToString(File file, long length) {
-        return this.buildHexaString(this.hash(file, length));
+    public String hashToString(File file, long end) {
+        return this.buildHexaString(this.hash(file, 0, end));
+    }
+
+    /**
+     * Hash the specified file to a {@link String} using the number of bytes
+     * to include.
+     */
+    public String hashToString(File file, long start, long end) {
+        return this.buildHexaString(this.hash(file, start, end));
     }
 }

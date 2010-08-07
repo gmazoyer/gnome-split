@@ -107,13 +107,13 @@ public class EngineFactory
         } else if (name.endsWith(extensions[2])) {
             // Use GNOME Split algorithm
             index = 1;
-        } else if (name.endsWith(extensions[3])) {
+        } else if (name.endsWith(extensions[3]) || name.endsWith(extensions[4])) {
             // Use Xtremsplit algorithm
             index = 2;
-        } else if (name.endsWith(extensions[4])) {
+        } else if (name.endsWith(extensions[5])) {
             // Use KFK algorithm
             index = 3;
-        } else if (name.endsWith(extensions[5])) {
+        } else if (name.endsWith(extensions[6])) {
             // Use YoyoCut algorithm
             index = 4;
         }

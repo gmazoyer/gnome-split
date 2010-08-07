@@ -40,6 +40,8 @@ public final class Xtremsplit extends DefaultMergeEngine
 {
     private String[] md5sums;
 
+    private boolean extractable;
+
     public Xtremsplit(final GnomeSplit app, File file, String filename) {
         super(app, file, filename);
     }
@@ -76,8 +78,15 @@ public final class Xtremsplit extends DefaultMergeEngine
             // Open the first part to merge
             access = new RandomAccessFile(file, "r");
 
-            // Skip useless header
-            access.skipBytes(40);
+            if (file.getName().endsWith(".001.exe")) {
+                // Skip useless header and .exe header
+                access.skipBytes(305704);
+                extractable = true;
+            } else {
+                // Skip useless header
+                access.skipBytes(40);
+                extractable = false;
+            }
 
             // Read filename
             byte[] bytes = new byte[access.read()];
@@ -125,7 +134,7 @@ public final class Xtremsplit extends DefaultMergeEngine
         }
 
         // Finally
-        return (part + current + ".xtm");
+        return (part + current + ((extractable && (number == 1)) ? ".exe" : ".xtm"));
     }
 
     @Override
@@ -163,9 +172,17 @@ public final class Xtremsplit extends DefaultMergeEngine
                 long read = 0;
                 long length = access.length();
                 if (i == 1) {
-                    // Skip headers if it is the first part
-                    access.skipBytes(104);
+                    // Size of the header
+                    if (extractable) {
+                        read += 305664;
+
+                        // Skip the last 25 bytes (due to .exe format)
+                        length -= 24;
+                    }
+
+                    // Skip header if it is the first part
                     read += 104;
+                    access.skipBytes((int) read);
                 } else if (md5 && (i == parts)) {
                     // Skip the MD5 sum if it is the last part
                     length -= (parts * 32);
@@ -184,19 +201,24 @@ public final class Xtremsplit extends DefaultMergeEngine
                     this.fireMD5SumStarted();
 
                     if (i != parts) {
-                        // Calculate the MD5 sum normally
-                        md5sum = md5hasher.hashToString(chunk);
+                        if (i == 1) {
+                            // Calculate the MD5 sum skipping .exe header
+                            md5sum = md5hasher.hashToString(chunk, 305664, length);
+                        } else {
+                            // Calculate the MD5 sum normally
+                            md5sum = md5hasher.hashToString(chunk);
+                        }
                     } else {
                         // Calculate the MD5 sum without including the MD5
                         // sums at the end of the last file
-                        long max = access.length() - (parts * 32);
-                        md5sum = md5hasher.hashToString(chunk, max);
+                        md5sum = md5hasher.hashToString(chunk, length);
                     }
 
                     // Notify the view
                     this.fireMD5SumEnded();
 
                     // MD5 sums are different
+                    System.out.println(md5sum + " || " + md5sums[i - 1]);
                     if (!md5sum.equals(md5sums[i - 1])) {
                         success = false;
                     }

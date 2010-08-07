@@ -68,7 +68,7 @@ public final class Algorithm
      */
     public static String[] getExtensions() {
         return new String[] {
-                ".000", ".001", ".001.gsp", ".001.xtm", ".kk0", ".001.yct"
+                ".000", ".001", ".001.gsp", ".001.xtm", ".001.exe", ".kk0", ".001.yct"
         };
     }
 
@@ -106,6 +106,11 @@ public final class Algorithm
 
         // Xtremsplit file format
         if (extension.endsWith(".001.xtm")) {
+            return true;
+        }
+
+        // Xtremsplit auto extractable file format
+        if (extension.endsWith(".001.exe")) {
             return true;
         }
 

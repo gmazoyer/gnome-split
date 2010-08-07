@@ -110,17 +110,17 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             return new GnomeSplit(app, file, filename);
         }
 
-        if (name.endsWith(extensions[3])) {
+        if (name.endsWith(extensions[3]) || name.endsWith(extensions[4])) {
             // Use Xtremsplit algorithm
             return new Xtremsplit(app, file, filename);
         }
 
-        if (name.endsWith(extensions[4])) {
+        if (name.endsWith(extensions[5])) {
             // Use KFK algorithm
             return new KFK(app, file, filename);
         }
 
-        if (name.endsWith(extensions[5])) {
+        if (name.endsWith(extensions[6])) {
             // Use YoyoCut algorithm
             return new YoyoCut(app, file, filename);
         }
