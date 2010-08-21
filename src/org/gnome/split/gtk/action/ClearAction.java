@@ -42,6 +42,7 @@ public final class ClearAction extends Action
         if (this.getApplication().getEngineListener().getEngine() == null) {
             this.getApplication().getMainWindow().getActionWidget().reset();
             this.getApplication().getMainWindow().getStatusWidget().reset();
+            this.getApplication().getEngineListener().engineFilesList(null);
         }
     }
 }

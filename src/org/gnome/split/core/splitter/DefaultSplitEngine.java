@@ -161,6 +161,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected void fireEngineEnded() {
         app.getEngineListener().engineEnded();
+        app.getEngineListener().engineFilesList(chunks);
     }
 
     /**

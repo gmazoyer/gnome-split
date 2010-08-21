@@ -20,6 +20,8 @@
  */
 package org.gnome.split.gtk;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -75,6 +77,11 @@ public class DefaultEngineListener implements EngineListener
     private Timer timer;
 
     /**
+     * List of files that have been created.
+     */
+    private List<String> files;
+
+    /**
      * Create a new implementation of the {@link EngineListener engine
      * listener}.
      */
@@ -84,6 +91,7 @@ public class DefaultEngineListener implements EngineListener
         this.gtk = app.getMainWindow();
         this.engine = null;
         this.timer = null;
+        this.files = new ArrayList<String>();
 
         // Set the state of the interface
         this.engineReady();
@@ -189,6 +197,7 @@ public class DefaultEngineListener implements EngineListener
 
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(true);
+        actions.getAction(ActionId.SEND_EMAIL).setSensitive(!files.isEmpty());
         actions.getAction(ActionId.START).setSensitive(true);
         actions.getAction(ActionId.PAUSE).setSensitive(false);
         actions.getAction(ActionId.CANCEL).setSensitive(false);
@@ -207,6 +216,7 @@ public class DefaultEngineListener implements EngineListener
 
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
+        actions.getAction(ActionId.SEND_EMAIL).setSensitive(false);
         actions.getAction(ActionId.START).setSensitive(false);
         actions.getAction(ActionId.PAUSE).setSensitive(true);
         actions.getAction(ActionId.CANCEL).setSensitive(true);
@@ -225,6 +235,7 @@ public class DefaultEngineListener implements EngineListener
 
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
+        actions.getAction(ActionId.SEND_EMAIL).setSensitive(false);
         actions.getAction(ActionId.START).setSensitive(true);
         actions.getAction(ActionId.PAUSE).setSensitive(false);
         actions.getAction(ActionId.CANCEL).setSensitive(true);
@@ -335,6 +346,30 @@ public class DefaultEngineListener implements EngineListener
 
         // Now update the widgets
         gtk.getActionWidget().updateProgress(value, text, true);
+    }
+
+    @Override
+    public void engineFilesList(List<String> list) {
+        if (list == null) {
+            // Clear the list
+            files.clear();
+
+            // Update send mail action
+            app.getActionManager().getAction(ActionId.SEND_EMAIL).setSensitive(false);
+        } else {
+            // Copy all elements from the first list to the new one
+            files.addAll(list);
+
+            // Update send mail action
+            app.getActionManager().getAction(ActionId.SEND_EMAIL).setSensitive(true);
+        }
+    }
+
+    /**
+     * Get the list of files which have been created previously.
+     */
+    public List<String> getFilesList() {
+        return files;
     }
 
     /**

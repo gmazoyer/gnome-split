@@ -23,6 +23,8 @@ package org.gnome.split.core.merger;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
@@ -215,6 +217,10 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     protected void fireEngineEnded() {
         app.getEngineListener().engineEnded();
+
+        List<String> list = new ArrayList<String>();
+        list.add(filename);
+        app.getEngineListener().engineFilesList(list);
     }
 
     /**

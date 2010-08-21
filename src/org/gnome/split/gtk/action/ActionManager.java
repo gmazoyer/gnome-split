@@ -73,6 +73,11 @@ public class ActionManager
         OpenDirAction directory = new OpenDirAction(app);
         directory.setAccelerator(accelerators, Keyval.o, ModifierType.CONTROL_MASK);
 
+        // Action to send an email
+        SendEmailAction email = new SendEmailAction(app);
+        email.setAccelerator(accelerators, Keyval.e,
+                ModifierType.or(ModifierType.CONTROL_MASK, ModifierType.SHIFT_MASK));
+
         // Action to start a split/merge
         StartAction start = new StartAction(app);
         start.setAccelerator(accelerators, Keyval.s, ModifierType.CONTROL_MASK);
@@ -92,6 +97,7 @@ public class ActionManager
         // Add the previously created actions
         actions.put(ActionId.ASSISTANT, assistant);
         actions.put(ActionId.OPEN_DIR, directory);
+        actions.put(ActionId.SEND_EMAIL, email);
         actions.put(ActionId.START, start);
         actions.put(ActionId.PAUSE, pause);
         actions.put(ActionId.CANCEL, cancel);
@@ -217,6 +223,6 @@ public class ActionManager
      */
     public enum ActionId
     {
-        ASSISTANT, OPEN_DIR, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
+        ASSISTANT, OPEN_DIR, SEND_EMAIL, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
     }
 }

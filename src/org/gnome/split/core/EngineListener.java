@@ -20,6 +20,8 @@
  */
 package org.gnome.split.core;
 
+import java.util.List;
+
 import org.gnome.split.core.exception.EngineException;
 
 /**
@@ -104,4 +106,14 @@ public interface EngineListener
      * Used when a read has been done.
      */
     public void engineDone(long done, long total);
+
+    /**
+     * Used when the engine has finished and wants to give a list of files.
+     */
+    public void engineFilesList(List<String> list);
+
+    /**
+     * Get the current list of files that the last engine provided.
+     */
+    public List<String> getFilesList();
 }

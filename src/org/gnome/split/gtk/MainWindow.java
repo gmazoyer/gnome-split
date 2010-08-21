@@ -233,27 +233,29 @@ public class MainWindow extends Window implements Window.DeleteEvent
         MenuItem[] items;
 
         // Create menu items
-        items = new MenuItem[8];
+        items = new MenuItem[9];
         items[0] = actions.getAction(ActionId.ASSISTANT).createMenuItem();
         items[1] = actions.getAction(ActionId.OPEN_DIR).createMenuItem();
-        items[2] = actions.getAction(ActionId.START).createMenuItem();
-        items[3] = actions.getAction(ActionId.PAUSE).createMenuItem();
-        items[4] = actions.getAction(ActionId.CANCEL).createMenuItem();
-        items[5] = actions.getAction(ActionId.DELETE).createMenuItem();
-        items[6] = actions.getAction(ActionId.EXIT).createMenuItem();
+        items[2] = actions.getAction(ActionId.SEND_EMAIL).createMenuItem();
+        items[3] = actions.getAction(ActionId.START).createMenuItem();
+        items[4] = actions.getAction(ActionId.PAUSE).createMenuItem();
+        items[5] = actions.getAction(ActionId.CANCEL).createMenuItem();
+        items[6] = actions.getAction(ActionId.DELETE).createMenuItem();
+        items[7] = actions.getAction(ActionId.EXIT).createMenuItem();
 
         // Add menu items to the menu
         fileItem.setSubmenu(fileMenu);
         fileMenu.append(items[0]);
         fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(items[1]);
-        fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(items[2]);
+        fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(items[3]);
         fileMenu.append(items[4]);
         fileMenu.append(items[5]);
-        fileMenu.append(new SeparatorMenuItem());
         fileMenu.append(items[6]);
+        fileMenu.append(new SeparatorMenuItem());
+        fileMenu.append(items[7]);
         menubar.append(fileItem);
 
         // Edit menu item

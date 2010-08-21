@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-07 20:04+0200\n"
+"POT-Creation-Date: 2010-08-21 17:52+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -157,7 +157,7 @@ msgid ""
 "You must specify a size which is lower than the size of the file to split."
 msgstr ""
 
-#: src/org/gnome/split/core/merger/DefaultMergeEngine.java:154
+#: src/org/gnome/split/core/merger/DefaultMergeEngine.java:156
 #, java-format
 msgid "Merging {0}"
 msgstr ""
@@ -234,6 +234,14 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/action/CancelAction.java:37
 msgid "Cancel this action."
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/SendEmailAction.java:38
+msgid "Send by _email"
+msgstr ""
+
+#: src/org/gnome/split/gtk/action/SendEmailAction.java:38
+msgid "Send one or several files by email"
 msgstr ""
 
 #: src/org/gnome/split/gtk/action/ReportBugAction.java:35
@@ -322,15 +330,15 @@ msgstr ""
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:260
+#: src/org/gnome/split/gtk/MainWindow.java:262
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:274
+#: src/org/gnome/split/gtk/MainWindow.java:276
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:300
+#: src/org/gnome/split/gtk/MainWindow.java:302
 msgid "_Help"
 msgstr ""
 
@@ -506,49 +514,49 @@ msgid ""
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:149
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:157
 #, java-format
 msgid "Writting {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:160
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:168
 #, java-format
 msgid "Reading {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:171
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:179
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:246
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:257
 msgid "Split finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:247
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:258
 msgid "The file was succesfully splitted."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:249
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:260
 msgid "Merge finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:250
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:261
 msgid "The files were successfully merged."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:276
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:287
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:278
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:289
 msgid "Merge stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:310
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:321
 msgid "Unhandled exception."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:311
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:322
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"
