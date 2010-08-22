@@ -71,14 +71,14 @@ public final class Xtremsplit extends DefaultSplitEngine
         double date = Utils.datetimeFromNow();
         access.write(ByteUtils.toLittleEndian(date));
 
-        // Write original filename
-        toWrite = file.getName().getBytes();
+        // Write original filename and truncate it if needed
+        toWrite = (file.getName().length() > 50) ? file.getName().substring(0, 50).getBytes()
+                : file.getName().getBytes();
         access.writeByte(toWrite.length);
-        if (toWrite.length > 50) {
-            toWrite = file.getName().substring(0, 50).getBytes();
-            access.write(toWrite);
-        } else {
-            access.write(toWrite);
+        access.write(toWrite);
+
+        // Fill the left space of the field if needed
+        if (toWrite.length < 50) {
             for (int i = toWrite.length; i < 50; i++) {
                 access.write(0);
             }
