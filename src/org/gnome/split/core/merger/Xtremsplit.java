@@ -200,18 +200,18 @@ public final class Xtremsplit extends DefaultMergeEngine
                     // Notify the view
                     this.fireMD5SumStarted();
 
-                    if (i != parts) {
-                        if (i == 1) {
+                    if (i == parts) {
+                        // Calculate the MD5 sum without including the MD5
+                        // sums at the end of the last file
+                        md5sum = md5hasher.hashToString(chunk, length);
+                    } else {
+                        if (extractable && (i == 1)) {
                             // Calculate the MD5 sum skipping .exe header
                             md5sum = md5hasher.hashToString(chunk, 305664, length);
                         } else {
                             // Calculate the MD5 sum normally
                             md5sum = md5hasher.hashToString(chunk);
                         }
-                    } else {
-                        // Calculate the MD5 sum without including the MD5
-                        // sums at the end of the last file
-                        md5sum = md5hasher.hashToString(chunk, length);
                     }
 
                     // Notify the view

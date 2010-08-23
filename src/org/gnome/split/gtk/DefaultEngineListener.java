@@ -357,7 +357,7 @@ public class DefaultEngineListener implements EngineListener
             // Update send mail action
             app.getActionManager().getAction(ActionId.SEND_EMAIL).setSensitive(false);
         } else {
-            // Cleat the list
+            // Clear the list
             files.clear();
 
             // Copy all elements from the first list to the new one
