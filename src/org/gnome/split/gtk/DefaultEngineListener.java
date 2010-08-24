@@ -350,21 +350,15 @@ public class DefaultEngineListener implements EngineListener
 
     @Override
     public void engineFilesList(List<String> list) {
-        if (list == null) {
-            // Clear the list
-            files.clear();
+        // First, clear the list
+        files.clear();
 
-            // Update send mail action
-            app.getActionManager().getAction(ActionId.SEND_EMAIL).setSensitive(false);
-        } else {
-            // Clear the list
-            files.clear();
+        // Set action sensitiveness
+        app.getActionManager().getAction(ActionId.SEND_EMAIL).setSensitive(list != null);
 
+        if (list != null) {
             // Copy all elements from the first list to the new one
             files.addAll(list);
-
-            // Update send mail action
-            app.getActionManager().getAction(ActionId.SEND_EMAIL).setSensitive(true);
         }
     }
 
