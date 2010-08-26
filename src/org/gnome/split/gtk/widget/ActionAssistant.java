@@ -348,25 +348,29 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final Image valid = new Image(Stock.YES, IconSize.BUTTON);
         box.packStart(valid, false, false, 0);
 
+        // Init some variables
+        size = button.getValue();
+        unit = units.getActive();
+
         // Handle the signal from the spin button
         button.connect(new SpinButton.ValueChanged() {
             @Override
             public void onValueChanged(SpinButton source) {
                 size = source.getValue();
 
-                // Calulate the size
+                // Calculate the size
                 long value = calculateSize(size, unit);
 
                 // Change the image and its tooltip
-                if (value == -1) {
+                if (value > -1) {
+                    valid.setImage(Stock.YES, IconSize.BUTTON);
+                    valid.setTooltipMarkup("");
+                    setPageComplete(page, true);
+                } else {
                     valid.setImage(Stock.DIALOG_WARNING, IconSize.BUTTON);
                     valid.setTooltipMarkup(_("Invalid chunk size. The size must be lower than the size of the file to split."));
                     valid.show();
                     setPageComplete(page, false);
-                } else {
-                    valid.setImage(Stock.YES, IconSize.BUTTON);
-                    valid.setTooltipMarkup("");
-                    setPageComplete(page, true);
                 }
             }
         });
@@ -637,6 +641,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         case 2:
             if (type == 1) {
                 TextBuffer buffer = summary.getBuffer();
+                buffer.delete(buffer.getIterStart(), buffer.getIterEnd());
                 buffer.insert(buffer.getIterEnd(),
                         _("First file to merge:") + " " + new File(filename).getName());
             }
@@ -645,6 +650,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         case 4:
             if (type == 0) {
                 TextBuffer buffer = summary.getBuffer();
+                buffer.delete(buffer.getIterStart(), buffer.getIterEnd());
                 buffer.insert(buffer.getIterEnd(),
                         _("File to split:") + " " + new File(filename).getName() + "\n");
                 buffer.insert(
