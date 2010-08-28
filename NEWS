@@ -1,5 +1,26 @@
 NEWS
 
+GNOME Split 0.9 (29 Aug 2010)
+=============================
+
+Codename: Almost There
+
+  * Fix for CD-R and DVD-R sizes.
+  * Merge the assistants into a single one.
+  * Add an option to show the assistant on start.
+  * New status bar that follows the GNOME HIG.
+  * Add file system permissions and space check.
+  * Fix for the Xtremsplit algorithm.
+  * Add support to merge .exe files from Xtremsplit.
+  * Add menu item to send an email with created files as
+    attachments.
+  * Cosmetic changes on the main window.
+  * Update French translation (Guillaume Mazoyer).
+  * Update Galician translation (Marcos Lans, Xosé).
+  * Update Spanish translation (DiegoJ, José Lecaros Cisternas,
+    Marcos Escalier, Moritatus, victor tejada yau).
+  * Add Italian translation (ugonegnome).
+
 GNOME Split 0.8 (30 Jun 2010)
 =============================
 
