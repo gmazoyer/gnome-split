@@ -38,7 +38,7 @@ public abstract class Action extends org.gnome.gtk.Action implements org.gnome.g
     /**
      * Create a new action using a name and a {@link Stock} icon.
      */
-    public Action(final GnomeSplit app, String name, Stock stock) {
+    protected Action(final GnomeSplit app, String name, Stock stock) {
         super(name, stock);
 
         this.app = app;
@@ -48,7 +48,7 @@ public abstract class Action extends org.gnome.gtk.Action implements org.gnome.g
     /**
      * Create a new action using a name and a label.
      */
-    public Action(final GnomeSplit app, String name, String label) {
+    protected Action(final GnomeSplit app, String name, String label) {
         super(name, label);
 
         this.app = app;
@@ -59,7 +59,7 @@ public abstract class Action extends org.gnome.gtk.Action implements org.gnome.g
      * Create a new action using a name, a label, a tooltip and a
      * {@link Stock} icon.
      */
-    public Action(final GnomeSplit app, String name, String label, String tooltip, Stock stock) {
+    protected Action(final GnomeSplit app, String name, String label, String tooltip, Stock stock) {
         super(name, label, tooltip, stock);
 
         this.app = app;

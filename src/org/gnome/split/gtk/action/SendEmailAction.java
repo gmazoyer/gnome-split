@@ -32,9 +32,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class SendEmailAction extends Action
+final class SendEmailAction extends Action
 {
-    public SendEmailAction(final GnomeSplit app) {
+    protected SendEmailAction(final GnomeSplit app) {
         super(app, "send-email-action", _("Send by _email"), _("Send one or several files by email"),
                 Stock.NETWORK);
     }

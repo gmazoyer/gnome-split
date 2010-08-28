@@ -29,9 +29,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class ReportBugAction extends Action
+final class ReportBugAction extends Action
 {
-    public ReportBugAction(final GnomeSplit app) {
+    protected ReportBugAction(final GnomeSplit app) {
         super(app, "report-bug-action", _("_Report a Problem..."));
     }
 

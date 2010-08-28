@@ -31,9 +31,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class CancelAction extends Action
+final class CancelAction extends Action
 {
-    public CancelAction(final GnomeSplit app) {
+    protected CancelAction(final GnomeSplit app) {
         super(app, "cancel-action", null, _("Cancel this action."), Stock.CANCEL);
     }
 

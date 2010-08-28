@@ -40,7 +40,7 @@ public abstract class RadioAction extends org.gnome.gtk.RadioAction implements T
     /**
      * Create a new action using a label, a tooltip and a state.
      */
-    public RadioAction(GnomeSplit app, RadioGroup group, String name, String label, String tooltip,
+    protected RadioAction(GnomeSplit app, RadioGroup group, String name, String label, String tooltip,
             boolean active) {
         super(group, name, label, tooltip, null);
 
@@ -52,7 +52,7 @@ public abstract class RadioAction extends org.gnome.gtk.RadioAction implements T
     /**
      * Create a new action using a label and a state.
      */
-    public RadioAction(GnomeSplit app, RadioGroup group, String name, String label, boolean active) {
+    protected RadioAction(GnomeSplit app, RadioGroup group, String name, String label, boolean active) {
         super(group, name, label);
 
         this.app = app;

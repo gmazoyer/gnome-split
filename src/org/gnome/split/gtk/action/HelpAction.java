@@ -29,9 +29,9 @@ import org.gnome.split.config.Constants;
  * 
  * @author Guillaume Mazoyer
  */
-public final class HelpAction extends Action
+final class HelpAction extends Action
 {
-    public HelpAction(final GnomeSplit app) {
+    protected HelpAction(final GnomeSplit app) {
         super(app, "help-action", Stock.HELP);
     }
 

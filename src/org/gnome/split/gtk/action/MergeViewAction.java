@@ -34,9 +34,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class MergeViewAction extends RadioAction
+final class MergeViewAction extends RadioAction
 {
-    public MergeViewAction(final GnomeSplit app, RadioGroup group) {
+    protected MergeViewAction(final GnomeSplit app, RadioGroup group) {
         super(app, group, "merge-view-action", _("_Merge"), false);
     }
 

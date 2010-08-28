@@ -31,9 +31,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class PauseAction extends Action
+final class PauseAction extends Action
 {
-    public PauseAction(final GnomeSplit app) {
+    protected PauseAction(final GnomeSplit app) {
         super(app, "pause-action", _("_Suspend"), _("Suspend this action."), Stock.MEDIA_PAUSE);
     }
 

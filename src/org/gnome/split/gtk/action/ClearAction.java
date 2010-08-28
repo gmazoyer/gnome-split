@@ -30,9 +30,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class ClearAction extends Action
+final class ClearAction extends Action
 {
-    public ClearAction(final GnomeSplit app) {
+    protected ClearAction(final GnomeSplit app) {
         super(app, "clear-action", null, _("Clear this view."), Stock.CLEAR);
     }
 

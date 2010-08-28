@@ -53,19 +53,14 @@ public final class Constants
     public static Pixbuf PROGRAM_LOGO = null;
 
     /**
-     * List of the program authors.
-     */
-    public static String[] PROGRAM_AUTHORS = null;
-
-    /**
      * Path to the configuration folder.
      */
-    public static String CONFIG_FOLDER = null;
+    protected static String CONFIG_FOLDER = null;
 
     /**
      * Path to the configuration file.
      */
-    public static String CONFIG_FILE = null;
+    protected static String CONFIG_FILE = null;
 
     /**
      * Load all the constants file.

@@ -39,7 +39,7 @@ public class GetOptions
      * gnu.posixly_correct, or using `+' as the first character of the list of
      * option characters.
      */
-    protected static final int REQUIRE_ORDER = 1;
+    private static final int REQUIRE_ORDER = 1;
 
     /**
      * PERMUTE is the default. We permute the contents of ARGV as we scan, so
@@ -47,7 +47,7 @@ public class GetOptions
      * to be given in any order, even with programs that were not written to
      * expect this.
      */
-    protected static final int PERMUTE = 2;
+    private static final int PERMUTE = 2;
 
     /**
      * RETURN_IN_ORDER is an option available to programs that were written to
@@ -57,64 +57,64 @@ public class GetOptions
      * the first character of the list of option characters selects this mode
      * of operation.
      */
-    protected static final int RETURN_IN_ORDER = 3;
+    private static final int RETURN_IN_ORDER = 3;
 
     /**
      * Argument when an option that takes an argument is found.
      */
-    protected String argument;
+    private String argument;
 
     /**
      * Index of the next element to be scanned.
      */
-    protected int optionIndex = 0;
+    private int optionIndex = 0;
 
     /**
      * Store the value of the invalid option.
      */
-    protected int invalid = '?';
+    private int invalid = '?';
 
     /**
      * The next char to be scanned.
      */
-    protected String nextchar;
+    private String nextchar;
 
     /**
      * This is the string describing the valid short options.
      */
-    protected String optionString;
+    private String optionString;
 
     /**
      * This is an array of long options which describe the valid long options.
      */
-    protected LongOption[] longOptions;
+    private LongOption[] longOptions;
 
     /**
      * The index into the long options array of the long option found.
      */
-    protected int longOptionIndex;
+    private int longOptionIndex;
 
     /**
      * The flag determines whether or not we operate in strict POSIX
      * compliance.
      */
-    protected boolean posixCorrect;
+    private boolean posixCorrect;
 
     /**
      * A flag which communicates whether or not checkLongOption() did all
      * necessary processing for the current option
      */
-    protected boolean longOptionHandled;
+    private boolean longOptionHandled;
 
     /**
      * The index of the first non-option.
      */
-    protected int firstNonOption = 1;
+    private int firstNonOption = 1;
 
     /**
      * The index of the last non-option.
      */
-    protected int lastNonOption = 1;
+    private int lastNonOption = 1;
 
     /**
      * Flag to tell getopt to immediately return -1 the next time it is
@@ -125,18 +125,18 @@ public class GetOptions
     /**
      * Saved argument list passed to the program.
      */
-    protected String[] args;
+    private String[] args;
 
     /**
      * Determines whether we permute arguments or not.
      */
-    protected int ordering;
+    private int ordering;
 
     /**
      * Name to print as the program name in error messages. This is necessary
      * since Java does not place the program name in args[0].
      */
-    protected String program;
+    private String program;
 
     /**
      * Construct a GetOptions instance with given input data that is capable

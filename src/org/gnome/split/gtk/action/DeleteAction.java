@@ -31,9 +31,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class DeleteAction extends Action
+final class DeleteAction extends Action
 {
-    public DeleteAction(final GnomeSplit app) {
+    protected DeleteAction(final GnomeSplit app) {
         super(app, "delete-action", _("Cancel and _delete files"), null, Stock.DELETE);
     }
 

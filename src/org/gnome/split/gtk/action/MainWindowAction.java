@@ -30,9 +30,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class MainWindowAction extends ToggleAction
+final class MainWindowAction extends ToggleAction
 {
-    public MainWindowAction(final GnomeSplit app) {
+    protected MainWindowAction(final GnomeSplit app) {
         super(app, "main-window-action", _("Show the main _window"), true);
     }
 

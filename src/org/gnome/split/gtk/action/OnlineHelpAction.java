@@ -29,9 +29,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class OnlineHelpAction extends Action
+final class OnlineHelpAction extends Action
 {
-    public OnlineHelpAction(final GnomeSplit app) {
+    protected OnlineHelpAction(final GnomeSplit app) {
         super(app, "online-help-action", _("Get Help _Online..."));
     }
 

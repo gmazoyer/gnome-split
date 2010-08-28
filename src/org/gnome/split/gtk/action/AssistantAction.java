@@ -31,9 +31,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class AssistantAction extends Action
+final class AssistantAction extends Action
 {
-    public AssistantAction(final GnomeSplit app) {
+    protected AssistantAction(final GnomeSplit app) {
         super(app, "assistant-action", _("_Assistant"), _("Create a split or a merge."), Stock.ADD);
     }
 

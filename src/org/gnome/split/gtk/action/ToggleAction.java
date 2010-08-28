@@ -38,7 +38,7 @@ public abstract class ToggleAction extends org.gnome.gtk.ToggleAction implements
     /**
      * Create a new action using a label, a tooltip and a state.
      */
-    public ToggleAction(GnomeSplit app, String name, String label, String tooltip, boolean active) {
+    protected ToggleAction(GnomeSplit app, String name, String label, String tooltip, boolean active) {
         super(name, label, tooltip, null);
 
         this.app = app;
@@ -49,7 +49,7 @@ public abstract class ToggleAction extends org.gnome.gtk.ToggleAction implements
     /**
      * Create a new action using a label and a state.
      */
-    public ToggleAction(GnomeSplit app, String name, String label, boolean active) {
+    protected ToggleAction(GnomeSplit app, String name, String label, boolean active) {
         super(name, label);
 
         this.app = app;

@@ -29,9 +29,9 @@ import org.gnome.split.gtk.dialog.AboutSoftDialog;
  * 
  * @author Guillaume Mazoyer
  */
-public final class AboutAction extends Action
+final class AboutAction extends Action
 {
-    public AboutAction(final GnomeSplit app) {
+    protected AboutAction(final GnomeSplit app) {
         super(app, "about-action", Stock.ABOUT);
     }
 

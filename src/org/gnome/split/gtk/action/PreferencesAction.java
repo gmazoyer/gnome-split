@@ -29,9 +29,9 @@ import org.gnome.split.gtk.dialog.PreferencesDialog;
  * 
  * @author Guillaume Mazoyer
  */
-public final class PreferencesAction extends Action
+final class PreferencesAction extends Action
 {
-    public PreferencesAction(final GnomeSplit app) {
+    protected PreferencesAction(final GnomeSplit app) {
         super(app, "preferences-action", Stock.PREFERENCES);
     }
 

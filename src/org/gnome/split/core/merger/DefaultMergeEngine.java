@@ -74,7 +74,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Create a new merge {@link Engine engine} using a first
      * <code>file</code> to merge.
      */
-    public DefaultMergeEngine(final org.gnome.split.GnomeSplit app, File file, String filename) {
+    protected DefaultMergeEngine(final org.gnome.split.GnomeSplit app, File file, String filename) {
         super(app);
         this.file = file;
         this.filename = filename;

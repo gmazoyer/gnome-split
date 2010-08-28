@@ -58,7 +58,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      * Create a new split {@link Engine engine} using a <code>file</code> to
      * split and a maximum <code>size</code> for each chunk.
      */
-    public DefaultSplitEngine(final GnomeSplit app, File file, long size, String destination) {
+    protected DefaultSplitEngine(final GnomeSplit app, File file, long size, String destination) {
         super(app);
         this.directory = destination.substring(0, destination.lastIndexOf(File.separator));
         this.file = file;

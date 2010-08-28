@@ -30,9 +30,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class ViewStatusbarAction extends ToggleAction
+final class ViewStatusbarAction extends ToggleAction
 {
-    public ViewStatusbarAction(final GnomeSplit app) {
+    protected ViewStatusbarAction(final GnomeSplit app) {
         super(app, "view-statusbar-action", _("_Statusbar"), app.getConfig().SHOW_STATUSBAR);
     }
 

@@ -74,7 +74,7 @@ public abstract class DefaultEngine implements Engine
     /**
      * A timer to calculate the speed.
      */
-    protected Timer speed;
+    private Timer speed;
 
     public DefaultEngine(final GnomeSplit app) {
         this.app = app;
@@ -139,7 +139,7 @@ public abstract class DefaultEngine implements Engine
     /**
      * Notify the view from a speed that has changed.
      */
-    protected void fireEngineSpeedChanged(String speed) {
+    private void fireEngineSpeedChanged(String speed) {
         app.getEngineListener().engineSpeedChanged(speed);
     }
 

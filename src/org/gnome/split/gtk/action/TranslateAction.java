@@ -29,9 +29,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class TranslateAction extends Action
+final class TranslateAction extends Action
 {
-    public TranslateAction(final GnomeSplit app) {
+    protected TranslateAction(final GnomeSplit app) {
         super(app, "translate-action", _("_Translate This Application..."));
     }
 

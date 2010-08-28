@@ -30,9 +30,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class ViewToolbarAction extends ToggleAction
+final class ViewToolbarAction extends ToggleAction
 {
-    public ViewToolbarAction(final GnomeSplit app) {
+    protected ViewToolbarAction(final GnomeSplit app) {
         super(app, "view-toolbar-action", _("_Toolbar"), app.getConfig().SHOW_TOOLBAR);
     }
 

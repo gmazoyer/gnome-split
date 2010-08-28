@@ -28,9 +28,9 @@ import org.gnome.split.GnomeSplit;
  * 
  * @author Guillaume Mazoyer
  */
-public final class QuitAction extends Action
+final class QuitAction extends Action
 {
-    public QuitAction(final GnomeSplit app) {
+    protected QuitAction(final GnomeSplit app) {
         super(app, "quit-action", Stock.QUIT);
     }
 

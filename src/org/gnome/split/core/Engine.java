@@ -27,9 +27,6 @@ package org.gnome.split.core;
  */
 public interface Engine extends Runnable
 {
-    @Override
-    public void run();
-
     /**
      * Pause the current action.
      */

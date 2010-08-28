@@ -31,9 +31,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class ViewSwitcherAction extends ToggleAction
+final class ViewSwitcherAction extends ToggleAction
 {
-    public ViewSwitcherAction(final GnomeSplit app) {
+    protected ViewSwitcherAction(final GnomeSplit app) {
         super(app, "view-switcher-action", _("_View switcher"), app.getConfig().SHOW_SWITCHER);
     }
 

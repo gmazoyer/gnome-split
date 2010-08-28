@@ -34,9 +34,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class SplitViewAction extends RadioAction
+final class SplitViewAction extends RadioAction
 {
-    public SplitViewAction(final GnomeSplit app, RadioGroup group) {
+    protected SplitViewAction(final GnomeSplit app, RadioGroup group) {
         super(app, group, "split-view-action", _("S_plit"), true);
     }
 

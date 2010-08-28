@@ -37,9 +37,9 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class StartAction extends Action
+final class StartAction extends Action
 {
-    public StartAction(final org.gnome.split.GnomeSplit app) {
+    protected StartAction(final org.gnome.split.GnomeSplit app) {
         super(app, "start-action", _("_Start"), _("Start this action."), Stock.MEDIA_PLAY);
     }
 

@@ -34,7 +34,7 @@ public class EngineException extends Exception
      * The {@link ExceptionMessage message} of this {@link Exception
      * exception}.
      */
-    protected ExceptionMessage message;
+    private ExceptionMessage message;
 
     /**
      * If this exception is just used as a warning or not.
@@ -44,8 +44,17 @@ public class EngineException extends Exception
     /**
      * Create a new exception with a <code>message</code>.
      */
-    public EngineException(String message) {
+    private EngineException(String message) {
         super(message);
+        this.warning = false;
+    }
+
+    /**
+     * Create an {@link Exception} with an {@link ExceptionMessage} .
+     */
+    protected EngineException(ExceptionMessage message) {
+        this(message.getMessage());
+        this.message = message;
         this.warning = false;
     }
 
@@ -64,15 +73,6 @@ public class EngineException extends Exception
      */
     public EngineException(String message, Throwable error) {
         super(message, error);
-        this.warning = false;
-    }
-
-    /**
-     * Create an {@link Exception} with an {@link ExceptionMessage} .
-     */
-    public EngineException(ExceptionMessage message) {
-        this(message.getMessage());
-        this.message = message;
         this.warning = false;
     }
 
