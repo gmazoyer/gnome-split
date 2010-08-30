@@ -131,7 +131,7 @@ Codename: Motion Squad
   * Improve of the user interface management.
   * Fix some cosmetic problems.
   * Update the preferences dialog to handle the new options.
-  * Add merge support of files splitted without any headers
+  * Add merge support of split files without any headers
     (*.001, *.002, ...).
   * Update French translation (Guillaume Mazoyer).
 

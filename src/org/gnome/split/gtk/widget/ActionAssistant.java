@@ -413,7 +413,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         algorithm = app.getConfig().DEFAULT_ALGORITHM;
 
         // The text to display
-        final String data = _("The algorithm defines the way how the file will be splitted.");
+        final String data = _("The algorithm defines the way how the file will be split.");
 
         // Create the label
         final Label text = new Label(data);

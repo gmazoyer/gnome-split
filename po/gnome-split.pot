@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-08-27 00:47+0200\n"
+"POT-Creation-Date: 2010-08-31 01:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -533,7 +533,7 @@ msgid "Split finished."
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:258
-msgid "The file was succesfully splitted."
+msgid "The file was succesfully split."
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:260
@@ -699,7 +699,7 @@ msgid "Size selection"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/ActionAssistant.java:416
-msgid "The algorithm defines the way how the file will be splitted."
+msgid "The algorithm defines the way how the file will be split."
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/ActionAssistant.java:432
