@@ -31,6 +31,7 @@ import org.gnome.notify.Notify;
 import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.EngineListener;
+import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.UncaughtExceptionLogger;
 import org.gnome.split.getopt.GetOptions;
 import org.gnome.split.getopt.LongOption;
@@ -159,6 +160,32 @@ public final class GnomeSplit
     }
 
     /**
+     * Change the view of the window, and update it using a filename. If no
+     * filename is given (filename == null), the view will not be updated. 0
+     * means split view and other means merge view.
+     */
+    private void selectView(byte view, String filename) {
+        // Choose split
+        if (view == 0) {
+            if (filename != null) {
+                // Update the merge widget
+                window.getSplitWidget().setFile(filename);
+            }
+
+            // Show the merge widget
+            actions.activateRadioAction(ActionId.SPLIT);
+        } else {
+            if (filename != null) {
+                // Load the file to split
+                window.getMergeWidget().setFile(filename);
+            }
+
+            // Show the split widget
+            actions.activateRadioAction(ActionId.MERGE);
+        }
+    }
+
+    /**
      * Parse the command line using the GNU getopt.
      */
     private void parseCommandLine(String[] args) {
@@ -176,26 +203,25 @@ public final class GnomeSplit
         while ((character = getopt.getOption()) != -1) {
             switch (character) {
             case 'm':
-                // Update the merge widget
-                window.getMergeWidget().setFile(getopt.getArgument());
-
-                // Show the merge widget
-                actions.activateRadioAction(ActionId.MERGE);
+                this.selectView((byte) 1, getopt.getArgument());
 
                 break;
 
             case 's':
-                // Load the file to split
-                window.getSplitWidget().setFile(getopt.getArgument());
-
-                // Show the split widget
-                actions.activateRadioAction(ActionId.SPLIT);
+                this.selectView((byte) 0, getopt.getArgument());
 
                 break;
 
             default:
                 break;
             }
+        }
+
+        // No options have been used, this is just a file that has been giver
+        if (!args[0].startsWith("-")) {
+            // Update the view, checking the file extension
+            byte select = (byte) (Algorithm.isValidExtension(args[0]) ? 1 : 0);
+            this.selectView(select, args[0]);
         }
     }
 
