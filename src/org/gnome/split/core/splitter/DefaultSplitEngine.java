@@ -23,6 +23,8 @@ package org.gnome.split.core.splitter;
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
@@ -55,6 +57,11 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     protected String destination;
 
     /**
+     * A timer to update the progress of the view.
+     */
+    private Timer progress;
+
+    /**
      * Create a new split {@link Engine engine} using a <code>file</code> to
      * split and a maximum <code>size</code> for each chunk.
      */
@@ -64,6 +71,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
         this.file = file;
         this.size = size;
         this.destination = destination;
+        this.progress = null;
     }
 
     @Override
@@ -75,7 +83,8 @@ public abstract class DefaultSplitEngine extends DefaultEngine
                 return;
             }
 
-            // Start the speed calculator
+            // Start the indicators
+            this.startProgressUpdater();
             this.startSpeedCalculator();
 
             try {
@@ -85,7 +94,8 @@ public abstract class DefaultSplitEngine extends DefaultEngine
                 // Handle the error
                 this.fireEngineError(new EngineException(e));
             } finally {
-                // Stop the speed calculator
+                // Stop the indicators
+                this.stopProgressUpdater();
                 this.stopSpeedCalculator();
             }
         }
@@ -129,6 +139,27 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     public abstract void split() throws IOException;
 
     /**
+     * Start the progress updater which should notify the view from the
+     * progress of the action.
+     */
+    private void startProgressUpdater() {
+        // Create a new timer and start its task
+        progress = new Timer("Progress updater");
+        progress.scheduleAtFixedRate(new ProgressUpdaterTask(), 1, 250);
+    }
+
+    /**
+     * Stop the progress updater.
+     */
+    private void stopProgressUpdater() {
+        // Stop the timer
+        if (progress != null) {
+            progress.cancel();
+            progress = null;
+        }
+    }
+
+    /**
      * Notify the view that a part has been created.
      */
     protected void fireEnginePartCreated(String filename) {
@@ -146,6 +177,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      * Notify the view that the MD5 sum calculation has started.
      */
     protected void fireMD5SumStarted() {
+        this.stopProgressUpdater();
         app.getEngineListener().engineMD5SumStarted();
     }
 
@@ -153,6 +185,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      * Notify the view that the MD5 sum calculation has ended.
      */
     protected void fireMD5SumEnded() {
+        this.startProgressUpdater();
         app.getEngineListener().engineMD5SumEnded();
     }
 
@@ -221,12 +254,26 @@ public abstract class DefaultSplitEngine extends DefaultEngine
             // Update read and write status
             read += buffer.length;
             total += buffer.length;
-
-            // Notify the view
-            this.fireEngineDone(total, file.length());
         }
 
         // Success
         return true;
+    }
+
+    /**
+     * A class that notify the view from the progress of the action.
+     * 
+     * @author Guillaume Mazoyer
+     */
+    private class ProgressUpdaterTask extends TimerTask
+    {
+        private ProgressUpdaterTask() {
+
+        }
+
+        @Override
+        public void run() {
+            fireEngineDone(total, file.length());
+        }
     }
 }

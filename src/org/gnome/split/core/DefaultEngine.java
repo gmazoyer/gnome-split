@@ -168,7 +168,7 @@ public abstract class DefaultEngine implements Engine
     }
 
     /**
-     * A class which calculate the speed of the action.
+     * A class that calculate the speed of the action.
      * 
      * @author Guillaume Mazoyer
      */

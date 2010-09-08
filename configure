@@ -453,7 +453,7 @@ if ((-f "/etc/gentoo-release") || (-f "/etc/make.conf")) {
 } elsif (-f "/etc/redhat-release") {
     output "RedHat";
     $os = "fedora";
-} elsif ( -f "/etc/java/jpackage-release" ) {
+} elsif (-f "/etc/java/jpackage-release") {
     output "JPackage";
     $os = "fedora";
 }

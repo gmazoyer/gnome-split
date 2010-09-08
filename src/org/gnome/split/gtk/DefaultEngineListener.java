@@ -154,7 +154,7 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public void enginePartCreated(String filename) {
         // Update the status widget
-        gtk.getStatusWidget().updateText(_("Writting {0}.", filename));
+        gtk.getStatusWidget().updateText(_("Writing {0}.", filename));
     }
 
     @Override

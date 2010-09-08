@@ -25,6 +25,8 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
@@ -71,6 +73,11 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     protected String md5sum;
 
     /**
+     * A timer to update the progress of the view.
+     */
+    private Timer progress;
+
+    /**
      * Create a new merge {@link Engine engine} using a first
      * <code>file</code> to merge.
      */
@@ -78,6 +85,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
         super(app);
         this.file = file;
         this.filename = filename;
+        this.progress = null;
 
         if (filename != null) {
             this.directory = filename.substring(0, filename.lastIndexOf(File.separator));
@@ -134,7 +142,8 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     @Override
     public void run() {
         synchronized (mutex) {
-            // Start the speed calculator
+            // Start the indicators
+            this.startProgressUpdater();
             this.startSpeedCalculator();
 
             try {
@@ -144,7 +153,8 @@ public abstract class DefaultMergeEngine extends DefaultEngine
                 // Handle the error
                 this.fireEngineError(new EngineException(e));
             } finally {
-                // Stop the speed calculator
+                // Stop the indicators
+                this.stopProgressUpdater();
                 this.stopSpeedCalculator();
             }
         }
@@ -192,6 +202,27 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     public abstract void merge() throws IOException;
 
     /**
+     * Start the progress updater which should notify the view from the
+     * progress of the action.
+     */
+    private void startProgressUpdater() {
+        // Create a new timer and start its task
+        progress = new Timer("Progress updater");
+        progress.scheduleAtFixedRate(new ProgressUpdaterTask(), 1, 250);
+    }
+
+    /**
+     * Stop the progress updater.
+     */
+    private void stopProgressUpdater() {
+        // Stop the timer
+        if (progress != null) {
+            progress.cancel();
+            progress = null;
+        }
+    }
+
+    /**
      * Notify the view that a part is being read.
      */
     protected void fireEnginePartRead(String filename) {
@@ -202,6 +233,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Notify the view that the MD5 sum calculation has started.
      */
     protected void fireMD5SumStarted() {
+        this.stopProgressUpdater();
         app.getEngineListener().engineMD5SumStarted();
     }
 
@@ -209,6 +241,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Notify the view that the MD5 sum calculation has ended.
      */
     protected void fireMD5SumEnded() {
+        this.startProgressUpdater();
         app.getEngineListener().engineMD5SumEnded();
     }
 
@@ -283,9 +316,6 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             // Update read and write status
             read += buffer.length;
             total += buffer.length;
-
-            // Notify the view
-            this.fireEngineDone(total, fileLength);
         }
 
         // Success
@@ -305,5 +335,22 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     public boolean useMD5() {
         return md5;
+    }
+
+    /**
+     * A class that notify the view from the progress of the action.
+     * 
+     * @author Guillaume Mazoyer
+     */
+    private class ProgressUpdaterTask extends TimerTask
+    {
+        private ProgressUpdaterTask() {
+
+        }
+
+        @Override
+        public void run() {
+            fireEngineDone(total, fileLength);
+        }
     }
 }
