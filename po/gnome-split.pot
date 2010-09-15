@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-08 23:41+0200\n"
+"POT-Creation-Date: 2010-09-09 17:13+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -171,22 +171,22 @@ msgstr ""
 msgid "GNOME Split activity"
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:109
+#: src/org/gnome/split/GnomeSplit.java:152
 msgid "More than one instance."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:110
+#: src/org/gnome/split/GnomeSplit.java:153
 msgid ""
 "Only one instance of GNOME Split can be executed at a time. If you want to "
 "run multiple instances, edit the preferences. Remember that it is never safe "
 "to run more than one instance of GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:276
+#: src/org/gnome/split/GnomeSplit.java:300
 msgid "Quit GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:277
+#: src/org/gnome/split/GnomeSplit.java:301
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"

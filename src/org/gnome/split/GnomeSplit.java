@@ -88,6 +88,44 @@ public final class GnomeSplit
         // Load GTK
         Gtk.init(args);
 
+        // Load config
+        this.loadConfig();
+
+        // Check if an instance is running
+        this.checkRunning();
+
+        // Load logo
+        Gtk.setDefaultIcon(Constants.PROGRAM_LOGO);
+
+        // Load translations
+        Internationalization.init("gnome-split", "share/locale/");
+
+        // Load libnotify
+        if (config.USE_NOTIFICATION) {
+            Notify.init(Constants.PROGRAM_NAME);
+        }
+
+        // Build the user interface
+        this.buildUserInterface();
+
+        // If there are some arguments
+        if (args.length > 0) {
+            this.parseCommandLine(args);
+        } else {
+            if (config.ASSISTANT_ON_START) {
+                // Show the assistant on start if requested
+                actions.activateAction(ActionId.ASSISTANT);
+            }
+        }
+
+        // Start GTK main loop (blocker method)
+        Gtk.main();
+    }
+
+    /**
+     * Load the configuration and preferences.
+     */
+    private void loadConfig() {
         try {
             // Load constants and preferences
             Constants.load();
@@ -96,7 +134,12 @@ public final class GnomeSplit
             e.printStackTrace();
             System.exit(1);
         }
+    }
 
+    /**
+     * Check if an instance of GNOME Split is already running.
+     */
+    private void checkRunning() {
         // Initialize unique application check
         Application application = new Application("org.gnome.GnomeSplit", null);
 
@@ -122,18 +165,12 @@ public final class GnomeSplit
             // Quit the current app
             System.exit(1);
         }
+    }
 
-        // Load logo
-        Gtk.setDefaultIcon(Constants.PROGRAM_LOGO);
-
-        // Load translations
-        Internationalization.init("gnome-split", "share/locale/");
-
-        // Load libnotify
-        if (config.USE_NOTIFICATION) {
-            Notify.init(Constants.PROGRAM_NAME);
-        }
-
+    /**
+     * Build the GTK+ user interface.
+     */
+    private void buildUserInterface() {
         // Load actions manager
         actions = new ActionManager(this);
 
@@ -144,19 +181,6 @@ public final class GnomeSplit
 
         // Load engine listener
         engine = new DefaultEngineListener(this);
-
-        // If there are some arguments
-        if (args.length > 0) {
-            this.parseCommandLine(args);
-        } else {
-            if (config.ASSISTANT_ON_START) {
-                // Show the assistant on start if requested
-                actions.activateAction(ActionId.ASSISTANT);
-            }
-        }
-
-        // Start GTK main loop (blocker method)
-        Gtk.main();
     }
 
     /**
@@ -217,7 +241,7 @@ public final class GnomeSplit
             }
         }
 
-        // No options have been used, this is just a file that has been giver
+        // No options have been used, this is just a file that has been given
         if (!args[0].startsWith("-")) {
             // Update the view, checking the file extension
             byte select = (byte) (Algorithm.isValidExtension(args[0]) ? 1 : 0);

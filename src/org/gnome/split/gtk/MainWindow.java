@@ -330,7 +330,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
      */
     public void selectDefaultView() {
         // Get the default view
-        int view = app.getConfig().DEFAULT_VIEW;
+        byte view = app.getConfig().DEFAULT_VIEW;
 
         // The merge view is the default one
         if (view == 1) {
