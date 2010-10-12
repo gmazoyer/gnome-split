@@ -27,8 +27,8 @@ import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MD5Exception;
+import org.gnome.split.core.exception.MissingChunkException;
 import org.gnome.split.core.utils.MD5Hasher;
 
 /**
@@ -157,8 +157,15 @@ public final class YoyoCut extends DefaultMergeEngine
             out = new RandomAccessFile(filename, "rw");
 
             for (int i = 1; i <= parts; i++) {
-                // Open the current part to merge
+                // Next chunk
                 chunk = new File(this.getNextChunk(part, i));
+                if (!chunk.exists()) {
+                    // Check if the chunk really exists
+                    this.fireEngineError(new MissingChunkException());
+                    return;
+                }
+
+                // Open the chunk to read it
                 RandomAccessFile access = new RandomAccessFile(chunk, "r");
 
                 // Notify the view from a new part read
@@ -204,8 +211,7 @@ public final class YoyoCut extends DefaultMergeEngine
 
             if (!success && md5) {
                 // Notify the error
-                EngineException exception = new MD5Exception();
-                this.fireEngineError(exception);
+                this.fireEngineError(new MD5Exception());
             } else if (success) {
                 if (app.getConfig().DELETE_PARTS && md5) {
                     // Delete all parts if and *only if* the MD5 sums are

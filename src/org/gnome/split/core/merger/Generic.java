@@ -26,6 +26,7 @@ import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.exception.MissingChunkException;
 
 /**
  * Algorithm to merge files with an algorithm which does not use any headers
@@ -106,8 +107,15 @@ public final class Generic extends DefaultMergeEngine
             parts = file.getName().endsWith(".000") ? 0 : 1;
 
             for (int i = parts; i <= parts; i++) {
-                // Open the current part to merge
+                // Next chunk
                 chunk = new File(this.getNextChunk(part, i));
+                if (!chunk.exists()) {
+                    // Check if the chunk really exists
+                    this.fireEngineError(new MissingChunkException());
+                    return;
+                }
+
+                // Open the chunk to read it
                 RandomAccessFile access = new RandomAccessFile(chunk, "r");
 
                 // Notify the view from a new part read
