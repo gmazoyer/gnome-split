@@ -22,8 +22,6 @@ package org.gnome.split.core;
 
 import java.util.List;
 
-import org.gnome.split.core.exception.EngineException;
-
 /**
  * Define the way that an {@link Engine} class will notify the
  * &quot;view&quot;.
@@ -98,9 +96,9 @@ public interface EngineListener
     public void engineStopped();
 
     /**
-     * Used when an {@link EngineException error} has occurred.
+     * Used when an {@link Exception error} has occurred.
      */
-    public void engineError(EngineException exception);
+    public void engineError(Exception exception);
 
     /**
      * Used when a read has been done.

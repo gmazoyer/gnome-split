@@ -33,6 +33,6 @@ public final class MissingChunkException extends EngineException
      * Create an {@link Exception} with an {@link ExceptionMessage} .
      */
     public MissingChunkException() {
-        super(ExceptionMessage.MISSING_CHUNK);
+        super(ExceptionMessage.MISSING_CHUNK, false);
     }
 }

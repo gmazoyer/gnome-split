@@ -21,12 +21,12 @@
 package org.gnome.split.core.merger;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.exception.MissingChunkException;
 import org.gnome.split.core.utils.MD5Hasher;
@@ -145,7 +145,7 @@ public final class YoyoCut extends DefaultMergeEngine
     }
 
     @Override
-    public void merge() throws IOException, FileNotFoundException {
+    public void merge() throws IOException, EngineException {
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
         RandomAccessFile out = null;
         File chunk = null;
@@ -161,8 +161,7 @@ public final class YoyoCut extends DefaultMergeEngine
                 chunk = new File(this.getNextChunk(part, i));
                 if (!chunk.exists()) {
                     // Check if the chunk really exists
-                    this.fireEngineError(new MissingChunkException());
-                    return;
+                    throw new MissingChunkException();
                 }
 
                 // Open the chunk to read it
@@ -210,7 +209,7 @@ public final class YoyoCut extends DefaultMergeEngine
             }
 
             if (!success && md5) {
-                // Notify the error
+                // Notify the error. It's just a warning so we don't throw it.
                 this.fireEngineError(new MD5Exception());
             } else if (success) {
                 if (app.getConfig().DELETE_PARTS && md5) {
@@ -229,8 +228,6 @@ public final class YoyoCut extends DefaultMergeEngine
                 // Notify the end
                 this.fireEngineEnded();
             }
-        } catch (IOException e) {
-            throw e;
         } finally {
             try {
                 // Close the final file

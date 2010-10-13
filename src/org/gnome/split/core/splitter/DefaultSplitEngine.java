@@ -77,22 +77,21 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     @Override
     public void run() {
         synchronized (mutex) {
-            // Invalid size
-            if (size == -1) {
-                this.fireEngineError(new InvalidSizeException());
-                return;
-            }
-
-            // Start the indicators
-            this.startProgressUpdater();
-            this.startSpeedCalculator();
-
             try {
+                // Invalid size
+                if (size == -1) {
+                    throw new InvalidSizeException();
+                }
+
+                // Start the indicators
+                this.startProgressUpdater();
+                this.startSpeedCalculator();
+
                 // Split the file
                 this.split();
             } catch (Exception e) {
                 // Handle the error
-                this.fireEngineError(new EngineException(e));
+                this.fireEngineError(e);
             } finally {
                 // Stop the indicators
                 this.stopProgressUpdater();
@@ -136,7 +135,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     /**
      * Split a file into smaller parts.
      */
-    public abstract void split() throws IOException;
+    public abstract void split() throws IOException, EngineException;
 
     /**
      * Start the progress updater which should notify the view from the
@@ -207,7 +206,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
     /**
      * Notify the view that an error has occurred.
      */
-    protected void fireEngineError(EngineException exception) {
+    protected void fireEngineError(Exception exception) {
         app.getEngineListener().engineError(exception);
     }
 

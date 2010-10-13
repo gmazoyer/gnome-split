@@ -21,11 +21,11 @@
 package org.gnome.split.core.merger;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MissingChunkException;
 
 /**
@@ -91,7 +91,7 @@ public final class Generic extends DefaultMergeEngine
     }
 
     @Override
-    public void merge() throws IOException, FileNotFoundException {
+    public void merge() throws IOException, EngineException {
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 3);
         RandomAccessFile out = null;
         File chunk = null;
@@ -111,8 +111,7 @@ public final class Generic extends DefaultMergeEngine
                 chunk = new File(this.getNextChunk(part, i));
                 if (!chunk.exists()) {
                     // Check if the chunk really exists
-                    this.fireEngineError(new MissingChunkException());
-                    return;
+                    throw new MissingChunkException();
                 }
 
                 // Open the chunk to read it
@@ -148,8 +147,6 @@ public final class Generic extends DefaultMergeEngine
 
             // Notify the end
             this.fireEngineEnded();
-        } catch (IOException e) {
-            throw e;
         } finally {
             try {
                 // Close the final file

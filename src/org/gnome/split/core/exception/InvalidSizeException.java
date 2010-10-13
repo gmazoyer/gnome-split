@@ -33,6 +33,6 @@ public final class InvalidSizeException extends EngineException
      * Create an {@link Exception} with an {@link ExceptionMessage} .
      */
     public InvalidSizeException() {
-        super(ExceptionMessage.INVALID_SIZE);
+        super(ExceptionMessage.INVALID_SIZE, false);
     }
 }

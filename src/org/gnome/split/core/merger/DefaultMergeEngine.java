@@ -98,7 +98,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             this.loadHeaders();
         } catch (Exception e) {
             // Handle the error
-            this.fireEngineError(new EngineException(e));
+            this.fireEngineError(e);
         }
     }
 
@@ -142,16 +142,16 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     @Override
     public void run() {
         synchronized (mutex) {
-            // Start the indicators
-            this.startProgressUpdater();
-            this.startSpeedCalculator();
-
             try {
+                // Start the indicators
+                this.startProgressUpdater();
+                this.startSpeedCalculator();
+
                 // Merge files
                 this.merge();
             } catch (Exception e) {
                 // Handle the error
-                this.fireEngineError(new EngineException(e));
+                this.fireEngineError(e);
             } finally {
                 // Stop the indicators
                 this.stopProgressUpdater();
@@ -199,7 +199,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Merge files to get a new one.
      */
-    public abstract void merge() throws IOException;
+    public abstract void merge() throws IOException, EngineException;
 
     /**
      * Start the progress updater which should notify the view from the
@@ -266,7 +266,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Notify the view that an error has occurred.
      */
-    protected void fireEngineError(EngineException exception) {
+    protected void fireEngineError(Exception exception) {
         app.getEngineListener().engineError(exception);
     }
 

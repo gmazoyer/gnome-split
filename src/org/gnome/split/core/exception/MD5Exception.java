@@ -34,7 +34,6 @@ public final class MD5Exception extends EngineException
      * Create an {@link Exception} with an {@link ExceptionMessage} .
      */
     public MD5Exception() {
-        super(ExceptionMessage.MD5_DIFFER);
-        this.warning = true;
+        super(ExceptionMessage.MD5_DIFFER, true);
     }
 }

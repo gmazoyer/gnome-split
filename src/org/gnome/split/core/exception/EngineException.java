@@ -44,18 +44,17 @@ public class EngineException extends Exception
     /**
      * Create a new exception with a <code>message</code>.
      */
-    private EngineException(String message) {
+    private EngineException(String message, boolean warning) {
         super(message);
-        this.warning = false;
+        this.warning = warning;
     }
 
     /**
      * Create an {@link Exception} with an {@link ExceptionMessage} .
      */
-    protected EngineException(ExceptionMessage message) {
-        this(message.getMessage());
+    protected EngineException(ExceptionMessage message, boolean warning) {
+        this(message.getMessage(), warning);
         this.message = message;
-        this.warning = false;
     }
 
     /**

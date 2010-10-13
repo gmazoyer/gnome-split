@@ -70,7 +70,9 @@ public final class ErrorDialog extends ErrorMessageDialog
         view.setWrapMode(WrapMode.WORD);
 
         // Insert the exception stacktrace
-        buffer.insert(buffer.getIterStart(), exception.getMessage() + "\n");
+        if (exception.getMessage() != null) {
+            buffer.insert(buffer.getIterStart(), exception.getMessage() + "\n");
+        }
         buffer.insert(buffer.getIterEnd(), UncaughtExceptionLogger.getStackTrace(exception));
 
         // Add the textview inside the frame

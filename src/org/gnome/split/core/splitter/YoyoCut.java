@@ -137,8 +137,6 @@ public final class YoyoCut extends DefaultSplitEngine
 
                     // Notify the view from a written part
                     this.fireEnginePartWritten(chunk.getName());
-                } catch (IOException e) {
-                    throw e;
                 } finally {
                     try {
                         // Close the part file
@@ -151,8 +149,6 @@ public final class YoyoCut extends DefaultSplitEngine
 
             // Notify the end of the split
             this.fireEngineEnded();
-        } catch (IOException e) {
-            throw e;
         } finally {
             try {
                 // Close the part file

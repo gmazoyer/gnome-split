@@ -33,8 +33,6 @@ import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.ExceptionMessage;
-import org.gnome.split.core.exception.InvalidSizeException;
-import org.gnome.split.core.exception.MissingChunkException;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.dbus.DbusInhibit;
@@ -299,31 +297,30 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
-    public void engineError(EngineException exception) {
+    public void engineError(Exception exception) {
         Dialog dialog = null;
-        ExceptionMessage message = null;
 
-        if (exception.isWarning()) {
-            // Warning only (file *may* work)
-            message = exception.getExceptionMessage();
-            gtk.getInfoBar().showWarning(message.getMessage(), message.getDetails());
-        } else {
-            if ((exception instanceof InvalidSizeException)
-                    || (exception instanceof MissingChunkException)) {
-                // Invalid size exception
-                message = exception.getExceptionMessage();
-                dialog = new ErrorDialog(gtk, message.getMessage(), message.getDetails());
+        if (exception instanceof EngineException) {
+            EngineException error = (EngineException) exception;
+            ExceptionMessage message = error.getExceptionMessage();
+
+            if (error.isWarning()) {
+                // Warning only (file *may* work)
+                gtk.getInfoBar().showWarning(message.getMessage(), message.getDetails());
             } else {
-                // First print the stacktrace
-                exception.printStackTrace();
-
-                // Other exception - error (file is supposed broken)
-                dialog = new ErrorDialog(
-                        gtk,
-                        _("Unhandled exception."),
-                        _("An exception occurs. You can report it to the developers and tell them how to reproduce it.\n\nSee the details for more information."),
-                        exception);
+                // Invalid size exception
+                dialog = new ErrorDialog(gtk, message.getMessage(), message.getDetails());
             }
+        } else {
+            // First print the stacktrace
+            exception.printStackTrace();
+
+            // Other exception - error (file is supposed broken)
+            dialog = new ErrorDialog(
+                    gtk,
+                    _("Unhandled exception."),
+                    _("An exception occurs. You can report it to the developers and tell them how to reproduce it.\n\nSee the details for more information."),
+                    exception);
         }
 
         // Update the status widget
