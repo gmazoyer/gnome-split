@@ -8,10 +8,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-09-09 17:13+0200\n"
+"POT-Creation-Date: 2010-10-14 16:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -157,12 +158,22 @@ msgid ""
 "You must specify a size which is lower than the size of the file to split."
 msgstr ""
 
+#: src/org/gnome/split/core/exception/ExceptionMessage.java:37
+msgid "Missing chunk."
+msgstr ""
+
+#: src/org/gnome/split/core/exception/ExceptionMessage.java:38
+msgid ""
+"A chunk appears to be missing. Please check that all chunks are in the same "
+"directory."
+msgstr ""
+
 #: src/org/gnome/split/core/merger/DefaultMergeEngine.java:166
 #, java-format
 msgid "Merging {0}"
 msgstr ""
 
-#: src/org/gnome/split/core/splitter/DefaultSplitEngine.java:106
+#: src/org/gnome/split/core/splitter/DefaultSplitEngine.java:105
 #, java-format
 msgid "Splitting {0}"
 msgstr ""
@@ -514,41 +525,41 @@ msgid ""
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:157
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:156
 #, java-format
 msgid "Writing {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:168
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:167
 #, java-format
 msgid "Reading {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:179
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:178
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:257
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:256
 msgid "Split finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:258
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:257
 msgid "The file was succesfully split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:260
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:259
 msgid "Merge finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:261
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:260
 msgid "The files were successfully merged."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:287
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:286
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:289
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:288
 msgid "Merge stopped."
 msgstr ""
 
