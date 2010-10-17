@@ -97,6 +97,7 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
 
         // Add all the pages
         notebook.appendPage(this.createGeneralPage(), new Label(_("General")));
+        notebook.appendPage(this.createInterfacePage(), new Label(_("Interface")));
         notebook.appendPage(this.createSplitPage(), new Label(_("Split")));
         notebook.appendPage(this.createMergePage(), new Label(_("Merge")));
         notebook.appendPage(this.createDesktopPage(), new Label(_("Desktop")));
@@ -141,9 +142,6 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
         final VBox page = new VBox(false, 18);
         page.setBorderWidth(12);
 
-        // Buttons group for default view choice
-        final RadioGroup group = new RadioGroup();
-
         // First options
         final VBox first = new VBox(false, 6);
         page.packStart(first, false, false, 0);
@@ -171,12 +169,12 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
             }
         });
 
-        // First options
+        // Second option
         final VBox second = new VBox(false, 6);
         page.packStart(second, false, false, 0);
 
         // Add the label
-        second.packStart(this.createSectionLabel(_("Default view")), false, false, 0);
+        second.packStart(this.createSectionLabel(_("Program run")), false, false, 0);
 
         // Add the row of options
         final HBox secondRow = new HBox(false, 0);
@@ -185,9 +183,52 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
         // Add an empty label
         secondRow.packStart(this.createEmptyLabel(), false, false, 0);
 
+        // Restore multiple instances status
+        final CheckButton instances = new CheckButton(_("_Allow multiple instances."));
+        instances.setActive(config.MULTIPLE_INSTANCES);
+        secondRow.packStart(instances, false, false, 0);
+        instances.connect(new Button.Clicked() {
+            @Override
+            public void onClicked(Button source) {
+                // Save preferences
+                config.MULTIPLE_INSTANCES = instances.getActive();
+                config.savePreferences();
+            }
+        });
+
+        // Show all widgets
+        page.showAll();
+
+        return page;
+    }
+
+    /**
+     * Create the second page of the dialog (interface config).
+     */
+    private VBox createInterfacePage() {
+        final VBox page = new VBox(false, 18);
+        page.setBorderWidth(12);
+
+        // Buttons group for default view choice
+        final RadioGroup group = new RadioGroup();
+
+        // First option
+        final VBox first = new VBox(false, 6);
+        page.packStart(first, false, false, 0);
+
+        // Add the label
+        first.packStart(this.createSectionLabel(_("Default view")), false, false, 0);
+
+        // Add the row of options
+        final HBox firstRow = new HBox(false, 0);
+        first.packStart(firstRow, false, false, 0);
+
+        // Add an empty label
+        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+
         // Pack the options
         final VBox boxes = new VBox(false, 6);
-        secondRow.packStart(boxes, false, false, 0);
+        firstRow.packStart(boxes, false, false, 0);
 
         // Split choice
         final RadioButton split = new RadioButton(group, _("Split"));
@@ -220,49 +261,22 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
         });
 
         // Second option
-        final VBox third = new VBox(false, 6);
-        page.packStart(third, false, false, 0);
+        final VBox second = new VBox(false, 6);
+        page.packStart(second, false, false, 0);
 
         // Add the label
-        third.packStart(this.createSectionLabel(_("Program run")), false, false, 0);
+        second.packStart(this.createSectionLabel(_("Size of the main window")), false, false, 0);
 
         // Add the row of options
-        final HBox thirdRow = new HBox(false, 0);
-        third.packStart(thirdRow, false, false, 0);
+        final HBox secondRow = new HBox(false, 0);
+        second.packStart(secondRow, false, false, 0);
 
         // Add an empty label
-        thirdRow.packStart(this.createEmptyLabel(), false, false, 0);
-
-        // Restore multiple instances status
-        final CheckButton instances = new CheckButton(_("_Allow multiple instances."));
-        instances.setActive(config.MULTIPLE_INSTANCES);
-        thirdRow.packStart(instances, false, false, 0);
-        instances.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button source) {
-                // Save preferences
-                config.MULTIPLE_INSTANCES = instances.getActive();
-                config.savePreferences();
-            }
-        });
-
-        // Third option
-        final VBox fourth = new VBox(false, 6);
-        page.packStart(fourth, false, false, 0);
-
-        // Add the label
-        fourth.packStart(this.createSectionLabel(_("Size of the main window")), false, false, 0);
-
-        // Add the row of options
-        final HBox fourthRow = new HBox(false, 0);
-        fourth.packStart(fourthRow, false, false, 0);
-
-        // Add an empty label
-        fourthRow.packStart(this.createEmptyLabel(), false, false, 0);
+        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Add a box to pack widgets to change the size
         final VBox sizeBox = new VBox(false, 6);
-        fourthRow.packStart(sizeBox, false, false, 0);
+        secondRow.packStart(sizeBox, false, false, 0);
 
         // Create some needed widgets
         final SpinButton width = new SpinButton(1, 2048, 1);
@@ -375,7 +389,7 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
     }
 
     /**
-     * Create the second page of the dialog (split config).
+     * Create the third page of the dialog (split config).
      */
     private VBox createSplitPage() {
         final VBox page = new VBox(false, 18);
@@ -472,7 +486,7 @@ public final class PreferencesDialog extends Dialog implements DeleteEvent, Resp
     }
 
     /**
-     * Create the third page of the dialog (merge config).
+     * Create the fourth page of the dialog (merge config).
      */
     private VBox createMergePage() {
         final VBox page = new VBox(false, 18);
