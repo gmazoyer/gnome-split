@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2010-10-14 16:21+0200\n"
+"POT-Creation-Date: 2010-10-19 11:27+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -371,116 +371,120 @@ msgid "General"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:100
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:193
+msgid "Interface"
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:101
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:234
 #: src/org/gnome/split/gtk/widget/SelectView.java:68
 msgid "Split"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:101
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:208
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:102
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:249
 #: src/org/gnome/split/gtk/widget/SelectView.java:76
 msgid "Merge"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:102
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:103
 msgid "Desktop"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:152
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:124
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:150
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:122
 msgid "Assistant"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:162
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:242
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:160
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:262
 msgid "_Show the assistant on start"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:179
-msgid "Default view"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:227
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:177
 msgid "Program run"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:237
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:187
 msgid "_Allow multiple instances."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:254
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:220
+msgid "Default view"
+msgstr ""
+
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:268
 msgid "Size of the main window"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:270
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:284
 msgid "Use the _current size"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:274
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:288
 msgid "_Use a custom size."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:389
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:403
 msgid "During a split"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:398
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:412
 msgid "_Calculate the MD5 sum if possible."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:415
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:429
 msgid "Default algorithm"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:448
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:569
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:462
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:583
 msgid "Default directory"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:458
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:579
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:472
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:593
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:147
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:165
 msgid "Choose a directory."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:486
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:500
 msgid "During a merge"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:500
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:514
 msgid "_Remove the chunks."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:503
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:517
 msgid "_Check the MD5 sum if possible."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:525
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:539
 msgid "After a merge"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:552
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:566
 msgid "_Open the created file."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:602
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:616
 msgid "Power management"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:613
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:627
 msgid "Inhibit desktop _hibernation when an action is performed."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:630
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:644
 msgid "Notification"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:644
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:658
 msgid "Show _icon in the desktop notification area."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:660
+#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:674
 msgid "Show desktop _notification."
 msgstr ""
 
@@ -614,7 +618,7 @@ msgid "All files"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:132
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:520
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:510
 msgid "Valid chunks"
 msgstr ""
 
@@ -658,102 +662,102 @@ msgstr ""
 msgid "A MD5 sum will not be calculated."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:192
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:218
 msgid "What do you want to do?"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:210
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:230
 msgid "Split a file"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:211
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:231
 msgid "Merge several files"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:259
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:279
 msgid "Action selection"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:271
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:291
 msgid "Select the file to split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:287
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:655
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:301
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:639
 msgid "File to split:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:291
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:527
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:305
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:517
 msgid "Select a file."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:311
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:548
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:325
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:538
 msgid "File selection"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:323
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:337
 msgid ""
 "Select the maximal size for each chunk. You can let GNOME Split calculate "
 "the size by giving the number of chunks to create."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:371
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:379
 msgid ""
 "Invalid chunk size. The size must be lower than the size of the file to "
 "split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:401
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:409
 msgid "Size selection"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:416
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:424
 msgid "The algorithm defines the way how the file will be split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:432
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:434
 msgid "Algorithm to use:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:457
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:459
 msgid "Algorithm selection"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:469
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:471
 msgid ""
 "The split is now ready. Take a look to the summary. If something is wrong, "
 "go back to the a previous step to change it before confirming."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:488
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:587
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:484
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:571
 msgid "Confirmation"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:500
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:496
 msgid "Select the first file to merge."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:516
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:506
 msgid "File to merge:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:560
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:550
 msgid ""
 "You can check that you pick up the right file. If it is not the first file "
 "to merge, go back to the previous step to choose another one."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:646
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:630
 msgid "First file to merge:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:658
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:642
 msgid "Maximum size of a chunk:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/ActionAssistant.java:661
+#: src/org/gnome/split/gtk/widget/ActionAssistant.java:645
 msgid "Algorithm of split:"
 msgstr ""

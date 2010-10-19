@@ -23,7 +23,6 @@ package org.gnome.split.gtk.widget;
 import java.io.File;
 
 import org.gnome.gdk.Pixbuf;
-import org.gnome.gtk.Alignment;
 import org.gnome.gtk.Assistant;
 import org.gnome.gtk.Assistant.Apply;
 import org.gnome.gtk.Assistant.Cancel;
@@ -41,7 +40,6 @@ import org.gnome.gtk.Gtk;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.IconSize;
 import org.gnome.gtk.Image;
-import org.gnome.gtk.Justification;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.RadioButton;
 import org.gnome.gtk.RadioGroup;
@@ -183,27 +181,49 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     }
 
     /**
+     * Create a simple label which is aligned to the left and which can use
+     * markups.
+     */
+    private Label createLeftAlignedLabel(String text) {
+        final Label label = new Label(text);
+
+        label.setUseMarkup(true);
+        label.setLineWrap(true);
+        label.setAlignment(0.0f, 0.5f);
+
+        return label;
+    }
+
+    /**
+     * Create a &quot;page&quot;. It is actually just a {@link VBox} with 5
+     * pixels as border.
+     * 
+     * @return
+     */
+    private VBox createPage() {
+        final VBox page = new VBox(false, 3);
+
+        page.setBorderWidth(5);
+
+        return page;
+    }
+
+    /**
      * Create the main introduction of the assistant.
      */
     private void createGeneralIntroduction() {
-        final Page page = new Page();
+        final VBox page = this.createPage();
 
         // The text to display
         final String data = _("What do you want to do?");
 
-        // Create the label
-        final Label text = new Label();
-        text.setLabel(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-
         // Add the label
-        page.container.packStart(text, false, false, 0);
+        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack the two choices
         final VButtonBox box = new VButtonBox();
         box.setLayout(ButtonBoxStyle.SPREAD);
-        page.container.packStart(box, false, false, 0);
+        page.packStart(box, false, false, 0);
 
         // Create the two choices
         final RadioGroup group = new RadioGroup();
@@ -241,7 +261,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         // Add a button to turn on/off the assistant on start
         final CheckButton assistant = new CheckButton(_("_Show the assistant on start"));
         assistant.setActive(app.getConfig().ASSISTANT_ON_START);
-        page.container.packStart(assistant, false, false, 0);
+        page.packStart(assistant, false, false, 0);
 
         // Connect check button signal
         assistant.connect(new Button.Clicked() {
@@ -265,23 +285,17 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
      * Create a page to select the file to split.
      */
     private void createSplitFileSelection() {
-        final Page page = new Page();
+        final VBox page = this.createPage();
 
         // The text to display
         final String data = _("Select the file to split.");
 
-        // Create the label
-        final Label text = new Label(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-        text.setLineWrap(true);
-
         // Add the label
-        page.container.packStart(text, false, false, 0);
+        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack widgets to select a file
         final HBox box = new HBox(false, 3);
-        page.container.packStart(box, false, false, 0);
+        page.packStart(box, false, false, 0);
 
         // Add a label to it
         final Label label = new Label(_("File to split:"));
@@ -317,23 +331,17 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
      * Create a page to select the size.
      */
     private void createSplitSizeSelection() {
-        final Page page = new Page();
+        final VBox page = this.createPage();
 
         // The text to display
         final String data = _("Select the maximal size for each chunk. You can let GNOME Split calculate the size by giving the number of chunks to create.");
 
-        // Create the label
-        final Label text = new Label(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-        text.setLineWrap(true);
-
         // Add the label
-        page.container.packStart(text, false, false, 0);
+        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack widgets to select a file size
         final HBox box = new HBox(false, 3);
-        page.container.packStart(box, false, false, 0);
+        page.packStart(box, false, false, 0);
 
         // Create the spin button
         final SpinButton button = new SpinButton(1, 4096, 1);
@@ -407,7 +415,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
      * Create a page to select the algorithm.
      */
     private void createSplitAlgoSelection() {
-        final Page page = new Page();
+        final VBox page = this.createPage();
 
         // Setup the default algorithm
         algorithm = app.getConfig().DEFAULT_ALGORITHM;
@@ -415,18 +423,12 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         // The text to display
         final String data = _("The algorithm defines the way how the file will be split.");
 
-        // Create the label
-        final Label text = new Label(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-        text.setLineWrap(true);
-
         // Add the label
-        page.container.packStart(text, false, false, 0);
+        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack widgets to select a file
         final HBox box = new HBox(false, 3);
-        page.container.packStart(box, false, false, 0);
+        page.packStart(box, false, false, 0);
 
         // Add a label to it
         final Label label = new Label(_("Algorithm to use:"));
@@ -463,24 +465,18 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
      * Create a page to sum up all info and validate the split.
      */
     private void createSplitSummary() {
-        final Page page = new Page();
+        final VBox page = this.createPage();
 
         // The text to display
         final String data = _("The split is now ready. Take a look to the summary. If something is wrong, go back to the a previous step to change it before confirming.");
 
-        // Create the label
-        final Label text = new Label(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-        text.setLineWrap(true);
-
         // Add the label
-        page.container.packStart(text, false, false, 0);
+        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
 
         // Add the text view
         summary = new TextView(new TextBuffer());
         summary.setEditable(false);
-        page.container.packStart(summary, false, false, 0);
+        page.packStart(summary, false, false, 0);
 
         // Setup the page in the assistant
         this.insertPage(page, 5);
@@ -494,23 +490,17 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
      * Create a page to select the first file to merge.
      */
     private void createMergeFileSelection() {
-        final Page page = new Page();
+        final VBox page = this.createPage();
 
         // The text to display
         final String data = _("Select the first file to merge.");
 
-        // Create the label
-        final Label text = new Label(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-        text.setLineWrap(true);
-
         // Add the label
-        page.container.packStart(text, false, false, 0);
+        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack widgets to select a file
         final HBox box = new HBox(false, 3);
-        page.container.packStart(box, false, false, 0);
+        page.packStart(box, false, false, 0);
 
         // Add a label to it
         final Label label = new Label(_("File to merge:"));
@@ -554,27 +544,21 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
      * Create a page to sum up all info and validate the merge.
      */
     private void createMergeSummary() {
-        final Page page = new Page();
+        final VBox page = this.createPage();
 
         // The text to display
         final String data = _("You can check that you pick up the right file. If it is not the first file to merge, go back to the previous step to choose another one.");
 
-        // Create the label
-        final Label text = new Label(data);
-        text.setUseMarkup(true);
-        text.setJustify(Justification.LEFT);
-        text.setLineWrap(true);
-
         // Add the label
-        page.container.packStart(text, false, false, 0);
+        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to show the directory information
         final HBox dirBox = new HBox(false, 3);
-        page.container.packStart(dirBox, false, false, 0);
+        page.packStart(dirBox, false, false, 0);
 
         // Create a box to show the file information
         final HBox fileBox = new HBox(false, 3);
-        page.container.packStart(fileBox, false, false, 0);
+        page.packStart(fileBox, false, false, 0);
 
         // Add the text view
         summary = new TextView(new TextBuffer());
@@ -661,30 +645,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
                         _("Algorithm of split:") + " " + Algorithm.toStrings()[algorithm]);
             }
             break;
-        }
-    }
-
-    /**
-     * A custom widget which will be used as a page for an {@link Assistant}.
-     * 
-     * @author Guillaume Mazoyer
-     */
-    private class Page extends Alignment
-    {
-        /**
-         * The main container.
-         */
-        VBox container;
-
-        Page() {
-            super(0f, 0f, 0f, 0f);
-
-            // Set the margins
-            this.setPadding(12, 12, 12, 12);
-
-            // Add the main container
-            container = new VBox(false, 5);
-            this.add(container);
         }
     }
 }
