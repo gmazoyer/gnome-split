@@ -78,6 +78,7 @@ install: all \
 	 	tmp/stamp/install-pixmaps \
 	 	tmp/stamp/install-translations \
 		$(DESTDIR)$(PREFIX)/share/applications/gnome-split.desktop \
+		$(DESTDIR)$(PREFIX)/share/mime/packages/gnome-split.xml \
 		$(DESTDIR)$(PREFIX)/bin/gnome-split
 
 $(DESTDIR)$(PREFIX):
@@ -108,6 +109,12 @@ $(DESTDIR)$(PREFIX)/share/applications/gnome-split.desktop: \
 		tmp/launcher/gnome-split.desktop
 	@/bin/echo -e "INSTALL\t$@"
 	cp -f tmp/launcher/gnome-split.desktop $@
+
+$(DESTDIR)$(PREFIX)/share/mime/packages/gnome-split.xml: \
+		$(DESTDIR)$(PREFIX)/share/mime/packages \
+		tmp/launcher/gnome-split.xml
+	@/bin/echo -e "INSTALL\t$@"
+	cp -f tmp/launcher/gnome-split.xml $@
 
 tmp/gnome-split.jar: tmp/stamp/compile
 	@/bin/echo -e "$(JAR_CMD)\t$@"
@@ -154,6 +161,8 @@ uninstall:
 	rm -f $(DESTDIR)$(PREFIX)/share/pixmaps/gnome-split.png
 	@/bin/echo -e "RM\t$(DESTDIR)$(PREFIX)/share/applications/gnome-split.desktop"
 	rm -f $(DESTDIR)$(PREFIX)/share/applications/gnome-split.desktop
+	@/bin/echo -e "RM\t$(DESTDIR)$(PREFIX)/share/mime/packages/gnome-split.xml"
+	rm -f $(DESTDIR)$(PREFIX)/share/mime/packages/gnome-split.xml
 	@/bin/echo -e "RM\t$(DESTDIR)$(PREFIX)/bin/gnome-split"
 	rm -f $(DESTDIR)$(PREFIX)/bin/gnome-split
 	@/bin/echo -e "RM\t$(DESTDIR)$(JARDIR)/gnome-split-$(VERSION).jar"

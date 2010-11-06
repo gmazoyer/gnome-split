@@ -1538,5 +1538,34 @@ HERE
 
 close DESKTOP;
 
+open MIMETYPE, ">tmp/launcher/gnome-split.xml";
+
+print MIMETYPE <<HERE;
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
+  <mime-type type="application/x-extension-xtm">
+    <comment>Xtremsplit file</comment>
+    <glob pattern="*.xtm"/>
+  </mime-type>
+  <mime-type type="application/x-extension-gsp">
+    <comment>GNOME Split file</comment>
+    <glob pattern="*.gsp"/>
+  </mime-type>
+  <mime-type type="application/x-extension-yct">
+    <comment>YoyoCut file</comment>
+    <glob pattern="*.yct"/>
+  </mime-type>
+  <mime-type type="application/x-extension-kk">
+    <comment>KFK file</comment>
+    <glob pattern="*.kk*"/>
+  </mime-type>
+  <mime-type type="application/x-generic-chunk">
+    <comment>First chunk of a split file</comment>
+    <glob pattern="*.000"/>
+    <glob pattern="*.001"/>
+  </mime-type>
+</mime-info>
+HERE
+
 output "ok\n";
 output "\n";
