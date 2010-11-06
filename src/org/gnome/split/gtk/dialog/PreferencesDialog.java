@@ -43,8 +43,6 @@ import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
-import org.gnome.gtk.Dialog.Response;
-import org.gnome.gtk.Window.DeleteEvent;
 import org.gnome.notify.Notify;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Configuration;
@@ -58,7 +56,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class PreferencesDialog extends Dialog implements DeleteEvent, Response
+public final class PreferencesDialog extends Dialog implements Window.DeleteEvent, Dialog.Response
 {
     /**
      * Configuration of the application.

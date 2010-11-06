@@ -22,7 +22,7 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.ActionAssistant;
+import org.gnome.split.gtk.widget.assistant.ActionAssistant;
 
 import static org.freedesktop.bindings.Internationalization._;
 

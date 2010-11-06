@@ -26,8 +26,6 @@ import org.gnome.gtk.Label;
 import org.gnome.gtk.MessageType;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.InfoBar.Close;
-import org.gnome.gtk.InfoBar.Response;
 import org.gnome.split.GnomeSplit;
 
 /**
@@ -36,7 +34,7 @@ import org.gnome.split.GnomeSplit;
  * 
  * @author Guillaume Mazoyer
  */
-public class InfoHeader extends InfoBar implements Close, Response
+public class InfoHeader extends InfoBar implements InfoBar.Close, InfoBar.Response
 {
     /**
      * Current GNOME Split instance.
@@ -67,8 +65,8 @@ public class InfoHeader extends InfoBar implements Close, Response
         this.add(this.label);
 
         // Connect signals
-        this.connect((Close) this);
-        this.connect((Response) this);
+        this.connect((InfoBar.Close) this);
+        this.connect((InfoBar.Response) this);
     }
 
     @Override

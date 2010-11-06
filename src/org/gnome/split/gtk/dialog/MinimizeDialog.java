@@ -32,8 +32,7 @@ import org.gnome.gtk.MessageType;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.Widget;
-import org.gnome.gtk.Dialog.Response;
-import org.gnome.gtk.Window.DeleteEvent;
+import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.widget.AreaStatusIcon;
 
@@ -45,7 +44,7 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public final class MinimizeDialog extends MessageDialog implements DeleteEvent, Response
+public final class MinimizeDialog extends MessageDialog implements Window.DeleteEvent, Dialog.Response
 {
     /**
      * The current GNOME Split instance.
@@ -77,8 +76,8 @@ public final class MinimizeDialog extends MessageDialog implements DeleteEvent, 
         this.addButton(Stock.QUIT, ResponseType.CLOSE);
 
         // Connect the signals
-        this.connect((DeleteEvent) this);
-        this.connect((Response) this);
+        this.connect((Window.DeleteEvent) this);
+        this.connect((Dialog.Response) this);
     }
 
     @Override

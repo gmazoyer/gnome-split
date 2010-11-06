@@ -18,16 +18,12 @@
  * You should have received a copy of the GNU General Public License
  * along with GNOME Split.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.gnome.split.gtk.widget;
+package org.gnome.split.gtk.widget.assistant;
 
 import java.io.File;
 
 import org.gnome.gdk.Pixbuf;
 import org.gnome.gtk.Assistant;
-import org.gnome.gtk.Assistant.Apply;
-import org.gnome.gtk.Assistant.Cancel;
-import org.gnome.gtk.Assistant.Close;
-import org.gnome.gtk.Assistant.Prepare;
 import org.gnome.gtk.AssistantPageType;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.ButtonBoxStyle;
@@ -45,8 +41,6 @@ import org.gnome.gtk.RadioButton;
 import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.TextBuffer;
-import org.gnome.gtk.TextView;
 import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.VButtonBox;
@@ -67,7 +61,8 @@ import static org.freedesktop.bindings.Internationalization._;
  * 
  * @author Guillaume Mazoyer
  */
-public class ActionAssistant extends Assistant implements Prepare, Close, Cancel, Apply
+public class ActionAssistant extends Assistant implements Assistant.Prepare, Assistant.Close,
+        Assistant.Cancel, Assistant.Apply, Assistant.ForwardPage
 {
     /**
      * The current instance of GNOME Split.
@@ -75,19 +70,19 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     private GnomeSplit app;
 
     /**
-     * Type of assistant we're gonna use.
+     * Type of assistant we're going to use.
      */
     private byte type;
+
+    /**
+     * Final page of the assistant.
+     */
+    private FinalPage conclusion;
 
     /**
      * The logo of this assistant.
      */
     private Pixbuf logo;
-
-    /**
-     * The label to update to show the summary.
-     */
-    private TextView summary;
 
     /**
      * The name of the file to split.
@@ -122,9 +117,9 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         this.setTitle(_("Assistant"));
 
         // Set the type
-        this.type = -1;
+        this.type = 0;
 
-        // Setup the default split values
+        // Set the default values
         this.filename = null;
         this.size = 1;
         this.unit = 0;
@@ -133,11 +128,39 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         // Add introduction
         this.createGeneralIntroduction();
 
+        // Add merge assistant page
+        this.createMergeFileSelection();
+
+        // Add split assistant pages
+        this.createSplitFileSelection();
+        this.createSplitSizeSelection();
+        this.createSplitAlgoSelection();
+
+        // Add conclusion
+        this.createSummary();
+
+        // Connect a signal to handle pages
+        this.setForwardPageCallback((ForwardPage) this);
+
         // Connect signal handlers
-        this.connect((Prepare) this);
-        this.connect((Close) this);
-        this.connect((Cancel) this);
-        this.connect((Apply) this);
+        this.connect((Assistant.Prepare) this);
+        this.connect((Assistant.Close) this);
+        this.connect((Assistant.Cancel) this);
+        this.connect((Assistant.Apply) this);
+    }
+
+    /**
+     * Create a simple label which is aligned to the left and which can use
+     * markups.
+     */
+    static Label createLeftAlignedLabel(String text) {
+        final Label label = new Label(text);
+
+        label.setUseMarkup(true);
+        label.setLineWrap(true);
+        label.setAlignment(0.0f, 0.5f);
+
+        return label;
     }
 
     /**
@@ -181,20 +204,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     }
 
     /**
-     * Create a simple label which is aligned to the left and which can use
-     * markups.
-     */
-    private Label createLeftAlignedLabel(String text) {
-        final Label label = new Label(text);
-
-        label.setUseMarkup(true);
-        label.setLineWrap(true);
-        label.setAlignment(0.0f, 0.5f);
-
-        return label;
-    }
-
-    /**
      * Create a &quot;page&quot;. It is actually just a {@link VBox} with 5
      * pixels as border.
      * 
@@ -218,7 +227,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final String data = _("What do you want to do?");
 
         // Add the label
-        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
+        page.packStart(createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack the two choices
         final VButtonBox box = new VButtonBox();
@@ -275,10 +284,27 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
 
         // Setup the page in the assistant
         this.appendPage(page);
-        this.setPageType(page, AssistantPageType.CONFIRM);
+        this.setPageType(page, AssistantPageType.INTRO);
         this.setPageTitle(page, _("Action selection"));
         this.setPageHeaderImage(page, Constants.PROGRAM_LOGO);
         this.setPageComplete(page, true);
+    }
+
+    /**
+     * Create a page to sum up all info and validate the action.
+     */
+    private void createSummary() {
+        // The text to display
+        final String data = _("You can verify that all the data that have been collected are correct. If they are not, you can go back to a previous step to change them.");
+
+        // Create the final page
+        conclusion = new FinalPage(data);
+
+        // Setup the page in the assistant
+        this.appendPage(conclusion);
+        this.setPageType(conclusion, AssistantPageType.CONFIRM);
+        this.setPageTitle(conclusion, _("Confirmation"));
+        this.setPageComplete(conclusion, true);
     }
 
     /**
@@ -291,7 +317,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final String data = _("Select the file to split.");
 
         // Add the label
-        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
+        page.packStart(createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack widgets to select a file
         final HBox box = new HBox(false, 3);
@@ -320,7 +346,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         });
 
         // Setup the page in the assistant
-        this.insertPage(page, 2);
+        this.appendPage(page);
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("File selection"));
         this.setPageHeaderImage(page, logo);
@@ -337,7 +363,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final String data = _("Select the maximal size for each chunk. You can let GNOME Split calculate the size by giving the number of chunks to create.");
 
         // Add the label
-        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
+        page.packStart(createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack widgets to select a file size
         final HBox box = new HBox(false, 3);
@@ -404,7 +430,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         });
 
         // Setup the page in the assistant
-        this.insertPage(page, 3);
+        this.appendPage(page);
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("Size selection"));
         this.setPageHeaderImage(page, logo);
@@ -424,7 +450,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final String data = _("The algorithm defines the way how the file will be split.");
 
         // Add the label
-        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
+        page.packStart(createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack widgets to select a file
         final HBox box = new HBox(false, 3);
@@ -454,34 +480,9 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         });
 
         // Setup the page in the assistant
-        this.insertPage(page, 4);
+        this.appendPage(page);
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("Algorithm selection"));
-        this.setPageHeaderImage(page, logo);
-        this.setPageComplete(page, true);
-    }
-
-    /**
-     * Create a page to sum up all info and validate the split.
-     */
-    private void createSplitSummary() {
-        final VBox page = this.createPage();
-
-        // The text to display
-        final String data = _("The split is now ready. Take a look to the summary. If something is wrong, go back to the a previous step to change it before confirming.");
-
-        // Add the label
-        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
-
-        // Add the text view
-        summary = new TextView(new TextBuffer());
-        summary.setEditable(false);
-        page.packStart(summary, false, false, 0);
-
-        // Setup the page in the assistant
-        this.insertPage(page, 5);
-        this.setPageType(page, AssistantPageType.CONFIRM);
-        this.setPageTitle(page, _("Confirmation"));
         this.setPageHeaderImage(page, logo);
         this.setPageComplete(page, true);
     }
@@ -496,7 +497,7 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         final String data = _("Select the first file to merge.");
 
         // Add the label
-        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
+        page.packStart(createLeftAlignedLabel(data), false, false, 0);
 
         // Create a box to pack widgets to select a file
         final HBox box = new HBox(false, 3);
@@ -533,44 +534,11 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
         });
 
         // Setup the page in the assistant
-        this.insertPage(page, 2);
+        this.appendPage(page);
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("File selection"));
         this.setPageHeaderImage(page, logo);
         this.setPageComplete(page, false);
-    }
-
-    /**
-     * Create a page to sum up all info and validate the merge.
-     */
-    private void createMergeSummary() {
-        final VBox page = this.createPage();
-
-        // The text to display
-        final String data = _("You can check that you pick up the right file. If it is not the first file to merge, go back to the previous step to choose another one.");
-
-        // Add the label
-        page.packStart(this.createLeftAlignedLabel(data), false, false, 0);
-
-        // Create a box to show the directory information
-        final HBox dirBox = new HBox(false, 3);
-        page.packStart(dirBox, false, false, 0);
-
-        // Create a box to show the file information
-        final HBox fileBox = new HBox(false, 3);
-        page.packStart(fileBox, false, false, 0);
-
-        // Add the text view
-        summary = new TextView(new TextBuffer());
-        summary.setEditable(false);
-        fileBox.packStart(summary, false, false, 0);
-
-        // Setup the page in the assistant
-        this.insertPage(page, 3);
-        this.setPageType(page, AssistantPageType.CONFIRM);
-        this.setPageTitle(page, _("Confirmation"));
-        this.setPageHeaderImage(page, logo);
-        this.setPageComplete(page, true);
     }
 
     @Override
@@ -584,28 +552,6 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
 
             // Then hide the assistant
             source.hide();
-        } else {
-            if (type == 1) {
-                // Update the logo to use
-                this.logo = Gtk.renderIcon(this, Stock.PASTE, IconSize.DIALOG);
-
-                // Use the merge assistant
-                this.createMergeFileSelection();
-                this.createMergeSummary();
-            } else {
-                // Update the logo to use
-                this.logo = Gtk.renderIcon(this, Stock.CUT, IconSize.DIALOG);
-
-                // Use the split assistant
-                this.createSplitFileSelection();
-                this.createSplitSizeSelection();
-                this.createSplitAlgoSelection();
-                this.createSplitSummary();
-            }
-
-            // Show the assistant
-            source.setCurrentPage(0);
-            source.showAll();
         }
     }
 
@@ -622,29 +568,74 @@ public class ActionAssistant extends Assistant implements Prepare, Close, Cancel
     @Override
     public void onPrepare(Assistant source, Widget widget) {
         switch (source.getCurrentPage()) {
-        case 2:
+        case 1:
             if (type == 1) {
-                TextBuffer buffer = summary.getBuffer();
-                buffer.delete(buffer.getIterStart(), buffer.getIterEnd());
-                buffer.insert(buffer.getIterEnd(),
-                        _("First file to merge:") + " " + new File(filename).getName());
+                // Update the logo to use
+                logo = Gtk.renderIcon(this, Stock.PASTE, IconSize.DIALOG);
+            } else {
+                // Update the logo to use
+                logo = Gtk.renderIcon(this, Stock.CUT, IconSize.DIALOG);
             }
+            this.setPageHeaderImage(conclusion, logo);
             break;
 
-        case 4:
-            if (type == 0) {
-                TextBuffer buffer = summary.getBuffer();
-                buffer.delete(buffer.getIterStart(), buffer.getIterEnd());
-                buffer.insert(buffer.getIterEnd(),
-                        _("File to split:") + " " + new File(filename).getName() + "\n");
-                buffer.insert(
-                        buffer.getIterEnd(),
-                        _("Maximum size of a chunk:") + " "
-                                + SizeUnit.formatSize(this.calculateSize(size, unit)) + "\n");
-                buffer.insert(buffer.getIterEnd(),
-                        _("Algorithm of split:") + " " + Algorithm.toStrings()[algorithm]);
+        case 5:
+            if (type == 1) {
+                conclusion.setFields(new String[] {
+                    _("First file to merge:")
+                }, new String[] {
+                    new File(filename).getName()
+                });
+            } else {
+                conclusion.setFields(
+                        new String[] {
+                                _("File to split:"), _("Maximum size of a chunk:"),
+                                _("Algorithm of split:")
+                        },
+                        new String[] {
+                                new File(filename).getName(),
+                                SizeUnit.formatSize(this.calculateSize(size, unit)),
+                                Algorithm.toStrings()[algorithm]
+                        });
             }
             break;
         }
+    }
+
+    @Override
+    public int onForward(Assistant source, int currentPage) {
+        // The next page to display
+        int next = 0;
+
+        if (type == 1) {
+            // Only merge related pages
+            switch (currentPage) {
+            case 0:
+                next = 1;
+                break;
+            case 1:
+                next = 5;
+                break;
+            }
+        } else {
+            // Only split related pages
+            switch (currentPage) {
+            case 0:
+                next = 2;
+                break;
+            case 2:
+                next = 3;
+                break;
+            case 3:
+                next = 4;
+                break;
+            case 4:
+                next = 5;
+                break;
+            }
+        }
+
+        // Finally
+        return next;
     }
 }
