@@ -32,6 +32,7 @@ import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.utils.Algorithm;
+import org.gnome.split.core.utils.ShutdownHandler;
 import org.gnome.split.core.utils.UncaughtExceptionLogger;
 import org.gnome.split.getopt.GetOptions;
 import org.gnome.split.getopt.LongOption;
@@ -81,6 +82,9 @@ public final class GnomeSplit
     private GnomeSplit(String[] args) {
         // Initialize uncaught exception handler
         new UncaughtExceptionLogger();
+
+        // Start kill signals handler
+        Runtime.getRuntime().addShutdownHook(new ShutdownHandler());
 
         // Load program name
         Glib.setProgramName(Constants.PROGRAM_NAME);

@@ -22,13 +22,13 @@ package org.gnome.split.core.merger;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.exception.MissingChunkException;
+import org.gnome.split.core.io.GRandomAccessFile;
 import org.gnome.split.core.utils.MD5Hasher;
 
 /**
@@ -49,10 +49,10 @@ public final class YoyoCut extends DefaultMergeEngine
 
     @Override
     protected void loadHeaders() throws IOException {
-        RandomAccessFile access = null;
+        GRandomAccessFile access = null;
         try {
             // Open the first part to merge
-            access = new RandomAccessFile(file, "r");
+            access = new GRandomAccessFile(file, "r");
 
             // Set the length of the header to 0
             header = 0;
@@ -147,14 +147,14 @@ public final class YoyoCut extends DefaultMergeEngine
     @Override
     public void merge() throws IOException, EngineException {
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
-        RandomAccessFile out = null;
+        GRandomAccessFile out = null;
         File chunk = null;
         boolean run = true;
         boolean success = true;
 
         try {
             // Open the final file
-            out = new RandomAccessFile(filename, "rw");
+            out = new GRandomAccessFile(filename, "rw");
 
             for (int i = 1; i <= parts; i++) {
                 // Next chunk
@@ -165,7 +165,7 @@ public final class YoyoCut extends DefaultMergeEngine
                 }
 
                 // Open the chunk to read it
-                RandomAccessFile access = new RandomAccessFile(chunk, "r");
+                GRandomAccessFile access = new GRandomAccessFile(chunk, "r");
 
                 // Notify the view from a new part read
                 this.fireEnginePartRead(chunk.getName());

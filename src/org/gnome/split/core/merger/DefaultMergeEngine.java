@@ -22,7 +22,6 @@ package org.gnome.split.core.merger;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -31,6 +30,7 @@ import java.util.TimerTask;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
+import org.gnome.split.core.io.GRandomAccessFile;
 import org.gnome.split.core.utils.Algorithm;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -284,7 +284,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * maximum number of bytes that can be read. It returns <code>true</code>
      * if the reading was fully performed, else it returns <code>false</code>.
      */
-    protected boolean mergeChunk(RandomAccessFile merge, RandomAccessFile chunk, long read, long length)
+    protected boolean mergeChunk(GRandomAccessFile merge, GRandomAccessFile chunk, long read, long length)
             throws IOException {
         // Setup the buffer
         byte[] buffer = null;

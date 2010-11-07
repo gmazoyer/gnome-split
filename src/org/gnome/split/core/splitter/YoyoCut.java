@@ -22,9 +22,9 @@ package org.gnome.split.core.splitter;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.core.io.GRandomAccessFile;
 import org.gnome.split.core.utils.MD5Hasher;
 
 /**
@@ -44,7 +44,7 @@ public final class YoyoCut extends DefaultSplitEngine
     /**
      * Write the GNOME Split header at the beginning of a file.
      */
-    private void writeHeaders(RandomAccessFile access) throws IOException {
+    private void writeHeaders(GRandomAccessFile access) throws IOException {
         // Write the extension
         String extension = file.getName().substring(file.getName().lastIndexOf('.') + 1) + " ";
         access.write(extension.getBytes());
@@ -101,19 +101,19 @@ public final class YoyoCut extends DefaultSplitEngine
 
     @Override
     public void split() throws IOException {
-        RandomAccessFile toSplit = null;
+        GRandomAccessFile toSplit = null;
         boolean run = true;
         try {
             // Open a new file
-            toSplit = new RandomAccessFile(file, "r");
+            toSplit = new GRandomAccessFile(file, "r");
 
             for (int i = 1; i <= parts; i++) {
-                RandomAccessFile access = null;
+                GRandomAccessFile access = null;
                 File chunk = null;
                 try {
                     // Open the part
                     chunk = new File(this.getChunkName(destination, i));
-                    access = new RandomAccessFile(chunk, "rw");
+                    access = new GRandomAccessFile(chunk, "rw");
 
                     // Notify the view from a new part
                     chunks.add(chunk.getAbsolutePath());

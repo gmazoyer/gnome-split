@@ -21,11 +21,12 @@
 package org.gnome.split.config;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+
+import org.gnome.split.core.io.GFileInputStream;
+import org.gnome.split.core.io.GFileWriter;
 
 /**
  * Load the configuration file and interact with it.
@@ -171,10 +172,10 @@ public final class Configuration
      * This method is used to reset the preferences.
      */
     private void createPreferences() {
-        FileWriter writer = null;
+        GFileWriter writer = null;
         try {
             // Open the file writer
-            writer = new FileWriter(configuration);
+            writer = new GFileWriter(configuration);
 
             // Write general config
             writer.write("StartAssistant    = true\n");
@@ -226,7 +227,7 @@ public final class Configuration
     private void load() {
         try {
             Properties preferences = new Properties();
-            InputStream stream = new FileInputStream(configuration);
+            InputStream stream = new GFileInputStream(configuration);
 
             // Load the properties
             preferences.load(stream);
@@ -274,10 +275,10 @@ public final class Configuration
      * This method is used to save the preferences by overwriting the file.
      */
     public void savePreferences() {
-        FileWriter writer = null;
+        GFileWriter writer = null;
         try {
             // Open the file writer
-            writer = new FileWriter(configuration);
+            writer = new GFileWriter(configuration);
 
             // Write general config
             writer.write("StartAssistant    = " + ASSISTANT_ON_START + "\n");

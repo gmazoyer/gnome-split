@@ -23,7 +23,8 @@ package org.gnome.split.core.splitter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
+
+import org.gnome.split.core.io.GRandomAccessFile;
 
 /**
  * Algorithm to split a file with the KFK algorithm.
@@ -46,19 +47,19 @@ public final class KFK extends DefaultSplitEngine
 
     @Override
     public void split() throws IOException, FileNotFoundException {
-        RandomAccessFile toSplit = null;
+        GRandomAccessFile toSplit = null;
         boolean run = true;
         try {
             // Open a new file
-            toSplit = new RandomAccessFile(file, "r");
+            toSplit = new GRandomAccessFile(file, "r");
 
             for (int i = 0; i < parts; i++) {
-                RandomAccessFile access = null;
+                GRandomAccessFile access = null;
                 File chunk = null;
                 try {
                     // Open the part
                     chunk = new File(this.getChunkName(destination, i));
-                    access = new RandomAccessFile(chunk, "rw");
+                    access = new GRandomAccessFile(chunk, "rw");
 
                     // Notify the view from a new part
                     chunks.add(chunk.getAbsolutePath());

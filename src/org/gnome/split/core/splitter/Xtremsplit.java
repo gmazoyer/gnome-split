@@ -23,10 +23,10 @@ package org.gnome.split.core.splitter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
+import org.gnome.split.core.io.GRandomAccessFile;
 import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
 import org.gnome.split.core.utils.Utils;
@@ -48,7 +48,7 @@ public final class Xtremsplit extends DefaultSplitEngine
     /**
      * Write the xtm header at the beginning of a file.
      */
-    private void writeHeaders(RandomAccessFile access) throws IOException {
+    private void writeHeaders(GRandomAccessFile access) throws IOException {
         byte[] toWrite;
 
         // Write program name
@@ -112,11 +112,11 @@ public final class Xtremsplit extends DefaultSplitEngine
 
     @Override
     public void split() throws IOException, FileNotFoundException {
-        RandomAccessFile toSplit = null;
+        GRandomAccessFile toSplit = null;
         boolean run = true;
         try {
             // Open a new file
-            toSplit = new RandomAccessFile(file, "r");
+            toSplit = new GRandomAccessFile(file, "r");
 
             // Used for the MD5 calculation
             StringBuilder md5sum = null;
@@ -129,12 +129,12 @@ public final class Xtremsplit extends DefaultSplitEngine
             }
 
             for (int i = 1; i <= parts; i++) {
-                RandomAccessFile access = null;
+                GRandomAccessFile access = null;
                 File chunk = null;
                 try {
                     // Open the part
                     chunk = new File(this.getChunkName(destination, i));
-                    access = new RandomAccessFile(chunk, "rw");
+                    access = new GRandomAccessFile(chunk, "rw");
 
                     // Notify the view from a new part
                     chunks.add(chunk.getAbsolutePath());

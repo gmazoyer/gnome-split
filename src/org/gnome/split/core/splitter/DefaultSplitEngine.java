@@ -22,7 +22,6 @@ package org.gnome.split.core.splitter;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -31,6 +30,7 @@ import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.InvalidSizeException;
+import org.gnome.split.core.io.GRandomAccessFile;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -222,7 +222,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      * returns <code>true</code> if the writing was fully performed, else it
      * returns <code>false</code>.
      */
-    protected boolean writeChunk(RandomAccessFile split, RandomAccessFile chunk) throws IOException {
+    protected boolean writeChunk(GRandomAccessFile split, GRandomAccessFile chunk) throws IOException {
         // Needed variables to know when the chunk writing must be stopped
         int read = 0;
         byte[] buffer = null;

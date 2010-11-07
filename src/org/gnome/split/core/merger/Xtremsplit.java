@@ -22,12 +22,12 @@ package org.gnome.split.core.merger;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.exception.MissingChunkException;
+import org.gnome.split.core.io.GRandomAccessFile;
 import org.gnome.split.core.utils.ByteUtils;
 import org.gnome.split.core.utils.MD5Hasher;
 
@@ -52,7 +52,7 @@ public final class Xtremsplit extends DefaultMergeEngine
     private void loadMD5sums(String lastFilename) throws IOException {
         // Find the last file to read
         File lastFile = new File(lastFilename);
-        RandomAccessFile access = new RandomAccessFile(lastFile, "r");
+        GRandomAccessFile access = new GRandomAccessFile(lastFile, "r");
 
         // Find the position of the MD5 sums
         long position = access.length() - (parts * 32);
@@ -73,10 +73,10 @@ public final class Xtremsplit extends DefaultMergeEngine
 
     @Override
     protected void loadHeaders() throws IOException {
-        RandomAccessFile access = null;
+        GRandomAccessFile access = null;
         try {
             // Open the first part to merge
-            access = new RandomAccessFile(file, "r");
+            access = new GRandomAccessFile(file, "r");
 
             if (file.getName().endsWith(".001.exe")) {
                 // Skip useless header and .exe header
@@ -140,14 +140,14 @@ public final class Xtremsplit extends DefaultMergeEngine
     @Override
     public void merge() throws IOException, EngineException {
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 7);
-        RandomAccessFile out = null;
+        GRandomAccessFile out = null;
         File chunk = null;
         boolean run = true;
         boolean success = true;
 
         try {
             // Open the final file
-            out = new RandomAccessFile(filename, "rw");
+            out = new GRandomAccessFile(filename, "rw");
 
             // Load all the MD5 sums
             md5sums = new String[parts];
@@ -170,7 +170,7 @@ public final class Xtremsplit extends DefaultMergeEngine
                 }
 
                 // Open the chunk to read it
-                RandomAccessFile access = new RandomAccessFile(chunk, "r");
+                GRandomAccessFile access = new GRandomAccessFile(chunk, "r");
 
                 // Notify the view from a new part read
                 this.fireEnginePartRead(chunk.getName());

@@ -22,11 +22,11 @@ package org.gnome.split.core.merger;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MissingChunkException;
+import org.gnome.split.core.io.GRandomAccessFile;
 
 /**
  * Algorithm to merge files with the KFK algorithm.
@@ -76,13 +76,13 @@ public final class KFK extends DefaultMergeEngine
     @Override
     public void merge() throws IOException, EngineException {
         String part = file.getAbsolutePath().substring(0, file.getAbsolutePath().length() - 4);
-        RandomAccessFile out = null;
+        GRandomAccessFile out = null;
         File chunk = null;
         boolean run = true;
 
         try {
             // Open the final file
-            out = new RandomAccessFile(filename, "rw");
+            out = new GRandomAccessFile(filename, "rw");
 
             for (int i = 0; i < parts; i++) {
                 // Next chunk
@@ -93,7 +93,7 @@ public final class KFK extends DefaultMergeEngine
                 }
 
                 // Open the chunk to read it
-                RandomAccessFile access = new RandomAccessFile(chunk, "r");
+                GRandomAccessFile access = new GRandomAccessFile(chunk, "r");
 
                 // Notify the view from a new part read
                 this.fireEnginePartRead(chunk.getName());
