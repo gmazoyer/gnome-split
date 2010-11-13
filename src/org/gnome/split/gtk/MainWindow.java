@@ -37,6 +37,7 @@ import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.gtk.WindowPosition;
 import org.gnome.split.GnomeSplit;
+import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.MinimizeDialog;
@@ -323,6 +324,15 @@ public class MainWindow extends Window implements Window.DeleteEvent
         menubar.append(helpItem);
 
         return menubar;
+    }
+
+    @Override
+    public void setTitle(String title) {
+        if (title == null) {
+            super.setTitle(Constants.PROGRAM_NAME);
+        } else {
+            super.setTitle(Constants.PROGRAM_NAME + " - " + title);
+        }
     }
 
     /**

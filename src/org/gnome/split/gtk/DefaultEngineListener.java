@@ -128,6 +128,9 @@ public class DefaultEngineListener implements EngineListener
             gtk.getActionWidget().enable();
             gtk.getViewSwitcher().enable();
 
+            // Reset the window's title
+            gtk.setTitle(null);
+
             // Reset the status bar message
             gtk.getAreaStatusIcon().updateText(null);
 
@@ -344,6 +347,7 @@ public class DefaultEngineListener implements EngineListener
         double value = (double) done / (double) total;
 
         // Now update the widgets
+        gtk.setTitle(String.valueOf((int) (value * 100)) + "%");
         gtk.getActionWidget().updateProgress(value, text, true);
     }
 
