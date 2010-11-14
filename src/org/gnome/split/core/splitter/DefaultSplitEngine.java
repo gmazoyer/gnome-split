@@ -224,7 +224,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected boolean writeChunk(GRandomAccessFile split, GRandomAccessFile chunk) throws IOException {
         // Needed variables to know when the chunk writing must be stopped
-        int read = 0;
+        long read = 0;
         byte[] buffer = null;
 
         while (read < size) {
