@@ -36,7 +36,7 @@ final class SendEmailAction extends Action
 {
     protected SendEmailAction(final GnomeSplit app) {
         super(app, "send-email-action", _("Send by _email"), _("Send one or several files by email"),
-                Stock.NETWORK);
+                Stock.MISSING_IMAGE);
     }
 
     @Override
