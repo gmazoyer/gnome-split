@@ -1,5 +1,39 @@
 NEWS
 
+GNOME Split 1.0 (18 Nov 2010)
+=============================
+
+Codename: Stable Isotope
+
+  * Improve interface choice  when a file is given as a
+    parameter to start the application.
+  * Nice speed improvement. Split and merge operations are
+    performed 2 times faster than all previous releases.
+  * Handle cases where one or more chunks are missing.
+  * Improve exceptions and errors handling.
+  * Smaller preferences dialog. Better for netbooks screens.
+  * Fix the assistant behaviour. The assistant does not
+    duplicate pages anymore.
+  * Associate MIME types.
+  * Handle cases where the application would be stopped with
+    a 'kill' signal. All files streams would be closed to
+    stop the application properly and free resources.
+  * Display progress percentage in the window's title.
+  * Fix a bug where files with sizes greater than 2 GiB could
+    not be split.
+  * Update French translation (Guillaume Mazoyer).
+  * Update Galician translation (Equipo galego, Marcos Lans,
+    Xosé).
+  * Update German translation (Fabian Affolter, Janis Fehrmann,
+    Mario Blättermann, Nasenbaer, xlazarus).
+  * Update Italian translation (Andrea Amoroso, ugonegnome).
+  * Update Spanish translation (DiegoJ, Fitoschido, José
+    Lecaros, Cisterna, Marcos Escalier, Moritatux, victor
+    tejada yau).
+  * Add Catalan translation (el_libre).
+  * Add Czech translation (Martin "sachy" Šácha, Michal Chlup,
+    luisah).
+
 GNOME Split 0.9 (29 Aug 2010)
 =============================
 
