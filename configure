@@ -1534,6 +1534,7 @@ Categories=GNOME;GTK;Utility;
 Path=$prefix
 Exec=$prefix/bin/gnome-split
 Icon=$prefix/share/pixmaps/gnome-split.png
+MimeType=application/x-extension-xtm;application/x-extension-gsp;application/x-extension-yct;application/x-extension-kk;application/x-generic-chunk
 HERE
 
 close DESKTOP;
