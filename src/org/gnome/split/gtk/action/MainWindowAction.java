@@ -1,7 +1,7 @@
 /*
  * MainWindowAction.java
  * 
- * Copyright (c) 2009-2010 Guillaume Mazoyer
+ * Copyright (c) 2009-2011 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 

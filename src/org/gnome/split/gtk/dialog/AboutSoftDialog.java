@@ -1,7 +1,7 @@
 /*
  * AboutSoftDialog.java
  * 
- * Copyright (c) 2009-2010 Guillaume Mazoyer
+ * Copyright (c) 2009-2011 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
@@ -50,7 +50,7 @@ public final class AboutSoftDialog extends AboutDialog implements Window.DeleteE
         this.setVersion(Constants.PROGRAM_VERSION);
         this.setLogo(Constants.PROGRAM_LOGO);
         this.setComments(_("Split and merge your files easily."));
-        this.setCopyright("Copyright \u00A9 2009-2010 " + _("the GNOME Split project"));
+        this.setCopyright("Copyright \u00A9 2009-2011 " + _("the GNOME Split project"));
         this.setWebsite(Constants.PROGRAM_WEBSITE);
         this.setWebsiteLabel(_("Project website"));
 
