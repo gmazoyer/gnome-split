@@ -82,6 +82,7 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
         menu.append(new SeparatorMenuItem());
         menu.append(actions.getAction(ActionId.ABOUT).createMenuItem());
         menu.append(actions.getAction(ActionId.EXIT).createMenuItem());
+        menu.showAll();
     }
 
     @Override
@@ -91,8 +92,7 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
 
     @Override
     public void onPopupMenu(StatusIcon source, int button, int activateTime) {
-        menu.popup();
-        menu.showAll();
+        menu.popup(source);
     }
 
     /**
