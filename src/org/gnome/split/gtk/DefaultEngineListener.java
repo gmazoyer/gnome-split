@@ -272,7 +272,7 @@ public class DefaultEngineListener implements EngineListener
             gtk.getInfoBar().showInfo(title, body);
         } else {
             // Use notification
-            Notification notify = new Notification(title, body, null, gtk.getAreaStatusIcon());
+            Notification notify = new Notification(title, body, null);
             notify.setIcon(Constants.PROGRAM_LOGO);
             notify.show();
         }

@@ -20,6 +20,7 @@
  */
 package org.gnome.split.gtk.action;
 
+import org.freedesktop.icons.Icon;
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
 
@@ -61,6 +62,17 @@ public abstract class Action extends org.gnome.gtk.Action implements org.gnome.g
      */
     protected Action(final GnomeSplit app, String name, String label, String tooltip, Stock stock) {
         super(name, label, tooltip, stock);
+
+        this.app = app;
+        this.connect((Action.Activate) this);
+    }
+
+    /**
+     * Create a new action using a name, a label, a tooltip and a {@link Icon}
+     * icon.
+     */
+    protected Action(final GnomeSplit app, String name, String label, String tooltip, Icon icon) {
+        super(name, label, tooltip, icon);
 
         this.app = app;
         this.connect((Action.Activate) this);

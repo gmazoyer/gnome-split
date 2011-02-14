@@ -22,7 +22,7 @@ package org.gnome.split.gtk.action;
 
 import java.util.List;
 
-import org.gnome.gtk.Stock;
+import org.freedesktop.icons.ActionIcon;
 import org.gnome.split.GnomeSplit;
 
 import static org.freedesktop.bindings.Internationalization._;
@@ -36,7 +36,7 @@ final class SendEmailAction extends Action
 {
     protected SendEmailAction(final GnomeSplit app) {
         super(app, "send-email-action", _("Send by _email"), _("Send one or several files by email"),
-                Stock.MISSING_IMAGE);
+                ActionIcon.MAIL_SEND);
     }
 
     @Override

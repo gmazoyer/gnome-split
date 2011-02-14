@@ -20,15 +20,11 @@
  */
 package org.gnome.split.gtk;
 
-import org.freedesktop.icons.ActionIcon;
 import org.gnome.gdk.Cursor;
 import org.gnome.gdk.Event;
 import org.gnome.gtk.AcceleratorGroup;
 import org.gnome.gtk.Frame;
 import org.gnome.gtk.HSeparator;
-import org.gnome.gtk.IconSize;
-import org.gnome.gtk.Image;
-import org.gnome.gtk.ImageMenuItem;
 import org.gnome.gtk.Menu;
 import org.gnome.gtk.MenuBar;
 import org.gnome.gtk.MenuItem;
@@ -247,9 +243,6 @@ public class MainWindow extends Window implements Window.DeleteEvent
         items[5] = actions.getAction(ActionId.CANCEL).createMenuItem();
         items[6] = actions.getAction(ActionId.DELETE).createMenuItem();
         items[7] = actions.getAction(ActionId.EXIT).createMenuItem();
-
-        // Custom image for item
-        ((ImageMenuItem) items[2]).setImage(new Image(ActionIcon.MAIL_SEND, IconSize.MENU));
 
         // Add menu items to the menu
         fileItem.setSubmenu(fileMenu);
