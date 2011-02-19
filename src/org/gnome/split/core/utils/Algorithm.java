@@ -59,7 +59,11 @@ public final class Algorithm
      */
     public static String[] toStrings() {
         return new String[] {
-                _("Generic"), "GNOME Split", "Xtremsplit", "KFK", "YoyoCut"
+            _("Generic"),
+            "GNOME Split",
+            "Xtremsplit",
+            "KFK",
+            "YoyoCut"
         };
     }
 
@@ -68,7 +72,13 @@ public final class Algorithm
      */
     public static String[] getExtensions() {
         return new String[] {
-                ".000", ".001", ".001.gsp", ".001.xtm", ".001.exe", ".kk0", ".001.yct"
+            ".000",
+            ".001",
+            ".001.gsp",
+            ".001.xtm",
+            ".001.exe",
+            ".kk0",
+            ".001.yct"
         };
     }
 
@@ -77,11 +87,11 @@ public final class Algorithm
      */
     public static String[] getDescriptions() {
         return new String[] {
-                _("Algorithm that just split the file without doing anything special. The files will be mergeable with tools like <b>cat</b>. It does not provide a file integrity check with a checksum."),
-                _("Algorithm that is specific to <i>GNOME Split</i>. It provides a file integrity check using a <b>MD5</b> sum."),
-                _("Algorithm that is used by <i>Xtremsplit</i>. People who use <i>Xtremsplit</i> will be able to merge the files. It provides a file integrity check using a <b>MD5</b> sum."),
-                _("Algorithm that is used by <i>KFK</i>. People who use <i>KFK</i> will be able to merge the files. The files will be mergeable with tools like <b>cat</b> too."),
-                _("Algorithm that is used by <i>YoyoCut</i>. People who use <i>YoyoCut</i> will be able to merge the files. It provides a file integrity check using a <b>MD5</b> sum.")
+            _("Algorithm that just split the file without doing anything special. The files will be mergeable with tools like <b>cat</b>. It does not provide a file integrity check with a checksum."),
+            _("Algorithm that is specific to <i>GNOME Split</i>. It provides a file integrity check using a <b>MD5</b> sum."),
+            _("Algorithm that is used by <i>Xtremsplit</i>. People who use <i>Xtremsplit</i> will be able to merge the files. It provides a file integrity check using a <b>MD5</b> sum."),
+            _("Algorithm that is used by <i>KFK</i>. People who use <i>KFK</i> will be able to merge the files. The files will be mergeable with tools like <b>cat</b> too."),
+            _("Algorithm that is used by <i>YoyoCut</i>. People who use <i>YoyoCut</i> will be able to merge the files. It provides a file integrity check using a <b>MD5</b> sum.")
         };
     }
 

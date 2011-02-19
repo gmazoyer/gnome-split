@@ -98,7 +98,10 @@ public final class ByteUtils
         // Keep only the 4 needed bytes
         byte[] result = buffer.array();
         result = new byte[] {
-                result[4], result[5], result[6], result[7]
+            result[4],
+            result[5],
+            result[6],
+            result[7]
         };
 
         return result;

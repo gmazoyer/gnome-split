@@ -561,7 +561,7 @@ if ($os eq "gentoo") {
 		"libunixsocket-java",
 		"/usr/share/java/unix.jar");
 } elsif ($os eq "fedora") {
-    $dir = ($cpu_arch eq "64") ? "lib64" : "lib";
+	my $dir = ($cpu_arch eq "64") ? "lib64" : "lib";
 
 	check_prereq(@java_gnome_jar,
 		"java-gnome library",

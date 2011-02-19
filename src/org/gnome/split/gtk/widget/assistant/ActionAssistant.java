@@ -587,16 +587,15 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
                     new File(filename).getName()
                 });
             } else {
-                conclusion.setFields(
-                        new String[] {
-                                _("File to split:"), _("Maximum size of a chunk:"),
-                                _("Algorithm of split:")
-                        },
-                        new String[] {
-                                new File(filename).getName(),
-                                SizeUnit.formatSize(this.calculateSize(size, unit)),
-                                Algorithm.toStrings()[algorithm]
-                        });
+                conclusion.setFields(new String[] {
+                    _("File to split:"),
+                    _("Maximum size of a chunk:"),
+                    _("Algorithm of split:")
+                }, new String[] {
+                    new File(filename).getName(),
+                    SizeUnit.formatSize(this.calculateSize(size, unit)),
+                    Algorithm.toStrings()[algorithm]
+                });
             }
             break;
         }

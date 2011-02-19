@@ -34,7 +34,7 @@ public interface MergeModel
      * Get the first chunk to merge.
      */
     public File getFile();
-    
+
     /**
      * Get the directory where the merge will be done.
      */

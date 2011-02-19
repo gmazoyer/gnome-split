@@ -61,7 +61,7 @@ public final class AboutSoftDialog extends AboutDialog implements Window.DeleteE
 
         // Program documenters
         this.setDocumenters(new String[] {
-                "Guillaume Mazoyer <respawneral@gmail.com>", "Aur\u00E9lien Paulus <paupoo@gmail.com>"
+            "Guillaume Mazoyer <respawneral@gmail.com>"
         });
 
         // Program artists

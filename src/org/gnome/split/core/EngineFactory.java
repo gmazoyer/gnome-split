@@ -41,18 +41,22 @@ public class EngineFactory
      * List of the splitters that can be used.
      */
     private static final Class<?>[] splitters = new Class[] {
-            org.gnome.split.core.splitter.Generic.class, org.gnome.split.core.splitter.GnomeSplit.class,
-            org.gnome.split.core.splitter.Xtremsplit.class, org.gnome.split.core.splitter.KFK.class,
-            org.gnome.split.core.splitter.YoyoCut.class
+        org.gnome.split.core.splitter.Generic.class,
+        org.gnome.split.core.splitter.GnomeSplit.class,
+        org.gnome.split.core.splitter.Xtremsplit.class,
+        org.gnome.split.core.splitter.KFK.class,
+        org.gnome.split.core.splitter.YoyoCut.class
     };
 
     /**
      * List of the mergers that can be used.
      */
     private static final Class<?>[] mergers = new Class[] {
-            org.gnome.split.core.merger.Generic.class, org.gnome.split.core.merger.GnomeSplit.class,
-            org.gnome.split.core.merger.Xtremsplit.class, org.gnome.split.core.merger.KFK.class,
-            org.gnome.split.core.merger.YoyoCut.class
+        org.gnome.split.core.merger.Generic.class,
+        org.gnome.split.core.merger.GnomeSplit.class,
+        org.gnome.split.core.merger.Xtremsplit.class,
+        org.gnome.split.core.merger.KFK.class,
+        org.gnome.split.core.merger.YoyoCut.class
     };
 
     /**

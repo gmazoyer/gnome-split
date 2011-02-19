@@ -60,7 +60,11 @@ public final class SizeUnit
      * Get all the values using an array.
      */
     private static final double[] values = {
-            KiB, MiB, GiB, CDR, DVDR
+        KiB,
+        MiB,
+        GiB,
+        CDR,
+        DVDR
     };
 
     /**
@@ -92,8 +96,13 @@ public final class SizeUnit
      */
     public static String[] toStrings() {
         return new String[] {
-                _("chunks"), _("bytes (B)"), _("kibibytes (KiB)"), _("mebibytes (MiB)"),
-                _("gibibytes (GiB)"), _("CD-R (700 MB)"), _("DVD-R (4.7 GB)")
+            _("chunks"),
+            _("bytes (B)"),
+            _("kibibytes (KiB)"),
+            _("mebibytes (MiB)"),
+            _("gibibytes (GiB)"),
+            _("CD-R (700 MB)"),
+            _("DVD-R (4.7 GB)")
         };
     }
 }
