@@ -954,19 +954,18 @@ if ($os eq "gentoo") {
 	my $javadoc_candidate;
 	my $vendor;
 	if ($jdk_home) {
+		$javac_candidate = "$jdk_home/bin/javac";
+		$javah_candidate = "$jdk_home/bin/javah";
+		$jar_candidate = "$jdk_home/bin/jar";
+		$javadoc_candidate = "$jdk_home/bin/javadoc";
 		$vendor = "Specified";
 	} else {
-		if ( $ENV{'JAVA_HOME'} ) {
-			$jdk_home = $ENV{'JAVA_HOME'};
-			$vendor   = "Sun";
-		} else {
-			# will fail
-		}
+		$javac_candidate = which("javac");
+		$javah_candidate = which("javah");
+		$jar_candidate = which("jar");
+		$javadoc_candidate = which("javadoc");
+		$vendor = "System";
 	}
-	$javac_candidate   = "$jdk_home/bin/javac";
-	$javah_candidate   = "$jdk_home/bin/javah";
-	$jar_candidate     = "$jdk_home/bin/jar";
-	$javadoc_candidate = "$jdk_home/bin/javadoc";
 	check_compiler($javac, "$vendor javac", $javac_candidate, "-g");
 
 	check_jar($jar, "$vendor jar", $jar_candidate, "");
@@ -1180,16 +1179,12 @@ if ($os eq "gentoo") {
 	my $vendor;
 
 	if ($jdk_home) {
+		$java_candidate = "$jdk_home/bin/java";
 		$vendor = "Specified";
 	} else {
-		if ( $ENV{'JAVA_HOME'} ) {
-			$jdk_home = $ENV{'JAVA_HOME'};
-			$vendor   = "Sun";
-		} else {
-			# will fail
-		}
+		$java_candidate = which("java");
+		$vendor = "System";
 	}
-	$java_candidate = "$jdk_home/bin/java";
 
 	check_runtime($java, "$vendor java VM", $java_candidate, "-client -ea");
 
