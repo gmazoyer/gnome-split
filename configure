@@ -343,6 +343,7 @@ my $runtime;
 my $jdk_home;
 my $jamvm_bin;
 my $cacao_bin;
+my $cpu_arch;
 
 foreach my $arg (@ARGV) {
 	my ($key, $value) = split /=/, "$arg";
@@ -433,6 +434,14 @@ if ((-f "/etc/gentoo-release") || (-f "/etc/make.conf")) {
 } elsif (-f "/etc/fedora-release") {
 	output "Fedora";
 	$os = "fedora";
+
+	# Detect architecture for file locations
+	if (-x "/bin/arch") {
+		my $arch = `/bin/arch`;
+		if ($arch =~ m/_64/) {
+			$cpu_arch = "64"
+		}
+	}
 } elsif (-f "/etc/SuSE-release") {
 	output "Open SuSE";
 	$os = "suse";
@@ -552,35 +561,37 @@ if ($os eq "gentoo") {
 		"libunixsocket-java",
 		"/usr/share/java/unix.jar");
 } elsif ($os eq "fedora") {
+    $dir = ($cpu_arch eq "64") ? "lib64" : "lib";
+
 	check_prereq(@java_gnome_jar,
 		"java-gnome library",
 		"java-gnome",
-		"/usr/lib/java-gnome/gtk.jar");
+		"/usr/$dir/java-gnome/gtk.jar");
 
 	check_prereq(@dbus_java_jar,
 		"dbus-java library",
-		"libdbus-java",
+		"dbus-java",
 		"/usr/share/java/dbus-java/dbus.jar");
 
 	check_prereq(@debug_disable_jar,
 		"matthew-debug disable library",
 		"libmatthew-java",
-		"/usr/lib/libmatthew-java/debug-disable.jar");
+		"/usr/$dir/libmatthew-java/debug-disable.jar");
 
 	check_prereq(@debug_enable_jar,
 		"matthew-debug enable library",
 		"libmatthew-java",
-		"/usr/lib/libmatthew-java/debug-enable.jar");
+		"/usr/$dir/libmatthew-java/debug-enable.jar");
 
 	check_prereq(@hexdump_jar,
 		"matthew-debug hexdump library",
 		"libmatthew-java",
-		"/usr/lib/libmatthew-java/hexdump.jar");
+		"/usr/$dir/libmatthew-java/hexdump.jar");
 
 	check_prereq(@unix_jar,
 		"Unix socket library",
 		"libmatthew-java",
-		"/usr/lib/libmatthew-java/unix.jar");
+		"/usr/$dir/libmatthew-java/unix.jar");
 } elsif ($os eq "arch") {
 	check_prereq(@java_gnome_jar,
 		"java-gnome library",
