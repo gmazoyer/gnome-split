@@ -43,9 +43,6 @@ public class StatusWidget extends Statusbar
     public StatusWidget() {
         super();
 
-        // Always show the resize grip
-        this.setHasResizeGrip(true);
-
         // Just a little space
         this.setBorderWidth(2);
 

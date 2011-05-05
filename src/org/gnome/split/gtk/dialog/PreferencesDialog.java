@@ -24,6 +24,7 @@ import org.gnome.gdk.Event;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.ComboBox;
+import org.gnome.gtk.ComboBoxText;
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
@@ -38,7 +39,6 @@ import org.gnome.gtk.SizeGroup;
 import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.Stock;
-import org.gnome.gtk.TextComboBox;
 import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
@@ -434,7 +434,7 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         secondRow.packStart(this.createEmptyLabel(), false, false, 0);
 
         // Algorithm list
-        final TextComboBox algorithms = new TextComboBox();
+        final ComboBoxText algorithms = new ComboBoxText();
         secondRow.packStart(algorithms, false, false, 0);
         for (String algorithm : Algorithm.toStrings()) {
             // Fill the list

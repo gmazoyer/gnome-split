@@ -20,16 +20,16 @@
  */
 package org.gnome.split.gtk.widget.base;
 
-import org.gnome.gtk.TextComboBox;
+import org.gnome.gtk.ComboBoxText;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.SizeUnit;
 
 /**
- * A {@link TextComboBox} that lists available units.
+ * A {@link ComboBoxText} that lists available units.
  * 
  * @author Guillaume Mazoyer
  */
-public class UnitsBox extends TextComboBox
+public class UnitsBox extends ComboBoxText
 {
     public UnitsBox(final GnomeSplit app) {
         super();

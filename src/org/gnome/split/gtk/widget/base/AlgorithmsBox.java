@@ -20,16 +20,16 @@
  */
 package org.gnome.split.gtk.widget.base;
 
-import org.gnome.gtk.TextComboBox;
+import org.gnome.gtk.ComboBoxText;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.Algorithm;
 
 /**
- * A {@link TextComboBox} that lists available algorithms.
+ * A {@link ComboBoxText} that lists available algorithms.
  * 
  * @author Guillaume Mazoyer
  */
-public class AlgorithmsBox extends TextComboBox
+public class AlgorithmsBox extends ComboBoxText
 {
     public AlgorithmsBox(final GnomeSplit app) {
         super();
