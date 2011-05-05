@@ -121,6 +121,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         secondary.packStart(chunkRow, true, true, 0);
 
         final Label fileLabel = new Label(_("First chunk:"));
+        fileLabel.setAlignment(0.0f, 0.5f);
         chunkRow.packStart(fileLabel, false, false, 0);
 
         fileEntry = new Entry();
@@ -157,6 +158,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         secondary.packStart(destinationRow, true, true, 0);
 
         final Label destinationLabel = new Label(_("Destination:"));
+        destinationLabel.setAlignment(0.0f, 0.5f);
         destinationRow.packStart(destinationLabel, false, false, 0);
 
         destEntry = new Entry();
@@ -171,9 +173,11 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         secondary.packStart(partsRow, true, true, 0);
 
         final Label partsLabel = new Label(_("Chunks:"));
+        partsLabel.setAlignment(0.0f, 0.5f);
         partsRow.packStart(partsLabel, false, false, 0);
 
         partsNumber = new Label(_("Unknown"));
+        partsNumber.setAlignment(0.0f, 0.5f);
         partsRow.packStart(partsNumber, true, true, 0);
 
         // Size info row
@@ -181,9 +185,11 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         secondary.packStart(infoRow, true, true, 0);
 
         final Label sizeLabel = new Label(_("Total size:"));
+        sizeLabel.setAlignment(0.0f, 0.5f);
         infoRow.packStart(sizeLabel, false, false, 0);
 
         fileSize = new Label(_("Unknown"));
+        fileSize.setAlignment(0.0f, 0.5f);
         infoRow.packStart(fileSize, true, true, 0);
 
         // MD5 sum info row
@@ -191,9 +197,11 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         secondary.packStart(md5Row, true, true, 0);
 
         final Label md5Label = new Label(_("MD5 sum:"));
+        md5Label.setAlignment(0.0f, 0.5f);
         md5Row.packStart(md5Label, false, false, 0);
 
         md5sum = new Label(_("Unknown"));
+        md5sum.setAlignment(0.0f, 0.5f);
         md5Row.packStart(md5sum, true, true, 0);
 
         // Make all labels the same size

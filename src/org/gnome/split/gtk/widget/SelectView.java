@@ -27,8 +27,8 @@ import org.gnome.gtk.RadioButton;
 import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.action.RadioAction;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
+import org.gnome.split.gtk.action.RadioAction;
 
 import static org.freedesktop.bindings.Internationalization._;
 

@@ -115,9 +115,11 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         firstRow.packStart(labelColumn, false, false, 0);
 
         final Label fileLabel = new Label(_("File:"));
+        fileLabel.setAlignment(0.0f, 0.5f);
         labelColumn.packStart(fileLabel, true, true, 0);
 
         final Label destinationLabel = new Label(_("Destination:"));
+        destinationLabel.setAlignment(0.0f, 0.5f);
         labelColumn.packStart(destinationLabel, true, true, 0);
 
         // Pack all Entrys in the same box

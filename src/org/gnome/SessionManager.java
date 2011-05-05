@@ -21,6 +21,7 @@
 package org.gnome;
 
 import java.util.List;
+
 import org.freedesktop.dbus.DBusInterface;
 import org.freedesktop.dbus.DBusSignal;
 import org.freedesktop.dbus.UInt32;
