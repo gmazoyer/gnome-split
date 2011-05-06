@@ -31,8 +31,6 @@ import org.gnome.gtk.FileFilter;
 import org.gnome.gtk.Frame;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
-import org.gnome.gtk.SizeGroup;
-import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.split.GnomeSplit;
@@ -59,11 +57,6 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
      * Define if the widget is visible or not.
      */
     private boolean visible;
-
-    /**
-     * The first file to merge.
-     */
-    private Entry fileEntry;
 
     /**
      * Select a file using a {@link FileChooserWidget}.
@@ -112,20 +105,17 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         // Set the border of the widget
         this.setBorderWidth(5);
 
-        // Secondary vertical box
-        final VBox secondary = new VBox(false, 5);
-        this.packStart(secondary, true, true, 0);
+        // Container vertical box
+        final VBox container = new VBox(false, 5);
+        this.packStart(container, true, true, 0);
 
         // First chunk row
         final HBox chunkRow = new HBox(false, 5);
-        secondary.packStart(chunkRow, true, true, 0);
+        container.packStart(chunkRow, true, true, 0);
 
         final Label fileLabel = new Label(_("First chunk:"));
         fileLabel.setAlignment(0.0f, 0.5f);
         chunkRow.packStart(fileLabel, false, false, 0);
-
-        fileEntry = new Entry();
-        chunkRow.packStart(fileEntry, true, true, 0);
 
         // Filter for the file chooser to limit the file choice
         final FileFilter all = new FileFilter(_("All files"));
@@ -150,12 +140,11 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
                 setFile(source.getFilename());
             }
         });
-        // table.attach(fileChooser, 2, 3, 0, 1);
-        chunkRow.packStart(fileChooser, false, false, 0);
+        chunkRow.packStart(fileChooser, true, true, 0);
 
         // Destination row
         final HBox destinationRow = new HBox(false, 5);
-        secondary.packStart(destinationRow, true, true, 0);
+        container.packStart(destinationRow, true, true, 0);
 
         final Label destinationLabel = new Label(_("Destination:"));
         destinationLabel.setAlignment(0.0f, 0.5f);
@@ -170,7 +159,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         // Parts info row
         final HBox partsRow = new HBox(false, 5);
-        secondary.packStart(partsRow, true, true, 0);
+        container.packStart(partsRow, true, true, 0);
 
         final Label partsLabel = new Label(_("Chunks:"));
         partsLabel.setAlignment(0.0f, 0.5f);
@@ -182,7 +171,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         // Size info row
         final HBox infoRow = new HBox(false, 5);
-        secondary.packStart(infoRow, true, true, 0);
+        container.packStart(infoRow, true, true, 0);
 
         final Label sizeLabel = new Label(_("Total size:"));
         sizeLabel.setAlignment(0.0f, 0.5f);
@@ -194,7 +183,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         // MD5 sum info row
         final HBox md5Row = new HBox(false, 5);
-        secondary.packStart(md5Row, true, true, 0);
+        container.packStart(md5Row, true, true, 0);
 
         final Label md5Label = new Label(_("MD5 sum:"));
         md5Label.setAlignment(0.0f, 0.5f);
@@ -205,22 +194,14 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         md5Row.packStart(md5sum, true, true, 0);
 
         // Make all labels the same size
-        final SizeGroup labels = new SizeGroup(SizeGroupMode.HORIZONTAL);
         labels.add(fileLabel);
         labels.add(destinationLabel);
         labels.add(partsLabel);
         labels.add(sizeLabel);
         labels.add(md5Label);
 
-        // Make all entries the same size
-        final SizeGroup entries = new SizeGroup(SizeGroupMode.HORIZONTAL);
-        entries.add(fileEntry);
-        entries.add(destEntry);
-
         // Make all choosers the same size
-        final SizeGroup choosers = new SizeGroup(SizeGroupMode.BOTH);
         choosers.add(fileChooser);
-        choosers.add(dirChooser);
     }
 
     /**
@@ -285,7 +266,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
     @Override
     public boolean isFullyFilled() {
-        return (!fileEntry.getText().isEmpty() && !destEntry.getText().isEmpty());
+        return ((fileChooser.getFilename() != null) && !destEntry.getText().isEmpty());
     }
 
     @Override
@@ -299,7 +280,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
     @Override
     public byte checkFileSystemPermission() {
         // Check permission
-        boolean read = new File(fileEntry.getText()).canRead();
+        boolean read = new File(fileChooser.getFilename()).canRead();
         boolean write = new File(dirChooser.getCurrentFolder()).canWrite();
 
         // Consider we can do everything
@@ -340,7 +321,6 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
     @Override
     public void reset() {
-        fileEntry.setText("");
         fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
         destEntry.setText("");
         dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
@@ -367,7 +347,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
     @Override
     public File getFile() {
-        return new File(fileEntry.getText());
+        return new File(fileChooser.getFilename());
     }
 
     @Override
@@ -401,7 +381,6 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
             this.reset();
         } else {
             fileChooser.setFilename(filename);
-            fileEntry.setText(filename);
         }
     }
 }

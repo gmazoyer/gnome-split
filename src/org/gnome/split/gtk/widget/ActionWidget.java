@@ -20,6 +20,9 @@
  */
 package org.gnome.split.gtk.widget;
 
+import org.gnome.gtk.SizeGroup;
+import org.gnome.gtk.SizeGroupMode;
+
 /**
  * Interface which defines a model for action views.
  * 
@@ -27,6 +30,16 @@ package org.gnome.split.gtk.widget;
  */
 public interface ActionWidget
 {
+    /**
+     * Group to make all labels of the interface identical.
+     */
+    final static SizeGroup labels = new SizeGroup(SizeGroupMode.BOTH);
+
+    /**
+     * Group to make all choosers of the interface identical.
+     */
+    final static SizeGroup choosers = new SizeGroup(SizeGroupMode.BOTH);
+
     /**
      * Return whether or not the widget is visible.
      */

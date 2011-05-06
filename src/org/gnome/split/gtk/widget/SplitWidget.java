@@ -61,11 +61,6 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
     private boolean visible;
 
     /**
-     * File to split.
-     */
-    private Entry fileEntry;
-
-    /**
      * Select a file using a {@link FileChooserWidget}.
      */
     private FileChooserButton fileChooser;
@@ -110,31 +105,9 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         final HBox firstRow = new HBox(false, 5);
         this.packStart(firstRow, true, true, 0);
 
-        // Pack all Labels in the same box
-        final VBox labelColumn = new VBox(false, 5);
-        firstRow.packStart(labelColumn, false, false, 0);
-
         final Label fileLabel = new Label(_("File:"));
         fileLabel.setAlignment(0.0f, 0.5f);
-        labelColumn.packStart(fileLabel, true, true, 0);
-
-        final Label destinationLabel = new Label(_("Destination:"));
-        destinationLabel.setAlignment(0.0f, 0.5f);
-        labelColumn.packStart(destinationLabel, true, true, 0);
-
-        // Pack all Entrys in the same box
-        final VBox entryColumn = new VBox(false, 5);
-        firstRow.packStart(entryColumn, true, true, 0);
-
-        fileEntry = new Entry();
-        entryColumn.packStart(fileEntry, true, true, 0);
-
-        destinationEntry = new Entry();
-        entryColumn.packStart(destinationEntry, true, true, 0);
-
-        // Pack all choosers in the same box
-        final VBox chooserColumn = new VBox(false, 5);
-        firstRow.packStart(chooserColumn, false, false, 0);
+        firstRow.packStart(fileLabel, false, false, 0);
 
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
         fileChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
@@ -144,11 +117,21 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
                 setFile(source.getFilename());
             }
         });
-        chooserColumn.packStart(fileChooser, true, true, 0);
+        firstRow.packStart(fileChooser, true, true, 0);
+
+        final HBox secondRow = new HBox(false, 5);
+        this.packStart(secondRow, true, true, 0);
+
+        final Label destinationLabel = new Label(_("Destination:"));
+        destinationLabel.setAlignment(0.0f, 0.5f);
+        secondRow.packStart(destinationLabel, true, true, 0);
+
+        destinationEntry = new Entry();
+        secondRow.packStart(destinationEntry, true, true, 0);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
         dirChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
-        chooserColumn.packStart(dirChooser, true, true, 0);
+        secondRow.packStart(dirChooser, true, true, 0);
 
         final HBox thirdRow = new HBox(false, 5);
         this.packStart(thirdRow, true, true, 0);
@@ -179,10 +162,17 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         algoList = new AlgorithmsBox(app);
         secondColumn.packStart(algoList, true, true, 0);
 
+        // Make all labels the same size
+        labels.add(fileLabel);
+        labels.add(destinationLabel);
+
+        // Make all choosers the same size
+        choosers.add(fileChooser);
+
         // Make the sizes of size and algorithm boxes equal
-        final SizeGroup group = new SizeGroup(SizeGroupMode.BOTH);
-        group.add(firstColumn);
-        group.add(secondColumn);
+        final SizeGroup boxes = new SizeGroup(SizeGroupMode.BOTH);
+        boxes.add(firstColumn);
+        boxes.add(secondColumn);
     }
 
     /**
@@ -224,12 +214,12 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
 
     @Override
     public boolean isFullyFilled() {
-        return (!fileEntry.getText().isEmpty() && !destinationEntry.getText().isEmpty());
+        return ((fileChooser.getFilename() != null) && !destinationEntry.getText().isEmpty());
     }
 
     @Override
     public long checkFreeSpace() {
-        File file = new File(fileEntry.getText());
+        File file = new File(fileChooser.getFilename());
         long free = new File(dirChooser.getCurrentFolder()).getFreeSpace();
 
         return ((free >= file.length()) ? -1 : free);
@@ -238,7 +228,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
     @Override
     public byte checkFileSystemPermission() {
         // Check permission
-        boolean read = new File(fileEntry.getText()).canRead();
+        boolean read = new File(fileChooser.getFilename()).canRead();
         boolean write = new File(dirChooser.getCurrentFolder()).canWrite();
 
         // Consider we can do everything
@@ -279,7 +269,6 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
 
     @Override
     public void reset() {
-        fileEntry.setText("");
         fileChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
         destinationEntry.setText("");
         dirChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
@@ -306,7 +295,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
 
     @Override
     public File getFile() {
-        return new File(fileEntry.getText());
+        return new File(fileChooser.getFilename());
     }
 
     @Override
@@ -369,7 +358,6 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
 
         // Update entries
         fileChooser.setFilename(filename);
-        fileEntry.setText(filename);
         destinationEntry.setText(file);
     }
 
