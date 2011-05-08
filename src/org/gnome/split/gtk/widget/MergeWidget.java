@@ -111,7 +111,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         // First chunk row
         final HBox chunkRow = new HBox(false, 5);
-        container.packStart(chunkRow, true, true, 0);
+        container.packStart(chunkRow, false, false, 0);
 
         final Label fileLabel = new Label(_("First chunk:"));
         fileLabel.setAlignment(0.0f, 0.5f);
@@ -144,7 +144,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         // Destination row
         final HBox destinationRow = new HBox(false, 5);
-        container.packStart(destinationRow, true, true, 0);
+        container.packStart(destinationRow, false, false, 0);
 
         final Label destinationLabel = new Label(_("Destination:"));
         destinationLabel.setAlignment(0.0f, 0.5f);
@@ -155,11 +155,11 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
         dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
-        destinationRow.packStart(dirChooser, false, false, 0);
+        destinationRow.packStart(dirChooser, true, true, 0);
 
         // Parts info row
         final HBox partsRow = new HBox(false, 5);
-        container.packStart(partsRow, true, true, 0);
+        container.packStart(partsRow, false, false, 0);
 
         final Label partsLabel = new Label(_("Chunks:"));
         partsLabel.setAlignment(0.0f, 0.5f);
@@ -171,7 +171,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         // Size info row
         final HBox infoRow = new HBox(false, 5);
-        container.packStart(infoRow, true, true, 0);
+        container.packStart(infoRow, false, false, 0);
 
         final Label sizeLabel = new Label(_("Total size:"));
         sizeLabel.setAlignment(0.0f, 0.5f);
@@ -183,7 +183,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
         // MD5 sum info row
         final HBox md5Row = new HBox(false, 5);
-        container.packStart(md5Row, true, true, 0);
+        container.packStart(md5Row, false, false, 0);
 
         final Label md5Label = new Label(_("MD5 sum:"));
         md5Label.setAlignment(0.0f, 0.5f);

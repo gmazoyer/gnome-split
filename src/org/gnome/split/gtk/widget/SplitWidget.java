@@ -103,7 +103,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         this.setBorderWidth(5);
 
         final HBox firstRow = new HBox(false, 5);
-        this.packStart(firstRow, true, true, 0);
+        this.packStart(firstRow, false, false, 0);
 
         final Label fileLabel = new Label(_("File:"));
         fileLabel.setAlignment(0.0f, 0.5f);
@@ -120,11 +120,11 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         firstRow.packStart(fileChooser, true, true, 0);
 
         final HBox secondRow = new HBox(false, 5);
-        this.packStart(secondRow, true, true, 0);
+        this.packStart(secondRow, false, false, 0);
 
         final Label destinationLabel = new Label(_("Destination:"));
         destinationLabel.setAlignment(0.0f, 0.5f);
-        secondRow.packStart(destinationLabel, true, true, 0);
+        secondRow.packStart(destinationLabel, false, false, 0);
 
         destinationEntry = new Entry();
         secondRow.packStart(destinationEntry, true, true, 0);
@@ -134,17 +134,17 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         secondRow.packStart(dirChooser, true, true, 0);
 
         final HBox thirdRow = new HBox(false, 5);
-        this.packStart(thirdRow, true, true, 0);
+        this.packStart(thirdRow, false, false, 0);
 
         // Pack size related widgets
         final VBox firstColumn = new VBox(false, 5);
         thirdRow.packStart(firstColumn, true, true, 0);
 
         final Label sizeLabel = new Label(_("Split in:"));
-        firstColumn.packStart(sizeLabel, true, true, 0);
+        firstColumn.packStart(sizeLabel, false, false, 0);
 
         final HBox splitSize = new HBox(false, 3);
-        firstColumn.packStart(splitSize, true, true, 0);
+        firstColumn.packStart(splitSize, false, false, 0);
 
         sizeButton = new SpinButton(1, 4096, 1);
         splitSize.packStart(sizeButton, true, true, 0);
@@ -157,7 +157,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         thirdRow.packStart(secondColumn, true, true, 0);
 
         final Label algoLabel = new Label(_("Algorithm:"));
-        secondColumn.packStart(algoLabel, true, true, 0);
+        secondColumn.packStart(algoLabel, false, false, 0);
 
         algoList = new AlgorithmsBox(app);
         secondColumn.packStart(algoList, true, true, 0);
