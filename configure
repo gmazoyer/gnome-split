@@ -1501,6 +1501,10 @@ open LAUNCHER, ">tmp/launcher/gnome-split-local";
 print LAUNCHER "#!/bin/sh\n";
 print LAUNCHER join (" ",
 	"exec java",
+	"-client",
+	"-ea",
+	"-Dprogram='gnome-split'",
+	"-Djava.awt.headless=true",
 	"-Djava.library.path=$libdir",
 	"-classpath tmp/classes:$JAVAGNOME_JAR:$DBUSJAVA_JAR:$DEBUGDIS_JAR:$DEBUGENA_JAR:$HEXDUMP_JAR:$UNIXSOCK_JAR",
 	"org.gnome.split.GnomeSplit",
@@ -1518,6 +1522,10 @@ print LAUNCHER "#!/bin/sh\n";
 print LAUNCHER "cd $prefix\n";
 print LAUNCHER join (" ",
 	"exec java",
+	"-client",
+	"-ea",
+	"-Dprogram='gnome-split'",
+	"-Djava.awt.headless=true",
 	"-Djava.library.path=$libdir",
 	"-classpath $GNOME_SPLIT_JAR:$JAVAGNOME_JAR:$DBUSJAVA_JAR:$DEBUGDIS_JAR:$DEBUGENA_JAR:$HEXDUMP_JAR:$UNIXSOCK_JAR",
 	"org.gnome.split.GnomeSplit",
