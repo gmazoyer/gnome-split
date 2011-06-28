@@ -375,7 +375,7 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
         box.packStart(button, true, true, 0);
 
         // Create the list of units
-        final UnitsBox units = new UnitsBox(app);
+        final UnitsBox units = new UnitsBox();
         box.packStart(units, true, true, 0);
 
         // Add a last label to see if the size is valid

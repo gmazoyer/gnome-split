@@ -116,7 +116,7 @@ public final class Xtremsplit extends DefaultMergeEngine
             try {
                 access.close();
             } catch (IOException e) {
-                // Drop the exception
+                e.printStackTrace();
             }
         }
     }
@@ -261,7 +261,7 @@ public final class Xtremsplit extends DefaultMergeEngine
                 // Close the final file
                 out.close();
             } catch (IOException e) {
-                // Drop the exception
+                e.printStackTrace();
             }
         }
     }

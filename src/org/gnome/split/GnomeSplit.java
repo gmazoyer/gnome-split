@@ -288,7 +288,8 @@ public final class GnomeSplit
         try {
             Gtk.showURI(new URI(uri));
         } catch (URISyntaxException e) {
-            // Can be dropped, should *never* happen
+            // Should *never* happen
+            e.printStackTrace();
         }
     }
 

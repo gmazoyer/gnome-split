@@ -74,7 +74,7 @@ public final class GnomeSplit extends DefaultMergeEngine
             try {
                 access.close();
             } catch (IOException e) {
-                // Drop the exception
+                e.printStackTrace();
             }
         }
     }
@@ -195,7 +195,7 @@ public final class GnomeSplit extends DefaultMergeEngine
                 // Close the final file
                 out.close();
             } catch (IOException e) {
-                // Drop the exception
+                e.printStackTrace();
             }
         }
     }

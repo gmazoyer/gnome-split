@@ -46,7 +46,7 @@ public class MD5Hasher
         try {
             algorithm = MessageDigest.getInstance("MD5");
         } catch (NoSuchAlgorithmException e) {
-            // Should not happened
+            e.printStackTrace();
         }
     }
 

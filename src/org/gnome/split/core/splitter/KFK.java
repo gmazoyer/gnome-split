@@ -85,7 +85,7 @@ public final class KFK extends DefaultSplitEngine
                         // Close the part file
                         access.close();
                     } catch (IOException e) {
-                        // Drop the exception
+                        e.printStackTrace();
                     }
                 }
             }
@@ -97,7 +97,7 @@ public final class KFK extends DefaultSplitEngine
                 // Close the part file
                 toSplit.close();
             } catch (IOException e) {
-                // Drop the exception
+                e.printStackTrace();
             }
         }
     }

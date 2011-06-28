@@ -125,7 +125,7 @@ public final class KFK extends DefaultMergeEngine
                 // Close the final file
                 out.close();
             } catch (IOException e) {
-                // Drop the exception
+                e.printStackTrace();
             }
         }
     }

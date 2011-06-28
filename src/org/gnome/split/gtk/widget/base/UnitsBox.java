@@ -21,7 +21,6 @@
 package org.gnome.split.gtk.widget.base;
 
 import org.gnome.gtk.ComboBoxText;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.SizeUnit;
 
 /**
@@ -31,7 +30,7 @@ import org.gnome.split.core.utils.SizeUnit;
  */
 public class UnitsBox extends ComboBoxText
 {
-    public UnitsBox(final GnomeSplit app) {
+    public UnitsBox() {
         super();
 
         // Add all units

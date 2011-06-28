@@ -149,7 +149,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         sizeButton = new SpinButton(1, 4096, 1);
         splitSize.packStart(sizeButton, true, true, 0);
 
-        sizeUnits = new UnitsBox(app);
+        sizeUnits = new UnitsBox();
         splitSize.packStart(sizeUnits, true, true, 0);
 
         // Pack algorithm related widgets

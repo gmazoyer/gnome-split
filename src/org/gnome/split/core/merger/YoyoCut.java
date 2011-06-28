@@ -123,7 +123,7 @@ public final class YoyoCut extends DefaultMergeEngine
             try {
                 access.close();
             } catch (IOException e) {
-                // Drop the exception
+                e.printStackTrace();
             }
         }
     }
@@ -233,7 +233,7 @@ public final class YoyoCut extends DefaultMergeEngine
                 // Close the final file
                 out.close();
             } catch (IOException e) {
-                // Drop the exception
+                e.printStackTrace();
             }
         }
     }
