@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: GNOME Split\n"
 "Report-Msgid-Bugs-To: Guillaume Mazoyer <respawneral@gmail.com>\n"
-"POT-Creation-Date: 2010-11-01 11:15+0100\n"
-"PO-Revision-Date: 2010-11-07 10:12+0000\n"
+"POT-Creation-Date: 2010-11-18 16:49+0100\n"
+"PO-Revision-Date: 2010-11-19 11:49+0000\n"
 "Last-Translator: luisah <luisah.linux@gmail.com>\n"
 "Language-Team: Czech <cs@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-11-18 15:28+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-08-05 21:36+0000\n"
+"X-Generator: Launchpad (build 13613)\n"
 
 #: src/org/gnome/split/getopt/GetOptions.java:311
 #, java-format
@@ -200,11 +200,11 @@ msgstr "Rozděluji {0}"
 msgid "GNOME Split activity"
 msgstr "Aktivita GNOME Split"
 
-#: src/org/gnome/split/GnomeSplit.java:152
+#: src/org/gnome/split/GnomeSplit.java:156
 msgid "More than one instance."
 msgstr "Více než jedna instance"
 
-#: src/org/gnome/split/GnomeSplit.java:153
+#: src/org/gnome/split/GnomeSplit.java:157
 msgid ""
 "Only one instance of GNOME Split can be executed at a time. If you want to "
 "run multiple instances, edit the preferences. Remember that it is never safe "
@@ -214,11 +214,11 @@ msgstr ""
 "více instancí, upravte nastavení. Pamatujte, že nikdy není bezpečný pro "
 "provoz více než jedné instancve GNOME Split."
 
-#: src/org/gnome/split/GnomeSplit.java:300
+#: src/org/gnome/split/GnomeSplit.java:304
 msgid "Quit GNOME Split."
 msgstr "Ukončit GNOME Split"
 
-#: src/org/gnome/split/GnomeSplit.java:301
+#: src/org/gnome/split/GnomeSplit.java:305
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"
@@ -364,19 +364,19 @@ msgstr ""
 msgid "_View switcher"
 msgstr "_Přepínač pohledů"
 
-#: src/org/gnome/split/gtk/MainWindow.java:228
+#: src/org/gnome/split/gtk/MainWindow.java:233
 msgid "_File"
 msgstr "_Soubor"
 
-#: src/org/gnome/split/gtk/MainWindow.java:262
+#: src/org/gnome/split/gtk/MainWindow.java:270
 msgid "_Edit"
 msgstr "_Úpravy"
 
-#: src/org/gnome/split/gtk/MainWindow.java:276
+#: src/org/gnome/split/gtk/MainWindow.java:284
 msgid "_View"
 msgstr "_Pohled"
 
-#: src/org/gnome/split/gtk/MainWindow.java:302
+#: src/org/gnome/split/gtk/MainWindow.java:310
 msgid "_Help"
 msgstr "_Nápověda"
 
@@ -461,12 +461,12 @@ msgstr "_Pokud je to možné, spočítat MD5."
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:427
 msgid "Default algorithm"
-msgstr "Defaultní algoritmus"
+msgstr "Výchozí algoritmus"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:460
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:581
 msgid "Default directory"
-msgstr "Defaultní adresář"
+msgstr "Výchozí složka"
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:470
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:591
@@ -544,7 +544,6 @@ msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Martin \"sachy\" Šácha https://launchpad.net/~sachy\n"
-"  Michal Chlup https://launchpad.net/~axs204b\n"
 "  luisah https://launchpad.net/~luisah"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:76
@@ -573,49 +572,49 @@ msgstr ""
 "S tímto programem byste měli obdržet kopii GNU General Public License. Pokud "
 "ne, viz <http://www.gnu.org/licenses/>."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:156
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:159
 #, java-format
 msgid "Writing {0}."
 msgstr "Zapisování {0}"
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:167
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:170
 #, java-format
 msgid "Reading {0}."
 msgstr "Čtení {0}"
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:178
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:181
 msgid "MD5 sum calculation."
 msgstr "Výpočet MD5 součtu."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:256
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:259
 msgid "Split finished."
 msgstr "Rozdělení dokončeno."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:257
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:260
 msgid "The file was succesfully split."
 msgstr "Soubor byl úspěšně rozdělen."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:259
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:262
 msgid "Merge finished."
 msgstr "Sloučení dokončeno."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:260
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:263
 msgid "The files were successfully merged."
 msgstr "Soubory byly úspěšně sloučeny."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:286
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:289
 msgid "Split stopped."
 msgstr "Rozdělení zastaveno."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:288
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:291
 msgid "Merge stopped."
 msgstr "Sloučení zastaveno."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:321
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:324
 msgid "Unhandled exception."
 msgstr "Neošetřená vyjímka."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:322
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:325
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"

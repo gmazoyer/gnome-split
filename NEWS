@@ -1,5 +1,23 @@
 NEWS
 
+GNOME Split 1.1 (05 Aug 2011)
+=============================
+
+Codename: Dark Matter
+
+  * Detection of Mandriva in the build system.
+  * Fix for in the build system for Fedora 64.
+  * Support of java-gnome >= 4.0.20.
+  * Left aligned labels to follow GNOME HIG.
+  * Remove non needed widgets for file selection.
+  * Improve widgets size so the UI does not get resized when
+    switching between views.
+  * Fix MIME types association.
+  * Fix crasher with status icon menu creation.
+  * Rework some code to follow best practices.
+  * Add a man page with some info.
+  * Update translations (Thank you Launchpad translators).
+
 GNOME Split 1.0 (18 Nov 2010)
 =============================
 

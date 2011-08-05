@@ -6,15 +6,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-split\n"
 "Report-Msgid-Bugs-To: Guillaume Mazoyer <respawneral@gmail.com>\n"
-"POT-Creation-Date: 2010-11-01 11:15+0100\n"
-"PO-Revision-Date: 2010-10-27 18:37+0000\n"
-"Last-Translator: Andrea Amoroso <andrea.amoroso@alice.it>\n"
+"POT-Creation-Date: 2010-11-18 16:49+0100\n"
+"PO-Revision-Date: 2010-12-16 15:55+0000\n"
+"Last-Translator: grizzo94 <Unknown>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Launchpad-Export-Date: 2010-11-18 15:28+0000\n"
-"X-Generator: Launchpad (build Unknown)\n"
+"X-Launchpad-Export-Date: 2011-08-05 21:36+0000\n"
+"X-Generator: Launchpad (build 13613)\n"
 
 #: src/org/gnome/split/getopt/GetOptions.java:311
 #, java-format
@@ -166,6 +166,8 @@ msgstr "Dimensione del chunk non valida."
 msgid ""
 "You must specify a size which is lower than the size of the file to split."
 msgstr ""
+"Si deve specificare una dimensione che sia più bassa della dimensione del "
+"file da dividere."
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:37
 msgid "Missing chunk."
@@ -191,26 +193,26 @@ msgstr "Divisione di {0}"
 msgid "GNOME Split activity"
 msgstr "Attività di GNOME Split"
 
-#: src/org/gnome/split/GnomeSplit.java:152
+#: src/org/gnome/split/GnomeSplit.java:156
 msgid "More than one instance."
 msgstr "Più di un'istanza."
 
-#: src/org/gnome/split/GnomeSplit.java:153
+#: src/org/gnome/split/GnomeSplit.java:157
 msgid ""
 "Only one instance of GNOME Split can be executed at a time. If you want to "
 "run multiple instances, edit the preferences. Remember that it is never safe "
 "to run more than one instance of GNOME Split."
 msgstr ""
 
-#: src/org/gnome/split/GnomeSplit.java:300
+#: src/org/gnome/split/GnomeSplit.java:304
 msgid "Quit GNOME Split."
 msgstr "Chiudi GNOME Split."
 
-#: src/org/gnome/split/GnomeSplit.java:301
+#: src/org/gnome/split/GnomeSplit.java:305
 msgid ""
 "An action is currently being perfomed. Do you really want to quit GNOME "
 "Split?"
-msgstr ""
+msgstr "Un'azione è attualmente in corso. Chiudere veramente GNOME Split?"
 
 #: src/org/gnome/split/gtk/action/DeleteAction.java:37
 msgid "Cancel and _delete files"
@@ -346,19 +348,19 @@ msgstr ""
 msgid "_View switcher"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:228
+#: src/org/gnome/split/gtk/MainWindow.java:233
 msgid "_File"
 msgstr "_File"
 
-#: src/org/gnome/split/gtk/MainWindow.java:262
+#: src/org/gnome/split/gtk/MainWindow.java:270
 msgid "_Edit"
 msgstr "_Modifica"
 
-#: src/org/gnome/split/gtk/MainWindow.java:276
+#: src/org/gnome/split/gtk/MainWindow.java:284
 msgid "_View"
 msgstr "_Visualizza"
 
-#: src/org/gnome/split/gtk/MainWindow.java:302
+#: src/org/gnome/split/gtk/MainWindow.java:310
 msgid "_Help"
 msgstr "_Aiuto"
 
@@ -524,6 +526,7 @@ msgid "translator-credits"
 msgstr ""
 "Launchpad Contributions:\n"
 "  Andrea Amoroso https://launchpad.net/~heiko81\n"
+"  grizzo94 https://launchpad.net/~nicolaramoso\n"
 "  ugonegnome https://launchpad.net/~ugonegnome"
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:76
@@ -541,49 +544,49 @@ msgid ""
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:156
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:159
 #, java-format
 msgid "Writing {0}."
 msgstr "Scrittura di {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:167
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:170
 #, java-format
 msgid "Reading {0}."
 msgstr "Lettura di {0}."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:178
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:181
 msgid "MD5 sum calculation."
 msgstr "Calcolo della somma MD5."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:256
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:259
 msgid "Split finished."
 msgstr "Divisione terminata."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:257
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:260
 msgid "The file was succesfully split."
 msgstr "Il file è stato diviso con successo."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:259
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:262
 msgid "Merge finished."
 msgstr "Unione terminata."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:260
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:263
 msgid "The files were successfully merged."
 msgstr "I file sono stati uniti con successo."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:286
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:289
 msgid "Split stopped."
 msgstr "Divisione fermata."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:288
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:291
 msgid "Merge stopped."
 msgstr "Unione fermata."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:321
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:324
 msgid "Unhandled exception."
 msgstr "Eccezione non gestita."
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:322
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:325
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"
