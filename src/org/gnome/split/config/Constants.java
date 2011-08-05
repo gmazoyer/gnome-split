@@ -45,7 +45,7 @@ public final class Constants
     /**
      * Website of the program.
      */
-    public static String PROGRAM_WEBSITE = "http://www.gnome-split.org/";
+    public static String PROGRAM_WEBSITE = "http://gnome-split.org/";
 
     /**
      * Logo of the program (as a {@link Pixbuf}).
