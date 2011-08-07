@@ -303,7 +303,7 @@ public final class GnomeSplit
         if (!config.DO_NOT_ASK_QUIT && (engine.getEngine() != null)) {
             // Show a question to the user
             QuestionDialog dialog = new QuestionDialog(this, window, _("Quit GNOME Split."),
-                    _("An action is currently being perfomed. Do you really want to quit GNOME Split?"));
+                    _("An action is currently being performed. Do you really want to quit GNOME Split?"));
 
             // Get his response and hide the dialog
             quit = dialog.response();

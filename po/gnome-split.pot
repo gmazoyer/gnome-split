@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-05 23:32+0200\n"
+"POT-Creation-Date: 2011-08-07 14:12+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -199,7 +199,7 @@ msgstr ""
 
 #: src/org/gnome/split/GnomeSplit.java:306
 msgid ""
-"An action is currently being perfomed. Do you really want to quit GNOME "
+"An action is currently being performed. Do you really want to quit GNOME "
 "Split?"
 msgstr ""
 

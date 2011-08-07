@@ -40,7 +40,7 @@ public final class Constants
     /**
      * Version of the program.
      */
-    public static String PROGRAM_VERSION = "1.1";
+    public static String PROGRAM_VERSION = "1.2";
 
     /**
      * Website of the program.
