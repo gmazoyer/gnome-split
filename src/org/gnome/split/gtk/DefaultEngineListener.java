@@ -257,7 +257,7 @@ public class DefaultEngineListener implements EngineListener
         String body;
         if (engine instanceof DefaultSplitEngine) {
             title = _("Split finished.");
-            body = _("The file was succesfully split.");
+            body = _("The file was successfully split.");
         } else {
             title = _("Merge finished.");
             body = _("The files were successfully merged.");

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-07 14:12+0200\n"
+"POT-Creation-Date: 2011-08-07 14:57+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -548,7 +548,7 @@ msgid "Split finished."
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:260
-msgid "The file was succesfully split."
+msgid "The file was successfully split."
 msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:262
