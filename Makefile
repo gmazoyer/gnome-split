@@ -97,6 +97,10 @@ $(DESTDIR)$(PREFIX)/share/applications:
 	@/bin/echo -e "MKDIR\t$@/"
 	-mkdir -p $@
 
+$(DESTDIR)$(PREFIX)/share/mime/packages:
+	@/bin/echo -e "MKDIR\t$@/"
+	-mkdir -p $@
+
 $(DESTDIR)$(PREFIX)/bin/gnome-split: \
 		$(DESTDIR)$(PREFIX)/bin \
 		tmp/launcher/gnome-split-install
