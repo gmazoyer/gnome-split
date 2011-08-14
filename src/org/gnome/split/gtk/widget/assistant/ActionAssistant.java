@@ -22,7 +22,6 @@ package org.gnome.split.gtk.widget.assistant;
 
 import java.io.File;
 
-import org.gnome.gdk.Pixbuf;
 import org.gnome.gtk.Assistant;
 import org.gnome.gtk.AssistantPageType;
 import org.gnome.gtk.Button;
@@ -32,7 +31,6 @@ import org.gnome.gtk.ComboBox;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
 import org.gnome.gtk.FileFilter;
-import org.gnome.gtk.Gtk;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.IconSize;
 import org.gnome.gtk.Image;
@@ -78,11 +76,6 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
      * Final page of the assistant.
      */
     private FinalPage conclusion;
-
-    /**
-     * The logo of this assistant.
-     */
-    private Pixbuf logo;
 
     /**
      * The name of the file to split.
@@ -304,6 +297,7 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
         this.appendPage(conclusion);
         this.setPageType(conclusion, AssistantPageType.CONFIRM);
         this.setPageTitle(conclusion, _("Confirmation"));
+        this.setPageHeaderImage(conclusion, Constants.PROGRAM_LOGO);
         this.setPageComplete(conclusion, true);
     }
 
@@ -349,7 +343,7 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
         this.appendPage(page);
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("File selection"));
-        this.setPageHeaderImage(page, logo);
+        this.setPageHeaderImage(page, Constants.PROGRAM_LOGO);
         this.setPageComplete(page, false);
     }
 
@@ -433,7 +427,7 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
         this.appendPage(page);
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("Size selection"));
-        this.setPageHeaderImage(page, logo);
+        this.setPageHeaderImage(page, Constants.PROGRAM_LOGO);
         this.setPageComplete(page, true);
     }
 
@@ -483,7 +477,7 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
         this.appendPage(page);
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("Algorithm selection"));
-        this.setPageHeaderImage(page, logo);
+        this.setPageHeaderImage(page, Constants.PROGRAM_LOGO);
         this.setPageComplete(page, true);
     }
 
@@ -537,7 +531,7 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
         this.appendPage(page);
         this.setPageType(page, AssistantPageType.CONTENT);
         this.setPageTitle(page, _("File selection"));
-        this.setPageHeaderImage(page, logo);
+        this.setPageHeaderImage(page, Constants.PROGRAM_LOGO);
         this.setPageComplete(page, false);
     }
 
@@ -567,19 +561,7 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
 
     @Override
     public void onPrepare(Assistant source, Widget widget) {
-        switch (source.getCurrentPage()) {
-        case 1:
-            if (type == 1) {
-                // Update the logo to use
-                logo = Gtk.renderIcon(this, Stock.PASTE, IconSize.DIALOG);
-            } else {
-                // Update the logo to use
-                logo = Gtk.renderIcon(this, Stock.CUT, IconSize.DIALOG);
-            }
-            this.setPageHeaderImage(conclusion, logo);
-            break;
-
-        case 5:
+        if (source.getCurrentPage() == 5) {
             if (type == 1) {
                 conclusion.setFields(new String[] {
                     _("First file to merge:")
@@ -597,7 +579,6 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
                     Algorithm.toStrings()[algorithm]
                 });
             }
-            break;
         }
     }
 

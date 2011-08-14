@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-07 14:57+0200\n"
+"POT-Creation-Date: 2011-08-14 23:38+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -391,12 +391,12 @@ msgid "Desktop"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:148
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:117
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:110
 msgid "Assistant"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:158
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:271
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:264
 msgid "_Show the assistant on start"
 msgstr ""
 
@@ -587,101 +587,101 @@ msgstr ""
 msgid "View:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:227
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:220
 msgid "What do you want to do?"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:239
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:232
 msgid "Split a file"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:240
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:233
 msgid "Merge several files"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:288
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:281
 msgid "Action selection"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:298
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:291
 msgid ""
 "You can verify that all the data that have been collected are correct. If "
 "they are not, you can go back to a previous step to change them."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:306
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:299
 msgid "Confirmation"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:317
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:311
 msgid "Select the file to split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:327
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:591
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:321
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:573
 msgid "File to split:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:331
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:518
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:325
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:512
 msgid "Select a file."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:351
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:539
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:345
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:533
 msgid "File selection"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:363
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:357
 msgid ""
 "Select the maximal size for each chunk. You can let GNOME Split calculate "
 "the size by giving the number of chunks to create."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:405
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:399
 msgid ""
 "Invalid chunk size. The size must be lower than the size of the file to "
 "split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:435
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:429
 msgid "Size selection"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:450
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:444
 msgid "The algorithm defines the way how the file will be split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:460
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:454
 msgid "Algorithm to use:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:485
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:479
 msgid "Algorithm selection"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:497
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:491
 msgid "Select the first file to merge."
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:507
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:501
 msgid "File to merge:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:511
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:505
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:123
 msgid "Valid chunks"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:585
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:567
 msgid "First file to merge:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:592
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:574
 msgid "Maximum size of a chunk:"
 msgstr ""
 
-#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:593
+#: src/org/gnome/split/gtk/widget/assistant/ActionAssistant.java:575
 msgid "Algorithm of split:"
 msgstr ""
 
