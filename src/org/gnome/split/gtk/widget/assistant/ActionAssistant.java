@@ -31,6 +31,7 @@ import org.gnome.gtk.ComboBox;
 import org.gnome.gtk.FileChooserAction;
 import org.gnome.gtk.FileChooserButton;
 import org.gnome.gtk.FileFilter;
+import org.gnome.gtk.Gtk;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.IconSize;
 import org.gnome.gtk.Image;
@@ -540,6 +541,11 @@ public class ActionAssistant extends Assistant implements Assistant.Prepare, Ass
         if (source.getCurrentPage() != 0) {
             // Update the widget
             this.updateWidget();
+
+            // Wait for the interface to be fully updated
+            while (Gtk.eventsPending()) {
+                Gtk.mainIterationDo(false);
+            }
 
             // Start the split/merge if requested
             app.getActionManager().activateAction(ActionId.START);
