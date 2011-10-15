@@ -48,15 +48,15 @@ public class StatusWidget extends Statusbar
 
         // Add a frame to pack the widgets
         final Frame frame = new Frame(null);
-        frame.setShadowType(ShadowType.IN);
+        frame.setShadowType(ShadowType.NONE);
         this.packStart(frame, false, false, 0);
-
-        // Show the container
-        frame.show();
 
         // Add the speed label
         this.speed = new Label();
         frame.add(speed);
+
+        // Show the container
+        frame.showAll();
     }
 
     /**

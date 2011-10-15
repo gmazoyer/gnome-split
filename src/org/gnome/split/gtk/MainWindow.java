@@ -202,6 +202,7 @@ public class MainWindow extends Window implements Window.DeleteEvent
 
         // Add status widget
         this.status = new StatusWidget();
+        this.status.show();
         this.mainContainer.packStart(this.status, false, false, 0);
 
         // Show the status widget if needed
