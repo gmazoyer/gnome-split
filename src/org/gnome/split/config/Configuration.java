@@ -147,6 +147,13 @@ public final class Configuration
     public byte CLOSE_BEHAVIOR;
 
     /**
+     * The size of the buffer used for read/write operations. This is not
+     * exposed in the preferences dialog because this configuration value is
+     * considered useful only for power users.
+     */
+    public int BUFFER_SIZE;
+
+    /**
      * Private constructor can't instantiate Configuration in other class.<br>
      * Check for preferences file and load it.
      */
@@ -207,6 +214,7 @@ public final class Configuration
             writer.write("ShowStatusbar     = true\n");
             writer.write("DontAskToQuit     = false\n");
             writer.write("CloseBehavior     = 0\n");
+            writer.write("BufferSize        = " + 1048576 + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -265,6 +273,7 @@ public final class Configuration
             SHOW_STATUSBAR = Boolean.parseBoolean(preferences.getProperty("ShowStatusbar", "true"));
             DO_NOT_ASK_QUIT = Boolean.parseBoolean(preferences.getProperty("DontAskToQuit", "false"));
             CLOSE_BEHAVIOR = Byte.parseByte(preferences.getProperty("CloseBehavior", "0"));
+            BUFFER_SIZE = Integer.parseInt(preferences.getProperty("BufferSize", "1048576"));
         } catch (IOException e) {
             e.printStackTrace();
             System.exit(1);
@@ -310,6 +319,7 @@ public final class Configuration
             writer.write("ShowStatusbar     = " + SHOW_STATUSBAR + "\n");
             writer.write("DontAskToQuit     = " + DO_NOT_ASK_QUIT + "\n");
             writer.write("CloseBehavior     = " + CLOSE_BEHAVIOR + "\n");
+            writer.write("BufferSize        = " + BUFFER_SIZE + "\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {

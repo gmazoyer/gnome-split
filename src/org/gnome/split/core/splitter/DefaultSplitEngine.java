@@ -224,6 +224,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected boolean writeChunk(GRandomAccessFile split, GRandomAccessFile chunk) throws IOException {
         // Needed variables to know when the chunk writing must be stopped
+        int bufferSize = app.getConfig().BUFFER_SIZE;
         long read = 0;
         byte[] buffer = null;
 
@@ -244,7 +245,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
             }
 
             // Define a new buffer size
-            buffer = new byte[(65536 > (size - read) ? (int) (size - read) : 65536)];
+            buffer = new byte[(bufferSize > (size - read) ? (int) (size - read) : bufferSize)];
 
             // Read and write data
             split.read(buffer);

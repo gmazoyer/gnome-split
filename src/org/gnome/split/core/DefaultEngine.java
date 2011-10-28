@@ -196,6 +196,5 @@ public abstract class DefaultEngine implements Engine
                 fireEngineSpeedChanged(value);
             }
         }
-
     }
 }

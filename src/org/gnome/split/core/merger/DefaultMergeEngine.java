@@ -287,6 +287,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     protected boolean mergeChunk(GRandomAccessFile merge, GRandomAccessFile chunk, long read, long length)
             throws IOException {
         // Setup the buffer
+        int bufferSize = app.getConfig().BUFFER_SIZE;
         byte[] buffer = null;
 
         // Merge the file
@@ -307,7 +308,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
             }
 
             // Define a new buffer size
-            buffer = new byte[(65536 > (length - read) ? (int) (length - read) : 65536)];
+            buffer = new byte[(bufferSize > (length - read) ? (int) (length - read) : bufferSize)];
 
             // Read and write data
             chunk.read(buffer);
