@@ -1508,7 +1508,7 @@ print LAUNCHER join (" ",
 	"-Djava.library.path=$libdir",
 	"-classpath tmp/classes:$JAVAGNOME_JAR:$DBUSJAVA_JAR:$DEBUGDIS_JAR:$DEBUGENA_JAR:$HEXDUMP_JAR:$UNIXSOCK_JAR",
 	"org.gnome.split.GnomeSplit",
-	"\$*") . "\n";
+	"\"\$@\"") . "\n";
 
 close LAUNCHER;
 
@@ -1529,7 +1529,7 @@ print LAUNCHER join (" ",
 	"-Djava.library.path=$libdir",
 	"-classpath $GNOME_SPLIT_JAR:$JAVAGNOME_JAR:$DBUSJAVA_JAR:$DEBUGDIS_JAR:$DEBUGENA_JAR:$HEXDUMP_JAR:$UNIXSOCK_JAR",
 	"org.gnome.split.GnomeSplit",
-	"\$*") . "\n";
+	"\"\$@\"") . "\n";
 
 close LAUNCHER;
 
