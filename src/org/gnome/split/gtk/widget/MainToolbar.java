@@ -21,6 +21,8 @@
 package org.gnome.split.gtk.widget;
 
 import org.gnome.gtk.SeparatorToolItem;
+import org.gnome.gtk.StyleClass;
+import org.gnome.gtk.StyleContext;
 import org.gnome.gtk.ToolItem;
 import org.gnome.gtk.Toolbar;
 import org.gnome.split.GnomeSplit;
@@ -65,5 +67,10 @@ public class MainToolbar extends Toolbar
         // Add clear button
         final ToolItem clear = actions.getAction(ActionId.CLEAR).createToolItem();
         this.insert(clear, 6);
+
+        // Make this toolbar primary for theming purpose
+        final StyleContext style = this.getStyleContext();
+        style.addClass(StyleClass.PRIMARY_TOOLBAR);
+        style.save();
     }
 }
