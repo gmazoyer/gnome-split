@@ -1,7 +1,7 @@
 /*
  * MinimizeDialog.java
  * 
- * Copyright (c) 2011 Guillaume Mazoyer
+ * Copyright (c) 2012 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 

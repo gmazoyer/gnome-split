@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-28 23:48+0200\n"
+"POT-Creation-Date: 2012-02-04 06:06+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -337,19 +337,19 @@ msgstr ""
 msgid "_View switcher"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:229
+#: src/org/gnome/split/gtk/MainWindow.java:230
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:263
+#: src/org/gnome/split/gtk/MainWindow.java:264
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:277
+#: src/org/gnome/split/gtk/MainWindow.java:278
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/MainWindow.java:303
+#: src/org/gnome/split/gtk/MainWindow.java:304
 msgid "_Help"
 msgstr ""
 
