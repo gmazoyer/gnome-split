@@ -47,6 +47,7 @@ public class ProgressWidget extends VBox
 
         // Show the text in the progress bar
         progress.setShowText(true);
+        this.setText("");
     }
 
     @Override

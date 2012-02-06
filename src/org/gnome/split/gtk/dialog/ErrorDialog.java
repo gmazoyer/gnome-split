@@ -81,4 +81,10 @@ public final class ErrorDialog extends ErrorMessageDialog
         // Show everything
         this.showAll();
     }
+
+    @Override
+    public void hide() {
+        super.hide();
+        this.destroy();
+    }
 }

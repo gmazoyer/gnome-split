@@ -111,14 +111,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
     /**
      * Just create a label with 4 spaces in it for alignment reason.
      */
-    private Label createEmptyLabel() {
+    private static Label createEmptyLabel() {
         return new Label("    ");
     }
 
     /**
      * Create a label justified to the left and using bold font.
      */
-    private Label createSectionLabel(String text) {
+    private static Label createSectionLabel(String text) {
         // Create the label
         final Label label = new Label("<b>" + text + "</b>");
 
@@ -145,14 +145,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(first, false, false, 0);
 
         // Add the label
-        first.packStart(this.createSectionLabel(_("Assistant")), false, false, 0);
+        first.packStart(createSectionLabel(_("Assistant")), false, false, 0);
 
         // Add the row of options
         final HBox firstRow = new HBox(false, 0);
         first.packStart(firstRow, false, false, 0);
 
         // Add an empty label
-        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+        firstRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Add the option
         final CheckButton assistant = new CheckButton(_("_Show the assistant on start"));
@@ -172,14 +172,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(second, false, false, 0);
 
         // Add the label
-        second.packStart(this.createSectionLabel(_("Program run")), false, false, 0);
+        second.packStart(createSectionLabel(_("Program run")), false, false, 0);
 
         // Add the row of options
         final HBox secondRow = new HBox(false, 0);
         second.packStart(secondRow, false, false, 0);
 
         // Add an empty label
-        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+        secondRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Restore multiple instances status
         final CheckButton instances = new CheckButton(_("_Allow multiple instances."));
@@ -215,14 +215,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(first, false, false, 0);
 
         // Add the label
-        first.packStart(this.createSectionLabel(_("Default view")), false, false, 0);
+        first.packStart(createSectionLabel(_("Default view")), false, false, 0);
 
         // Add the row of options
         final HBox firstRow = new HBox(false, 0);
         first.packStart(firstRow, false, false, 0);
 
         // Add an empty label
-        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+        firstRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Pack the options
         final VBox boxes = new VBox(false, 6);
@@ -263,14 +263,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(second, false, false, 0);
 
         // Add the label
-        second.packStart(this.createSectionLabel(_("Size of the main window")), false, false, 0);
+        second.packStart(createSectionLabel(_("Size of the main window")), false, false, 0);
 
         // Add the row of options
         final HBox secondRow = new HBox(false, 0);
         second.packStart(secondRow, false, false, 0);
 
         // Add an empty label
-        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+        secondRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Add a box to pack widgets to change the size
         final VBox sizeBox = new VBox(false, 6);
@@ -398,14 +398,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(first, false, false, 0);
 
         // Add the label
-        first.packStart(this.createSectionLabel(_("During a split")), false, false, 0);
+        first.packStart(createSectionLabel(_("During a split")), false, false, 0);
 
         // Add the row of option
         final HBox firstRow = new HBox(false, 0);
         first.packStart(firstRow, false, false, 0);
 
         // Add an empty label
-        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+        firstRow.packStart(createEmptyLabel(), false, false, 0);
 
         final CheckButton md5sum = new CheckButton(_("_Calculate the MD5 sum if possible."));
         md5sum.setActive(config.SAVE_FILE_HASH);
@@ -424,14 +424,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(second, false, false, 0);
 
         // Add the label
-        second.packStart(this.createSectionLabel(_("Default algorithm")), false, false, 0);
+        second.packStart(createSectionLabel(_("Default algorithm")), false, false, 0);
 
         // Add the row of option
         final HBox secondRow = new HBox(false, 0);
         second.packStart(secondRow, false, false, 0);
 
         // Add an empty label
-        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+        secondRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Algorithm list
         final ComboBoxText algorithms = new ComboBoxText();
@@ -457,14 +457,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(third, false, false, 0);
 
         // Add the label
-        third.packStart(this.createSectionLabel(_("Default directory")), false, false, 0);
+        third.packStart(createSectionLabel(_("Default directory")), false, false, 0);
 
         // Add the row of option
         final HBox thirdRow = new HBox(false, 0);
         third.packStart(thirdRow, false, false, 0);
 
         // Add an empty label
-        thirdRow.packStart(this.createEmptyLabel(), false, false, 0);
+        thirdRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Default directory button
         splitDirChooser = new FileChooserButton(_("Choose a directory."),
@@ -495,14 +495,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(first, false, false, 0);
 
         // Add the label
-        first.packStart(this.createSectionLabel(_("During a merge")), false, false, 0);
+        first.packStart(createSectionLabel(_("During a merge")), false, false, 0);
 
         // Add the row of options
         final HBox firstRow = new HBox(false, 0);
         first.packStart(firstRow, false, false, 0);
 
         // Add an empty label
-        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+        firstRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Box for check buttons
         final VBox button = new VBox(false, 6);
@@ -534,14 +534,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(second, false, false, 0);
 
         // Add the label
-        second.packStart(this.createSectionLabel(_("After a merge")), false, false, 0);
+        second.packStart(createSectionLabel(_("After a merge")), false, false, 0);
 
         // Add the row of options
         final HBox secondRow = new HBox(false, 0);
         second.packStart(secondRow, false, false, 0);
 
         // Add an empty label
-        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+        secondRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Box for check buttons
         final VBox buttons = new VBox(false, 6);
@@ -578,14 +578,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(third, false, false, 0);
 
         // Add the label
-        third.packStart(this.createSectionLabel(_("Default directory")), false, false, 0);
+        third.packStart(createSectionLabel(_("Default directory")), false, false, 0);
 
         // Add the row of option
         final HBox thirdRow = new HBox(false, 0);
         third.packStart(thirdRow, false, false, 0);
 
         // Add an empty label
-        thirdRow.packStart(this.createEmptyLabel(), false, false, 0);
+        thirdRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Default directory button
         mergeDirChooser = new FileChooserButton(_("Choose a directory."),
@@ -611,14 +611,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(first, false, false, 0);
 
         // Add the label
-        first.packStart(this.createSectionLabel(_("Power management")), false, false, 0);
+        first.packStart(createSectionLabel(_("Power management")), false, false, 0);
 
         // Add the row of options
         final HBox firstRow = new HBox(false, 0);
         first.packStart(firstRow, false, false, 0);
 
         // Add an empty label
-        firstRow.packStart(this.createEmptyLabel(), false, false, 0);
+        firstRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Restore hibernation status
         final CheckButton hibernation = new CheckButton(
@@ -639,14 +639,14 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         page.packStart(second, false, false, 0);
 
         // Add the label
-        second.packStart(this.createSectionLabel(_("Notification")), false, false, 0);
+        second.packStart(createSectionLabel(_("Notification")), false, false, 0);
 
         // Add the row of options
         final HBox secondRow = new HBox(false, 0);
         second.packStart(secondRow, false, false, 0);
 
         // Add an empty label
-        secondRow.packStart(this.createEmptyLabel(), false, false, 0);
+        secondRow.packStart(createEmptyLabel(), false, false, 0);
 
         // Box to pack buttons
         final VBox checks = new VBox(false, 6);
@@ -716,5 +716,6 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
 
         // Hide the dialog
         this.hide();
+        this.destroy();
     }
 }

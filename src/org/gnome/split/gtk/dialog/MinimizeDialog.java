@@ -119,5 +119,6 @@ public final class MinimizeDialog extends MessageDialog implements Window.Delete
 
         // Hide the dialog
         this.hide();
+        this.destroy();
     }
 }

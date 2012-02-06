@@ -73,4 +73,10 @@ public final class QuestionDialog extends QuestionMessageDialog
         ResponseType response = this.run();
         return (response == ResponseType.YES);
     }
+
+    @Override
+    public void hide() {
+        super.hide();
+        this.destroy();
+    }
 }

@@ -115,6 +115,7 @@ public class InfoHeader extends InfoBar implements InfoBar.Close, InfoBar.Respon
     public void onClose(InfoBar source) {
         // Just hide the info bar
         this.hide();
+        this.destroy();
     }
 
     @Override
@@ -122,6 +123,7 @@ public class InfoHeader extends InfoBar implements InfoBar.Close, InfoBar.Respon
         if (response == ResponseType.CLOSE) {
             // Just hide the info bar
             this.hide();
+            this.destroy();
         }
     }
 }

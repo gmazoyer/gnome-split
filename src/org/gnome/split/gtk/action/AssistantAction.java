@@ -22,7 +22,7 @@ package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
 import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.assistant.ActionAssistant;
+import org.gnome.split.gtk.dialog.AssistantDialog;
 
 import static org.freedesktop.bindings.Internationalization._;
 
@@ -39,6 +39,6 @@ final class AssistantAction extends Action
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        new ActionAssistant(this.getApplication()).showAll();
+        new AssistantDialog(this.getApplication()).present();
     }
 }

@@ -92,5 +92,6 @@ public final class AboutSoftDialog extends AboutDialog implements Window.DeleteE
     @Override
     public void onResponse(Dialog source, ResponseType response) {
         this.hide();
+        this.destroy();
     }
 }

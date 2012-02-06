@@ -45,7 +45,7 @@ final class FinalPage extends VBox
         this.setBorderWidth(5);
 
         // Add the label
-        this.packStart(ActionAssistant.createLeftAlignedLabel(data), false, false, 0);
+        this.packStart(BasicAssistant.createLeftAlignedLabel(data), false, false, 0);
     }
 
     /**
@@ -76,13 +76,19 @@ final class FinalPage extends VBox
     private class ConclusionWidget extends VBox
     {
         /**
-         * A group to use the same size for several widgets.
+         * A group to use the same size for all fields.
          */
-        private SizeGroup group;
+        private SizeGroup fieldsGroup;
+
+        /**
+         * A group to use the same size for all values.
+         */
+        private SizeGroup valuesGroup;
 
         private ConclusionWidget() {
             super(false, 3);
-            this.group = new SizeGroup(SizeGroupMode.BOTH);
+            this.fieldsGroup = new SizeGroup(SizeGroupMode.HORIZONTAL);
+            this.valuesGroup = new SizeGroup(SizeGroupMode.HORIZONTAL);
         }
 
         /**
@@ -95,12 +101,14 @@ final class FinalPage extends VBox
                 this.packStart(box, false, false, 0);
 
                 // Add a field name
-                final Label label = ActionAssistant.createLeftAlignedLabel(fields[b]);
-                box.packStart(label, false, false, 0);
-                group.add(label);
+                final Label field = BasicAssistant.createLeftAlignedLabel(fields[b]);
+                box.packStart(field, false, false, 0);
+                fieldsGroup.add(field);
 
                 // Add a field value
-                box.packStart(ActionAssistant.createLeftAlignedLabel(values[b]), false, false, 0);
+                final Label value = BasicAssistant.createLeftAlignedLabel(values[b]);
+                box.packStart(value, false, false, 0);
+                valuesGroup.add(value);
             }
         }
     }
