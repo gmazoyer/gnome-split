@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-02-06 06:46+0100\n"
+"POT-Creation-Date: 2012-02-26 02:33+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -396,7 +396,7 @@ msgid "Assistant"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:158
-#: src/org/gnome/split/gtk/dialog/AssistantDialog.java:96
+#: src/org/gnome/split/gtk/dialog/AssistantDialog.java:99
 msgid "_Show the assistant on start"
 msgstr ""
 
@@ -498,23 +498,23 @@ msgstr ""
 msgid "_Minimize"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:52
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:53
 msgid "Split and merge your files easily."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:53
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:54
 msgid "the GNOME Split project"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:55
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:56
 msgid "Project website"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:73
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:74
 msgid "translator-credits"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:76
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:77
 msgid ""
 "This program is free software: you can redistribute it and/or modify it "
 "under the terms of the GNU General Public License version 3, as published by "
@@ -529,15 +529,15 @@ msgid ""
 "this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AssistantDialog.java:74
+#: src/org/gnome/split/gtk/dialog/AssistantDialog.java:77
 msgid "What do you want to do?"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AssistantDialog.java:88
+#: src/org/gnome/split/gtk/dialog/AssistantDialog.java:91
 msgid "Split a file"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AssistantDialog.java:89
+#: src/org/gnome/split/gtk/dialog/AssistantDialog.java:92
 msgid "Merge several files"
 msgstr ""
 

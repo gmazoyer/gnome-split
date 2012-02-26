@@ -67,6 +67,9 @@ public class AssistantDialog extends Dialog implements Window.DeleteEvent, Dialo
 
         this.app = app;
 
+        // This dialog should be modal
+        this.setModal(true);
+
         // Border width
         this.setBorderWidth(12);
 

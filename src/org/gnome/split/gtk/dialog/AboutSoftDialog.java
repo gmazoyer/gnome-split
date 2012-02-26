@@ -45,6 +45,7 @@ public final class AboutSoftDialog extends AboutDialog implements Window.DeleteE
         super();
 
         // Define all properties
+        this.setModal(true);
         this.setIcon(Constants.PROGRAM_LOGO);
         this.setProgramName(Constants.PROGRAM_NAME);
         this.setVersion(Constants.PROGRAM_VERSION);
