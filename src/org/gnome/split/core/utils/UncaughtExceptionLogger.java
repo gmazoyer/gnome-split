@@ -20,6 +20,7 @@
  */
 package org.gnome.split.core.utils;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
@@ -49,6 +50,13 @@ public class UncaughtExceptionLogger implements Thread.UncaughtExceptionHandler
         exception.printStackTrace(pwriter);
         pwriter.flush();
         swriter.flush();
+
+        pwriter.close();
+        try {
+            swriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return swriter.toString();
     }
