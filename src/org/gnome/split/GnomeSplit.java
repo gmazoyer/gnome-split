@@ -20,34 +20,30 @@
  */
 package org.gnome.split;
 
+import static java.lang.System.exit;
+import static org.freedesktop.bindings.Internationalization._;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
 import org.freedesktop.bindings.Internationalization;
+import org.gnome.glib.ApplicationCommandLine;
+import org.gnome.glib.ApplicationFlags;
 import org.gnome.glib.Glib;
+import org.gnome.gtk.Application;
 import org.gnome.gtk.Gtk;
 import org.gnome.notify.Notify;
 import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.EngineListener;
-import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.ShutdownHandler;
 import org.gnome.split.core.utils.UncaughtExceptionLogger;
-import org.gnome.split.getopt.GetOptions;
-import org.gnome.split.getopt.LongOption;
 import org.gnome.split.gtk.DefaultEngineListener;
 import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
-import org.gnome.split.gtk.dialog.ErrorDialog;
 import org.gnome.split.gtk.dialog.QuestionDialog;
-import org.gnome.unique.Application;
-import org.gnome.unique.Command;
-import org.gnome.unique.MessageData;
-import org.gnome.unique.Response;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This class contains the GNOME Split application entry point.
@@ -56,6 +52,11 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public final class GnomeSplit
 {
+    /**
+     * Application instance to run.
+     */
+    private Application application;
+
     /**
      * Configuration for the application.
      */
@@ -76,54 +77,10 @@ public final class GnomeSplit
      */
     private EngineListener engine;
 
-    /**
-     * Create an instance of the application.
-     */
-    private GnomeSplit(String[] args) {
-        // Initialize uncaught exception handler
-        new UncaughtExceptionLogger();
-
-        // Start kill signals handler
-        Runtime.getRuntime().addShutdownHook(new ShutdownHandler());
-
-        // Load program name
-        Glib.setProgramName(Constants.PROGRAM_NAME);
-
-        // Load GTK
-        Gtk.init(args);
-
-        // Load config
-        this.loadConfig();
-
-        // Check if an instance is running
-        this.checkRunning();
-
-        // Load logo
-        Gtk.setDefaultIcon(Constants.PROGRAM_LOGO);
-
-        // Load translations
-        Internationalization.init("gnome-split", "share/locale/");
-
-        // Load libnotify
-        if (config.USE_NOTIFICATION) {
-            Notify.init(Constants.PROGRAM_NAME);
-        }
-
-        // Build the user interface
-        this.buildUserInterface();
-
-        // If there are some arguments
-        if (args.length > 0) {
-            this.parseCommandLine(args);
-        } else {
-            if (config.ASSISTANT_ON_START) {
-                // Show the assistant on start if requested
-                actions.activateAction(ActionId.ASSISTANT);
-            }
-        }
-
-        // Start GTK main loop (blocker method)
-        Gtk.main();
+    private GnomeSplit() {
+        /*
+         * No instantiation from outside.
+         */
     }
 
     /**
@@ -136,38 +93,7 @@ public final class GnomeSplit
             config = new Configuration();
         } catch (IOException e) {
             e.printStackTrace();
-            System.exit(1);
-        }
-    }
-
-    /**
-     * Check if an instance of GNOME Split is already running.
-     */
-    private void checkRunning() {
-        // Initialize unique application check
-        Application application = new Application("org.gnome.GnomeSplit", null);
-
-        // Signal to handle message from other instances
-        application.connect(new Application.MessageReceived() {
-            @Override
-            public Response onMessageReceived(Application source, Command cmd, MessageData data, int time) {
-                ErrorDialog dialog = new ErrorDialog(
-                        getMainWindow(),
-                        _("More than one instance."),
-                        _("Only one instance of GNOME Split can be executed at a time. If you want to run multiple instances, edit the preferences. Remember that it is never safe to run more than one instance of GNOME Split."));
-                dialog.run();
-                dialog.hide();
-                return Response.OK;
-            }
-        });
-
-        // Already running, quit this application
-        if (application.isRunning() && !config.MULTIPLE_INSTANCES) {
-            // Send the message
-            application.sendMessage(Command.CLOSE, new MessageData());
-
-            // Quit the current app
-            System.exit(1);
+            exit(1);
         }
     }
 
@@ -181,7 +107,9 @@ public final class GnomeSplit
         // Start the user interface
         window = new MainWindow(this);
         window.selectDefaultView();
-        window.show();
+
+        // Add the window to the underlining application model
+        application.addWindow(window);
 
         // Load engine listener
         engine = new DefaultEngineListener(this);
@@ -213,44 +141,86 @@ public final class GnomeSplit
         }
     }
 
-    /**
-     * Parse the command line using the GNU getopt.
-     */
-    private void parseCommandLine(String[] args) {
-        int character;
+    private int run(String[] args) {
+        int status;
 
-        // Long options - use them make the command line more human readable
-        LongOption[] options = new LongOption[2];
-        options[0] = new LongOption("merge", LongOption.REQUIRED_ARGUMENT, 'm');
-        options[1] = new LongOption("split", LongOption.REQUIRED_ARGUMENT, 's');
+        // Initialize uncaught exception handler
+        new UncaughtExceptionLogger();
 
-        // Create the getopt object to parse the arguments
-        GetOptions getopt = new GetOptions("gnome-split", args, "m:s:", options);
+        // Start kill signals handler
+        Runtime.getRuntime().addShutdownHook(new ShutdownHandler());
 
-        // While there is something to parse
-        while ((character = getopt.getOption()) != -1) {
-            switch (character) {
-            case 'm':
-                this.selectView((byte) 1, getopt.getArgument());
+        // Load GTK
+        Gtk.init(args);
 
-                break;
+        // Load config
+        this.loadConfig();
 
-            case 's':
-                this.selectView((byte) 0, getopt.getArgument());
+        // Load program name
+        Glib.setProgramName(Constants.PROGRAM_NAME);
 
-                break;
+        // Load logo
+        Gtk.setDefaultIcon(Constants.PROGRAM_LOGO);
 
-            default:
-                break;
+        // Load translations
+        Internationalization.init("gnome-split", "share/locale/");
+
+        // Load libnotify
+        if (config.USE_NOTIFICATION) {
+            Notify.init(Constants.PROGRAM_NAME);
+        }
+
+        // Build the application object
+        application = new Application("org.gnome.split.GnomeSplit",
+                ApplicationFlags.HANDLES_COMMAND_LINE);
+
+        // Build the GUI on startup
+        application.connect(new Application.Startup() {
+            @Override
+            public void onStartup(Application application) {
+                // Build the user interface
+                buildUserInterface();
             }
-        }
+        });
 
-        // No options have been used, this is just a file that has been given
-        if (!args[0].startsWith("-")) {
-            // Update the view, checking the file extension
-            byte select = (byte) (Algorithm.isValidExtension(args[0]) ? 1 : 0);
-            this.selectView(select, args[0]);
-        }
+        // Display the GUI when activated
+        application.connect(new Application.Activate() {
+            @Override
+            public void onActivate(Application app) {
+                window.show();
+
+                // Show the assistant on start if requested
+                actions.activateAction(ActionId.ASSISTANT);
+            }
+        });
+
+        // Handle command line arguments
+        application.connect(new Application.CommandLine() {
+            @Override
+            public int onCommandLine(Application app, ApplicationCommandLine remote) {
+                String[] args = remote.getArguments();
+
+                if (args.length > 1) {
+                    // Change the view
+                    selectView((byte) ((args[1].equals("-s") || args[1].equals("--split")) ? 0 : 1),
+                            (args.length > 2) ? args[1] : null);
+                }
+
+                // Trigger the Application.Activate signal
+                application.activate();
+
+                // Indicate that the remote instance that sent us the command
+                // line arguments should terminate as soon as possible
+                remote.exit();
+
+                return 0;
+            }
+        });
+
+        // Fire the main loop (blocker)
+        status = application.run(args);
+
+        return status;
     }
 
     /**
@@ -320,11 +290,9 @@ public final class GnomeSplit
                 Notify.uninit();
             }
 
-            // Quit the GTK main loop (cause the app end)
-            Gtk.mainQuit();
-
-            // Ending program
-            System.exit(0);
+            // Quit the GTK application.
+            application.removeWindow(window);
+            application.quit();
         }
     }
 
@@ -332,6 +300,10 @@ public final class GnomeSplit
      * Application entry point.
      */
     public static void main(String[] args) {
-        new GnomeSplit(args);
+        GnomeSplit application = new GnomeSplit();
+
+        int status = application.run(args);
+
+        exit(status);
     }
 }
