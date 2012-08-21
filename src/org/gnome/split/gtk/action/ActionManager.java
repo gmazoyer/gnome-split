@@ -223,6 +223,26 @@ public class ActionManager
      */
     public enum ActionId
     {
-        ASSISTANT, OPEN_DIR, SEND_EMAIL, START, PAUSE, CANCEL, DELETE, CLEAR, EXIT, PREFERENCES, TOOLBAR, SWITCHER, STATUS, SPLIT, MERGE, HELP, ONLINE_HELP, TRANSLATE, REPORT_BUG, ABOUT, TRAY_WINDOW;
+        ASSISTANT,
+        OPEN_DIR,
+        SEND_EMAIL,
+        START,
+        PAUSE,
+        CANCEL,
+        DELETE,
+        CLEAR,
+        EXIT,
+        PREFERENCES,
+        TOOLBAR,
+        SWITCHER,
+        STATUS,
+        SPLIT,
+        MERGE,
+        HELP,
+        ONLINE_HELP,
+        TRANSLATE,
+        REPORT_BUG,
+        ABOUT,
+        TRAY_WINDOW;
     }
 }
