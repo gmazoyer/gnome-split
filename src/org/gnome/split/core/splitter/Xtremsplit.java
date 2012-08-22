@@ -20,11 +20,12 @@
  */
 package org.gnome.split.core.splitter;
 
+import static org.gnome.split.GnomeSplit.config;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.io.GRandomAccessFile;
 import org.gnome.split.core.utils.ByteUtils;
@@ -40,8 +41,8 @@ public final class Xtremsplit extends DefaultSplitEngine
 {
     private int parts;
 
-    public Xtremsplit(final GnomeSplit app, File file, long size, String destination) {
-        super(app, file, size, destination);
+    public Xtremsplit(File file, long size, String destination) {
+        super(file, size, destination);
         parts = (int) Math.ceil((float) file.length() / (float) size);
     }
 
@@ -85,7 +86,7 @@ public final class Xtremsplit extends DefaultSplitEngine
         }
 
         // Write if using MD5
-        access.writeBoolean(app.getConfig().SAVE_FILE_HASH);
+        access.writeBoolean(config.SAVE_FILE_HASH);
 
         // Write number of files
         access.write(ByteUtils.toLittleEndian(parts));
@@ -123,7 +124,7 @@ public final class Xtremsplit extends DefaultSplitEngine
             MD5Hasher md5hasher = null;
 
             // Use it only if the MD5 should be calculated
-            if (app.getConfig().SAVE_FILE_HASH) {
+            if (config.SAVE_FILE_HASH) {
                 md5sum = new StringBuilder();
                 md5hasher = new MD5Hasher();
             }
@@ -157,7 +158,7 @@ public final class Xtremsplit extends DefaultSplitEngine
                     }
 
                     // Should we save MD5 sum?
-                    if (app.getConfig().SAVE_FILE_HASH) {
+                    if (config.SAVE_FILE_HASH) {
                         // Calculate the MD5 sum
                         this.fireMD5SumStarted();
                         String md5 = md5hasher.hashToString(chunk);

@@ -22,7 +22,6 @@ package org.gnome.split.gtk.action;
 
 import org.freedesktop.icons.Icon;
 import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
 
 /**
  * Abstract class to define a action triggered by a GTK+ widget.
@@ -32,27 +31,20 @@ import org.gnome.split.GnomeSplit;
 public abstract class Action extends org.gnome.gtk.Action implements org.gnome.gtk.Action.Activate
 {
     /**
-     * The current instance of GNOME Split.
-     */
-    private GnomeSplit app;
-
-    /**
      * Create a new action using a name and a {@link Stock} icon.
      */
-    protected Action(final GnomeSplit app, String name, Stock stock) {
+    protected Action(String name, Stock stock) {
         super(name, stock);
 
-        this.app = app;
         this.connect((Action.Activate) this);
     }
 
     /**
      * Create a new action using a name and a label.
      */
-    protected Action(final GnomeSplit app, String name, String label) {
+    protected Action(String name, String label) {
         super(name, label);
 
-        this.app = app;
         this.connect((Action.Activate) this);
     }
 
@@ -60,10 +52,9 @@ public abstract class Action extends org.gnome.gtk.Action implements org.gnome.g
      * Create a new action using a name, a label, a tooltip and a
      * {@link Stock} icon.
      */
-    protected Action(final GnomeSplit app, String name, String label, String tooltip, Stock stock) {
+    protected Action(String name, String label, String tooltip, Stock stock) {
         super(name, label, tooltip, stock);
 
-        this.app = app;
         this.connect((Action.Activate) this);
     }
 
@@ -71,17 +62,9 @@ public abstract class Action extends org.gnome.gtk.Action implements org.gnome.g
      * Create a new action using a name, a label, a tooltip and a {@link Icon}
      * icon.
      */
-    protected Action(final GnomeSplit app, String name, String label, String tooltip, Icon icon) {
+    protected Action(String name, String label, String tooltip, Icon icon) {
         super(name, label, tooltip, icon);
 
-        this.app = app;
         this.connect((Action.Activate) this);
-    }
-
-    /**
-     * Get the current program instance.
-     */
-    protected GnomeSplit getApplication() {
-        return app;
     }
 }

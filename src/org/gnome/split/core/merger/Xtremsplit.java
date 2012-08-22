@@ -20,10 +20,11 @@
  */
 package org.gnome.split.core.merger;
 
+import static org.gnome.split.GnomeSplit.config;
+
 import java.io.File;
 import java.io.IOException;
 
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MD5Exception;
 import org.gnome.split.core.exception.MissingChunkException;
@@ -42,8 +43,8 @@ public final class Xtremsplit extends DefaultMergeEngine
 
     private boolean extractable;
 
-    public Xtremsplit(final GnomeSplit app, File file, String filename) {
-        super(app, file, filename);
+    public Xtremsplit(File file, String filename) {
+        super(file, filename);
     }
 
     /**
@@ -202,7 +203,7 @@ public final class Xtremsplit extends DefaultMergeEngine
                     return;
                 }
 
-                if (app.getConfig().CHECK_FILE_HASH && md5) {
+                if (config.CHECK_FILE_HASH && md5) {
                     // Notify the view
                     this.fireMD5SumStarted();
 
@@ -240,17 +241,12 @@ public final class Xtremsplit extends DefaultMergeEngine
                 // Notify the error. It's just a warning so we don't throw it.
                 this.fireEngineError(new MD5Exception());
             } else if (success) {
-                if (app.getConfig().DELETE_PARTS && md5) {
+                if (config.DELETE_PARTS && md5) {
                     // Delete all parts if and *only if* the MD5 sums are
                     // equals
                     for (String path : chunks) {
                         new File(path).delete();
                     }
-                }
-
-                if (app.getConfig().OPEN_FILE_AT_END) {
-                    // Open the created file if requested
-                    app.openURI("file://" + filename);
                 }
 
                 // Notify the end

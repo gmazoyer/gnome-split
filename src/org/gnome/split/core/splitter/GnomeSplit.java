@@ -20,6 +20,8 @@
  */
 package org.gnome.split.core.splitter;
 
+import static org.gnome.split.GnomeSplit.config;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -37,8 +39,8 @@ public final class GnomeSplit extends DefaultSplitEngine
 {
     private int parts;
 
-    public GnomeSplit(final org.gnome.split.GnomeSplit app, File file, long size, String destination) {
-        super(app, file, size, destination);
+    public GnomeSplit(File file, long size, String destination) {
+        super(file, size, destination);
         parts = (int) Math.ceil((float) file.length() / (float) size);
     }
 
@@ -70,7 +72,7 @@ public final class GnomeSplit extends DefaultSplitEngine
         }
 
         // Write if using MD5
-        access.writeBoolean(app.getConfig().SAVE_FILE_HASH);
+        access.writeBoolean(config.SAVE_FILE_HASH);
 
         // Write number of files
         access.writeInt(parts);
@@ -132,7 +134,7 @@ public final class GnomeSplit extends DefaultSplitEngine
                     }
 
                     // Should we save MD5 sum?
-                    if (app.getConfig().SAVE_FILE_HASH && (i == parts)) {
+                    if (config.SAVE_FILE_HASH && (i == parts)) {
                         // Notify the view
                         this.fireMD5SumStarted();
 

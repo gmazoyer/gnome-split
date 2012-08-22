@@ -36,8 +36,8 @@ public final class Generic extends DefaultSplitEngine
 {
     private int parts;
 
-    public Generic(final org.gnome.split.GnomeSplit app, File file, long size, String destination) {
-        super(app, file, size, destination);
+    public Generic(File file, long size, String destination) {
+        super(file, size, destination);
         parts = (int) Math.ceil((float) file.length() / (float) size);
     }
 

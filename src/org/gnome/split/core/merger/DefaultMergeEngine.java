@@ -20,6 +20,11 @@
  */
 package org.gnome.split.core.merger;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.engine;
+import static org.gnome.split.GnomeSplit.openURI;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,8 +37,6 @@ import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.io.GRandomAccessFile;
 import org.gnome.split.core.utils.Algorithm;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * Define the model that all merge engines should use.
@@ -81,8 +84,8 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Create a new merge {@link Engine engine} using a first
      * <code>file</code> to merge.
      */
-    protected DefaultMergeEngine(final org.gnome.split.GnomeSplit app, File file, String filename) {
-        super(app);
+    protected DefaultMergeEngine(File file, String filename) {
+        super();
         this.file = file;
         this.filename = filename;
         this.progress = null;
@@ -90,7 +93,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
         if (filename != null) {
             this.directory = filename.substring(0, filename.lastIndexOf(File.separator));
         } else {
-            this.directory = app.getConfig().MERGE_DIRECTORY;
+            this.directory = config.MERGE_DIRECTORY;
         }
 
         try {
@@ -105,34 +108,33 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     /**
      * Return the right merger to merge files with right algorithm.
      */
-    public static final DefaultMergeEngine getInstance(final org.gnome.split.GnomeSplit app, File file,
-            String filename) {
+    public static final DefaultMergeEngine getInstance(File file, String filename) {
         String name = file.getName();
         String[] extensions = Algorithm.getExtensions();
 
         if (name.endsWith(extensions[0]) || name.endsWith(extensions[1])) {
             // Use Generic algorithm
-            return new Generic(app, file, filename);
+            return new Generic(file, filename);
         }
 
         if (name.endsWith(extensions[2])) {
             // Use GNOME Split algorithm
-            return new GnomeSplit(app, file, filename);
+            return new GnomeSplit(file, filename);
         }
 
         if (name.endsWith(extensions[3]) || name.endsWith(extensions[4])) {
             // Use Xtremsplit algorithm
-            return new Xtremsplit(app, file, filename);
+            return new Xtremsplit(file, filename);
         }
 
         if (name.endsWith(extensions[5])) {
             // Use KFK algorithm
-            return new KFK(app, file, filename);
+            return new KFK(file, filename);
         }
 
         if (name.endsWith(extensions[6])) {
             // Use YoyoCut algorithm
-            return new YoyoCut(app, file, filename);
+            return new YoyoCut(file, filename);
         }
 
         // Can't find the right algorithm
@@ -149,6 +151,9 @@ public abstract class DefaultMergeEngine extends DefaultEngine
 
                 // Merge files
                 this.merge();
+
+                // Execute action after the merge
+                this.onFinish();
             } catch (Exception e) {
                 // Handle the error
                 this.fireEngineError(e);
@@ -202,6 +207,16 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     public abstract void merge() throws IOException, EngineException;
 
     /**
+     * 
+     */
+    private void onFinish() {
+        if (config.OPEN_FILE_AT_END) {
+            // Open the created file if requested
+            openURI("file://" + filename);
+        }
+    }
+
+    /**
      * Start the progress updater which should notify the view from the
      * progress of the action.
      */
@@ -226,7 +241,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      * Notify the view that a part is being read.
      */
     protected void fireEnginePartRead(String filename) {
-        app.getEngineListener().enginePartRead(filename);
+        engine.enginePartRead(filename);
     }
 
     /**
@@ -234,7 +249,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     protected void fireMD5SumStarted() {
         this.stopProgressUpdater();
-        app.getEngineListener().engineMD5SumStarted();
+        engine.engineMD5SumStarted();
     }
 
     /**
@@ -242,39 +257,39 @@ public abstract class DefaultMergeEngine extends DefaultEngine
      */
     protected void fireMD5SumEnded() {
         this.startProgressUpdater();
-        app.getEngineListener().engineMD5SumEnded();
+        engine.engineMD5SumEnded();
     }
 
     /**
      * Notify the view that the engine has finish its work.
      */
     protected void fireEngineEnded() {
-        app.getEngineListener().engineEnded();
+        engine.engineEnded();
 
         List<String> list = new ArrayList<String>();
         list.add(filename);
-        app.getEngineListener().engineFilesList(list);
+        engine.engineFilesList(list);
     }
 
     /**
      * Notify the view that the engine has been stopped.
      */
     protected void fireEngineStopped() {
-        app.getEngineListener().engineStopped();
+        engine.engineStopped();
     }
 
     /**
      * Notify the view that an error has occurred.
      */
     protected void fireEngineError(Exception exception) {
-        app.getEngineListener().engineError(exception);
+        engine.engineError(exception);
     }
 
     /**
      * Notify the view that a part of the file has been read.
      */
     protected void fireEngineDone(long done, long total) {
-        app.getEngineListener().engineDone(done, total);
+        engine.engineDone(done, total);
     }
 
     /**
@@ -287,7 +302,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     protected boolean mergeChunk(GRandomAccessFile merge, GRandomAccessFile chunk, long read, long length)
             throws IOException {
         // Setup the buffer
-        int bufferSize = app.getConfig().BUFFER_SIZE;
+        int bufferSize = config.BUFFER_SIZE;
         byte[] buffer = null;
 
         // Merge the file

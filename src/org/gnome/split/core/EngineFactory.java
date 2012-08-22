@@ -23,7 +23,6 @@ package org.gnome.split.core;
 import java.io.File;
 import java.lang.reflect.Constructor;
 
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.merger.DefaultMergeEngine;
 import org.gnome.split.core.model.MergeModel;
 import org.gnome.split.core.model.SplitModel;
@@ -62,7 +61,7 @@ public class EngineFactory
     /**
      * Create a split engine to split a file.
      */
-    public static DefaultSplitEngine createSplitEngine(final GnomeSplit app, SplitModel model) {
+    public static DefaultSplitEngine createSplitEngine(SplitModel model) {
         DefaultSplitEngine engine = null;
 
         // Split related info
@@ -74,11 +73,10 @@ public class EngineFactory
         Constructor<?> constructor;
         try {
             // Get the class constructor
-            constructor = splitters[algorithm].getConstructor(GnomeSplit.class, File.class, long.class,
-                    String.class);
+            constructor = splitters[algorithm].getConstructor(File.class, long.class, String.class);
 
             // Create the runnable object
-            engine = (DefaultSplitEngine) constructor.newInstance(app, file, size, dest);
+            engine = (DefaultSplitEngine) constructor.newInstance(file, size, dest);
         } catch (Exception e) {
             // Should *never* happen
             e.printStackTrace();
@@ -91,7 +89,7 @@ public class EngineFactory
     /**
      * Create a merge engine to merge files.
      */
-    public static DefaultMergeEngine createMergeEngine(final GnomeSplit app, MergeModel model) {
+    public static DefaultMergeEngine createMergeEngine(MergeModel model) {
         DefaultMergeEngine engine = null;
 
         // Merge related info
@@ -126,10 +124,10 @@ public class EngineFactory
             Constructor<?> constructor;
             try {
                 // Get the class constructor
-                constructor = mergers[index].getConstructor(GnomeSplit.class, File.class, String.class);
+                constructor = mergers[index].getConstructor(File.class, String.class);
 
                 // Create the runnable object
-                engine = (DefaultMergeEngine) constructor.newInstance(app, file, dest);
+                engine = (DefaultMergeEngine) constructor.newInstance(file, dest);
             } catch (Exception e) {
                 // Should *never* happen
                 e.printStackTrace();

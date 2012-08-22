@@ -20,12 +20,13 @@
  */
 package org.gnome.split.core;
 
+import static org.gnome.split.GnomeSplit.engine;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.SizeUnit;
 
 /**
@@ -39,12 +40,7 @@ public abstract class DefaultEngine implements Engine
     /**
      * To manage synchronization of thread.
      */
-    protected final Object mutex = new Object();
-
-    /**
-     * Current instance of GNOME Split.
-     */
-    protected GnomeSplit app;
+    protected final Object mutex;
 
     /**
      * Total of bytes read.
@@ -76,8 +72,8 @@ public abstract class DefaultEngine implements Engine
      */
     private Timer speed;
 
-    public DefaultEngine(final GnomeSplit app) {
-        this.app = app;
+    public DefaultEngine() {
+        this.mutex = new Object();
         this.total = 0;
         this.directory = null;
         this.chunks = new ArrayList<String>();
@@ -98,7 +94,7 @@ public abstract class DefaultEngine implements Engine
     @Override
     public void pause() {
         paused = true;
-        app.getEngineListener().engineSuspended();
+        engine.engineSuspended();
     }
 
     @Override
@@ -106,7 +102,7 @@ public abstract class DefaultEngine implements Engine
         synchronized (mutex) {
             paused = false;
             mutex.notify();
-            app.getEngineListener().engineRunning();
+            engine.engineRunning();
         }
     }
 
@@ -140,7 +136,7 @@ public abstract class DefaultEngine implements Engine
      * Notify the view from a speed that has changed.
      */
     private void fireEngineSpeedChanged(String speed) {
-        app.getEngineListener().engineSpeedChanged(speed);
+        engine.engineSpeedChanged(speed);
     }
 
     /**

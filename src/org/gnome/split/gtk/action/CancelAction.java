@@ -20,11 +20,11 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.core.Engine;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.engine;
+
+import org.gnome.gtk.Stock;
+import org.gnome.split.core.Engine;
 
 /**
  * Action to cancel a split/merge.
@@ -33,16 +33,16 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class CancelAction extends Action
 {
-    protected CancelAction(final GnomeSplit app) {
-        super(app, "cancel-action", null, _("Cancel this action."), Stock.CANCEL);
+    protected CancelAction() {
+        super("cancel-action", null, _("Cancel this action."), Stock.CANCEL);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        Engine engine = this.getApplication().getEngineListener().getEngine();
+        Engine real = engine.getEngine();
 
-        if (engine != null) {
-            engine.stop(false);
+        if (real != null) {
+            real.stop(false);
         }
     }
 }

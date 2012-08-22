@@ -20,11 +20,11 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.core.Engine;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.engine;
+
+import org.gnome.gtk.Stock;
+import org.gnome.split.core.Engine;
 
 /**
  * Action to cancel a split/merge and delete associated files.
@@ -33,16 +33,16 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class DeleteAction extends Action
 {
-    protected DeleteAction(final GnomeSplit app) {
-        super(app, "delete-action", _("Cancel and _delete files"), null, Stock.DELETE);
+    protected DeleteAction() {
+        super("delete-action", _("Cancel and _delete files"), null, Stock.DELETE);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        Engine engine = this.getApplication().getEngineListener().getEngine();
+        Engine real = engine.getEngine();
 
-        if (engine != null) {
-            engine.stop(true);
+        if (real != null) {
+            real.stop(true);
         }
     }
 }

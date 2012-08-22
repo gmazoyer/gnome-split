@@ -20,8 +20,9 @@
  */
 package org.gnome.split.gtk.action;
 
+import static org.gnome.split.GnomeSplit.openURI;
+
 import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 
 /**
@@ -31,12 +32,12 @@ import org.gnome.split.config.Constants;
  */
 final class HelpAction extends Action
 {
-    protected HelpAction(final GnomeSplit app) {
-        super(app, "help-action", Stock.HELP);
+    protected HelpAction() {
+        super("help-action", Stock.HELP);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        this.getApplication().openURI(Constants.PROGRAM_WEBSITE);
+        openURI(Constants.PROGRAM_WEBSITE);
     }
 }

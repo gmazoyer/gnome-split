@@ -23,7 +23,6 @@ package org.gnome.split.gtk.action;
 import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.ToggleAction;
 import org.gnome.gtk.ToggleAction.Toggled;
-import org.gnome.split.GnomeSplit;
 
 /**
  * Abstract class to define a action triggered by a GTK+ radio widget.
@@ -33,18 +32,11 @@ import org.gnome.split.GnomeSplit;
 public abstract class RadioAction extends org.gnome.gtk.RadioAction implements Toggled
 {
     /**
-     * The current instance of GNOME Split.
-     */
-    private GnomeSplit app;
-
-    /**
      * Create a new action using a label, a tooltip and a state.
      */
-    protected RadioAction(GnomeSplit app, RadioGroup group, String name, String label, String tooltip,
-            boolean active) {
+    protected RadioAction(RadioGroup group, String name, String label, String tooltip, boolean active) {
         super(group, name, label, tooltip, null);
 
-        this.app = app;
         this.setActive(active);
         this.connect((ToggleAction.Toggled) this);
     }
@@ -52,18 +44,10 @@ public abstract class RadioAction extends org.gnome.gtk.RadioAction implements T
     /**
      * Create a new action using a label and a state.
      */
-    protected RadioAction(GnomeSplit app, RadioGroup group, String name, String label, boolean active) {
+    protected RadioAction(RadioGroup group, String name, String label, boolean active) {
         super(group, name, label);
 
-        this.app = app;
         this.setActive(active);
         this.connect((ToggleAction.Toggled) this);
-    }
-
-    /**
-     * Get the current program instance.
-     */
-    protected GnomeSplit getApplication() {
-        return app;
     }
 }

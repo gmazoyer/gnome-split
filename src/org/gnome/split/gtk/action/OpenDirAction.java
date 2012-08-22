@@ -20,13 +20,14 @@
  */
 package org.gnome.split.gtk.action;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.openURI;
+import static org.gnome.split.GnomeSplit.ui;
+
 import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.MergeWidget;
 import org.gnome.split.gtk.widget.SplitWidget;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * Action to open the directory containing files.
@@ -35,14 +36,14 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class OpenDirAction extends Action
 {
-    protected OpenDirAction(final GnomeSplit app) {
-        super(app, "opendir-action", _("_Open folder"),
-                _("Open the folder where the action is performed."), Stock.OPEN);
+    protected OpenDirAction() {
+        super("opendir-action", _("_Open folder"), _("Open the folder where the action is performed."),
+                Stock.OPEN);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        ActionWidget widget = this.getApplication().getMainWindow().getActionWidget();
+        ActionWidget widget = ui.getActionWidget();
         String directory = "file://";
 
         if (widget instanceof SplitWidget) {
@@ -52,6 +53,6 @@ final class OpenDirAction extends Action
         }
 
         // Open the directory with the default program
-        this.getApplication().openURI(directory);
+        openURI(directory);
     }
 }

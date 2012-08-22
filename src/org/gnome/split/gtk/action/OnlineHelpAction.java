@@ -20,9 +20,8 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.split.GnomeSplit;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.openURI;
 
 /**
  * Action to open the online help.
@@ -31,12 +30,12 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class OnlineHelpAction extends Action
 {
-    protected OnlineHelpAction(final GnomeSplit app) {
-        super(app, "online-help-action", _("Get Help _Online..."));
+    protected OnlineHelpAction() {
+        super("online-help-action", _("Get Help _Online..."));
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        this.getApplication().openURI("https://answers.launchpad.net/gnome-split");
+        openURI("https://answers.launchpad.net/gnome-split");
     }
 }

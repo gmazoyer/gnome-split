@@ -27,7 +27,6 @@ import org.gnome.gdk.Keyval;
 import org.gnome.gdk.ModifierType;
 import org.gnome.gtk.AcceleratorGroup;
 import org.gnome.gtk.RadioGroup;
-import org.gnome.split.GnomeSplit;
 
 /**
  * A manager to manage actions used by the GTK+ interface.
@@ -56,7 +55,7 @@ public class ActionManager
      */
     private AcceleratorGroup accelerators;
 
-    public ActionManager(final GnomeSplit app) {
+    public ActionManager() {
         // Create maps of actions
         actions = new HashMap<ActionId, Action>();
         toggles = new HashMap<ActionId, ToggleAction>();
@@ -66,32 +65,32 @@ public class ActionManager
         accelerators = new AcceleratorGroup();
 
         // Actions related to split and merge assistant
-        AssistantAction assistant = new AssistantAction(app);
+        AssistantAction assistant = new AssistantAction();
         assistant.setAccelerator(accelerators, Keyval.a, ModifierType.CONTROL_MASK);
 
         // Action to open the directory
-        OpenDirAction directory = new OpenDirAction(app);
+        OpenDirAction directory = new OpenDirAction();
         directory.setAccelerator(accelerators, Keyval.o, ModifierType.CONTROL_MASK);
 
         // Action to send an email
-        SendEmailAction email = new SendEmailAction(app);
+        SendEmailAction email = new SendEmailAction();
         email.setAccelerator(accelerators, Keyval.e,
                 ModifierType.or(ModifierType.CONTROL_MASK, ModifierType.SHIFT_MASK));
 
         // Action to start a split/merge
-        StartAction start = new StartAction(app);
+        StartAction start = new StartAction();
         start.setAccelerator(accelerators, Keyval.s, ModifierType.CONTROL_MASK);
 
         // Action to suspend a split/merge
-        PauseAction pause = new PauseAction(app);
+        PauseAction pause = new PauseAction();
         pause.setAccelerator(accelerators, Keyval.p, ModifierType.CONTROL_MASK);
 
         // Action to cancel a split/merge
-        CancelAction cancel = new CancelAction(app);
+        CancelAction cancel = new CancelAction();
         cancel.setAccelerator(accelerators, Keyval.c, ModifierType.CONTROL_MASK);
 
         // Action to delete files and cancel a split/merge
-        DeleteAction delete = new DeleteAction(app);
+        DeleteAction delete = new DeleteAction();
         delete.setAccelerator(accelerators, Keyval.Delete, ModifierType.SHIFT_MASK);
 
         // Add the previously created actions
@@ -104,25 +103,25 @@ public class ActionManager
         actions.put(ActionId.DELETE, delete);
 
         // Action to clear the interface
-        ClearAction clear = new ClearAction(app);
+        ClearAction clear = new ClearAction();
         clear.setAccelerator(accelerators, Keyval.c, ModifierType.ALT_MASK);
 
         // Action to quit the program
-        QuitAction quit = new QuitAction(app);
+        QuitAction quit = new QuitAction();
         quit.setAccelerator(accelerators, Keyval.q, ModifierType.CONTROL_MASK);
 
         // Action to show the preferences
-        PreferencesAction preferences = new PreferencesAction(app);
+        PreferencesAction preferences = new PreferencesAction();
 
         // Action to open the help
-        HelpAction help = new HelpAction(app);
+        HelpAction help = new HelpAction();
         help.setAccelerator(accelerators, Keyval.F1, ModifierType.NONE);
 
         // Actions to show the about dialog and to contribute to the project
-        OnlineHelpAction online = new OnlineHelpAction(app);
-        TranslateAction translate = new TranslateAction(app);
-        ReportBugAction report = new ReportBugAction(app);
-        AboutAction about = new AboutAction(app);
+        OnlineHelpAction online = new OnlineHelpAction();
+        TranslateAction translate = new TranslateAction();
+        ReportBugAction report = new ReportBugAction();
+        AboutAction about = new AboutAction();
 
         // Add the previously created actions
         actions.put(ActionId.CLEAR, clear);
@@ -136,10 +135,10 @@ public class ActionManager
 
         // Other actions related to the interface which have two possible
         // states (active or inactive)
-        MainWindowAction window = new MainWindowAction(app);
-        ViewToolbarAction toolbar = new ViewToolbarAction(app);
-        ViewSwitcherAction switcher = new ViewSwitcherAction(app);
-        ViewStatusbarAction status = new ViewStatusbarAction(app);
+        MainWindowAction window = new MainWindowAction();
+        ViewToolbarAction toolbar = new ViewToolbarAction();
+        ViewSwitcherAction switcher = new ViewSwitcherAction();
+        ViewStatusbarAction status = new ViewStatusbarAction();
 
         // Add the previously created actions
         toggles.put(ActionId.TRAY_WINDOW, window);
@@ -152,11 +151,11 @@ public class ActionManager
         RadioGroup views = new RadioGroup();
 
         // Action to show the split view
-        SplitViewAction split = new SplitViewAction(app, views);
+        SplitViewAction split = new SplitViewAction(views);
         split.setAccelerator(accelerators, Keyval.s, ModifierType.ALT_MASK);
 
         // Action to show the merge view
-        MergeViewAction merge = new MergeViewAction(app, views);
+        MergeViewAction merge = new MergeViewAction(views);
         merge.setAccelerator(accelerators, Keyval.m, ModifierType.ALT_MASK);
 
         // Add the previously created actions

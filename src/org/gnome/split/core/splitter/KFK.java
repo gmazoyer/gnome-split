@@ -35,8 +35,8 @@ public final class KFK extends DefaultSplitEngine
 {
     private int parts;
 
-    public KFK(final org.gnome.split.GnomeSplit app, File file, long size, String destination) {
-        super(app, file, size, destination);
+    public KFK(File file, long size, String destination) {
+        super(file, size, destination);
         parts = (int) Math.ceil((float) file.length() / (float) size);
     }
 

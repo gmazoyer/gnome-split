@@ -20,6 +20,10 @@
  */
 package org.gnome.split.gtk.widget.assistant;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.actions;
+import static org.gnome.split.GnomeSplit.ui;
+
 import java.io.File;
 
 import org.gnome.gtk.Assistant;
@@ -29,11 +33,8 @@ import org.gnome.gtk.FileChooserButton;
 import org.gnome.gtk.FileFilter;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This assistant is used to help the user to create a merge action.
@@ -52,8 +53,8 @@ public class MergeAssistant extends BasicAssistant
      */
     private String filename;
 
-    public MergeAssistant(GnomeSplit app) {
-        super(app, _("Merge assistant"));
+    public MergeAssistant() {
+        super(_("Merge assistant"));
 
         // Set the default values
         this.filename = null;
@@ -128,10 +129,10 @@ public class MergeAssistant extends BasicAssistant
     @Override
     protected void updateInterface() {
         // Switch to the merge view if needed
-        app.getActionManager().activateRadioAction(ActionId.MERGE);
+        actions.activateRadioAction(ActionId.MERGE);
 
         // Update the widget using the filename
-        app.getMainWindow().getMergeWidget().setFile(filename);
+        ui.getMergeWidget().setFile(filename);
     }
 
     @Override

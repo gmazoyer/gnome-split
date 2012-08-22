@@ -20,10 +20,8 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.MainWindow;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.ui;
 
 /**
  * Action to hide and show the main window.
@@ -32,21 +30,19 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class MainWindowAction extends ToggleAction
 {
-    protected MainWindowAction(final GnomeSplit app) {
-        super(app, "main-window-action", _("Show the main _window"), true);
+    protected MainWindowAction() {
+        super("main-window-action", _("Show the main _window"), true);
     }
 
     @Override
     public void onToggled(org.gnome.gtk.ToggleAction source) {
         // Get the main window
-        MainWindow window = this.getApplication().getMainWindow();
-
         if (source.getActive()) {
             // Show the window
-            window.show();
+            ui.show();
         } else {
             // Hide the window
-            window.hide();
+            ui.hide();
         }
     }
 }

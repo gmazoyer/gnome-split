@@ -20,13 +20,14 @@
  */
 package org.gnome.split.gtk.widget.base;
 
+import static org.gnome.split.GnomeSplit.ui;
+
 import org.gnome.gtk.InfoBar;
 import org.gnome.gtk.Justification;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.MessageType;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
 
 /**
  * A widget derived from {@link InfoBar} to display information in the
@@ -37,20 +38,12 @@ import org.gnome.split.GnomeSplit;
 public class InfoHeader extends InfoBar implements InfoBar.Close, InfoBar.Response
 {
     /**
-     * Current GNOME Split instance.
-     */
-    private GnomeSplit app;
-
-    /**
      * Widget to display text.
      */
     private Label label;
 
-    public InfoHeader(final GnomeSplit app) {
+    public InfoHeader() {
         super();
-
-        // Save instance
-        this.app = app;
 
         // Add a close button
         this.addButton(Stock.CLOSE, ResponseType.CLOSE);
@@ -74,7 +67,7 @@ public class InfoHeader extends InfoBar implements InfoBar.Close, InfoBar.Respon
         super.hide();
 
         // Resize the window
-        app.getMainWindow().resize();
+        ui.resize();
     }
 
     /**

@@ -20,6 +20,11 @@
  */
 package org.gnome.split.gtk.widget.assistant;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.actions;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
 import java.io.File;
 
 import org.gnome.gtk.Assistant;
@@ -34,15 +39,12 @@ import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.Stock;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.utils.Algorithm;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.widget.base.AlgorithmsBox;
 import org.gnome.split.gtk.widget.base.UnitsBox;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This assistant is used to help the user to create a split action.
@@ -76,8 +78,8 @@ public class SplitAssistant extends BasicAssistant
      */
     private int algorithm;
 
-    public SplitAssistant(GnomeSplit app) {
-        super(app, _("Split assistant"));
+    public SplitAssistant() {
+        super(_("Split assistant"));
 
         // Set the default values
         this.filename = null;
@@ -208,7 +210,7 @@ public class SplitAssistant extends BasicAssistant
         final VBox page = createPage();
 
         // Setup the default algorithm
-        algorithm = app.getConfig().DEFAULT_ALGORITHM;
+        algorithm = config.DEFAULT_ALGORITHM;
 
         // The text to display
         final String data = _("The algorithm defines the way how the file will be split.");
@@ -221,7 +223,7 @@ public class SplitAssistant extends BasicAssistant
         page.packStart(box, false, false, 0);
 
         // Add a list containing the algorithm
-        final AlgorithmsBox list = new AlgorithmsBox(app);
+        final AlgorithmsBox list = new AlgorithmsBox();
         box.packStart(list, true, true, 0);
 
         // Add an icon which will contain a quick description of the selected
@@ -301,10 +303,10 @@ public class SplitAssistant extends BasicAssistant
     @Override
     protected void updateInterface() {
         // Switch to the split view if needed
-        app.getActionManager().activateRadioAction(ActionId.SPLIT);
+        actions.activateRadioAction(ActionId.SPLIT);
 
         // Update the widget using the info
-        app.getMainWindow().getSplitWidget().setSplit(filename, size, unit, algorithm);
+        ui.getSplitWidget().setSplit(filename, size, unit, algorithm);
     }
 
     @Override

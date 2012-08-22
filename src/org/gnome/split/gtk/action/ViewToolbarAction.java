@@ -20,10 +20,11 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.MainToolbar;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
+import org.gnome.split.gtk.widget.MainToolbar;
 
 /**
  * Action to hide and show the main window toolbar.
@@ -32,14 +33,14 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class ViewToolbarAction extends ToggleAction
 {
-    protected ViewToolbarAction(final GnomeSplit app) {
-        super(app, "view-toolbar-action", _("_Toolbar"), app.getConfig().SHOW_TOOLBAR);
+    protected ViewToolbarAction() {
+        super("view-toolbar-action", _("_Toolbar"), config.SHOW_TOOLBAR);
     }
 
     @Override
     public void onToggled(org.gnome.gtk.ToggleAction source) {
         // Get the toolbar of the interface
-        MainToolbar toolbar = this.getApplication().getMainWindow().getToolbar();
+        MainToolbar toolbar = ui.getToolbar();
 
         if (source.getActive()) {
             // Show it
@@ -49,13 +50,13 @@ final class ViewToolbarAction extends ToggleAction
             toolbar.hide();
 
             // Resize the window if needed
-            if (!this.getApplication().getConfig().CUSTOM_WINDOW_SIZE) {
-                this.getApplication().getMainWindow().resize();
+            if (!config.CUSTOM_WINDOW_SIZE) {
+                ui.resize();
             }
         }
 
         // Save config
-        this.getApplication().getConfig().SHOW_TOOLBAR = source.getActive();
-        this.getApplication().getConfig().savePreferences();
+        config.SHOW_TOOLBAR = source.getActive();
+        config.savePreferences();
     }
 }

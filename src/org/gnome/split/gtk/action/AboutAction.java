@@ -21,7 +21,6 @@
 package org.gnome.split.gtk.action;
 
 import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.dialog.AboutSoftDialog;
 
 /**
@@ -31,8 +30,8 @@ import org.gnome.split.gtk.dialog.AboutSoftDialog;
  */
 final class AboutAction extends Action
 {
-    protected AboutAction(final GnomeSplit app) {
-        super(app, "about-action", Stock.ABOUT);
+    protected AboutAction() {
+        super("about-action", Stock.ABOUT);
     }
 
     @Override

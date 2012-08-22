@@ -20,10 +20,11 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.StatusWidget;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
+import org.gnome.split.gtk.widget.StatusWidget;
 
 /**
  * Action to hide and show the main window statusbar.
@@ -32,14 +33,14 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class ViewStatusbarAction extends ToggleAction
 {
-    protected ViewStatusbarAction(final GnomeSplit app) {
-        super(app, "view-statusbar-action", _("_Statusbar"), app.getConfig().SHOW_STATUSBAR);
+    protected ViewStatusbarAction() {
+        super("view-statusbar-action", _("_Statusbar"), config.SHOW_STATUSBAR);
     }
 
     @Override
     public void onToggled(org.gnome.gtk.ToggleAction source) {
         // Get the statusbar of the interface
-        StatusWidget statusbar = this.getApplication().getMainWindow().getStatusWidget();
+        StatusWidget statusbar = ui.getStatusWidget();
 
         if (source.getActive()) {
             // Show it
@@ -49,13 +50,13 @@ final class ViewStatusbarAction extends ToggleAction
             statusbar.hide();
 
             // Resize the window if needed
-            if (!this.getApplication().getConfig().CUSTOM_WINDOW_SIZE) {
-                this.getApplication().getMainWindow().resize();
+            if (!config.CUSTOM_WINDOW_SIZE) {
+                ui.resize();
             }
         }
 
         // Save config
-        this.getApplication().getConfig().SHOW_STATUSBAR = source.getActive();
-        this.getApplication().getConfig().savePreferences();
+        config.SHOW_STATUSBAR = source.getActive();
+        config.savePreferences();
     }
 }

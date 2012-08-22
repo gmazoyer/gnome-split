@@ -20,9 +20,8 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.split.GnomeSplit;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.openURI;
 
 /**
  * Action to open the bug report form.
@@ -31,12 +30,12 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class ReportBugAction extends Action
 {
-    protected ReportBugAction(final GnomeSplit app) {
-        super(app, "report-bug-action", _("_Report a Problem..."));
+    protected ReportBugAction() {
+        super("report-bug-action", _("_Report a Problem..."));
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        this.getApplication().openURI("https://bugs.launchpad.net/gnome-split/+filebug");
+        openURI("https://bugs.launchpad.net/gnome-split/+filebug");
     }
 }

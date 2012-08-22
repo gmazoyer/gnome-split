@@ -23,7 +23,6 @@ package org.gnome.split.core.merger;
 import java.io.File;
 import java.io.IOException;
 
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.MissingChunkException;
 import org.gnome.split.core.io.GRandomAccessFile;
@@ -36,8 +35,8 @@ import org.gnome.split.core.io.GRandomAccessFile;
  */
 public final class Generic extends DefaultMergeEngine
 {
-    public Generic(final GnomeSplit app, File file, String filename) {
-        super(app, file, filename);
+    public Generic(File file, String filename) {
+        super(file, filename);
     }
 
     @Override
@@ -138,11 +137,6 @@ public final class Generic extends DefaultMergeEngine
                 if (new File(this.getNextChunk(part, (i + 1))).exists()) {
                     parts++;
                 }
-            }
-
-            if (app.getConfig().OPEN_FILE_AT_END) {
-                // Open the created file if requested
-                app.openURI("file://" + filename);
             }
 
             // Notify the end

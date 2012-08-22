@@ -20,13 +20,13 @@
  */
 package org.gnome.split.gtk.widget;
 
+import static org.gnome.split.GnomeSplit.actions;
+
 import org.gnome.gtk.SeparatorToolItem;
 import org.gnome.gtk.StyleClass;
 import org.gnome.gtk.StyleContext;
 import org.gnome.gtk.ToolItem;
 import org.gnome.gtk.Toolbar;
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 
 /**
@@ -36,11 +36,8 @@ import org.gnome.split.gtk.action.ActionManager.ActionId;
  */
 public class MainToolbar extends Toolbar
 {
-    public MainToolbar(final GnomeSplit app) {
+    public MainToolbar() {
         super();
-
-        // Get the current manager
-        final ActionManager actions = app.getActionManager();
 
         // Add a button to show the assistant
         final ToolItem assistant = actions.getAction(ActionId.ASSISTANT).createToolItem();

@@ -20,14 +20,14 @@
  */
 package org.gnome.split.gtk.dialog;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+
 import org.gnome.gtk.CheckButton;
 import org.gnome.gtk.QuestionMessageDialog;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.ToggleButton;
 import org.gnome.gtk.Window;
-import org.gnome.split.GnomeSplit;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This class is used to build a question dialog.
@@ -40,13 +40,13 @@ public final class QuestionDialog extends QuestionMessageDialog
      * Create an <code>QuestionDialog</code> with a <code>title</code> and
      * <code>text</code>
      */
-    public QuestionDialog(Window parent, String title, String text) {
+    public QuestionDialog(Window parent, String title, String text, boolean modal) {
         super(parent, title, text);
-        this.setModal(true);
+        this.setModal(modal);
     }
 
-    public QuestionDialog(final GnomeSplit app, Window parent, String title, String text) {
-        this(parent, title, text);
+    public QuestionDialog(Window parent, String title, String text) {
+        this(parent, title, text, true);
 
         // Add a check button
         final CheckButton ask = new CheckButton(_("Do not ask me again."));
@@ -59,8 +59,8 @@ public final class QuestionDialog extends QuestionMessageDialog
         ask.connect(new ToggleButton.Toggled() {
             @Override
             public void onToggled(ToggleButton source) {
-                app.getConfig().DO_NOT_ASK_QUIT = source.getActive();
-                app.getConfig().savePreferences();
+                config.DO_NOT_ASK_QUIT = source.getActive();
+                config.savePreferences();
             }
         });
     }

@@ -20,12 +20,13 @@
  */
 package org.gnome.split.gtk.widget.assistant;
 
+import static org.gnome.split.GnomeSplit.actions;
+
 import org.gnome.gtk.Assistant;
 import org.gnome.gtk.Gtk;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.WindowPosition;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 
 /**
@@ -36,15 +37,8 @@ import org.gnome.split.gtk.action.ActionManager.ActionId;
 abstract class BasicAssistant extends Assistant implements Assistant.Close, Assistant.Cancel,
         Assistant.Apply, Assistant.Prepare
 {
-    /**
-     * The current instance of GNOME Split.
-     */
-    protected GnomeSplit app;
-
-    protected BasicAssistant(final GnomeSplit app, String title) {
+    protected BasicAssistant(String title) {
         super();
-
-        this.app = app;
 
         // Set this assistant in the center of the screen
         this.setPosition(WindowPosition.CENTER);
@@ -124,7 +118,7 @@ abstract class BasicAssistant extends Assistant implements Assistant.Close, Assi
             }
 
             // Start the split/merge if requested
-            app.getActionManager().activateAction(ActionId.START);
+            actions.activateAction(ActionId.START);
 
             // Then hide the assistant
             source.hide();

@@ -20,6 +20,10 @@
  */
 package org.gnome.split.gtk.dialog;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
 import org.gnome.gdk.Event;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.ButtonsType;
@@ -36,8 +40,6 @@ import org.gnome.gtk.Window;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.widget.AreaStatusIcon;
 
-import static org.freedesktop.bindings.Internationalization._;
-
 /**
  * This class is used to build dialog to ask the user if he want to minimize
  * or quit the program.
@@ -47,22 +49,14 @@ import static org.freedesktop.bindings.Internationalization._;
 public final class MinimizeDialog extends MessageDialog implements Window.DeleteEvent, Dialog.Response
 {
     /**
-     * The current GNOME Split instance.
-     */
-    private GnomeSplit app;
-
-    /**
      * Button to check if the user don't want the dialog to pop up another
      * time.
      */
     private CheckButton ask;
 
-    public MinimizeDialog(final GnomeSplit app) {
-        super(app.getMainWindow(), false, MessageType.QUESTION, ButtonsType.NONE,
+    public MinimizeDialog() {
+        super(ui, false, MessageType.QUESTION, ButtonsType.NONE,
                 _("What do you want to do?\nQuit GNOME Split or minimize the window?"));
-
-        // Save the instance
-        this.app = app;
 
         // Add a check button
         ask = new CheckButton(_("Do not ask me again."));
@@ -97,23 +91,23 @@ public final class MinimizeDialog extends MessageDialog implements Window.Delete
         if (response == ResponseType.CLOSE) {
             if (ask.getActive()) {
                 // Remember the choice
-                app.getConfig().CLOSE_BEHAVIOR = 1;
-                app.getConfig().savePreferences();
+                config.CLOSE_BEHAVIOR = 1;
+                config.savePreferences();
             }
 
             // Quit the program
-            app.quit();
+            GnomeSplit.quit();
         }
 
         if (response == ResponseType.NO) {
             if (ask.getActive()) {
                 // Remember the choice
-                app.getConfig().CLOSE_BEHAVIOR = 2;
-                app.getConfig().savePreferences();
+                config.CLOSE_BEHAVIOR = 2;
+                config.savePreferences();
             }
 
             // Minimize the window
-            AreaStatusIcon icon = app.getMainWindow().getAreaStatusIcon();
+            AreaStatusIcon icon = ui.getAreaStatusIcon();
             icon.onActivate(icon);
         }
 

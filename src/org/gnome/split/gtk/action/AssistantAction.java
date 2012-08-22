@@ -20,11 +20,10 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.dialog.AssistantDialog;
-
 import static org.freedesktop.bindings.Internationalization._;
+
+import org.gnome.gtk.Stock;
+import org.gnome.split.gtk.dialog.AssistantDialog;
 
 /**
  * Allow the user to use the assistant.
@@ -33,12 +32,12 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class AssistantAction extends Action
 {
-    protected AssistantAction(final GnomeSplit app) {
-        super(app, "assistant-action", _("_Assistant"), _("Create a split or a merge."), Stock.ADD);
+    protected AssistantAction() {
+        super("assistant-action", _("_Assistant"), _("Create a split or a merge."), Stock.ADD);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        new AssistantDialog(this.getApplication()).present();
+        new AssistantDialog().present();
     }
 }

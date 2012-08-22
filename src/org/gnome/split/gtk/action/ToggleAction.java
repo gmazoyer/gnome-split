@@ -20,8 +20,6 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.split.GnomeSplit;
-
 /**
  * Abstract class to define a action triggered by a GTK+ toggle widget.
  * 
@@ -31,17 +29,11 @@ public abstract class ToggleAction extends org.gnome.gtk.ToggleAction implements
         org.gnome.gtk.ToggleAction.Toggled
 {
     /**
-     * The current instance of GNOME Split.
-     */
-    private GnomeSplit app;
-
-    /**
      * Create a new action using a label, a tooltip and a state.
      */
-    protected ToggleAction(GnomeSplit app, String name, String label, String tooltip, boolean active) {
+    protected ToggleAction(String name, String label, String tooltip, boolean active) {
         super(name, label, tooltip, null);
 
-        this.app = app;
         this.setActive(active);
         this.connect((ToggleAction.Toggled) this);
     }
@@ -49,18 +41,10 @@ public abstract class ToggleAction extends org.gnome.gtk.ToggleAction implements
     /**
      * Create a new action using a label and a state.
      */
-    protected ToggleAction(GnomeSplit app, String name, String label, boolean active) {
+    protected ToggleAction(String name, String label, boolean active) {
         super(name, label);
 
-        this.app = app;
         this.setActive(active);
         this.connect((ToggleAction.Toggled) this);
-    }
-
-    /**
-     * Get the current program instance.
-     */
-    protected GnomeSplit getApplication() {
-        return app;
     }
 }

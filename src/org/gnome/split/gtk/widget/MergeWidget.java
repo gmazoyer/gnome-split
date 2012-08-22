@@ -20,6 +20,10 @@
  */
 package org.gnome.split.gtk.widget;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
 import java.io.File;
 
 import org.gnome.gtk.Dialog;
@@ -33,13 +37,10 @@ import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.merger.DefaultMergeEngine;
 import org.gnome.split.core.model.MergeModel;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.gtk.dialog.ErrorDialog;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * A widget derived from {@link Frame} to allow the user to start a merge.
@@ -48,11 +49,6 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public class MergeWidget extends VBox implements ActionWidget, MergeModel
 {
-    /**
-     * The GNOME Split application.
-     */
-    private GnomeSplit app;
-
     /**
      * Define if the widget is visible or not.
      */
@@ -93,11 +89,8 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
      */
     private long size;
 
-    public MergeWidget(final GnomeSplit app) {
+    public MergeWidget() {
         super(false, 12);
-
-        // Save instance
-        this.app = app;
 
         // At first, it is invisible
         visible = false;
@@ -127,7 +120,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         chk.addPattern("*.001");
 
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
-        fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
+        fileChooser.setCurrentFolder(config.MERGE_DIRECTORY);
 
         // Add filters to the file chooser
         fileChooser.addFilter(all);
@@ -154,7 +147,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         destinationRow.packStart(destEntry, true, true, 0);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
-        dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
+        dirChooser.setCurrentFolder(config.MERGE_DIRECTORY);
         destinationRow.packStart(dirChooser, true, true, 0);
 
         // Parts info row
@@ -210,10 +203,10 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
      */
     private boolean loadFile(File file) {
         // Load the file
-        DefaultMergeEngine engine = DefaultMergeEngine.getInstance(app, file, null);
+        DefaultMergeEngine engine = DefaultMergeEngine.getInstance(file, null);
         if (engine == null) {
             Dialog dialog = new ErrorDialog(
-                    app.getMainWindow(),
+                    ui,
                     _("Cannot merge."),
                     _("You will not be able to merge the files because this file format is unknown. You are welcome to fill a bug about that."));
             dialog.run();
@@ -242,7 +235,7 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
         dirChooser.setCurrentFolder(directory);
         partsNumber.setLabel((number == -1) ? _("Unknown") : String.valueOf(number));
         fileSize.setLabel(SizeUnit.formatSize(size));
-        md5sum.setLabel(engine.useMD5() && app.getConfig().CHECK_FILE_HASH ? _("A MD5 sum will be calculated.")
+        md5sum.setLabel(engine.useMD5() && config.CHECK_FILE_HASH ? _("A MD5 sum will be calculated.")
                 : _("A MD5 sum will not be calculated."));
 
         return true;
@@ -321,26 +314,26 @@ public class MergeWidget extends VBox implements ActionWidget, MergeModel
 
     @Override
     public void reset() {
-        fileChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
+        fileChooser.setCurrentFolder(config.MERGE_DIRECTORY);
         destEntry.setText("");
-        dirChooser.setCurrentFolder(app.getConfig().MERGE_DIRECTORY);
+        dirChooser.setCurrentFolder(config.MERGE_DIRECTORY);
         partsNumber.setLabel(_("Unknown"));
         fileSize.setLabel(_("Unknown"));
         md5sum.setLabel(_("Unknown"));
-        app.getMainWindow().getProgressBar().reset();
+        ui.getProgressBar().reset();
     }
 
     @Override
     public void updateProgress(double progress, String text, boolean sure) {
         if (!sure) {
             // Unknown progress
-            app.getMainWindow().getProgressBar().pulse();
+            ui.getProgressBar().pulse();
         } else {
             // Known progress
-            app.getMainWindow().getProgressBar().setFraction(progress);
+            ui.getProgressBar().setFraction(progress);
 
             if (!text.isEmpty()) {
-                app.getMainWindow().getProgressBar().setText(text);
+                ui.getProgressBar().setText(text);
             }
         }
     }

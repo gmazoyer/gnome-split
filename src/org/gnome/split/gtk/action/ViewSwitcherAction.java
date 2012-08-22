@@ -20,11 +20,12 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.HSeparator;
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.widget.SelectView;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
+import org.gnome.gtk.HSeparator;
+import org.gnome.split.gtk.widget.SelectView;
 
 /**
  * Action to hide and show the main window switcher.
@@ -33,15 +34,15 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class ViewSwitcherAction extends ToggleAction
 {
-    protected ViewSwitcherAction(final GnomeSplit app) {
-        super(app, "view-switcher-action", _("_View switcher"), app.getConfig().SHOW_SWITCHER);
+    protected ViewSwitcherAction() {
+        super("view-switcher-action", _("_View switcher"), config.SHOW_SWITCHER);
     }
 
     @Override
     public void onToggled(org.gnome.gtk.ToggleAction source) {
         // Get the switcher and the separator of the interface
-        SelectView switcher = this.getApplication().getMainWindow().getViewSwitcher();
-        HSeparator separator = this.getApplication().getMainWindow().getSeparator();
+        SelectView switcher = ui.getViewSwitcher();
+        HSeparator separator = ui.getSeparator();
 
         if (source.getActive()) {
             // Show it
@@ -53,13 +54,13 @@ final class ViewSwitcherAction extends ToggleAction
             separator.hide();
 
             // Resize the window if needed
-            if (!this.getApplication().getConfig().CUSTOM_WINDOW_SIZE) {
-                this.getApplication().getMainWindow().resize();
+            if (!config.CUSTOM_WINDOW_SIZE) {
+                ui.resize();
             }
         }
 
         // Save config
-        this.getApplication().getConfig().SHOW_SWITCHER = source.getActive();
-        this.getApplication().getConfig().savePreferences();
+        config.SHOW_SWITCHER = source.getActive();
+        config.savePreferences();
     }
 }

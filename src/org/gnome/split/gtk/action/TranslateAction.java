@@ -20,9 +20,8 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.split.GnomeSplit;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.openURI;
 
 /**
  * Action to open the online translation.
@@ -31,12 +30,12 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class TranslateAction extends Action
 {
-    protected TranslateAction(final GnomeSplit app) {
-        super(app, "translate-action", _("_Translate This Application..."));
+    protected TranslateAction() {
+        super("translate-action", _("_Translate This Application..."));
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        this.getApplication().openURI("https://translations.launchpad.net/gnome-split");
+        openURI("https://translations.launchpad.net/gnome-split");
     }
 }

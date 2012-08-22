@@ -20,10 +20,11 @@
  */
 package org.gnome.split.core.splitter;
 
+import static org.gnome.split.GnomeSplit.config;
+
 import java.io.File;
 import java.io.IOException;
 
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.io.GRandomAccessFile;
 import org.gnome.split.core.utils.MD5Hasher;
 
@@ -36,8 +37,8 @@ public final class YoyoCut extends DefaultSplitEngine
 {
     private int parts;
 
-    public YoyoCut(final GnomeSplit app, File file, long size, String destination) {
-        super(app, file, size, destination);
+    public YoyoCut(File file, long size, String destination) {
+        super(file, size, destination);
         parts = (int) Math.ceil((float) file.length() / (float) size);
     }
 
@@ -63,7 +64,7 @@ public final class YoyoCut extends DefaultSplitEngine
         access.write(number.getBytes());
 
         // Should we save MD5 sum?
-        if (app.getConfig().SAVE_FILE_HASH) {
+        if (config.SAVE_FILE_HASH) {
             // Notify the view
             this.fireMD5SumStarted();
 

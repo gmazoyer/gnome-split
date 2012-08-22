@@ -20,6 +20,10 @@
  */
 package org.gnome.split.gtk.widget;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
 import java.io.File;
 
 import org.gnome.gtk.Entry;
@@ -35,13 +39,10 @@ import org.gnome.gtk.SizeGroupMode;
 import org.gnome.gtk.SpinButton;
 import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.model.SplitModel;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.gtk.widget.base.AlgorithmsBox;
 import org.gnome.split.gtk.widget.base.UnitsBox;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * A widget derived from {@link Frame} to allow the user to start a split.
@@ -50,11 +51,6 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public class SplitWidget extends VBox implements ActionWidget, SplitModel
 {
-    /**
-     * The GNOME Split application.
-     */
-    private GnomeSplit app;
-
     /**
      * Define if the widget is visible or not.
      */
@@ -90,11 +86,8 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
      */
     private AlgorithmsBox algoList;
 
-    public SplitWidget(final GnomeSplit app) {
+    public SplitWidget() {
         super(false, 12);
-
-        // Save instance
-        this.app = app;
 
         // At first, it is invisible
         visible = false;
@@ -110,7 +103,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         firstRow.packStart(fileLabel, false, false, 0);
 
         fileChooser = new FileChooserButton(_("Choose a file."), FileChooserAction.OPEN);
-        fileChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
+        fileChooser.setCurrentFolder(config.SPLIT_DIRECTORY);
         fileChooser.connect(new FileChooserButton.FileSet() {
             @Override
             public void onFileSet(FileChooserButton source) {
@@ -130,7 +123,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         secondRow.packStart(destinationEntry, true, true, 0);
 
         dirChooser = new FileChooserButton(_("Choose a directory."), FileChooserAction.SELECT_FOLDER);
-        dirChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
+        dirChooser.setCurrentFolder(config.SPLIT_DIRECTORY);
         secondRow.packStart(dirChooser, true, true, 0);
 
         final HBox thirdRow = new HBox(false, 5);
@@ -159,7 +152,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
         final Label algoLabel = new Label(_("Algorithm:"));
         secondColumn.packStart(algoLabel, false, false, 0);
 
-        algoList = new AlgorithmsBox(app);
+        algoList = new AlgorithmsBox();
         secondColumn.packStart(algoList, true, true, 0);
 
         // Make all labels the same size
@@ -269,26 +262,26 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
 
     @Override
     public void reset() {
-        fileChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
+        fileChooser.setCurrentFolder(config.SPLIT_DIRECTORY);
         destinationEntry.setText("");
-        dirChooser.setCurrentFolder(app.getConfig().SPLIT_DIRECTORY);
+        dirChooser.setCurrentFolder(config.SPLIT_DIRECTORY);
         sizeButton.setValue(1);
         sizeUnits.setActive(0);
-        algoList.setActive(app.getConfig().DEFAULT_ALGORITHM);
-        app.getMainWindow().getProgressBar().reset();
+        algoList.setActive(config.DEFAULT_ALGORITHM);
+        ui.getProgressBar().reset();
     }
 
     @Override
     public void updateProgress(double progress, String text, boolean sure) {
         if (!sure) {
             // Unknown progress
-            app.getMainWindow().getProgressBar().pulse();
+            ui.getProgressBar().pulse();
         } else {
             // Known progress
-            app.getMainWindow().getProgressBar().setFraction(progress);
+            ui.getProgressBar().setFraction(progress);
 
             if (!text.isEmpty()) {
-                app.getMainWindow().getProgressBar().setText(text);
+                ui.getProgressBar().setText(text);
             }
         }
     }
@@ -346,7 +339,7 @@ public class SplitWidget extends VBox implements ActionWidget, SplitModel
      * <code>progress</code>.
      */
     public void setProgress(double progress) {
-        app.getMainWindow().getProgressBar().setFraction(progress);
+        ui.getProgressBar().setFraction(progress);
     }
 
     /**

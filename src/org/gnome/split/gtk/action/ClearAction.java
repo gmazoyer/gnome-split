@@ -20,10 +20,11 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.engine;
+import static org.gnome.split.GnomeSplit.ui;
+
+import org.gnome.gtk.Stock;
 
 /**
  * Action to clear the action widgets.
@@ -32,17 +33,17 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class ClearAction extends Action
 {
-    protected ClearAction(final GnomeSplit app) {
-        super(app, "clear-action", null, _("Clear this view."), Stock.CLEAR);
+    protected ClearAction() {
+        super("clear-action", null, _("Clear this view."), Stock.CLEAR);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
         // No action is performed, allow the widget clean up
-        if (this.getApplication().getEngineListener().getEngine() == null) {
-            this.getApplication().getMainWindow().getActionWidget().reset();
-            this.getApplication().getMainWindow().getStatusWidget().reset();
-            this.getApplication().getEngineListener().engineFilesList(null);
+        if (engine.getEngine() == null) {
+            ui.getActionWidget().reset();
+            ui.getStatusWidget().reset();
+            engine.engineFilesList(null);
         }
     }
 }

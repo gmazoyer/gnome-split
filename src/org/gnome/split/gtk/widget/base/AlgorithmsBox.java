@@ -20,8 +20,9 @@
  */
 package org.gnome.split.gtk.widget.base;
 
+import static org.gnome.split.GnomeSplit.config;
+
 import org.gnome.gtk.ComboBoxText;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.utils.Algorithm;
 
 /**
@@ -31,7 +32,7 @@ import org.gnome.split.core.utils.Algorithm;
  */
 public class AlgorithmsBox extends ComboBoxText
 {
-    public AlgorithmsBox(final GnomeSplit app) {
+    public AlgorithmsBox() {
         super();
 
         // Add all algorithms
@@ -41,6 +42,6 @@ public class AlgorithmsBox extends ComboBoxText
         }
 
         // Set the default algorithm
-        this.setActive(app.getConfig().DEFAULT_ALGORITHM);
+        this.setActive(config.DEFAULT_ALGORITHM);
     }
 }

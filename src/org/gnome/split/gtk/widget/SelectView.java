@@ -20,17 +20,17 @@
  */
 package org.gnome.split.gtk.widget;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.actions;
+
 import org.gnome.gtk.Activatable;
 import org.gnome.gtk.HBox;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.RadioButton;
 import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.Widget;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.action.RadioAction;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * A {@link Widget} derived from {@link HBox} to handle views in the main
@@ -50,7 +50,7 @@ public class SelectView extends HBox
      */
     private RadioButton merge;
 
-    public SelectView(final GnomeSplit app) {
+    public SelectView() {
         super(false, 10);
 
         // Set width of the borders
@@ -69,7 +69,7 @@ public class SelectView extends HBox
         this.packStart(this.split, false, false, 0);
 
         // Connect the button as a proxy to the existing action
-        action = app.getActionManager().getRadioAction(ActionId.SPLIT);
+        action = actions.getRadioAction(ActionId.SPLIT);
         ((Activatable) split).setRelatedAction(action);
 
         // Merge action - switch to merge view
@@ -77,7 +77,7 @@ public class SelectView extends HBox
         this.packStart(this.merge, false, false, 0);
 
         // Connect the button as a proxy to the existing action
-        action = app.getActionManager().getRadioAction(ActionId.MERGE);
+        action = actions.getRadioAction(ActionId.MERGE);
         ((Activatable) merge).setRelatedAction(action);
     }
 

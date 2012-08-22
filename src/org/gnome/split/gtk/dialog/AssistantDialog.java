@@ -20,6 +20,10 @@
  */
 package org.gnome.split.gtk.dialog;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
 import org.gnome.gdk.Event;
 import org.gnome.gtk.Assistant;
 import org.gnome.gtk.Button;
@@ -34,11 +38,8 @@ import org.gnome.gtk.Stock;
 import org.gnome.gtk.VButtonBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.gtk.widget.assistant.MergeAssistant;
 import org.gnome.split.gtk.widget.assistant.SplitAssistant;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This class is used to build the dialog to choose the assistant to use.
@@ -47,11 +48,6 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public class AssistantDialog extends Dialog implements Window.DeleteEvent, Dialog.Response
 {
-    /**
-     * Current instance of the application.
-     */
-    private GnomeSplit app;
-
     /**
      * Button to popup the split assistant.
      */
@@ -62,10 +58,8 @@ public class AssistantDialog extends Dialog implements Window.DeleteEvent, Dialo
      */
     private RadioButton merge;
 
-    public AssistantDialog(final GnomeSplit app) {
-        super(_("Assistant"), app.getMainWindow(), false);
-
-        this.app = app;
+    public AssistantDialog() {
+        super(_("Assistant"), ui, false);
 
         // This dialog should be modal
         this.setModal(true);
@@ -97,7 +91,7 @@ public class AssistantDialog extends Dialog implements Window.DeleteEvent, Dialo
 
         // Add a button to turn on/off the assistant on start
         final CheckButton assistant = new CheckButton(_("_Show the assistant on start"));
-        assistant.setActive(app.getConfig().ASSISTANT_ON_START);
+        assistant.setActive(config.ASSISTANT_ON_START);
         this.add(assistant);
 
         // Connect check button signal
@@ -105,8 +99,8 @@ public class AssistantDialog extends Dialog implements Window.DeleteEvent, Dialo
             @Override
             public void onClicked(Button source) {
                 // Save preferences
-                app.getConfig().ASSISTANT_ON_START = assistant.getActive();
-                app.getConfig().savePreferences();
+                config.ASSISTANT_ON_START = assistant.getActive();
+                config.savePreferences();
             }
         });
 
@@ -131,9 +125,9 @@ public class AssistantDialog extends Dialog implements Window.DeleteEvent, Dialo
             final Assistant assistant;
 
             if (split.getActive()) {
-                assistant = new SplitAssistant(app);
+                assistant = new SplitAssistant();
             } else {
-                assistant = new MergeAssistant(app);
+                assistant = new MergeAssistant();
             }
 
             // Focus on the assistant

@@ -20,15 +20,15 @@
  */
 package org.gnome.split.gtk.widget;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.actions;
+import static org.gnome.split.GnomeSplit.config;
+
 import org.gnome.gtk.Menu;
 import org.gnome.gtk.SeparatorMenuItem;
 import org.gnome.gtk.StatusIcon;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
-import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This class is used to build GTK+ notification icon.
@@ -38,11 +38,6 @@ import static org.freedesktop.bindings.Internationalization._;
 public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, StatusIcon.PopupMenu
 {
     /**
-     * The GNOME Split application.
-     */
-    private GnomeSplit app;
-
-    /**
      * Menu attached to this status icon.
      */
     private Menu menu;
@@ -50,17 +45,14 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
     /**
      * Build the tray icon to show it into the notification zone.
      */
-    public AreaStatusIcon(final GnomeSplit app) {
+    public AreaStatusIcon() {
         super(Constants.PROGRAM_LOGO);
-
-        // Keep instance reference
-        this.app = app;
 
         // Create icon menu
         this.createIconMenu();
 
         // Set up visibility and icon tooltip
-        this.setVisible(app.getConfig().SHOW_STATUS_ICON);
+        this.setVisible(config.SHOW_STATUS_ICON);
         this.updateText(null);
 
         // Connect interaction signals
@@ -72,7 +64,6 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
      * Create the tray icon menu.
      */
     private void createIconMenu() {
-        ActionManager actions = app.getActionManager();
         menu = new Menu();
 
         menu.append(actions.getToggleAction(ActionId.TRAY_WINDOW).createMenuItem());
@@ -87,7 +78,7 @@ public class AreaStatusIcon extends StatusIcon implements StatusIcon.Activate, S
 
     @Override
     public void onActivate(StatusIcon source) {
-        app.getActionManager().activateToggleAction(ActionId.TRAY_WINDOW);
+        actions.activateToggleAction(ActionId.TRAY_WINDOW);
     }
 
     @Override

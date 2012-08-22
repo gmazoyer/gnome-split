@@ -20,14 +20,13 @@
  */
 package org.gnome.split.gtk.action;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.ui;
+
 import org.gnome.gtk.RadioGroup;
 import org.gnome.gtk.ToggleAction;
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.gtk.MainWindow;
 import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.SplitWidget;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * Action to hide and show the merge widget.
@@ -36,19 +35,18 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class MergeViewAction extends RadioAction
 {
-    protected MergeViewAction(final GnomeSplit app, RadioGroup group) {
-        super(app, group, "merge-view-action", _("_Merge"), false);
+    protected MergeViewAction(RadioGroup group) {
+        super(group, "merge-view-action", _("_Merge"), false);
     }
 
     @Override
     public void onToggled(ToggleAction source) {
         // Get the current widget
-        MainWindow window = this.getApplication().getMainWindow();
-        ActionWidget widget = window.getActionWidget();
+        ActionWidget widget = ui.getActionWidget();
 
         // Show the merge widget
         if (widget instanceof SplitWidget) {
-            window.switchToMergeView();
+            ui.switchToMergeView();
         }
     }
 }

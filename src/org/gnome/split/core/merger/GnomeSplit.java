@@ -20,6 +20,8 @@
  */
 package org.gnome.split.core.merger;
 
+import static org.gnome.split.GnomeSplit.config;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -36,8 +38,8 @@ import org.gnome.split.core.utils.MD5Hasher;
  */
 public final class GnomeSplit extends DefaultMergeEngine
 {
-    public GnomeSplit(final org.gnome.split.GnomeSplit app, File file, String filename) {
-        super(app, file, filename);
+    public GnomeSplit(File file, String filename) {
+        super(file, filename);
     }
 
     @Override
@@ -143,7 +145,7 @@ public final class GnomeSplit extends DefaultMergeEngine
                     return;
                 }
 
-                if (app.getConfig().CHECK_FILE_HASH && md5 && (i == parts)) {
+                if (config.CHECK_FILE_HASH && md5 && (i == parts)) {
                     // Read the MD5 which was calculated during the split
                     buffer = new byte[32];
                     access.read(buffer);
@@ -174,17 +176,12 @@ public final class GnomeSplit extends DefaultMergeEngine
                 // Notify the error. It's just a warning so we don't throw it.
                 this.fireEngineError(new MD5Exception());
             } else if (success) {
-                if (app.getConfig().DELETE_PARTS && md5) {
+                if (config.DELETE_PARTS && md5) {
                     // Delete all parts if and *only if* the MD5 sums are
                     // equals
                     for (String path : chunks) {
                         new File(path).delete();
                     }
-                }
-
-                if (app.getConfig().OPEN_FILE_AT_END) {
-                    // Open the created file if requested
-                    app.openURI("file://" + filename);
                 }
 
                 // Notify the end

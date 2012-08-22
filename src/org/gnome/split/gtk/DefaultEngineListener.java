@@ -20,6 +20,11 @@
  */
 package org.gnome.split.gtk;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.actions;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -27,7 +32,6 @@ import java.util.TimerTask;
 
 import org.gnome.gtk.Dialog;
 import org.gnome.notify.Notification;
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineListener;
@@ -36,11 +40,8 @@ import org.gnome.split.core.exception.ExceptionMessage;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
 import org.gnome.split.dbus.DbusInhibit;
-import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.ErrorDialog;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * Manage the view update of the application. We *must not* set the engine
@@ -51,19 +52,9 @@ import static org.freedesktop.bindings.Internationalization._;
 public class DefaultEngineListener implements EngineListener
 {
     /**
-     * The current instance of the application.
-     */
-    private GnomeSplit app;
-
-    /**
      * Object to inhibit and uninhibit computer hibernation.
      */
     private DbusInhibit inhibit;
-
-    /**
-     * GTK+ interface of the application.
-     */
-    private MainWindow gtk;
 
     /**
      * The current engine (action).
@@ -84,16 +75,11 @@ public class DefaultEngineListener implements EngineListener
      * Create a new implementation of the {@link EngineListener engine
      * listener}.
      */
-    public DefaultEngineListener(final GnomeSplit app) {
-        this.app = app;
+    public DefaultEngineListener() {
         this.inhibit = null;
-        this.gtk = app.getMainWindow();
         this.engine = null;
         this.timer = null;
         this.files = new ArrayList<String>();
-
-        // Set the state of the interface
-        this.engineReady();
     }
 
     @Override
@@ -103,17 +89,17 @@ public class DefaultEngineListener implements EngineListener
 
         if (engine != null) {
             // Inhibit hibernation if requested
-            if (app.getConfig().NO_HIBERNATION) {
+            if (config.NO_HIBERNATION) {
                 inhibit = new DbusInhibit();
                 inhibit.inhibit();
             }
 
             // Disable user interaction (only in action widget)
-            gtk.getActionWidget().disable();
-            gtk.getViewSwitcher().disable();
+            ui.getActionWidget().disable();
+            ui.getViewSwitcher().disable();
 
             // Update the status icon tooltip
-            gtk.getAreaStatusIcon().updateText(engine.toString());
+            ui.getAreaStatusIcon().updateText(engine.toString());
 
             // Update the interface state
             this.engineRunning();
@@ -125,17 +111,17 @@ public class DefaultEngineListener implements EngineListener
             }
 
             // Enable user interaction (only in action widget)
-            gtk.getActionWidget().enable();
-            gtk.getViewSwitcher().enable();
+            ui.getActionWidget().enable();
+            ui.getViewSwitcher().enable();
 
             // Reset the window's title
-            gtk.setTitle(null);
+            ui.setTitle(null);
 
             // Reset the status bar message
-            gtk.getAreaStatusIcon().updateText(null);
+            ui.getAreaStatusIcon().updateText(null);
 
             // Reset the status bar speed indicator
-            gtk.getStatusWidget().updateSpeed(null);
+            ui.getStatusWidget().updateSpeed(null);
 
             // Update the interface state
             this.engineReady();
@@ -150,13 +136,13 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public void engineSpeedChanged(String speed) {
         // Update the status widget
-        gtk.getStatusWidget().updateSpeed(speed);
+        ui.getStatusWidget().updateSpeed(speed);
     }
 
     @Override
     public void enginePartCreated(String filename) {
         // Update the status widget
-        gtk.getStatusWidget().updateText(_("Writing {0}.", filename));
+        ui.getStatusWidget().updateText(_("Writing {0}.", filename));
     }
 
     @Override
@@ -167,7 +153,7 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public void enginePartRead(String filename) {
         // Update the status widget
-        gtk.getStatusWidget().updateText(_("Reading {0}.", filename));
+        ui.getStatusWidget().updateText(_("Reading {0}.", filename));
     }
 
     @Override
@@ -178,7 +164,7 @@ public class DefaultEngineListener implements EngineListener
             timer.scheduleAtFixedRate(new PulseProgress(), 0, 250);
 
             // Update the status widget
-            gtk.getStatusWidget().updateText(_("MD5 sum calculation."));
+            ui.getStatusWidget().updateText(_("MD5 sum calculation."));
         }
     }
 
@@ -190,13 +176,11 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Now update the widgets
-        gtk.getActionWidget().updateProgress(1, "", true);
+        ui.getActionWidget().updateProgress(1, "", true);
     }
 
     @Override
     public void engineReady() {
-        ActionManager actions = app.getActionManager();
-
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(true);
         actions.getAction(ActionId.SEND_EMAIL).setSensitive(!files.isEmpty());
@@ -209,13 +193,11 @@ public class DefaultEngineListener implements EngineListener
         actions.getRadioAction(ActionId.MERGE).setSensitive(true);
 
         // Update the cursor
-        gtk.setCursorWorkingState(false);
+        ui.setCursorWorkingState(false);
     }
 
     @Override
     public void engineRunning() {
-        ActionManager actions = app.getActionManager();
-
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.SEND_EMAIL).setSensitive(false);
@@ -228,13 +210,11 @@ public class DefaultEngineListener implements EngineListener
         actions.getRadioAction(ActionId.MERGE).setSensitive(false);
 
         // Update the cursor
-        gtk.setCursorWorkingState(true);
+        ui.setCursorWorkingState(true);
     }
 
     @Override
     public void engineSuspended() {
-        ActionManager actions = app.getActionManager();
-
         // Update the actions
         actions.getAction(ActionId.ASSISTANT).setSensitive(false);
         actions.getAction(ActionId.SEND_EMAIL).setSensitive(false);
@@ -247,7 +227,7 @@ public class DefaultEngineListener implements EngineListener
         actions.getRadioAction(ActionId.MERGE).setSensitive(false);
 
         // Update the cursor
-        gtk.setCursorWorkingState(false);
+        ui.setCursorWorkingState(false);
     }
 
     @Override
@@ -264,12 +244,12 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the status widget
-        gtk.getStatusWidget().updateText(title);
-        gtk.getStatusWidget().scheduleTimeout(5);
+        ui.getStatusWidget().updateText(title);
+        ui.getStatusWidget().scheduleTimeout(5);
 
-        if (!app.getConfig().USE_NOTIFICATION) {
+        if (!config.USE_NOTIFICATION) {
             // Use simple info bar
-            gtk.getInfoBar().showInfo(title, body);
+            ui.getInfoBar().showInfo(title, body);
         } else {
             // Use notification
             Notification notify = new Notification(title, body, null);
@@ -292,8 +272,8 @@ public class DefaultEngineListener implements EngineListener
         }
 
         // Update the status widget
-        gtk.getStatusWidget().updateText(text);
-        gtk.getStatusWidget().scheduleTimeout(5);
+        ui.getStatusWidget().updateText(text);
+        ui.getStatusWidget().scheduleTimeout(5);
 
         // Update engine
         this.setEngine(null);
@@ -309,10 +289,10 @@ public class DefaultEngineListener implements EngineListener
 
             if (error.isWarning()) {
                 // Warning only (file *may* work)
-                gtk.getInfoBar().showWarning(message.getMessage(), message.getDetails());
+                ui.getInfoBar().showWarning(message.getMessage(), message.getDetails());
             } else {
                 // Invalid size exception
-                dialog = new ErrorDialog(gtk, message.getMessage(), message.getDetails());
+                dialog = new ErrorDialog(ui, message.getMessage(), message.getDetails());
             }
         } else {
             // First print the stacktrace
@@ -320,15 +300,15 @@ public class DefaultEngineListener implements EngineListener
 
             // Other exception - error (file is supposed broken)
             dialog = new ErrorDialog(
-                    gtk,
+                    ui,
                     _("Unhandled exception."),
                     _("An exception occurs. You can report it to the developers and tell them how to reproduce it.\n\nSee the details for more information."),
                     exception);
         }
 
         // Update the status widget
-        gtk.getStatusWidget().updateText(exception.getMessage());
-        gtk.getStatusWidget().scheduleTimeout(8);
+        ui.getStatusWidget().updateText(exception.getMessage());
+        ui.getStatusWidget().scheduleTimeout(8);
 
         if (dialog != null) {
             // Display the dialog
@@ -347,8 +327,8 @@ public class DefaultEngineListener implements EngineListener
         double value = (double) done / (double) total;
 
         // Now update the widgets
-        gtk.setTitle(String.valueOf((int) (value * 100)) + "%");
-        gtk.getActionWidget().updateProgress(value, text, true);
+        ui.setTitle(String.valueOf((int) (value * 100)) + "%");
+        ui.getActionWidget().updateProgress(value, text, true);
     }
 
     @Override
@@ -357,7 +337,7 @@ public class DefaultEngineListener implements EngineListener
         files.clear();
 
         // Set action sensitiveness
-        app.getActionManager().getAction(ActionId.SEND_EMAIL).setSensitive(list != null);
+        actions.getAction(ActionId.SEND_EMAIL).setSensitive(list != null);
 
         if (list != null) {
             // Copy all elements from the first list to the new one
@@ -382,7 +362,7 @@ public class DefaultEngineListener implements EngineListener
     {
         @Override
         public void run() {
-            gtk.getActionWidget().updateProgress(1, "", false);
+            ui.getActionWidget().updateProgress(1, "", false);
         }
     }
 }

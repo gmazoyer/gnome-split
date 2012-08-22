@@ -20,6 +20,10 @@
  */
 package org.gnome.split.gtk.action;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.engine;
+import static org.gnome.split.GnomeSplit.ui;
+
 import org.gnome.gtk.Dialog;
 import org.gnome.gtk.Stock;
 import org.gnome.split.core.Engine;
@@ -30,8 +34,6 @@ import org.gnome.split.gtk.widget.ActionWidget;
 import org.gnome.split.gtk.widget.MergeWidget;
 import org.gnome.split.gtk.widget.SplitWidget;
 
-import static org.freedesktop.bindings.Internationalization._;
-
 /**
  * Action to start a split/merge.
  * 
@@ -39,28 +41,27 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class StartAction extends Action
 {
-    protected StartAction(final org.gnome.split.GnomeSplit app) {
-        super(app, "start-action", _("_Start"), _("Start this action."), Stock.MEDIA_PLAY);
+    protected StartAction() {
+        super("start-action", _("_Start"), _("Start this action."), Stock.MEDIA_PLAY);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
         // Get current instance and current widget
-        org.gnome.split.GnomeSplit app = this.getApplication();
-        Engine engine = app.getEngineListener().getEngine();
+        Engine real = engine.getEngine();
 
         // Action already started and paused
-        if ((engine != null) && engine.paused()) {
+        if ((real != null) && real.paused()) {
             // Then resume it
-            engine.resume();
+            real.resume();
         } else {
             // Get current widget
-            ActionWidget widget = app.getMainWindow().getActionWidget();
+            ActionWidget widget = ui.getActionWidget();
             Engine run = null;
 
             if (!widget.isFullyFilled()) {
                 // The user did not fill all the fields
-                Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Incompleted fields."),
+                Dialog dialog = new ErrorDialog(ui, _("Incompleted fields."),
                         _("You must fill all fields to start an action."));
                 dialog.run();
                 dialog.hide();
@@ -70,7 +71,7 @@ final class StartAction extends Action
             long free = widget.checkFreeSpace();
             if (free != -1) {
                 // There is not enough space
-                Dialog dialog = new ErrorDialog(app.getMainWindow(), _("Not enough space."), _(
+                Dialog dialog = new ErrorDialog(ui, _("Not enough space."), _(
                         "There is not enough available space ({0}) in the folder that you selected.",
                         SizeUnit.formatSize(free)));
                 dialog.run();
@@ -104,7 +105,7 @@ final class StartAction extends Action
                 }
 
                 // Show the error dialog
-                Dialog dialog = new ErrorDialog(app.getMainWindow(), messages[0], messages[1]);
+                Dialog dialog = new ErrorDialog(ui, messages[0], messages[1]);
                 dialog.run();
                 dialog.hide();
                 return;
@@ -116,20 +117,20 @@ final class StartAction extends Action
                 SplitWidget split = (SplitWidget) widget;
 
                 // Create the new process and start it
-                run = EngineFactory.createSplitEngine(app, split);
+                run = EngineFactory.createSplitEngine(split);
                 new Thread(run, "Split - " + split.getFile().getName()).start();
             } else if (widget instanceof MergeWidget) {
                 // Widget related info
                 MergeWidget merge = (MergeWidget) widget;
 
                 // Create the new process and start it
-                run = EngineFactory.createMergeEngine(app, merge);
+                run = EngineFactory.createMergeEngine(merge);
                 new Thread(run, "Merge - " + merge.getFile().getName()).start();
             }
 
             // Update the interface state
             if (run != null) {
-                app.getEngineListener().setEngine(run);
+                engine.setEngine(run);
             }
         }
     }

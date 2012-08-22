@@ -30,12 +30,12 @@ import org.gnome.split.GnomeSplit;
  */
 final class QuitAction extends Action
 {
-    protected QuitAction(final GnomeSplit app) {
-        super(app, "quit-action", Stock.QUIT);
+    protected QuitAction() {
+        super("quit-action", Stock.QUIT);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        this.getApplication().quit();
+        GnomeSplit.quit();
     }
 }

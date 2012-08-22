@@ -20,6 +20,10 @@
  */
 package org.gnome.split.gtk.dialog;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.ui;
+
 import org.gnome.gdk.Event;
 import org.gnome.gtk.Button;
 import org.gnome.gtk.CheckButton;
@@ -44,12 +48,8 @@ import org.gnome.gtk.VBox;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
 import org.gnome.notify.Notify;
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.config.Configuration;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.utils.Algorithm;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * This class is used to build GTK+ Preferences dialog.
@@ -58,16 +58,6 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 public final class PreferencesDialog extends Dialog implements Window.DeleteEvent, Dialog.Response
 {
-    /**
-     * Configuration of the application.
-     */
-    private final Configuration config;
-
-    /**
-     * Current instance of the application.
-     */
-    private GnomeSplit app;
-
     /**
      * Directory chooser for the split widget.
      */
@@ -78,12 +68,8 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
      */
     private FileChooserButton mergeDirChooser;
 
-    public PreferencesDialog(final GnomeSplit app) {
-        super(_("GNOME Split Preferences"), app.getMainWindow(), false);
-
-        // Get configuration
-        this.config = app.getConfig();
-        this.app = app;
+    public PreferencesDialog() {
+        super(_("GNOME Split Preferences"), ui, false);
 
         // Border width
         this.setBorderWidth(12);
@@ -346,8 +332,8 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         useCurrent.connect(new Button.Clicked() {
             @Override
             public void onClicked(Button source) {
-                double x = (double) app.getMainWindow().getWidth();
-                double y = (double) app.getMainWindow().getHeight();
+                double x = (double) ui.getWidth();
+                double y = (double) ui.getHeight();
 
                 // Update the widgets
                 width.setValue(x);
@@ -366,7 +352,7 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
                 int height = config.WINDOW_SIZE_Y;
 
                 // Resize the window
-                app.getMainWindow().resize(width, height);
+                ui.resize(width, height);
             }
         });
 
@@ -663,7 +649,7 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
                 config.SHOW_STATUS_ICON = showStatusIcon;
 
                 // Display icon and save preferences
-                app.getMainWindow().getAreaStatusIcon().setVisible(showStatusIcon);
+                ui.getAreaStatusIcon().setVisible(showStatusIcon);
                 config.savePreferences();
             }
         });

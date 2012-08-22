@@ -20,12 +20,13 @@
  */
 package org.gnome.split.gtk.action;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.engine;
+import static org.gnome.split.GnomeSplit.openURI;
+
 import java.util.List;
 
 import org.freedesktop.icons.ActionIcon;
-import org.gnome.split.GnomeSplit;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * Action to send the created files by email.
@@ -34,14 +35,14 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class SendEmailAction extends Action
 {
-    protected SendEmailAction(final GnomeSplit app) {
-        super(app, "send-email-action", _("Send by _email"), _("Send one or several files by email"),
+    protected SendEmailAction() {
+        super("send-email-action", _("Send by _email"), _("Send one or several files by email"),
                 ActionIcon.MAIL_SEND);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        List<String> list = this.getApplication().getEngineListener().getFilesList();
+        List<String> list = engine.getFilesList();
         StringBuilder uri = new StringBuilder("mailto:?");
 
         // Build the URI
@@ -51,6 +52,6 @@ final class SendEmailAction extends Action
         }
 
         // Pass a URI which means that it sends an email
-        this.getApplication().openURI(uri.toString());
+        openURI(uri.toString());
     }
 }

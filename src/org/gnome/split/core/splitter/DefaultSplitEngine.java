@@ -20,19 +20,20 @@
  */
 package org.gnome.split.core.splitter;
 
+import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.config;
+import static org.gnome.split.GnomeSplit.engine;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.gnome.split.GnomeSplit;
 import org.gnome.split.core.DefaultEngine;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.InvalidSizeException;
 import org.gnome.split.core.io.GRandomAccessFile;
-
-import static org.freedesktop.bindings.Internationalization._;
 
 /**
  * Define the model that all split engines should use.
@@ -65,8 +66,8 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      * Create a new split {@link Engine engine} using a <code>file</code> to
      * split and a maximum <code>size</code> for each chunk.
      */
-    protected DefaultSplitEngine(final GnomeSplit app, File file, long size, String destination) {
-        super(app);
+    protected DefaultSplitEngine(File file, long size, String destination) {
+        super();
         this.directory = destination.substring(0, destination.lastIndexOf(File.separator));
         this.file = file;
         this.size = size;
@@ -162,14 +163,14 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      * Notify the view that a part has been created.
      */
     protected void fireEnginePartCreated(String filename) {
-        app.getEngineListener().enginePartCreated(filename);
+        engine.enginePartCreated(filename);
     }
 
     /**
      * Notify the view that a part has been written.
      */
     protected void fireEnginePartWritten(String filename) {
-        app.getEngineListener().enginePartWritten(filename);
+        engine.enginePartWritten(filename);
     }
 
     /**
@@ -177,7 +178,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected void fireMD5SumStarted() {
         this.stopProgressUpdater();
-        app.getEngineListener().engineMD5SumStarted();
+        engine.engineMD5SumStarted();
     }
 
     /**
@@ -185,36 +186,36 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected void fireMD5SumEnded() {
         this.startProgressUpdater();
-        app.getEngineListener().engineMD5SumEnded();
+        engine.engineMD5SumEnded();
     }
 
     /**
      * Notify the view that the engine has finish its work.
      */
     protected void fireEngineEnded() {
-        app.getEngineListener().engineEnded();
-        app.getEngineListener().engineFilesList(chunks);
+        engine.engineEnded();
+        engine.engineFilesList(chunks);
     }
 
     /**
      * Notify the view that the engine has been stopped.
      */
     protected void fireEngineStopped() {
-        app.getEngineListener().engineStopped();
+        engine.engineStopped();
     }
 
     /**
      * Notify the view that an error has occurred.
      */
     protected void fireEngineError(Exception exception) {
-        app.getEngineListener().engineError(exception);
+        engine.engineError(exception);
     }
 
     /**
      * Notify the view that a part of the file has been read.
      */
     protected void fireEngineDone(long done, long total) {
-        app.getEngineListener().engineDone(done, total);
+        engine.engineDone(done, total);
     }
 
     /**
@@ -224,7 +225,7 @@ public abstract class DefaultSplitEngine extends DefaultEngine
      */
     protected boolean writeChunk(GRandomAccessFile split, GRandomAccessFile chunk) throws IOException {
         // Needed variables to know when the chunk writing must be stopped
-        int bufferSize = app.getConfig().BUFFER_SIZE;
+        int bufferSize = config.BUFFER_SIZE;
         long read = 0;
         byte[] buffer = null;
 

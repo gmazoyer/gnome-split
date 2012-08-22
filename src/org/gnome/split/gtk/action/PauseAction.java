@@ -20,11 +20,11 @@
  */
 package org.gnome.split.gtk.action;
 
-import org.gnome.gtk.Stock;
-import org.gnome.split.GnomeSplit;
-import org.gnome.split.core.Engine;
-
 import static org.freedesktop.bindings.Internationalization._;
+import static org.gnome.split.GnomeSplit.engine;
+
+import org.gnome.gtk.Stock;
+import org.gnome.split.core.Engine;
 
 /**
  * Action to suspend a split/merge.
@@ -33,19 +33,18 @@ import static org.freedesktop.bindings.Internationalization._;
  */
 final class PauseAction extends Action
 {
-    protected PauseAction(final GnomeSplit app) {
-        super(app, "pause-action", _("_Suspend"), _("Suspend this action."), Stock.MEDIA_PAUSE);
+    protected PauseAction() {
+        super("pause-action", _("_Suspend"), _("Suspend this action."), Stock.MEDIA_PAUSE);
     }
 
     @Override
     public void onActivate(org.gnome.gtk.Action source) {
-        GnomeSplit app = this.getApplication();
-        Engine engine = app.getEngineListener().getEngine();
+        Engine real = engine.getEngine();
 
         // If an engine is running
-        if ((engine != null) && !engine.paused()) {
+        if ((real != null) && !real.paused()) {
             // The pause it and update the interface state
-            engine.pause();
+            real.pause();
         }
     }
 }

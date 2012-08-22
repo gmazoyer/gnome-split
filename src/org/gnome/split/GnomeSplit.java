@@ -40,7 +40,7 @@ import org.gnome.split.core.EngineListener;
 import org.gnome.split.core.utils.ShutdownHandler;
 import org.gnome.split.core.utils.UncaughtExceptionLogger;
 import org.gnome.split.gtk.DefaultEngineListener;
-import org.gnome.split.gtk.MainWindow;
+import org.gnome.split.gtk.UserInterface;
 import org.gnome.split.gtk.action.ActionManager;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.QuestionDialog;
@@ -55,38 +55,36 @@ public final class GnomeSplit
     /**
      * Application instance to run.
      */
-    private Application application;
+    public static Application app;
 
     /**
      * Configuration for the application.
      */
-    private Configuration config;
+    public static Configuration config;
 
     /**
      * Application actions manager.
      */
-    private ActionManager actions;
+    public static ActionManager actions;
 
     /**
      * Application main window.
      */
-    private MainWindow window;
+    public static UserInterface ui;
 
     /**
      * Engine listener to update the view.
      */
-    private EngineListener engine;
+    public static EngineListener engine;
 
     private GnomeSplit() {
-        /*
-         * No instantiation from outside.
-         */
+        // No instantiation from outside
     }
 
     /**
      * Load the configuration and preferences.
      */
-    private void loadConfig() {
+    private static void loadConfig() {
         try {
             // Load constants and preferences
             Constants.load();
@@ -100,19 +98,16 @@ public final class GnomeSplit
     /**
      * Build the GTK+ user interface.
      */
-    private void buildUserInterface() {
+    private static void buildUserInterface() {
         // Load actions manager
-        actions = new ActionManager(this);
+        actions = new ActionManager();
 
         // Start the user interface
-        window = new MainWindow(this);
-        window.selectDefaultView();
+        ui = new UserInterface();
+        ui.selectDefaultView();
 
         // Add the window to the underlining application model
-        application.addWindow(window);
-
-        // Load engine listener
-        engine = new DefaultEngineListener(this);
+        app.addWindow(ui);
     }
 
     /**
@@ -120,12 +115,12 @@ public final class GnomeSplit
      * filename is given (filename == null), the view will not be updated. 0
      * means split view and other means merge view.
      */
-    private void selectView(byte view, String filename) {
+    private static void selectView(byte view, String filename) {
         // Choose split
         if (view == 0) {
             if (filename != null) {
                 // Update the merge widget
-                window.getSplitWidget().setFile(filename);
+                ui.getSplitWidget().setFile(filename);
             }
 
             // Show the merge widget
@@ -133,7 +128,7 @@ public final class GnomeSplit
         } else {
             if (filename != null) {
                 // Load the file to split
-                window.getMergeWidget().setFile(filename);
+                ui.getMergeWidget().setFile(filename);
             }
 
             // Show the split widget
@@ -141,7 +136,7 @@ public final class GnomeSplit
         }
     }
 
-    private int run(String[] args) {
+    private static int run(String[] args) {
         int status;
 
         // Initialize uncaught exception handler
@@ -150,14 +145,14 @@ public final class GnomeSplit
         // Start kill signals handler
         Runtime.getRuntime().addShutdownHook(new ShutdownHandler());
 
+        // Load program name
+        Glib.setProgramName(Constants.PROGRAM_NAME);
+
         // Load GTK
         Gtk.init(args);
 
         // Load config
-        this.loadConfig();
-
-        // Load program name
-        Glib.setProgramName(Constants.PROGRAM_NAME);
+        loadConfig();
 
         // Load logo
         Gtk.setDefaultIcon(Constants.PROGRAM_LOGO);
@@ -171,33 +166,41 @@ public final class GnomeSplit
         }
 
         // Build the application object
-        application = new Application("org.gnome.split.GnomeSplit",
-                ApplicationFlags.HANDLES_COMMAND_LINE);
+        app = new Application("org.gnome.split.GnomeSplit", ApplicationFlags.HANDLES_COMMAND_LINE);
 
         // Build the GUI on startup
-        application.connect(new Application.Startup() {
+        app.connect(new Application.Startup() {
             @Override
-            public void onStartup(Application application) {
+            public void onStartup(Application source) {
                 // Build the user interface
                 buildUserInterface();
             }
         });
 
         // Display the GUI when activated
-        application.connect(new Application.Activate() {
+        app.connect(new Application.Activate() {
             @Override
-            public void onActivate(Application app) {
-                window.show();
+            public void onActivate(Application source) {
+                // Load engine listener
+                engine = new DefaultEngineListener();
 
-                // Show the assistant on start if requested
-                actions.activateAction(ActionId.ASSISTANT);
+                // Show the user interface
+                ui.show();
+
+                // Set the state of the interface
+                engine.engineReady();
+
+                if (config.ASSISTANT_ON_START) {
+                    // Show the assistant on start if requested
+                    actions.activateAction(ActionId.ASSISTANT);
+                }
             }
         });
 
         // Handle command line arguments
-        application.connect(new Application.CommandLine() {
+        app.connect(new Application.CommandLine() {
             @Override
-            public int onCommandLine(Application app, ApplicationCommandLine remote) {
+            public int onCommandLine(Application source, ApplicationCommandLine remote) {
                 String[] args = remote.getArguments();
 
                 if (args.length > 1) {
@@ -207,7 +210,7 @@ public final class GnomeSplit
                 }
 
                 // Trigger the Application.Activate signal
-                application.activate();
+                app.activate();
 
                 // Indicate that the remote instance that sent us the command
                 // line arguments should terminate as soon as possible
@@ -218,43 +221,15 @@ public final class GnomeSplit
         });
 
         // Fire the main loop (blocker)
-        status = application.run(args);
+        status = app.run(args);
 
         return status;
     }
 
     /**
-     * Return the configuration object of the app.
-     */
-    public Configuration getConfig() {
-        return config;
-    }
-
-    /**
-     * Return the actions manager of the app.
-     */
-    public ActionManager getActionManager() {
-        return actions;
-    }
-
-    /**
-     * Return the main window of the app.
-     */
-    public MainWindow getMainWindow() {
-        return window;
-    }
-
-    /**
-     * Return the engine listener of the app.
-     */
-    public EngineListener getEngineListener() {
-        return engine;
-    }
-
-    /**
      * Open the the URI with the default program.
      */
-    public void openURI(String uri) {
+    public static void openURI(String uri) {
         try {
             Gtk.showURI(new URI(uri));
         } catch (URISyntaxException e) {
@@ -266,13 +241,13 @@ public final class GnomeSplit
     /**
      * This will cause the program to be ended.
      */
-    public void quit() {
+    public static void quit() {
         boolean quit = true;
 
         // An action is running
         if (!config.DO_NOT_ASK_QUIT && (engine.getEngine() != null)) {
             // Show a question to the user
-            QuestionDialog dialog = new QuestionDialog(this, window, _("Quit GNOME Split."),
+            QuestionDialog dialog = new QuestionDialog(ui, _("Quit GNOME Split."),
                     _("An action is currently being performed. Do you really want to quit GNOME Split?"));
 
             // Get his response and hide the dialog
@@ -283,7 +258,7 @@ public final class GnomeSplit
         // The user really wants to quit
         if (quit) {
             // Hide the window immediately
-            window.hide();
+            ui.hide();
 
             // Uninitialize the libnotify
             if (Notify.isInitialized()) {
@@ -291,8 +266,8 @@ public final class GnomeSplit
             }
 
             // Quit the GTK application.
-            application.removeWindow(window);
-            application.quit();
+            app.removeWindow(ui);
+            app.quit();
         }
     }
 
@@ -300,9 +275,7 @@ public final class GnomeSplit
      * Application entry point.
      */
     public static void main(String[] args) {
-        GnomeSplit application = new GnomeSplit();
-
-        int status = application.run(args);
+        int status = run(args);
 
         exit(status);
     }
