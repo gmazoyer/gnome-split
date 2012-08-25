@@ -207,7 +207,7 @@ public abstract class DefaultMergeEngine extends DefaultEngine
     public abstract void merge() throws IOException, EngineException;
 
     /**
-     * 
+     * Executed at the end of a successful merge.
      */
     private void onFinish() {
         if (config.OPEN_FILE_AT_END) {
