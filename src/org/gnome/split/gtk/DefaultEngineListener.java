@@ -30,6 +30,8 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.gnome.glib.Glib;
+import org.gnome.glib.Handler;
 import org.gnome.gtk.Dialog;
 import org.gnome.notify.Notification;
 import org.gnome.split.config.Constants;
@@ -83,49 +85,56 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
-    public void setEngine(Engine engine) {
+    public void setEngine(final Engine another) {
         // Update engine
-        this.engine = engine;
+        this.engine = another;
 
-        if (engine != null) {
-            // Inhibit hibernation if requested
-            if (config.NO_HIBERNATION) {
-                inhibit = new DbusInhibit();
-                inhibit.inhibit();
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                if (engine != null) {
+                    // Inhibit hibernation if requested
+                    if (config.NO_HIBERNATION) {
+                        inhibit = new DbusInhibit();
+                        inhibit.inhibit();
+                    }
+
+                    // Disable user interaction (only in action widget)
+                    ui.getActionWidget().disable();
+                    ui.getViewSwitcher().disable();
+
+                    // Update the status icon tooltip
+                    ui.getAreaStatusIcon().updateText(engine.toString());
+
+                    // Update the interface state
+                    engineRunning();
+                } else {
+                    // Uninhibit hibernation if requested
+                    if ((inhibit != null) && inhibit.isInhibited()) {
+                        inhibit.unInhibit();
+                        inhibit = null;
+                    }
+
+                    // Enable user interaction (only in action widget)
+                    ui.getActionWidget().enable();
+                    ui.getViewSwitcher().enable();
+
+                    // Reset the window's title
+                    ui.setTitle(null);
+
+                    // Reset the status bar message
+                    ui.getAreaStatusIcon().updateText(null);
+
+                    // Reset the status bar speed indicator
+                    ui.getStatusWidget().updateSpeed(null);
+
+                    // Update the interface state
+                    engineReady();
+                }
+
+                return false;
             }
-
-            // Disable user interaction (only in action widget)
-            ui.getActionWidget().disable();
-            ui.getViewSwitcher().disable();
-
-            // Update the status icon tooltip
-            ui.getAreaStatusIcon().updateText(engine.toString());
-
-            // Update the interface state
-            this.engineRunning();
-        } else {
-            // Uninhibit hibernation if requested
-            if ((inhibit != null) && inhibit.isInhibited()) {
-                inhibit.unInhibit();
-                inhibit = null;
-            }
-
-            // Enable user interaction (only in action widget)
-            ui.getActionWidget().enable();
-            ui.getViewSwitcher().enable();
-
-            // Reset the window's title
-            ui.setTitle(null);
-
-            // Reset the status bar message
-            ui.getAreaStatusIcon().updateText(null);
-
-            // Reset the status bar speed indicator
-            ui.getStatusWidget().updateSpeed(null);
-
-            // Update the interface state
-            this.engineReady();
-        }
+        });
     }
 
     @Override
@@ -134,26 +143,44 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
-    public void engineSpeedChanged(String speed) {
-        // Update the status widget
-        ui.getStatusWidget().updateSpeed(speed);
+    public void engineSpeedChanged(final String speed) {
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Update the status widget
+                ui.getStatusWidget().updateSpeed(speed);
+                return false;
+            }
+        });
     }
 
     @Override
-    public void enginePartCreated(String filename) {
-        // Update the status widget
-        ui.getStatusWidget().updateText(_("Writing {0}.", filename));
+    public void enginePartCreated(final String filename) {
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Update the status widget
+                ui.getStatusWidget().updateText(_("Writing {0}.", filename));
+                return false;
+            }
+        });
     }
 
     @Override
-    public void enginePartWritten(String filename) {
+    public void enginePartWritten(final String filename) {
 
     }
 
     @Override
-    public void enginePartRead(String filename) {
-        // Update the status widget
-        ui.getStatusWidget().updateText(_("Reading {0}.", filename));
+    public void enginePartRead(final String filename) {
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Update the status widget
+                ui.getStatusWidget().updateText(_("Reading {0}.", filename));
+                return false;
+            }
+        });
     }
 
     @Override
@@ -163,8 +190,14 @@ public class DefaultEngineListener implements EngineListener
             timer = new Timer();
             timer.scheduleAtFixedRate(new PulseProgress(), 0, 250);
 
-            // Update the status widget
-            ui.getStatusWidget().updateText(_("MD5 sum calculation."));
+            Glib.idleAdd(new Handler() {
+                @Override
+                public boolean run() {
+                    // Update the status widget
+                    ui.getStatusWidget().updateText(_("MD5 sum calculation."));
+                    return false;
+                }
+            });
         }
     }
 
@@ -175,66 +208,93 @@ public class DefaultEngineListener implements EngineListener
             timer = null;
         }
 
-        // Now update the widgets
-        ui.getActionWidget().updateProgress(1, "", true);
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Now update the widgets
+                ui.getActionWidget().updateProgress(1, "", true);
+                return false;
+            }
+        });
     }
 
     @Override
     public void engineReady() {
-        // Update the actions
-        actions.getAction(ActionId.ASSISTANT).setSensitive(true);
-        actions.getAction(ActionId.SEND_EMAIL).setSensitive(!files.isEmpty());
-        actions.getAction(ActionId.START).setSensitive(true);
-        actions.getAction(ActionId.PAUSE).setSensitive(false);
-        actions.getAction(ActionId.CANCEL).setSensitive(false);
-        actions.getAction(ActionId.DELETE).setSensitive(false);
-        actions.getAction(ActionId.CLEAR).setSensitive(true);
-        actions.getRadioAction(ActionId.SPLIT).setSensitive(true);
-        actions.getRadioAction(ActionId.MERGE).setSensitive(true);
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Update the actions
+                actions.getAction(ActionId.ASSISTANT).setSensitive(true);
+                actions.getAction(ActionId.SEND_EMAIL).setSensitive(!files.isEmpty());
+                actions.getAction(ActionId.START).setSensitive(true);
+                actions.getAction(ActionId.PAUSE).setSensitive(false);
+                actions.getAction(ActionId.CANCEL).setSensitive(false);
+                actions.getAction(ActionId.DELETE).setSensitive(false);
+                actions.getAction(ActionId.CLEAR).setSensitive(true);
+                actions.getRadioAction(ActionId.SPLIT).setSensitive(true);
+                actions.getRadioAction(ActionId.MERGE).setSensitive(true);
 
-        // Update the cursor
-        ui.setCursorWorkingState(false);
+                // Update the cursor
+                ui.setCursorWorkingState(false);
+
+                return false;
+            }
+        });
     }
 
     @Override
     public void engineRunning() {
-        // Update the actions
-        actions.getAction(ActionId.ASSISTANT).setSensitive(false);
-        actions.getAction(ActionId.SEND_EMAIL).setSensitive(false);
-        actions.getAction(ActionId.START).setSensitive(false);
-        actions.getAction(ActionId.PAUSE).setSensitive(true);
-        actions.getAction(ActionId.CANCEL).setSensitive(true);
-        actions.getAction(ActionId.DELETE).setSensitive(true);
-        actions.getAction(ActionId.CLEAR).setSensitive(false);
-        actions.getRadioAction(ActionId.SPLIT).setSensitive(false);
-        actions.getRadioAction(ActionId.MERGE).setSensitive(false);
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Update the actions
+                actions.getAction(ActionId.ASSISTANT).setSensitive(false);
+                actions.getAction(ActionId.SEND_EMAIL).setSensitive(false);
+                actions.getAction(ActionId.START).setSensitive(false);
+                actions.getAction(ActionId.PAUSE).setSensitive(true);
+                actions.getAction(ActionId.CANCEL).setSensitive(true);
+                actions.getAction(ActionId.DELETE).setSensitive(true);
+                actions.getAction(ActionId.CLEAR).setSensitive(false);
+                actions.getRadioAction(ActionId.SPLIT).setSensitive(false);
+                actions.getRadioAction(ActionId.MERGE).setSensitive(false);
 
-        // Update the cursor
-        ui.setCursorWorkingState(true);
+                // Update the cursor
+                ui.setCursorWorkingState(true);
+
+                return false;
+            }
+        });
     }
 
     @Override
     public void engineSuspended() {
-        // Update the actions
-        actions.getAction(ActionId.ASSISTANT).setSensitive(false);
-        actions.getAction(ActionId.SEND_EMAIL).setSensitive(false);
-        actions.getAction(ActionId.START).setSensitive(true);
-        actions.getAction(ActionId.PAUSE).setSensitive(false);
-        actions.getAction(ActionId.CANCEL).setSensitive(true);
-        actions.getAction(ActionId.DELETE).setSensitive(true);
-        actions.getAction(ActionId.CLEAR).setSensitive(false);
-        actions.getRadioAction(ActionId.SPLIT).setSensitive(false);
-        actions.getRadioAction(ActionId.MERGE).setSensitive(false);
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Update the actions
+                actions.getAction(ActionId.ASSISTANT).setSensitive(false);
+                actions.getAction(ActionId.SEND_EMAIL).setSensitive(false);
+                actions.getAction(ActionId.START).setSensitive(true);
+                actions.getAction(ActionId.PAUSE).setSensitive(false);
+                actions.getAction(ActionId.CANCEL).setSensitive(true);
+                actions.getAction(ActionId.DELETE).setSensitive(true);
+                actions.getAction(ActionId.CLEAR).setSensitive(false);
+                actions.getRadioAction(ActionId.SPLIT).setSensitive(false);
+                actions.getRadioAction(ActionId.MERGE).setSensitive(false);
 
-        // Update the cursor
-        ui.setCursorWorkingState(false);
+                // Update the cursor
+                ui.setCursorWorkingState(false);
+
+                return false;
+            }
+        });
     }
 
     @Override
     public void engineEnded() {
         // Title and body of the message to display
-        String title;
-        String body;
+        final String title;
+        final String body;
         if (engine instanceof DefaultSplitEngine) {
             title = _("Split finished.");
             body = _("The file was successfully split.");
@@ -243,19 +303,26 @@ public class DefaultEngineListener implements EngineListener
             body = _("The files were successfully merged.");
         }
 
-        // Update the status widget
-        ui.getStatusWidget().updateText(title);
-        ui.getStatusWidget().scheduleTimeout(5);
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Update the status widget
+                ui.getStatusWidget().updateText(title);
+                ui.getStatusWidget().scheduleTimeout(5);
 
-        if (!config.USE_NOTIFICATION) {
-            // Use simple info bar
-            ui.getInfoBar().showInfo(title, body);
-        } else {
-            // Use notification
-            Notification notify = new Notification(title, body, null);
-            notify.setIcon(Constants.PROGRAM_LOGO);
-            notify.show();
-        }
+                if (!config.USE_NOTIFICATION) {
+                    // Use simple info bar
+                    ui.getInfoBar().showInfo(title, body);
+                } else {
+                    // Use notification
+                    Notification notify = new Notification(title, body, null);
+                    notify.setIcon(Constants.PROGRAM_LOGO);
+                    notify.show();
+                }
+
+                return false;
+            }
+        });
 
         // Update engine
         this.setEngine(null);
@@ -264,80 +331,107 @@ public class DefaultEngineListener implements EngineListener
     @Override
     public void engineStopped() {
         // Use the correct text
-        String text;
+        final String text;
         if (engine instanceof DefaultSplitEngine) {
             text = _("Split stopped.");
         } else {
             text = _("Merge stopped.");
         }
 
-        // Update the status widget
-        ui.getStatusWidget().updateText(text);
-        ui.getStatusWidget().scheduleTimeout(5);
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Update the status widget
+                ui.getStatusWidget().updateText(text);
+                ui.getStatusWidget().scheduleTimeout(5);
 
-        // Update engine
-        this.setEngine(null);
-    }
-
-    @Override
-    public void engineError(Exception exception) {
-        Dialog dialog = null;
-
-        if (exception instanceof EngineException) {
-            EngineException error = (EngineException) exception;
-            ExceptionMessage message = error.getExceptionMessage();
-
-            if (error.isWarning()) {
-                // Warning only (file *may* work)
-                ui.getInfoBar().showWarning(message.getMessage(), message.getDetails());
-            } else {
-                // Invalid size exception
-                dialog = new ErrorDialog(ui, message.getMessage(), message.getDetails());
+                return false;
             }
-        } else {
-            // First print the stacktrace
-            exception.printStackTrace();
-
-            // Other exception - error (file is supposed broken)
-            dialog = new ErrorDialog(
-                    ui,
-                    _("Unhandled exception."),
-                    _("An exception occurs. You can report it to the developers and tell them how to reproduce it.\n\nSee the details for more information."),
-                    exception);
-        }
-
-        // Update the status widget
-        ui.getStatusWidget().updateText(exception.getMessage());
-        ui.getStatusWidget().scheduleTimeout(8);
-
-        if (dialog != null) {
-            // Display the dialog
-            dialog.run();
-            dialog.hide();
-        }
+        });
 
         // Update engine
         this.setEngine(null);
     }
 
     @Override
-    public void engineDone(long done, long total) {
-        // Format the sizes to display them in the widget
-        String text = SizeUnit.formatSize(done) + " / " + SizeUnit.formatSize(total);
-        double value = (double) done / (double) total;
+    public void engineError(final Exception exception) {
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                Dialog dialog = null;
 
-        // Now update the widgets
-        ui.setTitle(String.valueOf((int) (value * 100)) + "%");
-        ui.getActionWidget().updateProgress(value, text, true);
+                if (exception instanceof EngineException) {
+                    EngineException error = (EngineException) exception;
+                    ExceptionMessage message = error.getExceptionMessage();
+
+                    if (error.isWarning()) {
+                        // Warning only (file *may* work)
+                        ui.getInfoBar().showWarning(message.getMessage(), message.getDetails());
+                    } else {
+                        // Invalid size exception
+                        dialog = new ErrorDialog(ui, message.getMessage(), message.getDetails());
+                    }
+                } else {
+                    // First print the stacktrace
+                    exception.printStackTrace();
+
+                    // Other exception - error (file is supposed broken)
+                    dialog = new ErrorDialog(
+                            ui,
+                            _("Unhandled exception."),
+                            _("An exception occurs. You can report it to the developers and tell them how to reproduce it.\n\nSee the details for more information."),
+                            exception);
+                }
+
+                // Update the status widget
+                ui.getStatusWidget().updateText(exception.getMessage());
+                ui.getStatusWidget().scheduleTimeout(8);
+
+                if (dialog != null) {
+                    // Display the dialog
+                    dialog.run();
+                    dialog.hide();
+                }
+
+                return false;
+            }
+        });
+
+        // Update engine
+        this.setEngine(null);
     }
 
     @Override
-    public void engineFilesList(List<String> list) {
+    public void engineDone(final long done, final long total) {
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Format the sizes to display them in the widget
+                String text = SizeUnit.formatSize(done) + " / " + SizeUnit.formatSize(total);
+                double value = (double) done / (double) total;
+
+                // Now update the widgets
+                ui.setTitle(String.valueOf((int) (value * 100)) + "%");
+                ui.getActionWidget().updateProgress(value, text, true);
+
+                return false;
+            }
+        });
+    }
+
+    @Override
+    public void engineFilesList(final List<String> list) {
         // First, clear the list
         files.clear();
 
-        // Set action sensitiveness
-        actions.getAction(ActionId.SEND_EMAIL).setSensitive(list != null);
+        Glib.idleAdd(new Handler() {
+            @Override
+            public boolean run() {
+                // Set action sensitiveness
+                actions.getAction(ActionId.SEND_EMAIL).setSensitive(list != null);
+                return false;
+            }
+        });
 
         if (list != null) {
             // Copy all elements from the first list to the new one
@@ -362,7 +456,13 @@ public class DefaultEngineListener implements EngineListener
     {
         @Override
         public void run() {
-            ui.getActionWidget().updateProgress(1, "", false);
+            Glib.idleAdd(new Handler() {
+                @Override
+                public boolean run() {
+                    ui.getActionWidget().updateProgress(1, "", false);
+                    return false;
+                }
+            });
         }
     }
 }
