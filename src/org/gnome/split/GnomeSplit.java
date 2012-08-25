@@ -206,7 +206,7 @@ public final class GnomeSplit
                 if (args.length > 1) {
                     // Change the view
                     selectView((byte) ((args[1].equals("-s") || args[1].equals("--split")) ? 0 : 1),
-                            (args.length > 2) ? args[1] : null);
+                            (args.length > 2) ? args[2] : null);
                 }
 
                 // Trigger the Application.Activate signal
