@@ -43,7 +43,7 @@ public interface EngineListener
     /**
      * Used when the speed of the action has changed.
      */
-    public void engineSpeedChanged(String speed);
+    public void engineSpeedChanged(long speed);
 
     /**
      * Used when a part has been created.

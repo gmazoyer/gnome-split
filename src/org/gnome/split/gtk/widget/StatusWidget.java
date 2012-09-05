@@ -23,6 +23,8 @@ package org.gnome.split.gtk.widget;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import org.gnome.glib.Glib;
+import org.gnome.glib.Handler;
 import org.gnome.gtk.Frame;
 import org.gnome.gtk.Label;
 import org.gnome.gtk.ShadowType;
@@ -114,8 +116,14 @@ public class StatusWidget extends Statusbar
 
         @Override
         public void run() {
-            // Erase the text
-            updateText(null);
+            Glib.idleAdd(new Handler() {
+                @Override
+                public boolean run() {
+                    // Erase the text
+                    updateText(null);
+                    return false;
+                }
+            });
 
             // Clear the timer object
             timer.cancel();

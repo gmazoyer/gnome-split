@@ -27,8 +27,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.gnome.split.core.utils.SizeUnit;
-
 /**
  * A class giving a model and an initial behavior for all merger and splitter
  * classes.
@@ -135,7 +133,7 @@ public abstract class DefaultEngine implements Engine
     /**
      * Notify the view from a speed that has changed.
      */
-    private void fireEngineSpeedChanged(String speed) {
+    private void fireEngineSpeedChanged(long speed) {
         engine.engineSpeedChanged(speed);
     }
 
@@ -160,7 +158,7 @@ public abstract class DefaultEngine implements Engine
         }
 
         // Make displayed speed to unknown
-        this.fireEngineSpeedChanged(null);
+        this.fireEngineSpeedChanged(-1);
     }
 
     /**
@@ -186,10 +184,9 @@ public abstract class DefaultEngine implements Engine
 
             // Notify the view
             if (speed == 0) {
-                fireEngineSpeedChanged(null);
+                fireEngineSpeedChanged(-1);
             } else {
-                String value = SizeUnit.formatSpeed(speed);
-                fireEngineSpeedChanged(value);
+                fireEngineSpeedChanged(speed);
             }
         }
     }

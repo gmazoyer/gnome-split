@@ -143,12 +143,12 @@ public class DefaultEngineListener implements EngineListener
     }
 
     @Override
-    public void engineSpeedChanged(final String speed) {
+    public void engineSpeedChanged(final long speed) {
         Glib.idleAdd(new Handler() {
             @Override
             public boolean run() {
                 // Update the status widget
-                ui.getStatusWidget().updateSpeed(speed);
+                ui.getStatusWidget().updateSpeed((speed == -1) ? null : SizeUnit.formatSpeed(speed));
                 return false;
             }
         });
