@@ -23,6 +23,7 @@ package org.gnome.split.gtk.dialog;
 import org.gnome.gdk.Event;
 import org.gnome.gtk.AboutDialog;
 import org.gnome.gtk.Dialog;
+import org.gnome.gtk.License;
 import org.gnome.gtk.ResponseType;
 import org.gnome.gtk.Widget;
 import org.gnome.gtk.Window;
@@ -74,8 +75,7 @@ public final class AboutSoftDialog extends AboutDialog implements Window.DeleteE
         this.setTranslatorCredits(_("translator-credits"));
 
         // Program license
-        this.setLicense(_("This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License version 3, as published by the Free Software Foundation.\n\nThis program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranties of MERCHANTABILITY, SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.\n\nYou should have received a copy of the GNU General Public License along with this program.  If not, see <http://www.gnu.org/licenses/>."));
-        this.setWrapLicense(true);
+        this.setLicenseType(License.GPL_3_0);
 
         // When cross button is clicked
         this.connect((Window.DeleteEvent) this);

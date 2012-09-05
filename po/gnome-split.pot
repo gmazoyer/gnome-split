@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-08-30 19:24+0200\n"
+"POT-Creation-Date: 2012-09-05 09:21+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -46,35 +46,20 @@ msgstr ""
 msgid "_Minimize"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:53
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:54
 msgid "Split and merge your files easily."
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:54
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:55
 msgid "the GNOME Split project"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:56
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:57
 msgid "Project website"
 msgstr ""
 
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:74
+#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:75
 msgid "translator-credits"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:77
-msgid ""
-"This program is free software: you can redistribute it and/or modify it "
-"under the terms of the GNU General Public License version 3, as published by "
-"the Free Software Foundation.\n"
-"\n"
-"This program is distributed in the hope that it will be useful, but WITHOUT "
-"ANY WARRANTY; without even the implied warranties of MERCHANTABILITY, "
-"SATISFACTORY QUALITY, or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU "
-"General Public License for more details.\n"
-"\n"
-"You should have received a copy of the GNU General Public License along with "
-"this program.  If not, see <http://www.gnu.org/licenses/>."
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/ErrorDialog.java:57
