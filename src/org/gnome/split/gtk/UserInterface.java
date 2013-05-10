@@ -1,7 +1,7 @@
 /*
  * UserInterface.java
  * 
- * Copyright (c) 2009-2012 Guillaume Mazoyer
+ * Copyright (c) 2009-2013 Guillaume Mazoyer
  * 
  * This file is part of GNOME Split.
  * 
