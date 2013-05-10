@@ -22,6 +22,7 @@ package org.gnome.split.gtk.widget.base;
 
 import org.gnome.gtk.ProgressBar;
 import org.gnome.gtk.VBox;
+import static org.gnome.split.GnomeSplit.config;
 
 /**
  * Widget derived from {@link ProgressBar} to show the progress of an action.
@@ -46,7 +47,7 @@ public class ProgressWidget extends VBox
         this.packStart(progress, false, false, 0);
 
         // Show the text in the progress bar
-        progress.setShowText(true);
+        this.showSizeDetails(config.SHOW_SIZE_DETAILS);
         this.setText("");
     }
 
@@ -60,6 +61,13 @@ public class ProgressWidget extends VBox
     public void showAll() {
         super.showAll();
         progress.show();
+    }
+
+    /**
+     * Decide if the progress bar can display text.
+     */
+    public void showSizeDetails(boolean value) {
+        progress.setShowText(value);
     }
 
     /**

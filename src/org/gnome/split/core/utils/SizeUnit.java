@@ -80,14 +80,14 @@ public final class SizeUnit
      * Format a size using the best unit for it.
      */
     public static String formatSize(long size) {
-        return Glib.formatSizeForDisplay(size);
+        return Glib.formatSize(size);
     }
 
     /**
      * Format a speed using the best unit for it.
      */
     public static String formatSpeed(long speed) {
-        String format = Glib.formatSizeForDisplay(speed);
+        String format = Glib.formatSize(speed);
         return (format += "/s");
     }
 

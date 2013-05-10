@@ -137,6 +137,11 @@ public final class Configuration
     public boolean SHOW_STATUSBAR;
 
     /**
+     * Show the size details during an action.
+     */
+    public boolean SHOW_SIZE_DETAILS;
+
+    /**
      * Do not ask the user if he/she really wants to quit.
      */
     public boolean DO_NOT_ASK_QUIT;
@@ -212,9 +217,10 @@ public final class Configuration
             writer.write("ShowToolbar       = true\n");
             writer.write("ShowSwitcher      = true\n");
             writer.write("ShowStatusbar     = true\n");
+            writer.write("ShowSizeDetails   = false\n");
             writer.write("DontAskToQuit     = false\n");
             writer.write("CloseBehavior     = 0\n");
-            writer.write("BufferSize        = " + 1048576 + "\n");
+            writer.write("BufferSize        = 1048576\n");
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -271,6 +277,7 @@ public final class Configuration
             SHOW_TOOLBAR = Boolean.parseBoolean(preferences.getProperty("ShowToolbar", "true"));
             SHOW_SWITCHER = Boolean.parseBoolean(preferences.getProperty("ShowSwitcher", "true"));
             SHOW_STATUSBAR = Boolean.parseBoolean(preferences.getProperty("ShowStatusbar", "true"));
+            SHOW_SIZE_DETAILS = Boolean.parseBoolean(preferences.getProperty("ShowSizeDetails", "false"));
             DO_NOT_ASK_QUIT = Boolean.parseBoolean(preferences.getProperty("DontAskToQuit", "false"));
             CLOSE_BEHAVIOR = Byte.parseByte(preferences.getProperty("CloseBehavior", "0"));
             BUFFER_SIZE = Integer.parseInt(preferences.getProperty("BufferSize", "1048576"));
@@ -317,6 +324,7 @@ public final class Configuration
             writer.write("ShowToolbar       = " + SHOW_TOOLBAR + "\n");
             writer.write("ShowSwitcher      = " + SHOW_SWITCHER + "\n");
             writer.write("ShowStatusbar     = " + SHOW_STATUSBAR + "\n");
+            writer.write("ShowSizeDetails   = " + SHOW_SIZE_DETAILS + "\n");
             writer.write("DontAskToQuit     = " + DO_NOT_ASK_QUIT + "\n");
             writer.write("CloseBehavior     = " + CLOSE_BEHAVIOR + "\n");
             writer.write("BufferSize        = " + BUFFER_SIZE + "\n");

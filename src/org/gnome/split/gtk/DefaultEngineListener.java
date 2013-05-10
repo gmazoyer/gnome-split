@@ -34,6 +34,7 @@ import org.gnome.glib.Glib;
 import org.gnome.glib.Handler;
 import org.gnome.gtk.Dialog;
 import org.gnome.notify.Notification;
+import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.core.Engine;
 import org.gnome.split.core.EngineListener;
@@ -41,7 +42,6 @@ import org.gnome.split.core.exception.EngineException;
 import org.gnome.split.core.exception.ExceptionMessage;
 import org.gnome.split.core.splitter.DefaultSplitEngine;
 import org.gnome.split.core.utils.SizeUnit;
-import org.gnome.split.dbus.DbusInhibit;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
 import org.gnome.split.gtk.dialog.ErrorDialog;
 
@@ -53,11 +53,6 @@ import org.gnome.split.gtk.dialog.ErrorDialog;
  */
 public class DefaultEngineListener implements EngineListener
 {
-    /**
-     * Object to inhibit and uninhibit computer hibernation.
-     */
-    private DbusInhibit inhibit;
-
     /**
      * The current engine (action).
      */
@@ -78,7 +73,6 @@ public class DefaultEngineListener implements EngineListener
      * listener}.
      */
     public DefaultEngineListener() {
-        this.inhibit = null;
         this.engine = null;
         this.timer = null;
         this.files = new ArrayList<String>();
@@ -95,8 +89,7 @@ public class DefaultEngineListener implements EngineListener
                 if (engine != null) {
                     // Inhibit hibernation if requested
                     if (config.NO_HIBERNATION) {
-                        inhibit = new DbusInhibit();
-                        inhibit.inhibit();
+                        GnomeSplit.inhibit();
                     }
 
                     // Disable user interaction (only in action widget)
@@ -110,9 +103,8 @@ public class DefaultEngineListener implements EngineListener
                     engineRunning();
                 } else {
                     // Uninhibit hibernation if requested
-                    if ((inhibit != null) && inhibit.isInhibited()) {
-                        inhibit.unInhibit();
-                        inhibit = null;
+                    if (GnomeSplit.isInhibited()) {
+                        GnomeSplit.unInhibit();
                     }
 
                     // Enable user interaction (only in action widget)

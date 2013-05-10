@@ -32,6 +32,7 @@ import org.gnome.glib.ApplicationCommandLine;
 import org.gnome.glib.ApplicationFlags;
 import org.gnome.glib.Glib;
 import org.gnome.gtk.Application;
+import org.gnome.gtk.ApplicationInhibitFlags;
 import org.gnome.gtk.Gtk;
 import org.gnome.notify.Notify;
 import org.gnome.split.config.Configuration;
@@ -52,6 +53,16 @@ import org.gnome.split.gtk.dialog.QuestionDialog;
  */
 public final class GnomeSplit
 {
+    /**
+     * Inhibition flags (no logout, no idle mode, no suspend).
+     */
+    private static ApplicationInhibitFlags inhibitFlags;
+
+    /**
+     * Inhibit cookie set when the application asks for computer inhibition.
+     */
+    private static int inhibitCookie;
+
     /**
      * Application instance to run.
      */
@@ -220,6 +231,11 @@ public final class GnomeSplit
             }
         });
 
+        // Initialize the inhibit cookie
+        inhibitFlags = ApplicationInhibitFlags.or(ApplicationInhibitFlags.IDLE,
+                ApplicationInhibitFlags.LOGOUT, ApplicationInhibitFlags.SUSPEND);
+        inhibitCookie = -1;
+
         // Fire the main loop (blocker)
         status = app.run(args);
 
@@ -269,6 +285,31 @@ public final class GnomeSplit
             app.removeWindow(ui);
             app.quit();
         }
+    }
+
+    /**
+     * Don't let the computer go to sleep or shutdown until the application
+     * has finished its work.
+     */
+    public static void inhibit() {
+        inhibitCookie = app.inhibit(ui, inhibitFlags, _("GNOME Split activity"));
+    }
+
+    /**
+     * Let know to the operating system that the application has finished its
+     * work.
+     */
+    public static void unInhibit() {
+        app.uninhibit(inhibitCookie);
+
+        inhibitCookie = -1;
+    }
+
+    /**
+     * Tells if the application called the method to inhibit the computer.
+     */
+    public static boolean isInhibited() {
+        return ((inhibitCookie != -1) && app.isInhibited(inhibitFlags));
     }
 
     /**

@@ -272,13 +272,14 @@ public class UserInterface extends Window implements Window.DeleteEvent
         viewMenu.setAcceleratorGroup(accelerators);
 
         // Create menu items
-        items = new MenuItem[6];
+        items = new MenuItem[7];
         items[0] = actions.getAction(ActionId.CLEAR).createMenuItem();
         items[1] = actions.getToggleAction(ActionId.TOOLBAR).createMenuItem();
         items[2] = actions.getToggleAction(ActionId.SWITCHER).createMenuItem();
         items[3] = actions.getToggleAction(ActionId.STATUS).createMenuItem();
-        items[4] = actions.getRadioAction(ActionId.SPLIT).createMenuItem();
-        items[5] = actions.getRadioAction(ActionId.MERGE).createMenuItem();
+        items[4] = actions.getToggleAction(ActionId.SIZE_DETAILS).createMenuItem();
+        items[5] = actions.getRadioAction(ActionId.SPLIT).createMenuItem();
+        items[6] = actions.getRadioAction(ActionId.MERGE).createMenuItem();
 
         // Add menu items to the menu
         viewItem.setSubmenu(viewMenu);
@@ -287,9 +288,10 @@ public class UserInterface extends Window implements Window.DeleteEvent
         viewMenu.append(items[1]);
         viewMenu.append(items[2]);
         viewMenu.append(items[3]);
-        viewMenu.append(new SeparatorMenuItem());
         viewMenu.append(items[4]);
+        viewMenu.append(new SeparatorMenuItem());
         viewMenu.append(items[5]);
+        viewMenu.append(items[6]);
         menubar.append(viewItem);
 
         // Help menu item

@@ -139,12 +139,14 @@ public class ActionManager
         ViewToolbarAction toolbar = new ViewToolbarAction();
         ViewSwitcherAction switcher = new ViewSwitcherAction();
         ViewStatusbarAction status = new ViewStatusbarAction();
+        ViewSizeDetails details = new ViewSizeDetails();
 
         // Add the previously created actions
         toggles.put(ActionId.TRAY_WINDOW, window);
         toggles.put(ActionId.TOOLBAR, toolbar);
         toggles.put(ActionId.SWITCHER, switcher);
         toggles.put(ActionId.STATUS, status);
+        toggles.put(ActionId.SIZE_DETAILS, details);
 
         // Other actions related to the interface which have two possible
         // states (active or inactive) but only one can be active
@@ -235,6 +237,7 @@ public class ActionManager
         TOOLBAR,
         SWITCHER,
         STATUS,
+        SIZE_DETAILS,
         SPLIT,
         MERGE,
         HELP,

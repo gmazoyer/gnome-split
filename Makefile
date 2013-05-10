@@ -21,7 +21,7 @@ all: .config dirs compile translation gnome-split
 	/bin/echo
 	exit 1
 
-CLASSPATH=$(JAVA_GNOME_JAR):$(DBUS_JAVA_JAR):$(DEBUG_DISABLE_JAR):$(DEBUG_ENABLE_JAR):$(HEXDUMP_JAR):$(UNIX_SOCKET)
+CLASSPATH=$(JAVA_GNOME_JAR)
 
 SOURCES_DIST=$(shell find src/ -name '*.java')
 TRANSLATIONS=$(shell find po/  -name '*.po' | sed -e 's/po\/\(.*\)\.po/share\/locale\/\1\/LC_MESSAGES\/gnome-split\.mo/g')
