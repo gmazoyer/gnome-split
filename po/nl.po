@@ -1,15 +1,16 @@
-# Czech translation for gnome-split
-# Copyright (c) 2010 Rosetta Contributors and Canonical Ltd 2010
+# Dutch translation for gnome-split
+# Copyright (c) 2011 Rosetta Contributors and Canonical Ltd 2011
 # This file is distributed under the same license as the gnome-split package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: GNOME Split\n"
-"Report-Msgid-Bugs-To: Guillaume Mazoyer <respawneral@gmail.com>\n"
+"Project-Id-Version: gnome-split\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-05-10 22:08+0200\n"
-"PO-Revision-Date: 2012-08-31 15:37+0000\n"
-"Last-Translator: luisah <luisah.linux@gmail.com>\n"
-"Language-Team: Czech <cs@li.org>\n"
+"PO-Revision-Date: 2011-01-11 14:40+0000\n"
+"Last-Translator: Rachid <Unknown>\n"
+"Language-Team: Dutch <nl@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,88 +19,83 @@ msgstr ""
 
 #: src/org/gnome/split/GnomeSplit.java:266
 msgid "Quit GNOME Split."
-msgstr "Ukončit GNOME Split."
+msgstr ""
 
 #: src/org/gnome/split/GnomeSplit.java:267
 msgid ""
 "An action is currently being performed. Do you really want to quit GNOME "
 "Split?"
-msgstr "Program nyní provádí činnost. Opravdu chcete ukončit GNOME Split?"
+msgstr ""
 
 #: src/org/gnome/split/GnomeSplit.java:295
 msgid "GNOME Split activity"
-msgstr "Aktivita GNOME Split"
+msgstr ""
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:33
 msgid "MD5 sums are different."
-msgstr "MD5 součty jsou rozdílné."
+msgstr ""
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:34
 msgid ""
 "There is no guarantee that the created file will work. Maybe you should try "
 "to merge the chunks again."
 msgstr ""
-"Neexistuje žádná záruka, že vytvořený soubor bude funkční. Možná byste se "
-"měli pokusit spojit části znovu."
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:35
 msgid "Invalid chunk size."
-msgstr "Část má špatnou velikost."
+msgstr ""
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:36
 msgid ""
 "You must specify a size which is lower than the size of the file to split."
 msgstr ""
-"Musíte zadat velikost, která je menší než velikost rozdělovaného souboru."
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:37
 msgid "Missing chunk."
-msgstr "Chybějící část."
+msgstr ""
 
 #: src/org/gnome/split/core/exception/ExceptionMessage.java:38
 msgid ""
 "A chunk appears to be missing. Please check that all chunks are in the same "
 "directory."
 msgstr ""
-"Nějaká část zřejmě chybí. Zkontrolujte prosím, že všechny části jsou ve "
-"stejném adresáři."
 
 #: src/org/gnome/split/core/merger/DefaultMergeEngine.java:171
 #, java-format
 msgid "Merging {0}"
-msgstr "Slučování {0}"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:99
 msgid "chunks"
-msgstr "části"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:100
 msgid "bytes (B)"
-msgstr "byty (B)"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:101
 msgid "kibibytes (KiB)"
-msgstr "kibibyty (KiB)"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:102
 msgid "mebibytes (MiB)"
-msgstr "mebibyty (MiB)"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:103
 msgid "gibibytes (GiB)"
-msgstr "gibibyty (GiB)"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:104
 msgid "CD-R (700 MB)"
-msgstr "CD-R (700 MB)"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/SizeUnit.java:105
 msgid "DVD-R (4.7 GB)"
-msgstr "DVD-R (4.7 GB)"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/Algorithm.java:62
 msgid "Generic"
-msgstr "Obecný"
+msgstr ""
 
 #: src/org/gnome/split/core/utils/Algorithm.java:90
 msgid ""
@@ -107,17 +103,12 @@ msgid ""
 "will be mergeable with tools like <b>cat</b>. It does not provide a file "
 "integrity check with a checksum."
 msgstr ""
-"Algoritmus pouze rozdělí soubor, aniž by dělal něco jiného. Soubory budou "
-"slučitelné nástroji jako <b>cat</b>. Neposkytuje soubor kontroly integrity s "
-"kontrolním součtem."
 
 #: src/org/gnome/split/core/utils/Algorithm.java:91
 msgid ""
 "Algorithm that is specific to <i>GNOME Split</i>. It provides a file "
 "integrity check using a <b>MD5</b> sum."
 msgstr ""
-"Algoritmus, který je specifický pro <i>GNOME Split</i> poskytuje soubor "
-"kontroly integrity pomocí <b>MD5</b> součtu."
 
 #: src/org/gnome/split/core/utils/Algorithm.java:92
 msgid ""
@@ -125,9 +116,6 @@ msgid ""
 "<i>Xtremsplit</i> will be able to merge the files. It provides a file "
 "integrity check using a <b>MD5</b> sum."
 msgstr ""
-"Algoritmus, který používá používá program <i>Xtremsplit</i>. Pouze lidé, "
-"kteří používají <i>Xtremsplit</i> budou moci sloučit soubory. Poskytuje "
-"soubor kontroly integrity pomocí <b>MD5</b> součtu."
 
 #: src/org/gnome/split/core/utils/Algorithm.java:93
 msgid ""
@@ -135,9 +123,6 @@ msgid ""
 "to merge the files. The files will be mergeable with tools like <b>cat</b> "
 "too."
 msgstr ""
-"Algoritmus, který používá program <i>KFK</i>. Lidé, kteří používají "
-"<i>KFK</i> budou moci sloučit soubory. Soubory budou slučitelné i nástroji "
-"jako <b>cat</b>."
 
 #: src/org/gnome/split/core/utils/Algorithm.java:94
 msgid ""
@@ -145,56 +130,53 @@ msgid ""
 "be able to merge the files. It provides a file integrity check using a "
 "<b>MD5</b> sum."
 msgstr ""
-"Algoritmus, který používá program <i>YoyoCut</i>. Lidé, kteří používají "
-"<i>YoyoCut</i> budou moci sloučit soubory. Poskytuje soubor kontroly "
-"integrity pomocí <b>MD5</ b> součtu."
 
 #: src/org/gnome/split/core/splitter/DefaultSplitEngine.java:106
 #, java-format
 msgid "Splitting {0}"
-msgstr "Rozdělování {0}"
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:155
 #, java-format
 msgid "Writing {0}."
-msgstr "Zapisování {0}"
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:172
 #, java-format
 msgid "Reading {0}."
-msgstr "Čtení {0}"
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:189
 msgid "MD5 sum calculation."
-msgstr "Výpočet MD5 součtu."
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:291
 msgid "Split finished."
-msgstr "Rozdělení dokončeno."
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:292
 msgid "The file was successfully split."
-msgstr "Soubor byl úspěšně rozdělen."
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:294
 msgid "Merge finished."
-msgstr "Sloučení dokončeno."
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:295
 msgid "The files were successfully merged."
-msgstr "Soubory byly úspěšně sloučeny."
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:328
 msgid "Split stopped."
-msgstr "Rozdělení zastaveno."
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:330
 msgid "Merge stopped."
-msgstr "Sloučení zastaveno."
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:373
 msgid "Unhandled exception."
-msgstr "Neošetřená vyjímka."
+msgstr ""
 
 #: src/org/gnome/split/gtk/DefaultEngineListener.java:374
 msgid ""
@@ -203,30 +185,26 @@ msgid ""
 "\n"
 "See the details for more information."
 msgstr ""
-"Nastala neočekávaná chyba. Můžete ji nahlásit vývojářům a popsat jak ji "
-"reprodukovat.\n"
-"\n"
-"Zobrazit detaily pro více informací."
 
 #: src/org/gnome/split/gtk/UserInterface.java:222
 msgid "_File"
-msgstr "_Soubor"
+msgstr ""
 
 #: src/org/gnome/split/gtk/UserInterface.java:256
 msgid "_Edit"
-msgstr "_Úpravy"
+msgstr ""
 
 #: src/org/gnome/split/gtk/UserInterface.java:270
 msgid "_View"
-msgstr "_Zobrazení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/UserInterface.java:298
 msgid "_Help"
-msgstr "_Nápověda"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/AreaStatusIcon.java:99
 msgid "version"
-msgstr "verze"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:57
 msgid "Merge assistant"
@@ -234,22 +212,22 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:74
 msgid "Select the first file to merge."
-msgstr "Vyberte první soubor pro sloučení."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:80
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:116
 msgid "Valid chunks"
-msgstr "Správné části"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:87
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:263
 msgid "Select a file."
-msgstr "Vyberte soubor."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:108
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:282
 msgid "File selection"
-msgstr "Výběr souboru"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:116
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:290
@@ -257,17 +235,15 @@ msgid ""
 "You can verify that all the data that have been collected are correct. If "
 "they are not, you can go back to a previous step to change them."
 msgstr ""
-"Můžete si ověřit, že všechna zadaná data jsou správná. Pokud nejsou, můžete "
-"se vrátit k předchozímu kroku a změnit je."
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:124
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:298
 msgid "Confirmation"
-msgstr "Potvrzení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:142
 msgid "First file to merge:"
-msgstr "První soubor pro sloučení:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:82
 msgid "Split assistant"
@@ -278,73 +254,69 @@ msgid ""
 "Select the maximal size for each chunk. You can let GNOME Split calculate "
 "the size by giving the number of chunks to create."
 msgstr ""
-"Zadejte maximální velikost každé části. Můžete nechat GNOME Split vypočítat "
-"velikost zadáním počtu částí, které má vytvořit."
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:171
 msgid ""
 "Invalid chunk size. The size must be lower than the size of the file to "
 "split."
 msgstr ""
-"Neplatná velikost části. Velikost musí být menší než velikost souboru pro "
-"rozdělení."
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:201
 msgid "Size selection"
-msgstr "Velikost výběru"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:216
 msgid "The algorithm defines the way how the file will be split."
-msgstr "Algoritmus definuje způsob, jakým bude soubor rozdělen."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:247
 msgid "Algorithm selection"
-msgstr "Výběr algoritmu"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:257
 msgid "Select the file to split."
-msgstr "Vyberte soubor pro rozdělení."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:316
 msgid "File to split:"
-msgstr "Soubor pro rozdělení:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:317
 msgid "Maximum size of a chunk:"
-msgstr "Maximální velikost části:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/SplitAssistant.java:318
 msgid "Algorithm of split:"
-msgstr "Algoritmus rozdělení:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:109
 msgid "First chunk:"
-msgstr "První část:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:114
 msgid "All files"
-msgstr "Všechny soubory"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:122
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:105
 msgid "Choose a file."
-msgstr "Vyberte soubor."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:142
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:118
 msgid "Destination:"
-msgstr "Cíl:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:149
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:125
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:456
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:577
 msgid "Choose a directory."
-msgstr "Vyberte adresář."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:157
 msgid "Chunks:"
-msgstr "Části:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:161
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:173
@@ -354,179 +326,171 @@ msgstr "Části:"
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:321
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:322
 msgid "Unknown"
-msgstr "Neznámé"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:169
 msgid "Total size:"
-msgstr "Celková velikost:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:181
 msgid "MD5 sum:"
-msgstr "Součet MD5:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:210
 msgid "Cannot merge."
-msgstr "Nelze rozdělit."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:211
 msgid ""
 "You will not be able to merge the files because this file format is unknown. "
 "You are welcome to fill a bug about that."
 msgstr ""
-"Nemůžete rozdělit toubory, protože jsou v neznámém formátu. Prosím, dejte "
-"nám o chybě vědět."
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:238
 msgid "A MD5 sum will be calculated."
-msgstr "Součet MD5 bude spočítán."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/MergeWidget.java:239
 msgid "A MD5 sum will not be calculated."
-msgstr "Součet MD5 nebude spočítán."
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:101
 msgid "File:"
-msgstr "Soubor:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:136
 msgid "Split in:"
-msgstr "Rozdělit do:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SplitWidget.java:152
 msgid "Algorithm:"
-msgstr "Algoritmus:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SelectView.java:60
 msgid "View:"
-msgstr "Zobrazení:"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SelectView.java:68
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:85
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:218
 msgid "Split"
-msgstr "Rozdělení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/widget/SelectView.java:76
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:86
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:233
 msgid "Merge"
-msgstr "Sloučení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "_Suspend"
-msgstr "_Pozastavit"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/PauseAction.java:37
 msgid "Suspend this action."
-msgstr "Pozastavit tuto akci."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/DeleteAction.java:37
 msgid "Cancel and _delete files"
-msgstr "Zrušit a _smazat soubory"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/SendEmailAction.java:39
 msgid "Send by _email"
-msgstr "Poslat _e-mailem"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/SendEmailAction.java:39
 msgid "Send one or several files by email"
-msgstr "Poslat jeden nebo více souborů e-mailem"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:45
 msgid "_Start"
-msgstr "_Start"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:45
 msgid "Start this action."
-msgstr "Začít akci."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:64
 msgid "Incompleted fields."
-msgstr "Neúplná pole."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:65
 msgid "You must fill all fields to start an action."
-msgstr "Musíte vyplnit všechna pole před spuštěním akce."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:74
 msgid "Not enough space."
-msgstr "Nedostatek místa."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:75
 #, java-format
 msgid ""
 "There is not enough available space ({0}) in the folder that you selected."
-msgstr "Není dostatek volného místa ({0}) ve vybrané složce."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:90
 msgid "Can't read on the file system."
-msgstr "Nelze číst souborový systém."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:91
 msgid ""
 "Can't read the file. Please check the permissions before doing anything."
 msgstr ""
-"Nelze přečíst soubor. Prosím zkontrolujte oprávnění předtím, než začnete "
-"cokoli dělat."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:96
 msgid "Can't write on the file system."
-msgstr "Nelze zapisovat na souborový systém."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:97
 msgid ""
 "Can't write the file. Please check the permissions before doing anything."
 msgstr ""
-"Nelze zapsat soubor. Prosím zkontrolujte oprávnění předtím, než začnete "
-"cokoli dělat."
 
 #: src/org/gnome/split/gtk/action/StartAction.java:102
 msgid "Can't read and write on the file system."
-msgstr "Nelze číst ani zapisovat na souborový systém."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/StartAction.java:103
 msgid ""
 "Can't read and write the files. Please check the permissions before doing "
 "anything."
 msgstr ""
-"Nelze číst ani zapisovat na souborový systém. Prosím zkontrolujte oprávnění "
-"dřív, než začnete cokoli dělat."
 
 #: src/org/gnome/split/gtk/action/AssistantAction.java:36
 msgid "_Assistant"
-msgstr "_Pomocník"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/AssistantAction.java:36
 msgid "Create a split or a merge."
-msgstr "Rozdělit nebo sloučit."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/CancelAction.java:37
 msgid "Cancel this action."
-msgstr "Zrušit tuto akci."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/ClearAction.java:37
 msgid "Clear this view."
-msgstr "Vyčistit zobrazení."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/MergeViewAction.java:39
 msgid "_Merge"
-msgstr "_Sloučit"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/OpenDirAction.java:40
 msgid "_Open folder"
-msgstr "_Otevřít složku"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/OpenDirAction.java:40
 msgid "Open the folder where the action is performed."
-msgstr "Otevřít složku ve které se provádí akce."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/MainWindowAction.java:34
 msgid "Show the main _window"
-msgstr "Zobrazit hlavní _okno"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/SplitViewAction.java:39
 msgid "S_plit"
-msgstr "_Rozdělit"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/ViewSizeDetails.java:30
 msgid "Size _details"
@@ -534,186 +498,178 @@ msgstr ""
 
 #: src/org/gnome/split/gtk/action/ReportBugAction.java:34
 msgid "_Report a Problem..."
-msgstr "_Nahlásit problém..."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/ViewSwitcherAction.java:38
 msgid "_View switcher"
-msgstr "_Přepínač zobrazení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/ViewStatusbarAction.java:37
 msgid "_Statusbar"
-msgstr "_Stavový řádek"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/ViewToolbarAction.java:37
 msgid "_Toolbar"
-msgstr "_Panel nástrojů"
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/OnlineHelpAction.java:34
 msgid "Get Help _Online..."
-msgstr "Získat nápovědu _online..."
+msgstr ""
 
 #: src/org/gnome/split/gtk/action/TranslateAction.java:34
 msgid "_Translate This Application..."
-msgstr "_Přeložit tuto aplikaci..."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:72
 msgid "GNOME Split Preferences"
-msgstr "Nastavení GNOME Split"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:83
 msgid "General"
-msgstr "Obecné"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:84
 msgid "Interface"
-msgstr "Rozhraní"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:87
 msgid "Desktop"
-msgstr "Plocha"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:134
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:62
 msgid "Assistant"
-msgstr "Pomocník"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:144
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:93
 msgid "_Show the assistant on start"
-msgstr "_Zobrazit pomocníka při startu"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:161
 msgid "Program run"
-msgstr "Běh programu"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:171
 msgid "_Allow multiple instances."
-msgstr "_Povolit více instancí."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:204
 msgid "Default view"
-msgstr "Výchozí zobrazení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:252
 msgid "Size of the main window"
-msgstr "Velikost hlavního okna"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:268
 msgid "Use the _current size"
-msgstr "Použít _současnou velikost"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:272
 msgid "_Use a custom size."
-msgstr "_Použít vlastní velikost."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:387
 msgid "During a split"
-msgstr "Během rozdělení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:396
 msgid "_Calculate the MD5 sum if possible."
-msgstr "_Pokud je to možné, spočítat MD5."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:413
 msgid "Default algorithm"
-msgstr "Výchozí algoritmus"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:446
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:567
 msgid "Default directory"
-msgstr "Výchozí složka"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:484
 msgid "During a merge"
-msgstr "Během slučování"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:498
 msgid "_Remove the chunks."
-msgstr "_Odstranit části."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:501
 msgid "_Check the MD5 sum if possible."
-msgstr "_Pokud je to možné, zkontrolovat MD5 součty."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:523
 msgid "After a merge"
-msgstr "Po sloučení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:550
 msgid "_Open the created file."
-msgstr "_Otevřít vytvořený soubor."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:600
 msgid "Power management"
-msgstr "Správa napájení"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:611
 msgid "Inhibit desktop _hibernation when an action is performed."
-msgstr "Zabránit _uspání plochy pokud je prováděna akce."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:628
 msgid "Notification"
-msgstr "Oznamování"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:642
 msgid "Show _icon in the desktop notification area."
-msgstr "Zobrazit _ikonu v oznamovací oblasti."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:658
 msgid "Show desktop _notification."
-msgstr "Zobrazit oznámení."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/ErrorDialog.java:57
 msgid "Details"
-msgstr "Podrobnosti"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:54
 msgid "Split and merge your files easily."
-msgstr "Jednoduché dělení a slučování souborů."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:55
 msgid "the GNOME Split project"
-msgstr "Projekt GNOME Split"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:57
 msgid "Project website"
-msgstr "Webová stránka projektu"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AboutSoftDialog.java:75
 msgid "translator-credits"
 msgstr ""
-"Launchpad Contributions:\n"
-"  Martin \"sachy\" Šácha https://launchpad.net/~sachy\n"
-"  Michal Chlup https://launchpad.net/~axs204b\n"
-"  Viktor https://launchpad.net/~machek\n"
-"  Vladimír Burian https://launchpad.net/~vburian\n"
-"  luisah https://launchpad.net/~luisah"
 
 #: src/org/gnome/split/gtk/dialog/QuestionDialog.java:52
 #: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:62
 msgid "Do not ask me again."
-msgstr "Znovu se neptat."
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:59
 msgid ""
 "What do you want to do?\n"
 "Quit GNOME Split or minimize the window?"
 msgstr ""
-"Co chcete udělat?\n"
-"Ukončit GNOME Split nebo minimalizovat okno?"
 
 #: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:66
 msgid "_Minimize"
-msgstr "_Minimalizovat"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:71
 msgid "What do you want to do?"
-msgstr "Co chcete udělat?"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:85
 msgid "Split a file"
-msgstr "Rozdělit soubor"
+msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:86
 msgid "Merge several files"
-msgstr "Sloučit soubory"
+msgstr ""

@@ -1,5 +1,19 @@
 NEWS
 
+GNOME Split 1.2 (11 May 2013)
+=============================
+
+Codename: Engine Light
+
+  * Full rework of the split/merge assistant.
+  * Customizable buffer size.
+  * Fix file handling when there are spaces in the names.
+  * Handle theming of the toolbar.
+  * Add an option to show or hide the text in the progress bar.
+  * Port to GtkApplication.
+  * Remove dbus-java dependency.
+  * Update translations (Thank you Launchpad translators).
+
 GNOME Split 1.1 (05 Aug 2011)
 =============================
 

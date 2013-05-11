@@ -6,3 +6,4 @@ tmp
 gnome-split-*.tar.bz2
 share/locale
 gnome-split
+bin
