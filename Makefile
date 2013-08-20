@@ -207,10 +207,6 @@ distclean: clean
 #
 dist: all
 	@/bin/echo -e "CHECK\tfully committed state"
-	bzr diff > /dev/null || ( echo -e "\nYou need to commit all changes before running make dist\n" ; exit 4 )
+	[ -z "`git status --short`" ] || ( /bin/echo -e "\nYou need to commit all changes before running make dist\n" ; exit 4 )
 	@/bin/echo -e "EXPORT\ttmp/gnome-split-$(VERSION)"
-	-rm -rf tmp/gnome-split-$(VERSION)
-	bzr export --format=dir tmp/gnome-split-$(VERSION)
-	@/bin/echo -e "TAR\tgnome-split-$(VERSION).tar.bz2"
-	tar cjf gnome-split-$(VERSION).tar.bz2 -C tmp gnome-split-$(VERSION)
-	rm -r tmp/gnome-split-$(VERSION)
+	git archive --format tar master --prefix gnome-split-$(VERSION)/ | bzip2 > gnome-split-$(VERSION).tar.bz2

@@ -7,3 +7,6 @@ gnome-split-*.tar.bz2
 share/locale
 gnome-split
 bin
+
+# Keep empty directories:
+!*/.git*
