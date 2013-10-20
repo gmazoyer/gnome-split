@@ -1343,26 +1343,6 @@ print LAUNCHER join (" ",
 
 close LAUNCHER;
 
-open DESKTOP, ">tmp/launcher/gnome-split.desktop";
-
-print DESKTOP <<HERE ;
-[Desktop Entry]
-Version=$version
-Type=Application
-Name=GNOME Split
-GenericName="Files splitter"
-GenericName[fr]="Découpeur de fichiers"
-Comment=Split and assemble files easily
-Comment[fr]=Découpage et assemblage de fichiers
-Categories=GNOME;GTK;Utility;
-Path=$prefix
-Exec=$prefix/bin/gnome-split
-Icon=$prefix/share/pixmaps/gnome-split.png
-MimeType=application/x-extension-xtm;application/x-extension-gsp;application/x-extension-yct;application/x-extension-kk;application/x-generic-chunk
-HERE
-
-close DESKTOP;
-
 open MIMETYPE, ">tmp/launcher/gnome-split.xml";
 
 print MIMETYPE <<HERE;

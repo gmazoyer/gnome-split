@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.2
+Type=Application
+Name=GNOME Split
+GenericName="Files splitter"
+GenericName[fr]="Découpeur de fichiers"
+Comment=Split and assemble files easily
+Comment[fr]=Découpage et assemblage de fichiers
+Categories=GNOME;GTK;Utility;
+Path=/usr
+Exec=/usr/bin/gnome-split
+Icon=/usr/share/pixmaps/gnome-split.png
+MimeType=application/x-extension-xtm;application/x-extension-gsp;application/x-extension-yct;application/x-extension-kk;application/x-generic-chunk

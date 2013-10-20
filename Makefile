@@ -110,9 +110,9 @@ $(DESTDIR)$(PREFIX)/bin/gnome-split: \
 
 $(DESTDIR)$(PREFIX)/share/applications/gnome-split.desktop: \
 		$(DESTDIR)$(PREFIX)/share/applications \
-		tmp/launcher/gnome-split.desktop
+		gnome-split.desktop
 	@/bin/echo -e "INSTALL\t$@"
-	cp -f tmp/launcher/gnome-split.desktop $@
+	cp -f gnome-split.desktop $@
 
 $(DESTDIR)$(PREFIX)/share/mime/packages/gnome-split.xml: \
 		$(DESTDIR)$(PREFIX)/share/mime/packages \
@@ -124,11 +124,11 @@ tmp/gnome-split.jar: tmp/stamp/compile
 	@/bin/echo -e "$(JAR_CMD)\t$@"
 	$(JAR) -cf tmp/gnome-split.jar -C tmp/classes .
 
-$(DESTDIR)$(PREFIX)/share/pixmaps: 
+$(DESTDIR)$(PREFIX)/share/pixmaps:
 	@/bin/echo -e "MKDIR\t$@/"
 	-mkdir $@
 
-$(DESTDIR)$(PREFIX)/share/locale: 
+$(DESTDIR)$(PREFIX)/share/locale:
 	@/bin/echo -e "MKDIR\t$@/"
 	-mkdir $@
 
@@ -178,7 +178,7 @@ uninstall:
 # --------------------------------------------------------------------
 
 # [note that we don't remove .config here, as a) darcs doesn't pick it up
-# so if it's hanging around it won't cause problems, and b) if it is removed 
+# so if it's hanging around it won't cause problems, and b) if it is removed
 # here, then `make clean all` fails]
 clean:
 	@/bin/echo -e "RM\ttemporary build directories"
