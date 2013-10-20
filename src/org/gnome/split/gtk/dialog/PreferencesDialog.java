@@ -638,22 +638,6 @@ public final class PreferencesDialog extends Dialog implements Window.DeleteEven
         final VBox checks = new VBox(false, 6);
         secondRow.packStart(checks, false, false, 0);
 
-        // Restore tray icon status
-        final CheckButton statusIcon = new CheckButton(_("Show _icon in the desktop notification area."));
-        statusIcon.setActive(config.SHOW_STATUS_ICON);
-        checks.packStart(statusIcon, false, false, 0);
-        statusIcon.connect(new Button.Clicked() {
-            @Override
-            public void onClicked(Button source) {
-                boolean showStatusIcon = statusIcon.getActive();
-                config.SHOW_STATUS_ICON = showStatusIcon;
-
-                // Display icon and save preferences
-                ui.getAreaStatusIcon().setVisible(showStatusIcon);
-                config.savePreferences();
-            }
-        });
-
         // Restore notifications status
         final CheckButton notification = new CheckButton(_("Show desktop _notification."));
         notification.setActive(config.USE_NOTIFICATION);

@@ -43,9 +43,7 @@ import org.gnome.gtk.WindowPosition;
 import org.gnome.split.GnomeSplit;
 import org.gnome.split.config.Constants;
 import org.gnome.split.gtk.action.ActionManager.ActionId;
-import org.gnome.split.gtk.dialog.MinimizeDialog;
 import org.gnome.split.gtk.widget.ActionWidget;
-import org.gnome.split.gtk.widget.AreaStatusIcon;
 import org.gnome.split.gtk.widget.MainToolbar;
 import org.gnome.split.gtk.widget.MergeWidget;
 import org.gnome.split.gtk.widget.SelectView;
@@ -67,11 +65,6 @@ public class UserInterface extends Window implements Window.DeleteEvent
      * Group of accelerators for actions.
      */
     private AcceleratorGroup accelerators;
-
-    /**
-     * Icon in the notification area associated to this window.
-     */
-    private AreaStatusIcon statusIcon;
 
     /**
      * Toolbar.
@@ -130,10 +123,6 @@ public class UserInterface extends Window implements Window.DeleteEvent
 
         // Place the window in the middle of the screen
         this.setPosition(WindowPosition.CENTER);
-
-        // Create the notification zone icon
-        this.statusIcon = new AreaStatusIcon();
-        this.statusIcon.setVisible(config.SHOW_STATUS_ICON);
 
         // Main container
         this.mainContainer = new VBox(false, 0);
@@ -454,37 +443,10 @@ public class UserInterface extends Window implements Window.DeleteEvent
         return info;
     }
 
-    /**
-     * Get the notification area icon associated to this window.
-     */
-    public AreaStatusIcon getAreaStatusIcon() {
-        return statusIcon;
-    }
-
     @Override
     public boolean onDeleteEvent(Widget source, Event event) {
-        if (!config.SHOW_STATUS_ICON) {
-            // Close the program
-            GnomeSplit.quit();
-        } else {
-            switch (config.CLOSE_BEHAVIOR) {
-            case 0:
-                // Show the dialog
-                final MinimizeDialog dialog = new MinimizeDialog();
-                dialog.present();
-                break;
-
-            case 1:
-                // Close the program
-                GnomeSplit.quit();
-                break;
-
-            case 2:
-                // Hide the window
-                statusIcon.onActivate(statusIcon);
-                break;
-            }
-        }
+        // Close the program
+        GnomeSplit.quit();
 
         return true;
     }

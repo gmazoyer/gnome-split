@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-10 22:08+0200\n"
+"POT-Creation-Date: 2013-10-20 18:09+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -136,49 +136,49 @@ msgstr ""
 msgid "Splitting {0}"
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:155
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:149
 #, java-format
 msgid "Writing {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:172
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:166
 #, java-format
 msgid "Reading {0}."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:189
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:183
 msgid "MD5 sum calculation."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:291
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:285
 msgid "Split finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:292
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:286
 msgid "The file was successfully split."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:294
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:288
 msgid "Merge finished."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:295
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:289
 msgid "The files were successfully merged."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:328
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:322
 msgid "Split stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:330
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:324
 msgid "Merge stopped."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:373
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:367
 msgid "Unhandled exception."
 msgstr ""
 
-#: src/org/gnome/split/gtk/DefaultEngineListener.java:374
+#: src/org/gnome/split/gtk/DefaultEngineListener.java:368
 msgid ""
 "An exception occurs. You can report it to the developers and tell them how "
 "to reproduce it.\n"
@@ -186,24 +186,20 @@ msgid ""
 "See the details for more information."
 msgstr ""
 
-#: src/org/gnome/split/gtk/UserInterface.java:222
+#: src/org/gnome/split/gtk/UserInterface.java:211
 msgid "_File"
 msgstr ""
 
-#: src/org/gnome/split/gtk/UserInterface.java:256
+#: src/org/gnome/split/gtk/UserInterface.java:245
 msgid "_Edit"
 msgstr ""
 
-#: src/org/gnome/split/gtk/UserInterface.java:270
+#: src/org/gnome/split/gtk/UserInterface.java:259
 msgid "_View"
 msgstr ""
 
-#: src/org/gnome/split/gtk/UserInterface.java:298
+#: src/org/gnome/split/gtk/UserInterface.java:287
 msgid "_Help"
-msgstr ""
-
-#: src/org/gnome/split/gtk/widget/AreaStatusIcon.java:99
-msgid "version"
 msgstr ""
 
 #: src/org/gnome/split/gtk/widget/assistant/MergeAssistant.java:57
@@ -620,10 +616,6 @@ msgid "Notification"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:642
-msgid "Show _icon in the desktop notification area."
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/PreferencesDialog.java:658
 msgid "Show desktop _notification."
 msgstr ""
 
@@ -648,18 +640,7 @@ msgid "translator-credits"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/QuestionDialog.java:52
-#: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:62
 msgid "Do not ask me again."
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:59
-msgid ""
-"What do you want to do?\n"
-"Quit GNOME Split or minimize the window?"
-msgstr ""
-
-#: src/org/gnome/split/gtk/dialog/MinimizeDialog.java:66
-msgid "_Minimize"
 msgstr ""
 
 #: src/org/gnome/split/gtk/dialog/AssistantDialog.java:71

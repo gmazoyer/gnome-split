@@ -96,9 +96,6 @@ public class DefaultEngineListener implements EngineListener
                     ui.getActionWidget().disable();
                     ui.getViewSwitcher().disable();
 
-                    // Update the status icon tooltip
-                    ui.getAreaStatusIcon().updateText(engine.toString());
-
                     // Update the interface state
                     engineRunning();
                 } else {
@@ -113,9 +110,6 @@ public class DefaultEngineListener implements EngineListener
 
                     // Reset the window's title
                     ui.setTitle(null);
-
-                    // Reset the status bar message
-                    ui.getAreaStatusIcon().updateText(null);
 
                     // Reset the status bar speed indicator
                     ui.getStatusWidget().updateSpeed(null);

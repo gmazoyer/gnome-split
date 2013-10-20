@@ -117,11 +117,6 @@ public final class Configuration
     public boolean USE_NOTIFICATION;
 
     /**
-     * Show icon in the notification zone.
-     */
-    public boolean SHOW_STATUS_ICON;
-
-    /**
      * Show the toolbar.
      */
     public boolean SHOW_TOOLBAR;
@@ -145,11 +140,6 @@ public final class Configuration
      * Do not ask the user if he/she really wants to quit.
      */
     public boolean DO_NOT_ASK_QUIT;
-
-    /**
-     * What do we have to do if the user close the main window.
-     */
-    public byte CLOSE_BEHAVIOR;
 
     /**
      * The size of the buffer used for read/write operations. This is not
@@ -271,7 +261,6 @@ public final class Configuration
             // Load desktop config
             NO_HIBERNATION = Boolean.parseBoolean(preferences.getProperty("NoHibernation", "true"));
             USE_NOTIFICATION = Boolean.parseBoolean(preferences.getProperty("UseNotification", "false"));
-            SHOW_STATUS_ICON = Boolean.parseBoolean(preferences.getProperty("ShowStatusIcon", "false"));
 
             // Load other config
             SHOW_TOOLBAR = Boolean.parseBoolean(preferences.getProperty("ShowToolbar", "true"));
@@ -279,7 +268,6 @@ public final class Configuration
             SHOW_STATUSBAR = Boolean.parseBoolean(preferences.getProperty("ShowStatusbar", "true"));
             SHOW_SIZE_DETAILS = Boolean.parseBoolean(preferences.getProperty("ShowSizeDetails", "false"));
             DO_NOT_ASK_QUIT = Boolean.parseBoolean(preferences.getProperty("DontAskToQuit", "false"));
-            CLOSE_BEHAVIOR = Byte.parseByte(preferences.getProperty("CloseBehavior", "0"));
             BUFFER_SIZE = Integer.parseInt(preferences.getProperty("BufferSize", "1048576"));
         } catch (IOException e) {
             e.printStackTrace();
@@ -318,7 +306,6 @@ public final class Configuration
             // Write desktop config
             writer.write("NoHibernation     = " + NO_HIBERNATION + "\n");
             writer.write("UseNotification   = " + USE_NOTIFICATION + "\n");
-            writer.write("ShowStatusIcon    = " + SHOW_STATUS_ICON + "\n");
 
             // Write other config
             writer.write("ShowToolbar       = " + SHOW_TOOLBAR + "\n");
@@ -326,7 +313,6 @@ public final class Configuration
             writer.write("ShowStatusbar     = " + SHOW_STATUSBAR + "\n");
             writer.write("ShowSizeDetails   = " + SHOW_SIZE_DETAILS + "\n");
             writer.write("DontAskToQuit     = " + DO_NOT_ASK_QUIT + "\n");
-            writer.write("CloseBehavior     = " + CLOSE_BEHAVIOR + "\n");
             writer.write("BufferSize        = " + BUFFER_SIZE + "\n");
         } catch (IOException e) {
             e.printStackTrace();
