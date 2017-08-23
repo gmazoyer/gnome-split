@@ -48,7 +48,7 @@ tmp/i18n:
 compile: tmp/stamp/compile
 tmp/stamp/compile: $(SOURCES_DIST)
 	@/bin/echo -e "$(JAVAC_CMD)\ttmp/classes/*.class"
-	$(JAVAC) -d tmp/classes -classpath tmp/classes:$(CLASSPATH) -sourcepath src/ $^
+	$(JAVAC) -source 1.7 -d tmp/classes -classpath tmp/classes:$(CLASSPATH) -sourcepath src/ $^
 	touch $@
 
 translation: tmp/i18n/gnome-split.pot $(TRANSLATIONS)
